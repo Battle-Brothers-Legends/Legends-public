@@ -1,11 +1,9 @@
-this.legend_heavy_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_lumbering_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendHeavy);
-		this.m.Name = "Lumbering";
-		this.m.Icon = "ui/traits/heavy_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendLumbering);
 		this.m.Description = "Being exceptionally purposeful, this character\'s strikes hurt plenty, but they\'re also slower.";
 		this.m.Titles = [
 			"the Mountain",
@@ -24,8 +22,7 @@ this.legend_heavy_trait <- this.inherit("scripts/skills/traits/character_trait",
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -52,11 +49,9 @@ this.legend_heavy_trait <- this.inherit("scripts/skills/traits/character_trait",
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.MeleeDamageMult *= 1.1;
 		_properties.Initiative -= 20;
 	}
 
 });
-

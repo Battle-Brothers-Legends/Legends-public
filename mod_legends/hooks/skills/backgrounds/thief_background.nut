@@ -29,7 +29,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Brute),
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
+			::Legends.Traits.getID(::Legends.Trait.LegendLumbering)
 		];
 		this.m.Titles = [
 			"the Shadow",

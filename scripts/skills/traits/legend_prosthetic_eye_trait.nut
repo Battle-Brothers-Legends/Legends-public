@@ -1,13 +1,11 @@
-this.legend_prosthetic_eye <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_prosthetic_eye_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {
 		IsUpgraded = false
 	},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticEye);
-		this.m.Name = "Prosthetic Eye";
-		this.m.Icon = "ui/traits/legend_prosthetic_eye.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendProstheticEye);
 		this.m.Description = "My, what pretty eyes! This one seems a bit off, however, and the owner has to constantly shift their pupil back into position to look straight.";
 		// if (::World.Flags.get("Item Identified"))
 		// {
@@ -16,8 +14,7 @@ this.legend_prosthetic_eye <- this.inherit("scripts/skills/traits/character_trai
 		// }
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -42,44 +39,39 @@ this.legend_prosthetic_eye <- this.inherit("scripts/skills/traits/character_trai
 				text = "[color=%positive%]+7[/color] Resolve"
 			}
 		];
-		if (!this.m.IsUpgraded)
-		{
+		if (!this.m.IsUpgraded) {
 			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/vision.png",
 				text = "[color=%negative%]-2[/color] Vision"
 			});
-		}
-		else
-		{
-			ret.extend([{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/vision.png",
-				text = "[color=%negative%]-1[/color] Vision"
-			},
-			{
-				id = 15,
-				type = "text",
-				icon = "ui/icons/bravery.png",
-				text = "Reduces the Resolve of any opponent engaged in melee by [color=%negative%]-3[/color]"
-			}]);
+		} else {
+			ret.extend([
+				{
+					id = 12,
+					type = "text",
+					icon = "ui/icons/vision.png",
+					text = "[color=%negative%]-1[/color] Vision"
+				},
+				{
+					id = 15,
+					type = "text",
+					icon = "ui/icons/bravery.png",
+					text = "Reduces the Resolve of any opponent engaged in melee by [color=%negative%]-3[/color]"
+				}
+			]);
 		}
 
 		return ret;
 	}
 
-	function onUpdate (_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.RangedSkillMult *= 0.5;
 		_properties.Bravery += 7;
-		if (!this.m.IsUpgraded)
-		{
+		if (!this.m.IsUpgraded) {
 			_properties.Vision -= 2;
-		}
-		else
-		{
+		} else {
 			_properties.Vision -= 1;
 			_properties.Threat += 3;
 		}

@@ -1,11 +1,9 @@
 this.legend_steady_hands_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands);
-		this.m.Name = "Steady Hands";
-		this.m.Icon = "ui/traits/legend_steady_hands.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendSteadyHands);
 		this.m.Description = "Having particularly steady hands, this character can shoot straighter than most";
 		this.m.Titles = [
 			"the Steady",
@@ -21,8 +19,7 @@ this.legend_steady_hands_trait <- this.inherit("scripts/skills/traits/character_
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -43,10 +40,7 @@ this.legend_steady_hands_trait <- this.inherit("scripts/skills/traits/character_
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.RangedSkill += 5;
 	}
-
 });
-

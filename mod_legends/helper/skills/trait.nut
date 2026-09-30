@@ -77,3 +77,9 @@ if (!("Traits" in ::Legends))
 	return ::new(::Legends.Traits.TraitDefObjects[_def].Script);
 }
 
+::Legends.Traits.onCreate <- function (_trait, _traitDef) {
+	local def = ::Legends.Traits.TraitDefObjects[_traitDef];
+	_trait.m.ID = def.ID;
+	_trait.m.Name = def.Name;
+	_trait.m.Icon = def.Icon;
+}

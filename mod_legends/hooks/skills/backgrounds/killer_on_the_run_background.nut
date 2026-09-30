@@ -25,7 +25,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Fearless),
 			::Legends.Traits.getID(::Legends.Trait.Optimist),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
+			::Legends.Traits.getID(::Legends.Trait.LegendCharming),
 			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic)
 		];
 		this.m.Titles = [

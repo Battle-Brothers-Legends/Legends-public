@@ -29,7 +29,7 @@ this.legend_lose_fear_dark_trait_event <- this.inherit("scripts/events/event", {
 			{
 				this.Characters.push(_event.m.Darkbro.getImagePath());
 				this.Characters.push(_event.m.Bravebro1.getImagePath());
-				_event.m.Darkbro.getSkills().removeByID(::Legends.Trait.LegendFearDark);
+				_event.m.Darkbro.getSkills().removeByID(::Legends.Trait.LegendNyctophobia);
 				_event.m.Darkbro.getSkills().add(this.new(::Legends.Trait.Brave));
 				this.List = [
 					{
@@ -62,7 +62,7 @@ this.legend_lose_fear_dark_trait_event <- this.inherit("scripts/events/event", {
 
 		foreach( bro in brothers )
 		{
-			if (bro.getLevel() >= 6 && bro.getSkills().hasSkill(::Legends.Trait.LegendFearDark))
+			if (bro.getLevel() >= 6 && bro.getSkills().hasSkill(::Legends.Trait.LegendNyctophobia))
 			{
 				candidates_darkbro.push(bro);
 			}

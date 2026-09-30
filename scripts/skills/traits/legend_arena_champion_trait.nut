@@ -1,22 +1,18 @@
 this.legend_arena_champion_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendArenaChampion);
-		this.m.Name = "Arena Champion";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendArenaChampion);
 		this.m.Description = "Every man and woman in the area stand secretly wants to be %fullname%, children play in streets dressed and fighting like %they% does. As they should.";
-		this.m.Icon = "ui/traits/trait_arena_champion.png";
 		this.m.Order = ::Const.SkillOrder.Trait - 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local matches = this.getContainer().getActor().getFlags().getAsInt("ArenaFights");
 		local won = this.getContainer().getActor().getFlags().getAsInt("ArenaFightsWon");
 
-		if (won == matches)
-		{
+		if (won == matches) {
 			won = "all";
 		}
 
@@ -58,8 +54,7 @@ this.legend_arena_champion_trait <- this.inherit("scripts/skills/traits/characte
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.Bravery += 15;
 		_properties.Hitpoints += 5;
 		_properties.DamageTotalMult *= 1.05;
@@ -67,4 +62,3 @@ this.legend_arena_champion_trait <- this.inherit("scripts/skills/traits/characte
 	}
 
 });
-

@@ -23,7 +23,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Bleeder),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
+			::Legends.Traits.getID(::Legends.Trait.LegendCharming)
 		];
 		this.m.Titles = [
 			"the Raider",

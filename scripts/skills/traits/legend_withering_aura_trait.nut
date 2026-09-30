@@ -1,17 +1,14 @@
 this.legend_withering_aura_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendWitheringAura); //should provide debuffs if not a necromancer or a puppet
-		this.m.Name = "Withering Aura";
-		this.m.Icon = "ui/perks/rust56_circle.png"; //placeholder for now
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendWitheringAura);
 		this.m.Description = "This character is under the effect of a dark aura. They are slow, sluggish and have difficulty fighting. However, the numbness has yielded beneficial side effects...";
 		this.m.Excluded = [];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -27,8 +24,7 @@ this.legend_withering_aura_trait <- this.inherit("scripts/skills/traits/characte
 
 		local isAfflicted = this.getContainer().getActor().getFlags().has("human"); //alternate is PlayerZombie or PlayerSkeleton - resourced from player.nut
 
-		if (isAfflicted)
-		{
+		if (isAfflicted) {
 			ret.push({
 				id = 10,
 				type = "text",
@@ -82,32 +78,26 @@ this.legend_withering_aura_trait <- this.inherit("scripts/skills/traits/characte
 		return ret;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor();
 
-		if (actor.hasSprite("eye_rings"))
-		{
+		if (actor.hasSprite("eye_rings")) {
 			actor.getSprite("eye_rings").Visible = true;
 		}
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		local actor = this.getContainer().getActor();
 
-		if (actor.hasSprite("eye_rings"))
-		{
+		if (actor.hasSprite("eye_rings")) {
 			actor.getSprite("eye_rings").Visible = false;
 		}
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		// added the variable down here again since it was causing errors - James
 		local isAfflicted = this.getContainer().getActor().getFlags().has("human"); //alternate is PlayerZombie or PlayerSkeleton - resourced from player.nut.
-		if (isAfflicted)
-		{
+		if (isAfflicted) {
 			_properties.DamageReceivedRegularMult *= 0.75;
 			_properties.HitpointsMult *= 1.1;
 			_properties.BraveryMult *= 0.9;
@@ -120,4 +110,3 @@ this.legend_withering_aura_trait <- this.inherit("scripts/skills/traits/characte
 	}
 
 });
-

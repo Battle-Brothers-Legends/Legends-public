@@ -3,9 +3,7 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendNobleKiller);
-		this.m.Name = "Noble Killer";
-		this.m.Icon = "ui/traits/hatenobles.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendNobleKiller);
 		this.m.Description = "This character has learned from birth how to fight noble houses";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),

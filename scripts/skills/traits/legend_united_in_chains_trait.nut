@@ -1,17 +1,14 @@
-this.legend_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_united_in_chains_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendBrothersInChains);
-		this.m.Name = "United in Chains";
-		this.m.Icon = "ui/settlement_status/settlement_effect_40.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendUnitedInChains);
 		this.m.Description = "This character has formed a bond with other former slaves. For every other Indebted on the field, this character gets [color=%positive%]+1[/color] Melee Skill, Ranged Skill, Melee Defense, Ranged Defense, and Resolve.";
 		this.m.Order = ::Const.SkillOrder.Trait - 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -26,17 +23,13 @@ this.legend_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/char
 		];
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBrothersInChains);
 		this.m.IsHidden = true;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		::Legends.Effects.remove(this, ::Legends.Effect.LegendBrothersInChains);
 		this.m.IsHidden = false;
 	}
-
 });
-

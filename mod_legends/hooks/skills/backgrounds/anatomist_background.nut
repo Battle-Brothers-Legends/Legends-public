@@ -39,7 +39,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Tough),
 			::Legends.Traits.getID(::Legends.Trait.Superstitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearDark)
+			::Legends.Traits.getID(::Legends.Trait.LegendNyctophobia)
 		];
 		this.m.Titles = [
 			"the Vulture",

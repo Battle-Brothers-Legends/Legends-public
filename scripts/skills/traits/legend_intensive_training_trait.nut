@@ -17,11 +17,9 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		TraitRerollDelay = 0,
 		TraitRerollCount = 0,
 	},
-	function create()
-	{
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendIntensiveTraining);
-		this.m.Name = "Training progress";
-		this.m.Icon = "ui/traits/IntensiveTraining.png";
+
+	function create() {
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendIntensiveTraining);
 		this.m.Description = "This character has some military training but will take time to find their feet.\n Place them in the training camp to hone their skills. Training progress points will be earned over time.\n At 15 points, this character will gain a perk point and one positive trait relevant to their combat style.\n\n [color=%negative%]You can only gain training progress points with the upgraded training tent in your stash![/color]";
 		this.m.Order = ::Const.SkillOrder.Background + 1;
 		this.m.Type = ::Const.SkillType.Trait;
@@ -32,24 +30,19 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.TrainingSeed = ::Math.abs(::Math.rand(0, 65535) * ::Math.rand(0, 65535) + ::Math.rand(0, 65535));
 	}
 
-	function addRandomSkills( _bro, _skillsNum )
-	{
+	function addRandomSkills(_bro, _skillsNum) {
 		local attributes = [];
-		for (local i = 0; i < ::Const.Attributes.COUNT; i++)
-			attributes.push(i);
+		for (local i = 0; i < ::Const.Attributes.COUNT; i++) attributes.push(i);
 
-		foreach(index, talent in _bro.getTalents()) {
-			for (local j = 0; j < talent; j++)
-				attributes.push(index);
+		foreach (index, talent in _bro.getTalents()) {
+			for (local j = 0; j < talent; j++) attributes.push(index);
 		}
 
-		for( local i = 0; i < _skillsNum; i++ )
-		{
+		for (local i = 0; i < _skillsNum; i++) {
 			this.m.TrainingSeed = ::Legends.LCG.get(this.m.TrainingSeed).nextState();
 			local attr = attributes[::Math.abs(this.m.TrainingSeed % attributes.len())];
 
-			switch(attr)
-			{
+			switch (attr) {
 				case ::Const.Attributes.Hitpoints:
 					_bro.getBaseProperties().Hitpoints += 1;
 					this.addHitpoint();
@@ -72,13 +65,10 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 
 				case ::Const.Attributes.RangedSkill:
 				case ::Const.Attributes.MeleeSkill:
-					if ( _bro.getBaseProperties().MeleeSkill > _bro.getBaseProperties().RangedSkill )
-					{
+					if (_bro.getBaseProperties().MeleeSkill > _bro.getBaseProperties().RangedSkill) {
 						_bro.getBaseProperties().MeleeSkill += 1;
 						this.addMatk();
-					}
-					else
-					{
+					} else {
 						_bro.getBaseProperties().RangedSkill += 1;
 						this.addRatk();
 					}
@@ -99,105 +89,85 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		_bro.getSkills().update();
 	}
 
-	function getBonusXP()
-	{
+	function getBonusXP() {
 		return this.m.BonusXP;
 	}
 
-	function finishedTraining (_traitConst)
-	{
+	function finishedTraining(_traitConst) {
 		this.m.Description = "This character has completed basic training.\n Experience gained from all sources has been permanently increased by [color=%positive%]+5%[/color].\n This character can still get perk and attribute points from training.";
-		this.m.Icon = "ui/traits/IntensiveTrainingCompleted.png";
+		this.m.Icon = "ui/traits/legend_intensive_training_completed.png";
 		this.m.TraitGained = _traitConst;
 		this.m.BonusXP = 0.05;
 	}
 
-	function addHitpoint()
-	{
+	function addHitpoint() {
 		this.m.HitpointsAdded++;
 	}
-	function addStamina()
-	{
+	function addStamina() {
 		this.m.StaminaAdded++;
 	}
-	function addBrave()
-	{
+	function addBrave() {
 		this.m.BraveAdded++;
 	}
-	function addIni()
-	{
+	function addIni() {
 		this.m.IniAdded++;
 	}
-	function addMatk()
-	{
+	function addMatk() {
 		this.m.MatkAdded++;
 	}
-	function addRatk()
-	{
+	function addRatk() {
 		this.m.RatkAdded++;
 	}
-	function addMdef()
-	{
+	function addMdef() {
 		this.m.MdefAdded++;
 	}
-	function addRdef()
-	{
+	function addRdef() {
 		this.m.RdefAdded++;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return this.m.Description;
 	}
 
-	function getStatsIncreased()
-	{
+	function getStatsIncreased() {
 		return this.m.HitpointsAdded + this.m.StaminaAdded + this.m.BraveAdded + this.m.IniAdded + this.m.MatkAdded + this.m.RatkAdded + this.m.MdefAdded + this.m.RdefAdded;
 	}
 
-	function isMaxReached()
-	{
+	function isMaxReached() {
 		return this.getStatsIncreased() >= this.m.MaxSkillsCanBeAdded;
 	}
 
-	function canTrainInTown () {
+	function canTrainInTown() {
 		return this.m.SettlementTrainingDelay == 0 && !this.isMaxReached();
 	}
 
-	function canRerollTrait () {
+	function canRerollTrait() {
 		return this.m.TraitRerollDelay == 0 && this.m.TraitGained != -1;
 	}
 
-	function getMaxSkillsCanBeAdded()
-	{
+	function getMaxSkillsCanBeAdded() {
 		return this.m.MaxSkillsCanBeAdded;
 	}
 
-	function successfullyTrained( _bro )
-	{
-	}
+	function successfullyTrained(_bro) {}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
-//		this.logInfo(this.getContainer().getActor().getBackground().getNameOnly());
+		//		this.logInfo(this.getContainer().getActor().getBackground().getNameOnly());
 
-		if (this.getContainer().getActor().getBackground().getNameOnly() == "Donkey")
-		{
+		if (this.getContainer().getActor().getBackground().getNameOnly() == "Donkey") {
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
 				text = "The donkey looks at you, somewhat confused..."
 			});
-		}else
-		if (getStatsIncreased() > 0)
-		{
+		} else if (getStatsIncreased() > 0) {
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/leveled_up.png",
-				text = this.isMaxReached() ? "Training results:" : "Training results so far:"
+				text = this.isMaxReached() ? "Training results:": "Training results so far:"
 			});
 
 			tooltip.push({
@@ -207,8 +177,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				text = "[color=%positive%]" + getStatsIncreased() + "[/color] total skill points"
 			});
 
-			if (this.m.HitpointsAdded > 0)
-			{
+			if (this.m.HitpointsAdded > 0) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -217,8 +186,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 
-			if (this.m.StaminaAdded > 0)
-			{
+			if (this.m.StaminaAdded > 0) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -227,8 +195,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 
-			if (this.m.BraveAdded > 0)
-			{
+			if (this.m.BraveAdded > 0) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -236,8 +203,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 					text = "[color=%positive%]" + this.m.BraveAdded + "[/color] Resolve"
 				});
 			}
-			if (this.m.IniAdded > 0)
-			{
+			if (this.m.IniAdded > 0) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -246,8 +212,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 
-			if (this.m.MatkAdded > 0)
-			{
+			if (this.m.MatkAdded > 0) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -256,8 +221,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 
-			if (this.m.RatkAdded > 0)
-			{
+			if (this.m.RatkAdded > 0) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -266,8 +230,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 
-			if (this.m.MdefAdded > 0)
-			{
+			if (this.m.MdefAdded > 0) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -276,8 +239,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 
-			if (this.m.RdefAdded > 0)
-			{
+			if (this.m.RdefAdded > 0) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -286,8 +248,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 
-			if (this.isMaxReached())
-			{
+			if (this.isMaxReached()) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -302,9 +263,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 					text = "[color=%positive%]" + ::Legends.Traits.get(this, this.m.TraitGained).getName() + "[/color] trait"
 				});
 			}
-		}
-		else
-		{
+		} else {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -359,24 +318,23 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		return tooltip;
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		return this.getStatsIncreased() == 0;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		if (::Tactical.isActive()) {
-		if (this.m.SettlementTrainingDelay > 0)
-			this.m.SettlementTrainingDelay -= 1;
-		if (this.m.TraitRerollDelay > 0)
-			this.m.TraitRerollDelay -= 1;
+			if (this.m.SettlementTrainingDelay > 0) {
+				this.m.SettlementTrainingDelay -= 1;
+			}
+			if (this.m.TraitRerollDelay > 0) {
+				this.m.TraitRerollDelay -= 1;
+			}
 		}
 		this.skill.onCombatFinished();
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.skill.onSerialize(_out);
 		_out.writeU16(this.m.HitpointsAdded);
 		_out.writeU16(this.m.StaminaAdded);
@@ -395,8 +353,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		_out.writeU32(this.m.TrainingSeed);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.skill.onDeserialize(_in);
 		this.m.HitpointsAdded = _in.readU16();
 		this.m.StaminaAdded = _in.readU16();
@@ -414,13 +371,10 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.TraitRerollCount = _in.readU16();
 		this.m.TrainingSeed = _in.readU32();
 
-		if(this.isMaxReached())
-		{
+		if (this.isMaxReached()) {
 			this.m.Name = "Training fulfilled";
 			this.m.Description = "This character has completed all their training and cannot learn more from training in camp.\n Experience gained from training has been permanently increased by [color=%positive%]+5%[/color].\n This character won\'t get perk and attribute points from training in camp anymore.";
-			this.m.Icon = "ui/traits/IntensiveTrainingCompletedFull.png";
+			this.m.Icon = "ui/traits/legend_intensive_training_completed_full.png";
 		}
 	}
-
 });
-

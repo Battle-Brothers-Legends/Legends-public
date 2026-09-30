@@ -1,11 +1,9 @@
 this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFearNobles);
-		this.m.Name = "Fear of Nobles";
-		this.m.Icon = "ui/traits/noblefear.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendFearNobles);
 		this.m.Description = "Some past event or particularly convincing story in this character\'s life has left them scared of what nobles are capable of, making this character less reliable when facing nobles on the battlefield.";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Fearless),
@@ -21,8 +19,7 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -55,10 +52,8 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 		];
 	}
 
-	function onUpdate( _properties )
-	{
-		if (!this.getContainer().getActor().isPlacedOnMap())
-		{
+	function onUpdate(_properties) {
+		if (!this.getContainer().getActor().isPlacedOnMap()) {
 			// If not in battle, then this should be a trait and not a status effect
 			this.m.Type = ::Const.SkillType.Trait;
 			return;
@@ -67,17 +62,14 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 		local fightingNobles = false;
 		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
-		foreach( enemy in enemies )
-		{
-			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.NobleHouse)
-			{
+		foreach (enemy in enemies) {
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.NobleHouse) {
 				fightingNobles = true;
 				break;
 			}
 		}
 
-		if (fightingNobles)
-		{
+		if (fightingNobles) {
 			_properties.Bravery -= 10;
 			_properties.MeleeSkillMult *= 0.95;
 			_properties.RangedSkillMult *= 0.95;

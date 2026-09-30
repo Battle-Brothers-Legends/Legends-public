@@ -26,7 +26,7 @@
 		bros[0].setTitle("the Lone Wolf");
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendFavouredEnemySwordmaster);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
-		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendLWRelationship);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendLoneWolfRelationship);
 		bros[0].setPlaceInFormation(4);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_lone_wolf");
@@ -239,7 +239,7 @@
 
 	o.onHiredByScenario <- function (_bro) //recruits via events
 	{
-		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLWRelationship);
+		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLoneWolfRelationship);
 	}
 
 	// o.onGenerateBro <- function (bro) //companions free everyone else normal. //Removed 14/6/26 due to all recuits being zero. Code is unnecessary now as I have just changed all companons to 0 and now everyone else should force defult as defined by vanilla logic - Luft.
@@ -259,6 +259,6 @@
 	// }
 
 	o.setupBro <- function (_bro) {
-		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLWRelationship);
+		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLoneWolfRelationship);
 	}
 });

@@ -1,11 +1,9 @@
 this.legend_light_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendLight);
-		this.m.Name = "Light";
-		this.m.Icon = "ui/traits/light_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendLight);
 		this.m.Description = "Being exceptionally light, this character\'s strikes don\'t really hurt, however they\'re also extremely fast.";
 		this.m.Titles = [
 			"the Feather",
@@ -21,12 +19,11 @@ this.legend_light_trait <- this.inherit("scripts/skills/traits/character_trait",
 			::Legends.Traits.getID(::Legends.Trait.IronJaw),
 			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
-			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
+			::Legends.Traits.getID(::Legends.Trait.LegendLumbering)
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -53,11 +50,9 @@ this.legend_light_trait <- this.inherit("scripts/skills/traits/character_trait",
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.MeleeDamageMult *= 0.9;
 		_properties.Initiative += 20;
 	}
 
 });
-

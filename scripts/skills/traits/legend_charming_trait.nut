@@ -1,12 +1,10 @@
-this.legend_gift_of_people_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_charming_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople);
-		this.m.Name = "Charming";
-		this.m.Icon = "ui/traits/trait_gift_of_people.png";
-		this.m.Description = "Some say you can get almost anywhere with a trustworthy demenor and a warm smile.";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendCharming);
+		this.m.Description = "Some say you can get almost anywhere with a trustworthy demeanor and a warm smile.";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Pessimist),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
@@ -15,8 +13,7 @@ this.legend_gift_of_people_trait <- this.inherit("scripts/skills/traits/characte
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -37,32 +34,25 @@ this.legend_gift_of_people_trait <- this.inherit("scripts/skills/traits/characte
 		];
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		this.skill.onCombatStarted();
 
-		if (::Math.rand(1, 10) < 10)
-		{
+		if (::Math.rand(1, 10) < 10) {
 			return;
 		}
 
 		local allies = ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
 		local ownID = this.getContainer().getActor().getID();
 
-		foreach( ally in allies )
-		{
-			if (ally.getID() == ownID)
-			{
+		foreach (ally in allies) {
+			if (ally.getID() == ownID) {
 				continue;
 			}
 			local ally_morale = ally.getMoraleState();
 
-			if (ally_morale < ::Const.MoraleState.Confident)
-			{
+			if (ally_morale < ::Const.MoraleState.Confident) {
 				ally.setMoraleState(ally_morale + 1);
 			}
 		}
 	}
-
 });
-

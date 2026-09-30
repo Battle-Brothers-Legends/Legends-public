@@ -198,7 +198,7 @@
 					break;
 
 				case "ambition.oath_of_camaraderie":
-					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfCamaderie);
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfCamaraderie);
 					break;
 
 				case "ambition.oath_of_sacrifice":

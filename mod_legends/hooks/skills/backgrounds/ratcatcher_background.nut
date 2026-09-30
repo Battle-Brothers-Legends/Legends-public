@@ -27,7 +27,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Clumsy),
 			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
-			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
+			::Legends.Traits.getID(::Legends.Trait.LegendLumbering)
 		];
 		this.m.BackgroundType = ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;

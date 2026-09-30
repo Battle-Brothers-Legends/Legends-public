@@ -1,11 +1,9 @@
 this.legend_talented_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendTalented);
-		this.m.Name = "Talented";
-		this.m.Icon = "ui/traits/natural_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendTalented);
 		this.m.Description = "Has natural skills, talents and abilities. Born to be successful.";
 		this.m.Titles = [
 			"the Talented",
@@ -32,8 +30,7 @@ this.legend_talented_trait <- this.inherit("scripts/skills/traits/character_trai
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -54,8 +51,7 @@ this.legend_talented_trait <- this.inherit("scripts/skills/traits/character_trai
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.Hitpoints += 2;
 		_properties.Bravery += 2;
 		_properties.Stamina += 2;
@@ -65,5 +61,4 @@ this.legend_talented_trait <- this.inherit("scripts/skills/traits/character_trai
 		_properties.MeleeDefense += 2;
 		_properties.RangedDefense += 2;
 	}
-
 });

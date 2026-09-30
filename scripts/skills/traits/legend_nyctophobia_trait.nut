@@ -1,11 +1,9 @@
-this.legend_fear_dark_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_nyctophobia_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFearDark);
-		this.m.Name = "Nyctophobia";
-		this.m.Icon = "ui/traits/trait_fearofdark.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendNyctophobia);
 		this.m.Description = "A dislike of the dark can be a childish fear for some, but with what\'s been running around in the wilds lately, maybe it isn\'t as odd anymore...";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Fearless),
@@ -14,8 +12,7 @@ this.legend_fear_dark_trait <- this.inherit("scripts/skills/traits/character_tra
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -48,15 +45,11 @@ this.legend_fear_dark_trait <- this.inherit("scripts/skills/traits/character_tra
 		];
 	}
 
-	function onUpdate( _properties )
-	{
-		if (this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight == true)
-		{
+	function onUpdate(_properties) {
+		if (this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight == true) {
 			_properties.Bravery -= 10;
 			_properties.MoraleCheckBravery[::Const.MoraleCheckType.MentalAttack] -= 20;
-		}
-		else
-		{
+		} else {
 			_properties.Bravery += 5;
 		}
 	}

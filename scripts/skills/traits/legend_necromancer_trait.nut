@@ -3,9 +3,7 @@ this.legend_necromancer_trait <- this.inherit("scripts/skills/traits/character_t
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendNecromancer);
-		this.m.Name = "Necromancer";
-		this.m.Icon = "ui/traits/trait_icon_00.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendNecromancer);
 		this.m.Description = "This trait is used to alter daily reputation decline for all factions.";
 		this.m.IsHidden = true; //should not be shown.
 	}

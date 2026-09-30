@@ -1,17 +1,14 @@
-this.legend_inquisition_disciple_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_disciple_of_the_inquisition_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendInquisitionDisciple);
-		this.m.Name = "Disciple of the Inquisition";
-		this.m.Icon = "ui/traits/trait_icon_67.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendDiscipleOfTheInquisition);
 		this.m.Description = "This character is a disciple of the Old Gods, an individual with unquestionable loyalty to the faith. They embrace physical pain and peril as bringing them closer to salvation.";
 		this.m.Order = ::Const.SkillOrder.Trait - 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -50,8 +47,7 @@ this.legend_inquisition_disciple_trait <- this.inherit("scripts/skills/traits/ch
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.Hitpoints += 20;
 		_properties.Bravery += 10;
 		_properties.IsAffectedByFreshInjuries = false;
@@ -59,4 +55,3 @@ this.legend_inquisition_disciple_trait <- this.inherit("scripts/skills/traits/ch
 	}
 
 });
-

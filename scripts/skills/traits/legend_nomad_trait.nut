@@ -1,17 +1,14 @@
 this.legend_nomad_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendNomad);
-		this.m.Name = "Nomad";
-		this.m.Icon = "ui/traits/trait_icon_00.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendNomad);
 		this.m.Description = "This trait is used to alter daily reputation decline for city state factions and increase nomad relations per head. Stop using breditor you cheating fuck.";
 		this.m.IsHidden = true; //should not be shown.
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -32,16 +29,11 @@ this.legend_nomad_trait <- this.inherit("scripts/skills/traits/character_trait",
 		];
 	}
 
-	function onUpdate( _properties )
-	{
-	}
-
-	function onNewDay()
-	{
+	function onNewDay() {
 		// local citystatefaction = [];
 		local nomadfaction = [];
-		// citystatefaction.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState)); 
-		nomadfaction.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalBandits)); 
+		// citystatefaction.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState));
+		nomadfaction.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalBandits));
 
 		// foreach( f in citystatefaction )
 		// { //Relations: 0 = hostile, 100 = allied
@@ -51,8 +43,8 @@ this.legend_nomad_trait <- this.inherit("scripts/skills/traits/character_trait",
 		// 		f.updatePlayerRelation();
 		// 	}
 		// }
-		foreach( f in nomadfaction )
-		{ //Relations: 0 = hostile, 100 = allied
+		foreach (f in nomadfaction) {
+			//Relations: 0 = hostile, 100 = allied
 			if (f.m.PlayerRelation > 0) //rests at 0
 			{
 				f.m.PlayerRelation = ::Math.minf(100.0, ::Math.max(0.0, f.m.PlayerRelation + 0.1));  //+0.1 reputation per day per unit in company.
@@ -61,4 +53,3 @@ this.legend_nomad_trait <- this.inherit("scripts/skills/traits/character_trait",
 		}
 	}
 });
-

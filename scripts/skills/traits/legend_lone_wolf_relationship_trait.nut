@@ -1,11 +1,9 @@
-this.legend_lw_relationship_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_lone_wolf_relationship_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendLWRelationship);
-		this.m.Name = "Relationship";
-		this.m.Icon = "ui/traits/aggressive_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendLoneWolfRelationship);
 		this.m.Description = "If you can see this something is fucked up";
 		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.Trait;
 		this.m.IsHidden = true;

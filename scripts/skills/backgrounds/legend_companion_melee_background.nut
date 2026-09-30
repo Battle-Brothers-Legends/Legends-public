@@ -60,7 +60,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 	function onAdded() // enables relationships
 	{
 		if (this.m.IsNew)
-			::Legends.Traits.grant(this, ::Legends.Trait.LegendLWRelationship);
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendLoneWolfRelationship);
 		this.character_background.onAdded();
 	}
 

@@ -11,7 +11,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Irrational),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
+			::Legends.Traits.getID(::Legends.Trait.LegendNyctophobia),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),
 			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
@@ -25,7 +25,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.Optimist),
 			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
+			::Legends.Traits.getID(::Legends.Trait.LegendCharming),
 		];
 		this.m.Titles = [
 			"the Mancatcher",

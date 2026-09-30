@@ -54,7 +54,7 @@
 	::Legends.Traits.getID(::Legends.Trait.LegendSlack),
 	// ::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
 	::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
-	::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
+	::Legends.Traits.getID(::Legends.Trait.LegendCharming),
 	::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
 	// ::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 ];

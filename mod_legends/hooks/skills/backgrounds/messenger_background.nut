@@ -20,7 +20,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Fat),
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
 			::Legends.Traits.getID(::Legends.Trait.Brute),
-			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
+			::Legends.Traits.getID(::Legends.Trait.LegendLumbering),
 			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
 		this.m.Titles = [

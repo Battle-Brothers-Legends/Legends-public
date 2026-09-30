@@ -19,7 +19,7 @@ this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgr
 			::Legends.Traits.getID(::Legends.Trait.Ailing),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Fat),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
+			::Legends.Traits.getID(::Legends.Trait.LegendNyctophobia),
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
 			::Legends.Traits.getID(::Legends.Trait.Pessimist),

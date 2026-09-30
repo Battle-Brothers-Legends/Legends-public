@@ -27,7 +27,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[0].setPlaceInFormation(4);
 		bros[0].getBaseProperties().Hitpoints += 10;
 		bros[0].getBaseProperties().MeleeSkill += 10;
-		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendInquisitionDisciple);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendDiscipleOfTheInquisition);
 		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
@@ -74,7 +74,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[2].getBaseProperties().Initiative -= 5;
 		bros[2].getBackground().m.RawDescription = "{%name% is a huge figure, who spent many years in a temple healing and carrying the sick, learning the power of both strength and compassion. It was clear the ills of the world must be sought out and healed at their source. While healing a witch hunter, %name% was convinced to join the hunt to heal the world. }";
 		bros[2].setPlaceInFormation(5);
-		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendHeavy, function (_trait) {
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendLumbering, function (_trait) {
 			foreach (skill in _trait.m.Excluded) bros[2].getSkills().removeByID(skill);
 		}.bindenv(this));
 		this.addScenarioPerk(bros[2].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);

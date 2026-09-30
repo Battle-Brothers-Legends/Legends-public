@@ -1,11 +1,9 @@
 this.legend_undead_killer_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendUndeadKiller);
-		this.m.Name = "Undead Killer";
-		this.m.Icon = "ui/traits/trait_icon_50.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendUndeadKiller);
 		this.m.Description = "This character has learned the hard way how to kill things that won\'t stay dead";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
@@ -16,8 +14,7 @@ this.legend_undead_killer_trait <- this.inherit("scripts/skills/traits/character
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -44,10 +41,8 @@ this.legend_undead_killer_trait <- this.inherit("scripts/skills/traits/character
 		];
 	}
 
-	function onUpdate( _properties )
-	{
-		if (!this.getContainer().getActor().isPlacedOnMap())
-		{
+	function onUpdate(_properties) {
+		if (!this.getContainer().getActor().isPlacedOnMap()) {
 			// If not in battle, then this should be a trait and not a status effect
 			this.m.Type = ::Const.SkillType.Trait;
 			return;
@@ -56,17 +51,14 @@ this.legend_undead_killer_trait <- this.inherit("scripts/skills/traits/character
 		local fightingUndead = false;
 		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
-		foreach( enemy in enemies )
-		{
-			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Zombies || ::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Undead)
-			{
+		foreach (enemy in enemies) {
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Zombies || ::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Undead) {
 				fightingUndead = true;
 				break;
 			}
 		}
 
-		if (fightingUndead)
-		{
+		if (fightingUndead) {
 			_properties.MeleeSkill += 10;
 			_properties.RangedSkill += 10;
 			// Make this a status effect so it will be visible for the battle

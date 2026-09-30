@@ -20,7 +20,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
+			::Legends.Traits.getID(::Legends.Trait.LegendCharming)
 		];
 		this.m.Titles = [
 			"the Manhunter",

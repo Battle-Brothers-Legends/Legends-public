@@ -1,11 +1,9 @@
 this.legend_ambitious_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendAmbitious);
-		this.m.Name = "Ambitious";
-		this.m.Icon = "ui/traits/ambitious_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendAmbitious);
 		this.m.Description = "Determined to be a hero.";
 		this.m.Titles = [
 			"the Talented",
@@ -32,8 +30,7 @@ this.legend_ambitious_trait <- this.inherit("scripts/skills/traits/character_tra
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -66,8 +63,7 @@ this.legend_ambitious_trait <- this.inherit("scripts/skills/traits/character_tra
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.XPGainMult *= 1.05;
 		_properties.Bravery += 3;
 		_properties.Initiative += 3;

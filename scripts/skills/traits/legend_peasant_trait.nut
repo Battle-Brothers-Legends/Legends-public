@@ -1,17 +1,14 @@
 this.legend_peasant_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendPeasant);
-		this.m.Name = "Peasant";
-		this.m.Icon = "ui/traits/trait_icon_00.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendPeasant);
 		this.m.Description = "This trait is used to alter daily reputation decline for noble factions.";
 		this.m.IsHidden = true; //should not be shown.
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -34,30 +31,24 @@ this.legend_peasant_trait <- this.inherit("scripts/skills/traits/character_trait
 
 	function onAdded() //removes fear of nobles (militia origin only!).
 	{
-		if (this.m.Container.hasTrait(::Legends.Trait.LegendFearNobles))
-		{
+		if (this.m.Container.hasTrait(::Legends.Trait.LegendFearNobles)) {
 			::Legends.Traits.remove(this, ::Legends.Trait.LegendFearNobles);
-		}		
+		}
 	}
 
-	function onUpdate( _properties )
-	{
-	}
+	function onUpdate(_properties) {}
 
-	function onNewDay()
-	{
+	function onNewDay() {
 		local factions = [];
 		factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse)); //norf
 		factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState)); //souf
 
-		foreach( f in factions )
-		{ //Relations: 0 = hostile, 100 = allied
-			if (f.m.PlayerRelation > 30)
-			{
-			f.m.PlayerRelation = ::Math.minf(100.0, ::Math.max(0.0, f.m.PlayerRelation - 0.1));  //-0.1 reputation per day per unit in company.
-			f.updatePlayerRelation();
+		foreach (f in factions) {
+			//Relations: 0 = hostile, 100 = allied
+			if (f.m.PlayerRelation > 30) {
+				f.m.PlayerRelation = ::Math.minf(100.0, ::Math.max(0.0, f.m.PlayerRelation - 0.1));  //-0.1 reputation per day per unit in company.
+				f.updatePlayerRelation();
 			}
 		}
 	}
 });
-

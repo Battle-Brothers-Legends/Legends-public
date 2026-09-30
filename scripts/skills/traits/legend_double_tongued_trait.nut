@@ -1,22 +1,19 @@
 this.legend_double_tongued_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued);
-		this.m.Name = "Double tongued";
-		this.m.Icon = "ui/traits/trait_double_tongued.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendDoubleTongued);
 		this.m.Description = "The nature of humanity brings out the destructive side in many, however this one appears to be worse than the usual.";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Optimist),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.Determined),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
+			::Legends.Traits.getID(::Legends.Trait.LegendCharming)
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -49,24 +46,19 @@ this.legend_double_tongued_trait <- this.inherit("scripts/skills/traits/characte
 		];
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		this.skill.onCombatStarted();
 
-		if (::Math.rand(1, 20) <= 1)
-		{
+		if (::Math.rand(1, 20) <= 1) {
 			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
 			local ownID = this.getContainer().getActor().getID();
 
-			foreach( ally in allies )
-			{
+			foreach (ally in allies) {
 
-				if (ally.getID() == ownID)
-				{
+				if (ally.getID() == ownID) {
 					continue;
 				}
-				if (ally.getSkills().hasTrait(::Legends.Trait.LegendDoubleTongued) || ally.getSkills().hasTrait(::Legends.Trait.Deathwish) || ally.getSkills().hasTrait(::Legends.Trait.Superstitious) || ally.getSkills().hasTrait(::Legends.Trait.Paranoid) || ally.getSkills().hasTrait(::Legends.Trait.Pessimist) || ally.getSkills().hasSkill("injury.traumatized"))
-				{
+				if (ally.getSkills().hasTrait(::Legends.Trait.LegendDoubleTongued) || ally.getSkills().hasTrait(::Legends.Trait.Deathwish) || ally.getSkills().hasTrait(::Legends.Trait.Superstitious) || ally.getSkills().hasTrait(::Legends.Trait.Paranoid) || ally.getSkills().hasTrait(::Legends.Trait.Pessimist) || ally.getSkills().hasSkill("injury.traumatized")) {
 					::Legends.Effects.grant(ally, ::Legends.Effect.LegendCheeredOn);
 
 					continue;
@@ -74,18 +66,14 @@ this.legend_double_tongued_trait <- this.inherit("scripts/skills/traits/characte
 
 				local ally_morale = ally.getMoraleState();
 
-				if (ally_morale > ::Const.MoraleState.Fleeing && ally_morale < ::Const.MoraleState.Ignore)
-				{
+				if (ally_morale > ::Const.MoraleState.Fleeing && ally_morale < ::Const.MoraleState.Ignore) {
 					ally.setMoraleState(ally_morale - 1);
 				}
 			}
 		}
 
-
 	}
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.IsAffectedByDyingAllies = false;
 	}
 });
-

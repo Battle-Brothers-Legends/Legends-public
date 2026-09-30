@@ -1,11 +1,9 @@
 this.legend_sureshot_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendSureshot);
-		this.m.Name = "Sureshot";
-		this.m.Icon = "ui/traits/sureshot_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendSureshot);
 		this.m.Description = "Takes time to hit the exact right spot on a target, this in turn makes them an easier target";
 		this.m.Titles = [
 			"Sureshot",
@@ -18,8 +16,7 @@ this.legend_sureshot_trait <- this.inherit("scripts/skills/traits/character_trai
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -46,11 +43,9 @@ this.legend_sureshot_trait <- this.inherit("scripts/skills/traits/character_trai
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.RangedDamageMult *= 1.1;
 		_properties.RangedDefense -= 10;
 	}
 
 });
-

@@ -1,10 +1,10 @@
 //Author: WNTR Jimmy
 this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
-    m = {
-    	ThreatModifier = 10,
-    	MeleeSkillMult = 1.10,
-    	RangedSkillMult = 1.10
-    },
+	m = {
+		ThreatModifier = 10,
+		MeleeSkillMult = 1.10,
+		RangedSkillMult = 1.10
+	},
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNightRaider);
@@ -39,7 +39,9 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "[color=%negative%]%penalty%[/color] Resolve to adjacent enemies",
-			param = [["penalty", inverseThreat]]
+			param = [
+				["penalty", inverseThreat]
+			]
 		});
 
 		local meleePercent = ::Math.round(this.m.MeleeSkillMult * 100 - 100);
@@ -48,7 +50,9 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 			type = "text",
 			icon = "ui/icons/melee_skill.png",
 			text = "Gain [color=%positive%]%modifier%%[/color] Melee Skill",
-			param = [["modifier", meleePercent]]
+			param = [
+				["modifier", meleePercent]
+			]
 		});
 
 		local rangedPercent = ::Math.round(this.m.RangedSkillMult * 100 - 100);
@@ -57,7 +61,9 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 			type = "text",
 			icon = "ui/icons/ranged_skill.png",
 			text = "Gain [color=%positive%]%modifier%%[/color] Ranged Skill",
-			param = [["modifier", rangedPercent]]
+			param = [
+				["modifier", rangedPercent]
+			]
 		});
 
 		return ret;
@@ -67,28 +73,22 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 		return "Gain tactical advantages at night.";
 	}
 
-	function onUpdate( _properties )
-	{
-	    this.m.IsHidden = ::World.getTime().IsDaytime;
-	    _properties.IsAffectedByNight = false;
-	    if (!::World.getTime().IsDaytime)
-	    {
-	        _properties.Threat += this.m.ThreatModifier;
-	        _properties.MeleeSkill *= this.m.MeleeSkillMult;
-	        _properties.RangedSkill *= this.m.RangedSkillMult;
-	    }
+	function onUpdate(_properties) {
+		this.m.IsHidden = ::World.getTime().IsDaytime;
+		_properties.IsAffectedByNight = false;
+		if (!::World.getTime().IsDaytime) {
+			_properties.Threat += this.m.ThreatModifier;
+			_properties.MeleeSkill *= this.m.MeleeSkillMult;
+			_properties.RangedSkill *= this.m.RangedSkillMult;
+		}
 	}
 
-	function onAdded()
-	{
-		if (this.m.Container.hasTrait(::Legends.Trait.LegendFearDark))
-		{
-			::Legends.Traits.remove(this, ::Legends.Trait.LegendFearDark);
+	function onAdded() {
+		if (this.m.Container.hasTrait(::Legends.Trait.LegendNyctophobia)) {
+			::Legends.Traits.remove(this, ::Legends.Trait.LegendNyctophobia);
 		}
-		if (this.m.Container.hasTrait(::Legends.Trait.NightBlind))
-		{
+		if (this.m.Container.hasTrait(::Legends.Trait.NightBlind)) {
 			::Legends.Traits.remove(this, ::Legends.Trait.NightBlind);
 		}
 	}
-
 });

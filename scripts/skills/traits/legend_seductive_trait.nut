@@ -2,12 +2,10 @@ this.legend_seductive_trait <- this.inherit("scripts/skills/traits/character_tra
 	m = {
 		Amount = 0.003
 	},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendSeductive);
-		this.m.Name = "Seductive";
-		this.m.Icon = "ui/traits/trait_seductive.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendSeductive);
 		this.m.Description = "Although many things can be taken at the point of a sword, some things will always be more potent than cold steel; the flash of an eyelash, the locking of a gaze...";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Paranoid),
@@ -15,8 +13,7 @@ this.legend_seductive_trait <- this.inherit("scripts/skills/traits/character_tra
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -37,30 +34,23 @@ this.legend_seductive_trait <- this.inherit("scripts/skills/traits/character_tra
 		];
 	}
 
-	function getModifier()
-	{
+	function getModifier() {
 		return this.m.Amount;
 	}
 
-	function onAdded()
-	{
-		if (::World.State.getPlayer() == null)
-		{
+	function onAdded() {
+		if (::World.State.getPlayer() == null) {
 			return;
 		}
 
 		::World.State.getPlayer().calculateHaggleMult();
 	}
 
-	function onRemoved()
-	{
-		if (::World.State.getPlayer() == null)
-		{
+	function onRemoved() {
+		if (::World.State.getPlayer() == null) {
 			return;
 		}
 
 		::World.State.getPlayer().calculateHaggleMult();
 	}
-
 });
-

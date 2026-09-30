@@ -3,10 +3,8 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 
 	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFleshless);
-		this.m.Name = "Fleshless";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendFleshless);
 		this.m.Description = "Only bones remain, with all skin rotten or torn away.";
-		this.m.Icon = "ui/traits/fleshless_trait.png";
 	}
 
 	function getTooltip() {

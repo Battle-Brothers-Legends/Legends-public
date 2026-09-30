@@ -60,7 +60,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 	function onAdded() // enables relationships
 	{	
 		if (this.m.IsNew)
-			::Legends.Traits.grant(this, ::Legends.Trait.LegendLWRelationship);
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendLoneWolfRelationship);
 		this.character_background.onAdded();
 	}
 

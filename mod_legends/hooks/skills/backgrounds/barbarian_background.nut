@@ -29,7 +29,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
+			::Legends.Traits.getID(::Legends.Trait.LegendCharming),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.Titles = ::Const.Strings.BarbarianTitles;

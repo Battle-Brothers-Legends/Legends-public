@@ -1,16 +1,13 @@
-this.legend_prosthetic_finger <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_prosthetic_finger_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticFinger);
-		this.m.Name = "Prosthetic Finger";
-		this.m.Icon = "ui/traits/legend_prosthetic_finger.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendProstheticFinger);
 		this.m.Description = "A wooden finger with a joint for the user to force it into whatever position they need. Perfect for pointing fingers at people, but not too much else.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -38,14 +35,11 @@ this.legend_prosthetic_finger <- this.inherit("scripts/skills/traits/character_t
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.MeleeSkillMult *= 0.98;
 		_properties.RangedSkillMult *= 0.98;
 	}
 
-	function onApplyAppearance()
-	{
-	}
+	function onApplyAppearance() {}
 
 });

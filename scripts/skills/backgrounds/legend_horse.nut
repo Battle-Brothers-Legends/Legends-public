@@ -16,7 +16,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
+			::Legends.Traits.getID(::Legends.Trait.LegendCharming),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
 		this.m.Variant = ::Math.rand(1, 7);

@@ -49,7 +49,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 			bros[0].getBaseProperties().Bravery += 5;
 		}
 
-		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendBrothersInChains);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendUnitedInChains);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.ArenaFighter);
 		bros[0].getFlags().set("ArenaFightsWon", 5);
 		bros[0].getFlags().set("ArenaFights", 5);
@@ -83,7 +83,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		::Legends.Traits.remove(bros[1], ::Legends.Trait.Fragile);
 		::Legends.Traits.remove(bros[1], ::Legends.Trait.Tiny);
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.Huge);
-		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendBrothersInChains);
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendUnitedInChains);
 		local talents = bros[1].getTalents();
 		local hasRangedSkill = talents[::Const.Attributes.RangedSkill] != 0;
 		local hasMeleeDefense = talents[::Const.Attributes.MeleeDefense] != 0;
@@ -126,7 +126,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		bros[2].addLightInjury();
 		bros[2].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		this.setRetireText(bros[2]);
-		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendBrothersInChains);
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendUnitedInChains);
 		bros[2].m.Talents = [];
 		local talents = bros[2].getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
@@ -150,7 +150,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		bros[3].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		this.setRetireText(bros[3]);
 		::Legends.Traits.grant(bros[3], ::Legends.Trait.Survivor);
-		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendBrothersInChains);
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendUnitedInChains);
 		bros[3].worsenMood(1.5, "Feels he deserves better in life");
 		bros[3].improveMood(2.5, "Escaped a life of slavery");
 		local items = bros[3].getItems();
@@ -196,7 +196,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		}
 
 		bros[4].improveMood(2.5, "Escaped a life of slavery");
-		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendBrothersInChains);
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendUnitedInChains);
 		local items = bros[4].getItems();
 		this.addRandomEquipment(items, true);
 
@@ -360,7 +360,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 
 	function onHiredByScenario(_bro) {
 		if (::Legends.Backgrounds.has(_bro, ::Legends.Background.Slave)) {
-			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendBrothersInChains);
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendUnitedInChains);
 			_bro.getSprite("miniboss").setBrush("bust_miniboss_indebted");
 			_bro.improveMood(1.5, "Joined a mercenary company of freed slaves");
 			this.setRetireText(_bro);

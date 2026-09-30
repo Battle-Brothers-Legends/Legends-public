@@ -4,24 +4,20 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 		LastEnemyAppliedTo = 0,
 		SkillCount = 0
 	},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendArenaInvictus);
-		this.m.Name = "Invictus";
-		this.m.Icon = "ui/traits/trait_invictus.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendArenaInvictus);
 		this.m.Description = "With a single fist raised, %fullname% stops the crowd cheering. With both raised, they shout %their% name from the stands. Gladiators rather wrestle a Lindwurm than fight %them% in the arena.";
 		this.m.Overlay = "trait_invictus";
 		this.m.Order = ::Const.SkillOrder.Trait - 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local matches = this.getContainer().getActor().getFlags().getAsInt("ArenaFights");
 		local won = this.getContainer().getActor().getFlags().getAsInt("ArenaFightsWon");
 
-		if (won == matches)
-		{
+		if (won == matches) {
 			won = "all";
 		}
 
@@ -62,17 +58,14 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 			}
 		];
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Fearsome))
-		{
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Fearsome)) {
 			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Increases the penalty to the morale check from fearsome by [color=%positive%]10%[/color] of your arena wins"
 			});
-		}
-		else
-		{
+		} else {
 			ret.push({
 				id = 12,
 				type = "text",
@@ -84,55 +77,55 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 		return ret;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Fearsome)) return;
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Fearsome)) {
+			return;
+		}
 
-		if (_targetEntity == null || !_targetEntity.isAlive()) return;
+		if (_targetEntity == null || !_targetEntity.isAlive()) {
+			return;
+		}
 
-		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Ignore) return;
+		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Ignore) {
+			return;
+		}
 
-		if ((::Time.getFrame() == this.m.LastFrameApplied || this.m.SkillCount == ::Const.SkillCounter) && _targetEntity.getID() == this.m.LastEnemyAppliedTo)
-		{
-			if (_damageInflictedHitpoints >= ::Const.Morale.OnHitMinDamage)
-			{
+		if ((::Time.getFrame() == this.m.LastFrameApplied || this.m.SkillCount == ::Const.SkillCounter) && _targetEntity.getID() == this.m.LastEnemyAppliedTo) {
+			if (_damageInflictedHitpoints >= ::Const.Morale.OnHitMinDamage) {
 				this.spawnIcon(this.m.Overlay, _targetEntity.getTile());
 			}
 			return;
 		}
 
-		if (_damageInflictedHitpoints >= 1) this.spawnIcon(this.m.Overlay, _targetEntity.getTile());
+		if (_damageInflictedHitpoints >= 1) {
+			this.spawnIcon(this.m.Overlay, _targetEntity.getTile());
+		}
 
 		this.m.LastFrameApplied = ::Time.getFrame();
 		this.m.LastEnemyAppliedTo = _targetEntity.getID();
 		this.m.SkillCount = ::Const.SkillCounter;
 
-		if (_damageInflictedHitpoints >= 1 && _damageInflictedHitpoints < ::Const.Morale.OnHitMinDamage)
-		{
+		if (_damageInflictedHitpoints >= 1 && _damageInflictedHitpoints < ::Const.Morale.OnHitMinDamage) {
 			_targetEntity.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - _targetEntity.getHitpoints() / _targetEntity.getHitpointsMax()) - this.getContainer().getActor().getCurrentProperties().ThreatOnHit);
 		}
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.Bravery += 18;
 		_properties.Hitpoints += 10;
 		_properties.DamageTotalMult *= 1.05;
 		_properties.SurviveWithInjuryChanceMult *= 2.27;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		local won = this.getContainer().getActor().getFlags().getAsInt("ArenaFightsWon");
 		_properties.ThreatOnHit += ::Math.min(10, ::Math.floor(won * 0.1));
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		this.m.SkillCount = 0;
 		this.m.LastEnemyAppliedTo = 0;
 		this.m.LastFrameApplied = 0;
 	}
 
 });
-

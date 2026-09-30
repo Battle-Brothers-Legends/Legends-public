@@ -1,18 +1,15 @@
-this.legend_beastslayers_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_natural_order_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendBeastslayers);
-		this.m.Name = "Natural Order";
-		this.m.Icon = "ui/traits/legend_natural_order_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendNaturalOrder);
 		this.m.Description = "Nature is not for the faint of heart — those that dwell on the fringes of society not only thrive in the danger, but know the natural order of things will eat them alive. Quite literally.";
 		this.m.Order = ::Const.SkillOrder.Trait - 2;
 		this.m.Excluded = [];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -45,10 +42,8 @@ this.legend_beastslayers_trait <- this.inherit("scripts/skills/traits/character_
 		];
 	}
 
-	function onUpdate( _properties )
-	{
-		if (!this.getContainer().getActor().isPlacedOnMap())
-		{
+	function onUpdate(_properties) {
+		if (!this.getContainer().getActor().isPlacedOnMap()) {
 			// If not in battle, then this should be a trait and not a status effect
 			this.m.Type = ::Const.SkillType.Trait;
 			return;
@@ -57,17 +52,14 @@ this.legend_beastslayers_trait <- this.inherit("scripts/skills/traits/character_
 		local fightingBeasts = false;
 		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
-		foreach( enemy in enemies )
-		{
-			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Beasts || enemy.getType() == ::Const.EntityType.BarbarianUnhold || enemy.getType() == ::Const.EntityType.BarbarianUnholdFrost)
-			{
+		foreach (enemy in enemies) {
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Beasts || enemy.getType() == ::Const.EntityType.BarbarianUnhold || enemy.getType() == ::Const.EntityType.BarbarianUnholdFrost) {
 				fightingBeasts = true;
 				break;
 			}
 		}
 
-		if (fightingBeasts)
-		{
+		if (fightingBeasts) {
 			_properties.Bravery += 5;
 			_properties.MeleeDamageMult *= 1.1;
 			_properties.RangedDamageMult *= 1.1;
@@ -80,4 +72,3 @@ this.legend_beastslayers_trait <- this.inherit("scripts/skills/traits/character_
 	}
 
 });
-

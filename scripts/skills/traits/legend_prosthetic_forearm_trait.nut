@@ -1,16 +1,13 @@
-this.legend_prosthetic_forearm <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_prosthetic_forearm_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticForearm);
-		this.m.Name = "Prosthetic Forearm";
-		this.m.Icon = "ui/traits/legend_prosthetic_forearm.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendProstheticForearm);
 		this.m.Description = "A brand new arm for a sword to be swung with. Of course, the user loses most control in their arm, all feeling, and must manually change the position of their fingers with their other hand. But still, at least it\'s something.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -50,15 +47,12 @@ this.legend_prosthetic_forearm <- this.inherit("scripts/skills/traits/character_
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.MeleeSkillMult *= 0.9;
 		_properties.RangedSkillMult *= 0.9;
 		_properties.MeleeDefenseMult *= 0.85;
 	}
 
-	function onApplyAppearance()
-	{
-	}
+	function onApplyAppearance() {}
 
 });

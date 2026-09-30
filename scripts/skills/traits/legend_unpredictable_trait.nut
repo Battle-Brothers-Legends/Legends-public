@@ -1,11 +1,9 @@
 this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable);
-		this.m.Name = "Unpredictable";
-		this.m.Icon = "ui/traits/unpredictable_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendUnpredictable);
 		this.m.Description = "It is unclear what this character will ever do next, often dodging, faking and feinting moves. This makes it easier to score good hits.";
 		this.m.Titles = [
 			"the Dicey"
@@ -18,8 +16,7 @@ this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -46,11 +43,8 @@ this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.HitChance[::Const.BodyPart.Head] += 10;
 		_properties.Initiative += 5;
 	}
-
 });
-

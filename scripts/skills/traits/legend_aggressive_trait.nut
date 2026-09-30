@@ -1,11 +1,9 @@
 this.legend_aggressive_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendAggressive);
-		this.m.Name = "Aggressive";
-		this.m.Icon = "ui/traits/aggressive_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendAggressive);
 		this.m.Description = "This character is pretty aggressive, even to their own detriment.";
 		this.m.Titles = [
 			"the Boar",
@@ -30,8 +28,7 @@ this.legend_aggressive_trait <- this.inherit("scripts/skills/traits/character_tr
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -64,18 +61,15 @@ this.legend_aggressive_trait <- this.inherit("scripts/skills/traits/character_tr
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.MeleeDamageMult *= 1.15;
 		_properties.SurroundedDefense -= 5;
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		local actor = this.getContainer().getActor();
 
-		if (actor.getMoraleState() < ::Const.MoraleState.Steady)
-		{
+		if (actor.getMoraleState() < ::Const.MoraleState.Steady) {
 			actor.setMoraleState(::Const.MoraleState.Steady);
 		}
 	}

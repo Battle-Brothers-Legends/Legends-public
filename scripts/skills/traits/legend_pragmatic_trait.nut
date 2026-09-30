@@ -3,9 +3,7 @@ this.legend_pragmatic_trait <- this.inherit("scripts/skills/traits/character_tra
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendPragmatic);
-		this.m.Name = "Pragmatic";
-		this.m.Icon = "ui/traits/pragmatic_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendPragmatic);
 		this.m.Description = "Concerned more with matters of fact than with what could or should be.";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Pessimist),

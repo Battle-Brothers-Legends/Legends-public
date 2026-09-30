@@ -39,7 +39,7 @@
 		bros[0].setPlaceInFormation(3);
 		bros[0].setVeteranPerks(2);
 		bros[0].addLightInjury();
-		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendBeastslayers);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendNaturalOrder);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.HateBeasts);
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss");
 		bros[0].m.Talents = [];
@@ -60,7 +60,7 @@
 		bros[1].setPlaceInFormation(4);
 		bros[1].setVeteranPerks(2);
 		bros[1].addLightInjury();
-		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendBeastslayers);
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendNaturalOrder);
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.HateBeasts);
 		bros[1].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
 		bros[1].m.Talents = [];
@@ -80,7 +80,7 @@
 		bros[2].setPlaceInFormation(5);
 		bros[2].setVeteranPerks(2);
 		bros[2].addInjury(::Const.Injury.Brawl);
-		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendBeastslayers);
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendNaturalOrder);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.HateBeasts);
 		bros[2].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
 		bros[2].m.Talents = [];
@@ -125,18 +125,18 @@
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.8);
 			bro.getBaseProperties().DailyWageMult *= 0.8;
 			bro.getSprite("socket").setBrush("bust_base_beasthunters");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNaturalOrder);
 			bro.improveMood(1.5, "Hates beasts as much as you do");
 		} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendGuildmaster)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSprite("miniboss").setBrush("bust_miniboss");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNaturalOrder);
 			bro.improveMood(1.5, "Excited to teach the new blood");
 		} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 0.0;
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNaturalOrder);
 			bro.improveMood(1.5, "Feels at one with nature");
 		} else if (r == 0 || bro.getSkills().hasTrait(::Legends.Trait.HateBeasts)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.9);

@@ -666,6 +666,7 @@
 - Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`
 - submod scenarios are now displayed in the custom group on the scenario selection screen
 - if you have custom armor layers that add tooltips due to special effects, you can check `mod_legends/helper/inventory/items_effects` to see how it might be handled by the new comparison tooltip
+- added names and icons to trait defs; traits are now using onCreate
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`
@@ -983,3 +984,13 @@ Refactors/deletions:
 - `scripts/skills/actives/legend_magic_sleep_skill` -> `scripts/skills/actives/legend_slumber_skill`
 - `legend_catapult_blueprint` -> deleted
 - `scripts/skills/effects/legend_vala_trance_perspective_effect` -> deleted
+- added the `_trait` suffix to all prosthetic trait scripts
+- `scripts/skills/traits/legend_lw_relationship_trait` -> `scripts/skills/traits/legend_lone_wolf_relationship_trait`
+- `scripts/skills/traits/legend_cannibalistic` -> `scripts/skills/traits/legend_cannibalistic_trait`
+- `scripts/skills/traits/legend_fear_dark_trait` -> `scripts/skills/traits/legend_nyctophobia_trait`
+- `scripts/skills/traits/legend_heavy_trait` -> `scripts/skills/traits/legend_lumbering_trait`
+- `scripts/skills/traits/legend_rotten_flesh_trait` -> `scripts/skills/traits/legend_rotting_flesh_trait`
+- `scripts/skills/traits/legend_inquisition_disciple_trait` -> `scripts/skills/traits/legend_disciple_of_the_inquisition_trait`
+- `scripts/skills/traits/legend_gift_of_the_people_trait` -> `scripts/skills/traits/legend_charming_trait`
+- `scripts/skills/traits/legend_brothers_in_chains_trait` -> `scripts/skills/traits/legend_united_in_chains_trait`
+- `scripts/skills/traits/legend_beastslayers_trait` -> `scripts/skills/traits/legend_natural_order_trait`

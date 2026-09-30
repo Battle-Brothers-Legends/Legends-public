@@ -11,7 +11,7 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
 			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
+			::Legends.Traits.getID(::Legends.Trait.LegendCharming)
 		]);
 	}
 });

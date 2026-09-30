@@ -21,7 +21,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Spartan),
 			::Legends.Traits.getID(::Legends.Trait.Fat),
-			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
+			::Legends.Traits.getID(::Legends.Trait.LegendLumbering),
 			::Legends.Traits.getID(::Legends.Trait.Greedy)
 		];
 		this.m.Titles = [

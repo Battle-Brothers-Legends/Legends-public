@@ -1,11 +1,9 @@
 this.legend_martial_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendMartial);
-		this.m.Name = "Martial";
-		this.m.Icon = "ui/traits/firm_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendMartial);
 		this.m.Description = "Better not shake a hand with this one.";
 		this.m.Titles = [
 			"the Steady",
@@ -19,8 +17,7 @@ this.legend_martial_trait <- this.inherit("scripts/skills/traits/character_trait
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -41,10 +38,7 @@ this.legend_martial_trait <- this.inherit("scripts/skills/traits/character_trait
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.MeleeDamageMult *= 1.05;
 	}
-
 });
-

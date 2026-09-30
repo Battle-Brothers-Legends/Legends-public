@@ -1,11 +1,9 @@
 this.legend_slack_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendSlack);
-		this.m.Name = "Slack";
-		this.m.Icon = "ui/traits/slack_trait.png";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendSlack);
 		this.m.Description = "Doesn\'t really care what you are doing. Just here for salary and food.";
 		this.m.Titles = [
 			"the Slack",
@@ -24,8 +22,7 @@ this.legend_slack_trait <- this.inherit("scripts/skills/traits/character_trait",
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -64,13 +61,10 @@ this.legend_slack_trait <- this.inherit("scripts/skills/traits/character_trait",
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.IsContentWithBeingInReserve = true;
 		_properties.XPGainMult *= 0.95;
 		_properties.Bravery -= 3;
 		_properties.Initiative -= 3;
 	}
-
 });
-

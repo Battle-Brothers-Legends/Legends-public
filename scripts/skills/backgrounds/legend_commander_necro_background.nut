@@ -26,7 +26,7 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
+			::Legends.Traits.getID(::Legends.Trait.LegendNyctophobia),
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot)
 		];
 		this.m.Titles = [

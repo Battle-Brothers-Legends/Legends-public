@@ -1,14 +1,12 @@
-this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_rotting_flesh_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {
 		InjuryType = ::Math.rand(1, 4)
 	},
 
 	function create() {
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendRottenFlesh);
-		this.m.Name = "Rotting Flesh";
+		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendRottingFlesh);
 		this.m.Description = "With flesh is pale and gaunt, this one rots away as merely a souless animal.";
-		this.m.Icon = "ui/traits/rotting_flesh_trait.png";
 	}
 
 	function getTooltip() {
@@ -89,9 +87,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 				if (!injury.HasBrush || injury.getBrush().Name != "zombify_0" + this.m.InjuryType) {
 					injury.setBrush("zombify_0" + this.m.InjuryType);
 				}
-			} else if (!injury.HasBrush
-				|| injury.getBrush().Name != "zombify_0" + this.m.InjuryType + "_injured")
-			{
+			} else if (!injury.HasBrush || injury.getBrush().Name != "zombify_0" + this.m.InjuryType + "_injured") {
 				injury.setBrush("zombify_0" + this.m.InjuryType + "_injured");
 			}
 
@@ -116,12 +112,9 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 			this.getSprite("status_rage").setHorizontalFlipping(flip);
 		};
 
-		if (this.m.IsNew)
-		{
-			foreach (trait in ::Legends.Necromancer.excludedTraits())
-			{
-				if (this.getContainer().getSkillByID(trait))
-				{
+		if (this.m.IsNew) {
+			foreach (trait in ::Legends.Necromancer.excludedTraits()) {
+				if (this.getContainer().getSkillByID(trait)) {
 					this.getContainer().removeByID(trait);
 				}
 			}
