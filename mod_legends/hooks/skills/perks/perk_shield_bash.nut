@@ -4,12 +4,6 @@
 		::Legends.Actives.getID(::Legends.Active.LegendRevolt),
 	];
 
-	local create = o.create;
-	o.create = function() {
-		create();
-		this.m.ID = "perk.shield_bash_legend"; // change id for greater purpose
-	}
-
 	o.onTriggeredMovement = function(_skill, _targetEntity, _hitInfo) {
 		if (_skill != null && _skill.getID() in this.m.PossibleSkills) {
 			local p = this.getContainer().getActor().getCurrentProperties();
