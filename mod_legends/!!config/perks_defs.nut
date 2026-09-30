@@ -35,7 +35,6 @@ if (!("Perk" in ::Legends)) {
 ::Const.Perks.createPerkDef <- function (_def) {
 	::Legends.Perk[_def.Const] <- null;
 	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
-	::logDebug(snakeCase);
 	if (!("ID" in _def)) {
 		_def.ID <- "perk." + snakeCase;
 	}
@@ -385,8 +384,8 @@ local perkDefObjects = {
 		IconDisabled = "ui/perks/perk_40_sw.png"
 	},
 	LegendCacophony = {
-		Icon = "ui/perks/daze56_circle.png",
-		IconDisabled = "ui/perks/daze56_circle_bw.png"
+		Icon = "ui/perks/legend_stupefy.png",
+		IconDisabled = "ui/perks/legend_stupefy_bw.png"
 	},
 	LegendCarnage = {},
 	LegendChainLightning = {},

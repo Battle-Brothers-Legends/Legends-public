@@ -79,8 +79,8 @@ if (!("Professions" in ::Legends))
 ::Legends.Professions.onCreate <- function (_profession, _professionDef) {
 	local def = ::Const.Professions.ProfessionDefObjects[_professionDef];
 	_profession.m.ID = def.ID;
-	_profession.m.Name = ::Const.Strings.ProfessionName[def.Const];
-	_profession.m.Description = ::Const.Strings.ProfessionDescription[def.Const];
+	_profession.m.Name = def.Name;
+	_profession.m.Description = def.Tooltip;
 	_profession.m.Icon = def.Icon;
 	_profession.m.IconDisabled = def.IconDisabled;
 	_profession.m.Type = ::Const.SkillType.Profession;
