@@ -271,7 +271,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.FistsTree <- {
 	ID = "FistsTree",
 	Name = "Unarmed",
-	Icon = "ui/perks/unarmed_mastery_circle.png",
+	Icon = "ui/perks/legend_mastery_unarmed.png",
 	Descriptions = [
 		"unarmed combat"
 	],

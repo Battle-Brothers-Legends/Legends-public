@@ -23,7 +23,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.MediumArmorTree <- {
 	ID = "MediumArmorTree",
 	Name = "Medium Armor",
-	Icon = "ui/perks/lithe.png",
+	Icon = "ui/perks/legend_lithe.png",
 	Descriptions = [
 		"medium armor"
 	],
@@ -59,7 +59,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.ClothArmorTree <- {
 	ID = "ClothArmorTree",
 	Name = "Cloth Armor",
-	Icon = "ui/perks/himshaw.png",
+	Icon = "ui/perks/legend_himshaw.png",
 	Descriptions = [
 		"cloth armor"
 	],

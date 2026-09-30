@@ -53,7 +53,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.MartyrTree <- {
 	ID = "MartyrTree",
 	Name = "Martyr",
-	Icon = "ui/perks/vengeance_circle.png",
+	Icon = "ui/perks/legend_vengeance.png",
 	Descriptions = [
 		"has martyr complex",
 		"strictly penatant ",
@@ -173,7 +173,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.CalmTree <- {
 	ID = "CalmTree",
 	Name = "Calm",
-	Icon = "ui/perks/clarity_circle.png",
+	Icon = "ui/perks/legend_clarity.png",
 	Descriptions = [
 		"is calm",
 		"is soothingly relaxed",
@@ -196,7 +196,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.FastTree <- {
 	ID = "FastTree",
 	Name = "Fast",
-	Icon = "ui/perks/unarmed_lunge.png",
+	Icon = "ui/perks/legend_quick_step.png",
 	Descriptions = [
 		"is fast",
 		"runs quickly",
@@ -315,7 +315,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.TrainedTree <- {
 	ID = "TrainedTree",
 	Name = "Trained",
-	Icon = "ui/perks/back_to_basics_circle.png",
+	Icon = "ui/perks/legend_back_to_basics.png",
 	Descriptions = [
 		"is well trained",
 		"has great qualifications",

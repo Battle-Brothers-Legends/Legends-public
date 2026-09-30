@@ -6,7 +6,7 @@ local category = "Enemy";
 ::Const.Perks.BeastTree <- {
 	ID = "BeastTree",
 	Name = "Beasts",
-	Icon = "ui/perks/favoured_direwolf_01.png",
+	Icon = "ui/perks/legend_favoured_enemy_beast.png",
 	Category = category,
 	Descriptions = [
 		"beasts"
@@ -25,7 +25,7 @@ local category = "Enemy";
 ::Const.Perks.OccultTree <- {
 	ID = "OccultTree",
 	Name = "Occult",
-	Icon = "ui/perks/favoured_skeleton_01.png",
+	Icon = "ui/perks/legend_favoured_enemy_occult.png",
 	Category = category,
 	Descriptions = [
 		"occult"
@@ -44,7 +44,7 @@ local category = "Enemy";
 ::Const.Perks.UndeadTree <- {
 	ID = "UndeadTree",
 	Name = "Undead",
-	Icon = "ui/perks/favoured_zombie_01.png",
+	Icon = "ui/perks/legend_favoured_enemy_undead.png",
 	Category = category,
 	Descriptions = [
 		"undead"
@@ -65,7 +65,7 @@ local category = "Enemy";
 ::Const.Perks.GreenskinTree <- {
 	ID = "GreenskinTree",
 	Name = "Greenskins",
-	Icon = "ui/perks/favoured_ork_01.png",
+	Icon = "ui/perks/legend_favoured_enemy_greenskin.png",
 	Category = category,
 	Descriptions = [
 		"greenskins"
@@ -84,7 +84,7 @@ local category = "Enemy";
 ::Const.Perks.CivilizationTree <- {
 	ID = "CivilizationTree",
 	Name = "Civilization",
-	Icon = "ui/perks/favoured_caravan_01.png",
+	Icon = "ui/perks/legend_favoured_enemy_civilization.png",
 	Category = category,
 	Descriptions = [
 		"law-abiding fools"
@@ -103,7 +103,7 @@ local category = "Enemy";
 ::Const.Perks.OutlawTree <- {
 	ID = "OutlawTree",
 	Name = "Outlaws",
-	Icon = "ui/perks/favoured_bandit_01.png",
+	Icon = "ui/perks/legend_favoured_enemy_outlaw.png",
 	Category = category,
 	Descriptions = [
 		"outlaws"
@@ -122,7 +122,7 @@ local category = "Enemy";
 ::Const.Perks.SwordmastersTree <- {
 	ID = "SwordmastersTree",
 	Name = "Swordmasters",
-	Icon = "ui/perks/favoured_swordmaster_01.png",
+	Icon = "ui/perks/legend_favoured_enemy_swordmaster.png",
 	Category = category,
 	Descriptions = [
 		"swordmasters"
