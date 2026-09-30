@@ -264,19 +264,18 @@
 	}
 
 	o.countIndebted = function () {
-		local roster = ::World.getPlayerRoster().getAll();
-		local indebted = 0;
-		local nonIndebted = [];
+		local brothers = ::World.getPlayerRoster().getAll();
+		local slaves = brothers.filter(@(_, _bro)(::Legends.Backgrounds.has(_bro, ::Legends.Background.Slave))).len();
+		::World.Statistics.getFlags().set("ManhunterIndebted", slaves);
+		::World.Statistics.getFlags().set("ManhunterNonIndebted", brothers.len() - slaves);
+	}
 
-		foreach (bro in roster) {
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
-				indebted++;
-			} else {
-				nonIndebted.push(bro);
+	o.onNewDay <- function () {
+		this.countIndebted();
+		if (::World.Statistics.getFlags().getAsInt("ManhunterIndebted") <= ::World.Statistics.getFlags().getAsInt("ManhunterNonIndebted")) {
+			foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(!::Legends.Backgrounds.has(_bro, ::Legends.Background.Slave)))) {
+				bro.worsenMood(::Const.MoodChange.TooFewSlaves, "Too few indebted in the company");
 			}
 		}
-
-		::World.Statistics.getFlags().set("ManhunterIndebted", indebted);
-		::World.Statistics.getFlags().set("ManhunterNonIndebted", nonIndebted.len());
 	}
 });

@@ -1,7 +1,7 @@
 this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "scenario.legends_nomad";
 		this.m.Name = "Nomad Tribe";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_170.png[/img][/p][p]Displaced from your land, take control of 4 nomads and a conscript in the desert. \n[color=#bcad8c]Hunted:[/color] Start in the desert away from civilisation. City States will start and remain hostile. Northern Nobles will have a cold relationship with you but will not decline. Other Nomads are friendly to you.\n[color=#bcad8c]Nomadic:[/color] Vision radius is increased by 30% on the world map. Steppe settlements may contain Nomads displaced from their lands willing to fight for you. Nomads, Muladis, Indebted and Bladedancers cost 25% less to hire and upkeep.\n[color=#bcad8c]The Path of the Interloper:[/color] Nomads and Muladis gain the \'Wind Reader\' perk when recruited. Bladedancers gain the \'Dodge\' perk. Indebted gain \'Colossus\'.[/p]";
@@ -12,32 +12,29 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.starting_scenario.create();
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 		this.m.ExcludedAmbitions = [
 			"ambition.legend_make_city_states_aware",
 			"ambition.defeat_holywar",
 			"ambition.win_x_arena_fights"
 		];
-		if (::World.State.getPlayer() != null)
+		if (::World.State.getPlayer() != null) {
 			::World.State.getPlayer().m.VisionRadius = 670; //500 is default during daytime on normal terrain
+		}
 		this.updateFactionActionsDeck();
 	}
 
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 5; i = ++i )
-		{
+		for (local i = 0; i < 5; i = ++i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
@@ -49,7 +46,6 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].setPlaceInFormation(2);
 		bros[0].setVeteranPerks(2);
 		bros[0].getSprite("socket").setBrush("bust_base_nomads");
-		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendNomad);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendWindReader);
 		bros[0].setStartValuesEx([::Legends.Background.Nomad]);
 		bros[0].getBackground().m.RawDescription = "{%name% is someone who you have known since they were a child. They always had a keen eye but had more interest in shooting things point blank with their sling instead. Their discovery of maces and swords changed their world for the better.}";
@@ -57,7 +53,6 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[1].setPlaceInFormation(3);
 		bros[1].setVeteranPerks(2);
 		bros[1].getSprite("socket").setBrush("bust_base_nomads");
-		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendNomad);
 		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendWindReader);
 		bros[1].setStartValuesEx([::Legends.Background.Nomad]); //melee always to prevent all ranged parties
 		bros[1].getBackground().m.RawDescription = "{%name% came from another tribe that merged with yours not too long ago. Their family was butched in the night by \'skin men\' who could travel thirty paces in a blink of the eye. While many think them unsettled by what appears to be a raid, you can\'t help but notice how they always sleep closest to the fire every night.}";
@@ -71,15 +66,13 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[3].setPlaceInFormation(11);
 		bros[3].setVeteranPerks(2);
 		bros[3].getSprite("socket").setBrush("bust_base_nomads");
-		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendNomad);
 		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendWindReader);
-		bros[3].setStartValuesEx([::Legends.Background.Nomad,::Legends.Background.NomadRanged]); //wildcard 1
+		bros[3].setStartValuesEx([::Legends.Background.Nomad, ::Legends.Background.NomadRanged]); //wildcard 1
 		bros[3].getBackground().m.RawDescription = "{You know little about %name%, they prefer to stay quiet and keep to themselves. However their loyalty to the tribe has never come into question.}";
 
 		bros[4].setPlaceInFormation(12);
 		bros[4].setVeteranPerks(2);
 		bros[4].getSprite("socket").setBrush("bust_base_nomads");
-		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendNomad);
 		::Legends.Perks.grant(bros[4], ::Legends.Perk.LegendWindReader);
 		bros[4].setStartValuesEx([::Legends.Background.NomadRanged]);
 		bros[4].getBackground().m.RawDescription = "{Be it rabbit, snake or hyena - little stands a chance against %name% who readily hits their target with all the same precision. The change to conscripts over wildlife came as a challenge at first until they realised they just needed to aim slightly high than usual.}";
@@ -95,46 +88,34 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::World.Assets.m.Ammo = ::World.Assets.m.Ammo * 3;
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local spawnTile;
 		local settlements = ::World.EntityManager.getSettlements();
 		local nearestVillage;
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(5, ::Const.World.Settings.SizeX - 5);
 			local y = ::Math.rand(5, ::Const.World.Settings.SizeY - 5);
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.IsOccupied)
-				{
-				}		//&& tile.Type != ::Const.World.TerrainType.Steppe
-				else if (tile.Type != ::Const.World.TerrainType.Desert)
-				{
-				}
-				else
-				{
+				if (tile.IsOccupied) {
+				}  //&& tile.Type != ::Const.World.TerrainType.Steppe
+				else if (tile.Type != ::Const.World.TerrainType.Desert) {
+				} else {
 					local next = true;
 
-					foreach( s in settlements )
-					{
+					foreach (s in settlements) {
 						local d = s.getTile().getDistanceTo(tile);
 
-						if (d > 6 && d < 15)
-						{
+						if (d > 6 && d < 15) {
 							local path = ::World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
 
-							if (!path.isEmpty())
-							{
+							if (!path.isEmpty()) {
 								next = false;
 								nearestVillage = s;
 								break;
@@ -142,37 +123,30 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 						}
 					}
 
-					if (next)
-					{
-					}
-					else
-					{
+					if (next) {
+					} else {
 						spawnTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
 
-		foreach( n in oriental )
-		{
+		foreach (n in oriental) {
 			n.addPlayerRelation(-400.0, "You are an outlaw to the City States");
 		}
 
 		local orientalbandits = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalBandits);
 
-		foreach( n in orientalbandits )
-		{
+		foreach (n in orientalbandits) {
 			n.addPlayerRelation(100.0, "You walk the same path, but should not be seeing this message");
 		}
 
 		local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 
-		foreach( n in nobles )
-		{
+		foreach (n in nobles) {
 			n.addPlayerRelation(-30.0, "You are considered an outlaw");
 		}
 
@@ -180,8 +154,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", spawnTile.Coords.X, spawnTile.Coords.Y);
 		::World.Assets.updateLook(117);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/gilded_01.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -190,22 +163,20 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	}
 
 	function onHiredByScenario(_bro) {
-		if (_bro.isStabled())
+		if (_bro.isStabled()) {
 			return;
+		}
 
 		if (::Legends.Backgrounds.hasAny(_bro, ::Legends.Background.Nomad, ::Legends.Background.LegendMuladi)) {
 			_bro.improveMood(1.5, "I walk with those on the path of the Interloper");
-			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendNomad);
 			_bro.getSprite("socket").setBrush("bust_base_nomads");
 			::Legends.Perks.grant(_bro, ::Legends.Perk.LegendWindReader);
 		} else if (::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendBladedancer)) {
 			_bro.improveMood(1.5, "I walk with those on the path of the Interloper");
-			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendNomad);
 			_bro.getSprite("socket").setBrush("bust_base_nomads");
 			::Legends.Perks.grant(_bro, ::Legends.Perk.Dodge);
 		} else if (::Legends.Backgrounds.has(_bro, ::Legends.Background.Slave)) {
 			_bro.improveMood(2.0, "I was emancipated!");
-			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendNomad);
 			_bro.getSprite("socket").setBrush("bust_base_nomads");
 			::Legends.Perks.grant(_bro, ::Legends.Perk.Colossus);
 		} else {
@@ -214,14 +185,11 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	}
 
 	function onGenerateBro(_bro) {
-		if (_bro.isStabled()) return;
+		if (_bro.isStabled()) {
+			return;
+		}
 
-		if (::Legends.Backgrounds.hasAny(_bro,
-			::Legends.Background.Nomad,
-			::Legends.Background.LegendMuladi,
-			::Legends.Background.LegendBladedancer,
-			::Legends.Background.Slave
-		)) {
+		if (::Legends.Backgrounds.hasAny(_bro, ::Legends.Background.Nomad, ::Legends.Background.LegendMuladi, ::Legends.Background.LegendBladedancer, ::Legends.Background.Slave)) {
 			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 		} else {
@@ -264,17 +232,31 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	function isSteppeSettlement(_settlement) {
 		local settlementTile = _settlement.getTile();
 
-		for (local i = 0; i != 6; i = ++i) {
-			if (!settlementTile.hasNextTile(i))
+		for (local i = 0; i < 6; i++) {
+			if (!settlementTile.hasNextTile(i)) {
 				return false;
+			}
 
 			local tile = settlementTile.getNextTile(i);
 
-			if (::Legends.S.oneOf(tile.Type, ::Const.World.TerrainType.Steppe, ::Const.World.TerrainType.Desert, ::Const.World.TerrainType.Oasis))
+			if (::Legends.S.oneOf(tile.Type, ::Const.World.TerrainType.Steppe, ::Const.World.TerrainType.Desert, ::Const.World.TerrainType.Oasis)) {
 				return true;
+			}
 		}
 		return false;
 	}
 
+	function onNewDay() {
+		foreach (_ in ::World.getPlayerRoster().getAll()) {
+			local factions = [];
+			factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalBandits));
+			foreach (faction in factions) {
+				//Relations: 0 = hostile, 100 = allied
+				if (faction.m.PlayerRelation > 0) {
+					faction.m.PlayerRelation = ::Math.minf(100.0, ::Math.max(0.0, faction.m.PlayerRelation + 0.1));  //+0.1 reputation per day per unit in company.
+					faction.updatePlayerRelation();
+				}
+			}
+		}
+	}
 });
-

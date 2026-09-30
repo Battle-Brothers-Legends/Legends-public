@@ -1,7 +1,7 @@
 this.legend_lone_wolf_relationship_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
 		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendLoneWolfRelationship);
 		this.m.Description = "If you can see this something is fucked up";
@@ -9,8 +9,7 @@ this.legend_lone_wolf_relationship_trait <- this.inherit("scripts/skills/traits/
 		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -37,23 +36,17 @@ this.legend_lone_wolf_relationship_trait <- this.inherit("scripts/skills/traits/
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.DailyWageMult *= 0;
 	}
 
-	function onAdded()
-	{
-		if (!this.m.Container.hasEffect(::Legends.Effect.LegendLwRelationship))
-		{
+	function onAdded() {
+		if (!this.m.Container.hasEffect(::Legends.Effect.LegendLwRelationship)) {
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendLwRelationship);
 		}
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		::Legends.Effects.remove(this, ::Legends.Effect.LegendLwRelationship);
 	}
-
 });
-

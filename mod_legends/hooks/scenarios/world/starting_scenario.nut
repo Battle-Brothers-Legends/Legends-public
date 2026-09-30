@@ -1,5 +1,5 @@
 ::mods_hookBaseClass("scenarios/world/starting_scenario", function (o) {
-	while(!("ID" in o.m)) o=o[o.SuperName];
+	while (!("ID" in o.m)) o = o[o.SuperName];
 
 	o.m.CurrentSettlement <- null;
 	o.m.StashModifier <- 0;
@@ -15,86 +15,68 @@
 	o.m.ExcludedAmbitions <- []; // set in onInit, it's not serialized and doesn't need to be
 	o.m.BrotherScaling <- 1.0;
 
-	o.create <- function() {
+	o.create <- function () {
 		this.m.Order = ::Legends.Scenarios.Order[this.m.ID];
 	}
 
 	o.isDroppedAsLoot = function (_item) {
-		 return ::World.Assets.m.ProfessionEffect.LegendFerretItOut > 0 ? ::Math.rand(1, 100) < (::World.Assets.m.ProfessionEffect.LegendFerretItOut * 100) : false;
+		return ::World.Assets.m.ProfessionEffect.LegendFerretItOut > 0 ? ::Math.rand(1, 100) < (::World.Assets.m.ProfessionEffect.LegendFerretItOut * 100) : false;
 	}
 
 	local getDifficultyForUI = o.getDifficultyForUI;
-	o.getDifficultyForUI = function ()
-	{
-		if (this.m.Difficulty == 4)
+	o.getDifficultyForUI = function () {
+		if (this.m.Difficulty == 4) {
 			return "difficulty_legend";
+		}
 		return getDifficultyForUI();
 	}
 
-	o.getBrotherScaling <- function ()
-	{
+	o.getBrotherScaling <- function () {
 		return this.m.BrotherScaling;
 	}
 
-	o.getStaticRelations <- function ()
-	{
+	o.getStaticRelations <- function () {
 		return this.m.StaticRelationsToFaction;
 	}
 
-	o.getStashModifier <- function()
-	{
+	o.getStashModifier <- function () {
 		return this.m.StashModifier;
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		this.m.StaticRelationsToFaction.resize(::Const.FactionType.len());
 	}
 
-	o.onUpdateStablesList <- function ( _list )
-	{
-	}
+	o.onUpdateStablesList <- function (_list) {}
 
-	o.onHiredByScenario <- function ( _bro )
-	{
-	}
+	o.onHiredByScenario <- function (_bro) {}
 
-	o.onBuildPerkTree <- function ( _background )
-	{
-	}
+	o.onBuildPerkTree <- function (_background) {}
 
-
-	o.getStartingRosterTier <- function ()
-	{
+	o.getStartingRosterTier <- function () {
 		return this.m.StartingRosterTier;
 	}
 
-	o.getRosterTier <- function ()
-	{
+	o.getRosterTier <- function () {
 		return ::Math.min(this.getRosterTierMax(), this.getRosterTierFromReputation() + this.getStartingRosterTier());
 	}
 
-	o.getRosterTierCombat <- function ()
-	{
+	o.getRosterTierCombat <- function () {
 		local tierMax = this.m.RosterTierMaxCombat == null ? ::Math.min(this.getRosterTierMax(), this.m.RosterTierMaxCombat) : this.m.RosterTierMaxCombat;
 		return ::Math.min(tierMax, this.getRosterTierFromReputation() + this.getStartingRosterTier());
 	}
 
-	o.getRosterTierMax <- function ()
-	{
+	o.getRosterTierMax <- function () {
 		return this.m.RosterTierMax;
 	}
 
-	o.getRosterTierFromReputation <- function ()
-	{
+	o.getRosterTierFromReputation <- function () {
 		local tier = 0;
 
-		for( local i = 0; i < this.m.RosterReputationTiers.len(); i++ )
-		{
-			if (::World.Assets.getBusinessReputation() >= this.m.RosterReputationTiers[i])
-			{
+		for (local i = 0; i < this.m.RosterReputationTiers.len(); i++) {
+			if (::World.Assets.getBusinessReputation() >= this.m.RosterReputationTiers[i]) {
 				tier++;
 			}
 		}
@@ -102,27 +84,22 @@
 		return tier;
 	}
 
-	o.getRosterReputationTiers <- function ()
-	{
+	o.getRosterReputationTiers <- function () {
 		return this.m.RosterReputationTiers;
 	}
 
-	o.setRosterReputationTiers <- function ( _tiers )
-	{
+	o.setRosterReputationTiers <- function (_tiers) {
 		this.m.RosterReputationTiers = _tiers;
 	}
 
-	o.addScenarioPerk <- function ( _background, _perk, _row = 0, _addSkill = true )
-	{
-		if (_background.m.CustomPerkTree == null)
-		{
+	o.addScenarioPerk <- function (_background, _perk, _row = 0, _addSkill = true) {
+		if (_background.m.CustomPerkTree == null) {
 			return;
 		}
 
 		local isRefundable = false;
 
-		if (_addSkill && _background.getContainer() != null)
-		{
+		if (_addSkill && _background.getContainer() != null) {
 			_background.getContainer().add(this.new(::Const.Perks.PerkDefObjects[_perk].Script));
 			isRefundable = false;
 		}
@@ -130,12 +107,9 @@
 		_background.addPerk(_perk, _row, isRefundable);
 	}
 
-	o.onGenerateBro <- function (_bro)
-	{
-	}
+	o.onGenerateBro <- function (_bro) {}
 
-	o.addBroToRoster <- function (_roster, _background, _chance)
-	{
+	o.addBroToRoster <- function (_roster, _background, _chance) {
 		local multiplier = _roster.getAll().len() < 8 ? 2 : 1; // Short little change to make these spawns less common in tiny villages
 
 		if (::Math.rand(0, _chance * multiplier) == 0) {
@@ -145,17 +119,17 @@
 		}
 	}
 
-	o.getCurrentSettlement <- function ()
-	{
+	o.getCurrentSettlement <- function () {
 		return this.m.CurrentSettlement;
 	}
 
-	o.setCurrentSettlement <- function ( _settlement )
-	{
+	o.setCurrentSettlement <- function (_settlement) {
 		this.m.CurrentSettlement = ::MSU.asWeakTableRef(_settlement);
 	}
 
 	o.getExcludedAmbitions <- function () {
 		return this.m.ExcludedAmbitions;
 	}
+
+	o.onNewDay <- function () {}
 });

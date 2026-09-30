@@ -20,7 +20,9 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 
 		for (local i = 0; i < 6; i++) {
 			local bro = roster.create("scripts/entity/tactical/player");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNecromancer);  //IMPORTANT - dictates relationship loss/gain
+			if (::Legends.Traits.has(bro, ::Legends.Trait.HateUndead)) {
+				::Legends.Traits.remove(bro, ::Legends.Trait.HateUndead);
+			}
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null) {
@@ -220,7 +222,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		this.addBroToRoster(_roster, ::Legends.Background.Gravedigger, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.Graverobber, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendPuppet, 6);
-		foreach (i, bro in bros) {
+		foreach (_, bro in bros) {
 			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader)) {
 				garbage.push(bro); //delete crusader/pious recruits
 			}
@@ -275,6 +277,22 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 			// factions.removeActionByID("defend_undead_action"); //no contract, back on the menu
 			// factions.removeActionByID("move_undead_action"); //no contract, back on the menu
 			// factions.removeActionByID("send_undead_ambushers_action"); //no contract, back on the menu
+		}
+	}
+
+	function onNewDay() {
+		foreach (_ in ::World.getPlayerRoster().getAll()) {
+			local factions = [];
+			factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse));
+			factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement));
+			factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState));
+			foreach (faction in factions) {
+				//Relations: 0 = hostile, 100 = allied
+				if (faction.m.PlayerRelation > 30) {
+					faction.m.PlayerRelation = ::Math.minf(100.0, ::Math.max(0.0, faction.m.PlayerRelation - 0.1));  //-0.1 reputation per day per unit in company.
+					faction.updatePlayerRelation();
+				}
+			}
 		}
 	}
 });

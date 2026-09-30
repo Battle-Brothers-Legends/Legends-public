@@ -243,17 +243,8 @@ local otherTraitDefs = {
 		Icon = "ui/traits/trait_icon_00.png"
 	},
 	LegendNaturalOrder = {},
-	LegendNecromancer = {
-		Icon = "ui/traits/trait_icon_00.png"
-	},
 	LegendNobleKiller = {
 		Icon = "ui/traits/legend_hate_nobles.png"
-	},
-	LegendNomad = {
-		Icon = "ui/traits/trait_icon_00.png"
-	},
-	LegendPeasant = {
-		Icon = "ui/traits/trait_icon_00.png"
 	},
 	LegendProstheticEar = {
 		VisibleOnRecruitment = true

@@ -64,7 +64,9 @@
 			bro.worsenMood(1.5, "Lost many a friend in battle");
 			bro.improveMood(0.5, "Part of a militia");
 			///---
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendPeasant); //IMPORTANT
+			if (::Legends.Traits.has(bro, ::Legends.Trait.LegendFearNobles)) {
+				::Legends.Traits.remove(bro, ::Legends.Trait.LegendFearNobles);
+			}
 			bro.getSprite("socket").setBrush("bust_base_militia");
 			///---
 			bro.m.HireTime = ::Time.getVirtualTimeF();
@@ -233,7 +235,9 @@
 	}
 
 	o.onHiredByScenario <- function (_bro) {
-		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendPeasant);
+		if (::Legends.Traits.has(_bro, ::Legends.Trait.LegendFearNobles)) {
+			::Legends.Traits.remove(_bro, ::Legends.Trait.LegendFearNobles);
+		}
 		_bro.getSprite("socket").setBrush("bust_base_militia");
 	}
 
@@ -256,11 +260,7 @@
 				continue;
 			}
 
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendManAtArms)) {
-				bro.getSprite("accessory_special").setBrush("bust_militia_band_02"); //blue
-			} else {
-				bro.getSprite("accessory_special").setBrush("bust_militia_band_01"); //red
-			}
+			bro.getSprite("accessory_special").setBrush("bust_militia_band_" + (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendManAtArms) ? "02" : "01")); // blue/red
 
 			while (::Legends.Traits.get(bro, ::Legends.Trait.LegendFearNobles)) {
 				::Legends.Traits.remove(bro, ::Legends.Trait.LegendFearNobles);
@@ -271,6 +271,21 @@
 
 		foreach (g in garbage) {
 			_roster.remove(g);
+		}
+	}
+
+	o.onNewDay <- function () {
+		foreach (_ in ::World.getPlayerRoster().getAll()) {
+			local factions = [];
+			factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse));
+			factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState));
+			foreach (faction in factions) {
+				//Relations: 0 = hostile, 100 = allied
+				if (faction.m.PlayerRelation > 30) {
+					faction.m.PlayerRelation = ::Math.minf(100.0, ::Math.max(0.0, faction.m.PlayerRelation - 0.1));  //-0.1 reputation per day per unit in company.
+					faction.updatePlayerRelation();
+				}
+			}
 		}
 	}
 });

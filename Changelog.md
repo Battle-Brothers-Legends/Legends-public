@@ -637,7 +637,8 @@
 - attempted fix of entities sometimes attacking through the Fleeing state after getting put into it by a Riposte
 - fixed blade dancer background using bounty hunter stats instead of their own
 - fixed Versatile perk: damage bonus now works correctly and tooltip will appear in combat
-- fix offhand items sometimes displaying flipped after saving and loading
+- fixed offhand items sometimes displaying flipped after saving and loading
+- fixed master necromancer getting too cozy with the nobles after getting rid of his early troupe 
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
@@ -667,6 +668,7 @@
 - submod scenarios are now displayed in the custom group on the scenario selection screen
 - if you have custom armor layers that add tooltips due to special effects, you can check `mod_legends/helper/inventory/items_effects` to see how it might be handled by the new comparison tooltip
 - added names and icons to trait defs; traits are now using onCreate
+- scenarios now support onNewDay handling
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`
@@ -985,7 +987,6 @@ Refactors/deletions:
 - `legend_catapult_blueprint` -> deleted
 - `scripts/skills/effects/legend_vala_trance_perspective_effect` -> deleted
 - added the `_trait` suffix to all prosthetic trait scripts
-- `scripts/skills/traits/legend_lw_relationship_trait` -> `scripts/skills/traits/legend_lone_wolf_relationship_trait`
 - `scripts/skills/traits/legend_cannibalistic` -> `scripts/skills/traits/legend_cannibalistic_trait`
 - `scripts/skills/traits/legend_fear_dark_trait` -> `scripts/skills/traits/legend_nyctophobia_trait`
 - `scripts/skills/traits/legend_heavy_trait` -> `scripts/skills/traits/legend_lumbering_trait`
@@ -994,3 +995,5 @@ Refactors/deletions:
 - `scripts/skills/traits/legend_gift_of_the_people_trait` -> `scripts/skills/traits/legend_charming_trait`
 - `scripts/skills/traits/legend_brothers_in_chains_trait` -> `scripts/skills/traits/legend_united_in_chains_trait`
 - `scripts/skills/traits/legend_beastslayers_trait` -> `scripts/skills/traits/legend_natural_order_trait`
+- `scripts/skills/traits/legend_lw_relationship_trait` -> `scripts/skills/traits/legend_lone_wolf_relationship_trait`
+- removed nomad, peasant and necromancer origin traits, effect moved directly to individual scenarios

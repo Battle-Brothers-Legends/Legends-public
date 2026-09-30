@@ -442,82 +442,34 @@
 			}
 		}
 
-		if (::World.getTime().Days > this.m.LastDayPaid && ::World.getTime().Hours > 8 && this.m.IsConsumingAssets)
-		{
+		if (::World.getTime().Days > this.m.LastDayPaid && ::World.getTime().Hours > 8 && this.m.IsConsumingAssets) {
 			this.m.LastDayPaid = ::World.getTime().Days;
 
-			if (this.m.BusinessReputation > 0)
-			{
+			if (this.m.BusinessReputation > 0) {
 				this.m.BusinessReputation = ::Math.max(0, this.m.BusinessReputation + ::Const.World.Assets.ReputationDaily);
 			}
 
 			::World.Retinue.onNewDay();
 
-			if (::World.Flags.get("IsGoldenGoose") == true)
-			{
-				this.addMoney(::Legends.Items.Effects.GoldenGooseGoldPerDay);
-			}
-
-			local roster = ::World.getPlayerRoster().getAll();
-			local mood = 0;
-			local slaves = 0;
-			local nonSlaves = 0;
-
-			if (this.m.Origin.getID() == "scenario.manhunters")
-			{
-				foreach( bro in roster )
-				{
-					if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-					{
-						slaves = ++slaves;
-					}
-					else
-					{
-						nonSlaves = ++nonSlaves;
-					}
-				}
-			}
-
-			local items = ::World.Assets.getStash().getItems();
-			foreach( item in items )
-			{
-				if (item == null)
-				{
-					continue;
-				}
-
-				item.onNewDay();
+			foreach (item in ::World.Assets.getStash().getItems().filter(@(_,_item) (_item != null))) {
+					item.onNewDay();
 			}
 
 			local companyRep = ::World.Assets.getMoralReputation() / 10;
 
-			foreach( bro in roster )
-			{
+			local roster = ::World.getPlayerRoster().getAll();
+			local mood = 0;
+			foreach (bro in roster) {
 				bro.getSkills().onNewDay();
 				bro.updateInjuryVisuals();
 
-				if (::World.Assets.getOrigin().getID() == "scenario.legends_troupe")
-				{
-					this.addMoney(10);
+				if (bro.getDailyCost() > 0 && this.m.Money < bro.getDailyCost()) {
+					bro.worsenMood((::Legends.Traits.has(bro, ::Legends.Trait.Greedy) ? ::Const.MoodChange.NotPaidGreedy : ::Const.MoodChange.NotPaid), "Did not get paid");
 				}
 
-
-				if (bro.getDailyCost() > 0 && this.m.Money < bro.getDailyCost())
-				{
-					if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
-					{
-						bro.worsenMood(::Const.MoodChange.NotPaidGreedy, "Did not get paid");
-					}
-					else
-					{
-						bro.worsenMood(::Const.MoodChange.NotPaid, "Did not get paid");
-					}
-				}
-					// for zombies
-				if (bro.getDailyMedicine() > 0)
-				{
-					if (bro.getSkills().hasTrait(::Legends.Trait.LegendRottenFlesh))
-					{
+				// for zombies
+				if (bro.getDailyMedicine() > 0) {
+					if (::Legends.Trait.has(bro, ::Legends.Trait.LegendRottenFlesh)) {
 						bro.addLightInjury();
 						bro.MoodChanges = [];
 						bro.improveMood(0.0, "A lack of medicine has caused me to deteriorate");
@@ -526,51 +478,37 @@
 
 				// if (bro.getSkills().hasSkill("perk.legend_pacifist"))
 				// {
-					// local hireTime = bro.getHireTime();
-					// local currentTime =  ::World.getTime().Time;
-					// local servedTime = currentTime - hireTime;
-					// local servedDays = servedTime / ::World.getTime().SecondsPerDay;
-					// if ((servedDays * 7) < bro.getLifetimeStats().Kills)
-					// 	{
-					// 		bro.worsenMood(::Const.MoodChange.BattleWithoutMe, "Remembers being forced to kill against their wishes");
-					// 	}
-					// if (bro.getLifetimeStats().Battles > bro.getLifetimeStats().BattlesWithoutMe)
-					// {
-					// 	bro.worsenMood(::Const.MoodChange.BattleWithoutMe, "Took part in too many battles");
-					// }
+				// local hireTime = bro.getHireTime();
+				// local currentTime =  ::World.getTime().Time;
+				// local servedTime = currentTime - hireTime;
+				// local servedDays = servedTime / ::World.getTime().SecondsPerDay;
+				// if ((servedDays * 7) < bro.getLifetimeStats().Kills)
+				// 	{
+				// 		bro.worsenMood(::Const.MoodChange.BattleWithoutMe, "Remembers being forced to kill against their wishes");
+				// 	}
+				// if (bro.getLifetimeStats().Battles > bro.getLifetimeStats().BattlesWithoutMe)
+				// {
+				// 	bro.worsenMood(::Const.MoodChange.BattleWithoutMe, "Took part in too many battles");
+				// }
 				// }
 
-				if (this.m.IsUsingProvisions && this.m.Food < bro.getDailyFood())
-				{
-					if (bro.getSkills().hasTrait(::Legends.Trait.Spartan))
-					{
+				if (this.m.IsUsingProvisions && this.m.Food < bro.getDailyFood()) {
+					if (::Legends.Traits.has(bro, ::Legends.Trait.Spartan)) {
 						bro.worsenMood(::Const.MoodChange.NotEatenSpartan, "Went hungry");
-					}
-					else if (bro.getSkills().hasTrait(::Legends.Trait.Gluttonous))
-					{
+					} else if (::Legends.Traits.has(bro, ::Legends.Trait.Gluttonous)) {
 						bro.worsenMood(::Const.MoodChange.NotEatenGluttonous, "Went hungry");
-					}
-					else
-					{
+					} else {
 						bro.worsenMood(::Const.MoodChange.NotEaten, "Went hungry");
 					}
 				}
 
-				if (this.m.Origin.getID() == "scenario.manhunters" && slaves <= nonSlaves)
-				{
-					if (bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-					{
-						bro.worsenMood(::Const.MoodChange.TooFewSlaves, "Too few indebted in the company");
-					}
-				}
-
 				this.m.Money -= bro.getDailyCost();
-				mood = mood + bro.getMoodState();
+				mood += bro.getMoodState();
 			}
 
-			local settlements = ::World.EntityManager.getSettlements();
-			foreach( settlement in settlements )
-			{
+			this.m.Origin.onNewDay();
+
+			foreach (settlement in ::World.EntityManager.getSettlements()) {
 				settlement.onNewDay();
 			}
 
@@ -578,18 +516,12 @@
 			this.m.AverageMoodState = ::Math.round(mood / roster.len());
 			_worldState.updateTopbarAssets();
 
-			if (this.m.EconomicDifficulty >= 1 && this.m.CombatDifficulty >= 1)
-			{
-				if (::World.getTime().Days >= 365)
-				{
+			if (this.m.EconomicDifficulty >= 1 && this.m.CombatDifficulty >= 1) {
+				if (::World.getTime().Days >= 365) {
 					this.updateAchievement("Anniversary", 1, 1);
-				}
-				else if (::World.getTime().Days >= 100)
-				{
+				} else if (::World.getTime().Days >= 100) {
 					this.updateAchievement("Campaigner", 1, 1);
-				}
-				else if (::World.getTime().Days >= 10)
-				{
+				} else if (::World.getTime().Days >= 10) {
 					this.updateAchievement("Survivor", 1, 1);
 				}
 			}
