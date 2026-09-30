@@ -5,7 +5,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.ShadyTree <- {
 	ID = "ShadyTree",
 	Name = "Shady",
-	Icon = "ui/perks/feint_circle.png",
+	Icon = "ui/perks/legend_feint.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[::Legends.Perk.LegendFeint],
@@ -35,7 +35,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.SparringTree <- {
 	ID = "SparringTree",
 	Name = "Sparring",
-	Icon = "ui/perks/back_to_basics_circle.png",
+	Icon = "ui/perks/legend_back_to_basics.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[::Legends.Perk.LegendBackToBasics],

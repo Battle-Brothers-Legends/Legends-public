@@ -7,7 +7,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.ForcefulTree <- {
 	ID = "ForcefulTree",
 	Name = "Forceful",
-	Icon = "ui/perks/fullforce_circle.png",
+	Icon = "ui/perks/legend_immovable_object.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
