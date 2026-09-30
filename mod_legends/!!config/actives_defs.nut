@@ -2600,7 +2600,7 @@ activesDefs.push({
 	Const = "LegendFlourish",
 	Name = "Flourish",
 	Icon = "ui/perks/perk_41_active.png",
-	IconDisabled = "ui/perks/perk_41_active_sw.png",
+	IconDisabled = "ui/perks/perk_41_active_bw.png",
 	Overlay = "perk_41_active",
 });
 

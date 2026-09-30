@@ -11,7 +11,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantSenses);
 		this.m.Icon = "ui/perks/legend_vala_chant_senses_active.png";
-		this.m.IconDisabled = "ui/perks/legend_vala_chant_senses_active_sw.png";
+		this.m.IconDisabled = "ui/perks/legend_vala_chant_senses_active_bw.png";
 		this.m.Type = ::Const.SkillType.Active | ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.NonTargeted + 1;
 		this.m.IsSerialized = true;

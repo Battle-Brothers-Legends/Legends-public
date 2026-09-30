@@ -8,6 +8,8 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantDisharmony);
+		this.m.Icon = "ui/perks/legend_vala_chant_disharmony_active.png";
+		this.m.IconDisabled = "ui/perks/legend_vala_chant_disharmony_active_bw.png";
 		this.m.Type = ::Const.SkillType.Active | ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.NonTargeted + 3;
 		this.m.IsSerialized = true;

@@ -10,6 +10,8 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantFury);
+		this.m.Icon = "ui/perks/legend_vala_chant_fury_active.png";
+		this.m.IconDisabled = "ui/perks/legend_vala_chant_fury_active_bw.png";
 		this.m.Type = ::Const.SkillType.Active | ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.NonTargeted + 2;
 		this.m.IsSerialized = true;

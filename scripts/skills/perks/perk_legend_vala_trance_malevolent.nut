@@ -14,7 +14,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTranceMalevolent);
 		this.m.Icon = "ui/perks/legend_vala_trance_malevolent_active.png";
-		this.m.IconDisabled = "ui/perks/legend_vala_trance_malevolent_active_sw.png";
+		this.m.IconDisabled = "ui/perks/legend_vala_trance_malevolent_active_bw.png";
 		this.m.Type = ::Const.SkillType.Active | ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted + 11;
 		this.m.IsSerialized = true;
