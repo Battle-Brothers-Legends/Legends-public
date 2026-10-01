@@ -7,7 +7,7 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 
 	function onInit() {
 		this.gladiator.onInit();
-		::Legends.Perks.remove(this, ::Legends.Active.Nimble);
+		::Legends.Perks.remove(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLithe);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
@@ -68,14 +68,14 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 			this.m.Items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
 		}
 
-		this.m.Items.equip(::Const.World.Southern.pickArmor([
-			[1, ::Legends.Armor.Barbarian.nomad_gladiator_armor_00],
-			[1, ::Legends.Armor.Barbarian.nomad_gladiator_armor_01],
-			[1, ::Legends.Armor.Barbarian.nomad_gladiator_armor_02]
+		this.m.Items.equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Southern.nomad_gladiator_armor_00],
+			[1, ::Legends.Armor.Southern.nomad_gladiator_armor_01],
+			[1, ::Legends.Armor.Southern.nomad_gladiator_armor_02]
 		]));
 
-		this.m.Items.equip(::Const.World.Southern.pickHelmet([
-			[1, ::Legends.Helmet.Barbarian.nomad_gladiator_helmet_00]
+		this.m.Items.equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Southern.nomad_gladiator_helmet_00]
 		]));
 	}
 });

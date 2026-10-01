@@ -472,7 +472,7 @@
 	Sets = [{
 		Cloth = [
 			[1, "cloth/legend_armor_southern_split_gambeson"],
-			[1, "cloth/legend_southern_gambeson"]
+			[1, "cloth/legend_armor_southern_gambeson"]
 		],
 		Chain = [
 			[1, "chain/legend_armor_southern_padded_chest"]
@@ -502,7 +502,7 @@
 		Cloth = [
 			[1, "cloth/legend_armor_southern_gladiator_harness", 1],
 			[1, "cloth/legend_armor_southern_split_gambeson"],
-			[1, "cloth/legend_southern_gambeson"]
+			[1, "cloth/legend_armor_southern_gambeson"]
 		],
 		Chain = [
 			[1, "chain/legend_armor_mail_shirt_simple"],
