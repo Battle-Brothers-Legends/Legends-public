@@ -45,7 +45,7 @@ this.legends_party_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendAggressive);
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendUnpredictable);
 
-		bros[2].setStartValuesEx([::Legends.Background.LegendCrusader]);
+		bros[2].setStartValuesEx([::Legends.Background.LegendCommanderCrusader]);
 		bros[2].getBackground().m.RawDescription = "{%name% is a righteous fighter, constantly chanting religious hymns and psalms. The crusader exists to fight the undead and has a burning passion against any kind of necromancy. How the holy warrior ever agreed to join forces with those who do not share a similar zeal remains a mystery.}";
 		bros[2].setPlaceInFormation(5);
 		bros[2].setVeteranPerks(2);

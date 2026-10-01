@@ -428,6 +428,17 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [12, 18]
 }
 
+::Legends.BackgroundsStats.LegendHouseGuard <- {
+	Hitpoints = [5, 10],
+	Bravery = [5, 5],
+	Stamina = [5, 5],
+	MeleeSkill = [12, 17],
+	RangedSkill = [-5, -5],
+	MeleeDefense = [3, 6],
+	RangedDefense = [2, 4],
+	Initiative = [-5, -10]
+}
+
 ::Legends.BackgroundsStats.Hunter <- {
 	Hitpoints = [0, 0],
 	Bravery = [0, 5],
@@ -886,15 +897,15 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [10, 10]
 }
 
-::Legends.BackgroundsStats.LegendCommanderAssassin <- {
-	Hitpoints = [5, 10],
-	Bravery = [0, 0],
+::Legends.BackgroundsStats.LegendArbalester <- {
+	Hitpoints = [-5, 0],
+	Bravery = [5, 5],
 	Stamina = [0, 0],
-	MeleeSkill = [15, 15],
-	RangedSkill = [4, 8],
-	MeleeDefense = [8, 12],
+	MeleeSkill = [3, 6],
+	RangedSkill = [23, 20],
+	MeleeDefense = [3, 6],
 	RangedDefense = [8, 12],
-	Initiative = [15, 15]
+	Initiative = [-5, -5]
 }
 
 ::Legends.BackgroundsStats.LegendBattleSister <- {
@@ -907,19 +918,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	RangedDefense = [-5, 0],
 	Initiative = [5, 10]
 }
-
-::Legends.BackgroundsStats.LegendCommanderBeggar <- {
-	Hitpoints = [-20, -20],
-	Bravery = [-20, -15],
-	Stamina = [-20, -20],
-	MeleeSkill = [-5, -5],
-	RangedSkill = [-5, -5],
-	MeleeDefense = [-5, -5],
-	RangedDefense = [-5, -5],
-	Initiative = [20, 20]
-}
-
-::Legends.BackgroundsStats.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundsStats.LegendCommanderBeggar;
 
 ::Legends.BackgroundsStats.LegendBellyDancer <- {
 	Hitpoints = [-5, -5],
@@ -938,17 +936,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Stamina = [15, 15],
 	MeleeSkill = [20, 20],
 	RangedSkill = [-5, -5],
-	MeleeDefense = [10, 10],
-	RangedDefense = [-5, -5],
-	Initiative = [-5, -5]
-}
-
-::Legends.BackgroundsStats.LegendCommanderBerserker <- {
-	Hitpoints = [20, 25],
-	Bravery = [5, 10],
-	Stamina = [15, 20],
-	MeleeSkill = [20, 25],
-	RangedSkill = [0, 0],
 	MeleeDefense = [10, 10],
 	RangedDefense = [-5, -5],
 	Initiative = [-5, -5]
@@ -985,6 +972,96 @@ if (!("BackgroundsStats" in ::Legends)) {
 	MeleeDefense = [5, 9],
 	RangedDefense = [5, 5],
 	Initiative = [20, 20]
+}
+
+::Legends.BackgroundsStats.LegendCommanderAssassin <- {
+	Hitpoints = [5, 10],
+	Bravery = [0, 0],
+	Stamina = [0, 0],
+	MeleeSkill = [15, 15],
+	RangedSkill = [4, 8],
+	MeleeDefense = [8, 12],
+	RangedDefense = [8, 12],
+	Initiative = [15, 15]
+}
+
+::Legends.BackgroundsStats.LegendCommanderBeggar <- {
+	Hitpoints = [-20, -20],
+	Bravery = [-20, -15],
+	Stamina = [-20, -20],
+	MeleeSkill = [-5, -5],
+	RangedSkill = [-5, -5],
+	MeleeDefense = [-5, -5],
+	RangedDefense = [-5, -5],
+	Initiative = [20, 20]
+}
+
+::Legends.BackgroundsStats.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundsStats.LegendCommanderBeggar;
+
+::Legends.BackgroundsStats.LegendCommanderBerserker <- {
+	Hitpoints = [20, 25],
+	Bravery = [5, 10],
+	Stamina = [15, 20],
+	MeleeSkill = [20, 25],
+	RangedSkill = [0, 0],
+	MeleeDefense = [10, 10],
+	RangedDefense = [-5, -5],
+	Initiative = [-5, -5]
+}
+
+::Legends.BackgroundsStats.LegendCommanderCrusader <- {
+	Hitpoints = [10, 10],
+	Bravery = [10, 10],
+	Stamina = [10, 10],
+	MeleeSkill = [10, 10],
+	RangedSkill = [-5, -5],
+	MeleeDefense = [15, 15],
+	RangedDefense = [0, 0],
+	Initiative = [-20, -20]
+}
+
+::Legends.BackgroundsStats.LegendCommanderNecro <- {
+	Hitpoints = [20, 25],
+	Bravery = [15, 20],
+	Stamina = [5, 8],
+	MeleeSkill = [2, 6],
+	RangedSkill = [10, 18],
+	MeleeDefense = [2, 5],
+	RangedDefense = [3, 6],
+	Initiative = [10, 15]
+}
+
+::Legends.BackgroundsStats.LegendCommanderNoble <- {
+	Hitpoints = [-15, -15],
+	Bravery = [25, 25],
+	Stamina = [-10, -10],
+	MeleeSkill = [10, 10],
+	RangedSkill = [0, 0],
+	MeleeDefense = [5, 5],
+	RangedDefense = [15, 15],
+	Initiative = [-20, -20]
+}
+
+::Legends.BackgroundsStats.LegendCommanderPeddler <- {
+	Hitpoints = [-8, -5],
+	Bravery = [-5, -5],
+	Stamina = [-5, -5],
+	MeleeSkill = [-5, 0],
+	RangedSkill = [-5, 0],
+	MeleeDefense = [4, 8],
+	RangedDefense = [3, 9],
+	Initiative = [0, 7]
+}
+
+::Legends.BackgroundsStats.LegendCommanderRanger <- {
+	Hitpoints = [-5, -5],
+	Bravery = [0, 0],
+	Stamina = [15, 15],
+	MeleeSkill = [0, 5],
+	RangedSkill = [20, 25],
+	MeleeDefense = [-5, 0],
+	RangedDefense = [5, 5],
+	Initiative = [-5, -5]
 }
 
 ::Legends.BackgroundsStats.LegendCompanionMelee <- {
@@ -1031,17 +1108,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [10, 10]
 }
 
-::Legends.BackgroundsStats.LegendCrusader <- {
-	Hitpoints = [10, 10],
-	Bravery = [10, 10],
-	Stamina = [10, 10],
-	MeleeSkill = [10, 10],
-	RangedSkill = [-5, -5],
-	MeleeDefense = [15, 15],
-	RangedDefense = [0, 0],
-	Initiative = [-20, -20]
-}
-
 ::Legends.BackgroundsStats.LegendDisownedNobleRanged <- {
 	Hitpoints = [-2, 3],
 	Bravery = [-6, -1],
@@ -1086,6 +1152,17 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [0, 0]
 }
 
+::Legends.BackgroundsStats.LegendFootSoldier <- {
+	Hitpoints = [5, 5],
+	Bravery = [10, 5],
+	Stamina = [3, 3],
+	MeleeSkill = [10, 10],
+	RangedSkill = [-5, 0],
+	MeleeDefense = [5, 10],
+	RangedDefense = [5, 5],
+	Initiative = [-5, -5]
+}
+
 ::Legends.BackgroundsStats.LegendGladiatorPrizefighter <- {
 	Hitpoints = [14, 15],
 	Bravery = [5, 5],
@@ -1097,7 +1174,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [5, 8]
 }
 
-::Legends.BackgroundsStats.LegendGuildmaster <- {
+::Legends.BackgroundsStats.LegendGuildMaster <- {
 	Hitpoints = [-5, 0],
 	Bravery = [13, 17],
 	Stamina = [0, 5],
@@ -1317,7 +1394,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [-4, 3]
 }
 
-::Legends.BackgroundsStats.LegendLonewolf <- {
+::Legends.BackgroundsStats.LegendLoneWolf <- {
 	Hitpoints = [12, 16],
 	Bravery = [8, 12],
 	Stamina = [12, 18],
@@ -1383,17 +1460,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [10, 15]
 }
 
-::Legends.BackgroundsStats.LegendCommanderNecro <- {
-	Hitpoints = [20, 25],
-	Bravery = [15, 20],
-	Stamina = [5, 8],
-	MeleeSkill = [2, 6],
-	RangedSkill = [10, 18],
-	MeleeDefense = [2, 5],
-	RangedDefense = [3, 6],
-	Initiative = [10, 15]
-}
-
 ::Legends.BackgroundsStats.LegendNecromancer <- {
 	Hitpoints = [15, 20],
 	Bravery = [-10, -5],
@@ -1425,61 +1491,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	MeleeDefense = [0, 0],
 	RangedDefense = [0, 0],
 	Initiative = [0, 0]
-}
-
-::Legends.BackgroundsStats.LegendCommanderNoble <- {
-	Hitpoints = [-15, -15],
-	Bravery = [25, 25],
-	Stamina = [-10, -10],
-	MeleeSkill = [10, 10],
-	RangedSkill = [0, 0],
-	MeleeDefense = [5, 5],
-	RangedDefense = [15, 15],
-	Initiative = [-20, -20]
-}
-
-::Legends.BackgroundsStats.LegendHouseGuard <- {
-	Hitpoints = [5, 10],
-	Bravery = [5, 5],
-	Stamina = [5, 5],
-	MeleeSkill = [12, 17],
-	RangedSkill = [-5, -5],
-	MeleeDefense = [3, 6],
-	RangedDefense = [2, 4],
-	Initiative = [-5, -10]
-}
-
-::Legends.BackgroundsStats.LegendArbalester <- {
-	Hitpoints = [-5, 0],
-	Bravery = [5, 5],
-	Stamina = [0, 0],
-	MeleeSkill = [3, 6],
-	RangedSkill = [23, 20],
-	MeleeDefense = [3, 6],
-	RangedDefense = [8, 12],
-	Initiative = [-5, -5]
-}
-
-::Legends.BackgroundsStats.LegendFootSoldier <- {
-	Hitpoints = [5, 5],
-	Bravery = [10, 5],
-	Stamina = [3, 3],
-	MeleeSkill = [10, 10],
-	RangedSkill = [-5, 0],
-	MeleeDefense = [5, 10],
-	RangedDefense = [5, 5],
-	Initiative = [-5, -5]
-}
-
-::Legends.BackgroundsStats.LegendCommanderPeddler <- {
-	Hitpoints = [-8, -5],
-	Bravery = [-5, -5],
-	Stamina = [-5, -5],
-	MeleeSkill = [-5, 0],
-	RangedSkill = [-5, 0],
-	MeleeDefense = [4, 8],
-	RangedDefense = [3, 9],
-	Initiative = [0, 7]
 }
 
 ::Legends.BackgroundsStats.LegendPilgrim <- {
@@ -1526,26 +1537,26 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [5, 5]
 }
 
-::Legends.BackgroundsStats.LegendWarden <- {
-	Hitpoints = [-5, -5],
-	Bravery = [0, 0],
-	Stamina = [5, 10],
-	MeleeSkill = [5, 5],
-	RangedSkill = [15, 23],
-	MeleeDefense = [-5, 0],
-	RangedDefense = [3, 6],
-	Initiative = [15, 20]
+::Legends.BackgroundsStats.LegendReanimator <- {
+	Hitpoints = [-10, -5],
+	Bravery = [5, 10],
+	Stamina = [-10, -5],
+	MeleeSkill = [-2, 0],
+	RangedSkill = [-4, -2],
+	MeleeDefense = [4, 6],
+	RangedDefense = [5, 7],
+	Initiative = [-15, -5]
 }
 
-::Legends.BackgroundsStats.LegendCommanderRanger <- {
-	Hitpoints = [-5, -5],
-	Bravery = [0, 0],
-	Stamina = [15, 15],
-	MeleeSkill = [0, 5],
-	RangedSkill = [20, 25],
-	MeleeDefense = [-5, 0],
-	RangedDefense = [5, 5],
-	Initiative = [-5, -5]
+::Legends.BackgroundsStats.LegendSeer <- {
+	Hitpoints = [-10, -10],
+	Bravery = [5, 5],
+	Stamina = [15, 20],
+	MeleeSkill = [-5, -5],
+	RangedSkill = [15, 20],
+	MeleeDefense = [-10, -10],
+	RangedDefense = [-5, -5],
+	Initiative = [20, 25]
 }
 
 ::Legends.BackgroundsStats.LegendShieldmaiden <- {
@@ -1592,6 +1603,17 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [10, 15]
 }
 
+::Legends.BackgroundsStats.LegendWarden <- {
+	Hitpoints = [-5, -5],
+	Bravery = [0, 0],
+	Stamina = [5, 10],
+	MeleeSkill = [5, 5],
+	RangedSkill = [15, 23],
+	MeleeDefense = [-5, 0],
+	RangedDefense = [3, 6],
+	Initiative = [15, 20]
+}
+
 ::Legends.BackgroundsStats.LegendWarlock <- {
 	Hitpoints = [15, 20],
 	Bravery = [-10, -5],
@@ -1601,28 +1623,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	MeleeDefense = [-5, -5],
 	RangedDefense = [-10, -5],
 	Initiative = [10, 10]
-}
-
-::Legends.BackgroundsStats.LegendWarlockSummoner <- {
-	Hitpoints = [-10, -5],
-	Bravery = [5, 10],
-	Stamina = [-10, -5],
-	MeleeSkill = [-2, 0],
-	RangedSkill = [-4, -2],
-	MeleeDefense = [4, 6],
-	RangedDefense = [5, 7],
-	Initiative = [-15, -5]
-}
-
-::Legends.BackgroundsStats.LegendSeer <- {
-	Hitpoints = [-10, -10],
-	Bravery = [5, 5],
-	Stamina = [15, 20],
-	MeleeSkill = [-5, -5],
-	RangedSkill = [15, 20],
-	MeleeDefense = [-10, -10],
-	RangedDefense = [-5, -5],
-	Initiative = [20, 25]
 }
 
 ::Legends.BackgroundsStats.LegendYoungblood <- {

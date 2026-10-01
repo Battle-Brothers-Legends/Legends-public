@@ -62,7 +62,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 				_event.m.Cultist.getBaseProperties().RangedDefense += 1;
 				_event.m.Cultist.getBaseProperties().MeleeDefense += 2;
 				_event.m.RawDescription = "%name% was, or perhaps still somewhat is, a cultist of Davkul — but now serves a different master. You wonder if they have any regrets behind those lifeless, pallid eyes...";
-				::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
+				::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
 				this.Characters.push(_event.m.Cultist.getImagePath());
 

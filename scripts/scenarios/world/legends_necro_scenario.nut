@@ -42,7 +42,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].getItems().setUnlockedBagSlots(4);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendDeathlySpectre);
 
-		bros[1].setStartValuesEx([::Legends.Background.LegendWarlockSummoner]); //sickly but good def. summons.
+		bros[1].setStartValuesEx([::Legends.Background.LegendReanimator]); //sickly but good def. summons.
 		bros[1].setPlaceInFormation(4);
 		bros[1].setVeteranPerks(2);
 		bros[1].getSprite("miniboss").setBrush("bust_miniboss_undead");

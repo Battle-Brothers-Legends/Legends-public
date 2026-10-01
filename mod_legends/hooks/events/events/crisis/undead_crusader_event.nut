@@ -17,7 +17,7 @@
 						_event.m.Dude.getBackground().m.RawDescription = "With nowhere else to go, %name% resorted to seeking you out after the destruction of the monastery. With their home gone, the future from %them% and the order looks bleaker still.";
 						_event.m.Dude.getBackground().buildDescription(true);
 					} else {
-						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendCrusader]);
+						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendCommanderCrusader]);
 						_event.m.Dude.getBaseProperties().DailyWage = 45;
 						_event.m.Dude.getBackground().m.RawDescription = "With nowhere else to go, %name% resorted to seeking you out after the destruction of the monastery. With their home gone, the future from %them% and the order looks bleaker still.";
 						_event.m.Dude.getBackground().buildDescription(true);
@@ -45,7 +45,7 @@
 		{
 			local roster = ::World.getPlayerRoster().getAll();
 			foreach( bro in roster) {
-				if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCrusader))
+				if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderCrusader))
 					return;
 			}
 		}

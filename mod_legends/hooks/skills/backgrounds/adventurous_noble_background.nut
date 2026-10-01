@@ -41,7 +41,6 @@
 		
 		if (_gender != 1) return;
 		this.m.Name = "Adventurous Lady";
-		this.m.Icon = "ui/backgrounds/background_adventurous_noble_woman.png";
 		this.m.Names = ::Const.Strings.LadyNames;
 	}
 

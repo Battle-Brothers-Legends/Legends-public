@@ -54,7 +54,7 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 				_event.m.Dude.getFlags().add("zombie_minion");
 				_event.m.RawDescription = "You pulled this minion from a mass grave. You know little about who they once were — nor do you care.";
 				_event.m.Dude.setStartValuesEx(::Const.CharacterBackgroundsRandomForUndead);
-				::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
+				::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
 				this.Characters.push(_event.m.Dude.getImagePath());
 				this.List.push({

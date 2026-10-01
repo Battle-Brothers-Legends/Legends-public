@@ -34,7 +34,7 @@
 
 		local bros = roster.getAll();
 
-		bros[0].setStartValuesEx([::Legends.Background.LegendGuildmaster]);
+		bros[0].setStartValuesEx([::Legends.Background.LegendGuildMaster]);
 		bros[0].getBackground().m.RawDescription = "%name% saved you in the brigand\'s ambush that destroyed your band of slayers. The Guildmaster does not hang this fact over you, for you have saved %name% many a times yourself. This slayer of beasts suffers no emotion that does not bid well in this world, and that alone makes for a sound mercenary.";
 		bros[0].setPlaceInFormation(3);
 		bros[0].setVeteranPerks(2);
@@ -127,7 +127,7 @@
 			bro.getSprite("socket").setBrush("bust_base_beasthunters");
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNaturalOrder);
 			bro.improveMood(1.5, "Hates beasts as much as you do");
-		} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendGuildmaster)) {
+		} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendGuildMaster)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSprite("miniboss").setBrush("bust_miniboss");
@@ -165,7 +165,7 @@
 
 	o.onUpdateHiringRoster <- function (_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.BeastSlayer, 7);
-		this.addBroToRoster(_roster, ::Legends.Background.LegendGuildmaster, 10);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendGuildMaster, 10);
 	}
 
 	o.onBuildPerkTree <- function (_background) {

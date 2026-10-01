@@ -710,8 +710,9 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Crafting = 1.00,
 };
 
-::Legends.BackgroundModifiers.LegendCommanderAssassin <- {
-	Scout = 0.3,
+::Legends.BackgroundModifiers.LegendArbalester <- {
+	Ammo = 21,
+	Stash = 8,
 	Training = 0.1,
 };
 
@@ -722,13 +723,6 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Training = 0.1,
 };
 
-::Legends.BackgroundModifiers.LegendCommanderBeggar <- {
-	Gathering = 0.50,
-	Haggle = 0.02,
-};
-
-::Legends.BackgroundModifiers.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundModifiers.LegendCommanderBeggar;
-
 ::Legends.BackgroundModifiers.LegendBellyDancer <- {
 	Haggle = 0.02,
 	Stash = 8,
@@ -737,20 +731,6 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.LegendBerserker <- {
 	Stash = 5,
-	Scout = 0.2,
-	Gathering = 0.30,
-	Terrain = {
-		Swamp = 0.025,
-		Hills = 0.025,
-		Mountains = 0.025,
-		Snow = 0.025,
-		Badlands = 0.025,
-		Tundra = 0.025
-	}
-};
-
-::Legends.BackgroundModifiers.LegendCommanderBerserker <- {
-	Stash = 8,
 	Scout = 0.2,
 	Gathering = 0.30,
 	Terrain = {
@@ -800,6 +780,116 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	}
 };
 
+::Legends.BackgroundModifiers.LegendCommanderAssassin <- {
+	Scout = 0.3,
+	Training = 0.1,
+};
+
+::Legends.BackgroundModifiers.LegendCommanderBeggar <- {
+	Gathering = 0.50,
+	Haggle = 0.02,
+};
+
+::Legends.BackgroundModifiers.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundModifiers.LegendCommanderBeggar;
+
+::Legends.BackgroundModifiers.LegendCommanderBerserker <- {
+	Stash = 8,
+	Scout = 0.2,
+	Gathering = 0.30,
+	Terrain = {
+		Swamp = 0.025,
+		Hills = 0.025,
+		Mountains = 0.025,
+		Snow = 0.025,
+		Badlands = 0.025,
+		Tundra = 0.025
+	}
+};
+
+::Legends.BackgroundModifiers.LegendCommanderCrusader <- {
+	Healing = 0.10,
+	Salvage = 0.10,
+	Repair = 0.30,
+	ArmorParts = 13,
+	Stash = 8,
+	ToolConsumption = 0.03,
+	Training = 0.2,
+};
+
+::Legends.BackgroundModifiers.LegendCommanderNecro <- {
+	Meds = 34,
+	Stash = 5,
+	Healing = 0.30,
+	Injury = 0.06,
+	MedConsumption = 0.20,
+	Crafting = 0.50,
+	Gathering = 0.30,
+	Terrain = {
+		Swamp = 0.15,
+		Forest = 0.10,
+		SnowyForest = 0.10,
+		LeaveForest = 0.10,
+		AutumnForest = 0.10
+	}
+};
+
+::Legends.BackgroundModifiers.LegendCommanderNoble <- {
+	Ammo = 21,
+	ArmorParts = 8,
+	Meds = 13,
+	Stash = 8,
+	Healing = 0.10,
+	Injury = 0.03,
+	Haggle = 0.005,
+	ToolConsumption = 0.01,
+	Training = 0.1,
+	Terrain = {
+		Plains = 0.025,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.025,
+		Snow = 0.011,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.025
+	}
+};
+
+::Legends.BackgroundModifiers.LegendCommanderPeddler <- {
+	ArmorParts = 8,
+	Meds = 13,
+	Stash = 13,
+	Haggle = 0.03,
+	Terrain = {
+		Plains = 0.2,
+		Farmland = 0.1,
+		Oasis = 0.1
+	}
+};
+
+::Legends.BackgroundModifiers.LegendCommanderRanger <- {
+	Ammo = 55,
+	Stash = 5,
+	Gathering = 0.50,
+	Fletching = 0.2,
+	Scout = 0.3,
+	Training = 0.1,
+	Terrain = {
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
+};
+
 ::Legends.BackgroundModifiers.LegendCompanionMelee <- {
 	Scout = 0.1,
 	Repair = 0.10,
@@ -837,16 +927,6 @@ if (!("BackgroundModifiers" in ::Legends)) {
 };
 
 ::Legends.BackgroundModifiers.LegendConscriptRanged <- clone ::Legends.BackgroundModifiers.LegendConscript;
-
-::Legends.BackgroundModifiers.LegendCrusader <- {
-	Healing = 0.10,
-	Salvage = 0.10,
-	Repair = 0.30,
-	ArmorParts = 13,
-	Stash = 8,
-	ToolConsumption = 0.03,
-	Training = 0.2,
-};
 
 ::Legends.BackgroundModifiers.LegendDervish <- {
 	Meds = 13,
@@ -896,9 +976,16 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	}
 };
 
+::Legends.BackgroundModifiers.LegendFootSoldier <- {
+	ArmorParts = 8,
+	Stash = 8,
+	Injury = 0.03,
+	Training = 0.1,
+};
+
 ::Legends.BackgroundModifiers.LegendGladiatorPrizefighter <- clone ::Legends.BackgroundModifiers.Gladiator;
 
-::Legends.BackgroundModifiers.LegendGuildmaster <- {
+::Legends.BackgroundModifiers.LegendGuildMaster <- {
 	Gathering = 0.50,
 	Crafting = 0.75,
 	Training = 0.2,
@@ -939,73 +1026,10 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	}
 };
 
-::Legends.BackgroundModifiers.LegendHorse <- {
-	Ammo = 55,
-	ArmorParts = 34,
-	Meds = 34,
-	Stash = 21,
-	Terrain = {
-		Plains = 0.05,
-		Swamp = 0.01,
-		Hills = 0.01,
-		Forest = 0.01,
-		SnowyForest = 0.01,
-		LeaveForest = 0.01,
-		AutumnForest = 0.01,
-		Mountains = 0.01,
-		Farmland = 0.05,
-		Snow = 0.015,
-		Badlands = 0.015,
-		Tundra = 0.015,
-		Steppe = 0.05,
-		Desert = 0.01,
-		Oasis = 0.05
-	}
-};
-
-::Legends.BackgroundModifiers.LegendHorseCourser <- {
-	Ammo = 34,
-	ArmorParts = 21,
-	Meds = 21,
-	Stash = 13,
-};
-
-::Legends.BackgroundModifiers.LegendHorseDestrier <- {
-	Ammo = 21,
+::Legends.BackgroundModifiers.LegendHouseGuard <- {
 	ArmorParts = 8,
-	Meds = 13,
 	Stash = 8,
-};
-
-::Legends.BackgroundModifiers.LegendHorseRouncey <- {
-	Ammo = 55,
-	ArmorParts = 34,
-	Meds = 34,
-	Stash = 21,
-};
-
-::Legends.BackgroundModifiers.LegendHorserider <- {
-	Ammo = 55,
-	ArmorParts = 34,
-	Meds = 34,
-	Stash = 21,
-	Terrain = {
-		Plains = 0.05,
-		Swamp = 0.01,
-		Hills = 0.01,
-		Forest = 0.01,
-		SnowyForest = 0.01,
-		LeaveForest = 0.01,
-		AutumnForest = 0.01,
-		Mountains = 0.01,
-		Farmland = 0.05,
-		Snow = 0.015,
-		Badlands = 0.015,
-		Tundra = 0.015,
-		Steppe = 0.05,
-		Desert = 0.01,
-		Oasis = 0.05
-	}
+	Training = 0.1,
 };
 
 ::Legends.BackgroundModifiers.LegendHusk <- {
@@ -1221,7 +1245,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	ArmorParts = 34
 };
 
-::Legends.BackgroundModifiers.LegendLonewolf <- {
+::Legends.BackgroundModifiers.LegendLoneWolf <- {
 	Training = 0.3,
 };
 
@@ -1286,23 +1310,6 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	}
 };
 
-::Legends.BackgroundModifiers.LegendCommanderNecro <- {
-	Meds = 34,
-	Stash = 5,
-	Healing = 0.30,
-	Injury = 0.06,
-	MedConsumption = 0.20,
-	Crafting = 0.50,
-	Gathering = 0.30,
-	Terrain = {
-		Swamp = 0.15,
-		Forest = 0.10,
-		SnowyForest = 0.10,
-		LeaveForest = 0.10,
-		AutumnForest = 0.10
-	}
-};
-
 ::Legends.BackgroundModifiers.LegendNecromancer <- {
 	Meds = 34,
 	Stash = 5,
@@ -1327,63 +1334,6 @@ if (!("BackgroundModifiers" in ::Legends)) {
 		Farmland = 0.015,
 		Badlands = 0.01,
 		Tundra = 0.01
-	}
-};
-
-::Legends.BackgroundModifiers.LegendHouseGuard <- {
-	ArmorParts = 8,
-	Stash = 8,
-	Training = 0.1,
-};
-::Legends.BackgroundModifiers.LegendCommanderNoble <- {
-	Ammo = 21,
-	ArmorParts = 8,
-	Meds = 13,
-	Stash = 8,
-	Healing = 0.10,
-	Injury = 0.03,
-	Haggle = 0.005,
-	ToolConsumption = 0.01,
-	Training = 0.1,
-	Terrain = {
-		Plains = 0.025,
-		Swamp = 0.01,
-		Hills = 0.01,
-		Forest = 0.01,
-		SnowyForest = 0.01,
-		LeaveForest = 0.01,
-		AutumnForest = 0.01,
-		Mountains = 0.01,
-		Farmland = 0.025,
-		Snow = 0.011,
-		Badlands = 0.015,
-		Tundra = 0.015,
-		Steppe = 0.025
-	}
-};
-
-::Legends.BackgroundModifiers.LegendArbalester <- {
-	Ammo = 21,
-	Stash = 8,
-	Training = 0.1,
-};
-
-::Legends.BackgroundModifiers.LegendFootSoldier <- {
-	ArmorParts = 8,
-	Stash = 8,
-	Injury = 0.03,
-	Training = 0.1,
-};
-
-::Legends.BackgroundModifiers.LegendCommanderPeddler <- {
-	ArmorParts = 8,
-	Meds = 13,
-	Stash = 13,
-	Haggle = 0.03,
-	Terrain = {
-		Plains = 0.2,
-		Farmland = 0.1,
-		Oasis = 0.1
 	}
 };
 
@@ -1434,40 +1384,21 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.LegendPuppetMaster <- {};
 
-::Legends.BackgroundModifiers.LegendWarden <- {
-	Ammo = 55,
+::Legends.BackgroundModifiers.LegendReanimator <- {
+	Meds = 13,
 	Stash = 5,
-	Gathering = 0.50,
-	Fletching = 0.2,
-	Scout = 0.3,
-	Training = 0.1,
+	MedConsumption = 0.05,
 	Terrain = {
-		Forest = 0.05,
-		SnowyForest = 0.05,
-		LeaveForest = 0.05,
-		AutumnForest = 0.05,
-		Snow = 0.01,
-		Badlands = 0.01,
-		Tundra = 0.01
+		Swamp = 0.1
 	}
 };
 
-::Legends.BackgroundModifiers.LegendCommanderRanger <- {
-	Ammo = 55,
-	Stash = 5,
-	Gathering = 0.50,
-	Fletching = 0.2,
-	Scout = 0.3,
-	Training = 0.1,
-	Terrain = {
-		Forest = 0.05,
-		SnowyForest = 0.05,
-		LeaveForest = 0.05,
-		AutumnForest = 0.05,
-		Snow = 0.01,
-		Badlands = 0.01,
-		Tundra = 0.01
-	}
+::Legends.BackgroundModifiers.LegendSeer <- {
+	Meds = 34,
+	Stash = 8,
+	Healing = 0.30,
+	Injury = 0.06,
+	MedConsumption = 0.20,
 };
 
 ::Legends.BackgroundModifiers.LegendShieldmaiden <- {
@@ -1497,26 +1428,27 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Enchanting = 1.0,
 };
 
-::Legends.BackgroundModifiers.LegendWarlock <- {
-	Meds = 34,
+::Legends.BackgroundModifiers.LegendWarden <- {
+	Ammo = 55,
 	Stash = 5,
-	Healing = 0.30,
-	Injury = 0.06,
-	MedConsumption = 0.20,
-};
-
-::Legends.BackgroundModifiers.LegendWarlockSummoner <- {
-	Meds = 13,
-	Stash = 5,
-	MedConsumption = 0.05,
+	Gathering = 0.50,
+	Fletching = 0.2,
+	Scout = 0.3,
+	Training = 0.1,
 	Terrain = {
-		Swamp = 0.1
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01
 	}
 };
 
-::Legends.BackgroundModifiers.LegendSeer <- {
+::Legends.BackgroundModifiers.LegendWarlock <- {
 	Meds = 34,
-	Stash = 8,
+	Stash = 5,
 	Healing = 0.30,
 	Injury = 0.06,
 	MedConsumption = 0.20,
@@ -1530,5 +1462,75 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.1,
 	Terrain = {
 		Swamp = 0.015
+	}
+};
+
+// horses
+::Legends.BackgroundModifiers.LegendHorse <- {
+	Ammo = 55,
+	ArmorParts = 34,
+	Meds = 34,
+	Stash = 21,
+	Terrain = {
+		Plains = 0.05,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.05,
+		Snow = 0.015,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.05,
+		Desert = 0.01,
+		Oasis = 0.05
+	}
+};
+
+::Legends.BackgroundModifiers.LegendHorseCourser <- {
+	Ammo = 34,
+	ArmorParts = 21,
+	Meds = 21,
+	Stash = 13,
+};
+
+::Legends.BackgroundModifiers.LegendHorseDestrier <- {
+	Ammo = 21,
+	ArmorParts = 8,
+	Meds = 13,
+	Stash = 8,
+};
+
+::Legends.BackgroundModifiers.LegendHorseRouncey <- {
+	Ammo = 55,
+	ArmorParts = 34,
+	Meds = 34,
+	Stash = 21,
+};
+
+::Legends.BackgroundModifiers.LegendHorserider <- {
+	Ammo = 55,
+	ArmorParts = 34,
+	Meds = 34,
+	Stash = 21,
+	Terrain = {
+		Plains = 0.05,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.05,
+		Snow = 0.015,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.05,
+		Desert = 0.01,
+		Oasis = 0.05
 	}
 };

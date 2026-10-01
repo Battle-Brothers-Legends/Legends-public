@@ -156,7 +156,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Enemy = [
 		::Const.Perks.CivilizationTree
-		],
+	],
 	Class = [],
 	Profession = [],
 	Magic = []
@@ -478,7 +478,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.CrossbowTree
 	],
 	Defense = [
-
 		::Const.Perks.MediumArmorTree
 	],
 	Traits = [
@@ -491,9 +490,9 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-			::Const.Perks.OutlawTree,
-			::Const.Perks.CivilizationTree
-			],
+		::Const.Perks.OutlawTree,
+		::Const.Perks.CivilizationTree
+	],
 	Class = [],
 	Profession = [],
 	Magic = []
@@ -1068,7 +1067,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.SwordmastersTree
 	],
 	Class = [],
-	Profession = [], 
+	Profession = [],
 	Magic = [
 		::Const.Perks.ImmortalMagicTree
 	]
@@ -1354,12 +1353,11 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Class = [
 		::Const.Perks.NinetailsClassTree,
 		::Const.Perks.FaithClassTree
-		],
+	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree
 	],
-	Magic = [
-	]
+	Magic = []
 };
 
 ::Legends.BackgroundPerkTrees.Nomad <- {
@@ -1429,9 +1427,9 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.LargeTree
 	],
 	Enemy = [
-			::Const.Perks.GreenskinTree,
-			::Const.Perks.BeastTree,
-			],
+		::Const.Perks.GreenskinTree,
+		::Const.Perks.BeastTree,
+	],
 	Class = [],
 	Profession = [],
 	Magic = []
@@ -1525,7 +1523,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DaggerTree,
 		::Const.Perks.CrossbowTree,
 		::Const.Perks.MaceTree
-
 	],
 	Defense = [
 		::Const.Perks.ClothArmorTree
@@ -1563,7 +1560,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [
 		::Const.Perks.CivilizationTree,
 		::Const.Perks.OutlawTree
-			],
+	],
 	Class = [],
 	Profession = [
 		//::Const.Perks.BarterProfessionTree
@@ -2068,43 +2065,30 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendCommanderAssassin <- {
+::Legends.BackgroundPerkTrees.LegendArbalester <- {
 	Weapon = [
-		::Const.Perks.DaggerTree,
-		::Const.Perks.SwordTree,
-		::Const.Perks.PolearmTree,
-		::Const.Perks.FlailTree,
-		::Const.Perks.BowTree,
+		::Const.Perks.CrossbowTree,
 		::Const.Perks.ThrowingTree,
-		::Const.Perks.CrossbowTree
+		::Const.Perks.DaggerTree,
+		::Const.Perks.BowTree
 	],
 	Defense = [
-		::Const.Perks.LightArmorTree,
+		::Const.Perks.HeavyArmorTree,
 		::Const.Perks.MediumArmorTree
 	],
 	Traits = [
-		::Const.Perks.DeviousTree,
-		::Const.Perks.ViciousTree,
 		::Const.Perks.FastTree,
+		::Const.Perks.AgileTree,
 		::Const.Perks.FitTree,
-		::Const.Perks.CalmTree,
-		::Const.Perks.MartyrTree,
-		::Const.Perks.LargeTree
-
+		::Const.Perks.ViciousTree
 	],
 	Enemy = [
 		::Const.Perks.OutlawTree,
 		::Const.Perks.CivilizationTree
 	],
-	Class = [
-		::Const.Perks.JugglerClassTree,
-		::Const.Perks.PoisonClassTree
-	],
 	Profession = [],
-	Magic = [
-		::Const.Perks.AssassinMagicTree,
-		::Const.Perks.AssassinLeftoverTree
-	]
+	Class = [],
+	Magic = []
 };
 
 ::Legends.BackgroundPerkTrees.LegendBattleSister <- {
@@ -2136,18 +2120,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Profession = [],
 	Magic = []
 };
-
-::Legends.BackgroundPerkTrees.LegendCommanderBeggar <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-};
-
-::Legends.BackgroundPerkTrees.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundPerkTrees.LegendCommanderBeggar;
 
 ::Legends.BackgroundPerkTrees.LegendBellyDancer <- {
 	Weapon = [
@@ -2194,40 +2166,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [],
-	Magic = [
-		::Const.Perks.BerserkerMagicTree
-	]
-};
-
-::Legends.BackgroundPerkTrees.LegendCommanderBerserker <- {
-	Weapon = [
-		::Const.Perks.MaceTree,
-		::Const.Perks.FlailTree,
-		::Const.Perks.HammerTree,
-		::Const.Perks.AxeTree,
-		::Const.Perks.CleaverTree,
-		::Const.Perks.SwordTree,
-		::Const.Perks.ThrowingTree,
-		::Const.Perks.FistsTree
-	],
-	Defense = [
-		::Const.Perks.LightArmorTree,
-		::Const.Perks.HeavyArmorTree
-	],
-	Traits = [
-		::Const.Perks.SturdyTree,
-		::Const.Perks.IndestructibleTree,
-		::Const.Perks.ViciousTree,
-		::Const.Perks.LargeTree,
-		::Const.Perks.MartyrTree,
-		::Const.Perks.AgileTree,
-		::Const.Perks.FitTree
-	],
-	Enemy = [
-		::Const.Perks.GreenskinTree,
-		::Const.Perks.BeastTree
-	],
-	Class = [],
 	Magic = [
 		::Const.Perks.BerserkerMagicTree
 	]
@@ -2312,6 +2250,242 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Profession = [],
 	Magic = [
 		::Const.Perks.AssassinMagicTree
+	]
+};
+
+::Legends.BackgroundPerkTrees.LegendCommanderAssassin <- {
+	Weapon = [
+		::Const.Perks.DaggerTree,
+		::Const.Perks.SwordTree,
+		::Const.Perks.PolearmTree,
+		::Const.Perks.FlailTree,
+		::Const.Perks.BowTree,
+		::Const.Perks.ThrowingTree,
+		::Const.Perks.CrossbowTree
+	],
+	Defense = [
+		::Const.Perks.LightArmorTree,
+		::Const.Perks.MediumArmorTree
+	],
+	Traits = [
+		::Const.Perks.DeviousTree,
+		::Const.Perks.ViciousTree,
+		::Const.Perks.FastTree,
+		::Const.Perks.FitTree,
+		::Const.Perks.CalmTree,
+		::Const.Perks.MartyrTree,
+		::Const.Perks.LargeTree
+
+	],
+	Enemy = [
+		::Const.Perks.OutlawTree,
+		::Const.Perks.CivilizationTree
+	],
+	Class = [
+		::Const.Perks.JugglerClassTree,
+		::Const.Perks.PoisonClassTree
+	],
+	Profession = [],
+	Magic = [
+		::Const.Perks.AssassinMagicTree,
+		::Const.Perks.AssassinLeftoverTree
+	]
+};
+
+::Legends.BackgroundPerkTrees.LegendCommanderBeggar <- {
+	Weapon = [],
+	Defense = [],
+	Traits = [],
+	Enemy = [],
+	Class = [],
+	Profession = [],
+	Magic = []
+};
+
+::Legends.BackgroundPerkTrees.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundPerkTrees.LegendCommanderBeggar;
+
+::Legends.BackgroundPerkTrees.LegendCommanderBerserker <- {
+	Weapon = [
+		::Const.Perks.MaceTree,
+		::Const.Perks.FlailTree,
+		::Const.Perks.HammerTree,
+		::Const.Perks.AxeTree,
+		::Const.Perks.CleaverTree,
+		::Const.Perks.SwordTree,
+		::Const.Perks.ThrowingTree,
+		::Const.Perks.FistsTree
+	],
+	Defense = [
+		::Const.Perks.LightArmorTree,
+		::Const.Perks.HeavyArmorTree
+	],
+	Traits = [
+		::Const.Perks.SturdyTree,
+		::Const.Perks.IndestructibleTree,
+		::Const.Perks.ViciousTree,
+		::Const.Perks.LargeTree,
+		::Const.Perks.MartyrTree,
+		::Const.Perks.AgileTree,
+		::Const.Perks.FitTree
+	],
+	Enemy = [
+		::Const.Perks.GreenskinTree,
+		::Const.Perks.BeastTree
+	],
+	Class = [],
+	Magic = [
+		::Const.Perks.BerserkerMagicTree
+	]
+};
+
+::Legends.BackgroundPerkTrees.LegendCommanderCrusader <- {
+	Weapon = [
+		::Const.Perks.MaceTree,
+		::Const.Perks.FlailTree,
+		::Const.Perks.HammerTree,
+		::Const.Perks.AxeTree,
+		::Const.Perks.SwordTree,
+		::Const.Perks.PolearmTree,
+		::Const.Perks.ThrowingTree,
+		::Const.Perks.ShieldTree
+	],
+	Defense = [
+		::Const.Perks.MediumArmorTree,
+		::Const.Perks.HeavyArmorTree
+	],
+	Traits = [
+		::Const.Perks.SturdyTree,
+		::Const.Perks.IndestructibleTree,
+		::Const.Perks.ViciousTree,
+		::Const.Perks.LargeTree,
+		::Const.Perks.MartyrTree,
+		::Const.Perks.FitTree,
+		::Const.Perks.TrainedTree,
+		::Const.Perks.InspirationalTree
+	],
+	Enemy = [
+		::Const.Perks.OccultTree,
+		::Const.Perks.BeastTree,
+		::Const.Perks.UndeadTree
+	],
+	Class = [
+		::Const.Perks.FaithClassTree
+	],
+	Profession = [
+		//::Const.Perks.RepairProfessionTree
+	],
+	Magic = []
+};
+
+::Legends.BackgroundPerkTrees.LegendCommanderNecro <- {
+	Weapon = [],
+	Defense = [],
+	Traits = [],
+	Enemy = [],
+	Class = [],
+	Profession = [],
+	Magic = []
+};
+
+::Legends.BackgroundPerkTrees.LegendCommanderNoble <- {
+	Weapon = [
+		::Const.Perks.DaggerTree,
+		::Const.Perks.PolearmTree,
+		::Const.Perks.SwordTree,
+		::Const.Perks.MaceTree,
+		::Const.Perks.CrossbowTree
+	],
+	Defense = [
+		::Const.Perks.MediumArmorTree
+	],
+	Traits = [
+		::Const.Perks.IntelligentTree,
+		::Const.Perks.ViciousTree,
+		::Const.Perks.CalmTree,
+		::Const.Perks.TrainedTree,
+		::Const.Perks.FitTree,
+		::Const.Perks.InspirationalTree
+	],
+	Enemy = [
+		::Const.Perks.OutlawTree,
+		::Const.Perks.CivilizationTree
+	],
+	Class = [],
+	Profession = [
+		//::Const.Perks.BarterProfessionTree
+	],
+	Magic = [
+		::Const.Perks.CaptainMagicTree
+	]
+};
+
+::Legends.BackgroundPerkTrees.LegendCommanderPeddler <- {
+	Weapon = [
+		::Const.Perks.PolearmTree,
+		::Const.Perks.DaggerTree,
+		::Const.Perks.SlingTree,
+		::Const.Perks.CrossbowTree,
+		::Const.Perks.MaceTree
+	],
+	Defense = [
+		::Const.Perks.LightArmorTree,
+		::Const.Perks.MediumArmorTree
+	],
+	Traits = [
+		::Const.Perks.OrganisedTree,
+		::Const.Perks.CalmTree,
+		::Const.Perks.IntelligentTree,
+		::Const.Perks.DeviousTree
+	],
+	Enemy = [
+		::Const.Perks.OutlawTree
+	],
+	Class = [],
+	Profession = [
+		//::Const.Perks.BarterProfessionTree,
+		//::Const.Perks.CaravaneerProfessionTree
+	],
+	Magic = [
+		//::Const.Perks.PhilosophyMagicTree
+	]
+};
+
+::Legends.BackgroundPerkTrees.LegendCommanderRanger <- {
+	Weapon = [
+		::Const.Perks.CrossbowTree,
+		::Const.Perks.BowTree,
+		::Const.Perks.SlingTree,
+		::Const.Perks.ThrowingTree,
+		::Const.Perks.DaggerTree,
+		::Const.Perks.AxeTree,
+	],
+	Defense = [
+		::Const.Perks.ClothArmorTree,
+		::Const.Perks.LightArmorTree,
+		::Const.Perks.MediumArmorTree
+	],
+	Traits = [
+		::Const.Perks.ViciousTree,
+		::Const.Perks.FastTree,
+		::Const.Perks.IntelligentTree,
+		::Const.Perks.FitTree,
+		::Const.Perks.AgileTree,
+		::Const.Perks.LargeTree
+	],
+	Enemy = [
+		::Const.Perks.BeastTree,
+		::Const.Perks.GreenskinTree,
+		::Const.Perks.OccultTree,
+	],
+	Class = [
+		::Const.Perks.BeastClassTree,
+		::Const.Perks.HoundmasterClassTree
+	],
+	Profession = [],
+	Magic = [
+		::Const.Perks.RangerHuntMagicTree,
+		::Const.Perks.MasterArcherTree,
+		::Const.Perks.ArcherCommandTree
 	]
 };
 
@@ -2426,45 +2600,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendCrusader <- {
-	Weapon = [
-		::Const.Perks.MaceTree,
-		::Const.Perks.FlailTree,
-		::Const.Perks.HammerTree,
-		::Const.Perks.AxeTree,
-		::Const.Perks.SwordTree,
-		::Const.Perks.PolearmTree,
-		::Const.Perks.ThrowingTree,
-		::Const.Perks.ShieldTree
-	],
-	Defense = [
-		::Const.Perks.MediumArmorTree,
-		::Const.Perks.HeavyArmorTree
-	],
-	Traits = [
-		::Const.Perks.SturdyTree,
-		::Const.Perks.IndestructibleTree,
-		::Const.Perks.ViciousTree,
-		::Const.Perks.LargeTree,
-		::Const.Perks.MartyrTree,
-		::Const.Perks.FitTree,
-		::Const.Perks.TrainedTree,
-		::Const.Perks.InspirationalTree
-	],
-	Enemy = [
-		::Const.Perks.OccultTree,
-		::Const.Perks.BeastTree,
-		::Const.Perks.UndeadTree
-	],
-	Class = [
-		::Const.Perks.FaithClassTree
-	],
-	Profession = [
-		//::Const.Perks.RepairProfessionTree
-	],
-	Magic = []
-};
-
 ::Legends.BackgroundPerkTrees.LegendDervish <- {
 	Weapon = [
 		::Const.Perks.SwordTree,
@@ -2554,6 +2689,28 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	]
 };
 
+::Legends.BackgroundPerkTrees.LegendFootSoldier <- {
+	Weapon = [
+		::Const.Perks.SpearTree,
+		::Const.Perks.ThrowingTree,
+		::Const.Perks.ShieldTree,
+		::Const.Perks.SwordTree,
+	],
+	Defense = [
+		::Const.Perks.HeavyArmorTree
+	],
+	Traits = [
+		::Const.Perks.FastTree,
+		::Const.Perks.TrainedTree,
+		::Const.Perks.SturdyTree,
+		::Const.Perks.IndestructibleTree
+	],
+	Enemy = [],
+	Class = [],
+	Profession = [],
+	Magic = []
+};
+
 ::Legends.BackgroundPerkTrees.LegendGladiatorPrizefighter <- {
 	Weapon = [
 		::Const.Perks.SwordTree,
@@ -2582,7 +2739,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendGuildmaster <- {
+::Legends.BackgroundPerkTrees.LegendGuildMaster <- {
 	Weapon = [
 		::Const.Perks.SpearTree,
 		::Const.Perks.PolearmTree,
@@ -2639,55 +2796,27 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendHorse <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
+::Legends.BackgroundPerkTrees.LegendHouseGuard <- {
+	Weapon = [
+		::Const.Perks.PolearmTree,
+		::Const.Perks.ThrowingTree,
+		::Const.Perks.AxeTree,
+		::Const.Perks.SwordTree,
+	],
+	Defense = [
+		::Const.Perks.HeavyArmorTree
+	],
+	Traits = [
+		::Const.Perks.SturdyTree,
+		::Const.Perks.TrainedTree,
+		::Const.Perks.FitTree,
+		::Const.Perks.LargeTree
+	],
 	Enemy = [],
 	Class = [],
 	Profession = [],
 	Magic = []
-}
-
-::Legends.BackgroundPerkTrees.LegendHorseCourser <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-}
-
-::Legends.BackgroundPerkTrees.LegendHorseDestrier <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-}
-
-::Legends.BackgroundPerkTrees.LegendHorseRouncey <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-}
-
-::Legends.BackgroundPerkTrees.LegendHorserider <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-}
+};
 
 ::Legends.BackgroundPerkTrees.LegendHusk <- {
 	Weapon = [
@@ -2823,8 +2952,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		//::Const.Perks.HealerProfessionTree,
 		//::Const.Perks.HerbalistProfessionTree
 	],
-	Magic = [
-	]
+	Magic = []
 };
 
 ::Legends.BackgroundPerkTrees.LegendLegionAuxiliary <- {
@@ -3043,7 +3171,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendLonewolf <- {
+::Legends.BackgroundPerkTrees.LegendLoneWolf <- {
 	Weapon = [
 		::Const.Perks.SwordTree,
 		::Const.Perks.MaceTree,
@@ -3095,7 +3223,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Enemy = [
 		::Const.Perks.CivilizationTree,
-
 	],
 	Class = [
 		::Const.Perks.BeastClassTree,
@@ -3182,9 +3309,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree,
 		::Const.Perks.DeviousTree
 	],
-	Enemy = [
-
-	],
+	Enemy = [],
 	Class = [],
 	Profession = [],
 	Magic = [
@@ -3213,16 +3338,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Class = [
 		::Const.Perks.HoundmasterClassTree
 	],
-	Profession = [],
-	Magic = []
-};
-
-::Legends.BackgroundPerkTrees.LegendCommanderNecro <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
 	Profession = [],
 	Magic = []
 };
@@ -3297,140 +3412,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendCommanderNoble <- {
-	Weapon = [
-		::Const.Perks.DaggerTree,
-		::Const.Perks.PolearmTree,
-		::Const.Perks.SwordTree,
-		::Const.Perks.MaceTree,
-		::Const.Perks.CrossbowTree
-	],
-	Defense = [
-		::Const.Perks.MediumArmorTree
-	],
-	Traits = [
-		::Const.Perks.IntelligentTree,
-		::Const.Perks.ViciousTree,
-		::Const.Perks.CalmTree,
-		::Const.Perks.TrainedTree,
-		::Const.Perks.FitTree,
-		::Const.Perks.InspirationalTree
-	],
-	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
-	],
-	Class = [],
-	Profession = [
-		//::Const.Perks.BarterProfessionTree
-	],
-	Magic = [
-		::Const.Perks.CaptainMagicTree
-	]
-};
-
-::Legends.BackgroundPerkTrees.LegendHouseGuard <- {
-	Weapon = [
-		::Const.Perks.PolearmTree,
-		::Const.Perks.ThrowingTree,
-		::Const.Perks.AxeTree,
-		::Const.Perks.SwordTree,
-	],
-	Defense = [
-		::Const.Perks.HeavyArmorTree
-	],
-	Traits = [
-		::Const.Perks.SturdyTree,
-		::Const.Perks.TrainedTree,
-		::Const.Perks.FitTree,
-		::Const.Perks.LargeTree
-	],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-};
-
-::Legends.BackgroundPerkTrees.LegendArbalester <- {
-	Weapon = [
-		::Const.Perks.CrossbowTree,
-		::Const.Perks.ThrowingTree,
-		::Const.Perks.DaggerTree,
-		::Const.Perks.BowTree
-	],
-	Defense = [
-		::Const.Perks.HeavyArmorTree,
-		::Const.Perks.MediumArmorTree
-	],
-	Traits = [
-		::Const.Perks.FastTree,
-		::Const.Perks.AgileTree,
-		::Const.Perks.FitTree,
-		::Const.Perks.ViciousTree
-	],
-	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
-	],
-	Profession = [],
-	Class = [],
-	Magic = []
-};
-
-::Legends.BackgroundPerkTrees.LegendFootSoldier <- {
-	Weapon = [
-		::Const.Perks.SpearTree,
-		::Const.Perks.ThrowingTree,
-		::Const.Perks.ShieldTree,
-		::Const.Perks.SwordTree,
-	],
-	Defense = [
-		::Const.Perks.HeavyArmorTree
-	],
-	Traits = [
-		::Const.Perks.FastTree,
-		::Const.Perks.TrainedTree,
-		::Const.Perks.SturdyTree,
-		::Const.Perks.IndestructibleTree
-	],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-};
-
-::Legends.BackgroundPerkTrees.LegendCommanderPeddler <- {
-	Weapon = [
-		::Const.Perks.PolearmTree,
-		::Const.Perks.DaggerTree,
-		::Const.Perks.SlingTree,
-		::Const.Perks.CrossbowTree,
-		::Const.Perks.MaceTree
-
-	],
-	Defense = [
-		::Const.Perks.LightArmorTree,
-		::Const.Perks.MediumArmorTree
-	],
-	Traits = [
-		::Const.Perks.OrganisedTree,
-		::Const.Perks.CalmTree,
-		::Const.Perks.IntelligentTree,
-		::Const.Perks.DeviousTree
-	],
-	Enemy = [
-		::Const.Perks.OutlawTree
-	],
-	Class = [],
-	Profession = [
-		//::Const.Perks.BarterProfessionTree,
-		//::Const.Perks.CaravaneerProfessionTree
-	],
-	Magic = [
-		//::Const.Perks.PhilosophyMagicTree
-	]
-};
-
 ::Legends.BackgroundPerkTrees.LegendPilgrim <- {
 	Weapon = [
 		::Const.Perks.HammerTree,
@@ -3499,76 +3480,14 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendWarden <- {
-	Weapon = [
-		::Const.Perks.CrossbowTree,
-		::Const.Perks.BowTree,
-		::Const.Perks.SlingTree,
-		::Const.Perks.ThrowingTree,
-		::Const.Perks.DaggerTree
-	],
-	Defense = [
-		::Const.Perks.LightArmorTree,
-		::Const.Perks.MediumArmorTree
-	],
-	Traits = [
-		::Const.Perks.ViciousTree,
-		::Const.Perks.FastTree,
-		::Const.Perks.IntelligentTree,
-		::Const.Perks.FitTree,
-		::Const.Perks.AgileTree
-	],
-	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.OccultTree,
-	],
-	Class = [
-		::Const.Perks.BeastClassTree
-	],
+::Legends.BackgroundPerkTrees.LegendReanimator <- {
+	Weapon = [],
+	Defense = [],
+	Traits = [],
+	Enemy = [],
+	Class = [],
 	Profession = [],
-	Magic = [
-		::Const.Perks.RangerHuntMagicTree,
-		::Const.Perks.MasterArcherTree
-	]
-};
-
-::Legends.BackgroundPerkTrees.LegendCommanderRanger <- {
-	Weapon = [
-		::Const.Perks.CrossbowTree,
-		::Const.Perks.BowTree,
-		::Const.Perks.SlingTree,
-		::Const.Perks.ThrowingTree,
-		::Const.Perks.DaggerTree,
-		::Const.Perks.AxeTree,
-	],
-	Defense = [
-		::Const.Perks.ClothArmorTree,
-		::Const.Perks.LightArmorTree,
-		::Const.Perks.MediumArmorTree
-	],
-	Traits = [
-		::Const.Perks.ViciousTree,
-		::Const.Perks.FastTree,
-		::Const.Perks.IntelligentTree,
-		::Const.Perks.FitTree,
-		::Const.Perks.AgileTree,
-		::Const.Perks.LargeTree
-	],
-	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.GreenskinTree,
-		::Const.Perks.OccultTree,
-	],
-	Class = [
-		::Const.Perks.BeastClassTree,
-		::Const.Perks.HoundmasterClassTree
-	],
-	Profession = [],
-	Magic = [
-		::Const.Perks.RangerHuntMagicTree,
-		::Const.Perks.MasterArcherTree,
-		::Const.Perks.ArcherCommandTree
-	]
+	Magic = []
 };
 
 ::Legends.BackgroundPerkTrees.LegendSeer <- {
@@ -3718,6 +3637,39 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	]
 };
 
+::Legends.BackgroundPerkTrees.LegendWarden <- {
+	Weapon = [
+		::Const.Perks.CrossbowTree,
+		::Const.Perks.BowTree,
+		::Const.Perks.SlingTree,
+		::Const.Perks.ThrowingTree,
+		::Const.Perks.DaggerTree
+	],
+	Defense = [
+		::Const.Perks.LightArmorTree,
+		::Const.Perks.MediumArmorTree
+	],
+	Traits = [
+		::Const.Perks.ViciousTree,
+		::Const.Perks.FastTree,
+		::Const.Perks.IntelligentTree,
+		::Const.Perks.FitTree,
+		::Const.Perks.AgileTree
+	],
+	Enemy = [
+		::Const.Perks.BeastTree,
+		::Const.Perks.OccultTree,
+	],
+	Class = [
+		::Const.Perks.BeastClassTree
+	],
+	Profession = [],
+	Magic = [
+		::Const.Perks.RangerHuntMagicTree,
+		::Const.Perks.MasterArcherTree
+	]
+};
+
 ::Legends.BackgroundPerkTrees.LegendWarlock <- {
 	Weapon = [
 		::Const.Perks.DaggerTree,
@@ -3741,16 +3693,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.WarlockMagicTree,
 		::Const.Perks.StavesMagicTree
 	]
-};
-
-::Legends.BackgroundPerkTrees.LegendWarlockSummoner <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
 };
 
 ::Legends.BackgroundPerkTrees.LegendYoungblood <- {
@@ -3783,3 +3725,55 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Magic = []
 };
+
+// Horses
+
+::Legends.BackgroundPerkTrees.LegendHorse <- {
+	Weapon = [],
+	Defense = [],
+	Traits = [],
+	Enemy = [],
+	Class = [],
+	Profession = [],
+	Magic = []
+}
+
+::Legends.BackgroundPerkTrees.LegendHorseCourser <- {
+	Weapon = [],
+	Defense = [],
+	Traits = [],
+	Enemy = [],
+	Class = [],
+	Profession = [],
+	Magic = []
+}
+
+::Legends.BackgroundPerkTrees.LegendHorseDestrier <- {
+	Weapon = [],
+	Defense = [],
+	Traits = [],
+	Enemy = [],
+	Class = [],
+	Profession = [],
+	Magic = []
+}
+
+::Legends.BackgroundPerkTrees.LegendHorseRouncey <- {
+	Weapon = [],
+	Defense = [],
+	Traits = [],
+	Enemy = [],
+	Class = [],
+	Profession = [],
+	Magic = []
+}
+
+::Legends.BackgroundPerkTrees.LegendHorserider <- {
+	Weapon = [],
+	Defense = [],
+	Traits = [],
+	Enemy = [],
+	Class = [],
+	Profession = [],
+	Magic = []
+}

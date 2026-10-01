@@ -1,9 +1,9 @@
-this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_guild_master_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendGuildmaster);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendGuildMaster);
 		this.m.Name = "Guild Master";
 		this.m.BackgroundDescription = "An aging master slayer of a local guild, time has taken their youth but their skills still surpass those they train.";
 		this.m.GoodEnding = "%name% retired from the company and bought the deed to an abandoned castle. There %they% commands a troop of fellow beast slayers who journey the land protecting it from monsters. Last you spoke to %them% %they% had a raven-haired lady friend who did not take kindly to your presence, nor the presence of anyone else for that matter. You\'re sure %they're% happy.";
@@ -42,9 +42,19 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 	}
 
 	function setGender(_gender = -1) {
-		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.UntidyMale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.UntidyMale, HairColors = ::Const.HairColors.Old, Beards = ::Const.Beards.Untidy});
-		if(_gender){
+		if (_gender == -1) {
+			_gender = this.randomizeHumanGender();
+		}
+		_gender ? this.setBodyCharacteristics(_gender, {
+			Hairs = ::Const.Hair.UntidyMale,
+			HairColors = ::Const.HairColors.Old
+		}) : this.setBodyCharacteristics(_gender, {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.UntidyMale,
+			HairColors = ::Const.HairColors.Old,
+			Beards = ::Const.Beards.Untidy
+		});
+		if (_gender) {
 			this.m.BadEnding = "After leaving the %companyname%, %name% retired from beast slaying altogether and last you heard %they% was mother to an albino daughter. Unfortunately, rumors spread quickly about the girl having supernatural powers and her father was executed by fire. The mother and child were never caught nor seen again.";
 		}
 	}
@@ -67,58 +77,45 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 		return ret;
 	}*/
 
-	function onChangeAttributes()
-	{
-		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendGuildmaster);
+	function onChangeAttributes() {
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendGuildMaster);
 	}
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (::Math.rand(1, 100) <= 75)
-		{
+		if (::Math.rand(1, 100) <= 75) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (::Math.rand(1, 100) <= 75)
-		{
+		if (::Math.rand(1, 100) <= 75) {
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 		local r;
 		r = ::Math.rand(1, 4);
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			items.equip(this.new("scripts/items/weapons/light_crossbow"));
 			items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 			items.addToBag(this.new("scripts/items/weapons/dagger"));
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
-		else if (r == 3)
-		{
+		} else if (r == 3) {
 			items.equip(this.new("scripts/items/weapons/spetum"));
-		}
-		else if (r == 4)
-		{
+		} else if (r == 4) {
 			items.equip(this.new("scripts/items/weapons/javelin"));
 		}
 
-		if (::Math.rand(1, 100) <= 50 && items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (::Math.rand(1, 100) <= 50 && items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 

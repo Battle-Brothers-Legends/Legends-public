@@ -71,7 +71,7 @@
 
 		if (_gender) {
 			this.m.Name = "Wildwoman";
-			this.m.Icon = "ui/backgrounds/background_wildwoman.png";
+			this.m.Icon = "ui/backgrounds/legend_wildwoman.png";
 			this.m.BackgroundDescription = "Wildwomen are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
 			this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local prince took a shine to %name% the wildwoman. She was \'purchased\' for a large sum of gold and given to the nobleman. You went and visited the woman recently. For dinner, she sat at a kingly table, grinning goofily and mimicking the nobles around her as best she could. Her new and inexplicable husband adored her, and her him. When you said your goodbyes, she offered you a heavy golden crown off the top of her head. It weighed heavy with traditions and ancient histories. You said it\'d be best if she kept it. The wildwoman shrugged and walked off, spinning the circlet around a finger.";
 		}

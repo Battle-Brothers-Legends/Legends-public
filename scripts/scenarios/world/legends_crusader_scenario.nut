@@ -17,7 +17,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		local roster = ::World.getPlayerRoster();
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
-		bro.setStartValuesEx([::Legends.Background.LegendCrusader]);
+		bro.setStartValuesEx([::Legends.Background.LegendCommanderCrusader]);
 		//skills on start
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		::Legends.Traits.grant(bro, ::Legends.Trait.LegendUndeadKiller);

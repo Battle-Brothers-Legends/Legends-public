@@ -73,7 +73,7 @@
 		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_guildmaster = [];
 		foreach(bro in brothers) {
-			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendGuildmaster))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendGuildMaster))
 				candidates_guildmaster.push(bro);
 		}
 		if (candidates_guildmaster.len() != 0) {

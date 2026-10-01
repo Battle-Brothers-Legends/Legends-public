@@ -624,7 +624,7 @@
 			this.improveMood(1.0, "Reborn to live again");
 			this.setMoraleState(::Const.MoraleState.Ignore);
 
-			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
 				if (!this.getBackground().addPerk(::Legends.Perk.LegendZombieBite, 0, false))
 					this.getBackground().m.PerkTreeMap[perk.getID()].IsRefundable = false;

@@ -469,7 +469,7 @@
 
 				// for zombies
 				if (bro.getDailyMedicine() > 0) {
-					if (::Legends.Trait.has(bro, ::Legends.Trait.LegendRottenFlesh)) {
+					if (::Legends.Trait.has(bro, ::Legends.Trait.LegendRottingFlesh)) {
 						bro.addLightInjury();
 						bro.MoodChanges = [];
 						bro.improveMood(0.0, "A lack of medicine has caused me to deteriorate");

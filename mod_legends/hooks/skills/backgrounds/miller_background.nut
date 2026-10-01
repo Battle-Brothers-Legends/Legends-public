@@ -38,7 +38,7 @@
 
 		if (_gender != 1) return;
 		this.m.Name = "Baker";
-		this.m.Icon = "ui/backgrounds/background_baker.png";
+		this.m.Icon = "ui/backgrounds/legend_baker.png";
 		this.m.BackgroundDescription = "A baker is used to working the oven and kneading bread.";
 	}
 

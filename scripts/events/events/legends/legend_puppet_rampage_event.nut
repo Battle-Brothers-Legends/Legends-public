@@ -1,7 +1,7 @@
 this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 	m = {
 		Puppet = null,
-		Necrohandler = null,
+		Reanimator = null,
 		Town = null
 	},
 
@@ -38,9 +38,9 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			],
 
 			function start(_event) {
-				if (_event.m.Necrohandler != null) {
+				if (_event.m.Reanimator != null) {
 					this.Options.push({
-						Text = "%necrohandler% needs to get their thrall in check...",
+						Text = "%reanimator% needs to get their thrall in check...",
 
 						function getResult(_event) {
 							return "E";
@@ -187,7 +187,7 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 		this.m.Screens.push({
 			//— \
 			ID = "E",
-			Text = "%townImage%%necrohandler% murmurs something, %puppet% appears to resist. %necrohandler% murmers something again and the puppet ceases it\'s assault. The children return to pelting %puppet% with stones at a distance outside of arm reach this time — their target lolling obediently at the barrage. Both the puppet and the master look at you in unison. %SPEECH_ON%See? Nothing to it.%SPEECH_OFF%%necrohandler% cracks a sickly smile, their thrall attempts to mimic it, but only leaves you with a sensation that makes it difficult to judge which is worse.",
+			Text = "%townImage%%reanimator% murmurs something, %puppet% appears to resist. %reanimator% murmurs something again and the puppet ceases it\'s assault. The children return to pelting %puppet% with stones at a distance outside of arm reach this time — their target lolling obediently at the barrage. Both the puppet and the master look at you in unison. %SPEECH_ON%See? Nothing to it.%SPEECH_OFF%%reanimator% cracks a sickly smile, their thrall attempts to mimic it, but only leaves you with a sensation that makes it difficult to judge which is worse.",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -202,7 +202,7 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 
 			function start(_event) {
 				this.Characters.push(_event.m.Puppet.getImagePath());
-				this.Characters.push(_event.m.Necrohandler.getImagePath());
+				this.Characters.push(_event.m.Reanimator.getImagePath());
 				::World.Assets.addMoralReputation(3);
 			}
 
@@ -214,40 +214,28 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		local towns = ::World.EntityManager.getSettlements();
 		local nearTown = false;
 		local town;
 		local playerTile = ::World.State.getPlayer().getTile();
 
-		foreach (t in towns) {
-			if (t.isSouthern() || t.isMilitary()) {
-				continue;
-			}
-
-			if (t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer()) {
-				nearTown = true;
-				town = t;
-				break;
-			}
+		foreach (t in ::World.EntityManager.getSettlements().filter(@(_, _town)(!_town.isSouthern() && !_town.isMilitary() && _town.getTile().getDistanceTo(playerTile) <= 3 && _town.isAlliedWithPlayer()))) {
+			nearTown = true;
+			town = t;
+			break;
 		}
 
 		if (!nearTown) {
 			return;
 		}
 
-		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_puppet = [];
-		local candidates_necrohandler = [];
+		local candidates_reanimator = [];
 
-		foreach (bro in brothers) {
-			if (bro.getSkills().hasSkill("trait.player")) {
-				continue;
-			}
-
-			if (bro.getBackground().getID() == (::Legends.Background.LegendPuppet)) {
+		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(!::Legends.Traits.has(bro, ::Legends.Trait.Player)))) {
+			if (::Legends.Backgrounds.has(::Legends.Background.LegendPuppet)) {
 				candidates_puppet.push(bro);
-			} else if (bro.getBackground().getID() == (::Legends.Background.LegendWarlockSummoner)) {
-				candidates_necrohandler.push(bro);
+			} else if (::Legends.Backgrounds.has(::Legends.Background.LegendReanimator)) {
+				candidates_reanimator.push(bro);
 			}
 		}
 
@@ -257,8 +245,8 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 
 		this.m.Puppet = candidates_puppet[::Math.rand(0, candidates_puppet.len() - 1)];
 
-		if (candidates_necrohandler.len() != 0) {
-			this.m.Necrohandler = candidates_necrohandler[::Math.rand(0, candidates_necrohandler.len() - 1)];
+		if (candidates_reanimator.len() != 0) {
+			this.m.Reanimator = candidates_reanimator[::Math.rand(0, candidates_reanimator.len() - 1)];
 		}
 
 		this.m.Town = town;
@@ -273,8 +261,8 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			this.m.Puppet.getName()
 		]);
 		_vars.push([
-			"necrohandler",
-			this.m.Necrohandler != null ? this.m.Necrohandler.getNameOnly() : ""
+			"reanimator",
+			this.m.Reanimator != null ? this.m.Reanimator.getNameOnly() : ""
 		]);
 		_vars.push([
 			"townname",
@@ -284,7 +272,7 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 
 	function onClear() {
 		this.m.Puppet = null;
-		this.m.Necrohandler = null;
+		this.m.Reanimator = null;
 		this.m.Town = null;
 	}
 });

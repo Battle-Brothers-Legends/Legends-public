@@ -1,9 +1,9 @@
-this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_commander_crusader_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCrusader);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderCrusader);
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
@@ -69,7 +69,6 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			[
 				::Legends.Perk.InspiringPresence,
 				::Legends.Perk.Fearsome,
-
 			],
 			[
 				::Legends.Perk.LegendPerfectFocus
@@ -83,61 +82,61 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 	}
 
 	function setGender(_gender = -1) {
-		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.SmartMale, Hairs = ::Const.Hair.TidyMale, Beards = ::Const.Beards.Tidy});
+		if (_gender == -1) {
+			_gender = this.randomizeHumanGender();
+		}
+		_gender ? this.setBodyCharacteristics(_gender, {
+			Faces = ::Const.Faces.PrettyFemale,
+			HairColors = ::Const.HairColors.Young
+		}) : this.setBodyCharacteristics(_gender, {
+			Faces = ::Const.Faces.SmartMale,
+			Hairs = ::Const.Hair.TidyMale,
+			Beards = ::Const.Beards.Tidy
+		});
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "%name% lives to fight the undead scourge. Little is known about %them% and %they% almost never talks save for the occasional grunt while swinging %their% sword. %Their% language seems to be codified into one simple structure: killing creatures of evil.";
 	}
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (::Math.rand(1, 100) <= 25)
-		{
+		if (::Math.rand(1, 100) <= 25) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (::Math.rand(1, 100) <= 25)
-		{
+		if (::Math.rand(1, 100) <= 25) {
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
 		}
 	}
 
-	function updateAppearance()
-	{
+	function updateAppearance() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 		}
 	}
 
-	function onChangeAttributes()
-	{
-		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCrusader);
+	function onChangeAttributes() {
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderCrusader);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle("the Holy Avenger");
 	}
 
-function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.MeleeDefense] = 3;
@@ -162,11 +161,9 @@ function onAddEquipment()
 			[1, ::Legends.Helmet.Standard.bascinet_with_mail],
 			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]
 		]);
-		if (item != null)
-		{
+		if (item != null) {
 			item.onPaint(::Const.Items.Paint.None);
 			items.equip(item);
 		}
-
 	}
 });

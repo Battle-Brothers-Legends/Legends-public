@@ -167,7 +167,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 
 			if (::Legends.Backgrounds.hasAny(bro,
 				::Legends.Background.Assassin,
-				::Legends.Background.LegendCrusader,
+				::Legends.Background.LegendCommanderCrusader,
 				::Legends.Background.LegendBerserker,
 				::Legends.Background.LegendWarden,
 				::Legends.Background.RegentInAbsentia

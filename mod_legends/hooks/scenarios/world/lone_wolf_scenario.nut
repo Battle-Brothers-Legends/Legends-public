@@ -21,7 +21,7 @@
 		bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 
 		local bros = roster.getAll(); //starting party
-		bros[0].setStartValuesEx([::Legends.Background.LegendLonewolf]);
+		bros[0].setStartValuesEx([::Legends.Background.LegendLoneWolf]);
 		bros[0].getBackground().buildDescription(true);
 		bros[0].setTitle("the Lone Wolf");
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendFavouredEnemySwordmaster);

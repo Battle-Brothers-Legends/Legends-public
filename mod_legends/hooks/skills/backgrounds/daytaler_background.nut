@@ -25,7 +25,7 @@
 
 		if (_gender != 1) return;
 		this.m.Name = "Washerwoman";
-		this.m.Icon = "ui/backgrounds/background_washerwoman.png";
+		this.m.Icon = "ui/backgrounds/legend_washerwoman.png";
 		this.m.BackgroundDescription = "Washerwomen are used to all kinds of physical work, scrubbing isn\'t easy work.";
 	}
 

@@ -10,7 +10,7 @@
 		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleSkinny, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.UntidyMale, HairColors =::Const.HairColors.Southern}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernSkinny, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.UntidyMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.SouthernUntidy}, 90);
 		if (_gender != 1) return;
 		this.m.Name = "Widow";
-		this.m.Icon = "ui/backgrounds/background_widow.png";
+		this.m.Icon = "ui/backgrounds/legend_widow.png";
 		this.m.BackgroundDescription = "Widows who can\'t find another husband have few choices, mercenary work is a last resort of the hopeless.";
 	}
 

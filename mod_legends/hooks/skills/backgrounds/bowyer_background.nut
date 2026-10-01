@@ -49,7 +49,7 @@
 
 		if (_gender != 1) return;
 		this.m.Name = "Fletcher";
-		this.m.Icon = "ui/backgrounds/background_fletcher.png";
+		this.m.Icon = "ui/backgrounds/legend_fletcher.png";
 		this.m.BackgroundDescription = "Fletchers have a good understanding of how bows and crossbows work, even if they do lack practical experience.";
 		this.m.BadEnding = "After you left the %companyname%, you sent a letter inquiring about the status of %name% the fletcher. You got word that she had discovered a way to craft the finest arrow possible and, instead of giving this secret to the company, she departed to start his own business. She did not get far: whatever she had learned about her trade died with her on a muddy road out {north | south | west | east} of here, her body ironically skewered with what is said to have been a dozen arrows.";
 	}

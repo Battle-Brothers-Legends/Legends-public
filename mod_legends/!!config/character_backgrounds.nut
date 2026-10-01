@@ -184,7 +184,7 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendNecrosavant,
 	::Legends.Background.LegendShieldmaiden,
 	::Legends.Background.Assassin,
-	::Legends.Background.LegendCrusader
+	::Legends.Background.LegendCommanderCrusader
 ];
 
 ::Const.CharacterMagicBackgrounds <- [
@@ -227,7 +227,7 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Hunter,
 	::Legends.Background.Juggler,
 	::Legends.Background.KillerOnTheRun,
-	::Legends.Background.LegendCrusader,
+	::Legends.Background.LegendCommanderCrusader,
 	::Legends.Background.LegendBerserker,
 	::Legends.Background.LegendBlacksmith,
 	::Legends.Background.LegendDonkey,
@@ -301,7 +301,7 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Graverobber,
 	::Legends.Background.HedgeKnight,
 	::Legends.Background.KillerOnTheRun,
-	::Legends.Background.LegendCrusader,
+	::Legends.Background.LegendCommanderCrusader,
 	::Legends.Background.LegendHouseGuard,
 	::Legends.Background.LegendFootSoldier,
 	::Legends.Background.LegendShieldmaiden,

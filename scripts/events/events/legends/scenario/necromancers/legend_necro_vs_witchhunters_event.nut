@@ -159,7 +159,7 @@ this.legend_necro_vs_witchhunters_event <- this.inherit("scripts/events/event", 
 		}
 
 		local brothers = ::World.getPlayerRoster().getAll();
-		local candidates = brothers.filter(@(_, _bro) ::Legends.Backgrounds.hasAny(_bro, ::Legends.Background.LegendCommanderNecro, ::Legends.Background.LegendPreserver, ::Legends.Background.LegendWarlockSummoner, ::Legends.Background.LegendPuppetMaster));
+		local candidates = brothers.filter(@(_, _bro) ::Legends.Backgrounds.hasAny(_bro, ::Legends.Background.LegendCommanderNecro, ::Legends.Background.LegendPreserver, ::Legends.Background.LegendReanimator, ::Legends.Background.LegendPuppetMaster));
 
 		if (brothers.len() < 2) {
 			return;

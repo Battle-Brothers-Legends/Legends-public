@@ -640,6 +640,7 @@
 - fixed offhand items sometimes displaying flipped after saving and loading
 - fixed master necromancer getting too cozy with the nobles after getting rid of his early troupe 
 - the perk groups tooltip in the hiring screen will no longer show perk groups meant for enemies only
+- fixed event crusaders not being paid a wage
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
@@ -998,3 +999,7 @@ Refactors/deletions:
 - `scripts/skills/traits/legend_beastslayers_trait` -> `scripts/skills/traits/legend_natural_order_trait`
 - `scripts/skills/traits/legend_lw_relationship_trait` -> `scripts/skills/traits/legend_lone_wolf_relationship_trait`
 - removed nomad, peasant and necromancer origin traits, effect moved directly to individual scenarios
+- `scripts/skills/backgrounds/legend_guildmaster_background` -> `scripts/skills/backgrounds/legend_guild_master_background`
+- `scripts/skills/backgrounds/legend_lonewolf_background` -> `scripts/skills/backgrounds/legend_lone_wolf_background`
+- `scripts/skills/backgrounds/legend_warlock_summoner_background` -> `scripts/skills/backgrounds/legend_reanimator_background`
+- many of the gfx files used in the mod had their names normalized so they follow the naming scheme of consts

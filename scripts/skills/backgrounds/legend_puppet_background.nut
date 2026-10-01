@@ -41,7 +41,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 	{
 		if (this.m.IsNew) 
 		{
-			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
 		}
 		this.character_background.onAdded();
