@@ -10,11 +10,13 @@
 					local bg = ::Legends.Backgrounds.new(::Legends.Background.KingsGuard);
 					bg.m.IsNew = false;
 					local oldPerkTree = _event.m.Dude.getBackground().m.CustomPerkTree;
+					local oldProfessionTree = _event.m.Dude.getBackground().m.CustomProfessionTree;
 					_event.m.Dude.getSkills().removeByID(::Legends.Backgrounds.getID(::Legends.Background.Cripple));
 					_event.m.Dude.getSkills().add(bg);
 					_event.m.Dude.getBackground().m.RawDescription = "You found %name% frozen half to death in the north. With your help, the former King\'s Guard regained %their% strength and now fights for you.";
 					_event.m.Dude.getBackground().buildDescription(true);
 					_event.m.Dude.getBackground().rebuildPerkTree(oldPerkTree);
+					_event.m.Dude.getBackground().rebuildProfessionTree(oldProfessionTree);
 					_event.m.Dude.resetPerks();
 					_event.m.Dude.improveMood(1.0, "Is %their% former self again");
 
