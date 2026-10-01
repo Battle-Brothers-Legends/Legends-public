@@ -343,7 +343,9 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			});
 		}
 
-		this.onArmorTooltip(_result);
+		if (!_isExtraVanity) {
+			this.onArmorTooltip(_result);
+		}
 	}
 
 	function playInventorySound( _eventType )

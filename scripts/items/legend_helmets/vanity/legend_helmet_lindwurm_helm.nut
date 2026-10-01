@@ -1,8 +1,7 @@
-
 this.legend_helmet_lindwurm_helm <- this.inherit("scripts/items/legend_helmets/legend_helmet_upgrade", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_helmet_upgrade.create();
 		this.m.Type = ::Const.Items.HelmetUpgrades.Vanity;
 		this.m.ID = "armor.head.legend_helmet_lindwurm_helm";
@@ -33,8 +32,7 @@ this.legend_helmet_lindwurm_helm <- this.inherit("scripts/items/legend_helmets/l
 		this.m.HideBeard = false;
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
 		this.m.Sprite = "legendhelms_lindwurm_helm_" + variant;
 		this.m.SpriteDamaged = "legendhelms_lindwurm_helm_" + variant + "_damaged";
@@ -45,15 +43,13 @@ this.legend_helmet_lindwurm_helm <- this.inherit("scripts/items/legend_helmets/l
 		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = this.legend_helmet_upgrade.getTooltip();
 		this.onArmorTooltip(result);
 		return result;
 	}
 
-	function onArmorTooltip( result )
-	{
+	function onArmorTooltip(result) {
 		result.push({
 			id = 6,
 			type = "text",
@@ -72,11 +68,10 @@ this.legend_helmet_lindwurm_helm <- this.inherit("scripts/items/legend_helmets/l
 			icon = "ui/icons/special.png",
 			text = "No fatigue penalties from melee damage"
 		});
-		return result
+		return result;
 	}
 
-	function onUpdateProperties( _properties )
-	{
+	function onUpdateProperties(_properties) {
 		this.legend_helmet_upgrade.onUpdateProperties(_properties);
 		_properties.IsImmuneToKnockBackAndGrab = true;
 		_properties.FatigueReceivedPerHitMult *= 0.01;
