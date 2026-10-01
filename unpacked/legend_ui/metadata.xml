@@ -222,14 +222,14 @@
 	<sprite id="legend_basilisk_sentry_fowleye" ic="FF1B293C" img="skills\legend_basilisk_sentry_fowleye.png" />
 	<sprite id="legend_coat_with_redback_poison" ic="FF1B293C" img="skills\legend_coat_with_redback_poison.png" />
 	<sprite id="status_effect_legend_redback_poison_coat_mini" ic="FF1B293C" img="skills\mini\status_effect_legend_redback_poison_coat_mini.png" />
-	<sprite id="cheered_on_square" ic="FF1B293C" img="skills\cheered_on_square.png" />
+	<sprite id="legend_cheer_on" ic="FF1B293C" img="skills\legend_cheer_on.png" />
 	<sprite id="storm_square" ic="FF1B293C" img="skills\storm_square.png" />
 	<sprite id="legend_full_draw" ic="FF1B293C" img="skills\legend_full_draw.png" />
 	<sprite id="legend_volley" ic="FF1B293C" img="skills\legend_volley.png" />
 	<sprite id="legend_flagellate" ic="FF1B293C" img="skills\legend_flagellate.png" />
 	<sprite id="legend_leap" ic="FF1B293C" img="skills\legend_leap.png" />
 	<sprite id="legend_ninetails_disarm" ic="FF1B293C" img="skills\legend_ninetails_disarm.png" />
-	<sprite id="possession" ic="FF1B293C" img="skills\possession.png" />
+	<sprite id="legend_possess_undead" ic="FF1B293C" img="skills\legend_possess_undead.png" />
 	<sprite id="legend_safeguard" ic="FF1B293C" img="skills\legend_safeguard.png" />
 	<sprite id="staff_bash" ic="FF1B293C" img="skills\staff_bash.png" />
 	<sprite id="legend_summon_storm" ic="FF1B293C" img="skills\legend_summon_storm.png" />

@@ -61,6 +61,7 @@ local activesDefs = {
 		Overlay = "perk_37_active"
 	},
 	AimedShot = {
+		Script = "scripts/skills/actives/aimed_shot",
 		Icon = "skills/active_18.png",
 		IconDisabled = "skills/active_18_sw.png",
 		Overlay = "active_18"
@@ -88,6 +89,7 @@ local activesDefs = {
 		Overlay = "active_175"
 	},
 	Bash = {
+		Script = "scripts/skills/actives/bash",
 		Icon = "skills/active_02.png",
 		IconDisabled = "skills/active_02_sw.png",
 		Overlay = "active_02"
@@ -126,11 +128,13 @@ local activesDefs = {
 		Overlay = "active_231"
 	},
 	CenserStrike = {
+		Script = "scripts/skills/actives/censer_strike",
 		Icon = "skills/active_228.png",
 		IconDisabled = "skills/active_228_sw.png",
 		Overlay = "active_228"
 	},
 	Charge = {
+		Script = "scripts/skills/actives/charge",
 		Icon = "skills/active_52.png",
 		IconDisabled = "skills/active_52_sw.png",
 		Overlay = "active_52"
@@ -141,11 +145,13 @@ local activesDefs = {
 		Overlay = "active_120"
 	},
 	Chop = {
+		Script = "scripts/skills/actives/chop",
 		Icon = "skills/active_25.png",
 		IconDisabled = "skills/active_25_sw.png",
 		Overlay = "active_25"
 	},
 	Cleave = {
+		Script = "scripts/skills/actives/cleave",
 		Icon = "skills/active_19.png",
 		IconDisabled = "skills/active_19_sw.png",
 		Overlay = "active_19"
@@ -184,6 +190,7 @@ local activesDefs = {
 		Overlay = "active_205"
 	},
 	CrushArmor = {
+		Script = "scripts/skills/actives/crush_armor",
 		Name = "Destroy Armor",
 		Icon = "skills/active_36.png",
 		IconDisabled = "skills/active_36_sw.png",
@@ -304,7 +311,7 @@ local activesDefs = {
 		Overlay = "active_229"
 	},
 	Footwork = {
-		ID = "actives.footwork",
+		Script = "scripts/skills/actives/footwork",
 		Icon = "ui/perks/perk_25_active.png",
 		IconDisabled = "ui/perks/perk_25_active_sw.png",
 		Overlay = "perk_25_active"
@@ -465,6 +472,7 @@ local activesDefs = {
 		Overlay = "active_30"
 	},
 	Indomitable = {
+		Script = "scripts/skills/actives/indomitable",
 		Icon = "ui/perks/perk_30_active.png",
 		IconDisabled = "ui/perks/perk_30_active_sw.png",
 		Overlay = "perk_30_active"
@@ -778,6 +786,7 @@ local activesDefs = {
 		Overlay = "active_89"
 	},
 	Spearwall = {
+		Script = "scripts/skills/actives/spearwall"
 		Icon = "skills/active_23.png",
 		IconDisabled = "skills/active_23_sw.png",
 		Overlay = "active_23"
@@ -841,6 +850,7 @@ local activesDefs = {
 		Overlay = "active_66"
 	},
 	SummonFlyingSkulls = {
+		ID = "actives.flying_skulls",
 		Name = "Raise Screaming Skulls",
 		Icon = "skills/active_219.png",
 		IconDisabled = "skills/active_219.png",
@@ -1469,14 +1479,14 @@ local activesDefs = {
 		IconDisabled = "skills/remake_man_bw.png",
 		Overlay = "remake_man"
 	},
-	LegendSpawnZombieHigh = {
+	LegendSpawnZombieLow = {
 		//to be remade
 		Name = "Summon Light Zombie",
 		Icon = "skills/mold_carrion.png",
 		IconDisabled = "skills/mold_carrion_bw.png",
 		Overlay = "mold_carrion"
 	},
-	LegendSpawnZombieHigh = {
+	LegendSpawnZombieMed = {
 		//to be remade
 		Name = "Summon Medium Zombie",
 		Icon = "skills/fashion_body.png",
