@@ -17,6 +17,7 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 	}
 
 	function onResumeUse() {
+		this.m.Prepared = false;
 		local actor = this.getContainer().getActor();
 		::Sound.play(this.m.SoundResumeOnUse[::Math.rand(0, this.m.SoundResumeOnUse.len() - 1)], 1.0, actor.getPos());
 		this.m.TargetTile.clear(::Const.Tactical.DetailFlag.SpecialOverlay);
