@@ -7,6 +7,7 @@ if (!("Perks" in ::Const)) {
 	Name = "Shady",
 	Icon = "ui/perks/legend_feint.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
+	IsForEnemies = true,
 	Tree = [
 		[::Legends.Perk.LegendFeint],
 		[::Legends.Perk.LegendStrengthInNumbers, ::Legends.Perk.CoupDeGrace],
@@ -22,6 +23,7 @@ if (!("Perks" in ::Const)) {
 	Name = "Aggressive",
 	Icon = "ui/perks/perk_27.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
+	IsForEnemies = true,
 	Tree = [
 		[],
 		[],
@@ -37,6 +39,7 @@ if (!("Perks" in ::Const)) {
 	Name = "Sparring",
 	Icon = "ui/perks/legend_back_to_basics.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
+	IsForEnemies = true,
 	Tree = [
 		[::Legends.Perk.LegendBackToBasics],
 		[::Legends.Perk.LegendTacticalManeuvers, ::Legends.Perk.Anticipation],
@@ -52,6 +55,7 @@ if (!("Perks" in ::Const)) {
 	Name = "Ranger",
 	Icon = "ui/perks/lookout_circle.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
+	IsForEnemies = true,
 	Tree = [
 		[::Legends.Perk.Pathfinder],
 		[::Legends.Perk.Anticipation],
@@ -67,6 +71,7 @@ if (!("Perks" in ::Const)) {
 	Name = "Giant",
 	Icon = "ui/perks/perk_06.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
+	IsForEnemies = true,
 	Tree = [
 		[::Legends.Perk.Colossus],
 		[::Legends.Perk.HoldOut],

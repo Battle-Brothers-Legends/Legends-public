@@ -146,10 +146,12 @@ foreach (key, group in ::Const.Perks)
 				};
 			}
 			local category = "Category" in group ? group.Category : "Other";
+			local isForEnemies = "IsForEnemies" in group ? group.IsForEnemies : false;
 			local entry = {
 				ID = group.ID,
 				Name = group.Name,
-				Category = category
+				Category = category,
+				IsForEnemies = isForEnemies
 			};
 
 			// ::MSU.Log.printData("Perk " + ::Const.Perks.PerkDefObjects[perkDef].Const + " from Group [" + key + "] categorized as [" + entry.Category + "]");

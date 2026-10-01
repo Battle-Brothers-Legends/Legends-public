@@ -639,6 +639,7 @@
 - fixed Versatile perk: damage bonus now works correctly and tooltip will appear in combat
 - fixed offhand items sometimes displaying flipped after saving and loading
 - fixed master necromancer getting too cozy with the nobles after getting rid of his early troupe 
+- the perk groups tooltip in the hiring screen will no longer show perk groups meant for enemies only
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

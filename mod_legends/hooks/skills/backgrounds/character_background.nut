@@ -821,6 +821,11 @@
 			// 3. List out all fully represented perk groups, and the remaining number of ungrouped perks
 			foreach (entry in perk.PerkGroups)
 			{
+				if (entry.IsForEnemies)
+				{
+					continue;
+				}
+				
 				if (!(entry.ID in tmp))
 				{
 					tmp[entry.ID] <- {

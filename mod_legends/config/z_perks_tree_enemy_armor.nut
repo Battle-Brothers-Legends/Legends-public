@@ -9,6 +9,7 @@ if (!("Perks" in ::Const)) {
 	Name = "Forceful",
 	Icon = "ui/perks/legend_immovable_object.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
+	IsForEnemies = true,
 	Tree = [
 		[],
 		[],
