@@ -7,12 +7,12 @@ this.perk_legend_holy_flame <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAdded() {
-		if (!this.m.Container.hasActive(::Legends.Active.LegendHolyflame)) {
-			::Legends.Actives.grant(this, ::Legends.Active.LegendHolyflame);
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHolyFlame)) {
+			::Legends.Actives.grant(this, ::Legends.Active.LegendHolyFlame);
 		}
 	}
 
 	function onRemoved() {
-		::Legends.Actives.remove(this, ::Legends.Active.LegendHolyflame);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendHolyFlame);
 	}
 });

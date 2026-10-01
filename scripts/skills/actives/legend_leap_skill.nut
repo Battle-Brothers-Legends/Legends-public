@@ -4,9 +4,6 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLeap);
 		this.m.Description = "Jump over distance or obstacles and unsuspecting enemies to gain tactical advantage.";
-		this.m.Icon = "skills/leap_square.png";
-		this.m.IconDisabled = "skills/leap_square_bw.png";
-		this.m.Overlay = "leap";
 		this.m.SoundOnUse = ["sounds/combat/jump_01.wav"];
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.Any;

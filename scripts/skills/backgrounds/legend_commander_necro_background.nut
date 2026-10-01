@@ -75,7 +75,7 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.Overwhelm,
 					::Legends.Perk.LegendTrueBeliever,
 					::Legends.Perk.LegendRust,
-					::Legends.Perk.LegendDeathtouch,
+					::Legends.Perk.LegendDeathTouch,
 					::Legends.Perk.RallyTheTroops
 				],
 				[

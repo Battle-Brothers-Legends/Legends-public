@@ -292,7 +292,7 @@ Disapparate from your current location and reappear on the other side of the bat
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]40[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendDeathtouch <- @"
+::Const.Strings.PerkDescription.LegendDeathTouch <- @"
 Your fingers turn ghostly and pass through steel and flesh, tearing at the soul of your victim.
 
 [color=%active%][u]Active:[/u][/color]
@@ -1262,7 +1262,7 @@ With a well developed immune system and incredible fitness, a warrior's system c
 ";
 
 ::Const.Strings.PerkDescription.LegendPossession <- @"
-Enter the mind of a thrall and lend your power for one turn.
+Enter the mind of a thrall and lend it your power for one turn.
 
 [color=%active%][u]Active:[/u][/color]
 • Increases thralls combat prowess. Only works on allied undead. Possessing a thrall makes them immune to being [color=%status%]Charmed[/color] for the duration of the possession.
@@ -1285,7 +1285,7 @@ A prayer of devotion grants strength to your allies and baffles the undead.
 •  Costs [color=%negative%]6[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendPrayerOfLife <- @"
+::Const.Strings.PerkDescription.LegendPrayerOfHope <- @"
 A prayer of hope and love restores wellbeing to your allies and tears at the undead.
 
 [color=%active%][u]Active:[/u][/color]

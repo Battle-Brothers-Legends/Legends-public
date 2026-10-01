@@ -1,8 +1,8 @@
-this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
+this.legend_possess_undead_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 
 	function create() {
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPossession);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPossessUndead);
 		this.m.Description = "Enter the mind of a thrall and lend it your power for one turn.";
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/necromancer", 3);
 		this.m.Type = ::Const.SkillType.Active;

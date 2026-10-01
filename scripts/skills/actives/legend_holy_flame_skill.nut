@@ -1,8 +1,8 @@
-this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
+this.legend_holy_flame_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 
 	function create() {
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHolyflame);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHolyFlame);
 		this.m.Description = "Bless an area and apply hallowed ground over a 1-tile radius for " + ::Const.UI.getColorized("2", ::Const.UI.Color.PositiveValue) + " turns. The holy shall be sanctified when entering, the damned shall be consecrated.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/fire", 6);
 		this.m.Type = ::Const.SkillType.Active;

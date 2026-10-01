@@ -7,55 +7,42 @@ this.legend_cat_item <- this.inherit("scripts/items/accessory/accessory", {
 		UnleashSounds = [
 			"sounds/combat/cat_purr_01.wav",
 			"sounds/combat/cat_purr_02.wav"
-
 		]
 	},
-	function getScript()
-	{
+
+	function getScript() {
 		return this.m.Script;
 	}
 
-	function getArmorScript()
-	{
+	function getArmorScript() {
 		return this.m.ArmorScript;
 	}
 
-	function isUnleashed()
-	{
+	function isUnleashed() {
 		return this.m.Entity != null;
 	}
 
-	function getName()
-	{
-		if (this.m.Entity == null)
-		{
+	function getName() {
+		if (this.m.Entity == null) {
 			return this.item.getName();
-		}
-		else
-		{
+		} else {
 			return "Cat Collar";
 		}
 	}
 
-	function setName( _n )
-	{
+	function setName(_n) {
 		this.m.Name = _n;
 	}
 
-	function getDescription()
-	{
-		if (this.m.Entity == null)
-		{
+	function getDescription() {
+		if (this.m.Entity == null) {
 			return this.item.getDescription();
-		}
-		else
-		{
+		} else {
 			return "The collar of a cat that has been summoned onto the battlefield";
 		}
 	}
 
-	function create()
-	{
+	function create() {
 		this.accessory.create();
 		this.m.Variant = 1;
 		this.updateVariant();
@@ -70,54 +57,44 @@ this.legend_cat_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Value = 100;
 	}
 
-	function playInventorySound( _eventType )
-	{
+	function playInventorySound(_eventType) {
 		::Sound.play("sounds/enemies/cat_purr_02.wav", ::Const.Sound.Volume.Inventory);
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		this.setEntity(this.m.Entity);
 	}
 
-	function setEntity( _e )
-	{
+	function setEntity(_e) {
 		this.m.Entity = _e;
 
-		if (this.m.Entity != null)
-		{
+		if (this.m.Entity != null) {
 			this.m.Icon = "tools/cat_01_leash_70x70.png";
-		}
-		else
-		{
+		} else {
 			this.m.Icon = "tools/cat_01_01_70x70.png";
 		}
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.accessory.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendUnleashCat, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSummonFamiliar, function (_skill) {
 			_skill.setItem(this);
+			_skill.m.Name = "Unleash Cat";
 			this.m.Skill = this.WeakTableRef(_skill);
 		}.bindenv(this));
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.setEntity(null);
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.accessory.onSerialize(_out);
 		_out.writeString(this.m.Name);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.accessory.onDeserialize(_in);
 		this.m.Name = _in.readString();
 	}
-
 });

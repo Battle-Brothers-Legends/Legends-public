@@ -906,6 +906,7 @@ Refactors/deletions:
 - `legend_ranger_commander` -> `legend_commander_ranger`
 - `legend_ranger_background` -> `legend_warden_background`
 - `legend_armor_upgrade` now always stores `m.BraveryMult` (default value 1.0). Applying it in `onUpdateProperties` will now be handled there and children no longer need to individually apply it in `onUpdateProperties`. This impacts some named armor layers, such as `scripts/items/legend_armor/named/legend_armor_cloak_emperors.nut` for example. If an armor layer from your submod modifies `m.BraveryMult`, you should remove it from `onUpdateProperties` so it will not be doubly applied.
+- `scripts/skills/perks/perk_legend_deathtouch` -> `scripts/skills/perks/perk_legend_death_touch`
 - `scripts/skills/perks/perk_legend_siphon` -> `scripts/skills/perks/perk_legend_draining_touch`
 - `scripts/skills/actives/legend_siphon_skill` -> `scripts/skills/actives/legend_draining_touch_skill`
 - `scripts/skills/perks/perk_legend_spawn_zombie_low` -> `scripts/skills/perks/perk_legend_mold_carrion`
@@ -983,6 +984,7 @@ Refactors/deletions:
 - `scripts/skills/perks/perk_legend_specialist_selfdefense` -> `scripts/skills/perks/perk_legend_deflection`
 - `scripts/skills/perks/perk_legend_specialist_shield_skill` -> `scripts/skills/perks/perk_legend_mastery_shields`
 - `scripts/skills/perks/perk_legend_specialist_spearwall` -> `scripts/skills/perks/perk_legend_spearwaller`
+- `scripts/skills/perks/perk_legend_prayer_of_life` -> `scripts/skills/perks/perk_legend_prayer_of_hope`
 - `scripts/skills/perks/perk_legend_magic_missile_mastery` -> `scripts/skills/perks/perk_legend_mastery_magic_missile`
 - `scripts/skills/actives/legend_magic_stun_skill` -> `scripts/skills/actives/legend_paralyze_skill`
 - `scripts/skills/actives/legend_magic_sleep_skill` -> `scripts/skills/actives/legend_slumber_skill`
@@ -1002,4 +1004,21 @@ Refactors/deletions:
 - `scripts/skills/backgrounds/legend_guildmaster_background` -> `scripts/skills/backgrounds/legend_guild_master_background`
 - `scripts/skills/backgrounds/legend_lonewolf_background` -> `scripts/skills/backgrounds/legend_lone_wolf_background`
 - `scripts/skills/backgrounds/legend_warlock_summoner_background` -> `scripts/skills/backgrounds/legend_reanimator_background`
+- `scripts/skills/actives/legend_drain_skill` -> deleted
+- `scripts/skills/actives/legend_pass_skill` -> deleted
+- `scripts/skills/actives/legend_poison_weapon_skill` -> deleted
+- `scripts/skills/actives/legend_spawn_zombie_low_xbow_skill` -> deleted
+- `scripts/skills/actives/legend_spawn_zombie_med_xbow_skill` -> deleted
+- `scripts/skills/actives/legend_spawn_zombie_high_xbow_skill` -> deleted
+- `scripts/skills/actives/legend_unleash_catapult_skill` -> deleted
+- `scripts/skills/actives/legend_use_catapult_skill` -> deleted
+- `scripts/skills/actives/legend_banshee_scream` -> `scripts/skills/actives/legend_banshee_scream_skill`
+- `scripts/skills/actives/legend_command_legion_skill` -> `scripts/skills/actives/legend_command_legionary_skill`
+- `scripts/skills/actives/legend_deathtouch_skill` -> `scripts/skills/actives/legend_death_touch_skill`
+- `scripts/skills/actives/legend_haftstrike` -> `scripts/skills/actives/legend_haftstrike_skill`
+- `scripts/skills/actives/legend_holyflame_skill` -> `scripts/skills/actives/legend_holy_flame_skill`
+- `scripts/skills/actives/legend_intensely_charm_skill` -> `scripts/skills/actives/legend_infatuate_skill`
+- `scripts/skills/actives/legend_possession_skill` -> `scripts/skills/actives/legend_possess_undead_skill`
+- `scripts/skills/actives/legend_prayer_of_life_skill` -> `scripts/skills/actives/legend_prayer_of_hope_skill`
+- `scripts/skills/actives/legend_unleash_cat_skill` -> `scripts/skills/actives/legend_summon_familiar_skill`
 - many of the gfx files used in the mod had their names normalized so they follow the naming scheme of consts

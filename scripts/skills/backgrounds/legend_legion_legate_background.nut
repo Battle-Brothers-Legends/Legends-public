@@ -53,8 +53,8 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 	function onAdded() {
 		this.legend_legion_background.onAdded();
 		this.getContainer().getActor().getFlags().remove("legion_can_command");
-		if (!this.m.Container.hasActive(::Legends.Active.LegendCommandLegion)) {
-			::Legends.Actives.grant(this, ::Legends.Active.LegendCommandLegion);
+		if (!this.m.Container.hasActive(::Legends.Active.LegendCommandLegionary)) {
+			::Legends.Actives.grant(this, ::Legends.Active.LegendCommandLegionary);
 		}
 	}
 

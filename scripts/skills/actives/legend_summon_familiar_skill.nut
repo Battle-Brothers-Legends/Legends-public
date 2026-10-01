@@ -1,4 +1,4 @@
-this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
+this.legend_summon_familiar_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Entity = null,
 		EntityName = "Cleo",
@@ -10,14 +10,13 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 		Sounds4 = ::Legends.S.setSounds("sounds/enemies/cat_attack", 4),
 		Sounds5 = ::Legends.S.setSounds("sounds/enemies/cat_attack", 5)
 	},
-	function setItem( _i )
-	{
+
+	function setItem(_i) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	function create()
-	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCat);
+	function create() {
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSummonFamiliar);
 		this.m.Description = "Summon your cat. Hopefully it won\'t just run away. Needs a free tile adjacent.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/cat_purr", 2);
 		this.m.Type = ::Const.SkillType.Active;
@@ -34,43 +33,35 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function addResources()
-	{
+	function addResources() {
 		this.skill.addResources();
 
-		foreach( r in this.m.Sounds0 )
-		{
+		foreach (r in this.m.Sounds0) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds1 )
-		{
+		foreach (r in this.m.Sounds1) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds2 )
-		{
+		foreach (r in this.m.Sounds2) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds3 )
-		{
+		foreach (r in this.m.Sounds3) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds4 )
-		{
+		foreach (r in this.m.Sounds4) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds5 )
-		{
+		foreach (r in this.m.Sounds5) {
 			::Tactical.addResource(r);
 		}
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -91,22 +82,19 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
-		if (this.m.Entity != null || !this.skill.isUsable())
-		{
+	function isUsable() {
+		if (this.m.Entity != null || !this.skill.isUsable()) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )	{
+	function onVerifyTarget(_originTile, _targetTile) {
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
@@ -116,16 +104,14 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 
 		this.m.Entity = entity;
 		//Cats are nocturnal right!
-		if (!::World.getTime().IsDaytime)
-		{
+		if (!::World.getTime().IsDaytime) {
 			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}
 
 		return true;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.m.Entity = null;
 	}
 

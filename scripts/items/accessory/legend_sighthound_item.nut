@@ -34,9 +34,9 @@ this.legend_sighthound_item <- this.inherit("scripts/items/accessory/legend_acce
 			_skill.setItem(this);
 			_skill.m.Name = "Unleash Sighthound";
 			_skill.m.Description = "Unleash your sighthound and send him charging into the enemy. Needs a free tile adjacent.";
-			_skill.m.Icon = "skills/unleash_dawg.png";
-			_skill.m.IconDisabled = "skills/unleash_dawg_sw.png";
-			_skill.m.Overlay = "unleash_dawg";
+			_skill.m.Icon = "skills/legend_unleash_sighthound.png";
+			_skill.m.IconDisabled = "skills/legend_unleash_sighthound_bw.png";
+			_skill.m.Overlay = "legend_unleash_sighthound";
 			this.m.Skill = this.WeakTableRef(_skill);
 		}.bindenv(this));
 	}

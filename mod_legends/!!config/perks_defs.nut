@@ -394,7 +394,7 @@ local perkDefObjects = {
 	LegendComposure = {},
 	LegendCoordinatedVolleys = {},
 	LegendDarkflight = {},
-	LegendDeathtouch = {},
+	LegendDeathTouch = {},
 	LegendDedication = {},
 	LegendDeflection = {},
 	LegendDogHandling = {},
@@ -536,7 +536,7 @@ local perkDefObjects = {
 		IconDisabled = "ui/perks/possession_circle_56_bw.png"
 	},
 	LegendPrayerOfFaith = {},
-	LegendPrayerOfLife = {},
+	LegendPrayerOfHope = {},
 	LegendPrepared = {},
 	LegendPromisedPotential = {},
 	LegendPugilist = {},

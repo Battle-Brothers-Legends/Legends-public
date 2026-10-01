@@ -1,7 +1,7 @@
 this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPuppetMaster);
 		this.m.BackgroundDescription = "Puppet masters are warlocks in training. While they do not understand the raising or preservation of the dead, they do excel at controlling them.";
@@ -27,15 +27,12 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 			::Const.Attributes.Bravery
 		];
 		this.m.Ethnicity = ::Math.rand(1, 2); //is southern
-		if (this.m.Ethnicity == 1)
-		{
+		if (this.m.Ethnicity == 1) {
 			this.m.Bodies = ::Const.Bodies.SouthernMuscular;
 			this.m.Faces = ::Const.Faces.SouthernMale;
 			this.m.Hairs = ::Const.Hair.SouthernMale;
 			this.m.HairColors = ::Const.HairColors.Southern;
-		}
-		else
-		{
+		} else {
 			this.m.Bodies = ::Const.Bodies.AfricanMale;
 			this.m.Faces = ::Const.Faces.AfricanMale;
 			this.m.Hairs = ::Const.Hair.SouthernMale;
@@ -108,7 +105,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 				::Legends.Perk.BattleFlow,
 				::Legends.Perk.LegendMiasma,
 				::Legends.Perk.LegendInTheZone,
-				::Legends.Perk.LegendDeathtouch
+				::Legends.Perk.LegendDeathTouch
 			],
 			[],
 			[],
@@ -117,19 +114,15 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 		];
 	}
 
-	function onBuildDescription()
-	{
-		return "{Chronically lazy, %name% was the son of a noble that had little interest in fencing, archery or diplomacy. They instead perferred to watch people move around like little ants from up high and command them as if they were the gilder themselves. | When a political rival ousted their father from power, %name% was forced into exile. | %name% was born a titan of a baby, already outmatching his siblings in strength and size. His natural gifts were never put to much use however. | %name% never had much disipline as a child, they would frequently cause mischief around their father\'s' estate. They discovered their dark gifts on accident while poking a living corpse trapped in the arches of the watermill, and the rest just fell into place. | %name% never understood why everyone was running around and so angry all the time. To them life is about relaxation and enjoying things, even if that involves having a small army of shuffling corpses to bring you drinks and clear the weeds from the herb garden. | %name% discovered their gifts early into their development. At first it was an accident involving a stray dog, but that experience quickly grew into an art form for %name% until they were exiled for their interests. | %name% was a child without a purpose. Born into nobility they spent their days as a child crushing ants and poking dead animals in the courtyard. Nothing interested %name% until they met an old man performing macabre tricks for the royal court...} {%name% always considered the old master to be their true father. With the death of the master the lowly pupil feels like a dark light has been extinguished from the world. Is it truely worth going on anymore?}";
+	function onBuildDescription() {
+		return "{Chronically lazy, %name% was the son of a noble that had little interest in fencing, archery or diplomacy. They instead preferred to watch people move around like little ants from up high and command them as if they were the gilder themselves. | When a political rival ousted their father from power, %name% was forced into exile. | %name% was born a titan of a baby, already outmatching his siblings in strength and size. His natural gifts were never put to much use however. | %name% never had much discipline as a child, they would frequently cause mischief around their father\'s' estate. They discovered their dark gifts on accident while poking a living corpse trapped in the arches of the watermill, and the rest just fell into place. | %name% never understood why everyone was running around and so angry all the time. To them life is about relaxation and enjoying things, even if that involves having a small army of shuffling corpses to bring you drinks and clear the weeds from the herb garden. | %name% discovered their gifts early into their development. At first it was an accident involving a stray dog, but that experience quickly grew into an art form for %name% until they were exiled for their interests. | %name% was a child without a purpose. Born into nobility they spent their days as a child crushing ants and poking dead animals in the courtyard. Nothing interested %name% until they met an old man performing macabre tricks for the royal court...} {%name% always considered the old master to be their true father. With the death of the master the lowly pupil feels like a dark light has been extinguished from the world. Is it truly worth going on anymore?}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPuppetMaster);
 	}
 
-
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.MeleeSkill] = 1;

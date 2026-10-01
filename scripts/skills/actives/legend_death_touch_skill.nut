@@ -1,4 +1,4 @@
-this.legend_deathtouch_skill <- this.inherit("scripts/skills/legend_magic_skill", {
+this.legend_death_touch_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 	m = {},
 
 	function create() {
@@ -6,7 +6,7 @@ this.legend_deathtouch_skill <- this.inherit("scripts/skills/legend_magic_skill"
 		this.m.AdditionalAccuracy = 10;
 		this.m.DamageInitiativeMin = 15;
 		this.m.DamageInitiativeMax = 35;
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDeathtouch);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDeathTouch);
 		this.m.Description = "Your fingers turn ghostly and pass through steel and flesh, tearing at the soul of your victim. Uses Melee Skill to hit.";
 		this.m.KilledString = "Frightened to death";
 		this.m.SoundOnUse = ["sounds/enemies/ghastly_touch_01.wav"];

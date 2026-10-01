@@ -43,54 +43,54 @@
 	<sprite id="patient_hunter_mini" offsetY="35" ic="FF374B50" img="skills/mini/patient_hunter_mini.png" />
 	<sprite id="legend_halberd_impale" ic="FF23165B" img="skills\legend_halberd_impale.png" />
 	<sprite id="legend_halberd_smite" ic="FF23165B" img="skills\legend_halberd_smite.png" />
-	<sprite id="cat_bite" ic="FF23165B" img="skills\cat_bite.png" />
-	<sprite id="stone_aim_square" ic="FF23165B" img="skills\stone_aim_square.png" />
-	<sprite id="stone_square" ic="FF23165B" img="skills\stone_square.png" />
-	<sprite id="coordinated_volleys_square" ic="FF23165B" img="skills\coordinated_volleys_square.png" />
+	<sprite id="legend_cat_bite" ic="FF23165B" img="skills\legend_cat_bite.png" />
+	<sprite id="legend_shoot_precise_stone" ic="FF23165B" img="skills\legend_shoot_precise_stone.png" />
+	<sprite id="legend_shoot_stone" ic="FF23165B" img="skills\legend_shoot_stone.png" />
+	<sprite id="legend_coordinated_volleys" ic="FF23165B" img="skills\legend_coordinated_volleys.png" />
 	<sprite id="mini_coordinated_volleys_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_coordinated_volleys_circle.png" />
 	<sprite id="mini_mark_target" offsetY="35" ic="FF344955" img="skills\mini\mini_mark_target.png" />
 	<sprite id="mini_meek" offsetY="35" ic="FF344955" img="skills\mini\mini_meek.png" />
 	<sprite id="mini_big_game_hunter" offsetY="35" ic="FF344955" img="skills\mini\mini_big_game_hunter.png" />
 	<sprite id="status_daze56_circle" ic="FF23165B" img="skills\status_daze56_circle.png" />
-	<sprite id="daze_square" ic="FF23165B" img="skills\daze_square.png" />
+	<sprite id="legend_stupefy" ic="FF23165B" img="skills\legend_stupefy.png" />
 	<sprite id="mini_daze56_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_daze56_circle.png" />
-	<sprite id="deathtouch_square" ic="FF23165B" img="skills\deathtouch_square.png" />
+	<sprite id="legend_death_touch" ic="FF23165B" img="skills\legend_death_touch.png" />
 	<sprite id="blooddrop_square" ic="FF23165B" img="skills\blooddrop_square.png" />
 	<sprite id="legend_draining_touch" ic="FF23165B" img="skills\legend_draining_touch.png" />
 	<sprite id="en_garde_square" ic="2D6CB955" img="skills\en_garde_square.png" />
 	<sprite id="en_garde_circle" ic="2D6CB955" img="skills\en_garde_circle.png" />
 	<sprite id="mini_en_garde_circle" offsetY="35" ic="2D6CB955" img="skills\mini\mini_en_garde_circle.png" />
 	<sprite id="enthrall" ic="FF23165B" img="skills\enthrall.png" />
-	<sprite id="entice" ic="FF23165B" img="skills\entice.png" />
-	<sprite id="evasion" ic="FF23165B" img="skills\evasion.png" />
-	<sprite id="horse_kick" ic="FF23165B" img="skills\horse_kick.png" />
-	<sprite id="scry" ic="FF23165B" img="skills\scry.png" />
+	<sprite id="legend_entice" ic="FF23165B" img="skills\legend_entice.png" />
+	<sprite id="legend_evasion" ic="FF23165B" img="skills\legend_evasion.png" />
+	<sprite id="legend_donkey_kick" ic="FF23165B" img="skills\legend_donkey_kick.png" />
+	<sprite id="legend_scry" ic="FF23165B" img="skills\legend_scry.png" />
 	<sprite id="teleport" ic="FF23165B" img="skills\teleport.png" />
 	<sprite id="mini_steel_brow" offsetY="35" ic="FF344955" img="skills\mini\mini_steel_brow.png" />
-	<sprite id="mark_target" ic="FF23165B" img="skills\MarkTarget.png" />
+	<sprite id="legend_mark_target" ic="FF23165B" img="skills\legend_mark_target.png" />
 	<sprite id="mini_choke" offsetY="35" ic="FF344955" img="skills\mini\mini_choke.png" />
 	<sprite id="mini_grapple" offsetY="35" ic="FF344955" img="skills\mini\mini_grapple.png" />
 	<sprite id="mini_tackle" offsetY="35" ic="FF344955" img="skills\mini\mini_tackle.png" />
-	<sprite id="piercing_bolt" ic="FF23165B" img="skills\PiercingBolt.png" />
+	<sprite id="legend_piercing_bolt" ic="FF23165B" img="skills\legend_piercing_bolt.png" />
 	<sprite id="guided_steps_square" ic="FF23165B" img="skills\guided_steps_square.png" />
 	<sprite id="mini_guided_steps_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_guided_steps_circle.png" />
-	<sprite id="holdtheline_square" ic="FF23165B" img="skills\holdtheline_square.png" />
+	<sprite id="legend_hold_the_line" ic="FF23165B" img="skills\legend_hold_the_line.png" />
 	<sprite id="status_holdtheline_circle" ic="FF23165B" img="skills\status_holdtheline_circle.png" />
 	<sprite id="mini_holdtheline_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_holdtheline_circle.png" />
-	<sprite id="missile_square" ic="FF23165B" img="skills\missile_square.png" />
-	<sprite id="miasma_square" ic="FF23165B" img="skills\miasma_square.png" />
-	<sprite id="nightvision_square" ic="FF23165B" img="skills\nightvision_square.png" />
-	<sprite id="spears_square" ic="FF23165B" img="skills\spears_square.png" />
+	<sprite id="legend_magic_missile" ic="FF23165B" img="skills\legend_magic_missile.png" />
+	<sprite id="legend_miasma" ic="FF23165B" img="skills\legend_miasma.png" />
+	<sprite id="legend_nightvision" ic="FF23165B" img="skills\legend_nightvision.png" />
+	<sprite id="legend_push_forward" ic="FF23165B" img="skills\legend_push_forward.png" />
 	<sprite id="status_spears_circle" ic="FF23165B" img="skills\status_spears_circle.png" />
 	<sprite id="status_effect_doublestrike" ic="FF23165B" img="skills\status_effect_doublestrike.png" />
 	<sprite id="mini_doublestrike_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_doublestrike_circle.png" />
 	<sprite id="status_perfectfocus_circle" ic="FF23165B" img="skills\status_perfectfocus_circle.png" />
 	<sprite id="mini_perfectfocus_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_perfectfocus_circle.png" />
 	<sprite id="mini_spears_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_spears_circle.png" />
-	<sprite id="revolt_square" ic="FF23165B" img="skills\revolt_square.png" />
+	<sprite id="legend_revolt" ic="FF23165B" img="skills\legend_revolt.png" />
 	<sprite id="relax_square" ic="FF23165B" img="skills\relax_square.png" />
 	<sprite id="rebuild_skeleton" ic="FF23165B" img="skills\rebuild_skeleton.png" />
-	<sprite id="rust" ic="FF23165B" img="skills\rust56.png" />
+	<sprite id="legend_rust" ic="FF23165B" img="skills\legend_rust.png" />
 	<sprite id="skeleton_archer_01_square" ic="FF23165B" img="skills\skeleton_archer_01_square.png" />
 	<sprite id="skeleton_archer_02_square" ic="FF23165B" img="skills\skeleton_archer_02_square.png" />
 	<sprite id="skeleton_archer_03_square" ic="FF23165B" img="skills\skeleton_archer_03_square.png" />
@@ -102,28 +102,28 @@
 	<sprite id="zombie_archer_01_square" ic="FF23165B" img="skills\zombie_archer_01_square.png" />
 	<sprite id="zombie_archer_02_square" ic="FF23165B" img="skills\zombie_archer_02_square.png" />
 	<sprite id="zombie_archer_03_square" ic="FF23165B" img="skills\zombie_archer_03_square.png" />
-	<sprite id="stun56" ic="FF23165B" img="skills\stun56.png" />
-	<sprite id="cat_square" ic="FF23165B" img="skills\cat_square.png" />
-	<sprite id="violent_decomposition" ic="FF23165B" img="skills\violent_decomposition.png" />
+	<sprite id="legend_paralyze" ic="FF23165B" img="skills\legend_paralyze.png" />
+	<sprite id="legend_summon_familiar" ic="FF23165B" img="skills\legend_summon_familiar.png" />
+	<sprite id="legend_violent_decomposition" ic="FF23165B" img="skills\legend_violent_decomposition.png" />
 	<sprite id="wither" ic="FF23165B" img="skills\wither56_skill.png" />
 	<sprite id="blood_potion_circle" ic="FF23165B" img="skills\blood_potion_circle.png" />
 	<sprite id="legend_compromised_armor" ic="FF23165B" img="skills\legend_compromised_armor.png" />
 	<sprite id="ichor_potion_circle" ic="FF23165B" img="skills\ichor_potion_circle.png" />
 	<sprite id="drums_of_life_circle" ic="FF23165B" img="skills\drums_of_life_circle.png" />
-	<sprite id="drums_of_life_square" ic="FF23165B" img="skills\drums_of_life_square.png" />
-	<sprite id="drums_of_war_square" ic="FF23165B" img="skills\drums_of_war_square.png" />
+	<sprite id="legend_song_of_life" ic="FF23165B" img="skills\legend_song_of_life.png" />
+	<sprite id="legend_war_chant" ic="FF23165B" img="skills\legend_war_chant.png" />
 	<sprite id="drums_of_war_circle" ic="FF23165B" img="skills\drums_of_war_circle.png" />
-	<sprite id="martial_march_square" ic="FF23165B" img="skills\martial_march_square.png" />
+	<sprite id="legend_martial_march" ic="FF23165B" img="skills\legend_martial_march.png" />
 	<sprite id="martial_march_circle" ic="FF23165B" img="skills\martial_march_circle.png" />
-	<sprite id="active_climb" ic="FF23165B" img="skills\active_climb.png" />
+	<sprite id="legend_climb" ic="FF23165B" img="skills\legend_climb.png" />
 	<sprite id="prayer_purple" ic="FF23165B" img="skills\prayer_purple.png" />
 	<sprite id="prayer_green" ic="FF23165B" img="skills\prayer_green.png" />
 	<sprite id="prayer_blue" ic="FF23165B" img="skills\prayer_green.png" />
 	<sprite id="alcohol" ic="FF23165B" img="skills\alcohol.png" />
 	<sprite id="graze" ic="FF23165B" img="skills\graze.png" />
-	<sprite id="bleed" ic="FF23165B" img="skills\bleed.png" />
-	<sprite id="horse_charge" ic="FF23165B" img="skills\horse_charge.png" />
-	<sprite id="horse_pirouette" ic="FF23165B" img="skills\horse_pirouette.png" />
+	<sprite id="legend_flogging" ic="FF23165B" img="skills\legend_flogging.png" />
+	<sprite id="legend_horse_charge" ic="FF23165B" img="skills\legend_horse_charge.png" />
+	<sprite id="legend_horse_pirouette" ic="FF23165B" img="skills\legend_horse_pirouette.png" />
 	<sprite id="dog_circle" ic="FF23165B" img="skills\dog_circle.png" />
 	<sprite id="wolf_circle" ic="FF23165B" img="skills\wolf_circle.png" />
 	<sprite id="falcon_circle" ic="FF23165B" img="skills\falcon_circle.png" />
@@ -131,9 +131,9 @@
 	<sprite id="catapult_circle" ic="FF23165B" img="skills\catapult_circle.png" />
 	<sprite id="food_circle" ic="FF23165B" img="skills\food_circle.png" />
 	<sprite id="baffled_circle" ic="FF23165B" img="skills\baffled_circle.png" />
-	<sprite id="fire_circle" ic="FF23165B" img="skills\fire_circle.png" />
+	<sprite id="legend_firefield" ic="FF23165B" img="skills\legend_firefield.png" />
 	<sprite id="bluefire_circle" ic="FF23165B" img="skills\bluefire_circle.png" />
-	<sprite id="incoming_circle" ic="FF23165B" img="skills\incoming_circle.png" />
+	<sprite id="legend_incoming" ic="FF23165B" img="skills\legend_incoming.png" />
 	<sprite id="throw_sand" ic="FF23165B" img="skills\throw_sand_01.png" />
 	<sprite id="boneplating_effect" ic="FF23165B" img="skills\boneplating_effect.png" />
 	<sprite id="trait_invictus" ic="FF23165B" img="skills\trait_invictus.png" />
@@ -152,7 +152,7 @@
 	<sprite id="mini_catapult_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_catapult_circle.png" />
 	<sprite id="mini_incoming_circle" ic="FF23165B" img="skills\mini\mini_incoming_circle.png" />
 	<sprite id="mini_omens_circle" ic="FF23165B" img="skills\mini\mini_omens_circle.png" />
-	<sprite id="demon_hound_bite" ic="FF23165B" img="skills\demon_hound_bite.png" />
+	<sprite id="legend_demon_hound_bite" ic="FF23165B" img="skills\legend_demon_hound_bite.png" />
 	<sprite id="demon_hound_bite_effect" ic="FF23165B" img="effects\demon_hound_bite_effect.png" />
 	<sprite id="mini_graze_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_graze_circle.png" />
 	<sprite id="mini_bleed_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_bleed_circle.png" />
@@ -171,69 +171,73 @@
 	<sprite id="mini_icon_mummy_curse" offsetY="35" ic="FF344955" img="skills\mini\mini_icon_mummy_curse.png" />
 	<sprite id="active_pass" ic="FF2B206C" img="skills\pass.png" />
 	<sprite id="status_helpful" ic="FF3D536F" img="skills\helpful.png" />
-	<sprite id="active_kick" ic="FF2B206C" img="skills\kick_square.png" />
-	<sprite id="active_choke" ic="FF2B206C" img="skills\choke_square.png" />
-	<sprite id="active_grapple" ic="FF2B206C" img="skills\grapple_square.png" />
+	<sprite id="legend_kick" ic="FF2B206C" img="skills\legend_kick.png" />
+	<sprite id="legend_choke" ic="FF2B206C" img="skills\legend_choke.png" />
+	<sprite id="legend_grapple" ic="FF2B206C" img="skills\legend_grapple.png" />
 	<sprite id="mini_vengeance" ic ="322E2DFF" img="skills\mini\mini_vengeance.png" />
-	<sprite id="basilisk_peck" ic="60312BFF" img="skills\basilisk_peck.png" />
+	<sprite id="legend_basilisk_peck" ic="60312BFF" img="skills\legend_basilisk_peck.png" />
 	<sprite id="mini_second_wind" ic="4D3315FF" img="skills\mini\mini_second_wind.png" />
 	<sprite id="choke_circle" ic="724543FF" img="skills\choke_circle.png" />
 	<sprite id="grapple_circle" ic="5E3f37FF" img="skills\grapple_circle.png" />
 	<sprite id="tackle_circle" ic="3E2929FF" img="skills\tackle_circle.png" />
-	<sprite id="holybluefire_square" ic="2E343FFF" img="skills\holybluefire_square.png" />
+	<sprite id="legend_holy_flame" ic="2E343FFF" img="skills\legend_holy_flame.png" />
 	<sprite id="placeholder_circle" ic="2E343FFF" img="skills\placeholder_circle.png" />
 	<sprite id="mini_placeholder_circle" ic="2E343FFF" img="skills\mini\mini_placeholder_circle.png" />
-	<sprite id="lightning_square" ic="2E343FFF" img="skills\lightning_square.png" />
+	<sprite id="legend_chain_lightning" ic="2E343FFF" img="skills\legend_chain_lightning.png" />
 	<sprite id="dawg_circle" ic="2E343FFF" img="skills\dawg_circle.png" />
 	<sprite id="mini_dawg_circle" ic="2E343FFF" img="skills\mini\mini_dawg_circle.png" />
-	<sprite id="unleash_dawg" ic="2E343FFF" img="skills\unleash_dawg.png" />
+	<sprite id="legend_unleash_sighthound" ic="2E343FFF" img="skills\legend_unleash_sighthound.png" />
 	<sprite id="mini_unleash_dawg" ic="2E343FFF" img="skills\mini\mini_unleash_dawg.png" />
-	<sprite id="dawg_bite" ic="2E343FFF" img="skills\dawg_bite.png" />
+	<sprite id="legend_sighthound_bite" ic="2E343FFF" img="skills\legend_sighthound_bite.png" />
 	<sprite id="mini_dawg_bite" ic="2E343FFF" img="skills\mini\mini_dawg_bite.png" />
-	<sprite id="legend_legion_command_square" ic="FF1B293C" img="skills\legend_legion_command_square.png" />
+	<sprite id="legend_command_legionary" ic="FF1B293C" img="skills\legend_command_legionary.png" />
+	<sprite id="legend_gruesome_feast" ic="FF1B293C" img="skills\legend_gruesome_feast.png" />
 	<sprite id="legend_status_effect_legion_command_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_status_effect_legion_command_mini.png" />
 	<sprite id="skewer_spetum" ic="FF1B293C" img="skills\skewer_spetum.png" />
 	<sprite id="skewer_warfork" ic="FF1B293C" img="skills\skewer_warfork.png" />
 	<sprite id="skewer_general" ic="FF1B293C" img="skills\skewer_general.png" />
-	<sprite id="active_legend_warfork_disarm" ic="FF1B293C" img="skills\active_legend_warfork_disarm.png" />
-	<sprite id="active_legend_heartseeker" ic="FF1B293C" img="skills\active_legend_heartseeker.png" />
-	<sprite id="active_legend_pry_armor_warhammer" ic="FF1B293C" img="skills\legend_active_pry_armor_warhammer.png" />
+	<sprite id="legend_warfork_disarm" ic="FF1B293C" img="skills\legend_warfork_disarm.png" />
+	<sprite id="legend_heartseeker" ic="FF1B293C" img="skills\legend_heartseeker.png" />
+	<sprite id="legend_pry_armor" ic="FF1B293C" img="skills\legend_pry_armor.png" />
 	<sprite id="active_legend_pry_armor_polehammer" ic="FF1B293C" img="skills\legend_active_pry_armor_polehammer.png" />
-	<sprite id="active_throw_knife" ic="FF1B293C" img="skills\active_throw_knife.png" />
+	<sprite id="legend_throw_knife" ic="FF1B293C" img="skills\legend_throw_knife.png" />
 	<sprite id="legend_enraged_hyena_bite_effect" ic="FF1B293C" img="skills\legend_enraged_hyena_bite_effect.png" />
 	<sprite id="legend_enraged_hyena_bite_effect_mini" ic="FF1B293C" img="skills\mini\legend_enraged_hyena_bite_effect_mini.png" />
 	<sprite id="feint" ic="FF1B293C" img="skills\feint.png" />
-	<sprite id="active_halfsword" ic="FF1B293C" img="skills\active_halfsword.png" />
+	<sprite id="legend_halfsword" ic="FF1B293C" img="skills\legend_halfsword.png" />
 	<sprite id="active_mordhau" ic="FF1B293C" img="skills\active_mordhau.png" />
-	<sprite id="active_haftstrike" ic="FF1B293C" img="skills\active_haftstrike.png" />
+	<sprite id="legend_haftstrike" ic="FF1B293C" img="skills\legend_haftstrike.png" />
 	<sprite id="active_ribcracker_woodmace" ic="FF1B293C" img="skills\active_ribcracker_woodmace.png" />
 	<sprite id="active_ribcracker_1hmace" ic="FF1B293C" img="skills\active_ribcracker_1hmace.png" />
 	<sprite id="active_ribcracker_2hmace" ic="FF1B293C" img="skills\active_ribcracker_2hmace.png" />
 	<sprite id="active_ribcracker_bonemace" ic="FF1B293C" img="skills\active_ribcracker_bonemace.png" />
 	<sprite id="active_ribcracker_polemace" ic="FF1B293C" img="skills\active_ribcracker_polemace.png" />
-	<sprite id="active_strafing_run" ic="FF1B293C" img="skills\active_strafing_run.png" />
+	<sprite id="legend_strafing_run" ic="FF1B293C" img="skills\legend_strafing_run.png" />
 	<sprite id="unarmed_lunge_square" ic="FF1B293C" img="skills\unarmed_lunge_square.png" />
 	<sprite id="feint_mini" ic="FF1B293C" img="skills\mini\feint_mini.png" />
 	<sprite id="freedom_of_movement_circle_mini" ic="FF1B293C" img="skills\mini\freedom_of_movement_circle_mini.png" />
 	<sprite id="legend_flourish_effect_mini" ic="FF1B293C" img="skills\mini\legend_flourish_effect_mini.png" />
 	<sprite id="legend_double_swing" ic="FF1B293C" img="skills\legend_double_swing.png" />
-	<sprite id="sentry_inject" ic="FF1B293C" img="skills\sentry_inject.png" />
-	<sprite id="sentry_fowleye" ic="FF1B293C" img="skills\sentry_fowleye.png" />
-	<sprite id="active_legend_coat_with_redback_poison" ic="FF1B293C" img="skills\active_legend_coat_with_redback_poison.png" />
+	<sprite id="legend_basilisk_sentry_inject" ic="FF1B293C" img="skills\legend_basilisk_sentry_inject.png" />
+	<sprite id="legend_basilisk_sentry_fowleye" ic="FF1B293C" img="skills\legend_basilisk_sentry_fowleye.png" />
+	<sprite id="legend_coat_with_redback_poison" ic="FF1B293C" img="skills\legend_coat_with_redback_poison.png" />
 	<sprite id="status_effect_legend_redback_poison_coat_mini" ic="FF1B293C" img="skills\mini\status_effect_legend_redback_poison_coat_mini.png" />
 	<sprite id="cheered_on_square" ic="FF1B293C" img="skills\cheered_on_square.png" />
 	<sprite id="storm_square" ic="FF1B293C" img="skills\storm_square.png" />
 	<sprite id="legend_full_draw" ic="FF1B293C" img="skills\legend_full_draw.png" />
 	<sprite id="legend_volley" ic="FF1B293C" img="skills\legend_volley.png" />
-	<sprite id="flagellate" ic="FF1B293C" img="skills\flagellate.png" />
-	<sprite id="leap" ic="FF1B293C" img="skills\leap.png" />
-	<sprite id="ninetails_disarm" ic="FF1B293C" img="skills\ninetails_disarm.png" />
+	<sprite id="legend_flagellate" ic="FF1B293C" img="skills\legend_flagellate.png" />
+	<sprite id="legend_leap" ic="FF1B293C" img="skills\legend_leap.png" />
+	<sprite id="legend_ninetails_disarm" ic="FF1B293C" img="skills\legend_ninetails_disarm.png" />
 	<sprite id="possession" ic="FF1B293C" img="skills\possession.png" />
 	<sprite id="legend_safeguard" ic="FF1B293C" img="skills\legend_safeguard.png" />
 	<sprite id="staff_bash" ic="FF1B293C" img="skills\staff_bash.png" />
-	<sprite id="rain" ic="FF1B293C" img="skills\rain.png" />
-	<sprite id="tackle" ic="FF1B293C" img="skills\tackle.png" />
-	<sprite id="buckler_bash_square" ic="FF1B293C" img="skills\buckler_bash_square.png" />
+	<sprite id="legend_summon_storm" ic="FF1B293C" img="skills\legend_summon_storm.png" />
+	<sprite id="legend_tackle" ic="FF1B293C" img="skills\legend_tackle.png" />
+	<sprite id="legend_buckler_bash" ic="FF1B293C" img="skills\legend_buckler_bash.png" />
+	<sprite id="legend_oms_amphora" ic="FF1B293C" img="skills\legend_oms_amphora.png" />
+	<sprite id="legend_prayer_of_faith" ic="FF1B293C" img="skills\legend_prayer_of_faith.png" />
+	<sprite id="legend_prayer_of_hope" ic="FF1B293C" img="skills\legend_prayer_of_hope.png" />
 	<!-- Orientation below -->
 
 

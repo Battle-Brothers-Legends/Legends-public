@@ -337,7 +337,7 @@ if (!("Perks" in ::Const)) {
 	Tree = [
 		[::Legends.Perk.LegendWither],
 		[::Legends.Perk.LegendRoots],
-		[::Legends.Perk.LegendPrayerOfLife],
+		[::Legends.Perk.LegendPrayerOfHope],
 		[],
 		[::Legends.Perk.LegendSummonStorm],
 		[],

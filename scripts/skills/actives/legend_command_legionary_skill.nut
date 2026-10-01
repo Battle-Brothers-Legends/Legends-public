@@ -1,8 +1,8 @@
-this.legend_command_legion_skill <- this.inherit("scripts/skills/skill", {
+this.legend_command_legionary_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCommandLegion);
+
+	function create() {
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCommandLegionary);
 		this.m.Description = "Command a fighter of Centurion rank or lower to do your bidding. Targets can only be inspired once per turn. Does not work on Legates.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/inspire", 2); //new sounds would be good
 		this.m.Type = ::Const.SkillType.Active;
@@ -21,8 +21,7 @@ this.legend_command_legion_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 4;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -85,26 +84,27 @@ this.legend_command_legion_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
+		}
 
-		if (_targetTile.getEntity() == null)
+		if (_targetTile.getEntity() == null) {
 			return false;
+		}
 
-		if (!_targetTile.getEntity().getFlags().has("legion_can_command"))
+		if (!_targetTile.getEntity().getFlags().has("legion_can_command")) {
 			return false;
+		}
 
-		if (_targetTile.getEntity().getSkills().hasEffect(::Legends.Effect.LegendCommanded))
+		if (_targetTile.getEntity().getSkills().hasEffect(::Legends.Effect.LegendCommanded)) {
 			return false;
+		}
 
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		::Legends.Effects.grant(target, ::Legends.Effect.LegendCommanded);
 		return true;

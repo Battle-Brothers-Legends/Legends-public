@@ -88,7 +88,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[::Legends.Perk.LegendPrayerOfFaith],
-		[::Legends.Perk.LegendPrayerOfLife],
+		[::Legends.Perk.LegendPrayerOfHope],
 		[::Legends.Perk.LegendHolyFlame]
 	]
 };
