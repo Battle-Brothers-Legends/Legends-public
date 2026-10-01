@@ -233,7 +233,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.SlingTree <- {
 	ID = "SlingTree",
 	Name = "Sling",
-	Icon = "ui/perks/perk_sling_mastery.png",
+	Icon = "ui/perks/legend_mastery_slings.png",
 	Descriptions = [
 		"slings"
 	],
