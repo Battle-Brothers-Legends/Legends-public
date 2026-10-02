@@ -1511,9 +1511,9 @@ local activesDefs = {
 	LegendSummonStorm = {},
 	LegendTackle = {},
 	LegendThrowKnife = {
-		Icon = "skills/active_throw_knife.png",
-		IconDisabled = "skills/active_throw_knife_bw.png",
-		Overlay = "active_throw_knife"
+		Icon = "skills/legend_throw_knife.png",
+		IconDisabled = "skills/legend_throw_knife_bw.png",
+		Overlay = "legend_throw_knife"
 	},
 	LegendThrowBackupAxe = {
 		Icon = "skills/active_87.png",
