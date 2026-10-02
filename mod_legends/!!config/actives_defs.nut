@@ -1404,7 +1404,7 @@ local activesDefs = {
 	LegendPiercingBolt = {},
 	LegendPiercingJavelin = {
 		Icon = "skills/legend_piercing_bolt.png",
-		IconDisabled = "skills/legend_piercing_bolt.png",
+		IconDisabled = "skills/legend_piercing_bolt_bw.png",
 		Overlay = "legend_piercing_bolt"
 	},
 	LegendPossessUndead = {},
