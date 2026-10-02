@@ -1,4 +1,10 @@
 ::mods_hookExactClass("skills/actives/hail_skill", function(o) {
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.BlockBypass = 0.25;
+	}
+
 	o.getTooltip = function() {
 		local ret = this.getDefaultTooltip();
 		ret.extend([{
@@ -8,6 +14,14 @@
 			text = "Will make three separate strikes for one third of the weapon\'s damage each."
 		}]);
 		return ret;
+	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function ( _properties ) {
+		onAfterUpdate(_properties);
+		if (_properties.IsSpecializedInFlails) {
+			this.m.BlockBypass += 0.25;
+		}
 	}
 
 	o.onUse = function (_user, _targetTile) {

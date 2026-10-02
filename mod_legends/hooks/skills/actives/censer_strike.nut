@@ -4,12 +4,14 @@
 		create();
 		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 13;
+		this.m.BlockBypass = 0.25;
 	}
 
 	o.onAfterUpdate = function (_properties) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.BlockBypass += 0.25;
 		}
 	}
 

@@ -94,14 +94,6 @@
 		_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
 		_properties.DamageArmorMult = 0.5;
 		_properties.FatigueDealtPerHitMult += 1.0;
-
-		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash))
-		{
-			_properties.DamageRegularMin = this.getItem().m.RegularDamage;
-			_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
-			_properties.DamageArmorMult = 0.5;
-			_properties.FatigueDealtPerHitMult += 1.0;
-		}
 	}
 
 	o.onTargetHit <- function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor)

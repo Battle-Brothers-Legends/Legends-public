@@ -2,6 +2,12 @@
 	o.m.IsChain <- false;
 	o.m.IsRanged <- false;
 
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.BlockBypass = 0.25;
+	}
+
 	o.setItem <- function (_item) {
 		if (this.m.IsRanged) {
 			this.m.Description = "Flailing at an opponent over some distance. Somewhat unpredictable in damage, but able to strike over or around shield cover.";
@@ -56,11 +62,13 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.m.IsRanged) {
-			this.m.ActionPointCost -= 1;
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			if (this.m.IsRanged) {
+				this.m.ActionPointCost -= 1;
+			}
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.BlockBypass += 0.25;
 		}
-		this.m.FatigueCostMult = _properties.IsSpecializedInFlails ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {	

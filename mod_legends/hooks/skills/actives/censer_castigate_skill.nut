@@ -1,4 +1,10 @@
 ::mods_hookExactClass("skills/actives/censer_castigate_skill", function (o) {
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.BlockBypass = 0.25;
+	}
+
 	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
 		ret.push({
@@ -36,6 +42,7 @@
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.BlockBypass += 0.25;
 		}
 	}
 
