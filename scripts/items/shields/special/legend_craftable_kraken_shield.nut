@@ -17,7 +17,7 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 		this.m.StaminaModifier = -15;
 		this.m.Condition = 65;
 		this.m.ConditionMax = 65;
-		this.m.Block = 20;
+		this.m.Block = 10;
 		this.m.RegularDamage = 20;
 		this.m.RegularDamage = 40;
 		this.randomizeValues();
@@ -29,7 +29,7 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 		this.m.StaminaModifier = -15;
 		this.m.Condition = 65;
 		this.m.ConditionMax = 65;
-		this.m.Block = 20;
+		this.m.Block = 10;
 		this.m.RegularDamage = 20;
 		this.m.RegularDamage = 40;
 	}

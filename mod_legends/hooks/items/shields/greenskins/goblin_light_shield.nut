@@ -10,7 +10,7 @@
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.MeleeDefense = 4;
 		this.m.RangedDefense = 8;
-		this.m.Block = 8;
+		this.m.Block = 4;
 		this.m.RegularDamage = 5;
 		this.m.RegularDamage = 10;
 		this.m.Condition = 14;

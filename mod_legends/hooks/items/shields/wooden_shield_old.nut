@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Block = 20;
+		this.m.Block = 10;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 	}

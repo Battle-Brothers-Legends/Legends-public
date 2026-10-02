@@ -126,7 +126,8 @@
 	local onUpdateProperties = o.onUpdateProperties;
 	o.onUpdateProperties = function (_properties) {
 		onUpdateProperties(_properties);
-		_properties.Block = this.getBlock();
+		local mult = this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields ? 2 : 1;
+		_properties.Block = this.getBlock() * mult;
 	}
 
 	o.onDeserialize = function ( _in ) {

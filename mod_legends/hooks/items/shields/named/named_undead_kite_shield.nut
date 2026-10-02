@@ -11,7 +11,7 @@
 		this.m.Condition = 40;
 		this.m.ConditionMax = 40;
 		this.m.StaminaModifier = -13;
-		this.m.Block = 20;
+		this.m.Block = 10;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 		this.named_shield.randomizeValues();

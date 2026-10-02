@@ -21,7 +21,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Value = 200;
 		this.m.MeleeDefense = 8;
 		this.m.RangedDefense = 8;
-		this.m.Block = 12;
+		this.m.Block = 6;
 		this.m.RegularDamage = 5;
 		this.m.RegularDamage = 10;
 		this.m.StaminaModifier = -6;

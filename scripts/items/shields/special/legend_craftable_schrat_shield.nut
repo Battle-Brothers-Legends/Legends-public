@@ -19,7 +19,7 @@ this.legend_craftable_schrat_shield <- this.inherit("scripts/items/shields/named
 		this.m.StaminaModifier = -8;
 		this.m.Condition = 48;
 		this.m.ConditionMax = 48;
-		this.m.Block = 25;
+		this.m.Block = 13;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 		this.randomizeValues();
@@ -31,7 +31,7 @@ this.legend_craftable_schrat_shield <- this.inherit("scripts/items/shields/named
 		this.m.StaminaModifier = -8;
 		this.m.Condition = 48;
 		this.m.ConditionMax = 48;
-		this.m.Block = 25;
+		this.m.Block = 13;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 	}

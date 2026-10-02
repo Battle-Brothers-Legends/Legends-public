@@ -62,7 +62,7 @@
 			this.m.Variants.push(37);
 		if (::Const.DLC.DesertSupporter)
 			this.m.Variants.push(42);
-		this.m.Block = 20;
+		this.m.Block = 10;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 		this.addVariants();

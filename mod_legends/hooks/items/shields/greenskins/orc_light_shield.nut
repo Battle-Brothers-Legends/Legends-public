@@ -5,7 +5,7 @@
 		this.m.Value = 100;
 		this.m.Condition = 24;
 		this.m.ConditionMax = 24;
-		this.m.Block = 15;
+		this.m.Block = 8;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 	}

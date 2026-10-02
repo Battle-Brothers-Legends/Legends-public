@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Block = 50;
+		this.m.Block = 25;
 		this.m.RegularDamage = 15;
 		this.m.RegularDamage = 30;
 		this.m.IsIndestructible = true;

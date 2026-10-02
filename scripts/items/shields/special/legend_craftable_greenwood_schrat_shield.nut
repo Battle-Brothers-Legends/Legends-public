@@ -23,7 +23,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 		this.m.StaminaModifier = -10;
 		this.m.Condition = 72;
 		this.m.ConditionMax = 72;
-		this.m.Block = 25;
+		this.m.Block = 13;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 	}

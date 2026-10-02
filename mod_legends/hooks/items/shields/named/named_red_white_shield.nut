@@ -6,7 +6,7 @@
 		this.m.StaminaModifier = -20;
 		this.m.Condition = 96;
 		this.m.ConditionMax = 96;
-		this.m.Block = 30;
+		this.m.Block = 15;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 		this.m.Value = 1400;

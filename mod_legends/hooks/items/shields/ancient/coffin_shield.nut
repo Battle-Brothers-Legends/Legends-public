@@ -14,7 +14,7 @@
 		this.m.RangedDefense = 20;
 		this.m.Condition = 36;
 		this.m.ConditionMax = 36;
-		this.m.Block = 25;
+		this.m.Block = 13;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 	}

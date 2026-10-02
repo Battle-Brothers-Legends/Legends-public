@@ -6,7 +6,7 @@
 		create();
 		this.m.Description += " Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
 		this.m.MeleeDefense = 5;
-		this.m.Block = 10;
+		this.m.Block = 5;
 		this.m.RegularDamage = 5;
 		this.m.RegularDamage = 10;
 	}

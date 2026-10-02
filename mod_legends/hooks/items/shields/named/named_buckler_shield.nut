@@ -7,7 +7,7 @@
 		this.m.Description += " Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
 		this.m.Variants = [1];
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
-		this.m.Block = 10;
+		this.m.Block = 5;
 		this.m.RegularDamage = 5;
 		this.m.RegularDamage = 10;
 		this.updateVariant();
@@ -15,7 +15,7 @@
 
 	o.randomizeValues <- function ()
 	{
-		this.m.Block = 10;
+		this.m.Block = 5;
 		this.m.RegularDamage = 5;
 		this.m.RegularDamage = 10;
 		this.named_shield.randomizeValues();

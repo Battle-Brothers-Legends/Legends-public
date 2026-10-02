@@ -4,7 +4,7 @@
 		create();
 		this.m.Condition = 100;
 		this.m.ConditionMax = 100;
-		this.m.Block = 30;
+		this.m.Block = 15;
 		this.m.RegularDamage = 15;
 		this.m.RegularDamage = 30;
 	}

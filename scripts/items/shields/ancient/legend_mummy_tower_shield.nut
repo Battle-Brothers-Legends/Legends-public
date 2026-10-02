@@ -22,7 +22,7 @@ this.legend_mummy_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.StaminaModifier = -20;
 		this.m.Condition = 52;
 		this.m.ConditionMax = 52;
-		this.m.Block = 25;
+		this.m.Block = 13;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 	}

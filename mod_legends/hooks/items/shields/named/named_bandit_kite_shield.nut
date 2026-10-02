@@ -7,7 +7,7 @@
 		this.updateVariant();
 		this.m.Condition = 60;
 		this.m.ConditionMax = 60;
-		this.m.Block = 20;
+		this.m.Block = 10;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 		this.named_shield.randomizeValues();

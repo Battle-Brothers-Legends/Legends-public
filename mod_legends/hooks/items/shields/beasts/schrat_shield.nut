@@ -4,6 +4,7 @@
 	{
 		create();
 		this.m.Description = "The hardened bark from a schrat";
+		this.m.Block = 10;
 	}
 
 	// o.updateVariant = function ()
