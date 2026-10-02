@@ -10,7 +10,7 @@ if (!("Active" in ::Legends)) {
 	::Legends.Active[_def.Const] <- null;
 	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
 	if (!("ID" in _def)) {
-		_def.ID <- "perk." + snakeCase;
+		_def.ID <- "actives." + snakeCase;
 	}
 
 	if (!("Script" in _def)) {
