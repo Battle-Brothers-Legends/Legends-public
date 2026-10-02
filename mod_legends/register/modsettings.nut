@@ -79,6 +79,7 @@ tooltip.addElement(::MSU.Class.BooleanSetting("ShowExpandedArmorLayerTooltip", t
 tooltip.addElement(::MSU.Class.BooleanSetting("ShowItemTradeHistory", true, "Show Item Trade History", "Show the trade history of items, such as where they were produced or imported from.\n\nHas no effect if World Economy is disabled"));
 tooltip.addDivider("TooltipDivider2");
 tooltip.addTitle("TooltipCharacter", "Tooltips - Character");
+tooltip.addElement(::MSU.Class.BooleanSetting("ShowFatalityChance", true, "Show fatality on skill tooltip", "Shows the fatality chance for each skill when hovering.\n\nUseful to understand if you can Decapitate or Smash an enemy's head to in example prevent resurrection."));
 tooltip.addElement(::MSU.Class.BooleanSetting("ShowCharacterBackgroundType", true, "Show Character Background Types", "Show a character's Background Types in Tooltips.\n\nUseful when playing Origins with additional gameplay mechanics based on Background Types"));
 tooltip.addDivider("TooltipDivider3");
 tooltip.addTitle("TooltipWorldMap", "Tooltips - World Map");
