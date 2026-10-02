@@ -202,6 +202,7 @@
 ::Const.CharacterProperties.IsSpecializedInStaffStun <- false;
 ::Const.CharacterProperties.IsSpecializedInSummons <- false;
 ::Const.CharacterProperties.Block <- 0;
+::Const.CharacterProperties.BlockMult <- 1.0;
 ::Const.CharacterProperties.RerollAttackChance <- 0;
 ::Const.CharacterProperties.DamageInitiativeMin <- 0;
 ::Const.CharacterProperties.DamageInitiativeMax <- 0;
@@ -257,4 +258,8 @@
 
 ::Const.CharacterProperties.getInitiativeMaxDamage <- function () {
 	return this.DamageInitiativeMax + ::Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);
+};
+
+::Const.CharacterProperties.getBlock <- function () {
+	return this.Math.floor(this.Math.max(0, this.Block) * this.BlockMult);
 };

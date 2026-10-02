@@ -14,7 +14,7 @@
 	o.m.IsOffhandFlipped <- false;
 
 	o.getBlock <- function() {
-		return this.getCurrentProperties().Block;
+		return this.getCurrentProperties().getBlock();
 	}
 
 	o.getGender <- function() {
