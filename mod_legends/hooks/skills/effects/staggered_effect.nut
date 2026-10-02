@@ -1,9 +1,15 @@
 ::mods_hookExactClass("skills/effects/staggered_effect", function (o) {
 
 	local create = o.create;
-	o.create = function () {
+	o.create = function() {
 		create();
 		::Legends.Effects.onCreate(this, ::Legends.Effect.Staggered);
+	}
+
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function (_properties) {
+		onUpdate(_properties);
+		_properties.BlockMult *= 0.5;
 	}
 
 	local onAdded = o.onAdded;
