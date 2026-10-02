@@ -42,7 +42,8 @@
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight),
-			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot)
 		];
 		this.m.ExcludedTalents = [
 			::Const.Attributes.RangedSkill,

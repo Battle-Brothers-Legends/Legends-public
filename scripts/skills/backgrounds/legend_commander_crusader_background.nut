@@ -36,7 +36,8 @@ this.legend_commander_crusader_background <- this.inherit("scripts/skills/backgr
 			::Legends.Traits.getID(::Legends.Trait.LegendLight),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Loyal)
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot)
 		];
 		this.m.ExcludedTalents = [
 			::Const.Attributes.RangedSkill,
