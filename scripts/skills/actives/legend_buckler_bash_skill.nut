@@ -96,5 +96,61 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onAnySkillExecuted(_skill, _targetTile, _targetEntity, _forFree) {
+		local actor = this.getContainer().getActor();
+
+		if (actor.getCurrentProperties().IsSpecializedInShields) {
+			return;
+		}
+
+		if (_skill == this) {
+			return;
+		}
+
+		if (!_skill.m.IsAttack) {
+			return;
+		}
+
+		if (_forFree) {
+			return;
+		}
+
+		if (::Legends.S.isEntityNullOrDead(actor, _targetEntity)) {
+			return;
+		}
+
+		if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > 1) {
+			return;
+		}
+
+		if (_targetEntity != null) {
+			::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
+				if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
+					return;
+				}
+				::Const.SkillCounter++;
+				_skill.executeFollowUpAttack({
+					TargetTile = _targetEntity.getTile(),
+					Skill = this
+				});
+			}.bindenv(this), this);
+		}
+	}
+
+	function executeFollowUpAttack(_info) {
+		local actor = this.getContainer().getActor();
+		local entity = _info.TargetTile.getEntity();
+		if (::Legends.S.isEntityNullOrDead(entity) || ::Legends.S.isEntityNullOrDead(actor)) {
+			return;
+		}
+		if (::MSU.isNull(_info.Skill)) {
+			::logWarning("buckler bash is null for follow up attack for some reason");
+			return;
+		}
+		
+		_info.Skill.m.IsExecutingOffhand = true;
+		_info.Skill.useForFree(_info.TargetTile);
+	}
+
 });
 

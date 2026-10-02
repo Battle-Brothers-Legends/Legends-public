@@ -98,6 +98,9 @@
 > RangedDefense -6 - -1
 > Initiative 65 - 75
 
+### Crusaders
+- can no longer be `Sureshot`
+
 ### Oathtakers
 - oathtakers stats aligned with vanilla with a bumped up initiative
 - cannot roll hitpoints and ranged skill
@@ -111,7 +114,6 @@
 - stats aligned with vanilla with the exception of higher matk and ratk
 - can roll up to 8 trait trees
 - can roll up to 3 defensive trees
-
 
 ### Sellswords
 - sellswords stats aligned with vanilla
@@ -243,6 +245,10 @@
 - added 5 more variations of Face Mask, art by Ivan
 
 ### Weapons
+**Flails**
+- with the new Block mechanic flail skills have an innate 25% ignore of shield Block except for `Thresh`
+> increased to a total of 50% with the mastery
+
 **War Bow, Named War Bow, Hunting Bow**
 - gain `Full Draw` and `Mark Target`
 > Full draw has a base 50% armor penetration, 9 max range and 3 min range, an extra 30% damage but costs 9 ap without mastery and 8 with mastery
@@ -339,57 +345,58 @@
 - `Fortify` - removed
 - `Safeguard` - now transfers your block value to an ally until the start of your next turn
 - `Buckler Effect` - now grants 5% of Initiative as Defense and Block
+- `Staggered` will now also reduce block value by 50%
 
 ### Regular Shields
 - Shields in general no longer reduce ranged Damage Taken
-- Coffin Shield - now has 15 Mdef, 20 Rdef, 36 condition, 25 Block, 10-25 Damage
+- Coffin Shield - now has 15 Mdef, 20 Rdef, 36 condition, 13 Block, 10-25 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
 > additionally reduces ranged Damage taken by 15%
-- Ancient Tower Shield - now has 25 Mdef, 20 Rdef, 48 condition, 30 Block, 10-25 Damage
+- Ancient Tower Shield - now has 25 Mdef, 20 Rdef, 48 condition, 15 Block, 10-25 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
-- Tower Shield - now has 20 Weight, 30 Block, 10-25 Damage
+- Tower Shield - now has 20 Weight, 15 Block, 10-25 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
-- Ancient Southern Tower (Mummy) Shield - now has 20 Weight, 25 Block, 10-25 Damage
+- Ancient Southern Tower (Mummy) Shield - now has 20 Weight, 13 Block, 10-25 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
 > additionally reduces ranged Damage taken by 30%
-- Auxiliary Shield - now has 15 Block, 10-25 Damage
-- Buckler Shield - now has 10 Block, 5-10 Damage
-- Wooden Skirmisher (Goblin) Shield - now has 4 Mdef, 8 Rdef, 14 condition, 8 Block, 5-10 Damage
+- Auxiliary Shield - now has 8 Block, 10-25 Damage
+- Buckler Shield - now has 5 Block, 5-10 Damage
+- Wooden Skirmisher (Goblin) Shield - now has 4 Mdef, 8 Rdef, 14 condition, 4 Block, 5-10 Damage
 > classified as a buckler and gains `Buckler Bash` and `Buckler Effect`
-- Reinforced Skirmisher (Goblin) Shield - now has 5 Mdef, 10 Rdef, 18 condition, 10 Block, 5-10 Damage
+- Reinforced Skirmisher (Goblin) Shield - now has 5 Mdef, 10 Rdef, 18 condition, 5 Block, 5-10 Damage
 > classified as a buckler and gains `Buckler Bash` and `Buckler Effect`
-- Ancient Southern (Mummy) Shield - 12 Block, 5-10 Damage, 18 Condition
+- Ancient Southern (Mummy) Shield - 6 Block, 5-10 Damage, 18 Condition
 > classified as a buckler and gains `Buckler Bash` and `Buckler Effect`
 
-- Heater Shield - now has 20 Block, 15-30 Damage
-- Kite Shield - now has 20 Block, 10-25 Damage
+- Heater Shield - now has 10 Block, 15-30 Damage
+- Kite Shield - now has 10 Block, 10-25 Damage
 > additionally reduces ranged Damage taken by 30%
-- Orc Light Shield - now has 15 Block, 10-25 Damage, 24 Condition
+- Orc Light Shield - now has 8 Block, 10-25 Damage, 24 Condition
 > additionally reduces ranged Damage taken by 15%
-- Orc Heavy Shield - now has 30 Block, 100 Condition and 15-30 damage
-- Sipar - now has 30 Block, 10-25 Damage
-- Adarga - now has 15 Block, 10-25 Damage
+- Orc Heavy Shield - now has 15 Block, 100 Condition and 15-30 damage
+- Sipar - now has 15 Block, 10-25 Damage
+- Adarga - now has 13 Block, 10-25 Damage
 > additionally reduces ranged Damage taken by 15%
-- Wooden Shield - now has 20 Block, 10-25 Damage
-- Old Wooden Shield - now has 20 Block, 10-25 Damage
+- Wooden Shield - now has 10 Block, 10-25 Damage
+- Old Wooden Shield - now has 10 Block, 10-25 Damage
 
 ### Special Shields
-- Gilder's Embrace - now has 50 block and 15-30 Damage
-- Named Bandit Heater/Named Undead Heater - now has 20 block, 15-30 Damage
+- Gilder's Embrace - now has 25 block and 15-30 Damage
+- Named Bandit Heater/Named Undead Heater - now has 10 block, 15-30 Damage
 - Named Bandit Kite/Named Dragon Shield/Named Undead Kite - now has 20 Block, 10-25 Damage
 > additionally reduces ranged Damage taken by 30%
-- Named Buckler - now has 10 Block, 5-10 Damage
-- Named Fullmetal Heater - now has 25 Block, 20-35 Damage
-- Named Golden Round shield/Named Sipar - now has 30 Block, 10-25 Damage
-- Named Lindwurm Shield - now has 25 Mdef, 25 Rdef, 25 Block, 10-25 Damage
+- Named Buckler - now has 5 Block, 5-10 Damage
+- Named Fullmetal Heater - now has 13 Block, 20-35 Damage
+- Named Golden Round shield/Named Sipar - now has 15 Block, 10-25 Damage
+- Named Lindwurm Shield - now has 25 Mdef, 25 Rdef, 13 Block, 10-25 Damage
 > on enemy striking the shield will apply lindwurm acid to attacker
-- Named Orc Heavy Shield - now has 30 Block, 100 Condition and 15-30 damage
-- Named Wing Shield/Named Rider on Horse Shield - now has 50 Condition, 25 Block, 15-30 Damage
-- Named Pavise Shield - now has 25 Mdef, 25 Rdef, 20 weight, 96 Condition, 30 Block, 10-25 Damage
+- Named Orc Heavy Shield - now has 15 Block, 100 Condition and 15-30 damage
+- Named Wing Shield/Named Rider on Horse Shield - now has 50 Condition, 13 Block, 15-30 Damage
+- Named Pavise Shield - now has 25 Mdef, 25 Rdef, 20 weight, 96 Condition, 15 Block, 10-25 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
-- Schrat Shield - now has 20 Mdef, 17 Rdef, 8 Weight, 48 Condition, 25 Block, 10-25 Damage
+- Schrat Shield - now has 20 Mdef, 17 Rdef, 8 Weight, 48 Condition, 13 Block, 10-25 Damage
 > once per battle regrow itself to full upon destruction
-- Greenwood Schrat Shield - now has 30 Mdef, 25 Rdef, 10 Weight, 72 Condition, 25 Block, 10-25 Damage
+- Greenwood Schrat Shield - now has 30 Mdef, 25 Rdef, 10 Weight, 72 Condition, 13 Block, 10-25 Damage
 > twice per battle regrow itself to full upon destruction
 
 ### Named Shield Changes
@@ -428,6 +435,8 @@
 
 ### Beasts
 - revamped art for `Demon Alp` from Misha
+- `Schrat` shield gains 10 block
+- `Greenwood Schrat` shield gains 15 block but now has 30 Melee Defense and Ranged Defense down from 40
 
 ### Bandits
 - `Bandit Executioner` - new enemy that will appear in bandit comps, dressed to impress and armed with cleavers - including the new executioner sword
@@ -583,6 +592,7 @@
 - divided and reorganized the starting scenarios thematically; slowed scrolling speed so its easier to navigate
 - nets now return to their previous slots after throwing
 - prayer of hope and prayer of faith effects now have their respective mini icons (the ones that appear above the character in battle)
+- fatality chances can now be hidden if they are clogging your skill tooltips
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover

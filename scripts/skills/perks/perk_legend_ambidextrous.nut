@@ -1,14 +1,14 @@
 this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
-	m = {
-		offHandSkill = null,
-		HandToHand = null,
-	},
-
-	function getHandToHandSkill(){
+	m = {},
+	function getHandToHandSkill() {
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack);
-    	if (skill != null) return skill;
+    	if (skill != null) { 
+    		return skill;
+    	}
     	skill = ::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack);
-    	if (skill != null) return skill;
+    	if (skill != null) {
+    		return skill;
+    	}
     	return ::Legends.Actives.get(this, ::Legends.Active.HandToHand);
 	}
 
@@ -18,15 +18,10 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden() {
-		if (!::MSU.isNull(this.m.offHandSkill)) {
-			return false;
-		}
-
 		local actor = this.getContainer().getActor();
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = actor.getCurrentProperties().IsSpecializedInNets
-			&& off != null && off.getID().find("throwing_net") != null;
+		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && off != null && off.getID().find("throwing_net") != null;
 
 		if (hasNet) {
 			return false;
@@ -40,56 +35,32 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = "Fluid" // Since the passive should have a different name than the perk in this case
-			},
-			{
-				id = 2,
-				type = "description",
-				text = "Fluid like water!\n\nThis character will follow up main hand attacks with an attack from their off hand, if possible."
-			}
-		];
-
-		local ohSkill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
-		local blockedOffhand = items.hasBlockedSlot(::Const.ItemSlot.Offhand);
-		if (ohSkill != null && !blockedOffhand) {
-			if (::Legends.Weapons.isDualWielding(actor)) {
-				ret.push({
-					id = 3,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = "Follow-up attack: [color=%negative%]Disabled[/color]"
-				});
-			} else {
-				ret.push({
-					id = 3,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = "Follow-up attack: [color=%positive%]" + ohSkill.getName() + "[/color]"
-				});
-			}
-		}
-
-		// Unarmed bonuses
-		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed))
-			&& off == null
-			&& !blockedOffhand)
+		local ret = [{
+			id = 1,
+			type = "title",
+			text = "Fluid" // Since the passive should have a different name than the perk in this case
+		},
 		{
-			ret.push({
+			id = 2,
+			type = "description",
+			text = "Fluid like water!\n\nThis character will follow up any attack with a punch from their off hand!"
+		}];
+
+		local blockedOffhand = items.hasBlockedSlot(::Const.ItemSlot.Offhand);
+		// Unarmed bonuses
+		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && off == null && !blockedOffhand) {
+			ret.extend([{
 				id = 4,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
 				text = "[color=%positive%]+5[/color] Melee Skill"
-			});
-			ret.push({
+			},
+			{
 				id = 5,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
 				text = "[color=%positive%]+10[/color] Melee Defense"
-			});
+			}]);
 		}
 
 		return ret;
@@ -105,9 +76,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			return; // Don't execute a follow up attack if the first skill is not an attack
 		}
 
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand)
-			&& actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
-		{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand) && actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null) {
 			return; // or if you are using hand to hand while the mainhand is holding a weapon
 		}
 
@@ -121,25 +90,19 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 		local items = actor.getItems();
 		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = actor.getCurrentProperties().IsSpecializedInNets
-			&& off != null && off.getID().find("throwing_net") != null;
+		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && off != null && off.getID().find("throwing_net") != null;
 		// Don't trigger follow-up if the attack came from the offhand
 		if (::Legends.Weapons.isOffHandSkill(actor, _skill)) {
 			return;
 		}
 
-		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand)) || hasNet || !::MSU.isNull(this.m.offHandSkill)))	{
+		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand)) || hasNet)) {
 			if (!_forFree) {
-				//if (_targetTile == null || actor.getTile() == null) {
-					// Is this necessary?
-				//	return;
-				//}
-				local skillToUse = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
+				local skillToUse = this.getHandToHandSkill();
 				if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
 					return;
 				}
 
-				// i need to somehow do this more dynamically (think this is it)
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
 					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
 						return;
@@ -150,11 +113,6 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 						Skill = skillToUse
 					});
 				}.bindenv(this), this);
-				/*::Const.SkillCounter++;
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
-					TargetTile = _targetTile,
-					Skill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand
-					});*/
 			}
 		}
 	}
@@ -179,22 +137,10 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		local items = actor.getItems();
 		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local hasNet = actor.getCurrentProperties
-			&& off != null && off.getID().find("throwing_net") != null;
-		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed))
-			&& (off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand) || hasNet))
-		{
+		local hasNet = actor.getCurrentProperties && off != null && off.getID().find("throwing_net") != null;
+		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && (off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand) || hasNet)) {
 			_properties.MeleeDefense += 10;
 			_properties.MeleeSkill += 5;
-		}
-
-		if (!::MSU.isNull(off)
-			&& off.isItemType(::Const.Items.ItemType.Shield)
-			&& off.hasSkill(::Legends.Actives.getID(::Legends.Active.LegendBucklerBash)))
-		{
-			this.m.offHandSkill = ::Legends.Actives.get(this, ::Legends.Active.LegendBucklerBash);
-		} else {
-			this.m.offHandSkill = null;
 		}
 	}
 });

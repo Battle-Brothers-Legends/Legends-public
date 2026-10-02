@@ -8,6 +8,7 @@
 	o.m.AdditionalTooltip <- [];
 	o.m.MinRangeForPerTile <- 2; // to fix HitChanceAdditionalWithEachTile in cases where the min range is higher than 2
 	o.m.IsExecutingOffhand <- false;
+	o.m.BlockBypass <- 0.0; // you add it forward - ie 25% is means block on target is 75%
 
 	o.onShieldHitSkills <- function ( _skill, _attacker, _shield ) {
 	}
@@ -93,26 +94,23 @@
 		return ret;
 	}
 
-	o.getDefaultTooltip = function()
-	{
+	o.getDefaultTooltip = function() {
 		local p = this.factoringOffhand(this.m.Container.buildPropertiesForUse(this, null));
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-			{
-				id = 3,
-				type = "text",
-				text = this.getCostString()
-			}
-		];
+		local ret = [{
+			id = 1,
+			type = "title",
+			text = this.getName()
+		},
+		{
+			id = 2,
+			type = "description",
+			text = this.getDescription()
+		},
+		{
+			id = 3,
+			type = "text",
+			text = this.getCostString()
+		}];
 		local damage_regular_min = ::Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * (this.m.IsRanged ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMinMult);
 		local damage_regular_max = ::Math.floor(p.DamageRegularMax * p.DamageRegularMult * p.DamageTotalMult * (this.m.IsRanged ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMaxMult);
 		local damage_direct_min = ::Math.floor(damage_regular_min * ::Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + (this.m.IsRanged ? p.DamageDirectRangedAdd : p.DamageDirectMeleeAdd))));
@@ -126,11 +124,10 @@
 			["direct_min", damage_direct_min],
 			["direct_max", damage_direct_max],
 			["armor_min", damage_armor_min],
-			["armor_max", damage_armor_max]
+			["armor_max", damage_armor_max],
 		];
 
-		if (this.m.DirectDamageMult == 1.0)
-		{
+		if (this.m.DirectDamageMult == 1.0) {
 			ret.push({
 				id = 4,
 				type = "text",
@@ -139,8 +136,7 @@
 				param = damageParams
 			});
 		}
-		else if (this.m.DirectDamageMult > 0.0)
-		{
+		else if (this.m.DirectDamageMult > 0.0) {
 			ret.push({
 				id = 4,
 				type = "text",
@@ -149,8 +145,7 @@
 				param = damageParams
 			});
 		}
-		else
-		{
+		else {
 			ret.push({
 				id = 4,
 				type = "text",
@@ -160,8 +155,7 @@
 			});
 		}
 
-		if (damage_armor_max > 0)
-		{
+		if (damage_armor_max > 0) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -171,8 +165,7 @@
 			});
 		}
 
-		if (this.m.HitChanceBonus != 0 && !this.m.IsRanged)
-		{
+		if (this.m.HitChanceBonus != 0 && !this.m.IsRanged) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -183,23 +176,21 @@
 			});
 		}
 
-		if ("AdditionalTooltip" in o.m)
-		{
+		if ("AdditionalTooltip" in o.m) {
 			ret.extend(this.m.AdditionalTooltip);
 		}
 
-		if (p.ThresholdToInflictInjuryMult != 1.0)
-		{
+		if (p.ThresholdToInflictInjuryMult != 1.0) {
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/injury.png",
-				text = "Has a [color=%negative%]" + ::Math.floor((1.0 - p.ThresholdToInflictInjuryMult) * 100) + "%[/color] lower threshold to inflict injuries"
+				text = "Has a [color=%negative%]%injury_threshold%%[/color] lower threshold to inflict injuries",
+				param = [["injury_threshold", ::Math.floor((1.0 - p.ThresholdToInflictInjuryMult) * 100)]]
 			});
 		}
 
-		if (!this.m.IsShieldRelevant)
-		{
+		if (!this.m.IsShieldRelevant) {
 			ret.push({
 				id = 8,
 				type = "text",
@@ -208,28 +199,37 @@
 			});
 		}
 
-		if (p.DamageMinimum > 0)
-		{
+		if (this.m.BlockBypass > 0) {
+			ret.push({
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Reduce the damage mitigated from block by [color=%negative%]%block_by%[/color]",
+				param = [["block_bypass", this.m.BlockBypass]]
+			});
+		}
+
+		if (p.DamageMinimum > 0) {
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Always inflicts at least [color=%damage%]" + p.DamageMinimum + "[/color] damage to hitpoints, regardless of armor"
+				text = "Always inflicts at least [color=%damage%]%damage_min%[/color] damage to hitpoints, regardless of armor",
+				param = [["damage_min", p.DamageMinimum]]
 			});
 		}
 
-		if (p.HitChance[::Const.BodyPart.Head] > 0)
-		{
+		if (p.HitChance[::Const.BodyPart.Head] > 0) {
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "Has a combined total [color=%positive%]" + ::Math.min(100, p.HitChance[::Const.BodyPart.Head]) + "%[/color] chance to hit the head"
+				text = "Has a combined total [color=%positive%]%hitchance_head%%[/color] chance to hit the head",
+				param = [["hitchance_head", ::Math.min(100, p.HitChance[::Const.BodyPart.Head])]]
 			});
 		}
 
-		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
-		{
+		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill)) {
 			ret.push({
 				id = 9,
 				type = "hint",
@@ -237,32 +237,40 @@
 				text = "[color=%negative%]Can not be used because this character has taken an oath precluding the use of ranged weapons or tools[/color]"
 			});
 		}
-		if (this.m.ChanceSmash > 0)
-		{
-			ret.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + ::Math.min(100, this.m.ChanceSmash * p.FatalityChanceMult) + "%[/color] chance to smash the target on hits to the head that are killing blows"
-			});
-		}
-		if (this.m.ChanceDecapitate > 0)
-		{
-			ret.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + ::Math.min(100, this.m.ChanceDecapitate * p.FatalityChanceMult) + "%[/color] chance to decapitate the target on hits to the head that are killing blows"
-			});
-		}
-		if (this.m.ChanceDisembowel > 0)
-		{
-			ret.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + ::Math.min(100, this.m.ChanceDisembowel * p.FatalityChanceMult) + "%[/color] chance to disembowel the target on hits to the body that are killing blows"
-			});
+
+		if (::Legends.Mod.ModSettings.getSetting("ShowFatalityChance").getValue()) {
+			local decapitateParams = [
+				["chance_smash", ::Math.min(100, this.m.ChanceSmash * p.FatalityChanceMult)],
+				["chance_decap", ::Math.min(100, this.m.ChanceDecapitate * p.FatalityChanceMult)]
+				["chance_disembowel", ::Math.min(100, this.m.ChanceDisembowel * p.FatalityChanceMult)]
+			];
+			if (this.m.ChanceSmash > 0) {
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "[color=%positive%]%chance_decap%%[/color] chance to smash the target on hits to the head that are killing blows",
+					param = decapitateParams
+				});
+			}
+			if (this.m.ChanceDecapitate > 0) {
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "[color=%positive%]%chance_smash%%[/color] chance to decapitate the target on hits to the head that are killing blows",
+					param = decapitateParams
+				});
+			}
+			if (this.m.ChanceDisembowel > 0) {
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "[color=%positive%]%chance_disembowel%%[/color] chance to disembowel the target on hits to the body that are killing blows",
+					param = decapitateParams
+				});
+			}
 		}
 
 		return ret;
@@ -1695,13 +1703,15 @@
 		hitInfo.Tile = _info.TargetEntity.getTile();
 		_info.Container.onBeforeTargetHit(_info.Skill, _info.TargetEntity, hitInfo);
 
-		hitInfo.DamageRegular = ::Math.max(::Math.round(hitInfo.DamageRegular) - _info.TargetEntity.getBlock(), 0);
-		hitInfo.DamageArmor = ::Math.max(::Math.round(hitInfo.DamageArmor) - _info.TargetEntity.getBlock(), 0);
+		local blockValue = this.Math.floor(_info.TargetEntity.getBlock() * (1.0 - this.m.BlockBypass));
+		hitInfo.DamageRegular = ::Math.max(::Math.round(hitInfo.DamageRegular) - blockValue, 0);
+		hitInfo.DamageArmor = ::Math.max(::Math.round(hitInfo.DamageArmor) - blockValue, 0);
 
 		// I'm kind of sure there will be errors so here's an explanation: block works after calculating damage on attacker side and before damage on defender, any further damage is substracted
 		// if the entire damage is substracted it'll count as a shield hit but i'm also envisioning that you can gain block without a shield so there's a check below
 		// the third param in #onMissed is _dontShake which only happens when the shield is hit
 		// you've got a new #onShieldHitSkills which calls the container if you want to add any fancy logic
+
 		if (hitInfo.DamageRegular == 0 && hitInfo.DamageArmor == 0) {
 			local shield = _info.TargetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (shield != null && !shield.isItemType(::Const.Items.ItemType.Shield)) {

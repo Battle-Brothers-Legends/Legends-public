@@ -17,7 +17,7 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 		return this.getBonus() == 0;
 	}
 
-	function getBonus() {
+	function getBonus() { // this needs to be moved to the shield itself but not rn
 		local actor = this.getContainer().getActor();
 
 		if (actor == null || !actor.isPlacedOnMap() || !::Tactical.isActive()) {
@@ -28,7 +28,6 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local bonus = this.getBonus();
 		local tooltip = [
 			{
 				id = 1,
@@ -42,27 +41,29 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 			},
 		];
 
+		local paramBonus = [["_bonus", this.getBonus()], ["_rangedBonus", this.Math.round(this.getBonus() / 2)]]
 		if (::Tactical.isActive()) {
-			tooltip.extend([
-				{
-					id = 10,
-					type = "text",
-					icon = "ui/icons/melee_defense.png",
-					text = "[color=%positive%]+" + bonus + "[/color] Melee Defense"
-				},
-				{
-					id = 10,
-					type = "text",
-					icon = "ui/icons/ranged_defense.png",
-					text = "[color=%positive%]+" + bonus + "[/color] Ranged Defense"
-				},
-				{
-					id = 10,
-					type = "text",
-					icon = "ui/icons/block.png",
-					text = "[color=%positive%]+" + bonus + "[/color] Block"
-				}
-			]);
+			tooltip.extend([{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=%positive%]+%_bonus%[/color] Melee Defense",
+				param = paramBonus
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=%positive%]+%_rangedBonus%[/color] Ranged Defense",
+				param = paramBonus
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%positive%]+%_bonus%[/color] Block",
+				param = paramBonus
+			}]);
 		}
 		return tooltip;
 	}
@@ -70,6 +71,6 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		local bonus = this.getBonus();
 		_properties.MeleeDefense += bonus;
-		_properties.RangedDefense += bonus / 2;
+		_properties.RangedDefense += this.Math.round(this.getBonus() / 2)
 	}
 });

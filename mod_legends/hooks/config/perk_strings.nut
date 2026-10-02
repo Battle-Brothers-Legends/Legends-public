@@ -262,11 +262,13 @@ Master flails and circumvent your opponent's shield.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• [color=%skill%]Lash[/color] and [color=%skill%]Hail[/color] ignore the defense bonus of shields.
+• [color=%skill%]Lash[/color], [color=%skill%]Hail[/color] and [color=%skill%]Castigate[/color] ignore the defense bonus of shields.
 
-• [color=%skill%]Thresh[/color] gains [color=%positive%]+5%[/color] chance to hit.
+• [color=%skill%]Flail[/color], [color=%skill%]Lash[/color], [color=%skill%]Cascade[/color], [color=%skill%]Hail[/color], [color=%skill%]Pound[/color], [color=%skill%]Censer Strike[/color] and [color=%skill%]Castigate[/color] ignore an additional [color=%positive%]25%[/color] of Block value.
 
-• [color=%skill%]Pound[/color] ignores additional [color=%positive%]+10%[/color] armor penetration on hits to the head.
+• [color=%skill%]Thresh[/color] gains [color=%positive%]+5%[/color] chance to hit and ignores an additional [color=%positive%]25%[/color] of Block value.
+
+• [color=%skill%]Pound[/color] ignores additional [color=%positive%]+10%[/color] armor penetration on hits to the head and ignores an additional [color=%positive%]33%[/color] of Block value.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecFlail].Tooltip = ::Const.Strings.PerkDescription.SpecFlail;
 //::Const.Strings.PerkDescription.Captain <- @"
@@ -385,13 +387,15 @@ All this exercise has you in great shape.
 Learn to better deflect hits to the side instead of blocking them head on.
 
 [color=%passive%][u]Passive:[/u][/color]
-• The shield defense bonus is increased by [color=%positive%]25%[/color].
+• The shield defense bonus is increased by [color=%positive%]25%[/color]. This also applies to the additional defense bonus of [color=%skill%]Shieldwall[/color]
 
-• This also applies to the additional defense bonus of [color=%skill%]Shieldwall[/color].
+• The shield block bonus is doubled.
 
 • Shield damage received is reduced by [color=%negative%]-50%[/color] to a minimum of 1.
 
 • [color=%skill%]Knock Back[/color] gains [color=%positive%]+15%[/color] chance to hit.
+
+• [color=%skill%]Buckler Bash[/color] now will automatically attack after any other attack.
 
 • Shield skills will also cost [color=%negative%]-25%[/color] less Fatigue.
 ";
