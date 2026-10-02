@@ -87,4 +87,21 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 			}
 		}
 	}
+
+	function onUpdate ( _properties ) {
+		local actor = this.getContainer().getActor();
+		if (actor.m.MoraleState == ::Const.MoraleState.Fleeing) {
+			if (this.m.TargetTile != null) {
+				this.m.TargetTile.clear(::Const.Tactical.DetailFlag.SpecialOverlay);
+				this.m.TargetTile = null;
+			}
+			this.m.Prepared = false;
+		}
+	}
+
+	function onDeath ( _fatalityType ) {
+		if (this.m.TargetTile != null) {
+			this.m.TargetTile.clear(::Const.Tactical.DetailFlag.SpecialOverlay);
+		}
+	}
 });
