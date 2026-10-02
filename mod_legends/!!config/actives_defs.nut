@@ -30,7 +30,7 @@ if (!("Active" in ::Legends)) {
 	}
 
 	if (!("Overlay" in _def)) {
-		_def.Overlay <- "active_" + snakeCase;
+		_def.Overlay <- snakeCase;
 	}
 
 	return _def;
@@ -1510,11 +1510,7 @@ local activesDefs = {
 	LegendSummonFamiliar = {},
 	LegendSummonStorm = {},
 	LegendTackle = {},
-	LegendThrowKnife = {
-		Icon = "skills/legend_throw_knife.png",
-		IconDisabled = "skills/legend_throw_knife_bw.png",
-		Overlay = "legend_throw_knife"
-	},
+	LegendThrowKnife = {},
 	LegendThrowBackupAxe = {
 		Icon = "skills/active_87.png",
 		IconDisabled = "skills/active_87_sw.png",
