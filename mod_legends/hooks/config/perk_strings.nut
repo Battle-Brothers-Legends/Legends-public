@@ -387,9 +387,7 @@ All this exercise has you in great shape.
 Learn to better deflect hits to the side instead of blocking them head on.
 
 [color=%passive%][u]Passive:[/u][/color]
-• The shield defense bonus is increased by [color=%positive%]25%[/color]. This also applies to the additional defense bonus of [color=%skill%]Shieldwall[/color]
-
-• The shield block bonus is doubled.
+• The shield defense bonus is increased by [color=%positive%]25%[/color] and shield's Block value is increased by [color=%positive%]100%[/color].
 
 • Shield damage received is reduced by [color=%negative%]-50%[/color] to a minimum of 1.
 
