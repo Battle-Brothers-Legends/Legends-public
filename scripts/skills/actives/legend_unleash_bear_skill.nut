@@ -10,13 +10,12 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 		Sounds4 = ::Legends.S.setSounds("sounds/enemies/bear_attack", 2),
 		Sounds5 = ::Legends.S.setSounds("sounds/enemies/bear_attack", 2)
 	},
-	function setItem( _i )
-	{
+
+	function setItem(_i) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashBear);
 		this.m.Description = "Summon a faithful bear. Needs a free tile adjacent. Only one per battle.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
@@ -34,43 +33,35 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function addResources()
-	{
+	function addResources() {
 		this.skill.addResources();
 
-		foreach( r in this.m.Sounds0 )
-		{
+		foreach (r in this.m.Sounds0) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds1 )
-		{
+		foreach (r in this.m.Sounds1) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds2 )
-		{
+		foreach (r in this.m.Sounds2) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds3 )
-		{
+		foreach (r in this.m.Sounds3) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds4 )
-		{
+		foreach (r in this.m.Sounds4) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds5 )
-		{
+		foreach (r in this.m.Sounds5) {
 			::Tactical.addResource(r);
 		}
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -91,33 +82,28 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedBearEffect))
-		{
+	function isUsable() {
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedBear)) {
 			return false;
 		}
 
-		if (this.m.Entity != null || !this.skill.isUsable())
-		{
+		if (this.m.Entity != null || !this.skill.isUsable()) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )	{
+	function onVerifyTarget(_originTile, _targetTile) {
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedBearEffect);
+	function onUse(_user, _targetTile) {
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedBear);
 		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))
-		{
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer)) {
 			::Legends.Perks.grant(entity, ::Legends.Perk.FortifiedMind);
 			::Legends.Perks.grant(entity, ::Legends.Perk.Colossus);
 			::Legends.Perks.grant(entity, ::Legends.Perk.Underdog);
@@ -125,8 +111,7 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.m.Entity = null;
 	}
 

@@ -1,14 +1,12 @@
-::mods_hookExactClass("skills/effects/withered_effect", function(o) {
+::mods_hookExactClass("skills/effects/withered_effect", function (o) {
 
 	o.m.TurnsLeft = 3;
 
-	o.getDescription = function ()
-	{
+	o.getDescription = function () {
 		return "By means of rotten magic, this character has withered to have the physique of an old man. Will slowly wear off over [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		return [
 			{
 				id = 1,
@@ -47,16 +45,14 @@
 		];
 	}
 
-	o.onUpdate = function ( _properties )
-	{
+	o.onUpdate = function (_properties) {
 		local actor = this.getContainer().getActor();
 		_properties.DamageTotalMult *= 1.0 - this.m.TurnsLeft * 0.10;
 		_properties.InitiativeMult *= 1.0 - this.m.TurnsLeft * 0.10;
 		_properties.StaminaMult *= 1.0 - this.m.TurnsLeft * 0.10;
 		_properties.FatigueRecoveryRate -= this.m.TurnsLeft * 5;
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
-		{
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
 			actor.getSprite("status_stunned").setBrush("bust_withered");
 			actor.getSprite("status_stunned").Visible = true;
 			actor.setDirty(true);

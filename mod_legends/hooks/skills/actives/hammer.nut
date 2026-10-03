@@ -8,9 +8,9 @@
 		{
 			this.m.Name = "Mordhau";
 			this.m.Description = "Grip your sword by the blade and strike with the guard and pommel for a strike that can be felt through the thickest of armor and will leave a lasting mark.";
-			this.m.Icon = "skills/active_mordhau.png";
-			this.m.IconDisabled = "skills/active_mordhau_bw.png";
-			this.m.Overlay = "active_mordhau";
+			this.m.Icon = "skills/legend_mordhau.png";
+			this.m.IconDisabled = "skills/legend_mordhau_bw.png";
+			this.m.Overlay = "legend_mordhau";
 			this.m.IsIgnoredAsAOO = true;
 			this.m.ActionPointCost = this.m.IsGreatMordhau ? 7 : 5;
 			this.m.FatigueCost = this.m.IsGreatMordhau ? 18 : 14;

@@ -5,8 +5,6 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRedbackPoisonCoat);
-		this.m.Icon = "skills/status_effect_legend_redback_poison_coat.png";
-		this.m.IconMini = "status_effect_legend_redback_poison_coat_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
@@ -41,14 +39,13 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 		this.m.AttacksLeft = 4;
 	}
 
-	function onAdded () {
-		if (::Legends.Perks.has(this.getContainer().getActor(),::Legends.Perk.LegendPoisoner)) {
+	function onAdded() {
+		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPoisoner)) {
 			this.m.AttacksLeft += 2;
 		}
 	}
 
-
-	function onTargetHit (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		--this.m.AttacksLeft;
 
 		if (this.m.AttacksLeft <= 0) {
@@ -67,10 +64,11 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetEntity) + " is poisoned");
 		}
 
-		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison, function(_effect) {
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison, function (_effect) {
 			local actor = this.getContainer().getActor();
-			if (actor.getFaction() == ::Const.Faction.Player )
+			if (actor.getFaction() == ::Const.Faction.Player) {
 				_effect.setActor(actor);
+			}
 		}.bindenv(this));
 	}
 

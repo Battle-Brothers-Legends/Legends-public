@@ -1,16 +1,15 @@
 this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
+
 	function create() {
 		this.m.ID = "effects.legend_safeguarding";
 		this.m.Name = "Safeguarding";
 		this.m.Description = "This character neglects their own defense while safeguarding someone else";
-		this.m.Icon = "ui/perks/safeguard_circle.png";
-		this.m.IconMini = "mini_safeguard_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
+
 	function getTooltip() {
 		return [
 			{
@@ -32,10 +31,9 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onUpdate( _properties ) {
+	function onUpdate(_properties) {
 		_properties.Block = 0;
 	}
-
 
 	function onTurnStart() {
 		this.removeSelf();
@@ -56,5 +54,4 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 			item.onShieldDown();
 		}
 	}
-
 });

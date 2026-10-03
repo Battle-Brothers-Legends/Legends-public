@@ -1,9 +1,8 @@
 this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPeacefulReassured);
-		this.m.Icon = "skills/peaceful_reassured.png";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -11,13 +10,11 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "The presence of nearby peaceful people is increasing this characters Resolve and experience gain.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local peacefuls = this.getPeacefuls();
 		local peaceBravery = peacefuls * 3;
 		local ret = [
@@ -47,28 +44,23 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function getPeacefuls()
-	{
-		if (!("Entities" in ::Tactical) || ::Tactical.Entities == null || !::Tactical.isActive())
-		{
+	function getPeacefuls() {
+		if (!("Entities" in ::Tactical) || ::Tactical.Entities == null || !::Tactical.isActive()) {
 			return 0;
 		}
 
 		local hippies = 0;
 		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 
-		foreach( a in actors )
-		{
-			if (a.getFaction() == ::Const.Faction.Player && a.getSkills().hasPerk(::Legends.Perk.LegendPeaceful))
-			{
+		foreach (a in actors) {
+			if (a.getFaction() == ::Const.Faction.Player && a.getSkills().hasPerk(::Legends.Perk.LegendPeaceful)) {
 				hippies += 1;
 			}
 		}
 		return hippies;
-	 }
+	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local peacefuls = this.getPeacefuls();
 		local peaceBravery = peacefuls * 3;
 		local peaceXP = (100 + peacefuls) * 0.01;
@@ -76,4 +68,3 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 		_properties.XPGainMult *= peaceXP;
 	}
 });
-

@@ -53,7 +53,7 @@
 			return;
 		}
 
-		local dw = ::Legends.Effects.get(_entity, ::Legends.Effect.LegendDualWield);
+		local dw = ::Legends.Effects.get(_entity, ::Legends.Effect.LegendDualWielding);
 		if (dw == null) {
 			return;
 		}

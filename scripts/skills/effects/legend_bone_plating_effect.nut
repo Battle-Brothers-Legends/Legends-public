@@ -1,11 +1,8 @@
 this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBonePlating);
-		this.m.Icon = "skills/boneplating_effect.png";
-		this.m.IconMini = "mini_boneplating_effect";
-		this.m.Overlay = "boneplating_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -18,15 +15,12 @@ this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "Completely absorbs the first hit which doesn\'t ignore armor.";
 	}
 
-	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties)
-	{
-		if (_hitInfo.BodyPart == ::Const.BodyPart.Body && _hitInfo.DamageDirect < 1.0)
-		{
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
+		if (_hitInfo.BodyPart == ::Const.BodyPart.Body && _hitInfo.DamageDirect < 1.0) {
 			_properties.DamageReceivedTotalMult = 0.0;
 			::Tactical.EventLog.logEx("Damage absorbed by Bone Plating");
 

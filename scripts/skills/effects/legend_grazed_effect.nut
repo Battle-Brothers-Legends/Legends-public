@@ -5,43 +5,34 @@ this.legend_grazed_effect <- this.inherit("scripts/skills/skill", {
 		LastRoundApplied = 0,
 		Actor = null,
 	},
-	function getDamage()
-	{
+
+	function getDamage() {
 		return this.m.Damage;
 	}
 
-	function setDamage( _d )
-	{
+	function setDamage(_d) {
 		this.m.Damage = _d;
 	}
 
-	function setActor( _a )
-	{
+	function setActor(_a) {
 		this.m.Actor = ::MSU.asWeakTableRef(_a);
 	}
 
-	function create()
-	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGrazedEffect);
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGrazed);
 		this.m.KilledString = "Bled to death";
-		this.m.Icon = "skills/graze_circle.png";
-		this.m.IconMini = "mini_graze_circle";
-		this.m.Overlay = "graze";
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is bleeding slowly from multiple recent deep grazes and will lose [color=%negative%]" + this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function applyDamage()
-	{
-		if (this.m.LastRoundApplied != ::Time.getRound())
-		{
+	function applyDamage() {
+		if (this.m.LastRoundApplied != ::Time.getRound()) {
 			this.m.LastRoundApplied = ::Time.getRound();
 			local actor = this.getContainer().getActor();
 			this.spawnIcon("status_effect_01", actor.getTile());
@@ -53,49 +44,36 @@ this.legend_grazed_effect <- this.inherit("scripts/skills/skill", {
 			hitInfo.FatalityChanceMult = 0.0;
 			actor.onDamageReceived(this.getEffectOwner(), this, hitInfo);
 
-			if (--this.m.TurnsLeft <= 0)
-			{
+			if (--this.m.TurnsLeft <= 0) {
 				this.removeSelf();
 			}
 		}
 	}
 
-	function onAdded()
-	{
-		if (this.getContainer().getActor().getCurrentProperties().IsResistantToAnyStatuses && ::Math.rand(1, 100) <= 50)
-		{
-			if (!this.getContainer().getActor().isHiddenToPlayer())
-			{
+	function onAdded() {
+		if (this.getContainer().getActor().getCurrentProperties().IsResistantToAnyStatuses && ::Math.rand(1, 100) <= 50) {
+			if (!this.getContainer().getActor().isHiddenToPlayer()) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " had his bleeding wound quickly close thanks to unnatural physiology");
 			}
 
 			this.removeSelf();
-		}
-		else
-		{
+		} else {
 			this.m.TurnsLeft = ::Math.max(3, 5 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-			if (this.getContainer().hasTrait(::Legends.Trait.Bleeder))
-			{
+			if (this.getContainer().hasTrait(::Legends.Trait.Bleeder)) {
 				++this.m.TurnsLeft;
 				++this.m.TurnsLeft;
 			}
 		}
 	}
 
-	function onUpdate( _properties )
-	{
-	}
+	function onUpdate(_properties) {}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		this.applyDamage();
 	}
 
-	function onWaitTurn()
-	{
+	function onWaitTurn() {
 		this.applyDamage();
 	}
-
 });
-

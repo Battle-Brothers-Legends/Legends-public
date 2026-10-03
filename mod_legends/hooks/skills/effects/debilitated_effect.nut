@@ -1,59 +1,47 @@
-::mods_hookExactClass("skills/effects/debilitated_effect", function(o) {
+::mods_hookExactClass("skills/effects/debilitated_effect", function (o) {
 	o.m.TurnsLeft <- 3;
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "This character has been debilitated";
 	}
 
-	o.getDescription <- function()
-	{
+	o.getDescription <- function () {
 		return "This character is debilitated and will only do [color=%negative%] 75% [/color] damage and take [color=%negative%] 115% [/color] damage for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	o.getEffectDurationString <- function ()
-	{
+	o.getEffectDurationString <- function () {
 		local ret = "";
 
-		if (this.m.TurnsLeft == 2)
-		{
+		if (this.m.TurnsLeft == 2) {
 			ret = "two turns";
-		}
-		else
-		{
+		} else {
 			ret = "one turn";
 		}
 
 		return ret;
 	}
 
-	o.getLogEntryOnAdded <- function ( _user, _victim )
-	{
+	o.getLogEntryOnAdded <- function (_user, _victim) {
 		return _user + " has debilitated " + _victim + " for " + this.getEffectDurationString();
 	}
 
-	o.onAdded <- function()
-	{
+	o.onAdded <- function () {
 		this.m.TurnsLeft = ::Math.max(1, 3 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
-		{
+		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
 			++this.m.TurnsLeft;
 		}
 	}
 
-	o.onUpdate = function( _properties )
-	{
+	o.onUpdate = function (_properties) {
 		_properties.DamageTotalMult *= 0.75;
 		_properties.DamageReceivedTotalMult *= 1.15;
 	}
 
-	o.onTurnEnd = function()
-	{
-		if (--this.m.TurnsLeft <= 0)
-		{
+	o.onTurnEnd = function () {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}

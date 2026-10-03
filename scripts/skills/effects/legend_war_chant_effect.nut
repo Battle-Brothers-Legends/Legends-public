@@ -5,41 +5,38 @@ this.legend_war_chant_effect <- this.inherit("scripts/skills/skill", {
 		Caster = null
 	},
 
-	function setEffect( _e )
-	{
+	function setEffect(_e) {
 		this.m.Effect = _e;
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWarChant);
 		this.m.Description = "";
-		this.m.Icon = "ui/perks/drums_of_war.png";
-		this.m.Overlay = "drums_of_war_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor();
 		actor.setFatigue(::Math.max(0, actor.getFatigue() - this.m.Effect));
-		if (actor.isPlacedOnMap())
+		if (actor.isPlacedOnMap()) {
 			this.spawnIcon(this.m.Overlay, actor.getTile());
+		}
 	}
 
-
 	function onTurnStart() {
-		if (::Legends.S.isNull(this.m.Caster))
+		if (::Legends.S.isNull(this.m.Caster)) {
 			return;
+		}
 		this.removeEffectFromAffected();
 	}
 
 	function onDeath(_fatalityType) {
-		if (::Legends.S.isNull(this.m.Caster))
+		if (::Legends.S.isNull(this.m.Caster)) {
 			return;
+		}
 		this.removeEffectFromAffected();
 	}
 
@@ -50,9 +47,10 @@ this.legend_war_chant_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function removeEffectFromAffected() {
-		foreach(actor in this.m.AffectedActors) {
-			if (::Legends.S.isEntityNullOrDead(actor))
+		foreach (actor in this.m.AffectedActors) {
+			if (::Legends.S.isEntityNullOrDead(actor)) {
 				continue;
+			}
 			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendWarChant);
 		}
 		this.m.AffectedActors = [];
@@ -60,4 +58,3 @@ this.legend_war_chant_effect <- this.inherit("scripts/skills/skill", {
 		this.removeSelf();
 	}
 });
-

@@ -1,27 +1,22 @@
 this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 1
-		// ,		IsForced = false
+		//IsForced = false
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBaffled);
-		this.m.Icon = "skills/baffled.png";
-		this.m.IconMini = "mini_baffled_circle";
-		this.m.Overlay = "baffled_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is confused. Will wear off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -54,67 +49,53 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor();
 		local statusResisted = actor.getCurrentProperties().IsResistantToAnyStatuses ? ::Math.rand(1, 100) <= 50 : false;
 		statusResisted = statusResisted || actor.getCurrentProperties().IsResistantToPhysicalStatuses ? ::Math.rand(1, 100) <= 33 : false;
 
-		if (statusResisted)
-		{
-			if (!actor.isHiddenToPlayer())
-			{
+		if (statusResisted) {
+			if (!actor.isHiddenToPlayer()) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " shook off being baffled thanks to unnatural physiology");
 			}
 
 			this.removeSelf();
-		}
-		else
-		{
+		} else {
 			this.m.TurnsLeft = ::Math.max(1, 2 + actor.getCurrentProperties().NegativeStatusEffectDuration);
 		}
 	}
 
-	function onRefresh()
-	{
+	function onRefresh() {
 		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		this.spawnIcon("status_effect_87", this.getContainer().getActor().getTile());
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		local actor = this.getContainer().getActor();
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
-		{
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
 			actor.getSprite("status_stunned").Visible = false;
 		}
 
 		actor.setDirty(true);
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		_properties.DamageTotalMult *= 0.85;
 		_properties.InitiativeMult *= 0.85;
 		_properties.StaminaMult *= 0.85;
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
-		{
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
 			actor.getSprite("status_stunned").setBrush("bust_dazed");
 			actor.getSprite("status_stunned").Visible = true;
 			actor.setDirty(true);
 		}
 	}
 
-	function onTurnEnd()
-	{
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}
-
 });
-

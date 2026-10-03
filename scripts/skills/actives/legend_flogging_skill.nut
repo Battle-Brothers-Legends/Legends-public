@@ -1,7 +1,7 @@
 this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlogging);
 		this.m.Description = "Whip the flesh of someone nearby to inflict a slow bleed.";
 		this.m.KilledString = "Flogged";
@@ -24,11 +24,9 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
-		ret.push(
-		{
+		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
@@ -37,84 +35,70 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onTargetSelected( _targetTile )
-	{
+	function onTargetSelected(_targetTile) {
 		local ownTile = this.m.Container.getActor().getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
 		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
 		local nextDir = dir - 1 >= 0 ? dir - 1 : ::Const.Direction.COUNT - 1;
 
-		if (ownTile.hasNextTile(nextDir))
-		{
+		if (ownTile.hasNextTile(nextDir)) {
 			local nextTile = ownTile.getNextTile(nextDir);
 
-			if (::Math.abs(nextTile.Level - ownTile.Level) <= 1)
-			{
+			if (::Math.abs(nextTile.Level - ownTile.Level) <= 1) {
 				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, nextTile, nextTile.Pos.X, nextTile.Pos.Y);
 			}
 		}
 
 		nextDir = nextDir - 1 >= 0 ? nextDir - 1 : ::Const.Direction.COUNT - 1;
 
-		if (ownTile.hasNextTile(nextDir))
-		{
+		if (ownTile.hasNextTile(nextDir)) {
 			local nextTile = ownTile.getNextTile(nextDir);
 
-			if (::Math.abs(nextTile.Level - ownTile.Level) <= 1)
-			{
+			if (::Math.abs(nextTile.Level - ownTile.Level) <= 1) {
 				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, nextTile, nextTile.Pos.X, nextTile.Pos.Y);
 			}
 		}
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSwing);
 		local ownTile = _user.getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
 		local target = _targetTile.getEntity();
 
-		::Legends.Effects.grant(target, ::Legends.Effect.LegendGrazedEffect);
-		if (!_user.isAlive() || _user.isDying())
-		{
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendGrazed);
+		if (!_user.isAlive() || _user.isDying()) {
 			return;
 		}
 
 		local nextDir = dir - 1 >= 0 ? dir - 1 : ::Const.Direction.COUNT - 1;
 
-		if (ownTile.hasNextTile(nextDir))
-		{
+		if (ownTile.hasNextTile(nextDir)) {
 			local nextTile = ownTile.getNextTile(nextDir);
 
-			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && ::Math.abs(nextTile.Level - ownTile.Level) <= 1)
-			{
-				::Legends.Effects.grant(nextTile.getEntity(), ::Legends.Effect.LegendGrazedEffect);
+			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && ::Math.abs(nextTile.Level - ownTile.Level) <= 1) {
+				::Legends.Effects.grant(nextTile.getEntity(), ::Legends.Effect.LegendGrazed);
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " flogged " + ::Const.UI.getColorizedEntityName(nextTile.getEntity()) + " leaving them bleeding");
 			}
 		}
 
-		if (!_user.isAlive() || _user.isDying())
-		{
+		if (!_user.isAlive() || _user.isDying()) {
 			return;
 		}
 
 		nextDir = nextDir - 1 >= 0 ? nextDir - 1 : ::Const.Direction.COUNT - 1;
 
-		if (ownTile.hasNextTile(nextDir))
-		{
+		if (ownTile.hasNextTile(nextDir)) {
 			local nextTile = ownTile.getNextTile(nextDir);
 
-			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && ::Math.abs(nextTile.Level - ownTile.Level) <= 1)
-			{
-				::Legends.Effects.grant(nextTile.getEntity(), ::Legends.Effect.LegendGrazedEffect);
+			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && ::Math.abs(nextTile.Level - ownTile.Level) <= 1) {
+				::Legends.Effects.grant(nextTile.getEntity(), ::Legends.Effect.LegendGrazed);
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " flogged " + ::Const.UI.getColorizedEntityName(nextTile.getEntity()) + " leaving them bleeding");
 			}
 		}
 	}
-
 });

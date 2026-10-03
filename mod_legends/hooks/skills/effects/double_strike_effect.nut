@@ -5,9 +5,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Name = "Flux!";
-		this.m.Icon = "skills/status_effect_doublestrike.png";
-		this.m.IconMini = "mini_doublestrike_circle";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.DoubleStrike);
 	}
 
 	o.getDescription = function () {

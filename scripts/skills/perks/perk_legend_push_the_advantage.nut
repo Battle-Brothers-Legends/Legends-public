@@ -2,7 +2,7 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	m = {
 		HighBonus = [
 			::Legends.Effect.Debilitated,
-			::Legends.Effect.LegendTackled
+			::Legends.Effect.LegendKnockedOver
 		],
 		LowBonus = [
 			::Legends.Effect.Dazed,

@@ -245,11 +245,11 @@
 			dw = ambidextrous == null; // || ambidextrous.m.ApplicableItems.find(oh.getID()) == null;
 		}*/
 		if (dw) {
-			::Legends.Effects.grant(actor, ::Legends.Effect.LegendDualWield);
+			::Legends.Effects.grant(actor, ::Legends.Effect.LegendDualWielding);
 			::Legends.Actives.grant(actor, ::Legends.Active.LegendDoubleSwing);
 		} else {
 			::Legends.Actives.remove(actor, ::Legends.Active.LegendDoubleSwing);
-			::Legends.Effects.remove(actor, ::Legends.Effect.LegendDualWield);
+			::Legends.Effects.remove(actor, ::Legends.Effect.LegendDualWielding);
 		}
 	}
 

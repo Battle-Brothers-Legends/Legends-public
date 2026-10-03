@@ -4,10 +4,7 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedFlail);
-		this.m.Name = "";
 		this.m.Description = "";
-		this.m.Icon = "skills/placeholder_circle.png";
-		this.m.IconMini = "mini_placeholder_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Item;
 		this.m.IsActive = false;

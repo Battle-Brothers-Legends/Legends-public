@@ -4,9 +4,6 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWebAtStart);
 		this.m.Description = "This effect is meant to be used under the hood so that entities can start combat webbed.";
-		this.m.Icon = "skills/status_effect_80.png";
-		this.m.IconMini = "status_effect_80_mini";
-		this.m.Overlay = "status_effect_80";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;

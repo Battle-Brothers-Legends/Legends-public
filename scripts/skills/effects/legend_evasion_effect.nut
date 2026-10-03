@@ -8,8 +8,6 @@ this.legend_evasion_effect <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendEvasion);
 		this.m.Description = "%name% ignores all Zones of Control and will ignore the first attack done against %them%.";
-		this.m.Icon = "skills/evasion.png";
-		this.m.Overlay = "evasion";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;

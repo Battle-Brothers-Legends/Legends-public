@@ -10,7 +10,7 @@
 		{
 			return;
 		}
-		if (!actor.getSkills().hasEffect(::Legends.Effect.SpiderPoison) && !actor.getSkills().hasEffect(::Legends.Effect.LegendRedbackSpiderPoison) && !actor.getSkills().hasEffect(::Legends.Effect.LegendRswPoisonEffect))
+		if (!actor.getSkills().hasEffect(::Legends.Effect.SpiderPoison) && !actor.getSkills().hasEffect(::Legends.Effect.LegendRedbackSpiderPoison) && !actor.getSkills().hasEffect(::Legends.Effect.LegendRswPoisonPoison))
 		{
 			actor.setHitpoints(actor.getHitpoints() + healthAdded);
 			actor.setDirty(true);

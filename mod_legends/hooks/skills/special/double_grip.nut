@@ -1,5 +1,4 @@
-::mods_hookExactClass("skills/special/double_grip", function(o)
-{
+::mods_hookExactClass("skills/special/double_grip", function (o) {
 	// commented stuff is moved from old duelist
 	// o.m.AllowedWeapons <-
 	// [
@@ -10,22 +9,20 @@
 	// ];
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "With the second hand free, this character can get a firm double grip on his weapon and inflicts additional damage and penetration. Armor penetration will scale by [color=%positive%]25%[/color] of Melee Skill and Hand Crossbows allow double gripping";
 	}
 
 	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
-	{
+	o.getTooltip = function () {
 		local tooltip = getTooltip();
 		local bonus = ::Math.floor(this.getContainer().getActor().getCurrentProperties().MeleeSkill * 0.25);
 		tooltip.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/direct_damage.png",
-			text = "[color=%positive%]"+ bonus + "%[/color] of any damage ignores armor"
+			text = "[color=%positive%]" + bonus + "%[/color] of any damage ignores armor"
 		});
 
 		return tooltip;
@@ -76,8 +73,7 @@
 	// 	return bonus;
 	// }
 
-	o.canDoubleGrip = function ()
-	{
+	o.canDoubleGrip = function () {
 		local actor = this.getContainer().getActor();
 		local missinghand = this.m.Container.getSkillByID("injury.missing_hand");
 		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
@@ -89,11 +85,9 @@
 	}
 
 	local onUpdate = o.onUpdate;
-	o.onUpdate = function ( _properties )
-	{
+	o.onUpdate = function (_properties) {
 		onUpdate(_properties);
-		if (this.canDoubleGrip())
-		{
+		if (this.canDoubleGrip()) {
 			_properties.DamageDirectAdd += ::Math.floor(_properties.MeleeSkill * 0.25) * 0.01;
 		}
 	}

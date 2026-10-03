@@ -1,10 +1,8 @@
-::mods_hookExactClass("skills/effects/nine_lives_effect", function(o) {
-	
+::mods_hookExactClass("skills/effects/nine_lives_effect", function (o) {
+
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
-		this.m.IconMini = "";
-		this.m.Overlay = "";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.NineLives);
 	}
 });

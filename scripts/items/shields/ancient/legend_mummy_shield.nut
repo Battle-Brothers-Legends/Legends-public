@@ -41,7 +41,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 	function onEquip() {
 		this.shield.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash);
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendBucklerDefense, function(_effect) {
 			_effect.m.Order = ::Const.SkillOrder.UtilityTargeted + 1;
 			_effect.setItem(this);
 			this.m.SkillPtrs.push(_effect);

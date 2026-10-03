@@ -51,7 +51,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedFalconEffect))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedFalcon))
 		{
 			return false;
 		}
@@ -62,7 +62,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedFalconEffect);
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedFalcon);
 		::Tactical.queryTilesInRange(_user.getTile(), 1, 12, false, [], this.onQueryTile, _user.getFaction());
 		return true;
 	}

@@ -1,25 +1,23 @@
-::mods_hookExactClass("skills/effects/rooted_effect", function(o) {
+::mods_hookExactClass("skills/effects/rooted_effect", function (o) {
 	o.m.DamageMin <- 0;
 	o.m.DamageMax <- 0;
 	o.m.SoundOnHitHitpoints <- ::Legends.S.setSounds("sounds/combat/break_free_roots", 4, 0);
 
-	o.setDamage <- function(_damageMin, _damageMax)
-	{
+	o.setDamage <- function (_damageMin, _damageMax) {
 		this.m.DamageMin = _damageMin;
 		this.m.DamageMax = _damageMax;
 	}
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.KilledString = "Crushed by vines";
 	}
 
-	o.applyDamage <- function ()
-	{
-		if (this.m.DamageMin == 0 || this.m.DamageMax == 0)
+	o.applyDamage <- function () {
+		if (this.m.DamageMin == 0 || this.m.DamageMax == 0) {
 			return;
+		}
 
 		local actor = this.getContainer().getActor();
 		local hp = actor.getHitpoints();
@@ -33,27 +31,26 @@
 		hitInfo.FatalityChanceMult = 0.0;
 		actor.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 
-		if (!actor.isAlive())
+		if (!actor.isAlive()) {
 			return;
+		}
 
-		if (!actor.isHiddenToPlayer())
-		{
-			if (this.m.SoundOnHitHitpoints.len() != 0)
-			{
+		if (!actor.isHiddenToPlayer()) {
+			if (this.m.SoundOnHitHitpoints.len() != 0) {
 				::Sound.play(this.m.SoundOnHitHitpoints[::Math.rand(0, this.m.SoundOnHitHitpoints.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.2, actor.getPos());
 			}
 		}
 
-		if (actor.getFlags().has("undead"))
+		if (actor.getFlags().has("undead")) {
 			return;
+		}
 
-		if (actor.getCurrentProperties().IsImmuneToPoison || (hp - actor.getHitpoints()) < ::Const.Combat.PoisonEffectMinDamage || actor.getHitpoints() <= 0)
+		if (actor.getCurrentProperties().IsImmuneToPoison || (hp - actor.getHitpoints()) < ::Const.Combat.PoisonEffectMinDamage || actor.getHitpoints() <= 0) {
 			return;
+		}
 
-		if (!actor.isHiddenToPlayer())
-		{
-			if (this.m.SoundOnUse.len() != 0)
-			{
+		if (!actor.isHiddenToPlayer()) {
+			if (this.m.SoundOnUse.len() != 0) {
 				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, actor.getPos());
 			}
 
@@ -63,23 +60,18 @@
 		this.spawnIcon("status_effect_54", actor.getTile());
 		local poison = ::Legends.Effects.get(actor, ::Legends.Effect.GoblinPoison);
 
-		if (poison == null)
-		{
+		if (poison == null) {
 			::Legends.Effects.grant(actor, ::Legends.Effect.GoblinPoison);
-		}
-		else
-		{
+		} else {
 			poison.resetTime();
 		}
 	}
 
-	o.onAdded <- function ()
-	{
+	o.onAdded <- function () {
 		this.applyDamage();
 	}
 
-	o.onTurnEnd <- function()
-	{
+	o.onTurnEnd <- function () {
 		this.applyDamage();
 	}
 });

@@ -1,19 +1,15 @@
 this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrepareBullet);
 		this.m.Description = "This character is preparing a shot with a sling, increasing velocity and damage.";
-		this.m.Icon = "ui/perks/perk_slinger_spins.png";
-		this.m.IconMini = "slinger_spins_mini";
-		this.m.Overlay = "slinger_spins_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -53,40 +49,37 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function getBonus()
-	{
+	function getBonus() {
 		return this.getContainer().getActor().getCurrentProperties().Initiative * 0.1;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null)
+		if (weapon == null) {
 			this.removeSelf();
-			return;
-		if (!(weapon.isWeaponType(::Const.Items.WeaponType.Sling) && weapon.isItemType(::Const.Items.ItemType.OneHanded)))
+		}
+		return;
+		if (!(weapon.isWeaponType(::Const.Items.WeaponType.Sling) && weapon.isItemType(::Const.Items.ItemType.OneHanded))) {
 			this.removeSelf();
+		}
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		this.removeSelf();
 	}
 
-	function onTargetMissed( _skill, _targetEntity )
-	{
+	function onTargetMissed(_skill, _targetEntity) {
 		this.removeSelf();
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
-	{
+	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
 		this.removeSelf();
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill.isGarbage() || _skill.getID() != ::Legends.Actives.getID(::Legends.Active.SlingStone))
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill.isGarbage() || _skill.getID() != ::Legends.Actives.getID(::Legends.Active.SlingStone)) {
 			return;
+		}
 		local bonus = this.getBonus();
 		_properties.DamageRegularMin += bonus;
 		_properties.DamageRegularMax += bonus;

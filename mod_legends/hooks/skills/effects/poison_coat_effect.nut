@@ -1,10 +1,9 @@
 ::mods_hookExactClass("skills/effects/poison_coat_effect", function (o) {
 	o.onAdded <- function () {
-		if (::Legends.Perks.has(this.getContainer().getActor(),::Legends.Perk.LegendPoisoner)) {
+		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPoisoner)) {
 			this.m.AttacksLeft += 2;
 		}
 	}
-
 
 	o.onTargetHit = function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		--this.m.AttacksLeft;
@@ -25,7 +24,7 @@
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetEntity) + " is poisoned");
 		}
 
-		local runePoison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRswPoisonEffect);
+		local runePoison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRswPoisonPoison);
 		local gobboPoison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.GoblinPoison);
 
 		if (runePoison == null && gobboPoison == null) {

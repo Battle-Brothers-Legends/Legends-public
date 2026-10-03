@@ -2,25 +2,20 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 6
 	},
-	function create()
-	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWineTipsyEffect);
-		this.m.Icon = "skills/status_effect_92.png";
-		this.m.IconMini = "status_effect_92_mini";
-		this.m.Overlay = "status_effect_92";
+
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWineTipsy);
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "Having recently imbibed wine, this character has [color=%positive%]6[/color] Resolve, Melee and Ranged Skill, [color=%negative%]-6[/color] Defenses and [color=%negative%]-12[/color] Initiative for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -72,8 +67,7 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.Bravery += 6;
 		_properties.MeleeSkill += 6;
 		_properties.RangedSkill += 6;
@@ -83,26 +77,19 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.m.TurnsLeft = 6;
 	}
 
-	function onTurnEnd()
-	{
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}
 
-	function onRemoved()
-	{
-		if (::Math.rand(1, 100) <= 20)
-		{
+	function onRemoved() {
+		if (::Math.rand(1, 100) <= 20) {
 			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}
 	}
-
 });
-

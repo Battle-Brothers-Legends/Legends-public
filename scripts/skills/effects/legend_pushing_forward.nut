@@ -1,18 +1,15 @@
 this.legend_pushing_forward <- this.inherit("scripts/skills/legend_commander_abstract_effect", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPushingForward);
 		this.m.Description = "This mercenary has received clear instructions to push forward, and is coordinating accordingly.";
-		this.m.Icon = "ui/perks/spears_circle.png";
-		this.m.IconMini = "mini_spears_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
 		tooltip.extend([
 			{
@@ -37,8 +34,7 @@ this.legend_pushing_forward <- this.inherit("scripts/skills/legend_commander_abs
 		return tooltip;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.MeleeSkill += 10;
 		_properties.Bravery += 5;
 		_properties.MeleeDefense += 3;

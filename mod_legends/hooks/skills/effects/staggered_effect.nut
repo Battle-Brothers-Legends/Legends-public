@@ -1,18 +1,15 @@
-::mods_hookExactClass("skills/effects/staggered_effect", function(o) {
+::mods_hookExactClass("skills/effects/staggered_effect", function (o) {
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
-		this.m.Overlay = "";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.Staggered);
 	}
 
 	local onAdded = o.onAdded;
-	o.onAdded = function ()
-	{
+	o.onAdded = function () {
 		local actor = this.getContainer().getActor();
-		if (actor.getFlags().get("CanNotBeStaggered") || !actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
-		{
+		if (actor.getFlags().get("CanNotBeStaggered") || !actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded()) {
 			this.removeSelf();
 			return;
 		}
@@ -21,13 +18,11 @@
 		onAdded();
 	}
 
-	o.onRefresh = function ()
-	{
+	o.onRefresh = function () {
 		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		::Tactical.TurnSequenceBar.pushEntityBack(this.getContainer().getActor().getID());
 		local tile = this.getContainer().getActor().getTile();
-		if (tile != null)
-		{
+		if (tile != null) {
 			this.spawnIcon("status_effect_65", this.getContainer().getActor().getTile());
 		}
 	}

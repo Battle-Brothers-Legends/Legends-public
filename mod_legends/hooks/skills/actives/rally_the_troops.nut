@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/actives/rally_the_troops", function(o)
-{
-	o.getTooltip = function ()
-	{
+::mods_hookExactClass("skills/actives/rally_the_troops", function (o) {
+	o.getTooltip = function () {
 		local bravery = this.getBonus();
 		local tooltip = [
 			{
@@ -39,8 +37,7 @@
 			}
 		];
 
-		if (this.getContainer().hasEffect(::Legends.Effect.Rallied))
-		{
+		if (this.getContainer().hasEffect(::Legends.Effect.Rallied)) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -52,32 +49,27 @@
 		return tooltip;
 	}
 
-	o.getBonus <- function()
-	{
+	o.getBonus <- function () {
 		return ::Math.floor(this.getContainer().getActor().getCurrentProperties().getBravery() * 0.4);
 	}
 
-	o.onUse = function ( _user, _targetTile )
-	{
+	o.onUse = function (_user, _targetTile) {
 		local myTile = _user.getTile();
 		local bravery = this.getBonus();
 		local actors = ::Tactical.Entities.getAllInstancesAsArray(); //Take all actors instead of ones belonging to the user's faction
 
-		foreach( a in actors )
-		{
-			if (a.getID() == _user.getID())
-			{
+		foreach (a in actors) {
+			if (a.getID() == _user.getID()) {
 				continue;
 			}
 
-			if (myTile.getDistanceTo(a.getTile()) > 4)
-			{
+			if (myTile.getDistanceTo(a.getTile()) > 4) {
 				continue;
 			}
 
 			local effect = ::Legends.Effects.get(a, ::Legends.Effect.Charmed);
 			local notCharmedBro = effect != null && ::MSU.isIn("OriginalFaction", effect.m) && effect.m.OriginalFaction != _user.getFaction();
-			effect = ::Legends.Effects.get(a, ::Legends.Effect.LegendIntenselyCharmed);
+			effect = ::Legends.Effects.get(a, ::Legends.Effect.LegendInfatuated);
 			local notIntenselyCharmedBro = effect != null && ::MSU.isIn("OriginalFaction", effect.m) && effect.m.OriginalFaction != _user.getFaction();
 			if (a.getFaction() != _user.getFaction() && notCharmedBro && notIntenselyCharmedBro) //Charmed bros belong to a different faction, additional conditions make sure they are not excluded
 			{
@@ -86,7 +78,7 @@
 
 			// Next part was probably added for testing purposes
 			/*	this.logInfo("attempting to rally");
-				if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
+				if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendInfatuated) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
 				{
 					local rand = ::Math.rand(1, 100);
 					if( bravery > rand )
@@ -94,22 +86,19 @@
 						this.logInfo("Removing charms");
 						::Legends.Effects.remove(a, ::Legends.Effect.Charmed);
 						::Legends.Effects.remove(a, ::Legends.Effect.Sleeping);
-						::Legends.Effects.remove(a, ::Legends.Effect.LegendIntenselyCharmed);
+						::Legends.Effects.remove(a, ::Legends.Effect.LegendInfatuated);
 						}
 				}
-
 				if ( a.getMoraleState() >= ::Const.MoraleState.Steady )
 				{
 					continue;
 				}
-
 				this.logInfo("finding rally difficulty");
 				local difficulty = bravery;
 					this.logInfo("getting distance");
 				local distance = a.getTile().getDistanceTo(myTile) * 10;
 					this.logInfo("getting morale state");
 				local morale = a.getMoraleState();
-
 				if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
 				{
 					this.logInfo("Turning back the fleeing");
@@ -121,14 +110,12 @@
 					a.checkMorale(1, difficulty - distance, ::Const.MoraleCheckType.Default, "status_effect_56");
 				} */
 
-			if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
-			{
+			if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendInfatuated) || a.getSkills().hasEffect(::Legends.Effect.Sleeping)) {
 				local rand = ::Math.rand(1, 100);
-				if( bravery > rand )
-				{
+				if (bravery > rand) {
 					::Legends.Effects.remove(a, ::Legends.Effect.Charmed);
 					::Legends.Effects.remove(a, ::Legends.Effect.Sleeping);
-					::Legends.Effects.remove(a, ::Legends.Effect.LegendIntenselyCharmed);
+					::Legends.Effects.remove(a, ::Legends.Effect.LegendInfatuated);
 				}
 			}
 
@@ -137,13 +124,11 @@
 				continue;
 			}
 
-			if (a.getSkills().hasEffect(::Legends.Effect.Rallied))
-			{
+			if (a.getSkills().hasEffect(::Legends.Effect.Rallied)) {
 				continue;
 			}
 
-			if ( a.getMoraleState() >= ::Const.MoraleState.Steady )
-			{
+			if (a.getMoraleState() >= ::Const.MoraleState.Steady) {
 				continue;
 			}
 
@@ -151,17 +136,13 @@
 			local distance = a.getTile().getDistanceTo(myTile) * 10;
 			local morale = a.getMoraleState();
 
-			if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
-			{
+			if (a.getMoraleState() == ::Const.MoraleState.Fleeing) {
 				a.checkMorale(::Const.MoraleState.Wavering - ::Const.MoraleState.Fleeing, difficulty, ::Const.MoraleCheckType.Default, "status_effect_56");
-			}
-			else
-			{
+			} else {
 				a.checkMorale(1, difficulty - distance, ::Const.MoraleCheckType.Default, "status_effect_56");
 			}
 
-			if (morale != a.getMoraleState())
-			{
+			if (morale != a.getMoraleState()) {
 				::Legends.Effects.grant(a, ::Legends.Effect.Rallied);
 			}
 		}

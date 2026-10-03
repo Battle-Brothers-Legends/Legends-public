@@ -1,20 +1,16 @@
 this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		GraveStacks = 0
-		},
-	function create()
-	{
+	},
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGravedigging);
-		this.m.Icon = "ui/perks/shovel_01.png";
-		// this.m.IconMini = "shovel_01_mini.png";
-		this.m.Overlay = "shovel_01";
 		this.m.Description = "This character gets unnaturally excited about dead bodies and will receive bonuses to Initiative, Resolve and Damage for every 2 corpses on the battlefield. Effect will be capped to 5 stacks for Two Handed Maces, which aren't shovels.";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local bonus = this.getCorpses();
 		return [
 			{
@@ -48,52 +44,50 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function getCorpses()
-	{
+	function getCorpses() {
 
-		if (!this.getContainer().getActor().isPlacedOnMap()) return 0;
+		if (!this.getContainer().getActor().isPlacedOnMap()) {
+			return 0;
+		}
 		local count = 0;
 
 		local size = ::Tactical.getMapSize();
-		for ( local x = 0; x < size.X; x = ++x )
-		{
-			for( local y = 0; y < size.Y; y = ++y )
-			{
+		for (local x = 0; x < size.X; x = ++x) {
+			for (local y = 0; y < size.Y; y = ++y) {
 				local tile = ::Tactical.getTileSquare(x, y);
-				if (tile.Properties.get("Corpse"))
+				if (tile.Properties.get("Corpse")) {
 					count += 1;
+				}
 			}
 		}
 
 		return ::Math.floor(count / 2);
 	}
 
-	function isViableTile( _tile )
-	{
-		if (!this.MSU.Tile.canResurrectOnTile(_tile))
+	function isViableTile(_tile) {
+		if (!this.MSU.Tile.canResurrectOnTile(_tile)) {
 			return false;
+		}
 
-		if (!_tile.IsEmpty)
+		if (!_tile.IsEmpty) {
 			return false;
+		}
 
 		return true;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem();
 
-		if (item == null || !(item.isWeaponType(::Const.Items.WeaponType.Mace) && item.isItemType(::Const.Items.ItemType.TwoHanded)))
-		{
+		if (item == null || !(item.isWeaponType(::Const.Items.WeaponType.Mace) && item.isItemType(::Const.Items.ItemType.TwoHanded))) {
 			this.m.GraveStacks = 0;
 			this.m.IsHidden = true;
 			return;
 		}
 		this.m.GraveStacks = getCorpses();
 
-		if (!(item.getID() == "weapon.legend_shovel") && this.m.GraveStacks > 5)
-		{
+		if (!(item.getID() == "weapon.legend_shovel") && this.m.GraveStacks > 5) {
 			this.m.GraveStacks = 5;
 		}
 
@@ -104,14 +98,12 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		_properties.DamageRegularMax += this.m.GraveStacks;
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		this.m.GraveStacks = 0;
 		this.skill.onCombatStarted();
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.m.GraveStacks = 0;
 		this.skill.onCombatFinished();
 	}

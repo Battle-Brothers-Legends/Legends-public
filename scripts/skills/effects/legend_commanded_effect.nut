@@ -3,21 +3,17 @@ this.legend_commanded_effect <- this.inherit("scripts/skills/skill", {
 		IsAlive = true
 		IsApplied = false
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCommanded);
 		this.m.Description = "This character has been commanded by a superior, they will now push themselves to do it.";
-		this.m.Icon = "legend_status_effect_legion_command.png";
-		this.m.IconMini = "legend_status_effect_legion_command_mini";
-		this.m.Overlay = "legend_legion_command_square";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.ActionPoints += 4;
 		_properties.Initiative += 50;
 		_properties.MeleeSkill += 10;
@@ -27,46 +23,34 @@ this.legend_commanded_effect <- this.inherit("scripts/skills/skill", {
 		_properties.DamageReceivedTotalMult *= 0.5;
 	}
 
-	function onAdded()
-	{
-	}
+	function onAdded() {}
 
-	function onRemoved()
-	{
-	}
+	function onRemoved() {}
 
-	function onTurnStart()
-	{
-		if (!this.m.IsApplied)
-		{
+	function onTurnStart() {
+		if (!this.m.IsApplied) {
 			local actor = this.getContainer().getActor();
 			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
 			this.m.IsApplied = true;
 		}
 	}
 
-	function onResumeTurn()
-	{
-		if (!this.m.IsApplied)
-		{
+	function onResumeTurn() {
+		if (!this.m.IsApplied) {
 			local actor = this.getContainer().getActor();
 			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
 			this.m.IsApplied = true;
 		}
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
-	{
-		if (_damageHitpoints >= this.getContainer().getActor().getHitpoints())
-		{
+	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
+		if (_damageHitpoints >= this.getContainer().getActor().getHitpoints()) {
 			this.m.IsAlive = false;
 			this.onRemoved();
 		}
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		this.removeSelf();
 	}
-
 });

@@ -1,9 +1,8 @@
-::mods_hookExactClass("skills/effects/whipped_effect", function(o) {
+::mods_hookExactClass("skills/effects/whipped_effect", function (o) {
 
 	o.m.TurnsLeft = 3;
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		return [
 			{
 				id = 1,
@@ -54,21 +53,18 @@
 		];
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function () {
 		this.m.TurnsLeft = 3;
 		local actor = this.getContainer().getActor();
 		actor.getSprite("status_sweat").setBrush("bust_slave_whipped");
 		actor.setDirty(true);
 	}
 
-	o.onRefresh = function ()
-	{
+	o.onRefresh = function () {
 		this.m.TurnsLeft = 3;
 	}
 
-	o.onUpdate = function ( _properties )
-	{
+	o.onUpdate = function (_properties) {
 		_properties.MeleeSkill += 12 + this.m.Level;
 		_properties.RangedSkill += 14 + this.m.Level;
 		_properties.Bravery -= (5 + this.m.Level);

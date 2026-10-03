@@ -1,7 +1,7 @@
 this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendOmsAmphora);
 		this.m.Description = "Drink from the Amphora. You can\'t be sure what this might do...";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drink", 3);
@@ -20,27 +20,27 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = [
-		{
-			id = 1,
-			type = "title",
-			text = this.getName()
-		},
-		{
-			id = 2,
-			type = "description",
-			text = this.getDescription()
-		},
-		{
-			id = 3,
-			type = "text",
-			text = this.getCostString()
-		}];
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			},
+			{
+				id = 3,
+				type = "text",
+				text = this.getCostString()
+			}
+		];
 
 		if (!this.getFlags().has(::Legends.Items.Relics.IdentifiedFlag)) {
-			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip)
+			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip);
 		} else {
 			result.push({
 				id = 10,
@@ -52,41 +52,39 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		return result;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		local tile = this.getContainer().getActor().getTile();
 		return this.skill.isUsable() && !this.getItem().isConsumed() && !tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
-	function getCursorForTile( _tile )
-	{
-		if (_tile.ID == this.getContainer().getActor().getTile().ID) return ::Const.UI.Cursor.Drink;
-		else return ::Const.UI.Cursor.Give;
+	function getCursorForTile(_tile) {
+		if (_tile.ID == this.getContainer().getActor().getTile().ID) {
+			return ::Const.UI.Cursor.Drink;
+		} else {
+			return ::Const.UI.Cursor.Give;
+		}
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) return false;
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
+			return false;
+		}
 		local target = _targetTile.getEntity();
-		if (!this.m.Container.getActor().isAlliedWith(target)) return false;
+		if (!this.m.Container.getActor().isAlliedWith(target)) {
+			return false;
+		}
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local user = _targetTile.getEntity();
 
-		if (_user.getID() == user.getID())
-		{
-			if (!user.isHiddenToPlayer())
-			{
+		if (_user.getID() == user.getID()) {
+			if (!user.isHiddenToPlayer()) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " drinks from Amphora");
 			}
-		}
-		else
-		{
-			if (!_user.isHiddenToPlayer())
-			{
+		} else {
+			if (!_user.isHiddenToPlayer()) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " lets " + ::Const.UI.getColorizedEntityName(user) + " drink from Amphora");
 			}
 		}
@@ -94,23 +92,19 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		local effects = ::MSU.Class.WeightedContainer([
 			[0.5, ::Legends.Effect.ImmuneToPoison],
 			[0.5, ::Legends.Effect.Bleeding],
-			[0.5, ::Legends.Effect.LegendBeerBuzzEffect],
-			[0.5, ::Legends.Effect.LegendMeadWarmthEffect],
-			[0.5, ::Legends.Effect.LegendWineTipsyEffect],
-
+			[0.5, ::Legends.Effect.LegendBeerBuzz],
+			[0.5, ::Legends.Effect.LegendMeadWarmth],
+			[0.5, ::Legends.Effect.LegendWineTipsy],
 			[0.4, ::Legends.Effect.CatPotion],
 			[0.4, ::Legends.Effect.LionheartPotion],
 			[0.4, ::Legends.Effect.LegendStupefied],
-
 			[0.3, ::Legends.Effect.RecoveryPotion],
 			[0.3, ::Legends.Effect.Chilled],
 			[0.3, ::Legends.Effect.GoblinPoison],
-
 			[0.2, ::Legends.Effect.SpiderPoison],
 			[0.2, ::Legends.Effect.LegendRedbackSpiderPoison],
 			[0.2, ::Legends.Effect.IronWill],
-
-			[0.1, ::Legends.Effect.LegendGreenwoodSap]
+			[0.1, ::Legends.Effect.LegendHeartwoodFocus]
 		]);
 		::Legends.Effects.grant(_user, effects.roll());
 		this.getItem().setConsumed(true);

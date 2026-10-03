@@ -1,14 +1,11 @@
-::mods_hookExactClass("skills/actives/bandage_ally_skill", function(o)
-{
+::mods_hookExactClass("skills/actives/bandage_ally_skill", function (o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "Save yourself or another character from bleeding to death by applying pressure and provisional bandaging to any such wound. Does not heal hitpoints. Neither the character using this skill nor the patient may be engaged in melee, unless the character using this skill has Bandage Mastery.";
 	}
 
-	o.getTooltip = function()
-	{
+	o.getTooltip = function () {
 		local tooltip = [
 			{
 				id = 1,
@@ -39,8 +36,7 @@
 			}
 		];
 
-		if (!::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendSpecBandage) && ::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (!::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendSpecBandage) && ::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			tooltip.push({
 				id = 5,
 				type = "text",
@@ -52,109 +48,96 @@
 		return tooltip;
 	}
 
-	o.isUsable = function()
-	{
-		if (!::Tactical.isActive())
+	o.isUsable = function () {
+		if (!::Tactical.isActive()) {
 			return false;
+		}
 
 		local actor = this.getContainer().getActor();
-		if (::Legends.S.isEntityNullOrDead(actor))
+		if (::Legends.S.isEntityNullOrDead(actor)) {
 			return false;
-		if (actor.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
+		}
+		if (actor.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey)) {
 			return false;
+		}
 
 		local tile = actor.getTile();
 		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.getContainer().hasPerk(::Legends.Perk.LegendSpecBandage));
 	}
 
-	o.onVerifyTarget = function( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+	o.onVerifyTarget = function (_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
 		local target = _targetTile.getEntity();
 
-		if (!this.m.Container.getActor().isAlliedWith(target))
-		{
+		if (!this.m.Container.getActor().isAlliedWith(target)) {
 			return false;
 		}
 
-		if (_targetTile.hasZoneOfControlOtherThan(this.m.Container.getActor().getAlliedFactions()) && !this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage))
-		{
+		if (_targetTile.hasZoneOfControlOtherThan(this.m.Container.getActor().getAlliedFactions()) && !this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage)) {
 			return false;
 		}
 
-		if (target.getSkills().hasEffect(::Legends.Effect.Bleeding) || target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
-		{
+		if (target.getSkills().hasEffect(::Legends.Effect.Bleeding) || target.getSkills().hasEffect(::Legends.Effect.LegendGrazed)) {
 			return true;
 		}
 
 		local skill;
 		skill = target.getSkills().getSkillByID("injury.cut_artery");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			return true;
 		}
 
 		skill = target.getSkills().getSkillByID("injury.cut_throat");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			return true;
 		}
 
 		skill = target.getSkills().getSkillByID("injury.grazed_neck");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			return true;
 		}
 
 		return false;
 	}
 
-	o.onUse = function ( _user, _targetTile )
-	{
+	o.onUse = function (_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		this.spawnIcon("perk_55", _targetTile);
 
-		while (target.getSkills().hasEffect(::Legends.Effect.Bleeding))
-		{
+		while (target.getSkills().hasEffect(::Legends.Effect.Bleeding)) {
 			::Legends.Effects.remove(target, ::Legends.Effect.Bleeding);
 		}
 
-		while (target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
-		{
-			::Legends.Effects.remove(target, ::Legends.Effect.LegendGrazedEffect);
+		while (target.getSkills().hasEffect(::Legends.Effect.LegendGrazed)) {
+			::Legends.Effects.remove(target, ::Legends.Effect.LegendGrazed);
 		}
 
 		local skill;
 		skill = target.getSkills().getSkillByID("injury.cut_artery");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			target.getSkills().remove(skill);
 		}
 
 		skill = target.getSkills().getSkillByID("injury.cut_throat");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			target.getSkills().remove(skill);
 		}
 
 		skill = target.getSkills().getSkillByID("injury.grazed_neck");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			target.getSkills().remove(skill);
 		}
 
-		if (this.m.Item != null && !this.m.Item.isNull())
-		{
+		if (this.m.Item != null && !this.m.Item.isNull()) {
 			this.m.Item.removeSelf();
 		}
 

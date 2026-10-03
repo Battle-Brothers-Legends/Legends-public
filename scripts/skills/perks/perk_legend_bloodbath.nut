@@ -75,7 +75,7 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 				return false;
 			}
 
-			return _actor.getSkills().hasEffect(::Legends.Effect.Bleeding) || _actor.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect)	|| _actor.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury);
+			return _actor.getSkills().hasEffect(::Legends.Effect.Bleeding) || _actor.getSkills().hasEffect(::Legends.Effect.LegendGrazed) || _actor.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury);
 		});
 
 		local bonus = 0;

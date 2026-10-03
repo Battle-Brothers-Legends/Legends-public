@@ -1,11 +1,8 @@
 this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendAlpRealmOfShadow);
-		this.m.Icon = "skills/status_effect_81.png";
-		this.m.IconMini = "status_effect_81_mini";
-		this.m.Overlay = "status_effect_81";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/nightmare", 8);
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsRemovedAfterBattle = true;
@@ -13,13 +10,11 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is consumed by unnatural black mist and is experiencing supernatural terror. The horrors eat away at their sanity and they will soon be broken.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -33,8 +28,7 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 			},
 		];
 
-		if (this.getContainer().getActor().getFlags().has("alp"))
-		{
+		if (this.getContainer().getActor().getFlags().has("alp")) {
 			ret.extend([
 				{
 					id = 9,
@@ -94,25 +88,23 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onNewRound()
-	{
+	function onNewRound() {
 		local myTile = this.getContainer().getActor().getTile();
 
-		if (myTile.Properties.Effect == null || myTile.Properties.Effect.Timeout == ::Time.getRound() || myTile.Properties.Effect.Type != "legend_shadow_mist")
+		if (myTile.Properties.Effect == null || myTile.Properties.Effect.Timeout == ::Time.getRound() || myTile.Properties.Effect.Type != "legend_shadow_mist") {
 			this.removeSelf();
+		}
 	}
 
-	function onMovementFinished()
-	{
+	function onMovementFinished() {
 		local tile = this.getContainer().getActor().getTile();
-		if (tile.Properties.Effect == null || tile.Properties.Effect.Type != "legend_shadow_mist")
+		if (tile.Properties.Effect == null || tile.Properties.Effect.Type != "legend_shadow_mist") {
 			this.removeSelf();
+		}
 	}
 
-	function onUpdate( _properties )
-	{
-		if (this.getContainer().getActor().getFlags().has("alp"))
-		{
+	function onUpdate(_properties) {
+		if (this.getContainer().getActor().getFlags().has("alp")) {
 			_properties.IsImmuneToZoneOfControl = true;
 			_properties.BraveryMult *= 1.33;
 			_properties.RangedDefenseMult *= 2.0;
@@ -125,16 +117,15 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 		_properties.InitiativeMult *= 0.9;
 	}
 
-	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
-	{
-		if (_attacker == null)
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
+		if (_attacker == null) {
 			return;
+		}
 
-		if (_skill == null || _skill.getID() != ::Legends.Actives.getID(::Legends.Active.Nightmare))
+		if (_skill == null || _skill.getID() != ::Legends.Actives.getID(::Legends.Active.Nightmare)) {
 			return;
+		}
 
 		_properties.DamageReceivedTotalMult *= 1.33;
 	}
-
 });
-

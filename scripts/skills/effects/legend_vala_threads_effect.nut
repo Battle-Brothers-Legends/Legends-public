@@ -2,12 +2,9 @@ this.legend_vala_threads_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Threads = 1
 	},
-	function create()
-	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaThreadsEffect);
-		this.m.Icon = "skills/status_effect_78.png";
-		this.m.IconMini = "status_effect_78_mini";
-		this.m.Overlay = "status_effect_78";
+
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaThreads);
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsActive = false;
@@ -15,23 +12,16 @@ this.legend_vala_threads_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-
-	function isHidden()
-	{
+	function isHidden() {
 		return false;
 	}
 
-
-	function getName()
-	{
+	function getName() {
 		return this.m.Name + " (x" + this.m.Threads + ")";
 	}
 
-
-	function getTooltip()
-	{
-		if (!this.isHidden())
-		{
+	function getTooltip() {
+		if (!this.isHidden()) {
 			return [
 				{
 					id = 1,
@@ -39,39 +29,30 @@ this.legend_vala_threads_effect <- this.inherit("scripts/skills/skill", {
 					text = this.getName()
 				}
 			];
-		}
-		else
-		{
+		} else {
 			return;
 		}
 	}
 
-
-	function onUpdate( _properties )
-	{
-		if (this.m.Threads > 5)
-		{
+	function onUpdate(_properties) {
+		if (this.m.Threads > 5) {
 			this.m.Threads = 5;
 		}
 
-		if (this.getContainer().getActor().getHitpointsMax() > 1)
+		if (this.getContainer().getActor().getHitpointsMax() > 1) {
 			_properties.HitpointsMult *= 1.0 - (this.m.Threads / 10.0);
+		}
 		_properties.DamageReceivedTotalMult *= 1.0 + (this.m.Threads / 10.0);
 	}
 
-
-	function onRefresh()
-	{
-		if (this.m.Threads < 5)
-		{
+	function onRefresh() {
+		if (this.m.Threads < 5) {
 			++this.m.Threads;
 			this.spawnIcon("status_effect_78", this.getContainer().getActor().getTile());
 		}
 	}
 
-
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.removeSelf();
 	}
 });

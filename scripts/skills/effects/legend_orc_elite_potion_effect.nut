@@ -1,11 +1,8 @@
 this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendOrcElitePotion);
-		this.m.Icon = "skills/status_effect_130.png";
-		this.m.IconMini = "";
-		this.m.Overlay = "status_effect_130";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -13,13 +10,11 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character\'s limbic system has been altered with an additional substance that allows them to sustain particularly strenuous anaerobic activity for longer. Their skin seems vaguely greener than you remember, too, but you\'re sure that\'s a coincidence.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -47,39 +42,31 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		local fat = actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
 
 		local mainhand = actor.getMainhandItem();
-		if (mainhand != null)
-		{
+		if (mainhand != null) {
 			fat += mainhand.getStaminaModifier();
 		}
 
 		local offhand = actor.getOffhandItem();
-		if (offhand != null)
-		{
+		if (offhand != null) {
 			fat += offhand.getStaminaModifier();
 		}
 
 		_properties.Stamina -= fat * 20 * 0.01;
-		_properties.Initiative -= fat * 20 * 0.01;		
+		_properties.Initiative -= fat * 20 * 0.01;
 	}
 
-	function onDeath( _fatalityType )
-	{
-		if (_fatalityType != ::Const.FatalityType.Unconscious)
-		{
+	function onDeath(_fatalityType) {
+		if (_fatalityType != ::Const.FatalityType.Unconscious) {
 			::World.Statistics.getFlags().set("isOrcElitePotionAcquired", false);
 		}
 	}
 
-	function onDismiss()
-	{
+	function onDismiss() {
 		::World.Statistics.getFlags().set("isOrcElitePotionAcquired", false);
 	}
-
 });
-

@@ -1,22 +1,62 @@
-// this isn't currently used so i haven't renamed it
 this.legend_marked_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
-	function create()
-	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMarkedTarget);
-		this.m.Description = "This character has gotten the attention of nearby opponents and is more likely to be attacked over other potential targets.";
-		this.m.Icon = "ui/perks/perk_38.png";
-		this.m.IconMini = "perk_38_mini";
+	m = {
+		TurnsLeft = 2
+	},
+
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMarked);
+		this.m.Description = "This character has been marked by a skilled opponent, melee and ranged attacks are more likely to hit";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
-		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function onUpdate( _properties )
-	{
-		_properties.TargetAttractionMult *= 2.5;
+	function getTooltip() {
+		return [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=%negative%]-10[/color] Melee Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=%negative%]-10[/color] Ranged Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "[color=%positive%]" + getBonus() * 100 + "%[/color] Damage Received from all sources"
+			}
+		];
 	}
 
-});
+	function getBonus() {
+		return 1.0 + ::Math.min(0.2, this.getContainer().getActor().getHitpointsMax() * 0.01);
+	}
 
+	function onUpdate(_properties) {
+		_properties.RangedDefense -= 10;
+		_properties.MeleeDefense -= 10;
+		_properties.DamageReceivedTotalMult *= getBonus();
+	}
+
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
+			this.removeSelf();
+		}
+	}
+});

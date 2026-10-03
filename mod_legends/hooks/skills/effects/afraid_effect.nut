@@ -1,14 +1,12 @@
-::mods_hookExactClass("skills/effects_world/afraid_effect", function(o) {
+::mods_hookExactClass("skills/effects_world/afraid_effect", function (o) {
 
 	o.m.HealChance <- 25;
-	o.setHealChance <- function( _i )
-	{
+	o.setHealChance <- function (_i) {
 		this.m.HealChance = _i;
 	}
 
 	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
-	{
+	o.getTooltip = function () {
 		local ret = getTooltip();
 		ret.push({
 			id = 17,
@@ -20,10 +18,8 @@
 		return ret;
 	}
 
-	o.onNewDay = function ()
-	{
-		if (::Math.rand(1, 100) <= this.m.HealChance)
-		{
+	o.onNewDay = function () {
+		if (::Math.rand(1, 100) <= this.m.HealChance) {
 			this.removeSelf();
 		}
 	}

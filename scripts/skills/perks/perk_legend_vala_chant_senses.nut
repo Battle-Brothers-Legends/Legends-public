@@ -2,13 +2,12 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 	m = {
 		ChantIsActive = false
 	},
-	function resetChant()
-	{
+
+	function resetChant() {
 		this.m.ChantIsActive = false;
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantSenses);
 		this.m.Icon = "ui/perks/legend_vala_chant_senses_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_chant_senses_active_bw.png";
@@ -24,21 +23,24 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 30;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		local actor = this.getContainer().getActor();
 
-		if (!this.skill.isUsable())
+		if (!this.skill.isUsable()) {
 			return false;
+		}
 
-		if (this.m.ChantIsActive)
+		if (this.m.ChantIsActive) {
 			return false;
+		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting)) {
 			return false;
+		}
 
-		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff")) {
 			return false;
+		}
 
 		return true;
 	}
@@ -47,8 +49,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		return "An intriguing chant that stimulates the senses.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local actor = this.getContainer().getActor();
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
@@ -58,8 +59,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			text = "Until the start of her next turn all allies within 3 tiles of the Vala receive a bonus to their melee and ranged defenses. Being closer to the Vala increases the bonus amount"
 		});
 
-		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff")) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -68,8 +68,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting)) {
 			ret.push({
 				id = 10,
 				type = "text",
@@ -81,23 +80,18 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function endChant()
-	{
+	function endChant() {
 		local actor = this.getContainer().getActor();
 		local targets = ::Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting)) {
 			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 		}
 
-		foreach( tar in targets )
-		{
-			foreach( t in tar )
-			{
-				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
-				{
-					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaChantSensesEffect);
+		foreach (tar in targets) {
+			foreach (t in tar) {
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSenses)) {
+					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaChantSenses);
 				}
 			}
 		}
@@ -105,57 +99,45 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		this.resetChant();
 	}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.endChant();
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.endChant();
 	}
 
-	function onDeath( _fatalityType )
-	{
+	function onDeath(_fatalityType) {
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded()) {
 			return;
+		}
 
 		this.endChant();
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaChantMastery))
-		{
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaChantMastery)) {
 			this.m.FatigueCostMult = 0.75;
-		}
-		else
-		{
+		} else {
 			this.m.FatigueCostMult = 1.0;
 		}
 	}
 
-	function onMovementFinished()
-	{
+	function onMovementFinished() {
 		local actor = this.getContainer().getActor();
 		local targets = ::Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) && this.m.ChantIsActive)
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) && this.m.ChantIsActive) {
 			::Sound.play("sounds/combat/legend_vala_senses.wav");
 		}
 
-		foreach( tar in targets )
-		{
-			foreach( t in tar )
-			{
-				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
-				{
-					if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID())
-					{
+		foreach (tar in targets) {
+			foreach (t in tar) {
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSenses)) {
+					if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID()) {
 						this.spawnIcon("status_effect_73", t.getTile());
 					}
 
@@ -165,34 +147,25 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onUpdate( _properties )
-	{
-	}
+	function onUpdate(_properties) {}
 
-	function onUse( _user, _targetTile )
-	{
-		if (this.isUsable())
-		{
+	function onUse(_user, _targetTile) {
+		if (this.isUsable()) {
 			local actor = this.getContainer().getActor();
 			local targets = ::Tactical.Entities.getAllInstances();
 
-			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
-			{
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting)) {
 				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 			}
 
-			foreach( tar in targets )
-			{
-				foreach( t in tar )
-				{
-					if (t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
-					{
-						::Legends.Effects.grant(t, ::Legends.Effect.LegendValaChantSensesEffect, function(_effect) {
+			foreach (tar in targets) {
+				foreach (t in tar) {
+					if (t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSenses)) {
+						::Legends.Effects.grant(t, ::Legends.Effect.LegendValaChantSenses, function (_effect) {
 							_effect.setVala(this.getContainer().getActor());
 						}.bindenv(this));
 
-						if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID())
-						{
+						if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID()) {
 							this.spawnIcon("status_effect_73", t.getTile());
 						}
 					}
@@ -203,6 +176,4 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			this.m.ChantIsActive = true;
 		}
 	}
-
 });
-

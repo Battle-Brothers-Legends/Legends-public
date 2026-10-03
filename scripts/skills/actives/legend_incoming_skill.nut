@@ -59,7 +59,7 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendDodgingIncoming);
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendBracingForImpact);
 	}
 
 	function onUse( _user, _targetTile )
@@ -79,17 +79,16 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendDodgingIncoming))
+			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendBracingForImpact))
 			{
-				::Legends.Effects.grant(a, ::Legends.Effect.LegendDodgingIncoming, function(_effect) {
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendBracingForImpact, function(_effect) {
 					_effect.setCommander(this.getContainer().getActor());
 				}.bindenv(this));
 			}
 		}
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendDodgingIncoming, function(_effect) {
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendBracingForImpact, function(_effect) {
 			_effect.setCommander(this.getContainer().getActor());
 		}.bindenv(this));
 		return true;
 	}
-
 });

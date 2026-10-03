@@ -3,8 +3,8 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 		WardenSummonSpent = false,
 		WardenEntity = null
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaWarden);
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 10;
@@ -12,20 +12,16 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 		this.m.IsTargeted = false;
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		return ::MSU.isNull(this.m.WardenEntity);
 	}
 
-	function getWarden()
-	{
+	function getWarden() {
 		return this.m.WardenEntity;
 	}
 
-	function getTooltip()
-	{
-		if (!this.isHidden())
-		{
+	function getTooltip() {
+		if (!this.isHidden()) {
 			local WardenHitpoints = this.m.WardenEntity.m.CurrentProperties.Hitpoints;
 			local WardenMeleeSkill = this.m.WardenEntity.m.CurrentProperties.MeleeSkill;
 			local WardenMeleeDefense = this.m.WardenEntity.m.CurrentProperties.MeleeDefense;
@@ -34,13 +30,11 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 			local WardenInitiative = this.m.WardenEntity.m.CurrentProperties.Initiative;
 			local SpiritualBondReduction = ::Math.round(10.0 + (this.getContainer().getActor().getBravery() / 4.0));
 
-			if (SpiritualBondReduction >= 50)
-			{
+			if (SpiritualBondReduction >= 50) {
 				SpiritualBondReduction = 50;
 			}
 
-			local tooltip =
-			[
+			local tooltip = [
 				{
 					id = 1,
 					type = "title",
@@ -60,8 +54,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 				text = "Hitpoints: " + WardenHitpoints + "\nMelee skill: " + WardenMeleeSkill + "\nMelee defense: " + WardenMeleeDefense + "\nRanged skill: " + WardenRangedSkill + "\nRanged defense: " + WardenRangedDefense + "\nInitiative: " + WardenInitiative
 			});
 
-			if (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.LegendValaSpiritualBondEffect))
-			{
+			if (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.LegendValaSpiritualBond)) {
 				tooltip.push({
 					id = 8,
 					type = "text",
@@ -74,32 +67,31 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onDeath( _fatalityType )
-	{
-		if (::MSU.isNull(this.m.WardenEntity))
+	function onDeath(_fatalityType) {
+		if (::MSU.isNull(this.m.WardenEntity)) {
 			return;
+		}
 
 		this.m.WardenEntity.killSilently();
 		this.m.WardenEntity = null;
 	}
 
-	function findTileToSpawnWarden()
-	{
+	function findTileToSpawnWarden() {
 		local actor = this.getContainer().getActor();
 
 		if (!actor.isPlacedOnMap()) {
 			return null;
-    	}
+		}
 
 		local EmptyTiles = [];
 
-		local populateTiles = function( _tile, _emptyTiles ) {
-        	if (_tile.IsEmpty) {
-            	_emptyTiles.push(_tile);
-        	}
-    	};
-		
-		::Tactical.queryTilesInRange(actor.getTile(), 1, 3, false, [], populateTiles, EmptyTiles);	
+		local populateTiles = function (_tile, _emptyTiles) {
+			if (_tile.IsEmpty) {
+				_emptyTiles.push(_tile);
+			}
+		};
+
+		::Tactical.queryTilesInRange(actor.getTile(), 1, 3, false, [], populateTiles, EmptyTiles);
 
 		if (EmptyTiles.len() != 0) {
 			return EmptyTiles[::Math.rand(0, EmptyTiles.len() - 1)];
@@ -108,15 +100,11 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 		return null;
 	}
 
-
-	function summonWarden()
-	{
-		if (this.m.WardenSummonSpent == false && ::MSU.isNull(this.m.WardenEntity))
-		{
+	function summonWarden() {
+		if (this.m.WardenSummonSpent == false && ::MSU.isNull(this.m.WardenEntity)) {
 			local WardenSpawnTile = this.findTileToSpawnWarden();
 
-			if (WardenSpawnTile != null)
-			{
+			if (WardenSpawnTile != null) {
 				local entity = ::Tactical.spawnEntity("scripts/entity/tactical/legend_vala_warden_script", WardenSpawnTile.Coords.X, WardenSpawnTile.Coords.Y);
 				entity.setName(this.getContainer().getActor().m.Name + "\'s Warden");
 				entity.setFaction(::Const.Faction.PlayerAnimals);
@@ -125,15 +113,13 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 				this.m.WardenEntity = ::MSU.asWeakTableRef(entity);
 				this.m.WardenSummonSpent = true;
 
-				if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendValaSpiritualBond))
-				{
-					if (!this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.LegendValaSpiritualBondEffect))
-					{
-						::Legends.Effects.grant(this, ::Legends.Effect.LegendValaSpiritualBondEffect, function(_effect) {
+				if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendValaSpiritualBond)) {
+					if (!this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.LegendValaSpiritualBond)) {
+						::Legends.Effects.grant(this, ::Legends.Effect.LegendValaSpiritualBond, function (_effect) {
 							_effect.setVala(this);
 						}.bindenv(this));
 					}
-					::Legends.Effects.grant(this.m.WardenEntity, ::Legends.Effect.LegendValaWardenDamage, function(_effect) {
+					::Legends.Effects.grant(this.m.WardenEntity, ::Legends.Effect.LegendValaWardenDamage, function (_effect) {
 						_effect.setDamageBonus(this.getContainer().getActor().getBravery());
 					}.bindenv(this));
 				}
@@ -205,21 +191,17 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		this.m.WardenSummonSpent = false;
 		this.summonWarden();
 	}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		//this.summonWarden();
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.m.WardenEntity = null;
-		//::Legends.Effects.remove(this, ::Legends.Effect.LegendValaSpiritualBondEffect);
+		//::Legends.Effects.remove(this, ::Legends.Effect.LegendValaSpiritualBond);
 	}
 });

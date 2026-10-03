@@ -8,8 +8,6 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFlourish);
-		this.m.Icon = "ui/perks/perk_41.png";
-		this.m.IconMini = "legend_flourish_effect_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;

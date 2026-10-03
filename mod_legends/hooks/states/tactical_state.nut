@@ -837,8 +837,8 @@
 						local agent = bro.getSkills().getSkillByID(::Legends.Effects.getID(::Legends.Effect.Charmed)).m.OriginalAgent;
 						agent.setUseHeat(true);
 						agent.getProperties().BehaviorMult[::Const.AI.Behavior.ID.Retreat] = 1.0;
-					} else if (bro.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed)) {
-						local agent = bro.getSkills().getSkillByID(::Legends.Effects.getID(::Legends.Effect.LegendIntenselyCharmed)).m.OriginalAgent;
+					} else if (bro.getSkills().hasEffect(::Legends.Effect.LegendInfatuated)) {
+						local agent = bro.getSkills().getSkillByID(::Legends.Effects.getID(::Legends.Effect.LegendInfatuated)).m.OriginalAgent;
 						agent.setUseHeat(true);
 						agent.getProperties().BehaviorMult[::Const.AI.Behavior.ID.Retreat] = 1.0;
 					} else {

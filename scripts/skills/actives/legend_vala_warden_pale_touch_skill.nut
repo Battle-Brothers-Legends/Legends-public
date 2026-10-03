@@ -27,7 +27,7 @@ this.legend_vala_warden_pale_touch_skill <- this.inherit("scripts/skills/skill",
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			local scaling = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaWardenDamage);
-			local fury = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFuryEffect);
+			local fury = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFury);
 			local bonus1 = (scaling != null) ? scaling.getDamageBonus() : 0;
 			local bonus2 = (fury != null) ? fury.getWardenDamage() : 0;
 

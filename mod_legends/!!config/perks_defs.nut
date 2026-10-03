@@ -71,11 +71,10 @@ if (!("Perk" in ::Legends)) {
 
 ::Const.Perks.addPerkDefObjects <- function (_perkDefObjects, _container = ::Legends.Perk) {
 	local size = ::Const.Perks.PerkDefObjects.len();
-	local count = 0;
+	local i = 0;
 	foreach (constName, def in _perkDefObjects) {
 		def.Const <- constName;
 		::Const.Perks.PerkDefObjects.push(::Const.Perks.createPerkDef(def));
-		local i = size + count;
 		if (def.Const in _container) {
 			_container[def.Const] = size + i;
 		} else {
@@ -83,7 +82,7 @@ if (!("Perk" in ::Legends)) {
 		}
 		::Const.Perks.PerkDefs[def.Const] <- size + i;
 		::Const.Perks.LookupMap[def.ID] <- def;
-		count++;
+		i++;
 	}
 }
 

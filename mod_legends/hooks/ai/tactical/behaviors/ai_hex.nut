@@ -37,8 +37,7 @@
 				}
 			}
 
-			if (this.getAgent().getForcedOpponent() != null && this.getAgent().getForcedOpponent().getID() == target.getID())
-			{
+			if (this.getAgent().getForcedOpponent() != null && this.getAgent().getForcedOpponent().getID() == target.getID()) {
 				score = score * 100.0;
 			}
 
@@ -46,11 +45,11 @@
 				score = score * ::Const.AI.Behavior.HexAgainstIndomitable;
 			}
 
-			if (this.isKindOf(target, "player")	|| this.isKindOf(target, "firstborn") || this.isKindOf(target, "envoy")) {
+			if (this.isKindOf(target, "player") || this.isKindOf(target, "firstborn") || this.isKindOf(target, "envoy")) {
 				score = score * ::Const.AI.Behavior.HexPreferPlayerMult;
 			}
 
-			if ((target.getSkills().hasEffect(::Legends.Effect.Charmed) || target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed)) && !this.isKindOf(target, "player")) {
+			if ((target.getSkills().hasEffect(::Legends.Effect.Charmed) || target.getSkills().hasEffect(::Legends.Effect.LegendInfatuated)) && !this.isKindOf(target, "player")) {
 				score = score * ::Const.AI.Behavior.HexNotAGoodTargetMult;
 			}
 

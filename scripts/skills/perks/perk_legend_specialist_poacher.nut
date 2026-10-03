@@ -54,7 +54,7 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 			local ammo = user.getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
 			if (ammo != null && ::Legends.S.patternIsInText("Broad Head", ammo.getName()))
 			{
-				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect);
+				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazed);
 
 				if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 				{

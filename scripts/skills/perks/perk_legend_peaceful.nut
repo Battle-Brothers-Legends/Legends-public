@@ -1,13 +1,11 @@
 this.perk_legend_peaceful <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPeaceful);
 	}
 
-
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.IsContentWithBeingInReserve = true;
 		_properties.Bravery += 20;
 		_properties.MeleeSkill += -20;
@@ -16,17 +14,12 @@ this.perk_legend_peaceful <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		local actors = ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
-		foreach( a in actors )
-		{
-			if (a.getFaction() == this.getContainer().getActor().getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendPeacefulReassured))
-			{
+		foreach (a in actors) {
+			if (a.getFaction() == this.getContainer().getActor().getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendPeacefulReassured)) {
 				::Legends.Effects.grant(a, ::Legends.Effect.LegendPeacefulReassured);
 			}
 		}
 	}
-
-
 });

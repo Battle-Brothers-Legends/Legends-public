@@ -56,11 +56,10 @@ if (!("Trait" in ::Legends)) {
 
 ::Legends.Traits.addTraitDefObjects <- function (_traitDefObjects) {
 	local size = ::Legends.Traits.TraitDefObjects.len();
-	local count = 0;
+	local i = 0;
 	foreach (constName, def in _traitDefObjects) {
 		def.Const <- constName;
 		::Legends.Traits.TraitDefObjects.push(::Legends.Traits.createTraitDef(def));
-		local i = size + count;
 		if (def.Const in ::Legends.Trait) {
 			::Legends.Trait[def.Const] = size + i;
 		} else {
@@ -70,7 +69,7 @@ if (!("Trait" in ::Legends)) {
 			::Legends.Traits.pushToCharacterTraits(def);
 		}
 		::Legends.Traits.LookupMap[def.ID] <- def;
-		count++;
+		i++;
 	}
 }
 

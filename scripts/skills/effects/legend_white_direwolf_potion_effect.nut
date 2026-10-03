@@ -1,11 +1,8 @@
 this.legend_white_direwolf_potion_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConquerorPotion);
-		this.m.Icon = "skills/status_effect_139.png";
-		this.m.IconMini = "";
-		this.m.Overlay = "status_effect_139";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -13,13 +10,11 @@ this.legend_white_direwolf_potion_effect <- this.inherit("scripts/skills/skill",
 		this.m.IsStacking = false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character\'s muscles have mutated and respond differently to movement impulses. It is much less fatiguing to interrupt or stop mid-motion as a consequence, making it much easier to recover from errant or blocked attacks.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -47,23 +42,17 @@ this.legend_white_direwolf_potion_effect <- this.inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.IsImmuneToOverwhelm = true;
 	}
 
-	function onDeath( _fatalityType )
-	{
-		if (_fatalityType != ::Const.FatalityType.Unconscious)
-		{
+	function onDeath(_fatalityType) {
+		if (_fatalityType != ::Const.FatalityType.Unconscious) {
 			::World.Statistics.getFlags().set("isWhiteDirewolfPotionAcquired", false);
 		}
 	}
 
-	function onDismiss()
-	{
+	function onDismiss() {
 		::World.Statistics.getFlags().set("isWhiteDirewolfPotionAcquired", false);
 	}
-
 });
-

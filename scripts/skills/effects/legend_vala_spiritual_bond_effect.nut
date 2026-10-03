@@ -3,18 +3,14 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 		Vala = null,
 		ResolveAtCheck = 0,
 	},
-	function setVala(_v)
-	{
+
+	function setVala(_v) {
 		this.m.Vala = ::MSU.asWeakTableRef(_v);
 	}
 
-	function create()
-	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaSpiritualBondEffect);
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaSpiritualBond);
 		this.m.Description = "";
-		this.m.Icon = "skills/status_effect_87.png";
-		this.m.IconMini = "status_effect_87_mini";
-		this.m.Overlay = "status_effect_87";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsRemovedAfterBattle = true;
@@ -23,39 +19,42 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function isValid( _attacker, _skill )
-	{
-		if (_skill != null && !_skill.isAttack())
+	function isValid(_attacker, _skill) {
+		if (_skill != null && !_skill.isAttack()) {
 			return false;
+		}
 
-		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID())
+		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID()) {
 			return false;
+		}
 
-		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity))
+		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity)) {
 			return false;
+		}
 
 		return true;
 	}
 
-	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
-	{
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
 		this.m.ResolveAtCheck = 0;
 
-		if (!this.isValid(_attacker, _skill))
+		if (!this.isValid(_attacker, _skill)) {
 			return;
+		}
 
 		this.m.ResolveAtCheck = this.getContainer().getActor().getBravery() / 400.00;
 		local reduction = ::Math.maxf(0.5, 1.0 - (0.1 + this.m.ResolveAtCheck));
 		_properties.DamageReceivedRegularMult *= reduction;
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
-	{
-		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity))
+	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
+		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity)) {
 			return false;
+		}
 
-		if (_damageHitpoints < 1)
+		if (_damageHitpoints < 1) {
 			return;
+		}
 
 		local transfer = ::Math.minf(0.5, 0.1 + this.m.ResolveAtCheck);
 		local reduction = ::Math.maxf(0.5, 1.0 - (0.1 + this.m.ResolveAtCheck));

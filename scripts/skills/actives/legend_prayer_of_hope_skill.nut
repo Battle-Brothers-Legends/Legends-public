@@ -1,7 +1,7 @@
 this.legend_prayer_of_hope_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPrayerOfHope);
 		this.m.Description = "Push allies on with your chant of holy scripture, restoring the health of all allies within 1 tile by 20% of your resolve. Does not work on cultists. Inflicts a disintegrating ailment on each adjacent undead.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/ambience/buildings/temple_prayer", 3, 0);
@@ -20,8 +20,7 @@ this.legend_prayer_of_hope_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -43,44 +42,34 @@ this.legend_prayer_of_hope_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		return this.skill.isUsable();
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
 		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 		local bonus = _user.getCurrentProperties().Bravery * 0.20;
-		foreach( a in actors )
-		{
-			if (a.getID() == _user.getID())
-			{
+		foreach (a in actors) {
+			if (a.getID() == _user.getID()) {
 				continue;
 			}
 
-			if (myTile.getDistanceTo(a.getTile()) > 1)
-			{
+			if (myTile.getDistanceTo(a.getTile()) > 1) {
 				continue;
 			}
 
-			if (a.getFaction() == _user.getFaction())
-			{
-				if (!a.getFlags().has("cultist") && !::Legends.Effects.has(a, ::Legends.Effect.LegendPrayerOfLife))
-				{
-					::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfLife, @(_effect) _effect.setHeal(bonus));
+			if (a.getFaction() == _user.getFaction()) {
+				if (!a.getFlags().has("cultist") && !::Legends.Effects.has(a, ::Legends.Effect.LegendPrayerOfHope)) {
+					::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfHope, @(_effect) _effect.setHeal(bonus));
 				}
 			}
 
-			if (a.getFlags().has("undead") && !a.getFlags().has("ghoul"))
-			{
+			if (a.getFlags().has("undead") && !a.getFlags().has("ghoul")) {
 				::Legends.Effects.grant(a, ::Legends.Effect.LegendDisintegrating);
 			}
 		}
 
 		return true;
 	}
-
 });
-

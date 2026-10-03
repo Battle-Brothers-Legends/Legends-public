@@ -4,8 +4,6 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 	},
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendApothecaryMushrooms);
-		this.m.Icon = "skills/status_effect_67.png";
-		this.m.IconMini = "status_effect_67_mini";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rage", 2);
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;

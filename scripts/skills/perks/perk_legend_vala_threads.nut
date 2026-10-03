@@ -24,7 +24,7 @@ this.perk_legend_vala_threads <- this.inherit("scripts/skills/skill", {
 
 		if (::Math.rand(1, 100) <= expertise)
 		{
-			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendValaThreadsEffect);
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendValaThreads);
 			::Sound.play("sounds/combat/legend_vala_threads.wav");
 		}
 	}

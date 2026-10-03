@@ -5,7 +5,6 @@ this.legend_well_tended_effect <- this.inherit("scripts/skills/injury/injury", {
 		this.injury.create();
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWellTended);
 		this.m.Description = "This mercenary has been tended at a temple, and is feeling much more capable thanks to well treated wounds and some rest.";
-		this.m.Icon = "skills/legend_status_effect_well_tended.png";
 		this.m.Type = this.m.Type | ::Const.SkillType.StatusEffect;
 		this.m.IsHealingMentioned = false;
 		this.m.IsTreatable = false;

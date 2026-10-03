@@ -1,7 +1,7 @@
 this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendTackle);
 		this.m.Description = "Tackle an enemy to the ground. On a hit, decrease their melee defence by 50%, their initiative by 70%, and increases the damage they take by 25%. The more fatigued your target, the more likely the tackle is to succeed.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
@@ -20,8 +20,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -39,8 +38,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 				text = this.getCostString()
 			}
 		];
-		if (this.m.Container.getActor().getCurrentProperties().IsSpecializedInFists)
-		{
+		if (this.m.Container.getActor().getCurrentProperties().IsSpecializedInFists) {
 			ret.push({
 				id = 4,
 				type = "text",
@@ -58,38 +56,31 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
-		if (this.m.SoundOnUse.len() != 0)
-		{
+		if (this.m.SoundOnUse.len() != 0) {
 			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 		}
 
-		if (::Math.rand(1, 100) > this.getHitchance(_targetTile.getEntity()))
-		{
+		if (::Math.rand(1, 100) > this.getHitchance(_targetTile.getEntity())) {
 			target.onMissed(this.getContainer().getActor(), this);
 			return false;
 		}
-		if (_targetTile.IsOccupiedByActor)
-		{
+		if (_targetTile.IsOccupiedByActor) {
 			local target = _targetTile.getEntity();
-			::Legends.Effects.grant(target, ::Legends.Effect.LegendTackled);
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendKnockedOver);
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has tackled " + ::Const.UI.getColorizedEntityName(target) + " to the ground for two turns");
 		}
 
 		return true;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill != this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill != this) {
 			return;
 		}
 		local bonus = ::Math.floor(_targetEntity.getFatiguePct() * 30); // This means that you'll get a +30% boost against an enemy with max fatigue
@@ -100,6 +91,4 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 			_properties.MeleeSkill += 10;
 		}
 	}
-
 });
-

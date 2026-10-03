@@ -5,8 +5,6 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBleedPrepared);
-		this.m.Icon = "skills/bleed_circle.png";
-		this.m.IconMini = "mini_bleed_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;

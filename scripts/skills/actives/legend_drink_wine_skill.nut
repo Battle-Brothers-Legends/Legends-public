@@ -1,20 +1,18 @@
 this.legend_drink_wine_skill <- this.inherit("scripts/skills/actives/base/legend_drink_alcohol_skill", {
 	m = {},
 
-	function create()
-	{
+	function create() {
 		this.legend_drink_alcohol_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkWine);
 		this.m.Description = "Give to an adjacent ally or drink wine to get tipsy, or drunk if already tipsy, or sick if already drunk. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
-		this.m.Effect = ::Legends.Effect.LegendWineTipsyEffect;
+		this.m.Effect = ::Legends.Effect.LegendWineTipsy;
 	}
 
 	function tacticalLogDrink(_user) {
-		return ::Const.UI.getColorizedEntityName(_user) + " drinks wine"
+		return ::Const.UI.getColorizedEntityName(_user) + " drinks wine";
 	}
 
 	function tacticalLogGive(_user, _target) {
 		return ::Const.UI.getColorizedEntityName(_user) + " gives wine to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
-

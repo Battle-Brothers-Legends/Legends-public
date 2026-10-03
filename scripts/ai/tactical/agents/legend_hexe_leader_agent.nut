@@ -51,11 +51,10 @@ this.legend_hexe_leader_agent <- this.inherit("scripts/ai/tactical/agent", {
 			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getActor().getFaction());
 
 			foreach (a in allies) {
-				if (a.getType() != ::Const.EntityType.Hexe && a.getType() != ::Const.EntityType.LegendHexeLeader && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed)	&& !a.getSkills().hasEffect(::Legends.Effect.Charmed) && !a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))	{
+				if (a.getType() != ::Const.EntityType.Hexe && a.getType() != ::Const.EntityType.LegendHexeLeader && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed) && !a.getSkills().hasEffect(::Legends.Effect.Charmed) && !a.getSkills().hasEffect(::Legends.Effect.LegendInfatuated)) {
 					::Legends.Effects.grant(a, ::Legends.Effect.FakeCharmed);
 				}
 			}
 		}
 	}
-
 });

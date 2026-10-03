@@ -11,24 +11,18 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 		]
 	},
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSecondWind);
-		this.m.Icon = "ui/perks/SecondWindPerk.png";
-		this.m.IconMini = "mini_second_wind";
-		this.m.Overlay = "perk_54_active";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character has had a second wind and may not have another this combat.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -41,35 +35,33 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 				text = this.getDescription()
 			}
 		];
-		if (this.m.Counter >= 0)
-		{
+		if (this.m.Counter >= 0) {
 			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=%positive%]+5[/color] Fatigue Recovery per turn for [color=%positive%]" + this.m.Counter +"[/color] more turns"
+				text = "[color=%positive%]+5[/color] Fatigue Recovery per turn for [color=%positive%]" + this.m.Counter + "[/color] more turns"
 			});
 		}
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
-		if (this.m.Counter >= 0)
+	function onUpdate(_properties) {
+		if (this.m.Counter >= 0) {
 			_properties.FatigueRecoveryRate += 5;
+		}
 	}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.m.Counter -= 1;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor();
 
-		if (::Legends.S.isEntityNullOrDead(actor))
+		if (::Legends.S.isEntityNullOrDead(actor)) {
 			return;
+		}
 
 		actor.setFatigue(0);
 		foreach (effect in this.m.ApplicableEffects) {
@@ -83,4 +75,3 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 });
-

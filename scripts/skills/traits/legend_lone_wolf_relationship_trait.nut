@@ -41,12 +41,12 @@ this.legend_lone_wolf_relationship_trait <- this.inherit("scripts/skills/traits/
 	}
 
 	function onAdded() {
-		if (!this.m.Container.hasEffect(::Legends.Effect.LegendLwRelationship)) {
-			::Legends.Effects.grant(this, ::Legends.Effect.LegendLwRelationship);
+		if (!this.m.Container.hasEffect(::Legends.Effect.LegendBandOfBrothers)) {
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendBandOfBrothers);
 		}
 	}
 
 	function onRemoved() {
-		::Legends.Effects.remove(this, ::Legends.Effect.LegendLwRelationship);
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendBandOfBrothers);
 	}
 });

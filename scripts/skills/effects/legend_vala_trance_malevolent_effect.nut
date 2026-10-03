@@ -3,18 +3,13 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 		TurnsLeft = 3,
 		Power = 0
 	},
-	function setPower(_p)
-	{
+
+	function setPower(_p) {
 		this.m.Power = _p;
 	}
 
-
-	function create()
-	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaTranceMalevolentEffect);
-		this.m.Icon = "skills/status_effect_52.png";
-		this.m.IconMini = "status_effect_52_mini";
-		this.m.Overlay = "status_effect_52";
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaTranceMalevolent);
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsActive = false;
@@ -22,24 +17,17 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 		this.m.IsHidden = false;
 	}
 
-
-	function isHidden()
-	{
+	function isHidden() {
 		return false;
 	}
 
-
-	function getName()
-	{
-//		return this.m.Name + " (" + this.m.TurnsLeft + " turns left)";
+	function getName() {
+		//		return this.m.Name + " (" + this.m.TurnsLeft + " turns left)";
 		return this.m.Name;
 	}
 
-
-	function getTooltip()
-	{
-		if (!this.isHidden())
-		{
+	function getTooltip() {
+		if (!this.isHidden()) {
 			return [
 				{
 					id = 1,
@@ -47,25 +35,18 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 					text = this.getName()
 				}
 			];
-		}
-		else
-		{
+		} else {
 			return;
 		}
 	}
 
-
-	function addSprite( _n, _brush, _insert = false )
-	{
+	function addSprite(_n, _brush, _insert = false) {
 		local actor = this.getContainer().getActor();
 		local sprite;
 
-		if (!_insert)
-		{
+		if (!_insert) {
 			sprite = actor.addSprite("spirits_" + (_n < 10 ? "0" + _n : _n));
-		}
-		else
-		{
+		} else {
 			sprite = actor.insertSprite("spirits_" + (_n < 10 ? "0" + _n : _n));
 		}
 
@@ -74,63 +55,48 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 		actor.setSpriteRenderToTexture("spirits_" + (_n < 10 ? "0" + _n : _n), false);
 	}
 
-
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor();
 		this.addSprite(1, "bust_ghost_fog_02");
 		this.addSprite(2, "bust_ghost_fog_02", true);
 		this.m.TurnsLeft = ::Math.max(1, 3 + actor.getCurrentProperties().NegativeStatusEffectDuration);
 	}
 
-
-	function onRemoved()
-	{
+	function onRemoved() {
 		local actor = this.getContainer().getActor();
 		actor.removeSprite("spirits_01");
 		actor.removeSprite("spirits_02");
 		actor.getFlags().set("IsSpiritVictim", false);
 	}
 
-
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.FatigueOnSkillUse += ::Math.round(this.m.Power / 25.0);
 		_properties.StaminaMult *= 1.0 - (this.m.Power / 500.0);
 		_properties.DamageTotalMult *= 1.0 - (this.m.Power / 1000.0);
 	}
 
-
-	function spreadEffect()
-	{
+	function spreadEffect() {
 		local actor = this.getContainer().getActor();
 		local everyone = ::Tactical.Entities.getAllInstances();
 
-		foreach (ever in everyone)
-		{
-			foreach (e in ever)
-			{
+		foreach (ever in everyone) {
+			foreach (e in ever) {
 				local distance = e.getTile().getDistanceTo(actor.getTile());
-				if (distance <= 2 && e.isAlliedWith(actor) && e.isAlive() && !e.isDying() && !e.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect))
-				{
+				if (distance <= 2 && e.isAlliedWith(actor) && e.isAlive() && !e.isDying() && !e.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolent)) {
 					local chance = this.m.Power - e.getBravery();
 
-					if (distance > 1)
-					{
+					if (distance > 1) {
 						chance /= 2.0;
 					}
-					if (chance > 95)
-					{
+					if (chance > 95) {
 						chance = 95;
 					}
-					if (chance < 5)
-					{
+					if (chance < 5) {
 						chance = 5;
 					}
 
-					if (::Math.rand(1, 100) <= chance)
-					{
-						::Legends.Effects.grant(e, ::Legends.Effect.LegendValaTranceMalevolentEffect, function(_effect) {
+					if (::Math.rand(1, 100) <= chance) {
+						::Legends.Effects.grant(e, ::Legends.Effect.LegendValaTranceMalevolent, function (_effect) {
 							_effect.setPower(this.m.Power * 0.75);
 						}.bindenv(this));
 						::Sound.play("sounds/combat/legend_vala_malevolent.wav");
@@ -142,31 +108,22 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 		}
 	}
 
-
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.spreadEffect();
 	}
 
-
-	function onResumeTurn()
-	{
+	function onResumeTurn() {
 		this.spreadEffect();
 	}
 
-
-	function onTurnEnd()
-	{
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.getContainer().getActor().getFlags().set("IsSpiritVictim", false);
 			this.removeSelf();
 		}
 	}
 
-
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.getContainer().getActor().getFlags().set("IsSpiritVictim", false);
 		this.removeSelf();
 	}

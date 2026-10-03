@@ -51,7 +51,7 @@
 		return ::Const.AI.Behavior.Score.Charm * score + this.m.ScoreBonus;
 	}
 
-	o.findBestTarget = function(_entity, _targets) {
+	o.findBestTarget = function (_entity, _targets) {
 		// Function is a generator.
 		local myTile = _entity.getTile();
 		local bestScore = 0.0;
@@ -75,7 +75,7 @@
 			local distanceToTarget = myTile.getDistanceTo(opponentTile);
 			local isRangedOpponent = this.isRangedUnit(target);
 
-			if (target.getMoraleState() == ::Const.MoraleState.Fleeing || target.getCurrentProperties().IsStunned || !target.getCurrentProperties().IsAbleToUseWeaponSkills)	{
+			if (target.getMoraleState() == ::Const.MoraleState.Fleeing || target.getCurrentProperties().IsStunned || !target.getCurrentProperties().IsAbleToUseWeaponSkills) {
 				continue;
 			}
 
@@ -83,7 +83,7 @@
 				continue;
 			}
 
-			if (target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed)) {
+			if (target.getSkills().hasEffect(::Legends.Effect.LegendInfatuated)) {
 				continue;
 			}
 
@@ -101,9 +101,7 @@
 			local targetsInRange = this.queryEnemiesInMeleeRange(1, target.getIdealRange(), target);
 
 			foreach (t in targetsInRange) {
-				if (t.getID() != _entity.getID()
-					&& t.getCurrentProperties().TargetAttractionMult > 1.0)
-				{
+				if (t.getID() != _entity.getID() && t.getCurrentProperties().TargetAttractionMult > 1.0) {
 					targets = ++targets;
 				}
 			}
@@ -111,7 +109,7 @@
 			score = score + targets * ::Const.AI.Behavior.CharmHelpOther;
 			score = score * ::Math.maxf(0.2, 1.0 - ::Const.AI.Behavior.CharmBraveryMult * target.getBravery() * target.getCurrentProperties().MoraleCheckBraveryMult[::Const.MoraleCheckType.MentalAttack] * 0.01);
 
-			if (target.getCurrentProperties().IsRooted && opponentTile.getZoneOfOccupationCount(target.getFaction()) == 0 && !target.isArmedWithRangedWeapon())	{
+			if (target.getCurrentProperties().IsRooted && opponentTile.getZoneOfOccupationCount(target.getFaction()) == 0 && !target.isArmedWithRangedWeapon()) {
 				score = score * ::Const.AI.Behavior.CharmRootedMult;
 			}
 
@@ -127,7 +125,7 @@
 				score = score * ::Const.AI.Behavior.CharmRemoveDangerMult;
 			}
 
-			if (target.getType() == ::Const.EntityType.Wardog || target.getType() == ::Const.EntityType.Warhound)	{
+			if (target.getType() == ::Const.EntityType.Wardog || target.getType() == ::Const.EntityType.Warhound) {
 				score = score * ::Const.AI.Behavior.CharmWardogMult;
 			}
 
@@ -153,10 +151,7 @@
 
 				score = score * (1.0 + (targetsScore + targetsNotLockedDown * ::Const.AI.Behavior.CharmTargetLockdownMult) * ::Const.AI.Behavior.CharmTargetsMult);
 
-				if (targets > 1
-					&& target.isArmedWithMeleeWeapon()
-					&& target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isAoE())
-				{
+				if (targets > 1 && target.isArmedWithMeleeWeapon() && target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isAoE()) {
 					score = score * ::Const.AI.Behavior.CharmAoEMult;
 				}
 			} else {
@@ -171,9 +166,7 @@
 
 			if (target.isAbleToWait() && !target.isTurnDone()) {
 				score = score * ::Const.AI.Behavior.CharmStillToActMult;
-			} else if (!target.isAbleToWait()
-				&& target.getActionPoints() < target.getActionPointsMax())
-			{
+			} else if (!target.isAbleToWait() && target.getActionPoints() < target.getActionPointsMax()) {
 				score = score * ::Const.AI.Behavior.CharmAlreadyWaitedMult;
 			}
 
@@ -181,9 +174,7 @@
 				score = score * ::Const.AI.Behavior.CharmTargetUnarmedMult;
 			}
 
-			if (target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null
-				&& target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getID() == "weapon.wooden_stick")
-			{
+			if (target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null && target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getID() == "weapon.wooden_stick") {
 				if (!target.getSkills().hasPerk(::Legends.Perk.QuickHands)) {
 					score = score * ::Const.AI.Behavior.CharmTargetWoodenClubRightNowMult;
 				}
@@ -192,9 +183,7 @@
 				local hasWeapon = false;
 
 				foreach (item in items) {
-					if (item.isItemType(::Const.Items.ItemType.Weapon)
-						&& item.getID() != "weapon.wooden_stick")
-					{
+					if (item.isItemType(::Const.Items.ItemType.Weapon) && item.getID() != "weapon.wooden_stick") {
 						hasWeapon = true;
 						break;
 					}

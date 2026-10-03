@@ -1,12 +1,9 @@
 this.legend_perfect_focus_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPerfectFocus);
 		this.m.Description = "This character has achieved perfect focus, as if time itself has stood still. Each stack grants an additional 3 Action Points during this round.";
-		this.m.Icon = "ui/perks/perfectfocus_circle.png";
-		this.m.IconMini = "mini_perfectfocus_circle";
-		this.m.Overlay = "status_perfectfocus_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -14,8 +11,7 @@ this.legend_perfect_focus_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function getIconDisabled()
-	{
+	function getIconDisabled() {
 		return "FUCKOFF";
 	}
 
@@ -24,18 +20,13 @@ this.legend_perfect_focus_effect <- this.inherit("scripts/skills/skill", {
 		actor.setActionPoints(actor.getActionPoints() + 3);
 	}
 
-	function onUpdate( _properties )
-	{
-		if (!this.isGarbage())
-		{
+	function onUpdate(_properties) {
+		if (!this.isGarbage()) {
 			_properties.ActionPoints += 3;
 		}
 	}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.removeSelf();
 	}
-
 });
-

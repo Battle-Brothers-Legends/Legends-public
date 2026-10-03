@@ -1,9 +1,8 @@
-::mods_hookExactClass("skills/actives/chop", function(o)
-{
+::mods_hookExactClass("skills/actives/chop", function (o) {
 	o.m.IsHack <- false;
 	o.m.ApplicableSkills <- [
 		::Legends.Effect.LegendGrappled,
-		::Legends.Effect.LegendTackled,
+		::Legends.Effect.LegendKnockedOver,
 		::Legends.Effect.Stunned,
 	];
 
@@ -21,9 +20,10 @@
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
-		if (_skill == this && this.m.IsHack)
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
+		if (_skill == this && this.m.IsHack) {
 			_properties.HitChance[::Const.BodyPart.Head] += 25;
-		onAnySkillUsed( _skill, _targetEntity, _properties );
+		}
+		onAnySkillUsed(_skill, _targetEntity, _properties);
 	}
 });

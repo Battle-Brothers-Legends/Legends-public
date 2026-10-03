@@ -77,7 +77,7 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 	}
 
 	function isUsable() {
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedSighthoundEffect)) {
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedSighthound)) {
 			return false;
 		}
 
@@ -93,7 +93,7 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 	}
 
 	function onUse(_user, _targetTile) {
-		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedSighthoundEffect);
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedSighthound);
 		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setItem(this.m.Item);
@@ -122,5 +122,4 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 	function onCombatFinished() {
 		this.m.Entity = null;
 	}
-
 });

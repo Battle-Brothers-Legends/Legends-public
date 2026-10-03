@@ -5,11 +5,8 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSanctifiedEffect);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSanctified);
 		this.m.Description = "This character is being cleansed by holy light.";
-		this.m.Icon = "ui/perks/holybluefire_circle.png";
-		this.m.IconMini = "mini_bluefire_circle";
-		this.m.Overlay = "bluefire_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;

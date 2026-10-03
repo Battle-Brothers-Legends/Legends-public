@@ -10,13 +10,12 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 		Sounds4 = ::Legends.S.setSounds("sounds/enemies/wardog_charge", 3, 0),
 		Sounds5 = ::Legends.S.setSounds("sounds/enemies/wardog_charge", 3, 0)
 	},
-	function setItem( _i )
-	{
+
+	function setItem(_i) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashWolf);
 		this.m.Description = "Summon a faithful wolf. Needs a free tile adjacent. Only one per battle.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/wolf_idle", 10, 0);
@@ -34,43 +33,35 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 		this.m.MaxRange = 1;
 	}
 
-	function addResources()
-	{
+	function addResources() {
 		this.legend_unleash_animal_skill.addResources();
 
-		foreach( r in this.m.Sounds0 )
-		{
+		foreach (r in this.m.Sounds0) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds1 )
-		{
+		foreach (r in this.m.Sounds1) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds2 )
-		{
+		foreach (r in this.m.Sounds2) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds3 )
-		{
+		foreach (r in this.m.Sounds3) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds4 )
-		{
+		foreach (r in this.m.Sounds4) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.Sounds5 )
-		{
+		foreach (r in this.m.Sounds5) {
 			::Tactical.addResource(r);
 		}
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -91,34 +82,29 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 		return ret;
 	}
 
-	function isUsable()
-	{
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedWolfEffect))
-		{
+	function isUsable() {
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedWolf)) {
 			return false;
 		}
 
-		if (this.m.Entity != null || !this.legend_unleash_animal_skill.isUsable())
-		{
+		if (this.m.Entity != null || !this.legend_unleash_animal_skill.isUsable()) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile ) {
+	function onVerifyTarget(_originTile, _targetTile) {
 		return this.legend_unleash_animal_skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedWolfEffect);
+	function onUse(_user, _targetTile) {
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedWolf);
 		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
 
-		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Houndmaster)))
-		{
+		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Houndmaster))) {
 			entity.setMoraleState(::Const.MoraleState.Confident);
 		}
 
@@ -127,9 +113,7 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 		return true;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.m.Entity = null;
 	}
-
 });

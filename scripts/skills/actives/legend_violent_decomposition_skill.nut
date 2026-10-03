@@ -5,8 +5,8 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 		MaxDamage = 55,
 		ArmorDamageMult = 0.65,
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendViolentDecomposition);
 		this.m.SoundOnUse = ["sounds/combat/violent_decomposition.wav"];
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/necromancer", 3);
@@ -27,13 +27,11 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 		this.m.MaxLevelDifference = 8;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "Corrupt the force sustaining one of your thralls, causing them to detonate destructively after the corruption has time to build. Affected dead explode at the end of their turn next round, dealing damage in a 1 tile radius. The less HP they have, the more damage the explosion inflicts. If they are killed before they explode, the effect no longer triggers.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.skill.getDefaultTooltip();
 
 		ret.push({
@@ -46,38 +44,32 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 		return ret;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
 		local target = _targetTile.getEntity();
 
-		if (!this.getContainer().getActor().isAlliedWith(target))
-		{
+		if (!this.getContainer().getActor().isAlliedWith(target)) {
 			return false;
 		}
 
-		if (!target.getFlags().has("IsSummoned") || !target.getFlags().has("undead"))
-		{
+		if (!target.getFlags().has("IsSummoned") || !target.getFlags().has("undead")) {
 			return false;
 		}
 
-		if (!target.isAlive())
-		{
+		if (!target.isAlive()) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		local properties = this.getContainer().buildPropertiesForUse(this, null);
-		::Legends.Effects.grant(target, ::Legends.Effect.LegendViolentDecompositionEffect, function(_effect) {
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendViolentDecomposition, function (_effect) {
 			_effect.setDamage({
 				MaxDamage = this.m.MaxDamage,
 				MinDamage = this.m.MinDamage,
@@ -90,10 +82,8 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " sets " + ::Const.UI.getColorizedEntityName(target) + "to violently explode next turn");
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			_properties.DamageRegularMax = this.m.MaxDamage;
 			_properties.DamageRegularMin = this.m.MinRange;
 			_properties.DamageArmorMult = this.m.ArmorDamageMult;
@@ -101,5 +91,4 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 			// remove comment of the line above to make this skill no longer be affected by total damage multiplier
 		}
 	}
-
 });

@@ -57,7 +57,7 @@ this.legend_possess_undead_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (target.getSkills().hasEffect(::Legends.Effect.LegendPossession)) {
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendPossessed)) {
 			return false;
 		}
 
@@ -75,7 +75,7 @@ this.legend_possess_undead_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		::Legends.Effects.grant(target, ::Legends.Effect.LegendPossession);
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendPossessed);
 		::Legends.Traits.grant(target, ::Legends.Trait.Loyal); //removes charm and makes immune to charm.
 		target.setActionPoints(target.getCurrentProperties().ActionPoints);
 		// local possessing = this.new("scripts/skills/effects/possessing_undead_effect");

@@ -15,24 +15,19 @@ this.perk_legend_lurker <- this.inherit("scripts/skills/skill", {
 			_properties.FatigueRecoveryRate += 10;
 		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.Smoke))
-		{
-			_properties.ActionPoints += 2
+		if (actor.getSkills().hasEffect(::Legends.Effect.Smoke)) {
+			_properties.ActionPoints += 2;
 		}
 
 	}
 
 	function onAdded() {
-		if (!this.m.Container.hasEffect(::Legends.Effect.LegendLurker)) {
-			::Legends.Effects.grant(this, ::Legends.Effect.LegendLurker);
+		if (!this.m.Container.hasEffect(::Legends.Effect.LegendLurking)) {
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendLurking);
 		}
 	}
 
 	function onRemoved() {
-		::Legends.Effects.remove(this, ::Legends.Effect.LegendLurker);
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendLurking);
 	}
 });
-
-
-
-

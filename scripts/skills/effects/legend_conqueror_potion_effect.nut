@@ -3,9 +3,6 @@ this.legend_conqueror_potion_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConquerorPotion);
-		this.m.Icon = "skills/status_effect_132.png";
-		this.m.IconMini = "";
-		this.m.Overlay = "status_effect_132";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;

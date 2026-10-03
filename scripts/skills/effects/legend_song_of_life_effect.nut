@@ -5,42 +5,40 @@ this.legend_song_of_life_effect <- this.inherit("scripts/skills/skill", {
 		Caster = null
 	},
 
-	function setEffect( _e )
-	{
+	function setEffect(_e) {
 		this.m.Effect = _e;
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSongOfLife);
 		this.m.Description = "";
-		this.m.Icon = "ui/perks/drums_of_life.png";
-		this.m.Overlay = "drums_of_life_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor();
 		if (actor.getHitpoints() < actor.getHitpointsMax()) {
 			actor.setHitpoints(::Math.max(0, ::Math.min(actor.getHitpointsMax(), actor.getHitpoints() + this.m.Effect)));
-			if (actor.isPlacedOnMap())
+			if (actor.isPlacedOnMap()) {
 				this.spawnIcon(this.m.Overlay, actor.getTile());
+			}
 		}
 	}
 
 	function onTurnStart() {
-		if (::Legends.S.isNull(this.m.Caster))
+		if (::Legends.S.isNull(this.m.Caster)) {
 			return;
+		}
 		this.removeEffectFromAffected();
 	}
 
 	function onDeath(_fatalityType) {
-		if (::Legends.S.isNull(this.m.Caster))
+		if (::Legends.S.isNull(this.m.Caster)) {
 			return;
+		}
 		this.removeEffectFromAffected();
 	}
 
@@ -51,9 +49,10 @@ this.legend_song_of_life_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function removeEffectFromAffected() {
-		foreach(actor in this.m.AffectedActors) {
-			if (::Legends.S.isEntityNullOrDead(actor))
+		foreach (actor in this.m.AffectedActors) {
+			if (::Legends.S.isEntityNullOrDead(actor)) {
 				continue;
+			}
 			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendSongOfLife);
 		}
 		this.m.AffectedActors = [];
@@ -61,4 +60,3 @@ this.legend_song_of_life_effect <- this.inherit("scripts/skills/skill", {
 		this.removeSelf();
 	}
 });
-

@@ -1,7 +1,7 @@
 this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMarkTarget);
 		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the target's Defense by 10 and increasing Damage Taken from all sources by 1% of their total Hitpoints for 2 turns.";
 		this.m.KilledString = "Marked";
@@ -24,8 +24,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 4;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
 		ret.extend([
 			{
@@ -50,33 +49,26 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 
-		if (target.isAlive() && !target.isDying())
-		{
-			::Legends.Effects.grant(target, ::Legends.Effect.LegendMarkedTarget);
+		if (target.isAlive() && !target.isDying()) {
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendMarked);
 
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			{
+			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " calls and singles out " + ::Const.UI.getColorizedEntityName(target) + " leaving them marked");
 			}
 		}
 	}
 
-	function onVerifyTarget( _originTile, _targetTile ) //This stops you from targeting allies with this skill
+	function onVerifyTarget(_originTile, _targetTile) //This stops you from targeting allies with this skill
 	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
-		local target = _targetTile.getEntity();
-
-		if (_targetTile.getEntity().isAlliedWith(this.getContainer().getActor()))
-		{
+		if (_targetTile.getEntity().isAlliedWith(this.getContainer().getActor())) {
 			return false;
 		}
 

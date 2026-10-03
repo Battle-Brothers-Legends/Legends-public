@@ -2,62 +2,50 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	m = {
 		isPerformingPayback = false
 	},
-	function create()
-	{
+
+	function create() {
 		this.legend_vala_chant.create();
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantFuryEffect);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantFury);
 		this.m.Description = "This character has been invigorated by the Vala\'s Chant of Fury!";
 		this.m.Range = 3;
 	}
-	function getWardenDamage()
-	{
+	function getWardenDamage() {
 		return this.m.Vala.getBravery() * 0.05;
 	}
 
-	function getDamageBonus()
-	{
+	function getDamageBonus() {
 		local bonus = this.m.Vala.getBravery() * 0.05;
 		return ::Math.max(0, ::Math.floor(bonus * this.getMasteryMult() * this.getDistanceMult()));
 	}
 
-	function getPayBackChance()
-	{
+	function getPayBackChance() {
 		local chance = this.m.Vala.getBravery() * 0.4;
 		return ::Math.min(100, ::Math.max(0, chance * this.getMasteryMult() * this.getDistanceMult()));
 	}
 
-	function getPayBackDamage()
-	{
+	function getPayBackDamage() {
 		local damage = this.m.Vala.getBravery() * 0.3;
 		return ::Math.min(100, damage * this.getMasteryMult() * this.getDistanceMult());
 	}
 
-	function getDistanceMult()
-	{
+	function getDistanceMult() {
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
-		if (distance == 3)
-		{
+		if (distance == 3) {
 			return 0.5;
-		}
-		else if (distance == 2)
-		{
+		} else if (distance == 2) {
 			return 0.75;
-		}
-		else if (distance == 1) {
+		} else if (distance == 1) {
 			return 1.0;
-		}
-		else{
+		} else {
 			return 0;
 		}
 	}
 
-	function getMasteryMult()
-	{
+	function getMasteryMult() {
 		return this.isMastered() ? 1.1 : 1.0;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local regulardamage = this.getDamageBonus();
 		local paybackchance = this.getPayBackChance();
 		local paybackdamage = this.getPayBackDamage();
@@ -88,36 +76,40 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		];
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
-	{
+	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
 		local actor = this.getContainer().getActor();
-		if (actor == null)
+		if (actor == null) {
 			return;
-		if (_attacker == null || _attacker.isAlliedWith(actor) || ::Tactical.TurnSequenceBar.isActiveEntity(actor) || actor.getTile().getDistanceTo(_attacker.getTile()) != 1)
+		}
+		if (_attacker == null || _attacker.isAlliedWith(actor) || ::Tactical.TurnSequenceBar.isActiveEntity(actor) || actor.getTile().getDistanceTo(_attacker.getTile()) != 1) {
 			return;
+		}
 
-		if (_damageHitpoints >= actor.getHitpoints())
+		if (_damageHitpoints >= actor.getHitpoints()) {
 			return;
+		}
 
-		if (::Legends.S.isEntityNullOrDead(actor))
+		if (::Legends.S.isEntityNullOrDead(actor)) {
 			return;
+		}
 
-		if (::Legends.S.isEntityNullOrDead(_attacker))
+		if (::Legends.S.isEntityNullOrDead(_attacker)) {
 			return;
+		}
 
-		if (_attacker.getType() == ::Const.EntityType.FlyingSkull)
+		if (_attacker.getType() == ::Const.EntityType.FlyingSkull) {
 			return;
+		}
 
-		if (!this.checkEntities() || !this.isInRange())
+		if (!this.checkEntities() || !this.isInRange()) {
 			return;
+		}
 
 		local chance = this.getPayBackChance();
 
-		if (::Math.rand(1, 100) <= chance)
-		{
+		if (::Math.rand(1, 100) <= chance) {
 			local payback = this.getContainer().getAttackOfOpportunity();
-			if (payback != null)
-			{
+			if (payback != null) {
 				this.getContainer().setBusy(true);
 				local attackinfo = {
 					User = actor,
@@ -131,50 +123,48 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		}
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded()) {
 			return;
+		}
 
-		if (!this.checkEntities() || !this.isInRange())
+		if (!this.checkEntities() || !this.isInRange()) {
 			return;
+		}
 
-		if (::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == this.getContainer().getActor().getID())
+		if (::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == this.getContainer().getActor().getID()) {
 			return;
+		}
 
-		if (this.m.isPerformingPayback == true)
+		if (this.m.isPerformingPayback == true) {
 			_properties.DamageTotalMult *= this.getPayBackDamage() * 0.01;
+		}
 	}
 
-	function onPerformPaypack(_attackinfo)
-	{
+	function onPerformPaypack(_attackinfo) {
 		_attackinfo.Container.setBusy(false);
 
-		if (_attackinfo.User.getTile().ID != _attackinfo.StartingTile.ID)
-            return;
+		if (_attackinfo.User.getTile().ID != _attackinfo.StartingTile.ID) {
+			return;
+		}
 
 		this.m.isPerformingPayback = true;
-		if (_attackinfo.User.isAlive() && _attackinfo.TargetTile.getEntity().isAlive())
-		{
+		if (_attackinfo.User.isAlive() && _attackinfo.TargetTile.getEntity().isAlive()) {
 			_attackinfo.Skill.attackEntity(_attackinfo.User, _attackinfo.TargetTile.getEntity());
 			this.getContainer().getActor().setDirty(true);
 		}
 		this.m.isPerformingPayback = false;
 	}
 
-	function updateEffect(_v)
-	{
-		if (_v)
-		{
+	function updateEffect(_v) {
+		if (_v) {
 			this.m.Name = "Fury";
 			this.m.Icon = "ui/perks/perk_36.png";
 			this.m.IconMini = "perk_36_mini";
 			this.m.Overlay = "perk_36";
-		}
-		else
-		{
+		} else {
 			this.m.Name = "";
 			this.m.Icon = "";
 			this.m.IconMini = "";
@@ -182,40 +172,31 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		}
 	}
 
-
-	function onMovementFinished()
-	{
-		if (!this.checkEntities())
-		{
+	function onMovementFinished() {
+		if (!this.checkEntities()) {
 			this.updateEffect(false);
 			return;
 		}
 
-		if (!this.isInRange())
-		{
+		if (!this.isInRange()) {
 			this.updateEffect(false);
 			return;
 		}
 
-		if (this.getContainer().getActor().getID() != this.m.Vala.getID())
-		{
+		if (this.getContainer().getActor().getID() != this.m.Vala.getID()) {
 			this.spawnIcon("perk_36", this.getContainer().getActor().getTile());
 		}
 
 		this.updateEffect(true);
 	}
 
-
-	function onUpdate(_properties)
-	{
-		if (!this.checkEntities())
-		{
+	function onUpdate(_properties) {
+		if (!this.checkEntities()) {
 			this.updateEffect(false);
 			return;
 		}
 
-		if (!this.isInRange())
-		{
+		if (!this.isInRange()) {
 			this.updateEffect(false);
 			return;
 		}

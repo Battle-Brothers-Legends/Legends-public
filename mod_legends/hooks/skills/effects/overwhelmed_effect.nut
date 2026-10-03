@@ -1,7 +1,6 @@
-::mods_hookExactClass("skills/effects/overwhelmed_effect", function(o) {
+::mods_hookExactClass("skills/effects/overwhelmed_effect", function (o) {
 
-	o.getTooltip = function()
-	{
+	o.getTooltip = function () {
 		return [
 			{
 				id = 1,
@@ -28,8 +27,7 @@
 		];
 	}
 
-	o.onUpdate = function ( _properties )
-	{
+	o.onUpdate = function (_properties) {
 		_properties.MeleeSkillMult = ::Math.maxf(0.0, _properties.MeleeSkillMult - 0.05 * this.m.Count);
 		_properties.RangedSkillMult = ::Math.maxf(0.0, _properties.RangedSkillMult - 0.05 * this.m.Count);
 	}

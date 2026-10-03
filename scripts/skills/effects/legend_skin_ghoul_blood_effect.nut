@@ -2,25 +2,20 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 4
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSkinGhoulBlood);
-		this.m.Icon = "skills/status_effect_93.png";
-		this.m.IconMini = "status_effect_93_mini";
-		this.m.Overlay = "status_effect_93";
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character has consumed the blood of a skin ghoul, and their flesh is knitting together internally. The effect will heal [color=%positive%]10%[/color] of their life each turn, and persist for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
 		local healthAdded = ::Math.min(healthMissing, ::Math.floor(actor.getHitpointsMax() * 0.10));
@@ -46,28 +41,22 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
 		local healthAdded = ::Math.min(healthMissing, ::Math.floor(actor.getHitpointsMax() * 0.10));
 
-		if (healthAdded <= 0)
-		{
+		if (healthAdded <= 0) {
 			return;
 		}
-		if (!actor.getSkills().hasEffect(::Legends.Effect.SpiderPoison))
-		{
+		if (!actor.getSkills().hasEffect(::Legends.Effect.SpiderPoison)) {
 			actor.setHitpoints(actor.getHitpoints() + healthAdded);
 			actor.setDirty(true);
 
-			if (!actor.isHiddenToPlayer())
-			{
+			if (!actor.isHiddenToPlayer()) {
 				this.spawnIcon("status_effect_79", actor.getTile());
 
-				if (this.m.SoundOnUse.len() != 0)
-				{
+				if (this.m.SoundOnUse.len() != 0) {
 					::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
 				}
 
@@ -76,19 +65,13 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-
-	function onAdded()
-	{
+	function onAdded() {
 		this.m.TurnsLeft = 4;
 	}
 
-	function onTurnEnd()
-	{
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}
-
 });
-

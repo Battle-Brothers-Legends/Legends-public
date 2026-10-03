@@ -9,18 +9,16 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 		DefenseMagnitude = 1,
 		ResolveMagnitude = 1
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBrothersInChains);
 		this.m.Description = "Fighting with other escaped slaves drives this character to succeed.";
-		this.m.Icon = "ui/settlement_status/settlement_effect_40.png";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -65,12 +63,10 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || actor.getFaction() != ::Const.Faction.Player)
-		{
+		if (!actor.isPlacedOnMap() || actor.getFaction() != ::Const.Faction.Player) {
 			this.m.IsHidden = true;
 			return;
 		}
@@ -79,21 +75,19 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 		local allies = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 		local numSlaves = 0;
 
-		foreach( ally in allies )
-		{
-			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap())
+		foreach (ally in allies) {
+			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap()) {
 				continue;
+			}
 
-			if (::Legends.Backgrounds.has(ally, ::Legends.Background.Slave))
+			if (::Legends.Backgrounds.has(ally, ::Legends.Background.Slave)) {
 				numSlaves += 1;
+			}
 		}
 
-		if (numSlaves < 1)
-		{
+		if (numSlaves < 1) {
 			this.m.IsHidden = true;
-		}
-		else
-		{
+		} else {
 			this.m.IsHidden = false;
 
 			local numSlavesForBonus = numSlaves;
@@ -110,4 +104,3 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

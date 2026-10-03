@@ -1,11 +1,8 @@
 this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFallenBetrayerPotion);
-		this.m.Icon = "skills/status_effect_136.png";
-		this.m.IconMini = "";
-		this.m.Overlay = "status_effect_136";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -13,13 +10,11 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 		this.m.IsStacking = false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character\'s body reacts to physical trauma, secreting a calciferous substance that causes their muscles to reflexively sieze and contract at points of impact to minimize muscle damage.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -47,23 +42,17 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.FatigueDealtPerHitMult += 0.5;
 	}
 
-	function onDeath( _fatalityType )
-	{
-		if (_fatalityType != ::Const.FatalityType.Unconscious)
-		{
+	function onDeath(_fatalityType) {
+		if (_fatalityType != ::Const.FatalityType.Unconscious) {
 			::World.Statistics.getFlags().set("isFallenBetrayerPotionAcquired", false);
 		}
 	}
 
-	function onDismiss()
-	{
+	function onDismiss() {
 		::World.Statistics.getFlags().set("isFallenBetrayerPotionAcquired", false);
 	}
-
 });
-

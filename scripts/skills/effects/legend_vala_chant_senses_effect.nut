@@ -1,28 +1,23 @@
 this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/legend_vala_chant", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_vala_chant.create();
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantSensesEffect);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantSenses);
 		this.m.Range = 3;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
 		local bonus = (this.m.Vala.getBravery() / 15.0) + ((this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue()) / 15.0);
 
-		if (this.isMastered())
-		{
+		if (this.isMastered()) {
 			bonus *= 1.1;
 		}
 
-		if (distance == 2)
-		{
+		if (distance == 2) {
 			bonus *= 0.75;
-		}
-		else if (distance == 3)
-		{
+		} else if (distance == 3) {
 			bonus *= 0.5;
 		}
 
@@ -41,17 +36,13 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 		];
 	}
 
-	function updateEffect( _v)
-	{
-		if (_v)
-		{
+	function updateEffect(_v) {
+		if (_v) {
 			this.m.Name = "Heightened Senses";
 			this.m.Icon = "skills/status_effect_73.png";
 			this.m.IconMini = "status_effect_73_mini";
 			this.m.Overlay = "status_effect_73";
-		}
-		else
-		{
+		} else {
 			this.m.Name = "";
 			this.m.Icon = "";
 			this.m.IconMini = "";
@@ -59,39 +50,31 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 		}
 	}
 
-	function onMovementFinished()
-	{
-		if (!this.checkEntities())
-		{
+	function onMovementFinished() {
+		if (!this.checkEntities()) {
 			this.updateEffect(false);
 			return;
 		}
 
-		if (!this.isInRange())
-		{
+		if (!this.isInRange()) {
 			this.updateEffect(false);
 			return;
 		}
 
-		if (this.getContainer().getActor().getID() != this.m.Vala.getID())
-		{
+		if (this.getContainer().getActor().getID() != this.m.Vala.getID()) {
 			this.spawnIcon("status_effect_73", this.getContainer().getActor().getTile());
 		}
 
 		this.updateEffect(true);
 	}
 
-
-	function onUpdate(_properties)
-	{
-		if (!this.checkEntities())
-		{
+	function onUpdate(_properties) {
+		if (!this.checkEntities()) {
 			this.updateEffect(false);
 			return;
 		}
 
-		if (!this.isInRange())
-		{
+		if (!this.isInRange()) {
 			this.updateEffect(false);
 			return;
 		}
@@ -99,17 +82,13 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
 		local bonus = (this.m.Vala.getBravery() / 15.0) + ((this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue()) / 15.0);
 
-		if (this.isMastered())
-		{
+		if (this.isMastered()) {
 			bonus *= 1.1;
 		}
 
-		if (distance == 2)
-		{
+		if (distance == 2) {
 			bonus *= 0.75;
-		}
-		else if (distance == 3)
-		{
+		} else if (distance == 3) {
 			bonus *= 0.5;
 		}
 

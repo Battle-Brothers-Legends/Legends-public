@@ -84,4 +84,7 @@ if (!("Effects" in ::Legends))
 	local defs = ::Legends.Effects.EffectDefObjects[_def];
 	_target.m.ID = defs.ID;
 	_target.m.Name = defs.Name;
+	_target.m.Icon = defs.Icon;
+	_target.m.IconMini = defs.IconMini;
+	_target.m.Overlay = defs.Overlay;
 }

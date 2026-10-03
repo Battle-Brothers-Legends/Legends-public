@@ -24,14 +24,14 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 
 		local hasEffectOrInjury = false;
 		foreach (id in [
-			::Legends.Effect.LegendGrazedEffect,
+			::Legends.Effect.LegendGrazed,
 			::Legends.Effect.Bleeding,
 			::Legends.Effect.GoblinPoison,
 			::Legends.Effect.SpiderPoison,
 			::Legends.Effect.LegendRedbackSpiderPoison,
 			::Legends.Effect.LegendZombiePoison,
-			::Legends.Effect.LegendRswPoisonEffect,
-			::Legends.Effect.LegendRswBleedingEffect,
+			::Legends.Effect.LegendRswPoisonPoison,
+			::Legends.Effect.LegendRswBleedingBleed,
 		]) {
 			if (!_targetEntity.getSkills().hasEffect(id))
 				continue;

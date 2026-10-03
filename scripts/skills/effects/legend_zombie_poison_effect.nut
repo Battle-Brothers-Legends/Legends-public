@@ -2,24 +2,20 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 10
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendZombiePoison);
-		this.m.Icon = "skills/status_effect_54.png";
-		this.m.IconMini = "status_effect_54_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character has zombie infection running through their veins. Their vision is blurred, their speech is slurred, and it takes a great deal of effort for them to move in a coordinated fashion. The effect will slowly get worse over [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local nsed = this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration;
 		local remaining = (10 - (this.m.TurnsLeft - nsed));
 
@@ -55,43 +51,35 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function resetTime()
-	{
+	function resetTime() {
 		this.m.TurnsLeft = ::Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
-		{
+		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
 			++this.m.TurnsLeft;
 		}
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.m.TurnsLeft = ::Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
-		{
+		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
 			++this.m.TurnsLeft;
 		}
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local nsed = this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration; //if uhave resilient t starts scaling from like 5 and scales to 10 but that seems weird, this makes it scale from like 1 to 5
 		local AP = ::Math.max(1, 1 * (10 - (this.m.TurnsLeft - nsed)));
-		local Init = ::Math.max(1, 10 * (10 -(this.m.TurnsLeft - nsed)));
+		local Init = ::Math.max(1, 10 * (10 - (this.m.TurnsLeft - nsed)));
 		local Vis = ::Math.max(1, 1 * (10 - (this.m.TurnsLeft - nsed)));
 		_properties.ActionPoints -= AP;
 		_properties.Initiative -= Init;
 		_properties.Vision -= Vis;
 	}
 
-	function onTurnEnd()
-	{
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}
-
 });

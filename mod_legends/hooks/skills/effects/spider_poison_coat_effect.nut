@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/spider_poison_coat_effect", function (o) {
 	o.onAdded <- function () {
-		if (::Legends.Perks.has(this.getContainer().getActor(),::Legends.Perk.LegendPoisoner)) {
+		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPoisoner)) {
 			this.m.AttacksLeft += 2;
 		}
 	}

@@ -6,9 +6,6 @@ this.legend_compromised_armor_effect <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCompromisedArmor);
 		this.m.Description = "This character has their armor compromised from a recent strike. Increase damage ignoring armor by 20%.";
-		this.m.Icon = "skills/legend_compromised_armor.png";
-		this.m.IconMini = "status_effect_78_mini";
-		this.m.Overlay = "status_effect_78";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;

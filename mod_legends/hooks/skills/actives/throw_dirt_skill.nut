@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "Throws dirt to distract the enemy. Reduces inititive and damage output of the target by 35% for one turn. Can only be used once per battle.";
+		this.m.Description = "Throws dirt to distract the enemy. Reduces initiative and damage output of the target by 35% for one turn. Can only be used once per battle.";
 		this.m.IconDisabled = "skills/active_215_sw.png";
 	}
 
@@ -18,12 +18,12 @@
 		return ret;
 	}
 
-	o.getTooltip <- function() {
+	o.getTooltip <- function () {
 		return this.getDefaultUtilityTooltip();
 	}
 
 	o.isUsable <- function () {
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendThrewSandEffect)) {
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendThrewSand)) {
 			return false;
 		}
 
@@ -32,7 +32,7 @@
 
 	local onUse = o.onUse;
 	o.onUse = function (_user, _targetTile) {
-		::Legends.Effects.grant(_user, ::Legends.Effect.LegendThrewSandEffect);
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendThrewSand);
 		return onUse(_user, _targetTile);
 	}
 });

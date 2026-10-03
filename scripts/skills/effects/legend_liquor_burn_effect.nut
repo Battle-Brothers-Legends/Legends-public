@@ -2,25 +2,20 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 2
 	},
-	function create()
-	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLiquorBurnEffect);
-		this.m.Icon = "skills/status_effect_92.png";
-		this.m.IconMini = "status_effect_92_mini";
-		this.m.Overlay = "status_effect_92";
+
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLiquorBurn);
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "Having just consumed liquor, this character has [color=%positive%]+12[/color] Resolve, Melee and Ranged Skill, [color=%negative%]-12[/color] Defenses and [color=%negative%]-24[/color] Initiative for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -72,8 +67,7 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 
 		_properties.Bravery += 12;
 		_properties.MeleeSkill += 12;
@@ -84,31 +78,22 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.m.TurnsLeft = 2;
 	}
 
-	function onTurnEnd()
-	{
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		local actor = this.getContainer().getActor();
-		if (::Math.rand(1, 100) <= 30 && !actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
-		{
+		if (::Math.rand(1, 100) <= 30 && !actor.getSkills().hasTrait(::Legends.Trait.Drunkard)) {
 			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
-		}
-		else if (::Math.rand(1, 100) <= 15 && actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
-		{
+		} else if (::Math.rand(1, 100) <= 15 && actor.getSkills().hasTrait(::Legends.Trait.Drunkard)) {
 			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}
 	}
-
 });
-

@@ -1,13 +1,6 @@
 ::mods_hookExactClass("skills/effects/debilitating_attack_effect", function (o) {
-
 	o.m.SkillCount <- 0;
 	o.m.LastTargetID <- 0;
-
-	local create = o.create;
-	o.create = function () {
-		create();
-		this.m.Overlay = "status_effect_01";
-	}
 
 	o.getDescription <- function () {
 		return "This character has a debilitating attack prepared. Hitting a target will temporarily reduce their ability to inflict damage and increase damage received for two turns. Effect removes itself on turn end or after attacking. Works on Attacks of Opportunity";
@@ -79,5 +72,4 @@
 			}, this);
 		}
 	}
-
 });

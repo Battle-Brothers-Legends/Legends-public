@@ -1,5 +1,4 @@
 ::mods_hookExactClass("skills/effects/stunned_effect", function (o) {
-
 	o.setTurns = function (_t) {
 		if (!::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor())) {
 			this.m.TurnsLeft = ::Math.max(1, _t + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
@@ -44,22 +43,22 @@
 		local actor = this.getContainer().getActor();
 		local composure = ::Legends.Perks.get(this, ::Legends.Perk.LegendComposure);
 		if (composure != null) {
-    		if (actor.getTile().IsVisibleForPlayer) {		
-        		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " is immune to Stun due to " + composure.getName() + ".");
-    		}
-    		this.removeSelf();
-    		return;
+			if (actor.getTile().IsVisibleForPlayer) {
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " is immune to Stun due to " + composure.getName() + ".");
+			}
+			this.removeSelf();
+			return;
 		}
 
 		local immovableObject = ::Legends.Perks.get(this, ::Legends.Perk.LegendImmovableObject);
 		local steelBrow = ::Legends.Perks.get(this, ::Legends.Perk.SteelBrow);
 		if (steelBrow != null || (immovableObject != null && immovableObject.m.isGrantingStunImmunity)) {
-    		if (actor.getTile().IsVisibleForPlayer) {
+			if (actor.getTile().IsVisibleForPlayer) {
 				local sourceOfImmunity = steelBrow != null ? steelBrow.getName() : immovableObject.getName();
-        		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " is immune to Stun due to " + sourceOfImmunity + " and is Dazed instead.");
-    		}
-    		this.removeSelf();
-    		::Legends.Effects.grant(this, ::Legends.Effect.Dazed);
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " is immune to Stun due to " + sourceOfImmunity + " and is Dazed instead.");
+			}
+			this.removeSelf();
+			::Legends.Effects.grant(this, ::Legends.Effect.Dazed);
 			return;
 		}
 		// End of Stun immunity logic

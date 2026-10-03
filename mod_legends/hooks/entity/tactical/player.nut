@@ -535,9 +535,8 @@
 	{
 		onInit();
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendRealmOfNightmares);
-		// ::Legends.Effects.grant(this, ::Legends.Effect.LegendHorseriderSkill);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendVeteranLevels);
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendArmorTracking);
+		//::Legends.Effects.grant(this, ::Legends.Effect.LegendArmorTracking);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendGrapple);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendKick);
 	}

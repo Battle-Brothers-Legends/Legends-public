@@ -1,19 +1,15 @@
 this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendReturnFavor);
 		this.m.Description = "This character has assumed a defensive stance seeking to incapacitate anyone attacking.";
-		this.m.Icon = "ui/perks/perk_31.png";
-		this.m.IconMini = "perk_31_mini";
-		this.m.Overlay = "perk_31";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -34,39 +30,34 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onMissed( _attacker, _skill )
-	{
+	function onMissed(_attacker, _skill) {
 		local user = this.getContainer().getActor();
 
-		if (::Tactical.TurnSequenceBar.isActiveEntity(user))
+		if (::Tactical.TurnSequenceBar.isActiveEntity(user)) {
 			return;
+		}
 
-		if (_skill.isRanged())
+		if (_skill.isRanged()) {
 			return;
+		}
 
-		if (::Math.rand(1, 100) <= 75 && !_attacker.getCurrentProperties().IsImmuneToStun && !_attacker.getSkills().hasEffect(::Legends.Effect.Stunned))
-		{
+		if (::Math.rand(1, 100) <= 75 && !_attacker.getCurrentProperties().IsImmuneToStun && !_attacker.getSkills().hasEffect(::Legends.Effect.Stunned)) {
 			local d = _attacker.getTile().getDistanceTo(user.getTile());
 			local item = user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-			if (d <= 1 || item != null && item.isItemType(::Const.Items.ItemType.Weapon) && d <= item.getRangeMax())
-			{
-				::Legends.Effects.grant(_attacker, ::Legends.Effect.Stunned, function(_effect) {
+			if (d <= 1 || item != null && item.isItemType(::Const.Items.ItemType.Weapon) && d <= item.getRangeMax()) {
+				::Legends.Effects.grant(_attacker, ::Legends.Effect.Stunned, function (_effect) {
 					_effect.addTurns(1);
 				}.bindenv(this));
 				::Legends.Effects.grant(_attacker, ::Legends.Effect.Staggered);
-				if (!user.isHiddenToPlayer() && !_attacker.isHiddenToPlayer())
-				{
+				if (!user.isHiddenToPlayer() && !_attacker.isHiddenToPlayer()) {
 					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " has stunned and staggered " + ::Const.UI.getColorizedEntityName(_attacker) + " for one turn");
 				}
 			}
 		}
 	}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.removeSelf();
 	}
-
 });
-

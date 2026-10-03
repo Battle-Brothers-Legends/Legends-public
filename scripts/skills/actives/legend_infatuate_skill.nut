@@ -62,7 +62,7 @@ this.legend_infatuate_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed)) {
+		if (_target.getSkills().hasEffect(::Legends.Effect.LegendInfatuated)) {
 			return false;
 		}
 
@@ -113,7 +113,7 @@ this.legend_infatuate_skill <- this.inherit("scripts/skills/skill", {
 
 			this.m.Slaves.push(target.getID());
 
-			::Legends.Effects.grant(target, ::Legends.Effect.LegendIntenselyCharmed, function (_effect) {
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendInfatuated, function (_effect) {
 				_effect.setMasterFaction(_user.getFaction() == ::Const.Faction.Player ? ::Const.Faction.PlayerAnimals : _user.getFaction());
 				_effect.setMaster(self);
 			}.bindenv(this));
@@ -130,7 +130,7 @@ this.legend_infatuate_skill <- this.inherit("scripts/skills/skill", {
 			local e = ::Tactical.getEntityByID(id);
 
 			if (e != null) {
-				::Legends.Effects.remove(e, ::Legends.Effect.LegendIntenselyCharmed);
+				::Legends.Effects.remove(e, ::Legends.Effect.LegendInfatuated);
 			}
 		}
 

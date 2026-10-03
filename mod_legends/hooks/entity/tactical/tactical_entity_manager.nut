@@ -680,7 +680,7 @@
 			return;
 		}
 
-		if (::Legends.Effects.has(_e, ::Legends.Effect.LegendDualWield)) {
+		if (::Legends.Effects.has(_e, ::Legends.Effect.LegendDualWielding)) {
 			return;
 		}
 

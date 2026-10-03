@@ -4,24 +4,20 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		DamageData = null,
 		ActorID = null,
 	},
-	function setDamage( _data )
-	{
+
+	function setDamage(_data) {
 		this.m.DamageData = _data;
 	}
 
-	function setActorID( _id )
-	{
+	function setActorID(_id) {
 		this.m.ActorID = _id;
 	}
 
-	function getAttacker()
-	{
-		if (this.m.ActorID != null)
-		{
+	function getAttacker() {
+		if (this.m.ActorID != null) {
 			local e = ::Tactical.getEntityByID(this.m.ActorID);
 
-			if (e != null && e.isPlacedOnMap() && e.isAlive() && !e.isDying())
-			{
+			if (e != null && e.isPlacedOnMap() && e.isAlive() && !e.isDying()) {
 				return e;
 			}
 		}
@@ -30,9 +26,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 	}
 
 	function create() {
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendViolentDecompositionEffect);
-		this.m.Icon = "skills/status_effect_78.png";
-		this.m.IconMini = "status_effect_78_mini";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendViolentDecomposition);
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/ghoul_death_fullbelly", 3);
 		this.m.IsActive = false;
@@ -40,13 +34,11 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This summon is set to explode in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -71,16 +63,13 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 
 		this.m.TurnsLeft = 1;
 
-		if (this.m.SoundOnUse.len() != 0)
-		{
+		if (this.m.SoundOnUse.len() != 0) {
 			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.25, this.getContainer().getActor().getPos());
 		}
 	}
 
-	function applyDamage()
-	{
-		if (this.m.TurnsLeft > 0 || this.m.DamageData == null)
-		{
+	function applyDamage() {
+		if (this.m.TurnsLeft > 0 || this.m.DamageData == null) {
 			return;
 		}
 
@@ -91,25 +80,21 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		local data = this.m.DamageData;
 		local attacker = this.getAttacker();
 
-		if ("TotalDamageMult" in data)
-		{
+		if ("TotalDamageMult" in data) {
 			mult *= data.TotalDamageMult;
 		}
 
 		//this.spawnIcon("status_effect_78", actor.getTile());
 
 		this.spawnEffectOnTile(ownTile);
-		for( local i = 5; i >= 0; i = --i )
-		{
-			if (!ownTile.hasNextTile(i))
-			{
+		for (local i = 5; i >= 0; i = --i) {
+			if (!ownTile.hasNextTile(i)) {
 				continue;
 			}
 
 			local tile = ownTile.getNextTile(i);
 
-			if (!tile.IsEmpty && tile.getEntity().isAttackable() && ::Math.abs(tile.Level - ownTile.Level) <= 1)
-			{
+			if (!tile.IsEmpty && tile.getEntity().isAttackable() && ::Math.abs(tile.Level - ownTile.Level) <= 1) {
 				local damage = ::Math.rand(data.MinDamage, data.MaxDamage) * mult;
 				local hitInfo = clone ::Const.Tactical.HitInfo;
 				hitInfo.DamageRegular = damage;
@@ -123,27 +108,21 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		actor.kill(null, null, ::Const.FatalityType.Suicide, false);
 	}
 
-	function onUpdate( _properties )
-	{
-	}
+	function onUpdate(_properties) {}
 
-	function onNewRound()
-	{
+	function onNewRound() {
 		--this.m.TurnsLeft;
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		this.applyDamage();
 	}
 
-	function onWaitTurn()
-	{
+	function onWaitTurn() {
 		this.applyDamage();
 	}
 
-	function spawnEffectOnTile( _tile )
-	{
+	function spawnEffectOnTile(_tile) {
 		// explosion effect
 		local effect = {
 			Delay = 0,

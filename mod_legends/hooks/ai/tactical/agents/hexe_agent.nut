@@ -5,14 +5,14 @@
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_wither"));
 	}
 
-	o.onRoundStarted = function() {
+	o.onRoundStarted = function () {
 		this.agent.onRoundStarted();
 
 		if (::Time.getRound() == 1) {
 			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getActor().getFaction());
 
 			foreach (a in allies) {
-				if (a.getType() != ::Const.EntityType.Hexe && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed) && !a.getSkills().hasEffect(::Legends.Effect.Charmed) && !a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))	{
+				if (a.getType() != ::Const.EntityType.Hexe && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed) && !a.getSkills().hasEffect(::Legends.Effect.Charmed) && !a.getSkills().hasEffect(::Legends.Effect.LegendInfatuated)) {
 					::Legends.Effects.grant(a, ::Legends.Effect.FakeCharmed);
 				}
 			}

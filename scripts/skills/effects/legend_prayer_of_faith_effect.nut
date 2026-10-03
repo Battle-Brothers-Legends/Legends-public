@@ -2,30 +2,21 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Resolve = 0
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrayerOfFaith);
-		this.m.Description = "This character is being protected by a holy chant.";
-		this.m.Icon = "ui/perks/prayer_purple.png";
-		this.m.IconMini = "mini_prayer_purple";
-		this.m.Overlay = "prayer_purple";
+		this.m.Description = "This character is being protected by a stern proclamation of faith.";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getBonus()
-	{
-		// local actor = this.getContainer().getActor();
-		local resolve = this.m.Resolve;
-		local bonus = ::Math.floor(resolve * 0.20);
-
-		return bonus;
+	function getBonus() {
+		return ::Math.floor(this.m.Resolve * 0.20);
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local bonus = this.getBonus();
 		return [
 			{
@@ -47,17 +38,13 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		this.removeSelf();
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local bonus = this.getBonus();
 		_properties.MeleeDefense += bonus;
 		_properties.RangedDefense += bonus;
 	}
-
 });
-

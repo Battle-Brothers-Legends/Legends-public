@@ -45,11 +45,10 @@ if (!("Profession" in ::Legends)) {
 
 ::Const.Professions.addProfessionDefObjects <- function (_professionDefObjects, _container = ::Legends.Profession) {
     local size = ::Const.Professions.ProfessionDefObjects.len();
-    local count = 0;
+    local i = 0;
     foreach (constName, def in _professionDefObjects) {
         def.Const <- constName;
         ::Const.Professions.ProfessionDefObjects.push(::Const.Professions.createProfessionDef(def));
-        local i = size + count;
         if (def.Const in _container) {
             _container[def.Const] = size + i;
         } else {
@@ -57,7 +56,7 @@ if (!("Profession" in ::Legends)) {
         }
         ::Const.Professions.ProfessionDefs[def.Const] <- size + i;
         ::Const.Professions.LookupMap[def.ID] <- def;
-        count++;
+        i++;
     }
 }
 

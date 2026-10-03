@@ -4,14 +4,13 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		Failures = 0,
 		Difficulty = 1.25
 	},
-	function resetTrance()
-	{
+
+	function resetTrance() {
 		this.m.TranceIsActive = false;
 		this.m.Failures = 0;
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTranceMalevolent);
 		this.m.Icon = "ui/perks/legend_vala_trance_malevolent_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_malevolent_active_bw.png";
@@ -33,38 +32,41 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		this.m.MaxLevelDifference = 4;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		local actor = this.getContainer().getActor();
 
-		if (!::Tactical.isActive())
+		if (!::Tactical.isActive()) {
 			return false;
+		}
 
-		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
+		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
 			return false;
+		}
 
-		if (!this.skill.isUsable())
+		if (!this.skill.isUsable()) {
 			return false;
+		}
 
-		if (this.m.TranceIsActive)
+		if (this.m.TranceIsActive) {
 			return false;
+		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) || actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) || actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance)) {
 			return false;
+		}
 
-		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff")) {
 			return false;
+		}
 
 		return true;
 	}
 
-	function getCostString()
-	{
+	function getCostString() {
 		return "[i]Costs [b][color=%negative%]all (at least 6) AP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=%positive%]" + this.getFatigueCost() : "[b][color=%negative%]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local actor = this.getContainer().getActor();
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
@@ -74,8 +76,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			text = "If the Vala is successful in her dealings with these harmful spirits, they will haunt and weaken her opponents. Lowers damage, lowers maximum fatigue, increases fatigue cost for skills."
 		});
 
-		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff")) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -84,8 +85,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			});
 		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting)) {
 			ret.push({
 				id = 10,
 				type = "text",
@@ -94,8 +94,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			});
 		}
 
-		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
-		{
+		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
 			ret.push({
 				id = 11,
 				type = "text",
@@ -107,29 +106,23 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		return ret;
 	}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		local actor = this.getContainer().getActor();
 		local targets = ::Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance) && this.m.TranceIsActive)
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance) && this.m.TranceIsActive) {
 			local TotalVictims = 0;
 
-			foreach( tar in targets )
-			{
-				foreach( t in tar )
-				{
-					if (t.getFlags().get("IsSpiritVictim"))
-					{
+			foreach (tar in targets) {
+				foreach (t in tar) {
+					if (t.getFlags().get("IsSpiritVictim")) {
 						TotalVictims = 1;
 						break;
 					}
 				}
 			}
 
-			if (TotalVictims == 0)
-			{
+			if (TotalVictims == 0) {
 				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				this.logInfo("MALEVOLENT SPIRITS :: onTurnStart victim is dead or dying");
 				return;
@@ -138,37 +131,32 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			local expertise = actor.getBravery() / this.m.Difficulty;
 			expertise = expertise + this.m.Failures * 20.0 / this.m.Difficulty;
 
-			foreach( tar in targets )
-			{
-				foreach( t in tar )
-				{
+			foreach (tar in targets) {
+				foreach (t in tar) {
 					local distance = t.getTile().getDistanceTo(actor.getTile());
 
-					if (distance <= 3 && t.isAlliedWith(actor))
-					{
-						switch(distance)
-						{
-						case 1:
-							expertise = expertise + 2.0 / this.m.Difficulty;
-							break;
+					if (distance <= 3 && t.isAlliedWith(actor)) {
+						switch (distance) {
+							case 1:
+								expertise = expertise + 2.0 / this.m.Difficulty;
+								break;
 
-						case 2:
-							expertise = expertise + 1.0 / this.m.Difficulty;
-							break;
+							case 2:
+								expertise = expertise + 1.0 / this.m.Difficulty;
+								break;
 
-						case 3:
-							expertise = expertise + 0.5 / this.m.Difficulty;
-							break;
+							case 3:
+								expertise = expertise + 0.5 / this.m.Difficulty;
+								break;
 
-						default:
-							break;
+							default:
+								break;
 						}
 					}
 				}
 			}
 
-			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
-			{
+			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery)) {
 				expertise = expertise + 15.0 / this.m.Difficulty;
 			}
 
@@ -178,23 +166,18 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 			this.logInfo("MALEVOLENT SPIRITS :: expertise is " + expertise);
 
-			if (::Math.rand(1, 100) <= expertise)
-			{
-				foreach( tar in targets )
-				{
-					foreach( t in tar )
-					{
-						if (!t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect) && t.getFlags().get("IsSpiritVictim"))
-						{
-							::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTranceMalevolentEffect, function(_effect) {
+			if (::Math.rand(1, 100) <= expertise) {
+				foreach (tar in targets) {
+					foreach (t in tar) {
+						if (!t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolent) && t.getFlags().get("IsSpiritVictim")) {
+							::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTranceMalevolent, function (_effect) {
 								_effect.setPower(this.getContainer().getActor().getBravery());
 							}.bindenv(this));
 							t.getFlags().set("IsSpiritVictim", false);
 						}
 
-						if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect) && t.getFlags().get("IsSpiritVictim"))
-						{
-							::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTranceMalevolentEffect, function(_effect) {
+						if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolent) && t.getFlags().get("IsSpiritVictim")) {
+							::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTranceMalevolent, function (_effect) {
 								_effect.setPower(this.getContainer().getActor().getBravery());
 							}.bindenv(this));
 							t.getFlags().set("IsSpiritVictim", false);
@@ -204,25 +187,18 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 				::Sound.play("sounds/combat/legend_vala_malevolent.wav");
 				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
-			}
-			else if (this.isAffordableBasedOnFatigue())
-			{
+			} else if (this.isAffordableBasedOnFatigue()) {
 				::Sound.play("sounds/combat/legend_vala_trance.wav");
 				this.m.TranceIsActive = true;
 				++this.m.Failures;
 				actor.m.ActionPoints = 0;
 				actor.setFatigue(actor.getFatigue() + this.getFatigueCost());
-			}
-			else
-			{
+			} else {
 				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 
-				foreach( tar in targets )
-				{
-					foreach( t in tar )
-					{
-						if (t.getFlags().get("IsSpiritVictim"))
-						{
+				foreach (tar in targets) {
+					foreach (t in tar) {
+						if (t.getFlags().get("IsSpiritVictim")) {
 							t.getFlags().set("IsSpiritVictim", false);
 						}
 					}
@@ -231,72 +207,53 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		}
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance)) {
 			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 		}
 
 		this.resetTrance();
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
-		{
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery)) {
 			this.m.FatigueCostMult = 0.75;
-		}
-		else
-		{
+		} else {
 			this.m.FatigueCostMult = 1.0;
 		}
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
-	{
+	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
 		local actor = this.getContainer().getActor();
 		local targets = ::Tactical.Entities.getAllInstances();
 
-		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID())
-		{
+		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID()) {
 			return;
 		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
-		{
-			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
-			{
-				if (::Math.rand(1, 100) <= 50)
-				{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance)) {
+			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery)) {
+				if (::Math.rand(1, 100) <= 50) {
 					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 
-					foreach( tar in targets )
-					{
-						foreach( t in tar )
-						{
-							if (t.getFlags().get("IsSpiritVictim"))
-							{
+					foreach (tar in targets) {
+						foreach (t in tar) {
+							if (t.getFlags().get("IsSpiritVictim")) {
 								t.getFlags().set("IsSpiritVictim", false);
 							}
 						}
 					}
 				}
-			}
-			else
-			{
+			} else {
 				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 
-				foreach( tar in targets )
-				{
-					foreach( t in tar )
-					{
-						if (t.getFlags().get("IsSpiritVictim"))
-						{
+				foreach (tar in targets) {
+					foreach (t in tar) {
+						if (t.getFlags().get("IsSpiritVictim")) {
 							t.getFlags().set("IsSpiritVictim", false);
 						}
 					}
@@ -305,66 +262,54 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		}
 	}
 
-	function onDeath( _fatalityType )
-	{
+	function onDeath(_fatalityType) {
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded()) {
 			return;
+		}
 
 		local actor = this.getContainer().getActor();
 		local targets = ::Tactical.Entities.getAllInstances();
 
-		foreach( tar in targets )
-		{
-			foreach( t in tar )
-			{
-				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect))
-				{
-					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaTranceMalevolentEffect);
+		foreach (tar in targets) {
+			foreach (t in tar) {
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolent)) {
+					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaTranceMalevolent);
 				}
 
-				if (t.getFlags().get("IsSpiritVictim"))
-				{
+				if (t.getFlags().get("IsSpiritVictim")) {
 					t.getFlags().set("IsSpiritVictim", false);
 				}
 			}
 		}
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!_targetTile.IsOccupiedByActor)
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!_targetTile.IsOccupiedByActor) {
 			return false;
 		}
 
-		if (!_targetTile.getEntity().isAlive() || _targetTile.getEntity().isDying())
-		{
+		if (!_targetTile.getEntity().isAlive() || _targetTile.getEntity().isDying()) {
 			return false;
 		}
 
-		if (_targetTile.IsEmpty)
-		{
+		if (_targetTile.IsEmpty) {
 			return false;
 		}
 
-		if (_targetTile.getEntity().isAlliedWith(this.getContainer().getActor()))
-		{
+		if (_targetTile.getEntity().isAlliedWith(this.getContainer().getActor())) {
 			return false;
 		}
 
 		return this.skill.onVerifyTarget(_originTile, _targetTile);
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		if (this.isUsable())
-		{
+	function onUse(_user, _targetTile) {
+		if (this.isUsable()) {
 			local actor = this.getContainer().getActor();
 
-			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
-			{
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance)) {
 				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 
@@ -375,6 +320,4 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			this.m.TranceIsActive = true;
 		}
 	}
-
 });
-

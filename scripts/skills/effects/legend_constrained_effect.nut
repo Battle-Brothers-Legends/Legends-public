@@ -2,25 +2,20 @@ this.legend_constrained_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 1
 	},
-	
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConstrained);
-		this.m.Icon = "skills/status_effect_78.png";
-		this.m.Overlay = "status_effect_78";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
-	function getDescription()
-	{
+
+	function getDescription() {
 		return "This character is Constrained and has trouble moving! Will wear off in [color=" + ::Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s), unless refreshed.";
 	}
 
-	function getTooltip()
-	{	
+	function getTooltip() {
 		local tooltip = [
 			{
 				id = 1,
@@ -47,17 +42,15 @@ this.legend_constrained_effect <- this.inherit("scripts/skills/skill", {
 		];
 		return tooltip;
 	}
-	
-	function onUpdate( _properties )
-	{	
+
+	function onUpdate(_properties) {
 		_properties.MovementFatigueCostAdditional += 5;
 		_properties.MovementAPCostAdditional += 2;
 	}
-	
-	function onTurnEnd()
-	{
-		if (--this.m.TurnsLeft <= 0)
+
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
+		}
 	}
 });
-

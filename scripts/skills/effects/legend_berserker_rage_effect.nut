@@ -3,11 +3,9 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		RageStacks = 0,
 		LastRageSoundTime = 0
 	},
+
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBerserkerRage);
-		this.m.Icon = "ui/perks/berserker_rage_circle.png";
-		this.m.IconMini = "status_effect_34_mini";
-		this.m.Overlay = "status_effect_34";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/orc_rage", 6);
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsSerialized = false;
@@ -23,7 +21,8 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		return [{
+		return [
+			{
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -64,7 +63,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		return "The smell of blood and death sends this character into an uncontrollable rage. Once in a rage, they must continuously feed it to keep it going.";
 	}
 
-	function addRage( _r ) {
+	function addRage(_r) {
 		this.m.RageStacks += _r;
 		local actor = this.getContainer().getActor();
 
@@ -76,10 +75,9 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gains rage!");
 		}
-
 	}
 
-	function onUpdate( _properties ) {
+	function onUpdate(_properties) {
 		if (this.m.RageStacks >= 40) {
 			this.m.RageStacks = 40;
 		}
@@ -89,7 +87,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		_properties.Initiative += 1 * this.m.RageStacks;
 	}
 
-	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties ) {
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
 		if (::MSU.isNull(_attacker) || _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack()) {
 			return;
 		}
@@ -101,11 +99,11 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		this.m.RageStacks = ::Math.max(0, this.m.RageStacks - 2);
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor ) {
+	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
 		this.addRage(1);
 	}
 
-	function onTargetKilled( _targetEntity, _skill ) {
+	function onTargetKilled(_targetEntity, _skill) {
 		this.addRage(3);
 	}
 
@@ -120,5 +118,4 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		this.m.LastRageSoundTime = 0;
 		this.skill.onCombatFinished();
 	}
-
 });

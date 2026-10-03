@@ -62,11 +62,11 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetEntity) + " spirit is being drained");
 		}
 
-		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendDemonHoundBiteEffect);
+		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendDemonHoundBite);
 
 		if (poison == null)
 		{
-			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendDemonHoundBiteEffect);
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendDemonHoundBite);
 		}
 		else
 		{

@@ -1,7 +1,7 @@
 this.legend_armor_tracking_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendArmorTracking);
 		this.m.Description = "to do";
 		this.m.Icon = "ui/perks/feint_circle.png";
@@ -12,8 +12,7 @@ this.legend_armor_tracking_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,

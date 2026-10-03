@@ -5,43 +5,34 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 		LastRoundApplied = 0,
 		Actor = null
 	},
-	function getDamage()
-	{
+
+	function getDamage() {
 		return this.m.Damage;
 	}
 
-	function setDamage( _d )
-	{
+	function setDamage(_d) {
 		this.m.Damage = _d;
 	}
 
-	function setActor( _a )
-	{
+	function setActor(_a) {
 		this.m.Actor = ::MSU.asWeakTableRef(_a);
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDisintegrating);
 		this.m.KilledString = "Disintegrated";
-		this.m.Icon = "skills/status_effect_01.png";
-		this.m.IconMini = "status_effect_01_mini";
-		this.m.Overlay = "bleed";
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is being disintegrated! They will lose [color=%negative%]" + this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function applyDamage()
-	{
-		if (this.m.LastRoundApplied != ::Time.getRound())
-		{
+	function applyDamage() {
+		if (this.m.LastRoundApplied != ::Time.getRound()) {
 			this.m.LastRoundApplied = ::Time.getRound();
 			this.spawnIcon("status_effect_01", this.getContainer().getActor().getTile());
 			local hitInfo = clone ::Const.Tactical.HitInfo;
@@ -53,36 +44,28 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is disintegrating.");
 			this.getContainer().getActor().onDamageReceived(this.getEffectOwner(), this, hitInfo);
 
-			if (--this.m.TurnsLeft <= 0)
-			{
+			if (--this.m.TurnsLeft <= 0) {
 				this.removeSelf();
 			}
 		}
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Bleeder))
-		{
+		if (this.getContainer().hasTrait(::Legends.Trait.Bleeder)) {
 			++this.m.TurnsLeft;
 		}
 	}
 
-	function onUpdate( _properties )
-	{
-	}
+	function onUpdate(_properties) {}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		this.applyDamage();
 	}
 
-	function onWaitTurn()
-	{
+	function onWaitTurn() {
 		this.applyDamage();
 	}
 
 });
-

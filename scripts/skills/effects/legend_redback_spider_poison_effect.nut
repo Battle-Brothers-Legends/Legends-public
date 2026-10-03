@@ -5,27 +5,22 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		LastRoundApplied = 0,
 		Actor = null
 	},
-	function getDamage()
-	{
+
+	function getDamage() {
 		return this.m.Damage;
 	}
 
-	function setDamage( _d )
-	{
+	function setDamage(_d) {
 		this.m.Damage = _d;
 	}
 
-	function setActor( _a )
-	{
+	function setActor(_a) {
 		this.m.Actor = ::MSU.asWeakTableRef(_a);
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRedbackSpiderPoison);
 		this.m.KilledString = "Died from redback poison";
-		this.m.Icon = "skills/status_effect_54.png";
-		this.m.IconMini = "status_effect_54_mini";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_poison", 2);
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
 		this.m.IsActive = false;
@@ -33,8 +28,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		local timeDamage = (this.m.Damage * this.m.TurnsLeft);
 		if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
 			timeDamage *= 2;
@@ -42,20 +36,16 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		return "This character has a vicious poison running through their veins and will lose [color=%negative%]" + timeDamage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function resetTime()
-	{
+	function resetTime() {
 		this.m.TurnsLeft = ::Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
-		{
+		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
 			++this.m.TurnsLeft;
 		}
 	}
 
-	function applyDamage()
-	{
-		if (this.m.LastRoundApplied != ::Time.getRound())
-		{
+	function applyDamage() {
+		if (this.m.LastRoundApplied != ::Time.getRound()) {
 			local actor = this.getContainer().getActor();
 			this.m.LastRoundApplied = ::Time.getRound();
 			this.spawnIcon("status_effect_54", this.getContainer().getActor().getTile());
@@ -64,8 +54,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 				return;
 			}
 
-			if (this.m.SoundOnUse.len() != 0)
-			{
+			if (this.m.SoundOnUse.len() != 0) {
 				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.0, actor.getPos());
 			}
 			local timeDamage = (this.m.Damage * this.m.TurnsLeft);
@@ -85,29 +74,23 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		}
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.m.TurnsLeft = ::Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
-		{
+		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
 			++this.m.TurnsLeft;
 		}
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		this.applyDamage();
 
-		if (--this.m.TurnsLeft <= 0)
-		{
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}
 
-	function onWaitTurn()
-	{
+	function onWaitTurn() {
 		this.applyDamage();
 	}
-
 });

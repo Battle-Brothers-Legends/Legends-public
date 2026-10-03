@@ -1,76 +1,42 @@
-this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
-	m = {
-		TurnsLeft = 2,
-		Damage = 5,
-		LastRoundApplied = 0,
-		Actor = null
-	},
-	function setStats(_s1, _s2) {
-		this.m.Damage = _s1;
-		this.m.TurnsLeft = _s2;
-	}
-	function getDamage() {
-		return this.m.Damage;
-	}
-
-	function setActor( _a ) {
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
-	}
-
+this.legend_rsw_bleeding_effect <- this.inherit("scripts/skills/skill", {
+	m = {},
 	function create() {
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswBleedingEffect);
-		this.m.KilledString = "Bled to death";
-		this.m.Icon = "skills/status_effect_01.png";
-		this.m.IconMini = "status_effect_01_mini";
-		this.m.Overlay = "status_effect_01";
-		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswBleeding);
+		this.m.Description = "Rune Sigil: Bleeding";
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
+		this.m.IsHidden = true;
 	}
 
-	function getDescription() {
-		return "This character is bleeding profusely from a recently received wound and will lose [color=%negative%]" + this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
-	}
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+		if ( _skill == null || _skill.m.IsWeaponSkill == false )
+			return;
 
-	function applyDamage() {
-		if (this.m.LastRoundApplied != ::Time.getRound()) {
-			this.m.LastRoundApplied = ::Time.getRound();
-			this.spawnIcon("status_effect_01", this.getContainer().getActor().getTile());
-			local hitInfo = clone ::Const.Tactical.HitInfo;
-			hitInfo.DamageRegular = this.m.Damage;
-			hitInfo.DamageDirect = 1.0;
-			hitInfo.BodyPart = ::Const.BodyPart.Body;
-			hitInfo.BodyDamageMult = 1.0;
-			hitInfo.FatalityChanceMult = 0.0;
-			this.getContainer().getActor().onDamageReceived(this.getEffectOwner(), this, hitInfo);
+		if (!_skill.isAttack())
+			return;
 
+		if (_skill.getItem() == null || this.getItem() == null)
+			return;
 
-			if (--this.m.TurnsLeft <= 0) {
-				this.removeSelf();
-			}
+		if (_skill.getItem().getInstanceID() != this.getItem().getInstanceID())
+			return;
+
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
+			return;
+
+		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding)
+			return;
+
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRswBleedingBleed, function (_effect) {
+			_effect.setActor(this.getContainer().getActor());
+			_effect.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
+		}.bindenv(this));
+
+		if (!_targetEntity.isHiddenToPlayer()) {
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding.");
 		}
-	}
 
-	function onAdded() {
-		this.m.TurnsLeft = ::Math.max(1, this.m.TurnsLeft + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
-
-		if (this.getContainer().hasTrait(::Legends.Trait.Bleeder)) {
-			++this.m.TurnsLeft;
-		}
-	}
-
-	function onUpdate( _properties ) {
-	}
-
-	function onTurnEnd() {
-		this.applyDamage();
-	}
-
-	function onWaitTurn() {
-		this.applyDamage();
-	}
-
-	function onCombatFinished() {
-		this.removeSelf();
 	}
 });

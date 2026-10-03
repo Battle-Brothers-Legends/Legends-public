@@ -7,11 +7,8 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConsecratedEffect);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConsecrated);
 		this.m.Description = "This character is being consecrated by holy flames.";
-		this.m.Icon = "ui/perks/holyfire_circle.png";
-		this.m.IconMini = "mini_fire_circle";
-		this.m.Overlay = "fire_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;

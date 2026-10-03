@@ -959,7 +959,7 @@
 	}
 
 	o.dualWieldRefresh <- function (_entity, _slot) {
-		local effect = ::Legends.Effects.get(_entity, ::Legends.Effect.LegendDualWield);
+		local effect = ::Legends.Effects.get(_entity, ::Legends.Effect.LegendDualWielding);
 		if (effect == null) {
 			return;
 		}

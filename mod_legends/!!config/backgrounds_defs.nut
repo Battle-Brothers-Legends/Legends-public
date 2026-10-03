@@ -43,11 +43,10 @@ if (!("Background" in ::Legends)) {
 
 ::Legends.Backgrounds.addBackgroundDefObjects <- function (_backgroundDefObjects) {
     local size = ::Legends.Backgrounds.BackgroundDefObjects.len();
-    local count = 0;
+    local i = 0;
     foreach (constName, def in _backgroundDefObjects) {
         def.Const <- constName;
         ::Legends.Backgrounds.BackgroundDefObjects.push(::Legends.Backgrounds.createBackgroundDef(def));
-        local i = size + count;
         if (def.Const in ::Legends.Background) {
             ::Legends.Background[def.Const] = size + i;
         } else {
@@ -55,7 +54,7 @@ if (!("Background" in ::Legends)) {
         }
         ::Legends.Backgrounds.BackgroundDefs[def.Const] <- size + i;
         ::Legends.Backgrounds.LookupMap[def.ID] <- def;
-        count++;
+        i++;
     }
 }
 

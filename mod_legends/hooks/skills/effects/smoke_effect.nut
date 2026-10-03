@@ -58,7 +58,7 @@
 	o.onUpdate = function (_properties) {
 		local actor = this.getContainer().getActor();
 		local tile = actor.getTile();
-		if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "smoke")	{
+		if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "smoke") {
 			_properties.RangedSkillMult *= 0.5;
 			_properties.DamageReceivedRangedMult *= 0.5;
 			_properties.Vision -= 10;

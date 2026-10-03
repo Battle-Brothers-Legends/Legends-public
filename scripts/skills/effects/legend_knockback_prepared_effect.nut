@@ -4,8 +4,6 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendKnockbackPrepared);
-		this.m.Icon = "ui/perks/smackdown_circle.png";
-		this.m.IconMini = "mini_smackdown_circle";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;

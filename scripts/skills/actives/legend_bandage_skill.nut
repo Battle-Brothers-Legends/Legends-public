@@ -2,13 +2,12 @@ this.legend_bandage_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Item = null
 	},
-	function setItem( _i )
-	{
+
+	function setItem(_i) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBandage);
 		this.m.Description = "Save yourself or another character from bleeding to death by applying pressure and provisional bandaging to any such wound. Does not heal hitpoints. Neither the character using this skill nor the patient may be engaged in melee, unless the character using this skill has Bandage Mastery.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/first_aid", 2);
@@ -27,8 +26,7 @@ this.legend_bandage_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -62,100 +60,83 @@ this.legend_bandage_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function getCursorForTile( _tile )
-	{
+	function getCursorForTile(_tile) {
 		return ::Const.UI.Cursor.Bandage;
 	}
 
-
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
 		local target = _targetTile.getEntity();
 
-		if (!this.m.Container.getActor().isAlliedWith(target))
-		{
+		if (!this.m.Container.getActor().isAlliedWith(target)) {
 			return false;
 		}
 
-		if (_targetTile.hasZoneOfControlOtherThan(this.m.Container.getActor().getAlliedFactions()) && !this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage))
-		{
+		if (_targetTile.hasZoneOfControlOtherThan(this.m.Container.getActor().getAlliedFactions()) && !this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage)) {
 			return false;
 		}
 
-		if (target.getSkills().hasEffect(::Legends.Effect.Bleeding) || target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
-		{
+		if (target.getSkills().hasEffect(::Legends.Effect.Bleeding) || target.getSkills().hasEffect(::Legends.Effect.LegendGrazed)) {
 			return true;
 		}
 
 		local skill;
 		skill = target.getSkills().getSkillByID("injury.cut_artery");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			return true;
 		}
 
 		skill = target.getSkills().getSkillByID("injury.cut_throat");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			return true;
 		}
 
 		skill = target.getSkills().getSkillByID("injury.grazed_neck");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			return true;
 		}
 
 		return false;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		this.spawnIcon("perk_55", _targetTile);
 
-		while (target.getSkills().hasEffect(::Legends.Effect.Bleeding))
-		{
+		while (target.getSkills().hasEffect(::Legends.Effect.Bleeding)) {
 			::Legends.Effects.remove(target, ::Legends.Effect.Bleeding);
 		}
 
-		while (target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
-		{
-			::Legends.Effects.remove(target, ::Legends.Effect.LegendGrazedEffect);
+		while (target.getSkills().hasEffect(::Legends.Effect.LegendGrazed)) {
+			::Legends.Effects.remove(target, ::Legends.Effect.LegendGrazed);
 		}
 
 		local skill;
 		skill = target.getSkills().getSkillByID("injury.cut_artery");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			target.getSkills().remove(skill);
 		}
 
 		skill = target.getSkills().getSkillByID("injury.cut_throat");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			target.getSkills().remove(skill);
 		}
 
 		skill = target.getSkills().getSkillByID("injury.grazed_neck");
 
-		if (skill != null && skill.isFresh())
-		{
+		if (skill != null && skill.isFresh()) {
 			target.getSkills().remove(skill);
 		}
 
-		if (this.m.Item != null && !this.m.Item.isNull())
-		{
+		if (this.m.Item != null && !this.m.Item.isNull()) {
 			this.m.Item.removeSelf();
 		}
 

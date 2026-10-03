@@ -1,92 +1,64 @@
-this.legend_RSW_poison_effect <- this.inherit("scripts/skills/skill", {
-	m = {
-		TurnsLeft = 3,
-		TurnsLeftMax = 3,
-		Strength = 10
-	},
-	function setStats(_s1, _s2) {
-		this.m.TurnsLeft = _s1;
-		this.m.TurnsLeftMax = _s1;
-		this.m.Strength = _s2;
-	}
-
+this.legend_rsw_poison_effect <- this.inherit("scripts/skills/skill", {
+	m = {},
 	function create() {
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswPoisonEffect);
-		this.m.Icon = "skills/status_effect_54.png";
-		this.m.IconMini = "status_effect_54_mini";
-		this.m.Overlay = "status_effect_54";
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswPoison);
+		this.m.Description = "Rune Sigil: Poison";
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.IsStacking = true;
+		this.m.IsHidden = true;
 	}
 
-	function getDescription() {
-		return "This character has poison running through his veins. His vision is blurred, his speech slurred and it takes a great deal of effort for him to move in a coordinated fashion. The effect will slowly wear off over [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
-	}
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+		if ( _skill == null || _skill.m.IsWeaponSkill == false )
+			return;
 
-	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/action_points.png",
-				text = "[color=%negative%]-" + 1 * this.m.TurnsLeft + "[/color] Action Points"
-			},
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/vision.png",
-				text = "[color=%negative%]-" + 1 * this.m.TurnsLeft + "[/color] Vision"
-			},
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/initiative.png",
-				text = "[color=%negative%]-" + 10 * this.m.TurnsLeft + "[/color] Initiative"
-			}
-		];
-	}
+		if (!_skill.isAttack())
+			return;
 
-	function resetTime() {
-		this.m.TurnsLeft = ::Math.max(1, this.m.TurnsLeftMax + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		if (_skill.getItem() == null || this.getItem() == null)
+			return;
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
-			++this.m.TurnsLeft;
+		if (_skill.getItem().getInstanceID() != this.getItem().getInstanceID())
+			return;
+
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
+			return;
+
+		if (_targetEntity.getFlags().has("undead"))
+			return;
+
+		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _targetEntity.getHitpoints() <= 0)
+			return;
+
+		if (!_targetEntity.isHiddenToPlayer()) {
+			local poisonSound = [
+				"sounds/combat/poison_applied_01.wav",
+				"sounds/combat/poison_applied_02.wav"
+			];
+
+			::Sound.play(poisonSound[::Math.rand(0, poisonSound.len() - 1)], ::Const.Sound.Volume.Actor, _targetEntity.getPos());
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetEntity) + " is poisoned.");
 		}
 
-		this.spawnIcon("status_effect_54", this.getContainer().getActor().getTile());
-	}
+		local runePoison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRswPoisonPoison);
+		local gobboPoison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.GoblinPoison);
 
-	function onAdded() {
-		this.m.TurnsLeft = ::Math.max(1, this.m.TurnsLeftMax + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
-
-		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
-			++this.m.TurnsLeft;
+		if (runePoison == null && gobboPoison == null)
+		{
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRswPoisonPoison, function (_effect) {
+				_effect.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
+			}.bindenv(this));
 		}
-	}
-
-	function onUpdate( _properties ) {
-		_properties.ActionPoints -= ::Math.round(1.0 * this.m.TurnsLeft);
-		_properties.Initiative -= ::Math.round(10.0 * (this.m.Strength / 8.0) * this.m.TurnsLeft);
-	}
-
-	function onTurnEnd() {
-		if (--this.m.TurnsLeft <= 0) {
-			this.removeSelf();
+		else if (runePoison != null && gobboPoison == null)
+		{
+			runePoison.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
+			runePoison.resetTime();
 		}
-	}
-
-	function onCombatFinished() {
-		this.removeSelf();
+		else if (runePoison == null && gobboPoison != null)
+		{
+			gobboPoison.resetTime();
+		}
 	}
 });

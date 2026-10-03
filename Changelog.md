@@ -577,9 +577,6 @@
 - prayer of hope and prayer of faith effects now have their respective mini icons (the ones that appear above the character in battle)
 
 ## Bug Fixes
-- tile effect `shadows` -> `legend_shadow_mist`
-- blazing RSW and firefield now use their own fire effects
-- legend tile effects moved to tactical_state so they can be spawned by other sources more conveniently
 - black market in town screens can now be highlighted on mouseover
 - various text fixes
 - graphical/ui fixes
@@ -1022,3 +1019,20 @@ Refactors/deletions:
 - `scripts/skills/actives/legend_prayer_of_life_skill` -> `scripts/skills/actives/legend_prayer_of_hope_skill`
 - `scripts/skills/actives/legend_unleash_cat_skill` -> `scripts/skills/actives/legend_summon_familiar_skill`
 - many of the gfx files used in the mod had their names normalized so they follow the naming scheme of consts
+- all runes and unused `relationship_check` and `horserider` effects had the `_effect` suffix added
+- rune applied effects that were using the `_effect` suffix for their effects applied to enemies have been renamed (`RSS blind`, `RSW bleed` and `RSW poison` runes)
+- rune ids are now prefixed with `rune_sigils` rather than `special`
+- `scripts/skills/effects/legend_summoned_catapult_effect` -> deleted
+- `scripts/skills/effects/legend_buckler_effect` -> `scripts/skills/effects/legend_buckler_defense_effect`
+- `scripts/skills/effects/legend_dodging_incoming` -> `scripts/skills/effects/legend_bracing_for_impact_effect`
+- `scripts/skills/effects/legend_dual_wield_effect` -> `scripts/skills/effects/legend_dual_wielding_effect`
+- `scripts/skills/effects/legend_greenwood_sap_effect` -> `scripts/skills/effects/legend_heartwood_focus_effect`
+- `scripts/skills/effects/legend_hexe_ichor_potion_effect` -> `scripts/skills/effects/legend_hexe_ichor_effect` (potion effects are for anatomists, this is a consumable)
+- `scripts/skills/effects/legend_holding_the_line` -> `scripts/skills/effects/legend_holding_the_line_effect`
+- `scripts/skills/effects/legend_lurker_effect` -> `scripts/skills/effects/legend_lurking_effect`
+- `scripts/skills/effects/legend_lw_relationship_effect` -> `scripts/skills/effects/legend_band_of_brothers_effect`
+- `scripts/skills/effects/legend_marked_target_effect` -> `scripts/skills/effects/legend_marked_effect`
+- `scripts/skills/effects/legend_possession_effect` -> `scripts/skills/effects/legend_possessed_effect`
+- `scripts/skills/effects/legend_vala_currently_chanting` -> `scripts/skills/effects/legend_vala_currently_chanting_effect`
+- `scripts/skills/effects/legend_vala_in_trance` -> `scripts/skills/effects/legend_vala_in_trance_effect`
+- `scripts/skills/effects/legend_vala_warden_damage` -> `scripts/skills/effects/legend_vala_warden_damage_effect`

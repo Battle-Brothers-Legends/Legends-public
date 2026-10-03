@@ -1,32 +1,25 @@
-::mods_hookExactClass("skills/effects/riposte_effect", function(o) {
-	
+::mods_hookExactClass("skills/effects/riposte_effect", function (o) {
+
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
-		this.m.Name = "Riposting";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.Riposte);
 	}
 
-	o.getDescription = function()
-	{
+	o.getDescription = function () {
 		return "This character is prepared to immediately counter-attack on any failed attempt to attack them in melee.";
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		local actor = this.getContainer().getActor();		
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
+		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem();
-		if (item != null && item.isWeaponType(::Const.Items.WeaponType.Staff))
-		{
-			if (!actor.getCurrentProperties().IsSpecializedInPolearms)
-			{
+		if (item != null && item.isWeaponType(::Const.Items.WeaponType.Staff)) {
+			if (!actor.getCurrentProperties().IsSpecializedInPolearms) {
 				_properties.MeleeSkill -= 10;
 			}
-		}
-		else
-		{
-			onAnySkillUsed( _skill, _targetEntity, _properties );
+		} else {
+			onAnySkillUsed(_skill, _targetEntity, _properties);
 		}
 	}
 });

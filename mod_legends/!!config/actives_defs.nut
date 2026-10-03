@@ -40,17 +40,16 @@ if (!("Active" in ::Legends)) {
 
 ::Legends.Actives.addActiveDefObjects <- function (_activeDefObjects) {
 	local size = ::Legends.Actives.ActiveDefObjects.len();
-	local count = 0;
+	local i = 0;
 	foreach (constName, def in _activeDefObjects) {
 		def.Const <- constName;
 		::Legends.Actives.ActiveDefObjects.push(::Legends.Actives.createActiveDef(def));
-		local i = size + count;
 		if (def.Const in ::Legends.Active) {
 			::Legends.Active[def.Const] = size + i;
 		} else {
 			::Legends.Active[def.Const] <- size + i;
 		}
-		count++;
+		i++;
 	}
 }
 
@@ -591,10 +590,7 @@ local activesDefs = {
 		Overlay = "active_20"
 	},
 	PerfectFocus = {
-		Script = "scripts/skills/actives/perfect_focus",
-		Icon = "ui/perks/perk_37_active.png",
-		IconDisabled = "ui/perks/perk_37_active_sw.png",
-		Overlay = "perk_37_active"
+		Script = "scripts/skills/actives/perfect_focus"
 	},
 	Perforate = {
 		Icon = "skills/active_237.png",
@@ -1282,11 +1278,7 @@ local activesDefs = {
 	LegendFirefield = {},
 	LegendFlagellate = {},
 	LegendFlogging = {},
-	LegendFlourish = {
-		Icon = "ui/perks/perk_41_active.png",
-		IconDisabled = "ui/perks/perk_41_active_bw.png",
-		Overlay = "perk_41_active"
-	},
+	LegendFlourish = {},
 	LegendFlowingSlash = {
 		Icon = "skills/active_172.png",
 		IconDisabled = "skills/active_172_sw.png",

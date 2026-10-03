@@ -104,7 +104,7 @@
 		this.setSpriteOffset("hair", this.createVec(0, -3));
 		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 		}
 		local beard_top = this.addSprite("beard_top");
 

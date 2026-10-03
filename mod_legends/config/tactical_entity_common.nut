@@ -1,21 +1,19 @@
-::Const.Tactical.Common.removeStances <- function( _actor, _removeValaTrance = false )
-{
+::Const.Tactical.Common.removeStances <- function (_actor, _removeValaTrance = false) {
 	::Legends.Effects.remove(_actor, ::Legends.Effect.Shieldwall);
 	::Legends.Effects.remove(_actor, ::Legends.Effect.Spearwall);
 	::Legends.Effects.remove(_actor, ::Legends.Effect.Riposte);
 	::Legends.Effects.remove(_actor, ::Legends.Effect.LegendReturnFavor);
 
 	if (_removeValaTrance) {
-		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantDisharmonyEffect);
-		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantFuryEffect);
-		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantSensesEffect);
+		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantDisharmony);
+		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantFury);
+		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantSenses);
 		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaInTrance);
 	}
 };
 
-::Const.Tactical.Common.getRandomPlayerNameFemale <- function()
-{
+::Const.Tactical.Common.getRandomPlayerNameFemale <- function () {
 	return ::Const.Strings.CharacterNamesFemale[::Math.rand(0, ::Const.Strings.CharacterNamesFemale.len() - 1)];
 };
 
@@ -38,8 +36,8 @@
 	local faction = _entity.getFaction();
 
 	if ((_entity.getFlags().has("undead") && !_entity.getFlags().has("ghoul")) || _entity.getFlags().has("cultist")) {
-		if (!_entity.getSkills().hasEffect(::Legends.Effect.LegendConsecratedEffect)) {
-			::Legends.Effects.grant(_entity, ::Legends.Effect.LegendConsecratedEffect, function (_effect) {
+		if (!_entity.getSkills().hasEffect(::Legends.Effect.LegendConsecrated)) {
+			::Legends.Effects.grant(_entity, ::Legends.Effect.LegendConsecrated, function (_effect) {
 				if (!::Legends.S.isEntityNullOrDead(_killer) && _killer.getFaction() == ::Const.Faction.Player) {
 					_effect.setActor(_killer);
 				}
@@ -47,8 +45,8 @@
 		}
 		return;
 	} else if (faction == ::Const.Faction.Player || faction == ::Const.Faction.Civilian || faction == ::Const.Faction.NobleHouse) {
-		if (!_entity.getSkills().hasEffect(::Legends.Effect.LegendSanctifiedEffect)) {
-			::Legends.Effects.grant(_entity, ::Legends.Effect.LegendSanctifiedEffect);
+		if (!_entity.getSkills().hasEffect(::Legends.Effect.LegendSanctified)) {
+			::Legends.Effects.grant(_entity, ::Legends.Effect.LegendSanctified);
 		}
 	}
 };
@@ -86,7 +84,7 @@ local onApplyMiasma = ::Const.Tactical.Common.onApplyMiasma;
 local onApplyFire = ::Const.Tactical.Common.onApplyFire;
 ::Const.Tactical.Common.onApplyFire = function (_tile, _entity, _killer = null) {
 	local onDamageReceived = _entity.onDamageReceived;
-	_entity.onDamageReceived = function ( _attacker, _skill, _hitInfo ) {
+	_entity.onDamageReceived = function (_attacker, _skill, _hitInfo) {
 		local damage = ::Math.rand(15, 30);
 		_hitInfo.DamageRegular = damage * this.getCurrentProperties().DamageReceivedFireMult;
 		_hitInfo.DamageArmor = damage;
@@ -95,28 +93,21 @@ local onApplyFire = ::Const.Tactical.Common.onApplyFire;
 
 	onApplyFire(_tile, _entity);
 
-	if (::Legends.S.isEntityNullOrDead(_entity))
+	if (::Legends.S.isEntityNullOrDead(_entity)) {
 		return;
+	}
 
 	_entity.onDamageReceived = onDamageReceived;
 };
 
-
 ::Const.Tactical.Common.onApplyFireRune <- function (_tile, _entity, _killer = null) {
-	if (_entity.getCurrentProperties().IsImmuneToFire)
+	if (_entity.getCurrentProperties().IsImmuneToFire) {
 		return;
+	}
 
 	local damage = _tile.Properties.Effect.Damage;
 
-	::Tactical.spawnIconEffect("status_effect_116", _tile,
-		::Const.Tactical.Settings.SkillIconOffsetX,
-		::Const.Tactical.Settings.SkillIconOffsetY,
-		::Const.Tactical.Settings.SkillIconScale,
-		::Const.Tactical.Settings.SkillIconFadeInDuration,
-		::Const.Tactical.Settings.SkillIconStayDuration,
-		::Const.Tactical.Settings.SkillIconFadeOutDuration,
-		::Const.Tactical.Settings.SkillIconMovement
-	);
+	::Tactical.spawnIconEffect("status_effect_116", _tile, ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
 	local sounds = [
 		"sounds/combat/dlc6/status_on_fire_01.wav",
 		"sounds/combat/dlc6/status_on_fire_02.wav",

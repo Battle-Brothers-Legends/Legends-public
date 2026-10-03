@@ -7,7 +7,6 @@ this.legend_headache_effect <- this.inherit("scripts/skills/injury/injury", {
 		this.injury.create();
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHeadache);
 		this.m.Description = "Not so loud! This character suffers a serious headache.";
-		this.m.Icon = "skills/status_effect_62.png";
 		this.m.Type = this.m.Type | ::Const.SkillType.StatusEffect;
 		this.m.IsHealingMentioned = false;
 		this.m.IsContentWithReserve = true;

@@ -4,7 +4,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 	function create() {
 		this.legend_vala_chant.create();
 		this.m.Range = 4;
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantDisharmonyEffect);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantDisharmony);
 	}
 
 	function calculateBonus(_distance) {
@@ -13,29 +13,22 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 		if (this.isMastered()) {
 			bonus *= 1.1;
 		}
-		if (_distance == 2) {
-			bonus *= 0.75;
-		}
-		else if (_distance == 3) {
-			bonus *= 0.5;
-		}
-		else if (_distance == 4) {
-			bonus *= 0.25;
-		}
-		else {
-			return 0;
-		}
+		bonus *= ::Math.maxf(0.0, 1.0 - (0.25 * (_distance - 1)));
+
+		return bonus;
 	}
 
 	function getTooltip() {
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
 		local bonus = calculateBonus(distance);
 
-		local ret = [ {
-			id = 1,
-			type = "title",
-			text = this.getName()
-		}];
+		local ret = [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			}
+		];
 
 		ret.push({
 			id = 10,

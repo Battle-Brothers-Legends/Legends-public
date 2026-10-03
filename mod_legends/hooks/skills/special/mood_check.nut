@@ -1,7 +1,6 @@
-::mods_hookExactClass("skills/special/mood_check", function(o)
-{
+::mods_hookExactClass("skills/special/mood_check", function (o) {
 	local onUpdate = o.onUpdate;
-	o.onUpdate = function ( _properties ) {
+	o.onUpdate = function (_properties) {
 		onUpdate(_properties);
 		local actor = this.getContainer().getActor();
 		if (actor.m.MoraleState == ::Const.MoraleState.Ignore) {
@@ -13,8 +12,9 @@
 	local onCombatStarted = o.onCombatStarted;
 	o.onCombatStarted = function () {
 		local actor = this.getContainer().getActor();
-		if (actor.m.MoraleState == ::Const.MoraleState.Ignore)
+		if (actor.m.MoraleState == ::Const.MoraleState.Ignore) {
 			return;
+		}
 		onCombatStarted();
 	}
 });

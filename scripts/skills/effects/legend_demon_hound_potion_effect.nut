@@ -1,11 +1,8 @@
 this.legend_demon_hound_potion_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundPotion);
-		this.m.Icon = "skills/status_effect_137.png";
-		this.m.IconMini = "";
-		this.m.Overlay = "status_effect_137";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -13,13 +10,11 @@ this.legend_demon_hound_potion_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is able to secrete a substance that vibrates rapidly when stimulated. When applied to weapons, this creates a strong kinetic force that aids in armor penetration.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -47,23 +42,18 @@ this.legend_demon_hound_potion_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.FatigueRecoveryRate += 3;
 	}
 
-	function onDeath( _fatalityType )
-	{
-		if (_fatalityType != ::Const.FatalityType.Unconscious)
-		{
+	function onDeath(_fatalityType) {
+		if (_fatalityType != ::Const.FatalityType.Unconscious) {
 			::World.Statistics.getFlags().set("isDemonHoundPotionAcquired", false);
 		}
 	}
 
-	function onDismiss()
-	{
+	function onDismiss() {
 		::World.Statistics.getFlags().set("isDemonHoundPotionAcquired", false);
 	}
 
 });
-

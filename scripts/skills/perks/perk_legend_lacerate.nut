@@ -19,7 +19,7 @@ this.perk_legend_lacerate <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect, function (_effect) {
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazed, function (_effect) {
 			_effect.setActor(this.getContainer().getActor());
 		}.bindenv(this));
 
@@ -31,5 +31,4 @@ this.perk_legend_lacerate <- this.inherit("scripts/skills/skill", {
 		return true;
 
 	}
-
 });

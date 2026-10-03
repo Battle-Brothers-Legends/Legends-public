@@ -4,9 +4,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Icon = "skills/perfectfocus_square.png";
-		this.m.IconDisabled = "skills/perfectfocus_square_bw.png";
-		this.m.Overlay = "perfectfocus_active";
+		::Legends.Actives.onCreate(this, ::Legends.Active.PerfectFocus);
 		this.m.Order = ::Const.SkillOrder.BeforeLast;
 		this.m.ActionPointCost = 0;
 		this.m.FatigueCost = 30;

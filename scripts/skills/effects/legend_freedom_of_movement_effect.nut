@@ -1,19 +1,16 @@
 this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFreedomOfMovement);
-		this.m.Description = "You are moving with freedom.";
-		this.m.Icon = "ui/perks/freedom_of_movement_circle.png";
-		this.m.IconMini = "freedom_of_movement_circle_mini";
+		this.m.Description = "Your movement is unimpaired.";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
 		tooltip.push({
 			id = 6,
@@ -24,16 +21,16 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getBonus( _attacker, _defender )
-	{
+	function getBonus(_attacker, _defender) {
 		local bonus = 1;
-		if (::MSU.isNull(_attacker) || ::MSU.isNull(_defender)) return bonus;
+		if (::MSU.isNull(_attacker) || ::MSU.isNull(_defender)) {
+			return bonus;
+		}
 
 		local defenderCurrentInitiative = _defender.getInitiative();
 		local attackerCurrentInitiative = _attacker.getInitiative();
 
-		if (defenderCurrentInitiative > attackerCurrentInitiative)
-		{
+		if (defenderCurrentInitiative > attackerCurrentInitiative) {
 			local diff = (defenderCurrentInitiative - attackerCurrentInitiative) / 100.0;
 			local diffPoint = ::Math.minf(1, ::Math.pow(diff, 0.4)) * 0.80;
 			bonus = 1 - diffPoint;
@@ -42,10 +39,8 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 		return bonus;
 	}
 
-	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
-	{
-		if (_attacker == null || _attacker != null && _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack() || !_skill.isUsingHitchance())
-		{
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
+		if (_attacker == null || _attacker != null && _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack() || !_skill.isUsingHitchance()) {
 			return;
 		}
 
@@ -55,13 +50,12 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	// MSU custom-added event
-	function onOtherActorTooltip( _tooltip, _targetActor )
-	{
+	function onOtherActorTooltip(_tooltip, _targetActor) {
 		if (::MSU.isNull(_targetActor) || !_targetActor.isPlayerControlled()) {
 			return;
 		}
 
-		local bonus = (1 - this.getBonus( _targetActor, this.getContainer().getActor() )) * 100;
+		local bonus = (1 - this.getBonus(_targetActor, this.getContainer().getActor())) * 100;
 
 		_tooltip.push({
 			id = "10",
@@ -72,19 +66,16 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	// MSU function
-	function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
-	{
+	function onGetHitFactorsAsTarget(_skill, _targetTile, _tooltip) {
 		local attacker = ::MSU.isNull(_skill) ? null : _skill.getContainer().getActor();
 
-		if (::MSU.isNull(attacker))
-		{
+		if (::MSU.isNull(attacker)) {
 			return;
 		}
 
 		local bonus = (1 - this.getBonus(attacker, this.getContainer().getActor())) * 100;
 
-		if (bonus > 0)
-		{
+		if (bonus > 0) {
 			_tooltip.push({
 				id = "10",
 				type = "text",

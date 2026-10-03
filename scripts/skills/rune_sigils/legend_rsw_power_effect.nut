@@ -1,0 +1,19 @@
+this.legend_rsw_power_effect <- this.inherit("scripts/skills/skill", {
+	m = {},
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswPower);
+		this.m.Description = "Rune Sigil: Power";
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
+		this.m.IsActive = false;
+		this.m.IsStacking = true;
+		this.m.IsHidden = true;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill.isAttack() && _skill.getItem() != null && this.getItem() != null && _skill.getItem().getInstanceID() == this.getItem().getInstanceID()) {
+			_properties.DamageTotalMult *= (1.0 + ((this.getItem().getRuneBonus1() * 1.0) / 100.0));
+			_properties.DamageRegularMax += this.getItem().getRuneBonus2();
+		}
+	}
+});
