@@ -108,7 +108,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 				local entity = ::Tactical.spawnEntity("scripts/entity/tactical/legend_vala_warden_script", WardenSpawnTile.Coords.X, WardenSpawnTile.Coords.Y);
 				entity.setName(this.getContainer().getActor().m.Name + "\'s Warden");
 				entity.setFaction(::Const.Faction.PlayerAnimals);
-				entity.setVala(this);
+				entity.setVala(this.getContainer().getActor());
 				entity.setWardenStats(this.getContainer().getActor().getBravery());
 				this.m.WardenEntity = ::MSU.asWeakTableRef(entity);
 				this.m.WardenSummonSpent = true;
@@ -119,9 +119,6 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 							_effect.setVala(this);
 						}.bindenv(this));
 					}
-					::Legends.Effects.grant(this.m.WardenEntity, ::Legends.Effect.LegendValaWardenDamage, function (_effect) {
-						_effect.setDamageBonus(this.getContainer().getActor().getBravery());
-					}.bindenv(this));
 				}
 
 				local effect = {

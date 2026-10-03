@@ -1031,13 +1031,6 @@ local effectDefs = {
 		IconMini = "status_effect_52_mini",
 		Overlay = "status_effect_52"
 	},
-	LegendValaWardenDamage = {
-		// should just be calculated directly in the skills, its literally bravery/20
-		Name = "Warden Damage Scaling",
-		Icon = "",
-		IconMini = "",
-		Overlay = ""
-	},
 	LegendVengeance = {
 		Name = "Vengeance!",
 		Overlay = ""

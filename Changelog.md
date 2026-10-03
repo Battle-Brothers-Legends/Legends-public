@@ -638,6 +638,7 @@
 - fixed master necromancer getting too cozy with the nobles after getting rid of his early troupe 
 - the perk groups tooltip in the hiring screen will no longer show perk groups meant for enemies only
 - fixed event crusaders not being paid a wage
+- fixed Vala not getting xp for warden kills
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
