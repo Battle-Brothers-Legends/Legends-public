@@ -1035,13 +1035,6 @@ local effectDefs = {
 		Overlay = ""
 	},
 	LegendWarChant = {},
-	LegendWebAtStart = {
-		// what is the point of this? can't we just grant regular web?
-		Name = "Start Combat Trapped in Web",
-		Icon = "skills/status_effect_80.png",
-		IconMini = "status_effect_80_mini",
-		Overlay = "status_effect_80"
-	},
 	LegendWhiteDirewolfPotion = {
 		Name = "Unflagging Energy"
 		Icon = "skills/status_effect_139.png",

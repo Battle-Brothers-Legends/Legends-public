@@ -1039,3 +1039,4 @@ Refactors/deletions:
 - `scripts/skills/effects/legend_vala_warden_damage` -> deleted, functionality merged into the warden script instead
 - `scripts/skills/effects/legend_veteran_levels_effect` -> deleted, functionality merged player's updateLevel function
 - `scripts/skills/effects/legend_realm_of_nightmares_effect` -> deleted
+- `scripts/skills/effects/legend_web_at_start_effect` -> deleted, functionality changed to use Web active's onUse

@@ -166,9 +166,10 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						// Chance for some of the player's units to start webbed
 						foreach (unit in _frontline)
 						{
-							if (::Math.rand(1,6) == 1)
-							{
-								::Legends.Effects.grant(unit, ::Legends.Effect.LegendWebAtStart);
+							if (::Math.rand(1,6) == 1) {	
+								::Time.scheduleEvent(::TimeUnit.Real, 50, function ( _unit ) {
+									::Legends.Actives.new(::Legends.Active.Web).onUse(_unit, _unit.getTile());
+								}, unit);
 							}
 						}
 
@@ -191,7 +192,9 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 							villager.setName("Abducted Villager");
 							villager.setFaction(1);
 							villager.setPlaceInFormation(freeSlots.pop());
-							::Legends.Effects.grant(villager, ::Legends.Effect.LegendWebAtStart);
+							::Time.scheduleEvent(::TimeUnit.Real, 50, function ( _unit ) {
+								::Legends.Actives.new(::Legends.Active.Web).onUse(_unit, _unit.getTile());
+							}, villager);
 							villager.getFlags().add("IsSpiderAbductee", true);
 							entities.push(villager);
 						}
@@ -348,7 +351,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					{
 						if ( g.getFlags().get("IsSpiderAbductee") )
 						{
-							survivorCount += 1
+							survivorCount += 1;
 						}
 					}
 
@@ -540,7 +543,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				{
 					if ( g.getFlags().get("IsSpiderAbductee") )
 					{
-						survivorCount += 1
+						survivorCount += 1;
 					}
 				}
 
