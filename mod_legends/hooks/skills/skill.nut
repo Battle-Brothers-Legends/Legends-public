@@ -241,7 +241,7 @@
 		if (::Legends.Mod.ModSettings.getSetting("ShowFatalityChance").getValue()) {
 			local decapitateParams = [
 				["chance_smash", ::Math.min(100, this.m.ChanceSmash * p.FatalityChanceMult)],
-				["chance_decap", ::Math.min(100, this.m.ChanceDecapitate * p.FatalityChanceMult)]
+				["chance_decap", ::Math.min(100, this.m.ChanceDecapitate * p.FatalityChanceMult)],
 				["chance_disembowel", ::Math.min(100, this.m.ChanceDisembowel * p.FatalityChanceMult)]
 			];
 			if (this.m.ChanceSmash > 0) {

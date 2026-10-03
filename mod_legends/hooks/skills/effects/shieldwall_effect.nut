@@ -70,7 +70,7 @@
 		];
 	}
 
-	o.onDamageReceived = function( _attacker, _skill, _hitInfo ) {
+	o.onDamageReceived <- function( _attacker, _skill, _hitInfo ) {
 		this.m.Stacks -= 1;
 	}
 
