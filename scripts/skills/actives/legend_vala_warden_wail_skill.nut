@@ -44,17 +44,10 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 			local bonus1 = (scaling != null) ? scaling.getDamageBonus() : 0;
 			local bonus2 = (fury != null) ? fury.getWardenDamage() : 0;
 
-			local actor = this.getContainer().getActor();
-			if (_skill.isAttack() && _targetEntity != null && _targetEntity.getID() != actor.getID() && _targetEntity.getFaction() == actor.getFaction()) {
-				_properties.DamageRegularMin = 0;
-				_properties.DamageRegularMax = 0;
-				_properties.IsIgnoringArmorOnAttack = false;
-			} else {
-				_properties.DamageRegularMin += 10 + ::Math.round(bonus1 * 0.67) + ::Math.round(bonus2 * 0.67);
-				_properties.DamageRegularMax += 15 + ::Math.round(bonus1) + ::Math.round(bonus2);
-				_properties.IsIgnoringArmorOnAttack = true;
-				_properties.HitChanceAdditionalWithEachTile -= 2;
-			}
+			_properties.DamageRegularMin += 10 + ::Math.round(bonus1 * 0.67) + ::Math.round(bonus2 * 0.67);
+			_properties.DamageRegularMax += 15 + ::Math.round(bonus1) + ::Math.round(bonus2);
+			_properties.IsIgnoringArmorOnAttack = true;
+			_properties.HitChanceAdditionalWithEachTile -= 2;
 		}
 	}
 });
