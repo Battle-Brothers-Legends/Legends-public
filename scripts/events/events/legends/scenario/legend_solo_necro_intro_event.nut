@@ -1,5 +1,6 @@
 this.legend_solo_necro_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
+
 	function create() {
 		this.m.ID = "event.legend_solo_necro_intro_event";
 		this.m.IsSpecial = true;
@@ -11,14 +12,14 @@ this.legend_solo_necro_intro_event <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "A new pet, with many more on the way...",
-				getResult = @(_event) 0
-			}],
-			function start(_event) {
-				this.logInfo("What's the fine for necrophilia in this part of Tamriel?");
-				// ::World.FactionManager.makeZombiesFriendlyToPlayer(); //we ignore undead hunting contracts in the scenario file of this origin (legends_solo_necro_scenario)
-			}
+			Options = [
+				{
+					Text = "A new pet, with many more on the way...",
+					getResult = @(_event)0
+				}
+			],
+
+			function start(_event) {}
 		});
 	}
 

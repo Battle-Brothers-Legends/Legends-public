@@ -727,7 +727,6 @@ local backgroundDefs = {
         Name = "Noble Usurper",
         HiringCost = 25000,
         DailyCost = 25,
-        Icon = "ui/backgrounds/legend_noble_usurper.png"
     },
     LegendCommanderPeddler = {
         Name = "Merchant",

@@ -1,4 +1,4 @@
-this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_reanimator_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 
 	function create() {
