@@ -535,7 +535,6 @@
 	{
 		onInit();
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendRealmOfNightmares);
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendVeteranLevels);
 		//::Legends.Effects.grant(this, ::Legends.Effect.LegendArmorTracking);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendGrapple);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendKick);
@@ -891,35 +890,33 @@
 		return true;
 	}
 
-	o.updateLevel = function() {
-		while (this.m.Level < ::Const.LevelXP.len() && this.m.XP >= ::Const.LevelXP[this.m.Level])
-		{
+	o.updateLevel = function () {
+		while (this.m.Level < ::Const.LevelXP.len() && this.m.XP >= ::Const.LevelXP[this.m.Level]) {
 			++this.m.Level;
 			++this.m.LevelUps;
 			++this.m.ProfessionPoints;
 
-			if (this.m.Level <= ::Const.XP.MaxLevelWithPerkpoints)
-			{
+			if (this.m.Level <= ::Const.XP.MaxLevelWithPerkpoints) {
+				++this.m.PerkPoints;
+			} else if (this.getVeteranPerks() > 0) {
+				if ((this.m.Level - ::Const.XP.MaxLevelWithPerkpoints) % this.getVeteranPerks() == 0) {
+					++this.m.PerkPoints;
+				}
+			}
+
+			if (this.m.Level == 12 && this.m.Skills.hasPerk(::Legends.Perk.Student)) {
 				++this.m.PerkPoints;
 			}
 
-			if (this.m.Level == 12 && this.m.Skills.hasPerk(::Legends.Perk.Student))
-			{
-				++this.m.PerkPoints;
-			}
-
-			if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null)
-			{
+			if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null) {
 				::World.Assets.getOrigin().onUpdateLevel(this);
 			}
 
-			if (this.m.Level == 12)
-			{
+			if (this.m.Level == 12) {
 				this.updateAchievement("OldAndWise", 1, 1);
 			}
 
-			if (this.m.Level == 12 && this.m.Skills.hasTrait(::Legends.Trait.Player))
-			{
+			if (this.m.Level == 12 && this.m.Skills.hasTrait(::Legends.Trait.Player)) {
 				this.updateAchievement("TooStubbornToDie", 1, 1);
 			}
 		}

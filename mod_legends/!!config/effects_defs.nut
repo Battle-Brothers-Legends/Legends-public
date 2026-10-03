@@ -1047,13 +1047,6 @@ local effectDefs = {
 		Icon = "skills/status_effect_80.png",
 		IconMini = "status_effect_80_mini",
 		Overlay = "status_effect_80"
-	}, 
-	LegendVeteranLevels = {
-		// to be integrated into player regularly soon
-		Name = "",
-		Icon = "",
-		IconMini = "",
-		Overlay = ""
 	},
 	LegendWhiteDirewolfPotion = {
 		Name = "Unflagging Energy"
@@ -1067,7 +1060,7 @@ local effectDefs = {
 		IconMini = "status_effect_92_mini",
 		verlay = "status_effect_92"
 	},
-	LegendZombiePoison= {
+	LegendZombiePoison = {
 		Name = "Infected",
 		Icon = "skills/status_effect_54.png",
 		IconMini = "status_effect_54_mini",
