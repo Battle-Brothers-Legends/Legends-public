@@ -902,12 +902,6 @@ local effectDefs = {
 		IconMini = "mini_smackdown_circle",
 		Overlay = "active_89"
 	},
-	LegendRealmOfNightmares = {
-		// should be removed? no effect and is forced onto every player character automatically onInit?
-		Icon = "skills/status_effect_102.png",
-		IconMini = "status_effect_102_mini",
-		Overlay = "status_effect_102"
-	},
 	LegendRedbackPoisonCoat = {
 		Name = "Weapon coated with poison",
 		Overlay = ""

@@ -1037,4 +1037,5 @@ Refactors/deletions:
 - `scripts/skills/effects/legend_vala_currently_chanting` -> `scripts/skills/effects/legend_vala_currently_chanting_effect`
 - `scripts/skills/effects/legend_vala_in_trance` -> `scripts/skills/effects/legend_vala_in_trance_effect`
 - `scripts/skills/effects/legend_vala_warden_damage` -> deleted, functionality merged into the warden script instead
-- - `scripts/skills/effects/legend_veteran_levels_effect` -> deleted, functionality merged player's updateLevel function
+- `scripts/skills/effects/legend_veteran_levels_effect` -> deleted, functionality merged player's updateLevel function
+- `scripts/skills/effects/legend_realm_of_nightmares_effect` -> deleted
