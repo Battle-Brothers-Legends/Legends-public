@@ -81,4 +81,8 @@
 	{
 		this.m.IsFirstSkill = true;
 	}
+
+	o.isFirstSkillBeUsed <- function() {
+		return this.m.IsFirstSkill;
+	}
 });
