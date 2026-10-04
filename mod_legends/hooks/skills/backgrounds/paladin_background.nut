@@ -68,11 +68,17 @@
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "[color=%positive%]%_bonus%[/color] bonus to Hitpoints, Fatigue and Initiative (%_rate%% of base Resolve)",
+			text = "[color=%positive%]%_bonus%[/color] to Hitpoints, Fatigue and Initiative (%_rate%% of base Resolve)",
 			param = [
 				["_bonus", ::Legends.S.addSign(bonus)],
 				["_rate", this.m.ResolveConversion * 100]
 			]
+		});
+		ret.push({
+			id = 14,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Offsets Weight Initiative penalties by the same amount"
 		});
 		return ret;
 	}

@@ -17,9 +17,17 @@
 		return this.getCurrentProperties().Block;
 	}
 
-	o.getGender <- function()
-	{
+	o.getGender <- function() {
 		return -1;
+	}
+
+	o.getInitiative <- function () {
+		local armorWeight = ::Math.abs(this.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head, ::Const.ItemSlot.Mainhand, ::Const.ItemSlot.Offhand, ::Const.ItemSlot.Bag, ::Const.ItemSlot.Accessory]));
+		local brawnyMod = (::Legends.Perks.has(this, ::Legends.Perk.Brawny) ? this.getBaseProperties().Stamina * ::Legends.Perks.get(this, ::Legends.Perk.Brawny).m.StaminaModifier : 0);
+		local oathtakerMod = (::MSU.isKindOf(this, "player") && ::Legends.Backgrounds.has(this, ::Legends.Background.Paladin) ? ::Math.round(this.getBaseProperties().Bravery * ::Legends.Backgrounds.get(this, ::Legends.Background.Paladin).m.ResolveConversion) : 0);
+		local strongMod = (::Legends.Traits.has(this, ::Legends.Trait.Strong) ? 10 : 0);
+		local armorMod = ::Math.max(0, armorWeight - brawnyMod - oathtakerMod - strongMod);
+		return ::Math.round(this.m.CurrentProperties.Initiative * (this.m.CurrentProperties.InitiativeMult >= 0 ? this.m.CurrentProperties.InitiativeMult : 1.0 / this.m.CurrentProperties.InitiativeMult) - this.m.Fatigue * this.m.CurrentProperties.FatigueToInitiativeRate - armorMod);
 	}
 
 	local setCurrentMovementType = o.setCurrentMovementType;

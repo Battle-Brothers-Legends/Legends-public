@@ -225,6 +225,8 @@
 ## Traits
 - `Lucky` - now additionally gives 10% chance to reroll a missed attack
 - `Mad` - now has a chance to shift his morale up or down at the start of each turn in combat, cannot become fleeing from this effect but can rally from fleeing
+- `Fat` - now has a flat -10 Initiative malus instead of an indirect penalty applied by modifying current Stamina
+- `Old` - now has a flat -20 Initiative malus instead of an indirect penalty applied by modifying current Stamina and the previous -10
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
@@ -521,6 +523,12 @@
 - added noble house traits to units and towns belonging to noble houses
 - modified the faction window to include traits
 - added short description to noble house traits available upon mouseover in faction window
+
+## Other
+- current `Fatigue` modifiers won't affect `Initiative` automatically anymore
+> this means skills like `Fat`, `Old`, `Talented`, `Promised Potential` etc. won't apply a hidden `Initiative` offset through `Fatigue` changes
+> armor weight still affects `Initiative` as before
+> skills that have an effect on that offset now mention it directly in tooltips (`Brawny`, `Oathtaker`, `Strong`)
 
 ## Quality of life
 - added speed settings to combat and world expanding on vanilla systems

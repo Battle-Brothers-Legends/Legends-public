@@ -84,8 +84,8 @@ if (!("Backgrounds" in ::Legends)) {
 ::Legends.Backgrounds.get <- function(_target, _def) {
 	local container = ::Legends.Backgrounds.getContainer(_target, "on get");
 	local id = ::Legends.Backgrounds.getID(_def);
-	if (container.hasSkill(id)) {
-		return container.getSkillByID(id);
+	if (container.getSkills().hasSkill(id)) {
+		return container.getSkills().getSkillByID(id);
 	}
 	return null;
 }

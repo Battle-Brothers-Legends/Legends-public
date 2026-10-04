@@ -1,6 +1,5 @@
 this.legend_sighthound_armor <- this.inherit("scripts/items/armor/armor", {
-
-	m = { }
+	m = {}
 
 	function create() {
 		this.armor.create();
@@ -12,11 +11,11 @@ this.legend_sighthound_armor <- this.inherit("scripts/items/armor/armor", {
 		m.Description = "";
 		m.IconLarge = "";
 		m.Icon = "";
-		m.SlotType = Const.ItemSlot.Body;
+		m.SlotType = ::Const.ItemSlot.Body;
 
 		m.ShowOnCharacter = true;
 
-		m.ImpactSound = Const.Sound.ArmorLeatherImpact;
+		m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
 
 		m.Condition = 55;
 		m.ConditionMax = 55;
@@ -28,5 +27,4 @@ this.legend_sighthound_armor <- this.inherit("scripts/items/armor/armor", {
 		m.SpriteDamaged = "bust_dawg_01_armor_01_damaged";
 		m.SpriteCorpse = "bust_dawg_01_armor_01_dead";
 	}
-
 })

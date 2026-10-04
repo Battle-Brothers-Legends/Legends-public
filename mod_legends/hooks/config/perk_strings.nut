@@ -363,7 +363,9 @@ Bring it on!
 All this exercise has you in great shape.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Fatigue is increased by [color=%positive%]25%[/color] of your Base Fatigue. This bonus will also offset Initiative penalties from wearing armor.
+• Fatigue is increased by [color=%positive%]25%[/color] of your Base Fatigue.
+
+• Offsets Weight Initiative penalties by [color=%positive%]25%[/color] of your Base Fatigue.
 
 • Weapons with extra Fatigue build-up on skills have this penalty reduced by [color=%negative%]1[/color]
 ";
