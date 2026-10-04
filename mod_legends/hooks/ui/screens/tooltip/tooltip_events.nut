@@ -266,18 +266,33 @@
 
 		// Compare selected layer with equipped layer if applicable
 		if (::World.State.isInCharacterScreen()
-			&& ::MSU.isKindOf(_item, "legend_armor_upgrade")
+			&& (::MSU.isKindOf(_item, "legend_armor_upgrade")
+				|| ::MSU.isKindOf(_item, "legend_armor"))
 			&& _entity != null
 			&& _itemOwner == "character-screen-inventory-list-module.stash")
 		{
 			local equippedLayer;
-			local armor = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Body);
+			local equippedArmor = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Body);
 
-			if (armor != null) {
-				equippedLayer = armor.getUpgrade(_item.getType());
+			if (equippedArmor != null) {
+				equippedLayer = equippedArmor.getUpgrade(_item.getType());
 			}
 
-			if (equippedLayer != null) {
+			if (equippedArmor != null
+				&& ::MSU.isKindOf(_item, "legend_armor"))
+			{
+				
+				if (!_item.hasUpgrades()) {
+					// Compare base to base
+					tooltip.extend(equippedArmor.getBaseCompareTooltip(2));
+				} else {
+					// Compare set to set
+					tooltip.extend(equippedArmor.getCompareTooltip(2));
+				}
+			} 
+			else if (equippedLayer != null
+				&& ::MSU.isKindOf(_item, "legend_armor_upgrade"))
+			{
 				tooltip.extend(equippedLayer.getCompareTooltip(2));
 				_item.applyCompareHints(tooltip, equippedLayer);
 				tooltip.top().divider <- "bottom";

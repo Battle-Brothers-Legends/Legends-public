@@ -196,6 +196,23 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		return this.getAddedValue("getRawValue", this.m.Value);
 	}
 
+	function getBaseValue()
+	{
+		return ::Math.floor(this.m.Value * (1.0 * this.m.Condition / (1.0 * this.m.ConditionMax)));
+	}
+
+	function getBaseValueString()
+	{
+		if (this.getBaseValue() != 0)
+		{
+			return "Worth [img]gfx/ui/tooltips/money.png[/img][b]" + this.getBaseValue() + "[/b]";
+		}
+		else
+		{
+			return "Worth nothing.";
+		}
+	}
+
 	function doOnFunction(_function, _argsArray = null)
 	{
 		if (_argsArray == null) _argsArray = [];
@@ -351,6 +368,17 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	function getAmountColor()
 	{
 		return ::Const.Items.ConditionColor[::Math.min(::Const.Items.ConditionColor.len() - 1, ::Math.max(0, ::Math.floor(this.getArmor() / (this.getArmorMax() * 1.0) * (::Const.Items.ConditionColor.len() - 1))))];
+	}
+
+	function hasUpgrades()
+	{
+		foreach ( i, u in this.m.Upgrades )
+		{
+			if (u != null && !this.m.Blocked[i]) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	function upgradeIsBlocked( _slot )
@@ -694,6 +722,101 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		return result;
 	}
 
+	// For the entire set
+	function getCompareTooltip(_section = 1)
+	{
+		local result = [];
+		result.push({
+			id = 1,
+			type = "text",
+			section = _section,
+			text = ::Legends.S.highlightForLightBackground("Currently equipped set:\n%_item%"),
+			param = [["_item", this.makeName()]],
+			divider = "grandparent-top"
+		});
+		
+		local tooltip =	this.getTooltip(); 
+		foreach (tt in tooltip) {
+			if ("type" in tt && (tt.type == "text" || tt.type == "image" || tt.type == "progressbar")) {
+				tt.section <- _section;
+				result.push(tt);
+			}
+		}
+		return result;
+	}
+
+	// For only the base armor
+	function getBaseCompareTooltip(_section = 1)
+	{
+		// We have to be careful to use only functions that return the base armor's stats (excludes the stats from upgrade layers)
+		local result = [];
+		result.push({
+			id = 1,
+			type = "text",
+			section = _section,
+			text = ::Legends.S.highlightForLightBackground("Currently equipped base armor:\n%_item%"),
+			param = [["_item", this.getName()]],
+			divider = "grandparent-top"
+		});
+		result.push({
+			id = 66,
+			type = "text",
+			section = _section,
+			text = this.getBaseValueString()
+		});
+		result.push({
+			id = 3,
+			type = "image",
+			section = _section,
+			image = this.m.IconLarge != "" ? this.m.IconLarge : this.m.Icon,
+			isLarge = this.m.IconLarge != "" ? true : false,
+			imageOverlayPath = []
+		});
+		result.push({
+			id = 4,
+			type = "progressbar",
+			section = _section,
+			icon = "ui/icons/armor_body.png",
+			value = this.getCondition(),
+			valueMax = this.getConditionMax(),
+			text = "" + this.getCondition() + " / " + this.getConditionMax() + "",
+			style = "armor-body-slim"
+		});
+		if ( this.m.StaminaModifier != 0 )
+		{
+			result.push({
+				id = 10,
+				type = "text",
+				section = _section,
+				icon = "ui/icons/fatigue.png",
+				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.StaminaModifier) + ::Math.abs(this.m.StaminaModifier), this.m.StaminaModifier)
+			});
+		}
+		if (this.m.StaminaModifier < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() )
+		{
+			result.push({
+				id = 5,
+				type = "text",
+				section = _section,
+				icon = "ui/icons/fatigue.png",
+				text = format("(%.1f Armor per 1 Weight)", this.m.ConditionMax / (1.0 * ::Math.abs(this.m.StaminaModifier)))
+			});
+		}
+		// Tooltips for standardised effects
+		// ::Legends.Items.Effects.applyEffectTooltips(result, this); // TODO: Implement the helper function's handling of legend_armor
+
+		// Tooltips for non-standardised effects (the child implements its own getTooltip function)
+		local additionalTooltips = ::Legends.Items.Effects.extractAdditionalTooltips(this);
+		foreach (tt in additionalTooltips) {
+			if ("type" in tt && (tt.type == "text" || tt.type == "image" || tt.type == "progressbar")) {
+				tt.section <- _section;
+				result.push(tt);
+			}
+		}
+		return result;
+	}
+
+	function applyCompareHints( _tooltipList, _compareLayer)
 	function onAddedToStash( _stashID ) {
 		foreach (u in this.m.Upgrades) {
 			if (u != null && u.isNamed()) {
