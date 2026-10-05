@@ -1,0 +1,77 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			24.01.2017 / Reworked: 26.11.2017
+ *  @Description:	Skills Module JS
+ */
+
+.character-screen-container .skills-module
+{
+	width: 97.5%;
+	height: 9.2rem;
+    position: relative;
+    /*height: 12.5%;*/  /* AUTO HEIGHT */
+
+	overflow: auto;
+	outline: hidden;
+
+    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+
+	margin-left: 1.0rem;
+}
+
+.character-screen-container .skills-module .l-list-container
+{
+    top: 0.0rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.character-screen-container .skills-module .l-list-container .scroll-container
+{
+    margin-top: 0.1rem;
+}
+
+.character-screen-container .skills-module .skills-row
+{
+	width: 100%;
+	float: left;
+}
+
+.character-screen-container .skills-module .l-skills-group-container
+{
+	float: left;
+	/*margin-left  : 1.0rem;*/
+}
+
+.character-screen-container .skills-module .l-skill-groups-container
+{
+	float: left;
+	/*margin-left: 1.0rem;*/
+	margin-bottom: 0.5rem;
+}
+
+/*
+.character-screen-container .skills-module .skill-container
+{
+	width: 4.0rem;
+	height: 4.0rem;
+	float: left;
+	position: relative;
+	margin-right : 0.2rem;
+}
+*/
+
+.character-screen-container .l-skill-groups-container > img
+{
+	width: 4.0rem;
+	height: 4.0rem;
+    float: left;
+    margin-right: 0.2rem;
+}

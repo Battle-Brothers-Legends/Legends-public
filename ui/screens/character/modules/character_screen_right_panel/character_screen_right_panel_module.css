@@ -1,0 +1,24 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			26.05.2017 / Reworked: 26.11.2017
+ *  @Description:	Character Right Panel Module CSS
+ */
+
+
+.character-screen-container .right-panel-module
+{
+	width: 100%;
+	height: 51.6rem;
+	position: relative;
+	float: left;
+}
+
+.character-screen-container.is-battle-preparation .right-panel-module
+{
+    /*height: 48.1rem;*/
+}

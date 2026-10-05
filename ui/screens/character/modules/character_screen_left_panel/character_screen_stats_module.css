@@ -1,0 +1,96 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			24.01.2017 / Reworked: 26.11.2017
+ *  @Description:	Stats Module JS
+ */
+
+.character-screen-container .stats-module
+{
+	width: 100%;
+    height: 32.5%; /* AUTO HEIGHT */
+
+    position: absolute;
+    bottom: 0.0rem;
+}
+
+.character-screen-container .stats-module .stats-column
+{
+	width: 50%;
+    height: 100%; /* AUTO HEIGHT */
+	float: left;
+	margin-top: 0.4rem;
+}
+
+.character-screen-container .stats-module .stats-row
+{
+	width: 100%;
+	/*height  : 3.0rem;*/
+    height: 12.2%; /* AUTO HEIGHT */
+	position: relative;
+}
+
+.character-screen-container .stats-module .stats-row > .l-stats-row
+{
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 92%;
+	height: 2.6rem;
+	position: absolute;
+	margin: auto;
+}
+
+.character-screen-container .stats-module .l-stats-row > .l-stats-row-icon-column
+{
+	top: 0;
+	left: 0;
+	width: 3.0rem;
+	height: 2.6rem;
+	position: absolute;
+	float: left;
+}
+
+.character-screen-container .stats-module .stats-row img
+{
+	width: 2.6rem;
+	height: 2.6rem;
+}
+
+.character-screen-container .stats-module .l-stats-row > .l-stats-row-progressbar-column
+{
+	top: 0;
+	left: 3.0rem;
+	right: 0;
+	bottom: 0;
+	height: 2.6rem;
+	position: absolute;
+}
+
+.character-screen-container .stats-module .stats-row .stats-progressbar-container
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 2.2rem;
+	position: absolute;
+	margin: auto;
+}
+
+.character-screen-container .stats-module .talent
+{
+	top: -0.3rem;
+	left: 2.8rem;
+
+	position: absolute;
+	z-index: 20;
+
+	width: 3.6rem;
+	height: 1.8rem;
+}
