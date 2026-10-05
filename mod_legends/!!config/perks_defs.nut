@@ -355,6 +355,7 @@ local perkDefObjects = {
 		IconDisabled = "ui/perks/perk_60_sw.png"
 	},
 	Taunt = {
+		Name = "Battlefield Control",
 		Icon = "ui/perks/perk_38.png",
 		IconDisabled = "ui/perks/perk_38_sw.png"
 	},

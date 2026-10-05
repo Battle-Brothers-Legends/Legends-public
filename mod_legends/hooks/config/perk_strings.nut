@@ -105,7 +105,7 @@ Knights would do well to fear your heavy blows.
 Glide through battle like a leaf in a stream.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Once per turn, upon killing an opponent, reduce current Fatigue by [color=%negative%]10%[/color] of characters base maximum Fatigue (before penalties due to armor weight are applied).
+• Once per turn, upon killing an opponent, reduce current Fatigue by [color=%negative%]10%[/color] of characters base maximum Fatigue (without modifiers or armor weight).
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.BattleFlow].Tooltip = ::Const.Strings.PerkDescription.BattleFlow;
 ::Const.Strings.PerkDescription.SpecBow <- @"
@@ -339,7 +339,6 @@ Bring it on!
 • Hitpoints are increased by [color=%positive%]25%[/color], which reduces the chance to sustain debilitating [color=%status%]Injuries[/color] on hit.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Colossus].Tooltip = ::Const.Strings.PerkDescription.Colossus;
-::Const.Strings.PerkName.Taunt <- "Battlefield Control";
 ::Const.Strings.PerkDescription.Taunt <- @"
 'Being aware of your surroundings can make or break a fight.'
 
@@ -357,7 +356,6 @@ Bring it on!
 
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]15[/color] Fatigue.
 ";
-::Const.Perks.PerkDefObjects[::Legends.Perk.Taunt].Name = ::Const.Strings.PerkName.Taunt;
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Taunt].Tooltip = ::Const.Strings.PerkDescription.Taunt;
 ::Const.Strings.PerkDescription.Brawny <- @"
 All this exercise has you in great shape.
