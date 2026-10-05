@@ -25,7 +25,7 @@ if (!("Arena" in ::Legends))
 
 ::Legends.Arena.pickLoot <- function(_totalFights, _index = -1) {
 	local lootTable = ::Legends.Arena.LootTable.filter(@(_, _entry) _entry.Predicate(_totalFights));
-	local item = lootTable[_index == -1 ? ::Math.rand(0, lootTable.len() - 1) : _index];
+	local item = lootTable[_index == -1 ? ::Math.rand(0, lootTable.len() - 1) : _index].Loot;
 	item = ::Const.World.Common.pickItem(item, "scripts/items/");
 	if (::isKindOf(item, "legend_armor_upgrade")) {
 		local armor = ::Const.World.Common.pickArmor([[1, ::Legends.Armor.Southern.gladiator_harness]]);

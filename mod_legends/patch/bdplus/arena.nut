@@ -1,4 +1,4 @@
-::mods_hookBaseClass("arena/arena", function(o) {
+::mods_hookExactClass("arena/arena", function(o) {
 	o.getFightsPerDay = @() ::World.Assets.m.IsArenaTooled ? 3 : 1;
 
 	o.updateAdditionalLoot = function () {
