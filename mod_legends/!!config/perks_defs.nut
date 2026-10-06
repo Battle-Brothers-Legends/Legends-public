@@ -109,10 +109,7 @@ local perkDefObjects = {
 		Icon = "skills/passive_03.png",
 		IconDisabled = "skills/passive_03_sw.png"
 	},
-	BattleFlow = {
-		Icon = "ui/perks/battle_flow56_circle.png",
-		IconDisabled = "ui/perks/battle_flow56_circle_bw.png"
-	},
+	BattleFlow = {},
 	BattleForged = {
 		Icon = "ui/perks/perk_03.png",
 		IconDisabled = "ui/perks/perk_03_sw.png"
@@ -334,10 +331,7 @@ local perkDefObjects = {
 		IconDisabled = "ui/perks/perk_50_sw.png"
 	},
 	Stalwart = {},
-	Steadfast = {
-		Icon = "ui/perks/steadfast_circle.png",
-		IconDisabled = "ui/perks/steadfast_circle_bw.png"
-	},
+	Steadfast = {},
 	SteelBrow = {
 		Icon = "ui/perks/perk_09.png",
 		IconDisabled = "ui/perks/perk_09_sw.png"
@@ -346,10 +340,7 @@ local perkDefObjects = {
 		Icon = "ui/perks/perk_21.png",
 		IconDisabled = "ui/perks/perk_21_sw.png"
 	},
-	SunderingStrikes = {
-		Icon = "ui/perks/sunderingstrikes_circle.png",
-		IconDisabled = "ui/perks/sunderingstrikes_circle_bw.png"
-	},
+	SunderingStrikes = {},
 	Underdog = {
 		Icon = "ui/perks/perk_60.png",
 		IconDisabled = "ui/perks/perk_60_sw.png"
@@ -508,10 +499,7 @@ local perkDefObjects = {
 	LegendOnslaught = {},
 	LegendOpportunist = {},
 	LegendPackLeader = {},
-	LegendParalyze = {
-		Icon = "ui/perks/stun56_circle.png",
-		IconDisabled = "ui/perks/stun56_circle_bw.png"
-	},
+	LegendParalyze = {},
 	LegendPatientHunter = {},
 	LegendPeaceful = {},
 	LegendPenance = {},
@@ -734,10 +722,7 @@ local perkDefObjects = {
 		IconDisabled = "ui/perks/conservation_circle_bw.png"
 	},
 	// slightly weird implementation as its looking at all PIERCING DMG TYPE skills which aren't coming from daggers, are we sure its ok?
-	LegendThrustMaster = {
-		Icon = "ui/perks/spearthrust_mastery.png",
-		IconDisabled = "ui/perks/spearthrust_mastery_bw.png"
-	},
+	LegendThrustMaster = {},
 	// could be made into a profession, but it will be hard to find a tree for it
 	LegendNetRepair = {
 		Icon = "ui/perks/net_repair.png",
