@@ -464,10 +464,6 @@ local perkDefObjects = {
 	LegendLurker = {},
 	LegendMagicMissile = {},
 	LegendMagicMissileFocus = {},
-	LegendSlumber = {
-		Icon = "ui/perks/sleep_56.png",
-		IconDisabled = "ui/perks/sleep_56_bw.png"
-	},
 	LegendManipulative = {},
 	LegendMasteryMagicMissile = {
 		Name = "Magic Missile Mastery"
