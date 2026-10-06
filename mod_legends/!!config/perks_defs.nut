@@ -449,8 +449,6 @@ local perkDefObjects = {
 	LegendHolyFlame = {},
 	LegendHorrify = {},
 	LegendImmovableObject = {},
-	LegendHolyFlame = {},
-	LegendImmovableObject = {},
 	LegendIncoming = {
 		Name = "Incoming!"
 	},
@@ -557,6 +555,7 @@ local perkDefObjects = {
 	},
 	LegendSlaughterer = {},
 	LegendSleightOfHand = {},
+	LegendSlumber = {},
 	LegendSmackdown = {},
 	LegendSmashingShields = {},
 	LegendSpearwaller = {},
