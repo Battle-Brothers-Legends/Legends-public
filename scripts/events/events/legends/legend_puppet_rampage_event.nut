@@ -231,10 +231,10 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 		local candidates_puppet = [];
 		local candidates_reanimator = [];
 
-		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(!::Legends.Traits.has(bro, ::Legends.Trait.Player)))) {
-			if (::Legends.Backgrounds.has(::Legends.Background.LegendPuppet)) {
+		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(!::Legends.Traits.has(_bro, ::Legends.Trait.Player)))) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendPuppet)) {
 				candidates_puppet.push(bro);
-			} else if (::Legends.Backgrounds.has(::Legends.Background.LegendReanimator)) {
+			} else if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendReanimator)) {
 				candidates_reanimator.push(bro);
 			}
 		}
