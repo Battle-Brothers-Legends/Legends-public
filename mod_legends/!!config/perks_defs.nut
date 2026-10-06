@@ -449,10 +449,7 @@ local perkDefObjects = {
 	LegendHolyFlame = {},
 	LegendHorrify = {},
 	LegendImmovableObject = {},
-	LegendHolyFlame = {
-		Icon = "ui/perks/horrify56_circle.png",
-		IconDisabled = "ui/perks/horrify56_circle_bw.png"
-	},
+	LegendHolyFlame = {},
 	LegendImmovableObject = {},
 	LegendIncoming = {
 		Name = "Incoming!"
