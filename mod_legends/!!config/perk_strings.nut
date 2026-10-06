@@ -1091,7 +1091,7 @@ Your often and close experience with near death has left you robust and resilien
 [color=%passive%][u]Passive:[/u][/color]
 • Confers an experience point bonus based on Hitpoints lost and [color=%status%]Injuries[/color] gained during combat. Gain [color=%positive%]1[/color] XP per Hitpoint and [color=%positive%]10[/color] per [color=%status%]Injuries[/color]. Experience gain is reduced by [color=%negative%]90%[/color] at level 12 and above.
 
-• Hitpoint damage taken is reduced by [color=%negative%]5%[/color] and Resolve is increased by [color=%positve%]3[/color] for each [color=%status%]Injury[/color] you have up to a maximum of [color=%negative%]30%[/color] and [color=%positive%]15[/color] achieved at 6 [color=%status%]Injuries[/color]. Counts both regular and permanent [color=%status%]Injuries[/color].
+• Hitpoint damage taken is reduced by [color=%negative%]5%[/color] and Resolve is increased by [color=%positive%]3[/color] for each [color=%status%]Injury[/color] you have up to a maximum of [color=%negative%]30%[/color] and [color=%positive%]15[/color] achieved at 6 [color=%status%]Injuries[/color]. Counts both regular and permanent [color=%status%]Injuries[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendNetCasting <- @"
