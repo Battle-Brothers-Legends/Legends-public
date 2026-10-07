@@ -1,36 +1,27 @@
+::Legends.Backgrounds.addBackgroundDefObjects({
+	Oathbreaker = {
+        HiringCost = 130,
+        DailyCost = 18,
+        Icon = "ui/backgrounds/background_plus_01.png"
+    }
+});
+
 // Duplicate Oathtaker camp skills for Oathbreaker
+::Legends.BackgroundModifiers.Oathbreaker <- {
+	ArmorParts = ::Const.LegendMod.ResourceModifiers.ArmorParts[1],
+	Repair = ::Const.LegendMod.ResourceModifiers.Repair[2],
+	Salvage = ::Const.LegendMod.ResourceModifiers.Salvage[1],
+	ToolConsumption = ::Const.LegendMod.ResourceModifiers.ToolConsumption[1],
+	Training = ::Const.LegendMod.ResourceModifiers.Training[2],
+	Terrain = {
+		Plains = 0.05,
+		Farmland = 0.03,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
+};
+
 ::mods_hookNewObject("skills/backgrounds/oathbreaker_background", function(ob) {
 	ob.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMin;
 	ob.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
-
-	local modifiers = ob.m.Modifiers;
-
-	modifiers.ArmorParts = ::Const.LegendMod.ResourceModifiers.ArmorParts[1];
-	modifiers.Repair = ::Const.LegendMod.ResourceModifiers.Repair[2];
-	modifiers.Salvage = ::Const.LegendMod.ResourceModifiers.Salvage[1];
-	modifiers.ToolConsumption = ::Const.LegendMod.ResourceModifiers.ToolConsumption[1];
-	modifiers.Training = ::Const.LegendMod.ResourceModifiers.Training[2];
-	modifiers.Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.05, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.03, //farmland
-		0.0, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	];
-
-	ob.m.Modifiers = modifiers;
 });
