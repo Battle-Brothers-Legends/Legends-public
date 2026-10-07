@@ -1,0 +1,12 @@
+::mods_hookNewObject("events/events/offp_anatomists_experimental_integrity_event", function(oaeie) {
+	local screen = oaeie.m.Screens.filter(function(index, screen) {
+		return screen.ID == "A";
+	})[0];
+
+	local start = screen.start;
+	screen.start = function(_event) {
+		start(_event);
+		local gender = _event.m.Anatomist.getGender();
+		Text = "[img]gfx/ui/events/event_184.png[/img]{You see %anatomist% the anatomist sitting by the campfire and decide to ask " + Const.LegendMod.getPronoun(gender, "them") + " a question you've had on your mind for some time.%SPEECH_ON%How come you never make more than one of the same potion?%SPEECH_OFF%The anatomist answers you in the same insufferable tone you might use to explain something to a young child.%SPEECH_ON%You may not understand experimental integrity, scapegrace, but be assured that I do. It would be irresponsible to begin mass production of our speculative inoculations until we've had thorough opportunity to study their effects on the test specim- er, that is to say, on the company.%SPEECH_OFF%Sure, " + Const.LegendMod.getPronoun(gender, "their") + " concern for " + Const.LegendMod.getPronoun(gender, "their") + " fellow man is overwhelming.%SPEECH_ON%Doesn't it impact the experiment if the same person gets more than one mutation?%SPEECH_OFF%" + Const.LegendMod.getPronoun(gender, "They") + " sets aside " + Const.LegendMod.getPronoun(gender, "their") + " quill, rubbing " + Const.LegendMod.getPronoun(gender, "their") + " temples in annoyance.%SPEECH_ON%I'll note that you're the one that decides who receives which treatment, captain. Regardless, the ultimate goal is for the subjects to receive all the benefits of our research, so observing how they interplay is valuable.%SPEECH_OFF%You ask the obvious followup question.%SPEECH_ON%Wouldn't it make sense to produce more than one of each potion, to study more of their interactions at once, then?%SPEECH_OFF%The " + Const.LegendMod.getPronoun(gender, "person") + " opens " + Const.LegendMod.getPronoun(gender, "their") + " mouth to speak, pauses, rubs " + Const.LegendMod.getPronoun(gender, "their") + " chin thoughtfully, then turns back to you.%SPEECH_ON%I don't tell you how to do your job, sellsword. Don't presume to tell me how to do mine.%SPEECH_OFF%With that, " + Const.LegendMod.getPronoun(gender, "they") + " resumes scribbling in " + Const.LegendMod.getPronoun(gender, "their") + " journals, crossing out several sections. Hmph.}";
+	}
+});

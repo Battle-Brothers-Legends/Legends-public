@@ -19,6 +19,7 @@
 	"dlc_paladins",
 	//"mod_events_delayed_fix_legends",
 	">blazing_deserts_plus(>=0.12)",
+	">of_flesh_and_faith_plus(>=4.0.6)",
 	"!mod_tooltip_extension(<=1.01)"
 ].reduce(@(p, n) ::format("%s, %s", p, n)), function () {
 	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
@@ -30,6 +31,12 @@
 	if (::mods_getRegisteredMod("blazing_deserts_plus") != null) {
 		::logInfo("Blazing Desert Plus detected, loading compatibility patch");
 		foreach (file in ::IO.enumerateFiles("mod_legends/patch/bdplus/"))
+			::include(file);
+	}
+
+	if (::mods_getRegisteredMod("of_flesh_and_faith_plus") != null) {
+		::logInfo("Of Flesh and Faith Plus detected, loading compatibility patch");
+		foreach (file in ::IO.enumerateFiles("mod_legends/patch/offplus/"))
 			::include(file);
 	}
 });
