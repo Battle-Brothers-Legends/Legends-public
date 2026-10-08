@@ -30,7 +30,7 @@
 	o.onUpdate <- function (_properties) {
 		local actor = this.getContainer().getActor();
 		this.m.IsFootwork = false;
-		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
+		if (::Tactical.isActive() && !::Tactical.State.isAutoRetreat() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
 			local myTile = actor.getTile();
 
 			for (local i = 0; i < 6; i++) {

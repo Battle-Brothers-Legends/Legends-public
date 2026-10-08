@@ -647,6 +647,7 @@
 - the perk groups tooltip in the hiring screen will no longer show perk groups meant for enemies only
 - fixed event crusaders not being paid a wage
 - fixed Vala not getting xp for warden kills
+- fixed crash when the company retreats from battle and someone has the footwork skill
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
