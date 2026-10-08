@@ -1,4 +1,4 @@
-this.perk_legend_vala_chanting_mastery <- this.inherit("scripts/skills/skill", {
+this.perk_legend_vala_chant_mastery <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
