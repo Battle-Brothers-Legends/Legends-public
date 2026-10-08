@@ -677,7 +677,7 @@ local effectDefs = {
 	LegendConstrained = {
 		// could use new icons, these ones are acid eating chain mail
 		Icon = "skills/status_effect_78.png",
-		MiniIcon = "",
+		MiniIcon = "status_effect_78_mini",
 		Overlay = "status_effect_78"
 	},
 	LegendCurseOfTheMummy = {},
