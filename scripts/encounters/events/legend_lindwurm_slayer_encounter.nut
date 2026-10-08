@@ -6,9 +6,9 @@ this.legend_lindwurm_slayer_encounter <- this.inherit("scripts/encounters/encoun
 		this.m.Event = "event.crisis.lindwurm_slayer";
 	}
 
-    function isValid(_settlement) {
+    function isValid(_settlement, _forceUpdate = false) {
 		if (!_settlement.hasBuilding("building.tavern"))
 			return false;
-		return this.encounter_event.isValid(_settlement);
+		return this.encounter_event.isValid(_settlement, _forceUpdate);
     }
 });
