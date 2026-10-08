@@ -51,11 +51,6 @@ this.perk_legend_mastery_shields <- this.inherit("scripts/skills/skill", {
 			if (actor.getSkills().hasActive(::Legends.Active.Shieldwall)) {
 				::Legends.Effects.grant(actor, ::Legends.Effect.Shieldwall);
 				this.m.TurnsLeft--;
-			}
-			# Check if they have tower shield
-			else if (actor.getSkills().hasActive(::Legends.Active.LegendFortify)) {
-				::Legends.Effects.grant(actor, ::Legends.Effect.LegendFortify);
-				this.m.TurnsLeft--;
 			} else {
 				# do nothing if they have nothing. For schrat shield/buckler. Don't actually need this line but I put it here for clarity.
 			}
