@@ -6,23 +6,23 @@
 	<sprite id="legend_seer_tower" ic="FF3E525F" img="world_entity\location\seer_tower.png" />
 	<sprite id="legend_spider_nest" ic="5F5B51FF" img="world_entity\location\legend_spider_nest.png" />
 	<sprite id="legend_tournament" ic="FF3E525F" img="world_entity\location\legend_tournament.png" />
-	<sprite id="figure_player_berserker" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_berserker.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_crusader" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_crusader.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_ranger" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_ranger.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_beggar" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_beggar.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_legion" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legion.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_noble" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_noble.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_seer" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_seer.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_warlock" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_warlock.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_trader" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_trader.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_party" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_party.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_vala" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_vala.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_assassin" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_assassin.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_inquisition" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_inquisition.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_assassin" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_assassin.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_beggar" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_beggar.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_berserker" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_berserker.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_crusader" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_crusader.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_escaped_slaves" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_legends_escaped_slaves.png" left="-21" right="23" top="-40" bottom="18" />
+	<sprite id="figure_player_legends_inquisition" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_inquisition.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_necromancer" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_necromancer.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_noble" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_noble.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_nomad" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_legends_nomad.png" left="-21" right="23" top="-40" bottom="18" />
+	<sprite id="figure_player_legends_party" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_party.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_ranger" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_ranger.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_risen_legion" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_risen_legion.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_seer" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_seer.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_sisterhood" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_sisterhood.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_troupe" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_troupe.png" left="-18" right="24" top="-39" bottom="9" />
 	<sprite id="figure_player_druid" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_druid.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_troupe" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_troupe.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_slave" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_slave.png" left="-21" right="23" top="-40" bottom="18" />
-	<sprite id="figure_player_nomad" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_nomad.png" left="-21" right="23" top="-40" bottom="18" />
+	<sprite id="figure_player_trader" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_trader.png" left="-18" right="24" top="-39" bottom="9" />
 	<sprite id="banner_101" offsetY="28" ic="FF625C5C" width="56" height="90" img="world_entity\banner\banner_101.png" left="-22" right="24" />
   	<sprite id="banner_102" offsetX="-8" offsetY="22" ic="FF305436" width="56" height="90" img="world_entity\banner\banner_102.png" left="-24" right="26" top="-39" bottom="45" />
   	<sprite id="banner_103" offsetY="28" ic="FF2C6366" img="world_entity\banner\banner_103.png" />

@@ -1,7 +1,7 @@
 this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "scenario.legends_rangers";
 		this.m.Name = "Ranger";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_115.png[/img][/p][p]Originally hailing from far afield, the rangers are sworn to protect their ancestral woodlands. Increasing intrusions have led the rangers to these lands. \n\n[color=#bcad8c]Outdoorsmen:[/color] Not everyone is cut out for the Rangers, some love nature and are eager to join, others will need more coin to convince. Outdoor recruits gain Pathfinder.\n[color=#bcad8c]Expert Scouts:[/color] You move faster on the campaign map and can always get a scouting report for any enemies near you.\n[color=#bcad8c]Guardians:[/color] If your ranger and druid die, its game over.[/p]";
@@ -13,31 +13,26 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		this.starting_scenario.create();
 	}
 
-
-
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 2; i = i ) //party size = 2 and bust for starters
+		for (local i = 0; i < 2; i++) //party size = 2 and bust for starters
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
- 			bro.getSprite("socket").setBrush("bust_base_wildmen_01");
+			bro.getSprite("socket").setBrush("bust_base_wildmen_01");
 			bro.getSprite("miniboss").setBrush("bust_miniboss");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
-			i = ++i;
 		}
 
-		local bros = roster.getAll(); //starting party	
+		local bros = roster.getAll(); //starting party
 		bros[0].setStartValuesEx([::Legends.Background.LegendCommanderRanger]);
 		bros[0].getBackground().m.RawDescription = "{%name% grew up in the rangers and was taught the ways of the forest by veteran foresters. Running through the woods for a lifetime has made %name% particularly good at tracking enemies, or tumbling into the homes of wild druids trying to escape from the modern world}";
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
@@ -79,38 +74,26 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(5, ::Const.World.Settings.SizeX - 5);
 			local y = ::Math.rand(5, ::Const.World.Settings.SizeY - 5);
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.IsOccupied)
-				{
-				}
-				else if (tile.Type != ::Const.World.TerrainType.Forest && tile.Type != ::Const.World.TerrainType.SnowyForest && tile.Type != ::Const.World.TerrainType.LeaveForest && tile.Type != ::Const.World.TerrainType.AutumnForest)
-				{
-				}
-				else
-				{
+				if (tile.IsOccupied) {
+				} else if (tile.Type != ::Const.World.TerrainType.Forest && tile.Type != ::Const.World.TerrainType.SnowyForest && tile.Type != ::Const.World.TerrainType.LeaveForest && tile.Type != ::Const.World.TerrainType.AutumnForest) {
+				} else {
 					local next = true;
 
-					foreach( s in settlements )
-					{
+					foreach (s in settlements) {
 						local d = s.getTile().getDistanceTo(tile);
 
-						if (d > 6 && d < 15)
-						{
+						if (d > 6 && d < 15) {
 							local path = ::World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
 
-							if (!path.isEmpty())
-							{
+							if (!path.isEmpty()) {
 								next = false;
 								nearestVillage = s;
 								break;
@@ -118,62 +101,50 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 						}
 					}
 
-					if (next)
-					{
-					}
-					else
-					{
+					if (next) {
+					} else {
 						spawnTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", spawnTile.Coords.X, spawnTile.Coords.Y);
-		::World.Assets.updateLook(103);
+		this.updateLook();
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		local f = nearestVillage.getFactionOfType(::Const.FactionType.NobleHouse);
 		f.addPlayerRelation(-20.0, "Heard rumors of you poaching in their woods");
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_ranger_scenario_intro");
 		}, null);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 		::World.Flags.set("IsLegendsHunter", true);
 		::World.Flags.set("IsLegendsDruid", true);
 	}
-	function getMovementSpeedMult(){
+	function getMovementSpeedMult() {
 		return 1.057;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		local roster = ::World.getPlayerRoster().getAll();
 		local rangers = 0;
 
-		foreach( bro in roster )
-		{
-			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
+		foreach (bro in roster) {
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				rangers = ++rangers;
 			}
 		}
 
-		if (rangers == 1 && !::World.Flags.get("rangersOriginDeath1"))
-		{
+		if (rangers == 1 && !::World.Flags.get("rangersOriginDeath1")) {
 			::World.Flags.set("rangersOriginDeath1", true);
 
-			foreach( bro in roster )
-			{
-				if (bro.getFlags().get("IsPlayerCharacter"))
-				{
+			foreach (bro in roster) {
+				if (bro.getFlags().get("IsPlayerCharacter")) {
 					bro.getBackground().m.RawDescription = "{We didn\'t start on the best of terms but I feel as if I have lost a part of myself. The forest is quiet and the nights are darker without my companion...}";
 					bro.getBackground().buildDescription(true);
 				}
@@ -183,8 +154,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		return rangers != 0;
 	}
 
-	function onUpdateHiringRoster( _roster )
-	{
+	function onUpdateHiringRoster(_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.Hunter, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.Poacher, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.Wildman, 8);
@@ -193,45 +163,34 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 
 	}
 
-
-	function onHiredByScenario( _bro )
-	{
+	function onHiredByScenario(_bro) {
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(::Const.BackgroundType.Ranger))
-		{
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(::Const.BackgroundType.Ranger)) {
 			_bro.improveMood(1.0, "Supports the ranger cause");
 			_bro.getSprite("socket").setBrush("bust_base_beasts");
-		}
-		else
-		{
+		} else {
 			_bro.worsenMood(2.0, "Does not like sleeping in the woods");
 		}
 	}
 
-	function onGenerateBro(_bro)
-	{
+	function onGenerateBro(_bro) {
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(::Const.BackgroundType.Ranger))
-			{
-				_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
-				_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
-				_bro.getSkills().update();
-			}
-			else
-			{
-				_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.25); //1.0 = default
-				_bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
-				_bro.getSkills().update();
-			}
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(::Const.BackgroundType.Ranger)) {
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
+			_bro.getSkills().update();
+		} else {
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.25); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
+			_bro.getSkills().update();
+		}
 	}
 
-	function onBuildPerkTree( _background )
-	{
+	function onBuildPerkTree(_background) {
 		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Pathfinder, 0, _background.isBackgroundType(::Const.BackgroundType.Druid) || _background.isBackgroundType(::Const.BackgroundType.Ranger));
 	}
 });
-

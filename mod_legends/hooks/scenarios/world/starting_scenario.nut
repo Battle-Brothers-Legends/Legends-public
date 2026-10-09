@@ -49,6 +49,11 @@
 		this.m.StaticRelationsToFaction.resize(::Const.FactionType.len());
 	}
 
+	o.updateLook <- function (_look = null) {
+		// sets the world look to figure_player_<ID after scenario.>
+		::World.Assets.updateLook(_look != null ? _look : this.m.ID.slice(9));
+	}
+
 	o.onUpdateStablesList <- function (_list) {}
 
 	o.onHiredByScenario <- function (_bro) {}

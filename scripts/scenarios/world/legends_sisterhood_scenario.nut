@@ -90,7 +90,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		::World.Assets.updateLook(108);
+		this.updateLook();
 		::World.spawnLocation("scripts/entity/world/locations/battlefield_location", randomVillageTile.Coords).setSize(1);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {

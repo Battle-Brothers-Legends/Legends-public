@@ -180,7 +180,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		::World.Assets.updateLook(113);
+		this.updateLook();
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([

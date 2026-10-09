@@ -89,7 +89,7 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		::World.Assets.updateLook(111);
+		::World.Assets.updateLook("legends_beggar");
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(40.0, "Considered local heroes for keeping the village safe");
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {

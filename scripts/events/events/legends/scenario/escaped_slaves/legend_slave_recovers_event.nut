@@ -60,7 +60,7 @@ this.legend_slave_recovers_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legends_escaped_slaves") {
 			return;
 		}
 

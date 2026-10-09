@@ -76,7 +76,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		::World.Assets.updateLook(102);
+		this.updateLook();
 		//::World.State.m.Player.getSprite("body").setBrush("figure_player_crusader");
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {

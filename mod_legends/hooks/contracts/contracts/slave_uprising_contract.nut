@@ -49,7 +49,7 @@
 
 					this.Contract.setScreen("Overview");
 
-					if (::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
+					if (::World.Assets.getOrigin().getID() == "scenario.legends_escaped_slaves")
 					{
 						local brothers = ::World.getPlayerRoster().getAll();
 						foreach( bro in brothers )

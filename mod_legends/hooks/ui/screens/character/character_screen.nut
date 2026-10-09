@@ -61,7 +61,7 @@
 			bro.getSkills().onDismiss();
 			::World.Statistics.getFlags().increment("BrosDismissed");
 
-			if (bro.getSkills().hasSkillOfType(::Const.SkillType.PermanentInjury) && (bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave) || ::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")) {
+			if (bro.getSkills().hasSkillOfType(::Const.SkillType.PermanentInjury) && (bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave) || ::World.Assets.getOrigin().getID() == "scenario.legends_escaped_slaves")) {
 				::World.Statistics.getFlags().increment("BrosWithPermanentInjuryDismissed");
 			}
 

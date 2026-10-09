@@ -135,7 +135,7 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 
 		houses[1].Faction.addPlayerRelation(18.0);
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		::World.Assets.updateLook(106);
+		this.updateLook();
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([

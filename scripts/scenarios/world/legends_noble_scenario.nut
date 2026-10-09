@@ -184,7 +184,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		::World.Assets.updateLook(101);
+		this.updateLook();
 		//::World.State.m.Player.getSprite("body").setBrush("figure_player_noble");
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		local f = randomVillage.getFactionOfType(::Const.FactionType.NobleHouse);

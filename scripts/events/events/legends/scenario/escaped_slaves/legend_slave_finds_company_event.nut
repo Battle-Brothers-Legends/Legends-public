@@ -44,7 +44,7 @@ this.legend_slave_finds_company_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legends_escaped_slaves") {
 			return;
 		}
 

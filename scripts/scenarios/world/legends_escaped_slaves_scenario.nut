@@ -2,7 +2,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 	m = {},
 
 	function create() {
-		this.m.ID = "scenario.legend_escaped_slaves";
+		this.m.ID = "scenario.legends_escaped_slaves";
 		this.m.Name = "Escaped Slaves";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_166.png[/img][/p][p]You lead a group of slaves trying to escape their cruel fate, but you cannot run forever. Can you keep your band intact and start a new life as mercenaries?\n\n[color=#bcad8c]Escapees:[/color] Start with five escaped Indebted and find others held in captivity.\n[color=#bcad8c]Brothers in Chains:[/color] Your newfound family of Indebted are stronger together and gain skill based on how many you field.\n[color=#bcad8c]Downtrodden and Discarded:[/color] Good relations with any faction decay 15% faster and bad relations recover 15% slower.[/p]";
 		this.m.Difficulty = 3;
@@ -338,7 +338,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		}
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		::World.Assets.updateLook(116);
+		this.updateLook();
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([

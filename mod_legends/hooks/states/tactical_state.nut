@@ -274,7 +274,7 @@
 				if (this.m.StrategicProperties != null && this.m.StrategicProperties.IsAttackingLocation)
 				{
 					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnVictoryVSLocation);
-					if (::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
+					if (::World.Assets.getOrigin().getID() == "scenario.legends_escaped_slaves")
 					{
 						::World.Statistics.getFlags().set("LastBattleWasLocation", true);
 						local findCaptiveChance = 15;
@@ -298,7 +298,7 @@
 				else
 				{
 					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnVictory);
-					if (::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
+					if (::World.Assets.getOrigin().getID() == "scenario.legends_escaped_slaves")
 					{
 						::World.Statistics.getFlags().set("LastBattleWasLocation", false);
 						::World.Statistics.getFlags().set("FindCaptivePostBattle", false);

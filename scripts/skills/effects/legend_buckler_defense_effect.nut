@@ -5,15 +5,12 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBucklerDefense);
+		this.m.Description = "Fighting with a buckler, this character depends on quick reactions to keep themselves safe of harm.";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsSerialized = false;
 		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "Bucklers favor a quick fighter.";
 	}
 
 	function isHidden() {

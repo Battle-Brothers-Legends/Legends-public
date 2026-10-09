@@ -19,37 +19,33 @@
 		}
 	}
 
-	o.setPath <- function( _path )
-	{
+	o.setPath <- function (_path) {
 		this.party.setPath(::World.Camp.isCamping() ? null : _path);
 
 		if (_path != null && ::Legends.Mod.ModSettings.getSetting("ResumeOnMovementStart").getValue()) {
-            if (::World.State.isPaused()) {
-                ::World.State.setPause(false);
-            }
-        }
+			if (::World.State.isPaused()) {
+				::World.State.setPause(false);
+			}
+		}
 	}
 
-	o.setDestination <- function( _destination ) {
+	o.setDestination <- function (_destination) {
 		this.party.setDestination(::World.Camp.isCamping() ? null : _destination);
 		if (_destination != null && ::Legends.Mod.ModSettings.getSetting("ResumeOnMovementStart").getValue()) {
-            if (::World.State.isPaused()) {
-                ::World.State.setPause(false);
-            }
-        }
+			if (::World.State.isPaused()) {
+				::World.State.setPause(false);
+			}
+		}
 	}
 
-	o.updateStrength = function ()
-	{
+	o.updateStrength = function () {
 		this.m.Strength = 0.0;
 		local roster = ::World.getPlayerRoster().getAll();
 
-		if (roster.len() > ::World.Assets.getBrothersScaleMax())
-		{
+		if (roster.len() > ::World.Assets.getBrothersScaleMax()) {
 			roster.sort(this.onLevelCompare);
 		}
-		if (roster.len() < ::World.Assets.getBrothersScaleMin())
-		{
+		if (roster.len() < ::World.Assets.getBrothersScaleMin()) {
 			this.m.Strength += 10.0 * roster.len();
 		}
 
@@ -63,12 +59,12 @@
 		local skeletonSummonLevel = 0;
 
 		local count = 0;
-		foreach( i, bro in roster )	{
+		foreach (i, bro in roster) {
 			if (i >= 25) {
 				break;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))	{
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist)) {
 				continue;
 			}
 
@@ -169,116 +165,35 @@
 	}
 
 	local getVisionRadius = o.getVisionRadius;
-	o.getVisionRadius = function ()	{
+	o.getVisionRadius = function () {
 		::World.Assets.m.VisionRadiusMult = 1 + ::World.Assets.m.ProfessionEffect.LegendLookout;
-		if (::World.Assets.isCamping())
+		if (::World.Assets.isCamping()) {
 			return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Scout).getVisionRadius();
+		}
 		return getVisionRadius();
 	}
 
-	o.setBaseImage <- function ( _version = -1)
-	{
-		local image = "figure_player_01";
-		if (_version > 1 && _version < 10)
-		{
-			image = "figure_player_0" + _version;
-		}
-		else if (_version > 100)
-		{
-			switch(_version)
-			{
-				case 101:
-					image = "figure_player_noble";
-					break;
-				case 102:
-					image = "figure_player_crusader";
-					break;
-				case 103:
-					image = "figure_player_ranger";
-					break;
-				case 104:
-					image = "figure_player_warlock";
-					break;
-				case 105:
-					image = "figure_player_seer";
-					break;
-				case 106:
-					image = "figure_player_berserker";
-					break;
-				case 107:
-					image = "figure_player_trader";
-					break;
-				case 108:
-					image = "figure_player_vala";
-					break;
-				case 109:
-					image = "figure_player_party";
-					break;
-				case 110:
-					image = "figure_player_assassin";
-					break;
-				case 111:
-					image = "figure_player_beggar";
-					break;
-				case 112:
-					image = "figure_player_legion";
-					break;
-				case 113:
-					image = "figure_player_inquisition";
-					break;
-				case 114:
-					image = "figure_player_troupe";
-					break;
-				case 115:
-					image = "figure_player_druid";
-					break;
-				case 116:
-					image = "figure_player_slave";
-					break;
-				case 117:
-					image = "figure_player_nomad";
-					break;
-			}
-		}
-		else if ( _version > 9)
-		{
-			image = "figure_player_" + _version;
-		}
-		else
-		{
-			image = "figure_player_01";
-		}
-
-		this.getSprite("body").setBrush(image);
-	}
-
-	o.getHaggleMult <- function ()
-	{
+	o.getHaggleMult <- function () {
 		return this.m.HaggleMultiplier;
 	}
 
-	o.getAmmoModifier <- function ()
-	{
+	o.getAmmoModifier <- function () {
 		return this.m.AmmoMultiplier;
 	}
 
-	o.getArmorPartsModifier <- function ()
-	{
+	o.getArmorPartsModifier <- function () {
 		return this.m.ArmorPartsMultiplier;
 	}
 
-	o.getMedsModifier <- function ()
-	{
+	o.getMedsModifier <- function () {
 		return this.m.MedsMultiplier;
 	}
 
-	o.getStashModifier <- function ()
-	{
+	o.getStashModifier <- function () {
 		return this.m.StashMultiplier;
 	}
 
-	o.calculateModifiers <- function ()
-	{
+	o.calculateModifiers <- function () {
 		if (::World.State.m.AppropriateTimeToRecalc == 1) //Leonion's fix
 		{
 			this.calculateHaggleMult();
@@ -289,10 +204,10 @@
 		}
 	}
 
-	o.calculateHaggleMult <- function ()
-	{
-		if (::World.State.m.AppropriateTimeToRecalc != 1)
+	o.calculateHaggleMult <- function () {
+		if (::World.State.m.AppropriateTimeToRecalc != 1) {
 			return;
+		}
 
 		local haggleMult = 0.0;
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
@@ -300,64 +215,57 @@
 		}
 		haggleMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
 
-		if (::World.Assets.getOrigin().getID() == "scenario.trader")
-			haggleMult = haggleMult * 1.1;
+		if (::World.Assets.getOrigin().getID() == "scenario.trader") {
+			haggleMult *= 1.1;
+		}
 
 		this.m.HaggleMultiplier = haggleMult;
 	}
 
-	o.calculateAmmoModifier <- function ()
-	{
-		if (::World.State.m.AppropriateTimeToRecalc != 1)
+	o.calculateAmmoModifier <- function () {
+		if (::World.State.m.AppropriateTimeToRecalc != 1) {
 			return;
+		}
 
 		local s = 0;
-		foreach(bro in ::World.getPlayerRoster().getAll())	{
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			s += bro.getAmmoModifier();
 		}
 		s += ::World.Assets.m.ProfessionEffect.LegendReserveBundles;
 		this.m.AmmoMultiplier = s;
 	}
 
-	o.calculateArmorPartsModifier <- function ()
-	{
-		if (::World.State.m.AppropriateTimeToRecalc != 1)
+	o.calculateArmorPartsModifier <- function () {
+		if (::World.State.m.AppropriateTimeToRecalc != 1) {
 			return;
+		}
 
 		local s = 0;
-		foreach(bro in ::World.getPlayerRoster().getAll())	{
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			s += bro.getArmorPartsModifier();
 		}
 		s += ::World.Assets.m.ProfessionEffect.LegendToolsDrawers;
 		this.m.ArmorPartsMultiplier = s;
 	}
 
-	o.calculateMedsModifier <- function ()
-	{
-		if (::World.State.m.AppropriateTimeToRecalc != 1)
+	o.calculateMedsModifier <- function () {
+		if (::World.State.m.AppropriateTimeToRecalc != 1) {
 			return;
+		}
 
 		local s = 0;
-		foreach( bro in ::World.getPlayerRoster().getAll() )
-		{
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			s += bro.getMedsModifier();
 		}
 		s += ::World.Assets.m.ProfessionEffect.LegendBandageBales;
 		this.m.MedsMultiplier = s;
 	}
 
-	o.calculateStashModifier <- function (_resize = true)
-	{
-		if (_resize && ::World.State.m.AppropriateTimeToRecalc == 1) {	//Leonion's fix
+	o.calculateStashModifier <- function (_resize = true) {
+		if (_resize && ::World.State.m.AppropriateTimeToRecalc == 1) {
+			//Leonion's fix
 			::Legends.Stash.resize();
 		}
 		return ::Legends.Stash.getSize();
-	}
-
-	local onInit = o.onInit;
-	o.onInit = function ()
-	{
-		onInit();
-		this.setBaseImage(1);
 	}
 });

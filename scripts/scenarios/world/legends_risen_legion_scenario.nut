@@ -180,7 +180,7 @@ this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/star
 		this.m.StaticRelationsToFaction[::Const.FactionType.OrientalCityState] = true;
 		this.m.StaticRelationsToFaction[::Const.FactionType.Undead] = true;
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", spawnTile.Coords.X, spawnTile.Coords.Y);
-		::World.Assets.updateLook(112);
+		this.updateLook();
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList(["music/undead_01.ogg"], ::Const.Music.CrossFadeTime);

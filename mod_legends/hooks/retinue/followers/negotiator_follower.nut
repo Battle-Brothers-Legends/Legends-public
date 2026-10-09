@@ -17,7 +17,7 @@
 		}, true, function( _r ) {
 			_r.Count <- 10;
 			_r.UpdateText <- function() {
-				this.Text = "Negotiated for the payment of contracts " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("NegotiatingTries")) + "/" + this.Count + " times (attempts only be counted after accepting the contract)"
+				this.Text = "Negotiated for the payment of contracts " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("NegotiatingTries")) + "/" + this.Count + " times (attempts only be counted after accepting the contract)";
 			};
 		});
 
@@ -36,14 +36,14 @@
 			::World.Assets.m.AdvancePaymentCap = 0.75;
 
 		if ("RelationDecayGoodMult" in ::World.Assets.m) {
-			if (::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves") {
+			if (::World.Assets.getOrigin().getID() == "scenario.legends_escaped_slaves") {
 				::World.Assets.m.RelationDecayGoodMult = 1.075;
 			} else {
 				::World.Assets.m.RelationDecayGoodMult = 0.85;
 			}
 		}
 		if ("RelationDecayBadMult" in ::World.Assets.m) {
-			if (::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves") {
+			if (::World.Assets.getOrigin().getID() == "scenario.legends_escaped_slaves") {
 				::World.Assets.m.RelationDecayBadMult = 0.925;
 			} else {
 				::World.Assets.m.RelationDecayBadMult = 1.15;

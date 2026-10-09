@@ -22,11 +22,11 @@ this.legend_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 						bro.worsenMood(1.5, "Had his loyalty called into question");
 					} else if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) {
 						if (::Math.rand(1, 100) <= 50) {
-							bro.worsenMood(1.0, "Was accused of being too mercenary")
+							bro.worsenMood(1.0, "Was accused of being too mercenary");
 						}
 					} else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
 						if (::Math.rand(1, 100) <= 50) {
-							bro.worsenMood(1.0, "Was accused of using the company")
+							bro.worsenMood(1.0, "Was accused of using the company");
 						}
 					}
 
@@ -44,7 +44,7 @@ this.legend_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legends_escaped_slaves") {
 			return;
 		}
 

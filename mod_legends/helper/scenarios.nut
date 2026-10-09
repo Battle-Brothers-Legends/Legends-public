@@ -25,7 +25,7 @@
 	"scenario.deserters": 200,
 	"scenario.manhunters": 201,
 	"scenario.gladiators": 202,
-	"scenario.legend_escaped_slaves": 203,
+	"scenario.legends_escaped_slaves": 203,
 	//Solo
 	"scenario.legends_assassin": 300,
 	"scenario.legends_crusader": 301,

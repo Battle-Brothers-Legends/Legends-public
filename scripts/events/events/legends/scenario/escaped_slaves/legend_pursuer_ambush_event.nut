@@ -165,7 +165,7 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			return false;
 		}
 
-		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legends_escaped_slaves") {
 			return;
 		}
 
