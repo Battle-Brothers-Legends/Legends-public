@@ -648,6 +648,7 @@
 - fixed event crusaders not being paid a wage
 - fixed Vala not getting xp for warden kills
 - fixed crash when the company retreats from battle and someone has the footwork skill
+- bloodbath effect tooltip correctly shows a flat increase to relevant stats rather than a % increase
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

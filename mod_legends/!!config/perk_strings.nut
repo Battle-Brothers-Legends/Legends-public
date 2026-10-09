@@ -136,7 +136,7 @@ Hold yourself in a way that makes you seem more trouble than its worth, lean int
 Take joy in the suffering of others.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain Melee Skill, Ranged Skill, Fatigue Recovery and Resolve for each enemy that is [color=%status%]Bleeding[/color] or has a temporary [color=%status%]Injury[/color] on the field. Double the bonus if you're adjacent to bleeding enemies.
+• Gain [color=%positive%]+1[/color] Melee Skill, Ranged Skill, Fatigue Recovery and Resolve for each enemy that is [color=%status%]Bleeding[/color] or has a temporary [color=%status%]Injury[/color] on the field. If the enemy is adjacent to you, the bonus is [color=%positive%]+2[/color].
 
 • The fatigue recovery bonus cannot exceed 5.
 ";
