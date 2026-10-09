@@ -803,7 +803,6 @@ Refactors/deletions:
 - `legend_redback_puncture_skill` -> deleted
 - `legend_relax_skill` -> deleted
 - `legend_ritual_abstract_skill` -> deleted
-- `legend_shadow_alp_teleport_skill` -> deleted
 - `legend_shadows_skill` -> deleted
 - `legend_shoot_dart_skill` -> deleted
 - `legend_sleep_skill` -> deleted
