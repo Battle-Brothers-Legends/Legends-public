@@ -14,13 +14,13 @@ this.perk_legend_promised_potential <- this.inherit("scripts/skills/skill", {
 		if (talents.len() == 0)
 			return;
 
-		_properties.Hitpoints += ::Math.max(1, talents[::Const.Attributes.Hitpoints] * 2);
-		_properties.Bravery += ::Math.max(1, talents[::Const.Attributes.Bravery] * 2);
-		_properties.Stamina += ::Math.max(1, talents[::Const.Attributes.Fatigue] * 2);
-		_properties.Initiative += ::Math.max(1, talents[::Const.Attributes.Initiative] * 2);
-		_properties.MeleeSkill += ::Math.max(1, talents[::Const.Attributes.MeleeSkill] * 2);
-		_properties.RangedSkill += ::Math.max(1, talents[::Const.Attributes.RangedSkill] * 2);
-		_properties.MeleeDefense += ::Math.max(1, talents[::Const.Attributes.MeleeDefense] * 2);
-		_properties.RangedDefense += ::Math.max(1, talents[::Const.Attributes.RangedDefense] * 2);
+		_properties.Hitpoints += ::Math.max(1, talents[::Const.Attributes.Hitpoints] * 3);
+		_properties.Bravery += ::Math.max(1, talents[::Const.Attributes.Bravery] * 3);
+		_properties.Stamina += ::Math.max(1, talents[::Const.Attributes.Fatigue] * 3);
+		_properties.Initiative += ::Math.max(1, talents[::Const.Attributes.Initiative] * 3);
+		_properties.MeleeSkill += ::Math.max(1, talents[::Const.Attributes.MeleeSkill] * 3);
+		_properties.RangedSkill += ::Math.max(1, talents[::Const.Attributes.RangedSkill] * 3);
+		_properties.MeleeDefense += ::Math.max(1, talents[::Const.Attributes.MeleeDefense] * 3);
+		_properties.RangedDefense += ::Math.max(1, talents[::Const.Attributes.RangedDefense] * 3);
 	}
 });

@@ -154,6 +154,7 @@
 - `Hammer the Gap` - Grants a stacking +5% to hit as long as you attack the same tile. The bonus is capped at 10%.
 
 ### Perk Changes
+- `Promised Potential` - the bonus per star in attribute is now 3
 - `Bloody Harvest` - the bonus is now additive multiplier
 - `Carnage` - no longer grants `Prepare Graze` and `Prepare Bleed`
 - `Heightened Reflexes` - the damage bonus is an additive multiplier

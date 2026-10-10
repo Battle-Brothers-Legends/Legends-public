@@ -1313,7 +1313,7 @@ Preparation can make or break a battle and you won't be caught with your pants d
 A natural talent, realized.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Upon picking up increase every attribute by [color=%positive%]1-6[/color] depending on how many stars each attribute has. Untalented attributes are increased by [color=%positive%]1[/color], while talented are increased by [color=%positive%]2[/color] for every star.
+• Upon picking up increase every attribute by [color=%positive%]1-9[/color] depending on how many stars each attribute has. Untalented attributes are increased by [color=%positive%]1[/color], while talented are increased by [color=%positive%]3[/color] for every star.
 ";
 
 ::Const.Strings.PerkDescription.LegendPugilist <- @"
