@@ -12,6 +12,14 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 		this.m.AddGenericSkill = true;
 		this.m.ShowOnCharacter = true;
 		this.m.Variant = 8;
+		this.m.MeleeDefense = 30;
+		this.m.RangedDefense = 25;
+		this.m.StaminaModifier = -10;
+		this.m.Condition = 72;
+		this.m.ConditionMax = 72;
+		this.m.Block = 13;
+		this.m.RegularDamage = 10;
+		this.m.RegularDamage = 25;
 		this.updateVariant();
 		this.m.Value = 7000;
 		this.randomizeValues();
@@ -39,7 +47,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 
 	function getTooltip()
 	{
-		local result = this.shield.getTooltip();
+		local result = this.named_shield.getTooltip();
 		result.push({
 			id = 6,
 			type = "text",
