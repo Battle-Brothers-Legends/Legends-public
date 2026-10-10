@@ -1,4 +1,4 @@
-this.perk_legend_insects <- this.inherit("scripts/skills/skill", {
+this.perk_legend_insect_swarm <- this.inherit("scripts/skills/skill", {
 	m = {},
 
 	function create() {
