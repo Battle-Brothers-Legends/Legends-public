@@ -16,7 +16,7 @@
 	<sprite id="figure_player_legends_noble" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_noble.png" left="-18" right="24" top="-39" bottom="9" />
 	<sprite id="figure_player_legends_nomad" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_legends_nomad.png" left="-21" right="23" top="-40" bottom="18" />
 	<sprite id="figure_player_legends_party" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_party.png" left="-18" right="24" top="-39" bottom="9" />
-	<sprite id="figure_player_legends_ranger" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_ranger.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legends_rangers" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_rangers.png" left="-18" right="24" top="-39" bottom="9" />
 	<sprite id="figure_player_legends_risen_legion" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_risen_legion.png" left="-18" right="24" top="-39" bottom="9" />
 	<sprite id="figure_player_legends_seer" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_seer.png" left="-18" right="24" top="-39" bottom="9" />
 	<sprite id="figure_player_legends_sisterhood" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legends_sisterhood.png" left="-18" right="24" top="-39" bottom="9" />

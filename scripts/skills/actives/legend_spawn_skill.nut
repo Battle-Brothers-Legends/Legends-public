@@ -1,7 +1,7 @@
 this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Items = [],
-		SpawnItem =  "",
+		SpawnItem = "",
 		Script = "",
 		IsControlledByPlayer = true,
 		HPCost = 5,
@@ -9,13 +9,11 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		Range = 2
 	},
 
-	function setItem( _i )
-	{
+	function setItem(_i) {
 		this.m.Items.push(this.WeakTableRef(_i));
 	}
 
-	function create()
-	{
+	function create() {
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
@@ -35,21 +33,17 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 4;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.MaxRange = this.m.Range - 1 + (_properties.IsSpecializedInSummons ? 1 : 0);
 	}
 
-	function getMaxRange()
-	{
+	function getMaxRange() {
 		return this.m.MaxRange;
 	}
 
-	function getFatigueCost()
-	{
+	function getFatigueCost() {
 
-		if (this.m.Container == null)
-		{
+		if (this.m.Container == null) {
 			return ::Math.ceil(this.m.FatigueCost * this.m.Container.getActor().getCurrentProperties().FatigueEffectMult);
 		}
 
@@ -62,13 +56,13 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		return ::Math.round(::Math.ceil(this.m.FatigueCost * perkMult * this.m.FatigueCostMult * this.m.Container.getActor().getCurrentProperties().FatigueEffectMult) + this.m.Container.getActor().getCurrentProperties().FatigueOnSkillUse);
 	}
 
-	function getCostString()
-	{
-		return "[i]Costs " + (this.isAffordableBasedOnAPPreview() ? "[b][color=%positive%]" + this.getActionPointCost() : "[b][color=%negative%]" + this.getActionPointCost()) + " AP[/color][/b] and [b][color=%negative%]" + this.m.HPCost + " HP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=%positive%]" + this.getFatigueCost() : "[b][color=%negative%]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
+	function getCostString() {
+		return "[i]Costs " + (this.isAffordableBasedOnAPPreview() ? "[b][color=%positive%]" + this.getActionPointCost() : "[b][color=%negative%]" + this.getActionPointCost()) + " AP[/color][/b] and [b][color=%negative%]" + this.m.HPCost + " HP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview()
+			? "[b][color=%positive%]" + this.getFatigueCost()
+			: "[b][color=%negative%]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -94,29 +88,23 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function getScript()
-	{
+	function getScript() {
 		return this.m.Script;
 	}
 
-	function getNumberOfSpawnsAvailable()
-	{
+	function getNumberOfSpawnsAvailable() {
 		local num = 0;
 		local items = ::World.Assets.getStash().getItems();
-		foreach( item in items )
-		{
-			if (item == null)
-			{
+		foreach (item in items) {
+			if (item == null) {
 				continue;
 			}
 
-			if (item.getID() != this.m.SpawnItem)
-			{
+			if (item.getID() != this.m.SpawnItem) {
 				continue;
 			}
 
-			if (item.isUnleashed())
-			{
+			if (item.isUnleashed()) {
 				continue;
 			}
 
@@ -125,46 +113,36 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		return num;
 	}
 
-	function isUsable()
-	{
-		if (this.getNumberOfSpawnsAvailable() == 0 || !this.skill.isUsable())
-		{
+	function isUsable() {
+		if (this.getNumberOfSpawnsAvailable() == 0 || !this.skill.isUsable()) {
 			return false;
 		}
 
-
-		if (this.getContainer().getActor().getHitpoints() <= this.m.HPCost)
-		{
+		if (this.getContainer().getActor().getHitpoints() <= this.m.HPCost) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!_targetTile.IsEmpty)
-		{
-			return false
-		}
-
-		if (this.m.IsTargetingActor && (_targetTile.IsEmpty || !_targetTile.getEntity().isAttackable() || !_targetTile.getEntity().isAlive() || _targetTile.getEntity().isDying()))
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!_targetTile.IsEmpty) {
 			return false;
 		}
 
-		if (this.m.IsAttack && this.m.IsTargetingActor && this.m.Container.getActor().isAlliedWith(_targetTile.getEntity()))
-		{
+		if (this.m.IsTargetingActor && (_targetTile.IsEmpty || !_targetTile.getEntity().isAttackable() || !_targetTile.getEntity().isAlive() || _targetTile.getEntity().isDying())) {
 			return false;
 		}
 
-		if (::Math.abs(_targetTile.Level - _originTile.Level) > this.m.MaxLevelDifference)
-		{
+		if (this.m.IsAttack && this.m.IsTargetingActor && this.m.Container.getActor().isAlliedWith(_targetTile.getEntity())) {
 			return false;
 		}
 
-		if (!this.m.IsRanged && this.m.IsVisibleTileNeeded && this.getMaxRange() > 1 && _originTile.getDistanceTo(_targetTile) > 1)
-		{
+		if (::Math.abs(_targetTile.Level - _originTile.Level) > this.m.MaxLevelDifference) {
+			return false;
+		}
+
+		if (!this.m.IsRanged && this.m.IsVisibleTileNeeded && this.getMaxRange() > 1 && _originTile.getDistanceTo(_targetTile) > 1) {
 			local myPos = _originTile.Pos;
 			local targetPos = _targetTile.Pos;
 			local Dx = (targetPos.X - myPos.X) / 2;
@@ -174,8 +152,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 			local tileCoords = ::Tactical.worldToTile(this.createVec(x, y));
 			local tile = ::Tactical.getTile(tileCoords);
 
-			if (tile.Level > _originTile.Level && (_originTile.Level - tile.Level < -1 || _targetTile.Level - tile.Level < -1))
-			{
+			if (tile.Level > _originTile.Level && (_originTile.Level - tile.Level < -1 || _targetTile.Level - tile.Level < -1)) {
 				return false;
 			}
 		}
@@ -183,24 +160,19 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local spawnItem = null;
 		local items = ::World.Assets.getStash().getItems();
-		foreach( item in items )
-		{
-			if (item == null)
-			{
+		foreach (item in items) {
+			if (item == null) {
 				continue;
 			}
 
-			if (item.getID() != this.m.SpawnItem)
-			{
+			if (item.getID() != this.m.SpawnItem) {
 				continue;
 			}
 
-			if (item.isUnleashed())
-			{
+			if (item.isUnleashed()) {
 				continue;
 			}
 
@@ -209,15 +181,13 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 			break;
 		}
 
-		if (spawnItem == null)
-		{
-			return false
+		if (spawnItem == null) {
+			return false;
 		}
 
 		local entity = ::Tactical.spawnEntity(this.getScript(), _targetTile.Coords.X, _targetTile.Coords.Y);
 
-		if (this.m.IsControlledByPlayer)
-		{
+		if (this.m.IsControlledByPlayer) {
 			entity.setFaction(::Const.Faction.PlayerAnimals); //summons will always be 'animals' for the purposes of not disabling lone wolf perk or absorbing xp from kills in battle. - Luft 10/7/26.
 		}
 
@@ -238,12 +208,9 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onCombatFinished()
-	{
-		foreach(item in this.m.Items)
-		{
-			if (item == null)
-			{
+	function onCombatFinished() {
+		foreach (item in this.m.Items) {
+			if (item == null) {
 				continue;
 			}
 

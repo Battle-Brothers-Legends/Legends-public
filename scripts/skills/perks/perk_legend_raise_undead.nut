@@ -1,5 +1,6 @@
 this.perk_legend_raise_undead <- this.inherit("scripts/skills/skill", {
 	m = {},
+
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendRaiseUndead);
 	}
@@ -19,5 +20,4 @@ this.perk_legend_raise_undead <- this.inherit("scripts/skills/skill", {
 	function onRemoved() {
 		::Legends.Actives.remove(this, ::Legends.Active.RaiseUndead);
 	}
-
 });

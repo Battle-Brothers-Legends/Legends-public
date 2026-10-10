@@ -1,5 +1,6 @@
 this.perk_legend_wither <- this.inherit("scripts/skills/skill", {
 	m = {},
+
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendWither);
 	}
@@ -15,9 +16,8 @@ this.perk_legend_wither <- this.inherit("scripts/skills/skill", {
 			}.bindenv(this));
 		}
 	}
-	
+
 	function onRemoved() {
 		::Legends.Actives.remove(this, ::Legends.Active.Wither);
 	}
-
 });

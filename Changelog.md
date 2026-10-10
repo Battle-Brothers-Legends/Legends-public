@@ -679,6 +679,7 @@
 - if you have custom armor layers that add tooltips due to special effects, you can check `mod_legends/helper/inventory/items_effects` to see how it might be handled by the new comparison tooltip
 - added names and icons to trait defs; traits are now using onCreate
 - scenarios now support onNewDay handling
+- scenarios now use their ID to set their player figures
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

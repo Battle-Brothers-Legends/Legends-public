@@ -19,7 +19,7 @@ this.perk_legend_vengeance <- this.inherit("scripts/skills/skill", {
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
 		local actor = this.getContainer().getActor();
 		if (!::Legends.S.isEntityNullOrDead(_attacker)) {
-			swearVengeance(actor, !_attacker.isAlliedWith(actor))
+			this.swearVengeance(actor, !_attacker.isAlliedWith(actor));
 		}
 	}
 

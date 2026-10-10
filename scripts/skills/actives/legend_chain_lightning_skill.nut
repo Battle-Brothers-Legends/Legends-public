@@ -47,14 +47,14 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local ret = getDefaultUtilityTooltip();
+		local ret = this.getDefaultUtilityTooltip();
 
 		ret.extend([
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=%damage%]" + m.MinBaseDamage + "[/color] - [color=%damage%]" + m.MaxBaseDamage + "[/color] damage that ignores armor"
+				text = "Inflicts [color=%damage%]" + this.m.MinBaseDamage + "[/color] - [color=%damage%]" + this.m.MaxBaseDamage + "[/color] damage that ignores armor"
 			},
 			{
 				id = 6,
