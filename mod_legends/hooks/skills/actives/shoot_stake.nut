@@ -1,32 +1,26 @@
-::mods_hookExactClass("skills/actives/shoot_stake", function(o)
-{
-	o.m.AdditionalAccuracy = 10;
-	o.m.AdditionalHitChance = -3;
-
+::mods_hookExactClass("skills/actives/shoot_stake", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.Description = "A quick pull of the trigger to loose a heavy bolt. Must be reloaded after each shot to be able to fire again. Will stagger on hit.";
+		this.m.HitChanceBonus = 10;
 	}
 
-	o.getTooltip = function ()
-	{
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+	o.getTooltip = function () {
+		local tooltip = this.getDefaultTooltip();
 
 		local ammo = this.getAmmo();
 
-		if (ammo > 0)
-		{
+		if (ammo > 0) {
 			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=%positive%]" + ammo + "[/color] bolts left"
+				text = "Has [color=%positive%]%_ammo%[/color] bolts left",
+				param = [["_ammo", ammo]]
 			});
 		}
-		else
-		{
+		else {
 			tooltip.push({
 				id = 8,
 				type = "text",
@@ -35,8 +29,7 @@
 			});
 		}
 
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
-		{
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBallistics)) {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -45,8 +38,7 @@
 			});
 		}
 
-		if (!this.getItem().isLoaded())
-		{
+		if (!this.getItem().isLoaded()) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -58,53 +50,51 @@
 		return tooltip;
 	}
 
-	o.onAfterUpdate = function ( _properties )
-	{
+	o.onAfterUpdate = function ( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInCrossbows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.DirectDamageMult = _properties.IsSpecializedInCrossbows ? 0.7 : 0.5;
-		this.m.AdditionalAccuracy = 10 + this.m.Item.getAdditionalAccuracy();
 	}
 
 	local onTargetHit = o.onTargetHit;
-	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_skill != this)
+	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+		if (_skill != this) {
 			return;
+		}
 
-		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
+		}
 
 		local actor = this.getContainer().getActor();
 		local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
 		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail"))
-			::Tactical.EventLog.log(stagger.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
+		::Tactical.EventLog.log(stagger.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
 		return onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor );
 	}
 
-	o.onUse = function( _user, _targetTile )
-	{
+	o.onUse = function( _user, _targetTile ) {
 		local success = this.attackEntity(_user, _targetTile.getEntity());
 		this.getItem().setLoaded(false);
 		return success;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill != this && _skill.getID() != ::Legends.Actives.getID(::Legends.Active.LegendStrafingRun))
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill != this && _skill.getID() != ::Legends.Actives.getID(::Legends.Active.LegendStrafingRun)) {
 			return;
+		}
 
-		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
+		}
 
-		_properties.RangedSkill += this.m.AdditionalAccuracy;
-		_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
-		if (_properties.IsSharpshooter)
-		{
+		this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+		_properties.RangedSkill += this.m.HitChanceBonus;
+		_properties.HitChanceAdditionalWithEachTile -= 3;
+		if (_properties.IsSharpshooter) {
 			_properties.DamageDirectMult += 0.05;
 		}
 
-		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
-		{
+		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics)) {
 			local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
 			_properties.DamageDirectAdd += 0.35 - (distance * 0.05);
 		}

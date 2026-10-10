@@ -10,21 +10,17 @@
 		});
 		return ret;
 	}
-/*
-	local create = o.create;
-	o.create = function()
-	{
-		create();
-		this.m.HitChanceBonus = -20;
-	}
 
-	o.onAfterUpdate = function ( _properties )
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
+		if (_skill == this)
 		{
-			this.m.HitChanceBonus += 10;
+			if (_properties.IsSpecializedInCleavers) {
+				this.m.HitChanceBonus += 15;
+			}
+			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.DamageTotalMult = 0.0;
+			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
 		}
-	}*/
+	}
 });

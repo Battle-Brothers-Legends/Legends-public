@@ -48,7 +48,6 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		//this.m.HitChanceBonus = _properties.IsSpecializedInPolearms ? -10 : -20; // already handled by onAnySkillUsed?
 	}
 
 	function onUse(_user, _targetTile) {
@@ -76,8 +75,8 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			_properties.MeleeSkill -= _properties.IsSpecializedInPolearms ? 10 : 20;
 			this.m.HitChanceBonus += _properties.IsSpecializedInPolearms ? 10 : 0;
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.DamageTotalMult = 0.0;
 			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		}

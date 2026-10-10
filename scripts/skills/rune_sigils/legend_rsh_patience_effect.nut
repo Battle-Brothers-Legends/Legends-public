@@ -40,12 +40,14 @@ this.legend_rsh_patience_effect <- this.inherit("scripts/skills/skill", {
 		if (this.m.Bonus != 0 && _skill.isAttack()) {
 			if (!_skill.isUsingHitchance())
 				return;
-			if (!_skill.isRanged()) {
-				_skill.m.HitChanceBonus += this.m.Bonus;
-			} else if (_skill.isRanged() && ::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
-				_skill.m.AdditionalAccuracy += this.m.Bonus;
-			}
-			this.m.Bonus = 0;
+			_skill.m.HitChanceBonus += this.m.Bonus;
+			_properties.MeleeSkill += this.m.Bonus;
+			_properties.RangedSkill += this.m.Bonus;
 		}
+	}
+
+	function onAnySkillExecuted (_skill, _targetTile, _targetEntity, _forFree)
+	{
+		this.m.Bonus = 0;
 	}
 });

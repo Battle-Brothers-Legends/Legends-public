@@ -6,7 +6,6 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 
 	function create() {
 		this.legend_magic_skill.create();
-		this.m.AdditionalAccuracy = 20;
 		this.m.DamageInitiativeMin = 15;
 		this.m.DamageInitiativeMax = 35;
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicMissile);
@@ -37,6 +36,7 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		this.m.MaxRange = 6;
 		this.m.MaxLevelDifference = 6;
 		this.m.ProjectileType = ::Const.ProjectileType.Missile;
+		this.m.HitChanceBonus = 20;
 	}
 
 	function getTooltip() {

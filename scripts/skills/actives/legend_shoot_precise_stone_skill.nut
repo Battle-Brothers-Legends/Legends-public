@@ -1,10 +1,9 @@
 this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		AdditionalAccuracy = 20,
-		AdditionalHitChance = -7
+		AdditionalAccuracy = 0,
+		AdditionalHitChance = 0
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootPreciseStone);
 		this.m.Description = "Make an effort to aim for the head with a singluar, precise shot. Can\'t be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
@@ -40,30 +39,28 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDecapitate = 0;
 		this.m.ChanceDisembowel = 0;
 		this.m.ChanceSmash = 25;
+		this.m.HitChanceBonus = 20;
 	}
 
-	function getTooltip()
-	{
-		local ret = this.getRangedTooltip(this.getDefaultTooltip());
+	function getTooltip() {
+		local ret = this.getDefaultTooltip();
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * ::Const.Combat.FatigueReceivedPerHit;
 
-		ret.extend([
-			{
-				id = 6,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=%negative%]100%[/color] chance to daze a target on a hit to the head"
-			}
-		]);
-
-		if (::Tactical.isActive() && this.getContainer().getActor().isEngagedInMelee())
+		ret.extend([{
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Inflicts [color=%damage%]%fatPerHit%[/color] extra fatigue",
+			param = [["_fatPerHit", fatPerHit]]
+		},
 		{
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=%negative%]100%[/color] chance to daze a target on a hit to the head"
+		}]);
+
+		if (::Tactical.isActive() && this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -75,21 +72,17 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		return !::Tactical.isActive() || (this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate( _properties ) {
 		this.m.MaxRange = this.m.Item.getRangeMax() + (_properties.IsSpecializedInSlings ? 1 : 0);
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
-		{
+	function onUse( _user, _targetTile ) {
+		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer) {
 			this.getContainer().setBusy(true);
 			local tag = {
 				Skill = this,
@@ -105,37 +98,32 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 
 			return true;
 		}
-		else
-		{
+		else {
 			return this.attackEntity(_user, _targetTile.getEntity());
 		}
 	}
 
-	function onPerformAttack( _tag )
-	{
+	function onPerformAttack( _tag ) {
 		_tag.Skill.getContainer().setBusy(false);
 		return _tag.Skill.attackEntity(_tag.User, _tag.TargetTile.getEntity());
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			this.m.AdditionalAccuracy += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
 
-			if (_properties.IsSharpshooter)
+			if (_properties.IsSharpshooter) {
 				_properties.DamageDirectMult += 0.05;
+			}
 
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			this.m.HitChanceBonus += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 7;
 			_properties.FatigueDealtPerHitMult += 1.0;
 			_properties.HitChance[::Const.BodyPart.Head] += 100.0;
 		}
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
 		if (_skill != this)
 			return;
 

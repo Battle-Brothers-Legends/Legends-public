@@ -21,8 +21,7 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
 		ret.push({
 			id = 7,
@@ -31,8 +30,7 @@
 			text = "Has a range of [color=%positive%]2[/color] tiles"
 		});
 
-		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
-		{
+		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -51,27 +49,16 @@
 		}
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this)
 		{
-			if (!this.m.ApplyAxeMastery)
-			{
-				_properties.MeleeSkill += 5;
-				this.m.HitChanceBonus += 5;
-			}
+			this.m.HitChanceBonus += !this.m.ApplyAxeMastery ? 5 : 0;
+			this.m.HitChanceBonus += this.m.IsStaffStrike && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 5 : 0;
 
-			if (this.m.IsStaffStrike && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()))
-			{
-				_properties.MeleeSkill += 5;
-				this.m.HitChanceBonus += 5;
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+				this.m.HitChanceBonus += -15;
 			}
-
-			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
-			{
-				_properties.MeleeSkill += -15;
-				this.m.HitChanceBonus += -5;
-			}
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
 	}
 });

@@ -1,7 +1,7 @@
 this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		AdditionalAccuracy = -70,
-		AdditionalHitChance = 5
+		AdditionalAccuracy = 0,
+		AdditionalHitChance = 0
 	},
 	function create()
 	{
@@ -39,11 +39,12 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDecapitate = 0;
 		this.m.ChanceDisembowel = 0;
 		this.m.ChanceSmash = 25;
+		this.m.HitChanceBonus = -70;
 	}
 
 	function getTooltip()
 	{
-		local ret = this.getRangedTooltip(this.getDefaultTooltip());
+		local ret = this.getDefaultTooltip();
 
 		ret.push({
 			id = 7,
@@ -81,8 +82,6 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.AdditionalAccuracy = _properties.IsSpecializedInSlings ? -60 : -70;
-		this.m.AdditionalHitChance = _properties.IsSpecializedInSlings ? 10 : 5;
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
@@ -118,12 +117,11 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		return _tag.Skill.attackEntity(_tag.User, _tag.TargetTile.getEntity());
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			_properties.RangedSkill += -10 + this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile += _properties.IsSpecializedInSlings ? 10 : 5;
 		}
 	}
 

@@ -1,10 +1,9 @@
 this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		AdditionalAccuracy = -5,
-		AdditionalHitChance = -6
+		AdditionalAccuracy = 0,
+		AdditionalHitChance = 0
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSlingHeavyStone);
 		this.m.Description = "Hurl a stone towards a target with your sling. Hard to aim and very unwieldy, but stones are everywhere so you never run out of ammunition. Can not be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
@@ -40,22 +39,20 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDecapitate = 0;
 		this.m.ChanceDisembowel = 0;
 		this.m.ChanceSmash = 50;
+		this.m.HitChanceBonus = -5;
 	}
 
-	function getTooltip()
-	{
-		local ret = this.getRangedTooltip(this.getDefaultTooltip());
+	function getTooltip() {
+		local ret = this.getDefaultTooltip();
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 3) * ::Const.Combat.FatigueReceivedPerHit;
 
-		ret.push(
-		{
+		ret.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 		});
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-		{
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage)) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -63,8 +60,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 				text = "Has a [color=%negative%]100%[/color] chance to stun and daze target on a hit to the head if not immune and always staggers the target"
 			});
 		}
-		else
-		{
+		else {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -73,8 +69,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -86,25 +81,20 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		return !::Tactical.isActive() || (this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate( _properties ) {
 		this.m.MaxRange = this.m.Item.getRangeMax();
-		if (_properties.IsSpecializedInSlings)
-		{
+		if (_properties.IsSpecializedInSlings) {
 			this.m.MaxRange = this.m.Item.getRangeMax() + 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
-		{
+	function onUse( _user, _targetTile ) {
+		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer) {
 			this.getContainer().setBusy(true);
 			local tag = {
 				Skill = this,
@@ -113,50 +103,45 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			};
 			::Time.scheduleEvent(::TimeUnit.Virtual, 250, this.onPerformAttack, tag);
 
-			if (!_user.isPlayerControlled() && _targetTile.getEntity().isPlayerControlled())
-			{
+			if (!_user.isPlayerControlled() && _targetTile.getEntity().isPlayerControlled()) {
 				_user.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			return true;
 		}
-		else
-		{
+		else {
 			return this.attackEntity(_user, _targetTile.getEntity());
 		}
 	}
 
-	function onPerformAttack( _tag )
-	{
+	function onPerformAttack( _tag ) {
 		_tag.Skill.getContainer().setBusy(false);
 		return _tag.Skill.attackEntity(_tag.User, _tag.TargetTile.getEntity());
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			this.m.AdditionalAccuracy += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 5) : this.m.Item.getAdditionalAccuracy();
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 5) : this.m.Item.getAdditionalAccuracy();
 			if (_properties.IsSpecializedInSlings) {
-				this.m.AdditionalHitChance += 2;
+				_properties.HitChanceAdditionalWithEachTile += 2;
 			}
 			if (_properties.IsSharpshooter)
 				_properties.DamageDirectMult += 0.05;
 
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			this.m.HitChanceBonus += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 6;
 			_properties.FatigueDealtPerHitMult += 3.0;
 		}
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_skill != this)
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+		if (_skill != this) {
 			return;
+		}
 
-		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
+		}
 
 		local actor = this.getContainer().getActor();
 		local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
@@ -176,7 +161,5 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 		}
-
 	}
 });
-

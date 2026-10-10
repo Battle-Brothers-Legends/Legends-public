@@ -29,11 +29,17 @@
 		local damage_Armor_max = ::Math.floor(p.DamageRegularMax * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
 		local damage_direct_max = ::Math.floor(damage_regular_max * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
 
+		local damageParams = [
+			["damage_regular_min", damage_regular_min],
+			["damage_regular_max", damage_regular_max],
+			["damage_regular_max_double", damage_regular_max * 2]
+		];
 		ret.insert(3, {
 			id = 4,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max * 2 + "[/color] damage depending on how wounded the target already is, of which [color=%damage%]0[/color] - [color=%damage%]" + damage_direct_max + "[/color] can ignore armor"
+			text = "Inflicts [color=%damage%]%damage_regular_min%[/color] - [color=%damage%]%damage_regular_max_double%[/color] damage depending on how wounded the target already is, of which [color=%damage%]0[/color] - [color=%damage%]%damage_direct_max%[/color] can ignore armor",
+			param = damageParams
 		});
 		if (!this.m.IsScytheDecapitate)
 			return ret;
@@ -68,9 +74,9 @@
 		if (!this.m.IsScytheDecapitate)
 			return;
 		if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
-			_properties.MeleeSkill += -15;
-			this.m.HitChanceBonus += -5;
+			this.m.HitChanceBonus += -15;
 		}
+		_properties.MeleeSkill += this.m.HitChanceBonus;
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;

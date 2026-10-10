@@ -1,20 +1,17 @@
 ::mods_hookExactClass("skills/actives/knock_back", function(o)
 {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.HitChanceBonus = 25;
 		this.m.FatigueCost = 15;
 		this.m.DirectDamageMult = 0.2;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local ret = ::Legends.Perks.has(this, ::Legends.Perk.ShieldBash) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
 
-		if (this.getContainer().hasTrait(::Legends.Trait.OathOfFortification))
-		{
+		if (this.getContainer().hasTrait(::Legends.Trait.OathOfFortification)) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -26,8 +23,7 @@
 	}
 
 	local onVerifyTarget = o.onVerifyTarget;
-	o.onVerifyTarget = function ( _originTile, _targetTile )
-	{
+	o.onVerifyTarget = function ( _originTile, _targetTile ) {
 		this.m.IsAttack = false; // work around to allow targeting on allies
 		local result = onVerifyTarget(_originTile, _targetTile);
 		this.m.IsAttack = true;
@@ -35,8 +31,7 @@
 	}
 
 	local onUse = o.onUse;
-	o.onUse = function ( _user, _targetTile )
-	{
+	o.onUse = function ( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
 		local shouldNotHarmAlly = (::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && target.isAlliedWith(_user);
 
@@ -68,27 +63,23 @@
 		return success;
 	}
 
-	o.onAfterUpdate <- function ( _properties )
-	{
+	o.onAfterUpdate <- function ( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 
-		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash))
-		{
+		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
 			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
 			this.m.ActionPointCost = 3;
 		}
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		onAnySkillUsed( _skill, _targetEntity, _properties );
-
-		if (_skill != this)
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill != this) {
 			return;
+		}
 
-		if (_properties.IsSpecializedInShields)
-			this.m.HitChanceBonus += 15;
+		this.m.HitChanceBonus += _properties.IsSpecializedInShields ? 15 : 0;
+		_properties.MeleeSkill += this.m.HitChanceBonus;
 
 		_properties.DamageRegularMin = this.getItem().m.RegularDamage;
 		_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
@@ -96,8 +87,7 @@
 		_properties.FatigueDealtPerHitMult += 1.0;
 	}
 
-	o.onTargetHit <- function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor)
-	{
+	o.onTargetHit <- function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		if (_skill != this)
 			return;
 

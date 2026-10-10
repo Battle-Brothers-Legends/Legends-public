@@ -1,7 +1,7 @@
 this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		AdditionalAccuracy = 20,
-		AdditionalHitChance = -10,
+		AdditionalAccuracy = 0,
+		AdditionalHitChance = 0,
 		DistractedChance = 25,
 	},
 	function create() {
@@ -33,10 +33,11 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		this.m.DirectDamageMult = 0.2;
 		this.m.ProjectileType = ::Const.ProjectileType.Dagger;
 		this.m.ProjectileTimeScale = 1.5;
+		this.m.HitChanceBonus = 20;
 	}
 
 	function getTooltip() {
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+		local tooltip = this.getDefaultTooltip();
 
 		local ammo = this.getAmmo();
 		if (ammo > 0) {
@@ -151,7 +152,6 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 			this.m.MinRange = 1;
 
 		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 		this.m.ActionPointCost = this.getContainer().hasPerk(::Legends.Perk.LegendAmbidextrous) ? 3 : 4;
 		this.m.DistractedChance = _properties.IsSpecializedInDaggers ? 50 : 25;
 	}
@@ -159,8 +159,9 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.7;
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 10;
 		}
 	}
 

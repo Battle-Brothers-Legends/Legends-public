@@ -32,18 +32,11 @@ this.perk_legend_hammer_the_gap <- this.inherit("scripts/skills/skill", {
 		local bonus = ::Math.min(10, this.m.Bonus * 5);
 		_properties.MeleeSkill += bonus;
 		_properties.RangedSkill += bonus;
+
 		if (!_skill.isUsingHitchance())
 			return;
-		if (!_skill.isRanged()) {
-			_skill.m.HitChanceBonus += bonus;
-		}
-		else if (_skill.isRanged()) {
-			if (::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
-				_skill.m.AdditionalAccuracy += bonus;
-			} else {
-				::logError("AdditionalAccuracy not found in skill")
-			}
-		}
+			
+		_skill.m.HitChanceBonus += _properties.MeleeSkillMult *bonus;
 	}
 	
 	function onCombatStarted() {

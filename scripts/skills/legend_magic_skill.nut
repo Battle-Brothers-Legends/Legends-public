@@ -27,8 +27,8 @@ this.legend_magic_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill == this) {
 			_properties.DamageRegularMin = _properties.getInitiativeMinDamage();
 			_properties.DamageRegularMax = _properties.getInitiativeMaxDamage();
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			_properties.MeleeSkill += this.m.AdditionalAccuracy;
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 		}
 	}

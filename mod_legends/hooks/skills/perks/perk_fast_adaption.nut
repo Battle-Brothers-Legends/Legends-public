@@ -21,18 +21,7 @@
 			_properties.RangedSkill += bonus;
 			if (!_skill.isUsingHitchance())
 				return;
-			if (!_skill.isRanged())
-			{
-				_skill.m.HitChanceBonus += bonus;
-			}
-			else if (_skill.isRanged())
-			{
-				if (::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
-					_skill.m.AdditionalAccuracy += bonus;
-				} else {
-					::logError("AdditionalAccuracy not found in skill")
-				}
-			}
+			_skill.m.HitChanceBonus += bonus;
 		}
 	}
 });

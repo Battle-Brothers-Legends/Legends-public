@@ -22,6 +22,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 14;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
+		this.m.BlockBypass = 1.0;
 	}
 
 	function getTooltip() {
@@ -120,33 +121,27 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		return success;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.DazeChance = _properties.IsSpecializedInFists ? 50 : 25;
 		this.m.FatigueDamage = _properties.IsSpecializedInFists ? 10 : 5;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			_properties.MeleeSkill += 25;
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
 			_properties.DamageRegularMin = 0;
 			_properties.DamageRegularMax = 0;
 			_properties.DamageArmorMult = 0.0;
 
-			if (_properties.IsSpecializedInFists)
-			{
-				_properties.MeleeSkill += 15;
-				this.m.HitChanceBonus += 15;
-			}
+			this.m.HitChanceBonus += _properties.IsSpecializedInFists ? 15 : 0;
 
 			if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
 				_properties.DamageRegularMin = 10;
 				_properties.DamageRegularMax = 15;
 				_properties.DamageArmorMult = 0.6;
 			}
+
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
 	}
 

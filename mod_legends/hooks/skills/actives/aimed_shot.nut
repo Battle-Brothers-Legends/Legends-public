@@ -1,25 +1,25 @@
-::mods_hookExactClass("skills/actives/aimed_shot", function(o)
-{
-	o.m.AdditionalAccuracy = 10;
-	o.m.AdditionalHitChance = -2;
+::mods_hookExactClass("skills/actives/aimed_shot", function(o) {	
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.HitChanceBonus = 10;
+	}
 
-	o.getTooltip = function ()
-	{
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+	o.getTooltip = function () {
+		local tooltip = this.getDefaultTooltip();
 
 		local ammo = this.getAmmo();
 
-		if (ammo > 0)
-		{
+		if (ammo > 0) {
 			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=%positive%]" + ammo + "[/color] arrows left"
+				text = "Has [color=%positive%]%_ammo%[/color] arrows left",
+				param = [["_ammo", ammo]]
 			});
 		}
-		else
-		{
+		else {
 			tooltip.push({
 				id = 8,
 				type = "text",
@@ -28,8 +28,7 @@
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -42,22 +41,21 @@
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties )
-	{
+	o.onAfterUpdate = function ( _properties ) {
 		onAfterUpdate(_properties);
 		local sharpshooter = this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter);
 		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (sharpshooter ? 1 : 0);
 		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange;
 	}
 
-	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		// change it to use these values properly over vanilla code
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			_properties.RangedSkill -= 10;
-			_properties.HitChanceAdditionalWithEachTile -= -2;
+			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 2;
+			if (_properties.IsSharpshooter) {
+				_properties.DamageDirectMult += 0.05;
+			}
 		}
-		onAnySkillUsed(_skill, _targetEntity, _properties);
 	}
 });

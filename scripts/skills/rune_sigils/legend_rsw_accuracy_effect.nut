@@ -14,20 +14,7 @@ this.legend_rsw_accuracy_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill.isAttack() && _skill.getItem() != null && this.getItem() != null && _skill.getItem().getInstanceID() == this.getItem().getInstanceID()) {
 			_properties.MeleeSkill += this.getItem().getRuneBonus1();
 			_properties.RangedSkill += this.getItem().getRuneBonus2();
-			if (!_skill.isUsingHitchance())
-				return;
-			if (!_skill.isRanged())
-			{
-				_skill.m.HitChanceBonus += this.getItem().getRuneBonus1();
-			}
-			else if (_skill.isRanged())
-			{
-				if (::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
-					_skill.m.AdditionalAccuracy += this.getItem().getRuneBonus2();
-				} else {
-					::logError("AdditionalAccuracy not found in skill")
-				}
-			}
+			_skill.m.HitChanceBonus += this.getItem().getRuneBonus1();
 		}
 	}
 });

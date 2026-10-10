@@ -1,7 +1,7 @@
 this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		AdditionalAccuracy = 10,
-		AdditionalHitChance = -10,
+		AdditionalAccuracy = 0,
+		AdditionalHitChance = 0,
 		SoundOnFire = []
 	},
 	function create()
@@ -36,11 +36,12 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 2;
 		this.m.MaxRangeBonus = 0;
 		this.m.MaxLevelDifference = 4;
+		this.m.HitChanceBonus = 10;
 	}
 
 	function getTooltip()
 	{
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+		local tooltip = this.getDefaultTooltip();
 		local targets = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCrossbows ? 4 : 3;
 		tooltip.push({
 			id = 10,
@@ -112,12 +113,11 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			_properties.RangedSkill += 10 + this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += -10 + this.m.AdditionalHitChance;
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile += -10;
 			_properties.DamageTotalMult *= 1.25;
 		}
 	}

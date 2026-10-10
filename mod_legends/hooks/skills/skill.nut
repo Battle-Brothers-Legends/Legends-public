@@ -64,8 +64,7 @@
 	o.getDefaultUtilityTooltip = function ()
 	{
 		local ret = getDefaultUtilityTooltip();
-		if (!this.m.IsAttack && this.m.IsTargetingActor)
-		{
+		if (!this.m.IsAttack && this.m.IsTargetingActor) {
 			ret.push({
 				id = 4,
 				type = "text",
@@ -73,8 +72,7 @@
 				text = "Is not considered an attack"
 			});
 		}
-		if (this.m.MaxRange > 1)
-		{
+		if (this.m.MaxRange > 1) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -82,8 +80,7 @@
 				text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color] tiles"
 			});
 		}
-		if (this.m.MaxLevelDifference > 0)
-		{
+		if (this.m.MaxLevelDifference > 0) {
 			ret.push({
 				id = 4,
 				type = "text",
@@ -165,14 +162,61 @@
 			});
 		}
 
-		if (this.m.HitChanceBonus != 0 && !this.m.IsRanged) {
+		if (this.m.MaxRange > 1 && this.m.IsRanged) {
+			local rangeBonus = ", more";
+			if (this.m.MaxRangeBonus == 0) {
+				rangeBonus = " or"
+			}
+			else if (this.m.MaxRangeBonus < 0) {
+				rangeBonus = ", less"
+			}
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of [color=%positive%]%_maxRange%[/color] tiles on even ground%_rangeBonus% if shooting downhill",
+				param = [["_maxRange", this.getMaxRange()], ["_rangeBonus", rangeBonus]]
+			});
+		}
+		else if (this.m.MaxRange > 1) {
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of [color=%positive]%_maxRange%[/color] tiles",
+				param = [["_maxRange", this.getMaxRange()]]
+			});
+		}
+
+		local adjustedHitChanceBonus = this.Math.floor(this.m.HitChanceBonus * (this.m.IsRanged ? p.RangedSkillMult : p.MeleeSkillMult));
+		local hitChanceBonus = [
+			["_hitChanceBonus", adjustedHitChanceBonus],
+			["_additionalHitchance", p.HitChanceAdditionalWithEachTile]
+		]; 
+		if (adjustedHitChanceBonus != 0 && this.m.IsRanged) {
+			local hitChanceText = adjustedHitChanceBonus > 0 ?
+					"Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" :
+					"Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit";
+			if (p.HitChanceAdditionalWithEachTile != 0) {
+				hitChanceText += ", and " + (p.HitChanceAdditionalWithEachTile > 0 ? "[color=%positive%]+" : "[color=%negative%]") + "%_additionalHitchance%[/color] per tile of distance"
+			}
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = this.m.HitChanceBonus > 0 ?
-					"Has [color=%positive%]+" + this.m.HitChanceBonus + "%[/color] chance to hit" :
-					"Has [color=%negative%]" + this.m.HitChanceBonus + "%[/color] chance to hit"
+				text = hitChanceText,
+				param = hitChanceBonus
+			});
+		}
+		else if (adjustedHitChanceBonus != 0) {
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = adjustedHitChanceBonus > 0 ?
+					"Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" :
+					"Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit",
+				param = hitChanceBonus
 			});
 		}
 
@@ -429,34 +473,21 @@
 			});
 		}
 
-		if ((!("HeightReversed" in this.m) && _targetTile.Level < this.m.Container.getActor().getTile().Level) || ("HeightReversed" in this.m && _targetTile.Level > this.m.Container.getActor().getTile().Level))
-		{
+		if ((!("HeightReversed" in this.m) && _targetTile.Level < this.m.Container.getActor().getTile().Level) || ("HeightReversed" in this.m && _targetTile.Level > this.m.Container.getActor().getTile().Level)) {
 			ret.push({
 				icon = "ui/tooltips/positive.png",
 				text = "Height advantage"
 			});
 		}
 
-		if (_targetTile.IsBadTerrain)
-		{
+		if (_targetTile.IsBadTerrain) {
 			ret.push({
 				icon = "ui/tooltips/positive.png",
 				text = "Target on bad terrain"
 			});
 		}
 
-		if (this.m.IsAttack)
-		{
-			local fast_adaption = ::Legends.Perks.get(this.getContainer(), ::Legends.Perk.FastAdaption);
-
-			if (fast_adaption != null && fast_adaption.isBonusActive())
-			{
-				ret.push({
-					icon = "ui/tooltips/positive.png",
-					text = "Fast Adaption"
-				});
-			}
-
+		if (this.m.IsAttack) {
 			local oath = ::Legends.Traits.get(this, ::Legends.Trait.OathOfWrath);
 
 			if (oath != null)
@@ -474,8 +505,7 @@
 			}
 		}
 
-		if (this.m.IsTooCloseShown && this.m.HitChanceBonus < 0)
-		{
+		if (this.m.IsTooCloseShown && this.m.HitChanceBonus < 0) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "Too close"
@@ -701,7 +731,7 @@
 		local thisSkill = this;
 		local modifier = {};
 		local skillName = this.getName();
-		local skillHitChanceBonus = this.m.HitChanceBonus;
+		local skillHitChanceBonus = this.Math.floor(this.m.HitChanceBonus * (this.m.IsRanged ? p.RangedSkillMult : p.MeleeSkillMult));;
 		modifier[skillName] <- function ( row, description )
 		{
 			if (!("icon" in row))
@@ -768,16 +798,6 @@
 				// row.text = red(terrainFactor + "%") + " " + description;
 				row.text = description + " (" + terrainFactor + ")";
 			}
-		};
-		modifier["Fast Adaption"] <- function ( row, description )
-		{
-			local fast_adaption = ::Legends.Perks.get(self, ::Legends.Perk.FastAdaption);
-			local bonus = 10 * fast_adaption.m.Stacks;
-			row.text = green(bonus + "%") + " " + description;
-		};
-		modifier["Too close"] <- function ( row, description )
-		{
-			row.text = red(-skillHitChanceBonus + "%") + " " + description;
 		};
 		local getShieldBonus = function ()
 		{

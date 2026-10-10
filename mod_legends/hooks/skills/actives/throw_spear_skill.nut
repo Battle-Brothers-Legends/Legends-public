@@ -1,6 +1,5 @@
 ::mods_hookExactClass("skills/actives/throw_spear_skill", function(o)
 {
-	o.m.AdditionalAccuracy <- 20;
 	o.m.AdditionalHitChance <- -10;
 
 	local create = o.create;
@@ -9,11 +8,12 @@
 		create();
 		this.m.MinRange = 1;
 		this.m.Delay = 150;
+		this.m.HitChanceBonus = 20;
 	}
 
 	o.getTooltip = function ()
 	{
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+		local tooltip = this.getDefaultTooltip();
 		local actor = this.getContainer().getActor();
 		local ammo = this.getAmmo();
 
@@ -23,7 +23,8 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=%positive%]" + ammo + "[/color] throwing spears left"
+				text = "Has [color=%positive%]%_ammo%[/color] throwing spears left",
+				param = [["_ammo", ammo]]
 			});
 		}
 		else
@@ -41,7 +42,8 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/shield_damage.png",
-			text = "Inflicts [color=%damage%]" + damage + "[/color] damage to shields"
+			text = "Inflicts [color=%damage%]" + damage + "[/color] damage to shields",
+			param = [["_damage", damage]]
 		});
 
 		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && !::Legends.Perks.has(this, ::Legends.Perk.LegendPointBlank))
@@ -57,8 +59,7 @@
 		return tooltip;
 	}
 
-	o.getAmmo = function ()
-	{
+	o.getAmmo = function () {
 		local item = this.getItem();
 
 		if (item == null)
@@ -69,8 +70,7 @@
 		return item.getAmmo();
 	}
 
-	o.consumeAmmo = function ()
-	{
+	o.consumeAmmo = function () {
 		local item = this.getItem();
 
 		if (item != null)
@@ -93,17 +93,12 @@
 	o.onAfterUpdate = function ( _properties )
 	{
 		onAfterUpdate(_properties);
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
-		{
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank)) {
 			this.m.MinRange = 1;
-			this.m.MaxRange = 3;
 		}
-		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 	}
 
-	o.calculateDamage <- function (_target)
-	{
+	o.calculateDamage <- function (_target) {
 		local damage = this.getItem().getShieldDamage();
 		local shield = _target.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
@@ -113,18 +108,15 @@
 		return ::Math.floor(damage);
 	}
 
-	o.onUse = function ( _user, _targetTile )
-	{
+	o.onUse = function ( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
 		this.consumeAmmo();
 		local shield = target.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
-		{
+		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield)) {
 			local damage = this.calculateDamage(target);
 
-			if (shield.getID() == "weapon.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger")
-			{
+			if (shield.getID() == "weapon.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger") {
 				damage *= 0.20;
 			}
 			local flip = !this.m.IsProjectileRotated && target.getPos().X > _user.getPos().X;
@@ -138,61 +130,49 @@
 			});
 			return true;
 		}
-		else
-		{
+		else {
 			return this.attackEntity(_user, target);
 		}
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			if (this.getContainer().hasPerk(::Legends.Perk.LegendThrustMaster))
-			{
-				this.m.AdditionalHitChance += 10;
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 10;
+			if (this.getContainer().hasPerk(::Legends.Perk.LegendThrustMaster)) {
+				_properties.HitChanceAdditionalWithEachTile += 10;
 			}
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 
-			if (_targetEntity != null)
-			{
+			if (_targetEntity != null) {
 				local shield = _targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-				if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
-				{
+				if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield)) {
 					this.m.IsUsingHitchance = false;
 				}
-				else
-				{
+				else {
 					this.m.IsUsingHitchance = true;
 				}
 			}
-			else
-			{
+			else {
 				this.m.IsUsingHitchance = true;
 			}
 		}
 	}
 
-	o.onApplyShieldDamage = function ( _tag )
-	{
+	o.onApplyShieldDamage = function ( _tag ) {
 		local conditionBefore = _tag.Shield.getCondition();
 		local target = _tag.TargetTile.getEntity();
 		_tag.Shield.applyShieldDamage(_tag.Damage);
 		local overflowDamage = ::Math.floor(_tag.Damage - conditionBefore);
-		if (_tag.Shield != null && _tag.Shield.getCondition() == 0)
-		{
+		if (_tag.Shield != null && _tag.Shield.getCondition() == 0) {
 			local logMessage = ::Const.UI.getColorizedEntityName(_tag.User) + " has destroyed " + ::Const.UI.getColorizedEntityName(target) + "\'s shield";
-			if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields))
-			{
+			if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields)) {
 				_tag.User.setActionPoints(::Math.min(_tag.User.getActionPointsMax(), _tag.User.getActionPoints() + 4));
 				::Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
-				if (overflowDamage > 0)
-				{
+				if (overflowDamage > 0) {
 					local rand = ::Math.rand(1, 100);
-					if (rand <= this.getHitchance(target))
-					{
+					if (rand <= this.getHitchance(target)) {
 						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_tag.User) + " uses Throw Spear and hits " + ::Const.UI.getColorizedEntityName(target) + " (Chance: " + this.getHitchance(target) + ", Rolled: " + rand + ")");
 						local p = this.getContainer().buildPropertiesForUse(this, target);
 						local hitInfo = clone ::Const.Tactical.HitInfo;
@@ -208,32 +188,26 @@
 						hitInfo.FatalityChanceMult = 1.0;
 						target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 					}
-					else
-					{
+					else {
 						::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_tag.User) + " uses Throw Spear and misses " + ::Const.UI.getColorizedEntityName(target) + " (Chance: " + this.getHitchance(target) + ", Rolled: " + rand + ")");
 					}
 				}
 			}
-			else
-			{
+			else {
 				::Tactical.EventLog.log(logMessage);
 			}
 		}
-		else
-		{
-			if (!_tag.User.isHiddenToPlayer() && _tag.TargetTile.IsVisibleForPlayer)
-			{
+		else {
+			if (!_tag.User.isHiddenToPlayer() && _tag.TargetTile.IsVisibleForPlayer) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_tag.TargetTile.getEntity()) + "\'s shield is hit for [b]" + (conditionBefore - _tag.Shield.getCondition()) + "[/b] damage");
 			}
 
-			if (_tag.Skill.m.SoundOnHitShield.len() != 0)
-			{
+			if (_tag.Skill.m.SoundOnHitShield.len() != 0) {
 				::Sound.play(_tag.Skill.m.SoundOnHitShield[::Math.rand(0, _tag.Skill.m.SoundOnHitShield.len() - 1)], ::Const.Sound.Volume.Skill, _tag.TargetTile.getEntity().getPos());
 			}
 		}
 
-		if (!::Tactical.getNavigator().isTravelling(_tag.TargetTile.getEntity()))
-		{
+		if (!::Tactical.getNavigator().isTravelling(_tag.TargetTile.getEntity())) {
 			::Tactical.getShaker().shake(_tag.TargetTile.getEntity(), _tag.User.getTile(), 2, ::Const.Combat.ShakeEffectSplitShieldColor, ::Const.Combat.ShakeEffectSplitShieldHighlight, ::Const.Combat.ShakeEffectSplitShieldFactor, 1.0, [
 				"shield_icon"
 			], 1.0);

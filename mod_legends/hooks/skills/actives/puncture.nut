@@ -13,7 +13,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Additionally if your target is dazed or parried hitchance is increased by [color=%positive%]+10%[/color], if they are stunned or rooted you gain [color=%positive%]+25%[/color], if they are grappled, sleeping, or fleeing you gain [color=%positive%]+50%[/color]"
+			text = "Additionally if your target is [color=%effect%]Dazed[/color] or [color=%effect%]Parried[/color] hitchance is increased by [color=%positive%]+10%[/color], if they are stunned or rooted you gain [color=%positive%]+25%[/color], if they are [color=%effect%]Grappled[/color], [color=%effect%]Tackled[/color], [color=%effect%]Fleeing[/color] you gain [color=%positive%]+50%[/color]"
 		}]);
 		return tooltip;
 	}
@@ -38,11 +38,15 @@
 			mod += 10;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 			mod += 10;
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Dazed))
+			mod += 10;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled))
 			mod += 50;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
 			mod += 25;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping))
+			mod += 50;
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendTackled))
 			mod += 50;
 		if (_targetEntity.getCurrentProperties().IsRooted)
 			mod += 25;
@@ -64,7 +68,7 @@
 		if (_skill == this) {
 			this.m.HitChanceBonus += this.getHitChance(_targetEntity);
 			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-				this.m.HitChanceBonus += 15;
+				this.m.HitChanceBonus +=15;
 			}
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.DamageArmorMult *= 0.0;

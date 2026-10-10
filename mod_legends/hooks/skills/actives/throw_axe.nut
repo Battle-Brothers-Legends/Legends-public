@@ -1,8 +1,4 @@
-::mods_hookExactClass("skills/actives/throw_axe", function(o)
-{
-	o.m.AdditionalAccuracy = 20;
-	o.m.AdditionalHitChance = -10;
-
+::mods_hookExactClass("skills/actives/throw_axe", function(o) {
 	local create = o.create;
 	o.create = function () {
 		create();
@@ -10,10 +6,11 @@
 		this.m.Delay = 150;
 		this.m.InjuriesOnBody = ::Const.Injury.CuttingAndBluntBody;
 		this.m.InjuriesOnHead = ::Const.Injury.CuttingAndBluntHead;
+		this.m.HitChanceBonus = 20;
 	}
 
 	o.getTooltip = function () {
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+		local tooltip = this.getDefaultTooltip();
 
 		local ammo = this.getAmmo();
 		if (ammo > 0) {
@@ -75,13 +72,13 @@
 
 	o.onAfterUpdate = function ( _properties ) {
 		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 10;
 		}
 	}
 });

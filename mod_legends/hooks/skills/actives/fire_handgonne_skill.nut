@@ -5,7 +5,7 @@
 
 	o.getTooltip = function ()
 	{
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+		local tooltip = this.getDefaultTooltip();
 		tooltip.push({
 			id = 10,
 			type = "text",

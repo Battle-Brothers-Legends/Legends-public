@@ -1,13 +1,11 @@
-::mods_hookExactClass("skills/actives/throw_javelin", function(o)
-{
-	o.m.AdditionalAccuracy = 20;
-	o.m.AdditionalHitChance = -10;
+::mods_hookExactClass("skills/actives/throw_javelin", function(o) {
 
 	local create = o.create;
 	o.create = function () {
 		create();
 		this.m.MinRange = 1;
 		this.m.Delay = 150;
+		this.m.HitChanceBonus = 20;
 	}
 
 	o.getAmmo = function () {
@@ -29,7 +27,7 @@
 	}
 
 	o.getTooltip = function () {
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+		local tooltip = this.getDefaultTooltip();
 
 		local ammo = this.getAmmo();
 		if (ammo > 0) {
@@ -76,16 +74,16 @@
 			this.m.MinRange = 1;
 
 		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
+			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 10;
 			if (this.getContainer().hasPerk(::Legends.Perk.LegendThrustMaster)) {
-				this.m.AdditionalHitChance += 10;
+				_properties.HitChanceAdditionalWithEachTile += 10;
 			}
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 
 		}
 	}

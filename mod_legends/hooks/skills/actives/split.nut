@@ -68,13 +68,11 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords) {
-				_properties.MeleeSkill -= 5;
+			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+				this.m.HitChanceBonus += 15;
 			}
-			else {
-				_properties.MeleeSkill += 5;
-				this.m.HitChanceBonus += 10;
-			}
+
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
 	}
 

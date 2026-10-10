@@ -1,7 +1,12 @@
 ::mods_hookExactClass("skills/actives/round_swing", function(o)
 {
-	o.getTooltip = function ()
-	{
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.HitChanceBonus = -15;
+	}
+
+	o.getTooltip = function () {
 		local tooltip = this.getDefaultTooltip();
 		tooltip.push({
 			id = 6,
@@ -13,19 +18,12 @@
 		return tooltip;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes)
-			{
-				_properties.MeleeSkill -= 10;
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes) {
 				this.m.HitChanceBonus += 5;
 			}
-			else
-			{
-				_properties.MeleeSkill -= 15;
-			}
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
 	}
 });

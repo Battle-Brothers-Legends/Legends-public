@@ -3,8 +3,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		DisarmChance = 50
 	},
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGrapple);
 		this.m.Description = "Grab, hold, and restrain a target, reducing their melee defense by 12 and initiative by 30% for 2 turns. A particularly lucky or skilled maneuver may disarm the opponent. One hand must be free to use.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
@@ -32,8 +31,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 
 
 	function getTooltip() {
-		local ret = [
-			{
+		local ret = [{
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -57,8 +55,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 			text = "Has a [color=%positive%]100%[/color] chance to grapple on a hit"
 		});
 
-		if (!::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler))
-		{
+		if (!::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler)) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -66,8 +63,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 				text = "Has a [color=%negative%]-20%[/color] chance to hit"
 			});
 		}
-		if (this.m.Container.getActor().getCurrentProperties().IsSpecializedInFists)
-		{
+		if (this.m.Container.getActor().getCurrentProperties().IsSpecializedInFists) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -93,34 +89,27 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
-		if (this.m.SoundOnUse.len() != 0)
-		{
+		if (this.m.SoundOnUse.len() != 0) {
 			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 		}
 
-		if (::Math.rand(1, 100) > this.getHitchance(_targetTile.getEntity()))
-		{
+		if (::Math.rand(1, 100) > this.getHitchance(_targetTile.getEntity())) {
 			target.onMissed(this.getContainer().getActor(), this);
 			return false;
 		}
-		if (_targetTile.IsOccupiedByActor)
-		{
+		if (_targetTile.IsOccupiedByActor) {
 			// Now always grapples
 			::Legends.Effects.grant(target, ::Legends.Effect.LegendGrappled);
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			{
+			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has grappled " + ::Const.UI.getColorizedEntityName(target) + " for two turns");
 			}
-			if ((::Math.rand(1, 100) > this.m.DisarmChance || _user.getCurrentProperties().IsSpecializedInFists) && !target.getCurrentProperties().IsImmuneToDisarm)
-			{
+			if ((::Math.rand(1, 100) > this.m.DisarmChance || _user.getCurrentProperties().IsSpecializedInFists) && !target.getCurrentProperties().IsImmuneToDisarm) {
 				::Legends.Effects.grant(target, ::Legends.Effect.Disarmed);
 			}
 		}
@@ -128,8 +117,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		local actor = this.getContainer().getActor();
 		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
@@ -139,8 +127,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		return ((offhand == null || mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		local actor = this.getContainer().getActor();
 		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
@@ -151,23 +138,13 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		return mainhand != null && offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.getContainer().getActor().getItems().hasBlockedSlot(::Const.ItemSlot.Offhand) || this.skill.isHidden() || actor.isStabled();
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			_properties.MeleeSkill -= 20;
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
 			_properties.DamageTotalMult = 0;
-			if (_properties.IsSpecializedInFists)
-			{
-				_properties.MeleeSkill += 10;
-				this.m.HitChanceBonus += 10;
-			}
+			this.m.HitChanceBonus += _properties.IsSpecializedInFists ? 10 : 0;
 
-			if (::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler))
-			{
-				_properties.MeleeSkill += 20;
-				this.m.HitChanceBonus += 20;
-			}
+			this.m.HitChanceBonus += ::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler) ? 20 : 0;
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
 	}
 

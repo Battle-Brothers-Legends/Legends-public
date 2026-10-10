@@ -78,8 +78,9 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 
 	function onAnySkillUsed ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 2;
 			_properties.DamageRegularMult *= 1.3;
 
 			if (_properties.IsSharpshooter) {

@@ -1,10 +1,9 @@
 this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendChoke);
-		this.m.Description = "A well-placed attack at an opponent\'s neck. Ignores all armor but is harder to hit with. Hit chance is based on target's fatigue. Damage is based on the difference in fatigue. Deals additional damage against grappled or choked enemies. Hit chance is increased against grappled, stunned, netted, dazed, parried or sleeping enemies. Requires both hands to be free.";
+		this.m.Description = "A well-placed attack at an opponent\'s neck. Ignores all armor but is harder to hit with. Hit chance is based on target's fatigue and damage is based on the difference in fatigue. Requires both hands to be free.";
 		this.m.KilledString = "Choked";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/puncture", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/puncture_hit", 3);
@@ -30,25 +29,28 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip() {
 		local tooltip = this.getDefaultTooltip();
 
-		tooltip.extend([
-			{
-				id = 6,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "[color=%positive%]+50%[/color] damage to Choked, Tackled or Grappled enemies"
-			},
-			{
-				id = 9,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Adds the Choked effect which reduces enemy fatigue recovery by [color=%negative%]15[/color]"
-			}
-		]);
+		tooltip.extend([{
+			id = 6,
+			type = "text",
+			icon = "ui/icons/regular_damage.png",
+			text = "[color=%positive%]+50%[/color] damage to Choked, Tackled or Grappled enemies"
+		},
+		{
+			id = 9,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Adds the Choked effect which reduces enemy fatigue recovery by [color=%negative%]15[/color]"
+		},
+		{
+			id = 10,
+			type = "text",
+			icon = "ui/icons/hitchance.png",
+			text = "Additionally if your target is [color=%effect%]Dazed[/color] or [color=%effect%]Parried[/color] hitchance is increased by [color=%positive%]+10%[/color], if they are stunned or rooted you gain [color=%positive%]+25%[/color], if they are [color=%effect%]Grappled[/color], [color=%effect%]Tackled[/color], [color=%effect%]Fleeing[/color] you gain [color=%positive%]+50%[/color]"
+		}]);
 		return tooltip;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		local actor = this.getContainer().getActor();
 		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
@@ -58,8 +60,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		return ((offhand == null && mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		local actor = this.getContainer().getActor();
 		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
@@ -69,19 +70,17 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		return mainhand != null || offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || actor.isStabled();
 	}
 
-	function onGetHitFactors( _skill, _targetTile, _tooltip )
-	{
-		if (_skill == this)
-		{
+	function onGetHitFactors( _skill, _targetTile, _tooltip ) {
+		if (_skill == this) {
 			local target = _targetTile.getEntity();
 			local actor = this.getContainer().getActor();
-			if (target != null)
-			{
-				local bonus = ::Math.max(0, ::Math.floor((target.getFatiguePct() - actor.getFatiguePct())*100));
+			if (target != null) {
+				local bonus = ::Math.max(0, ::Math.floor((target.getFatiguePct() - actor.getFatiguePct()) * 100));
 				this.logInfo(bonus);
 				_tooltip.push({
 					icon = "ui/tooltips/positive.png",
-					text = "[color=%positive%]" + bonus + "%[/color] damage due to the difference in fatigue"
+					text = "[color=%positive%]%_bonus%%[/color] damage due to the difference in fatigue",
+					param = [["_bonus", bonus]]
 				});
 			}
 		}
@@ -89,53 +88,39 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 
 	function getHitChance( _targetEntity )
 	{
-		if (_targetEntity == null)
-		{
+		if (_targetEntity == null) {
 			return 0;
 		}
 		local mod = 0;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendStupefied))
-		{
 			mod += 10;
-		}
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
-		{
 			mod += 10;
-		}
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Dazed))
+			mod += 10;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled))
-		{
 			mod += 50;
-		}
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
-		{
 			mod += 25;
-		}
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendTackled))
+			mod += 50;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping))
-		{
 			mod += 50;
-		}
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Net))
-		{
+		if (_targetEntity.getCurrentProperties().IsRooted)
 			mod += 25;
-		}
 		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Fleeing)
-		{
 			mod += 50;
-		}
 		local chance = _targetEntity.getFatiguePct() * 50;
 		return mod + ::Math.round(chance);
 	}
 
-	function onAfterUpdate( _properties )
-	{
-			this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+	function onAfterUpdate( _properties ) {
+		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse( _user, _targetTile ) {
 		local success = this.attackEntity(_user, _targetTile.getEntity());
-		if (success && _targetTile.IsOccupiedByActor)
-		{
+		if (success && _targetTile.IsOccupiedByActor) {
 			local target = _targetTile.getEntity();
 			::Legends.Effects.grant(target, ::Legends.Effect.LegendChoked);
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " choked " + ::Const.UI.getColorizedEntityName(target) + " ");
@@ -143,15 +128,15 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		return success;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill != this)
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill != this) {
 			return;
+		}
 
 		this.m.HitChanceBonus += this.getHitChance(_targetEntity); // Calculates the hitchance bonus from other status effects
 		local actor = this.getContainer().getActor();
 
-		_properties.DamageRegularMin = 10; // If you change these values, change them in the tooltip above too.
+		_properties.DamageRegularMin = 10;
 		_properties.DamageRegularMax = 15;
 		_properties.IsIgnoringArmorOnAttack = true;
 		_properties.DamageArmorMult *= 0.0;

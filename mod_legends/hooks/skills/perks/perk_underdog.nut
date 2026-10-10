@@ -4,68 +4,57 @@
 	o.m.SkillCount <- 0;
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.Icon = "ui/perks/perk_60.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk | ::Const.SkillType.StatusEffect;
 	}
 
-	o.isBonusActive <- function ()
-	{
+	o.isBonusActive <- function () {
 		return this.m.Stacks != 0;
 	}
 
-	o.getDescription <- function ()
-	{
+	o.getDescription <- function () {
 		return "This character is used to getting underestimated so it\'s just a matter before they strike back. Gains an additional [color=%positive%]+" + this.m.Stacks * 5 + "%[/color] chance to hit on the next attack.";
 	}
 
-	o.onTargetHit <- function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_targetEntity != null && this.isKindOf(_targetEntity, "actor"))
-		{
+	o.onTargetHit <- function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+		if (_targetEntity != null && this.isKindOf(_targetEntity, "actor")) {
 			local dirty = this.m.Stacks != 0;
 			this.m.Stacks = 0;
 			this.m.Frame = 0;
 			this.m.SkillCount = 0;
 			this.m.IsHidden = true;
 
-			if (dirty)
-			{
+			if (dirty) {
 				this.getContainer().getActor().setDirty(true);
 			}
 		}
 	}
 
-	o.onTargetMissed <- function ( _skill, _targetEntity )
-	{
-		if (_targetEntity != null && this.isKindOf(_targetEntity, "actor"))
-		{
+	o.onTargetMissed <- function ( _skill, _targetEntity ) {
+		if (_targetEntity != null && this.isKindOf(_targetEntity, "actor")) {
 			local dirty = this.m.Stacks != 0;
 			this.m.Stacks = 0;
 			this.m.Frame = 0;
 			this.m.SkillCount = 0;
 			this.m.IsHidden = true;
 
-			if (dirty)
-			{
+			if (dirty) {
 				this.getContainer().getActor().setDirty(true);
 			}
 		}
 	}
 
-	o.onCombatStarted <- function ()
-	{
+	o.onCombatStarted <- function () {
 		this.m.Stacks = 0;
 		this.m.Frame = 0;
 		this.m.SkillCount = 0;
 		this.m.IsHidden = true;
 	}
 
-	o.onCombatFinished <- function ()
-	{
+	o.onCombatFinished <- function () {
 		this.skill.onCombatFinished();
 		this.m.Stacks = 0;
 		this.m.Frame = 0;
@@ -73,41 +62,25 @@
 		this.m.IsHidden = true;
 	}
 
-	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
-	{
-		if (this.m.Stacks != 0 && _skill.isAttack())
-		{
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {
+		if (this.m.Stacks != 0 && _skill.isAttack()) {
 			local bonus = this.m.Stacks * 5;
 			_properties.MeleeSkill += bonus;
 			_properties.RangedSkill += bonus;
 			if (!_skill.isUsingHitchance())
 				return;
-			if (!_skill.isRanged())
-			{
-				_skill.m.HitChanceBonus += bonus;
-			}
-			else if (_skill.isRanged())
-			{
-				if (::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
-					_skill.m.AdditionalAccuracy += bonus;
-				} else {
-					::logError("AdditionalAccuracy not found in skill")
-				}
-			}
+			_skill.m.HitChanceBonus += bonus;
 		}
 	}
 
-	o.onUpdate = function ( _properties )
-	{
+	o.onUpdate = function ( _properties ) {
 		this.m.IsHidden = this.m.Stacks == 0;
-		if (!this.getContainer().hasPerk(::Legends.Perk.LegendBattleheart))
-		{
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendBattleheart)) {
 			_properties.SurroundedDefense += 5;
 		}
 	}
 
-	o.onMissed <- function ( _attacker, _skill )
-	{
+	o.onMissed <- function ( _attacker, _skill ) {
 		this.m.Stacks += 1;
 	}
 });

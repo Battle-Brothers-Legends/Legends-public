@@ -1,7 +1,6 @@
 this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNinetailsDisarm);
 		this.m.Description = "Use the cat o ninetails to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/whip", 3);
@@ -25,8 +24,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
 			id = 7,
@@ -35,13 +33,13 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 			text = "Has a range of [color=%positive%]1" + "[/color] tile"
 		});
 
-		if (this.m.HitChanceBonus != 0)
-		{
+		if (this.m.HitChanceBonus != 0) {
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=%negative%]" + this.m.HitChanceBonus + "%[/color] chance to hit"
+				text = "Has [color=%negative%]%_chanceHit%%[/color] chance to hit",
+				param = [["_chanceHit"], this.m.HitChanceBonus]
 			});
 		}
 
@@ -54,30 +52,20 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
-		{
-			this.m.HitChanceBonus += 15;
-		}
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse( _user, _targetTile ) {
 		local success = this.attackEntity(_user, _targetTile.getEntity());
 
-		if (success)
-		{
+		if (success) {
 			local target = _targetTile.getEntity();
 
-			if (!target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsImmuneToDisarm)
-			{
+			if (!target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsImmuneToDisarm) {
 				::Legends.Effects.grant(target, ::Legends.Effect.Disarmed);
 
-				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-				{
+				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
 					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has disarmed " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 				}
 			}
@@ -86,16 +74,14 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 		return success;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
-			{
-				_properties.MeleeSkill -= 15;
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			if (_properties.IsSpecializedInCleavers) {
+				this.m.HitChanceBonus += 15;
 			}
-
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.DamageTotalMult = 0.0;
+			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
 		}
 	}
 

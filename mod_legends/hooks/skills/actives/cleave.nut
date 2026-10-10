@@ -29,13 +29,14 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=%positive%]2" + "[/color] tiles"
+			text = "Has a range of [color=%positive%]2[/color] tiles"
 		});
 		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=%damage%]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
+			text = "Inflicts additional stacking [color=%damage%]%_damage%[/color] bleeding damage per turn, for 2 turns",
+			param = [["_damage", dmg]]
 		});
 		if (!::Legends.S.isCharacterWeaponSpecialized(properties, this.getItem())) {
 			ret.push({
@@ -59,7 +60,7 @@
 		if (_skill == this && this.m.IsScytheCleave) {
 			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				this.m.HitChanceBonus += -15;
-				_properties.MeleeSkill += -15;
+				_properties.MeleeSkill += this.m.HitChanceBonus;
 			}
 		}
 	}

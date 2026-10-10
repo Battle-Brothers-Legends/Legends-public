@@ -74,20 +74,14 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function adjustHitchance (_targetEntity, _properties) {
-		local mod = 0;
-		if (_targetEntity != null && ::Legends.S.isEntityMovementDisabled(_targetEntity)) {
-				mod += 50;
-			}
-		if (_properties.IsSpecializedInHammers) {
-			mod += 25;
-		}
-		return mod;
-	}
-
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += this.adjustHitchance(_targetEntity, _properties);
+			if (_targetEntity != null && ::Legends.S.isEntityMovementDisabled(_targetEntity)) {
+				this.m.HitChanceBonus += 50;
+			}
+			if (_properties.IsSpecializedInHammers) {
+				this.m.HitChanceBonus += 25;
+			}
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.DamageTotalMult *= 1.5;
 			_properties.ThresholdToInflictInjuryMult *= 0.66;

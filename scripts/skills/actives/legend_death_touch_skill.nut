@@ -3,7 +3,6 @@ this.legend_death_touch_skill <- this.inherit("scripts/skills/legend_magic_skill
 
 	function create() {
 		this.legend_magic_skill.create();
-		this.m.AdditionalAccuracy = 10;
 		this.m.DamageInitiativeMin = 15;
 		this.m.DamageInitiativeMax = 35;
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDeathTouch);
@@ -23,6 +22,7 @@ this.legend_death_touch_skill <- this.inherit("scripts/skills/legend_magic_skill
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
+		this.m.HitChanceBonus = 10;
 	}
 
 	function getTooltip() {

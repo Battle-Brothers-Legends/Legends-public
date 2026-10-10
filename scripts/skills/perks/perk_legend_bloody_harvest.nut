@@ -15,11 +15,11 @@ this.perk_legend_bloody_harvest <- this.inherit("scripts/skills/skill", {
 				return;
 			}
 			if (!_skill.isRanged()) {
-				_skill.m.HitChanceBonus += bonus;
+				_skill.m.HitChanceBonus += _properties.MeleeSkillMult *bonus;
 			}
 			else if (_skill.isRanged()) {
 				if (::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
-					_skill.m.AdditionalAccuracy += bonus;
+					_skill.m.AdditionalAccuracy += _properties.RangedSkillMult * bonus;
 				} else {
 					::logError("AdditionalAccuracy not found in skill")
 				}

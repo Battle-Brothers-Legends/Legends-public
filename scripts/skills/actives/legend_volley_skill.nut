@@ -1,7 +1,7 @@
 this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		AdditionalAccuracy = 0,
-		AdditionalHitChance = -4,
+		AdditionalHitChance = 0,
 		InitiativeAdditionalDamage = 0.05
 	},
 	function create() {
@@ -39,7 +39,7 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local ret = this.getRangedTooltip(this.getDefaultTooltip());
+		local ret = this.getDefaultTooltip();
 
 		local ammo = this.getAmmo();
 
@@ -126,7 +126,6 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties ) {
 		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter) ? 1 : 0);
 		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange - 1;
-		this.m.AdditionalAccuracy = this.m.Item.getAdditionalAccuracy();
 		this.m.FatigueCostMult = _properties.IsSpecializedInBows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.InitiativeAdditionalDamage = _properties.IsSpecializedInBows ? 0.1 : 0.05;
 	}
@@ -167,8 +166,9 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.HitChanceAdditionalWithEachTile -= 4;
 			_properties.DamageTotalMult *= 0.33333334;
 			_properties.DamageTooltipMaxMult *= 3.0;
 			_properties.RangedAttackBlockedChanceMult *= 1.5;

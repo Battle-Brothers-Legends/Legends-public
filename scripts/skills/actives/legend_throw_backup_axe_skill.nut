@@ -9,7 +9,7 @@ this.legend_throw_backup_axe_skill <- this.inherit("scripts/skills/actives/throw
 	}
 
 	function getTooltip () {
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+		local tooltip = this.getDefaultTooltip();
 
 		local ammo = this.getAmmo();
 		if (ammo > 0) {
