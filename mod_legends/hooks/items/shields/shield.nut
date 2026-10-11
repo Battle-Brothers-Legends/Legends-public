@@ -1,7 +1,7 @@
 ::mods_hookExactClass("items/shields/shield", function(o) {
 	o.m.Variants <- [];
 	o.m.IsIndestructible <- false;
-	o.m.Block <- 15;
+	o.m.Block <- 10;
 	o.m.RegularDamage <- 10;
 	o.m.RegularDamageMax <- 25;
 
@@ -54,7 +54,7 @@
 				id = 5,
 				type = "text",
 				icon = "ui/icons/block.png",
-				text = "Block [color=%positive%]%_block%[/color]",
+				text = "Block [color=%positive%]+%_block%[/color]",
 				param = [["_block", this.m.Block]]
 			});
 		}
