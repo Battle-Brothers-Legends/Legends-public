@@ -1,8 +1,5 @@
-::mods_hookExactClass("skills/actives/riposte", function (o) {
-	o.m.IsStaff <- false;
-
+::mods_hookExactClass("skills/actives/riposte", function(o) {
 	o.setItem <- function (_item) {
-		this.m.IsHidden = this.m.IsStaff;
 		this.skill.setItem(_item);
 	}
 
@@ -44,9 +41,6 @@
 	}
 
 	o.isHidden <- function () {
-		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.ReachAdvantage) && this.m.IsStaff) {
-			return false;
-		}
 		return this.skill.isHidden();
 	}
 

@@ -44,9 +44,7 @@ this.legend_mystic_staff <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.IconDisabled = "skills/staff_knock_out_mystic_bw.png";
 			_skill.m.IsStaffKnockOut = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Riposte, function (_skill) {
-			_skill.m.IsStaff = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
 	}
 
 });

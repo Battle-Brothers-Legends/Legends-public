@@ -247,6 +247,10 @@
 - added 5 more variations of Face Mask, art by Ivan
 
 ### Weapons
+**Staves**
+- `Gnarled Staff` - loses `Hex`
+- `Riposte` is now available to all staves
+
 **Flails**
 - with the new Block mechanic flail skills have an innate 25% ignore of shield Block except for `Thresh`
 > increased to a total of 50% with the mastery

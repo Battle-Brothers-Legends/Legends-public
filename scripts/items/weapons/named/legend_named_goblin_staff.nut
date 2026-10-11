@@ -52,8 +52,6 @@ this.legend_named_goblin_staff <- this.inherit("scripts/items/weapons/named/name
 			_skill.m.IconDisabled = "skills/staff_knock_out_gnarled_bw.png";
 			_skill.m.IsStaffKnockOut = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Riposte, function (_skill) {
-			_skill.m.IsStaff = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
 	}
 });
