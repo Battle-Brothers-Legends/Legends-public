@@ -872,6 +872,11 @@ Use your athletic skill to leap high and far.
 • Costs [color=%negative%]6[/color] AP and [color=%negative%]15[/color] Fatigue.
 ";
 
+::Const.Strings.PerkDescription.LegendMagicLevitate <- @"
+[color=%active%][u]Active:[/u][/color]
+• Levitate someone off the ground, granting them the ability to move freely across all terrain for a short duration.
+";
+
 ::Const.Strings.PerkDescription.LegendLithe <- @"
 Medium armor provides a sweet spot between movement and protection.
 

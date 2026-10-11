@@ -450,6 +450,7 @@ local perkDefObjects = {
 	LegendLacerate = {},
 	LegendLastStand = {},
 	LegendLeap = {},
+	LegendLevitate = {}
 	LegendLionheart = {},
 	LegendLithe = {},
 	LegendLurker = {},
