@@ -23,7 +23,7 @@ this.legend_alp_realm_of_shadow_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ActionPointCost = 7;
 		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
-		this.m.MaxRange = 9;
+		this.m.MaxRange = 5;
 		this.m.MaxLevelDifference = 4;
 	}
 
