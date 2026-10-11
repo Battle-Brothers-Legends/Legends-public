@@ -73,8 +73,9 @@ if (!("BackgroundModifiers" in ::Legends)) {
 };
 
 ::Legends.BackgroundModifiers.BeastSlayer <- {
+	Cooking = 0.25,
 	Gathering = 0.50,
-	Crafting = 0.75,
+	Crafting = 0.50,
 	Scout = 0.2,
 	Terrain = {
 		Swamp = 0.025,
@@ -115,6 +116,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 };
 
 ::Legends.BackgroundModifiers.Butcher <- {
+	Cooking = 0.50,
 	Healing = 0.10,
 	Injury = 0.06,
 	Meds = 13,
@@ -172,7 +174,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.CompanionSouthernRanged <- clone ::Legends.BackgroundModifiers.CompanionRanged;
 
 ::Legends.BackgroundModifiers.Cripple <- {
-	Gathering = 0.30,
+	Cooking = 0.30,
 	Healing = 0.30,
 	Injury = 0.06,
 	Meds = 13,
@@ -246,7 +248,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Crafting = 0.50,
 	Haggle = 0.005,
 	MedConsumption = 0.05,
-	Gathering = 0.30,
+	Cooking = 0.30,
 };
 
 ::Legends.BackgroundModifiers.EunuchSouthern <- clone ::Legends.BackgroundModifiers.Eunuch;
@@ -259,7 +261,8 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.ExecutionerSouthern <- clone ::Legends.BackgroundModifiers.Executioner;
 
 ::Legends.BackgroundModifiers.Farmhand <- {
-	Gathering = 0.50,
+	Gathering = 0.25,
+	Cooking = 0.25,
 	Stash = 5,
 	Terrain = {
 		Farmland = 0.025
@@ -268,6 +271,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.Fisherman <- {
 	Gathering = 0.30,
+	Cooking = 0.25,
 	Stash = 5,
 };
 
@@ -332,6 +336,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.Hunter <- {
 	Ammo = 34,
 	Gathering = 0.50,
+	Cooking = 0.25,
 	Fletching = 0.2,
 	Scout = 0.2,
 	Terrain = {
@@ -413,6 +418,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.Messenger <- {
 	Scout = 0.3,
 	Gathering = 0.30,
+	Cooking = 0.25,
 	Terrain = {
 		Plains = 0.1,
 		Swamp = 0.03,
@@ -440,6 +446,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.Miller <- {
 	Stash = 5,
 	Gathering = 0.30,
+	Cooking = 0.50,
 };
 
 ::Legends.BackgroundModifiers.Miner <- {
@@ -462,12 +469,14 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Injury = 0.10,
 	MedConsumption = 0.05,
 	Gathering = 0.30,
+	Cooking = 0.75,
 };
 
 ::Legends.BackgroundModifiers.MonkTurnedFlagellant <- {
 	Healing = 0.10,
 	Injury = 0.03,
 	Gathering = 0.30,
+	Cooking = 0.75,
 	MedConsumption = 0.05,
 };
 
@@ -610,11 +619,13 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	MedConsumption = 0.05,
 	Fletching = 0.1,
 	Gathering = 0.30,
+	Cooking = 0.75,
 };
 
 ::Legends.BackgroundModifiers.Shepherd <- {
 	Scout = 0.2,
 	Gathering = 0.30,
+	Cooking = 0.25,
 };
 
 ::Legends.BackgroundModifiers.ShepherdSouthern <- clone ::Legends.BackgroundModifiers.Shepherd;
@@ -676,12 +687,14 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Stash = 5,
 	Scout = 0.1,
 	Gathering = 0.30,
+	Cooking = 0.25,
 };
 
 ::Legends.BackgroundModifiers.Wildman <- {
 	MedConsumption = 0.05,
 	Scout = 0.1,
 	Gathering = 1.0,
+	Cooking = 0.25,
 	Training = 0.1,
 	Terrain = {
 		Swamp = 0.025,
@@ -786,7 +799,8 @@ if (!("BackgroundModifiers" in ::Legends)) {
 };
 
 ::Legends.BackgroundModifiers.LegendCommanderBeggar <- {
-	Gathering = 0.50,
+	Gathering = 0.25,
+	Cooking = 0.25,
 	Haggle = 0.02,
 };
 
@@ -898,6 +912,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Injury = 0.03,
 	Crafting = 0.50,
 	Gathering = 0.30,
+	Cooking = 0.25,
 	Training = 0.1,
 	Fletching = 0.1,
 };
@@ -910,6 +925,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Injury = 0.03,
 	Crafting = 0.50,
 	Gathering = 0.30,
+	Cooking = 0.25,
 	Training = 0.1,
 	Fletching = 0.1,
 };
@@ -962,6 +978,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Stash = 8,
 	Scout = 0.3,
 	Gathering = 1.0,
+	Cooking = 0.50,
 	Terrain = {
 		Swamp = 0.05,
 		Hills = 0.05,
@@ -987,6 +1004,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.LegendGuildMaster <- {
 	Gathering = 0.50,
+	Cooking = 0.50,
 	Crafting = 0.75,
 	Training = 0.2,
 	Enchanting = 0.1,
@@ -1015,6 +1033,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Crafting = 0.50,
 	MedConsumption = 0.10,
 	Gathering = 1.0,
+	Cooking = 0.50,
 	Terrain = {
 		Forest = 0.05,
 		SnowyForest = 0.05,
@@ -1300,6 +1319,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.1,
 	Scout = 0.2,
 	Gathering = 0.50,
+	Cooking = 0.25,
 	Terrain = {
 		Plains = 0.025,
 		Hills = 0.025,
