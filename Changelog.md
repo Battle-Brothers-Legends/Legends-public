@@ -327,6 +327,7 @@
 
 **Estoc**
 - `Perforate` - You have a chance to attack up to 1(3 with mastery) additional times based on the initiative difference between you and your target. The chance for each attack to be executed is rolled independently in increments of 100.
+- Named varieties have a chance to roll additional initiative like Fencing Swords
 
 **1h Shamshir and 1h scimitar**
 - `Slash` is now `Flowing Slash`

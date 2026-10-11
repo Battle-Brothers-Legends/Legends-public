@@ -1,6 +1,6 @@
 ::mods_hookExactClass("items/weapons/named/named_estoc", function (o) {
-	o.m.PossibleEffects <- ["scripts/skills/effects/legend_named_estoc_effect"];
-	o.m.EffectBounds <- [ [2, 7] ];
+	o.m.PossibleEffects <- ["scripts/skills/effects/legend_named_fencing_sword_effect"];
+	o.m.EffectBounds <- [ [4, 12] ];
 
 	local create = o.create;
 	o.create = function () {
