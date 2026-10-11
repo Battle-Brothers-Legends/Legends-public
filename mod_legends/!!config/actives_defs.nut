@@ -1358,11 +1358,7 @@ local activesDefs = {
 		IconDisabled = "skills/active_208_sw.png",
 		Overlay = "active_208"
 	},
-	LegendLevitatePerson = {
-		Icon = "skills/levitate_square.png",
-		IconDisabled = "skills/levitate_square_bw.png",
-		Overlay = "daze_square"
-	},
+	LegendLevitatePerson = {},
 	LegendLeap = {},
 	LegendLineThemUp = {
 		Icon = "skills/active_203.png",

@@ -1,23 +1,15 @@
 this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLevitatePerson);
 		this.m.Description = "Levitate someone off the ground, granting them the ability to move freely across all terrain.";
 		this.m.KilledString = "Levitated";
-		this.m.SoundOnUse = [
-			"sounds/humans/0/human_fatigue_01.wav"
-
-		];
-		this.m.SoundOnHit = [
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/humans/0/human_fatigue_01.wav"];
+		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -32,11 +24,9 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 6;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
-		ret.push(
-		{
+		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
@@ -45,43 +35,34 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
 		local target = _targetTile.getEntity();
-		if (target.getSkills().hasEffect(::Legends.Effect.LegendLevitating))
-		{
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendLevitating)) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 
-		if (!target.isAlive())
-		{
+		if (!target.isAlive()) {
 			return;
 		}
 
-		if (target.getSkills().hasEffect(::Legends.Effect.LegendLevitating))
-		{
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendLevitating)) {
 			return;
 		}
-
 
 		::Legends.Effects.grant(target, ::Legends.Effect.LegendLevitating);
 
-		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " levitated " + this.Const.UI.getColorizedEntityName(target) + " leaving them free to move");
+		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
+			this.Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " levitated " + ::Const.UI.getColorizedEntityName(target) + " leaving them free to move");
 		}
 	}
-
 });

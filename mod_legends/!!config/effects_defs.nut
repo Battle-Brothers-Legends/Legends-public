@@ -791,6 +791,7 @@ local effectDefs = {
 		Overlay = ""
 	},
 	LegendKnockedOver = {},
+	LegendLevitating = {},
 	LegendLightningReflexes = {
 		Overlay = ""
 	},
