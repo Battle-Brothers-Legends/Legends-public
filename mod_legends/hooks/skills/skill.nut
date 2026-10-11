@@ -735,6 +735,7 @@
 		local thisSkill = this;
 		local modifier = {};
 		local skillName = this.getName();
+		local p = attackingEntity.getCurrentProperties();
 		local skillHitChanceBonus = this.Math.floor(this.m.HitChanceBonus * (this.m.IsRanged ? p.RangedSkillMult : p.MeleeSkillMult));;
 		modifier[skillName] <- function ( row, description )
 		{
