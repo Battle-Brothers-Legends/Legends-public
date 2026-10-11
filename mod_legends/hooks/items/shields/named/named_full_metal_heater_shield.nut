@@ -5,7 +5,7 @@
 		this.m.ConditionMax = 75;
 		this.m.Block = 13;
 		this.m.RegularDamage = 20;
-		this.m.RegularDamage = 35;
+		this.m.RegularDamageMax = 35;
 		this.named_shield.randomizeValues();
 	}
 });

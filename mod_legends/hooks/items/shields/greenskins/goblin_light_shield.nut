@@ -12,7 +12,7 @@
 		this.m.RangedDefense = 8;
 		this.m.Block = 4;
 		this.m.RegularDamage = 5;
-		this.m.RegularDamage = 10;
+		this.m.RegularDamageMax = 10;
 		this.m.Condition = 14;
 		this.m.ConditionMax = 14;
 	}

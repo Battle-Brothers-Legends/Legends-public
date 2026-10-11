@@ -9,7 +9,7 @@
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.Block = 5;
 		this.m.RegularDamage = 5;
-		this.m.RegularDamage = 10;
+		this.m.RegularDamageMax = 10;
 		this.updateVariant();
 	}
 
@@ -17,7 +17,7 @@
 	{
 		this.m.Block = 5;
 		this.m.RegularDamage = 5;
-		this.m.RegularDamage = 10;
+		this.m.RegularDamageMax = 10;
 		this.named_shield.randomizeValues();
 	}
 

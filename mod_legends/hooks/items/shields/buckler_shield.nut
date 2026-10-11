@@ -8,7 +8,7 @@
 		this.m.MeleeDefense = 5;
 		this.m.Block = 5;
 		this.m.RegularDamage = 5;
-		this.m.RegularDamage = 10;
+		this.m.RegularDamageMax = 10;
 	}
 
 	o.addSkill <- function( _skill ) {

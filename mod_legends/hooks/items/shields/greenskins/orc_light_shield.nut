@@ -7,7 +7,7 @@
 		this.m.ConditionMax = 24;
 		this.m.Block = 8;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamage = 25;
+		this.m.RegularDamageMax = 25;
 	}
 
 	o.getTooltip <- function () {

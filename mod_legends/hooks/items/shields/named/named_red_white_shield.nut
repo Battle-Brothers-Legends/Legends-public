@@ -8,7 +8,7 @@
 		this.m.ConditionMax = 96;
 		this.m.Block = 15;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamage = 25;
+		this.m.RegularDamageMax = 25;
 		this.m.Value = 1400;
 		this.named_shield.randomizeValues();
 	}

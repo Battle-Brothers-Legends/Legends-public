@@ -78,7 +78,7 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.ConditionMax = 96;
 		this.m.Block = 15;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamage = 25;
+		this.m.RegularDamageMax = 25;
 	}
 
 	function addVariants() {

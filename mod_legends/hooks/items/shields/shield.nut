@@ -65,7 +65,7 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Damage of [color=%damage%]%_regularDamage%[/close] - [color=%damage%]%_regularDamageMax%[/close]",
+				text = "Damage of [color=%damage%]%_regularDamage%[/color] - [color=%damage%]%_regularDamageMax%[/color]",
 				param = [["_regularDamage", this.m.RegularDamage], ["_regularDamageMax", this.m.RegularDamageMax]]
 			});
 		}

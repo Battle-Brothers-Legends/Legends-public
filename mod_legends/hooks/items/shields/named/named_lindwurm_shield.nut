@@ -8,7 +8,7 @@
 		this.m.ConditionMax = 64;
 		this.m.Block = 13;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamage = 25;
+		this.m.RegularDamageMax = 25;
 	}
 
 	o.onShieldHit <- function ( _attacker, _skill )
