@@ -61,4 +61,24 @@ if (!("Professions" in ::Const)) {
 	return pT;
 };
 
-::Const.Professions.ProfessionsTreeTemplate <- ::Const.Professions.BuildCustomProfessionTree(::Const.Professions.DefaultProfessionTree)
+::Const.Professions.ProfessionsTreeTemplate <- ::Const.Professions.BuildCustomProfessionTree(::Const.Professions.DefaultProfessionTree);
+
+/**
+ * Take a profession tree like character_background.m.ProfessionTree
+ * convert it to something like character_background.m.CustomProfessionTree
+ * 
+ * @param _tree An array of arrays; the latter contains profession objects
+ * 
+ * @return An array of arrays; the latter contains integers (profession defs)
+ */
+::Const.Professions.getCustomProfessionTree <- function (_tree) {
+	local result = [];
+    foreach (row in _tree) {
+    	local arr = [];
+    	foreach (profession in row) {
+    		arr.push(::Const.Professions.ProfessionDefs[profession.Const]);
+    	}
+    	result.push(arr);
+    }
+    return result;
+};

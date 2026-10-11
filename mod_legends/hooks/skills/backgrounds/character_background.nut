@@ -1041,6 +1041,7 @@
         if (this.m.CustomProfessionTree == null) {
             this.m.ProfessionTree = ::Const.Professions.ProfessionsTreeTemplate.Tree;
             this.m.ProfessionTreeMap = ::Const.Professions.ProfessionsTreeTemplate.Map;
+            this.m.CustomProfessionTree = ::Const.Professions.getCustomProfessionTree(this.m.ProfessionTree);
         } else {
             local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
             this.m.ProfessionTree = pT.Tree;
