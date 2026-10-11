@@ -1,17 +1,14 @@
 ::mods_hookExactClass("items/shields/named/named_shield", function(o) {
 	o.m.BaseProperties <- {};
 
-	o.getTooltip <- function ()
-	{
+	o.getTooltip <- function() {
 		local result = this.shield.getTooltip();
 
-		foreach (k, p in this.m.BaseProperties)
-		{
+		foreach (k, p in this.m.BaseProperties) {
 			if (this.m[k] == p)
 				continue;
 
-			foreach (tooltip in result)
-			{
+			foreach (tooltip in result) {
 				if (!tooltip.rawin("icon"))
 					continue;
 
@@ -29,10 +26,8 @@
 		return result;
 	}
 
-	o.randomizeValues = function ()
-	{
-		if (this.m.BaseProperties.len() == 0)
-		{
+	o.randomizeValues = function() {
+		if (this.m.BaseProperties.len() == 0) {
 			this.m.BaseProperties.ConditionMax <- this.m.ConditionMax;
 			this.m.BaseProperties.MeleeDefense <- this.m.MeleeDefense;
 			this.m.BaseProperties.RangedDefense <- this.m.RangedDefense;
@@ -44,50 +39,49 @@
 		}
 
 		local ranges = ::Legends.Items.Named.randomizeRanges;
+		local rng = ::World.ItemSeedManager.getRandomGenerator(this);
 
 		if (this.m.StaminaModifier < -1) {
-			this.m.StaminaModifier = ::Math.round(this.m.StaminaModifier * ::Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
+			this.m.StaminaModifier = ::Math.round(this.m.StaminaModifier * rng.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
 		}
 
 		local available = [];
 		available.push(function(_i) {
-			_i.m.MeleeDefense = ::Math.round(_i.m.MeleeDefense * ::Math.rand(ranges.MeleeDefense[0], ranges.MeleeDefense[1]) * 0.01);
+			_i.m.MeleeDefense = ::Math.round(_i.m.MeleeDefense * rng.rand(ranges.MeleeDefense[0], ranges.MeleeDefense[1]) * 0.01);
 		});
 		available.push(function(_i) {
-			_i.m.RangedDefense = ::Math.round(_i.m.RangedDefense * ::Math.rand(ranges.RangedDefense[0], ranges.RangedDefense[1]) * 0.01);
+			_i.m.RangedDefense = ::Math.round(_i.m.RangedDefense * rng.rand(ranges.RangedDefense[0], ranges.RangedDefense[1]) * 0.01);
 		});
 		available.push(function(_i) {
-			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - ::Math.rand(ranges.FatigueOnSkillUse[0], ranges.FatigueOnSkillUse[1]);
+			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - rng.rand(ranges.FatigueOnSkillUse[0], ranges.FatigueOnSkillUse[1]);
 		});
 		available.push(function(_i) {
-			_i.m.Condition = ::Math.round(_i.m.Condition * ::Math.rand(ranges.ConditionShield[0], ranges.ConditionShield[1]) * 0.01) * 1.0;
+			_i.m.Condition = ::Math.round(_i.m.Condition * rng.rand(ranges.ConditionShield[0], ranges.ConditionShield[1]) * 0.01) * 1.0;
 			_i.m.ConditionMax = _i.m.Condition;
 		});
-		available.push(function ( _i ) {
-			local f = ::Math.rand(ranges.RegularDamage[0], ranges.RegularDamage[1]) * 0.01;
+		available.push(function(_i) {
+			local f = rng.rand(ranges.RegularDamage[0], ranges.RegularDamage[1]) * 0.01;
 			_i.m.RegularDamage = ::Math.round(_i.m.RegularDamage * f);
 			_i.m.RegularDamageMax = ::Math.round(_i.m.RegularDamageMax * f);
 		});
 		available.push(function(_i) {
-			_i.m.Block = ::Math.round(_i.m.Block * ::Math.rand(ranges.Block[0], ranges.Block[1]) * 0.01);
+			_i.m.Block = ::Math.round(_i.m.Block * rng.rand(ranges.Block[0], ranges.Block[1]) * 0.01);
 		});
 
-		for( local n = 2; n != 0 && available.len() != 0; n = --n )
-		{
-			local r = ::Math.rand(0, available.len() - 1);
+		for (local n = 2; n != 0 && available.len() != 0; n--) {
+			local r = rng.rand(0, available.len() - 1);
 			available[r](this);
 			available.remove(r);
 		}
 	}
 
 	local onSerialize = o.onSerialize;
-	o.onSerialize = function ( _out ) {
-		onSerialize( _out );
+	o.onSerialize = function(_out) {
+		onSerialize(_out);
 		_out.writeU16(this.m.Block);
 	}
 
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function(_in) {
 		this.m.ConditionMax = _in.readF32();
 		this.shield.onDeserialize(_in);
 		this.m.Name = _in.readString();

@@ -8,6 +8,7 @@
 	o.m.DistantVisionBonus <- false;
 	o.m.AppropriateTimeToRecalc <- 0; //Leonion's fix
 	o.m.Encounters <- null;
+	o.m.ItemSeedManager <- null;
     o.m.LastMorningPauseDay <- -1;
 	o.m.LastNewDayPauseDay <- -1;
 	o.m.LastButtonPress <- 0.0;
@@ -49,11 +50,14 @@
 	o.onInit = function()
 	{
 		this.m.CommanderDied = false;
-		this.m.Encounters = this.new("scripts/states/world/encounter_manager");
-		::World.Encounters <- this.WeakTableRef(this.m.Encounters);
+		this.m.ItemSeedManager = ::new("scripts/states/world/item_seed_manager");
+		::World.ItemSeedManager <- ::WeakTableRef(this.m.ItemSeedManager);
+		::World.ItemSeedManager.onInit();
+		this.m.Encounters = ::new("scripts/states/world/encounter_manager");
+		::World.Encounters <- ::WeakTableRef(this.m.Encounters);
 		this.m.Encounters.onInit();
-		this.m.Camp = this.new("scripts/states/world/camp_manager");
-		::World.Camp <- this.WeakTableRef(this.m.Camp);
+		this.m.Camp = ::new("scripts/states/world/camp_manager");
+		::World.Camp <- ::WeakTableRef(this.m.Camp);
 		onInit();
 	}
 
@@ -87,6 +91,9 @@
 		this.m.Encounters.clear();
 		this.m.Encounters = null;
 		::World.Encounters = null;
+		this.m.ItemSeedManager.clear();
+		this.m.ItemSeedManager = null;
+		::World.ItemSeedManager = null;
 		onFinish();
 	}
 
@@ -105,7 +112,7 @@
         	player.m.PauseOnMovementStop = false;
         	this.setPause(true);
       	}
-        onUpdate(); 
+        onUpdate();
     }
 
 	local loadCampaign = o.loadCampaign;
@@ -1753,6 +1760,7 @@
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function ( _out )
 	{
+		::World.ItemSeedManager.onSerialize(_out);
 		::World.Encounters.onSerialize(_out);
 		onSerialize(_out);
 		::World.Camp.onSerialize(_out);
@@ -1761,6 +1769,7 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
+		::World.ItemSeedManager.onDeserialize(_in);
 		::World.Encounters.onDeserialize(_in);
 		onDeserialize(_in);
 		if (this.m.EscortedEntity == null) {
