@@ -8,12 +8,11 @@
 	o.getTooltip = function () {
 		local actor = this.getContainer().getActor();
 		local p = actor.getCurrentProperties();
-		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local mult = 1.0;
 		local proficiencyBonus = 0;
 
 		if (p.IsSpecializedInShields) {
-			mult = mult * 1.25;
+			mult *= 1.25;
 		}
 
 		if (p.IsProficientWithShieldSkills) {
@@ -41,7 +40,9 @@
 				type = "text",
 				icon = "ui/icons/block.png",
 				text = "Grants an additional [color=%positive%]+%_block%[/color] Block against attacks",
-				param = [["_block", ::Math.floor(actor.getBlock() * mult + proficiencyBonus)]]
+				param = [
+					["_block", ::Math.floor(actor.getBlock() * mult + proficiencyBonus)]
+				]
 			},
 			{
 				id = 5,
@@ -63,11 +64,17 @@
 	}
 
 	o.onAfterUpdate = function (_properties) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInShields	|| _properties.IsProficientWithShieldWall || _properties.IsProficientWithShieldSkills ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInShields || _properties.IsProficientWithShieldWall || _properties.IsProficientWithShieldSkills ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onUse = function (_user, _targetTile) {
-		::Legends.Effects.grant(_targetTile.getEntity(), ::Legends.Effect.Shieldwall);
+		local actor = _targetTile.getEntity();
+		local shieldwall = ::Legends.Effects.get(actor, ::Legends.Effect.Shieldwall);
+		if (shieldwall == null) {
+			::Legends.Effects.grant(actor, ::Legends.Effect.Shieldwall);
+		} else {
+			shieldwall.m.Stacks++;
+		}
 
 		if (!_user.isHiddenToPlayer()) {
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses Shieldwall");
