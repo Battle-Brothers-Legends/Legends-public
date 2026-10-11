@@ -872,9 +872,13 @@ Use your athletic skill to leap high and far.
 • Costs [color=%negative%]6[/color] AP and [color=%negative%]15[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendMagicLevitate <- @"
+::Const.Strings.PerkDescription.LegendLevitate <- @"
+Levitate a person above the ground, making movement across any terrain cost less.
+
 [color=%active%][u]Active:[/u][/color]
-• Levitate someone off the ground, granting them the ability to move freely across all terrain for a short duration.
+• Movement across any terrain cost [color=%negative%]1[/color] AP and [color=%negative%]2[/color] Fatigue per tile.
+
+• Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendLithe <- @"
