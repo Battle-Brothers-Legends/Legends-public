@@ -268,7 +268,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.SturdyTree <- {
 	ID = "SturdyTree",
 	Name = "Sturdy",
-	Icon = "ui/perks/steadfast_circle.png",
+	Icon = "ui/perks/steadfast.png",
 	Descriptions = [
 		"is sturdy",
 		"is built to last",
