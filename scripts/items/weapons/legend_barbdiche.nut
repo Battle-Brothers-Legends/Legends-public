@@ -1,7 +1,7 @@
 this.legend_barbdiche <- this.inherit("scripts/items/weapons/weapon", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_barbdiche";
 		this.m.Name = "Heavy Rusty Battleaxe";
@@ -11,6 +11,7 @@ this.legend_barbdiche <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Categories = "Axe, Two-Handed";
 		this.m.IconLarge = "weapons/melee/bardiche_01.png";
 		this.m.Icon = "weapons/melee/bardiche_01_70x70.png";
+		this.m.WeaponType = ::Const.Items.WeaponType.Axe;
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
@@ -32,15 +33,13 @@ this.legend_barbdiche <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ChanceToHitHead = 0;
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		this.m.IconLarge = "weapons/melee/barbdiche_0" + this.m.Variant + ".png";
 		this.m.Icon = "weapons/melee/barbdiche_0" + this.m.Variant + "_70x70.png";
 		this.m.ArmamentIcon = "icon_barbdiche_0" + this.m.Variant;
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.SplitMan);
 		::Legends.Actives.grant(this, ::Legends.Active.SplitAxe);
@@ -50,5 +49,4 @@ this.legend_barbdiche <- this.inherit("scripts/items/weapons/weapon", {
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
 	}
-
 });

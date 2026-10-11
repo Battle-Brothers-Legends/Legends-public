@@ -1,12 +1,13 @@
 this.legend_military_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_military_warscythe";
 		this.m.Name = "Warscythe";
 		this.m.Description = "A sharp curved blade attached to a long pole, used to deliver deep sweeping strikes over some distance. Mass produced for militias and noble armies, the sturdy design still betrays its farming origin.";
 		this.m.Categories = "Cleaver/Polearm, Two-Handed";
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver | ::Const.Items.WeaponType.Polearm;
 		this.m.Variant = ::Math.rand(2, 3);
 		this.updateVariant();
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
@@ -30,18 +31,15 @@ this.legend_military_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageMult = 0.3;
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		this.m.IconLarge = "weapons/melee/warscythe_0" + this.m.Variant + ".png";
 		this.m.Icon = "weapons/melee/warscythe_0" + this.m.Variant + "_70x70.png";
 		this.m.ArmamentIcon = "icon_warscythe_0" + this.m.Variant;
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill)
-		{
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill) {
 			_skill.m.IsScytheCleave = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Reap);
@@ -51,4 +49,3 @@ this.legend_military_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 	}
 
 });
-
