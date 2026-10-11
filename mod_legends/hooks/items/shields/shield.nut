@@ -48,6 +48,28 @@
 			}
 		}
 
+		if (this.m.Block > 0)
+		{
+			result.push({
+				id = 5,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "Block [color=%positive%]%_block%[/color]",
+				param = [["_block", this.m.Block]]
+			});
+		}
+
+		if (this.m.RegularDamage > 0)
+		{
+			result.push({
+				id = 4,
+				type = "text",
+				icon = "ui/icons/regular_damage.png",
+				text = "Damage of [color=%damage%]%_regularDamage%[/close] - [color=%damage%]%_regularDamageMax%[/close]",
+				param = [["_regularDamage", this.m.RegularDamage], ["_regularDamageMax", this.m.RegularDamageMax]]
+			});
+		}
+
 		if (this.isRuned())
 		{
 			result.push({
