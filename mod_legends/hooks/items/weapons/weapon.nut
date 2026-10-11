@@ -64,8 +64,8 @@
 				continue;
 			}
 
-			if (tooltip.id == 8 && tooltip.icon == "ui/icons/fatigue.png") {
-				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+			if (tooltip.id == 8 && tooltip.icon == "ui/icons/fatigue.png" && tooltip.text.find("skills build up") == null) {
+				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]";
 			}
 		}
 
