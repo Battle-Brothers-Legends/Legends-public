@@ -618,7 +618,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Haggle = 0.01,
 	MedConsumption = 0.05,
 	Fletching = 0.1,
-	Gathering = 0.30,
+	Gathering = 0.1,
 	Cooking = 0.75,
 };
 
