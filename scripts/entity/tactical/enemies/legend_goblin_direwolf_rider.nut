@@ -9,16 +9,14 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 		WolfScript = "scripts/entity/tactical/enemies/direwolf",
 		GoblinScript = "scripts/entity/tactical/enemies/goblin_fighter"
 	},
-	function create()
-	{
+
+	function create() {
 		this.legend_goblin_rider_abstract.create();
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.legend_goblin_rider_abstract.onInit();
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Goblins.LegendDirewolfRiderHarrierDay)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Goblins.LegendDirewolfRiderHarrierDay) {
 			this.m.GoblinScript = "scripts/entity/tactical/enemies/legend_goblin_harrier";
 			local b = this.m.BaseProperties;
 			b.Hitpoints += 40;
@@ -27,13 +25,11 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 		}
 	}
 
-	function assignSkills()
-	{
+	function assignSkills() {
 		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-		if(::Legends.isLegendaryDifficulty())
-		{
-			::Legends.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);
+		if (::Legends.isLegendaryDifficulty()) {
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendLightningReflexes);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 		::Legends.Actives.grant(this, ::Legends.Active.WerewolfBite, function (_skill) {
@@ -42,8 +38,7 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 		}.bindenv(this));
 	}
 
-	function createSprites()
-	{
+	function createSprites() {
 		this.getSprite("head").setBrush("bust_goblin_01_head_0" + ::Math.rand(1, 3));
 		this.setAlwaysApplySpriteOffset(true);
 		local offset = this.createVec(8, 14);
@@ -71,10 +66,8 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 		wolf_armor.setBrush("bust_wolf_02_armor_01");
 	}
 
-	function spawnDeadWolf( _killer, _skill, _tile, _fatalityType )
-	{
-		if (_tile == null)
-		{
+	function spawnDeadWolf(_killer, _skill, _tile, _fatalityType) {
+		if (_tile == null) {
 			return;
 		}
 
@@ -89,27 +82,22 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 		decal.Saturation = body.Saturation;
 		decal.Scale = 0.95;
 
-		if (_fatalityType != ::Const.FatalityType.Decapitated)
-		{
+		if (_fatalityType != ::Const.FatalityType.Decapitated) {
 			decal = _tile.spawnDetail(head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = head.Color;
 			decal.Saturation = head.Saturation;
 			decal.Scale = 0.95;
 
-			if (head_frenzy.HasBrush)
-			{
+			if (head_frenzy.HasBrush) {
 				decal = _tile.spawnDetail(head_frenzy.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
-		}
-		else if (_fatalityType == ::Const.FatalityType.Decapitated)
-		{
+		} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 			local layers = [
 				head.getBrush().Name + "_dead"
 			];
 
-			if (head_frenzy.HasBrush)
-			{
+			if (head_frenzy.HasBrush) {
 				layers.push(head_frenzy.getBrush().Name + "_dead");
 			}
 
@@ -118,19 +106,15 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 			decap[0].Saturation = head.Saturation;
 			decap[0].Scale = 0.95;
 
-			if (head_frenzy.HasBrush)
-			{
+			if (head_frenzy.HasBrush) {
 				decap[1].Scale = 0.95;
 			}
 		}
 
-		if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-		{
+		if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 			decal = _tile.spawnDetail("bust_direwolf_01_body_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Scale = 0.95;
-		}
-		else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-		{
+		} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 			decal = _tile.spawnDetail("bust_direwolf_01_body_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Scale = 0.95;
 		}
@@ -146,8 +130,7 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 		::Tactical.Entities.addCorpse(_tile);
 	}
 
-	function assignRandomEquipment ()
-	{
+	function assignRandomEquipment() {
 		local weapons = [
 			"weapons/greenskins/goblin_falchion",
 			"weapons/greenskins/goblin_spear",
@@ -157,8 +140,7 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
@@ -168,22 +150,17 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 		]);
 		this.m.Items.equip(item);
 
-
-
 		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 			[1, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 		]);
-		if (item != null)
-		{
+		if (item != null) {
 			this.m.Items.equip(item);
 		}
 	}
 
-	function makeMiniboss()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	function makeMiniboss() {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -200,4 +177,3 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 	}
 
 });
-

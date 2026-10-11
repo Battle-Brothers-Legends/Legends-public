@@ -1,8 +1,7 @@
 this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/goblin_fighter", {
 	m = {},
 
-	function create()
-	{
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendGoblinHarrier;
 		this.m.XP = ::Const.Tactical.Actor.LegendGoblinHarrier.XP;
 		this.goblin.create();
@@ -10,8 +9,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.goblin_fighter.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendGoblinHarrier);
@@ -19,9 +17,8 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
-		if(::Legends.isLegendaryDifficulty())
-		{
-			::Legends.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);
+		if (::Legends.isLegendaryDifficulty()) {
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendLightningReflexes);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
@@ -29,8 +26,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 		this.m.Skills.update();
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 		local r;
 		r = ::Math.rand(1, 2);
 
@@ -46,8 +42,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null) {
 			local item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Greenskin.goblin_medium_armor],
 				[2, ::Legends.Armor.Greenskin.goblin_heavy_armor]
@@ -55,23 +50,19 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 			this.m.Items.equip(item);
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
 			local item = ::Const.World.Common.pickHelmet([
 				[25, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 				[75, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 			]);
-			if (item != null)
-			{
+			if (item != null) {
 				this.m.Items.equip(item);
 			}
 		}
 	}
 
-	function makeMiniboss()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	function makeMiniboss() {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 

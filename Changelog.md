@@ -600,6 +600,7 @@
 - nets now return to their previous slots after throwing
 - prayer of hope and prayer of faith effects now have their respective mini icons (the ones that appear above the character in battle)
 - fatality chances can now be hidden if they are clogging your skill tooltips
+- reworked on actor hover tooltips to allow dynamic combat descriptions
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -1067,3 +1068,4 @@ Refactors/deletions:
 - `scripts/skills/effects/legend_veteran_levels_effect` -> deleted, functionality merged player's updateLevel function
 - `scripts/skills/effects/legend_realm_of_nightmares_effect` -> deleted
 - `scripts/skills/effects/legend_web_at_start_effect` -> deleted, functionality changed to use Web active's onUse
+- `scripts/skills/effects/legend_freedom_of_movement_effect` -> `scripts/skills/effects/legend_lightning_reflexes_effect`

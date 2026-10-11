@@ -1,8 +1,7 @@
 this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/goblin", {
 	m = {},
 
-	function create()
-	{
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendGoblinTribeDefender;
 		this.m.XP = ::Const.Tactical.Actor.LegendGoblinTribeDefender.XP;
 		this.goblin.create();
@@ -10,8 +9,7 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.goblin.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendGoblinTribeDefender);
@@ -26,16 +24,14 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		b.IsSpecializedInCrossbows = true;
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity);
 		}
 		this.m.Skills.update();
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 		this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
 		this.m.Items.equip(::new("scripts/items/weapons/greenskins/goblin_crossbow"));
 		this.m.Items.addToBag(::new("scripts/items/weapons/greenskins/goblin_falchion"));
@@ -49,10 +45,8 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		this.m.Items.equip(item);
 	}
 
-	function makeMiniboss()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	function makeMiniboss() {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -60,9 +54,8 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		this.m.Items.equip(::new("scripts/items/weapons/named/legend_named_goblin_crossbow"));
 		this.m.Items.addToBag(::new("scripts/items/weapons/greenskins/goblin_falchion"));
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendLightningReflexes);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		return true;
 	}
-
 });

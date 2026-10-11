@@ -320,6 +320,10 @@
 		return ret;
 	}
 
+	o.getActorHoverTooltip <- function (_activeEntity) {
+		return null;
+	}
+
 	o.getExpectedDamage = function( _target )
 	{
 		local actor = this.m.Container.getActor();

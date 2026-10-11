@@ -1,12 +1,6 @@
-::ModJimmysTooltips.ModHook.hook("scripts/entity/tactical/actor", function(q){
+::ModJimmysTooltips.ModHook.hook("scripts/entity/tactical/actor", function (q) {
 
-	q.getTooltip = @(__original) function(_targetedWithSkill = null)
-	{
-		local actor = ::Tactical.TurnSequenceBar.getActiveEntity();
-		local tooltip = ::ModJimmysTooltips.modTacticalTooltip(__original(_targetedWithSkill), _targetedWithSkill, this);
-		if (!::MSU.isNull(actor)) {
-			this.getSkills().onOtherActorTooltip(tooltip, actor);
-		}
-		return tooltip;
+	q.getTooltip = @(__original) function (_targetedWithSkill = null) {
+		return ::ModJimmysTooltips.modTacticalTooltip(__original(_targetedWithSkill), _targetedWithSkill, this);
 	}
 });

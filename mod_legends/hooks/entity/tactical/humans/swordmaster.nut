@@ -26,7 +26,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
 		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendLightningReflexes);
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendFlourish, function (_skill) {
 				_skill.m.IsRemoved = false;
 			});

@@ -745,9 +745,6 @@ local effectDefs = {
 		Icon = "ui/perks/perk_41.png",
 		Overlay = ""
 	},
-	LegendFreedomOfMovement = {
-		Overlay = ""
-	},
 	LegendGrappled = {},
 	LegendGravedigging = {
 		IconMini = "", //"shovel_01_mini.png";
@@ -794,6 +791,9 @@ local effectDefs = {
 		Overlay = ""
 	},
 	LegendKnockedOver = {},
+	LegendLightningReflexes = {
+		Overlay = ""
+	},
 	LegendLiquorBurn = {
 		// to be remade/removed
 		Icon = "skills/status_effect_92.png",

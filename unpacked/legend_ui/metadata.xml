@@ -137,7 +137,7 @@
 	<sprite id="legend_demon_hound_bite_effect_mini"  offsetY="35" ic="FF344955" img="skills\mini\legend_demon_hound_bite_effect.png" />
 	<sprite id="legend_enraged_hyena_bite_effect_mini" ic="FF1B293C" img="skills\mini\legend_enraged_hyena_bite_effect.png" />
 	<sprite id="legend_flourish_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_flourish_effect.png" />
-	<sprite id="legend_freedom_of_movement_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_freedom_of_movement_effect.png" />
+	<sprite id="legend_lightning_reflexes_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_lightning_reflexes_effect.png" />
 	<sprite id="legend_grappled_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_grappled_effect.png" />
 	<sprite id="legend_grazed_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_grazed_effect.png" />
 	<sprite id="legend_heartwood_focus_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_heartwood_focus_effect.png" />
