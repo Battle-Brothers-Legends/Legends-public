@@ -762,7 +762,7 @@
 				return;
 			}
 
-			local malus = ::Math.max(0, attackingEntity.getCurrentProperties().SurroundedBonus * attackingEntity.getCurrentProperties().SurroundedBonusMult - targetEntity.getCurrentProperties().SurroundedDefense) * targetEntity.getSurroundedCount();
+			local malus = ::Math.max(0, p.SurroundedBonus * p.SurroundedBonusMult - targetEntity.getCurrentProperties().SurroundedDefense) * targetEntity.getSurroundedCount();
 
 			if (malus)
 			{
