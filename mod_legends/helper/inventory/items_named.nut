@@ -208,7 +208,7 @@ if (!("Items" in ::Legends)) {
             local range = ::Legends.Items.Named.randomizeRanges.Block;
             local bVal = _properties.Block;
             this.Text = ::Legends.Items.Named.wrapTooltip(::Math.round(bVal * range[0] * 0.01) + " to " + ::Math.round(bVal * range[1] * 0.01));
-			return _tooltip.icon == "ui/icons/block_named.png";
+			return _tooltip.icon == "ui/icons/block.png";
 		}
 	}
 };
