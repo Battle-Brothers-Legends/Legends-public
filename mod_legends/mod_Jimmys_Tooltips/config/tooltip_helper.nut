@@ -117,14 +117,16 @@
 
 			tooltip.push(itemRow);
 
-			local extraDesc = item.getActorHoverTooltip(::Tactical.TurnSequenceBar.getActiveEntity());
-			if (extraDesc != null) {
-				tooltip.push({
-					id = startID + i,
-					type = "text",
-					icon = "ui/perks/none.png"
-					text = extraDesc
-				});
+			if (::isKindOf(item, "skill")) {
+				local extraDesc = item.getActorHoverTooltip(::Tactical.TurnSequenceBar.getActiveEntity());
+				if (extraDesc != null) {
+					tooltip.push({
+						id = startID + i,
+						type = "text",
+						icon = "ui/perks/none.png"
+						text = extraDesc
+					});
+				}
 			}
 		}
 	};
