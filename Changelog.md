@@ -495,7 +495,7 @@
 - small visual reorganization to make the stations easier to click
 - right click tents to open the correct list in commander's tent
 - painter tent allows painting the shoulder layer
-- upgraded scouting has been improved and allows the party to scout for locations while camping
+- upgraded scouting has been improved and allows the party to scout for locations while camping (but not while escorting)
 - gathering and scouting requires healthy bros and can injure/exhaust bros similarly to training
 - healing tent gains intensive treatment of hitpoints at the cost of medicine when upgraded
 - scout tent now always produces a scouting message
@@ -631,7 +631,7 @@
 - female southern backgrounds will use Bint instead of Ibn as last name now
 - fixed mummies head armor showing empty bars and incorrect maximum values
 - fixed athletic sometimes using a different path than the calculated one
-- fixed escorting not restricting certain camping activities; expanded the number of available ones so only gathering, scouting and training aren't available
+- fixed escorting not restricting certain camping activities; expanded the number of available ones so only gathering and training aren't available (scouting is changed)
 - fixed the veteran and expert party strength formulas (mostly results in veteran late nerf and expert late buff and slight early game normalization)
 - fixed identical bag items losing track of active skills after unequipping the source of the active skill (usually first equipped item)
 - fixed Jester's Hat removing the Battlefield Control granted Taunt skill in a specific case
