@@ -180,6 +180,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
+		::Legends.Actives.grant(this, ::Legends.Active.Charge);
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
