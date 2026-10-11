@@ -45,7 +45,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Enemy = [],
 	Class = [
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree,
@@ -776,7 +776,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Class = [
 		::Const.Perks.NinetailsClassTree,
 		::Const.Perks.FaithClassTree,
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [],
 	Magic = []
@@ -1325,7 +1325,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [
 		::Const.Perks.FaithClassTree,
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree
@@ -2618,7 +2618,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [
 		::Const.Perks.FaithClassTree,
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree,
@@ -2677,7 +2677,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Enemy = [],
 	Class = [
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree,
@@ -2787,7 +2787,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [::Const.Perks.OccultTree],
 	Class = [
 		::Const.Perks.PoisonClassTree,
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree,
@@ -2946,7 +2946,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.BeastTree
 	],
 	Class = [
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree,
@@ -3254,7 +3254,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [
 		::Const.Perks.NinetailsClassTree,
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree,
@@ -3566,7 +3566,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Enemy = [],
 	Class = [
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree
@@ -3623,7 +3623,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [
 		::Const.Perks.StaffClassTree,
-		::Const.Perks.HealerClassTree
+		//::Const.Perks.HealerClassTree
 	],
 	Profession = [
 		//::Const.Perks.HealerProfessionTree,

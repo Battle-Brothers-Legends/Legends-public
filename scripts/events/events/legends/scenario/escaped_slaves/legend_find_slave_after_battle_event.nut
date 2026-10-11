@@ -414,9 +414,9 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Mad);
 						}
 
-						if (r == 13) {
+						/*if (r == 13) {
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendSpecBandage);
-						}
+						}*/
 
 						if (r == 14) {
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemyUndead);

@@ -94,7 +94,6 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendMasteryMagicStaff,
 					::Legends.Perk.SpecPolearm,
 					::Legends.Perk.LegendPoisoner,
-					::Legends.Perk.LegendSpecBandage,
 					::Legends.Perk.LegendExtendedAura
 				],
 				[

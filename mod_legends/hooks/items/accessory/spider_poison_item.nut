@@ -60,6 +60,14 @@
 				icon = "ui/icons/warning.png",
 				text = "Cannot be refilled after battle, because the company has no one specializing in Alchemy"
 			});
+		} else {
+			result.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/ammo.png",
+				text = "Costs [color=%negative%]" + this.m.AmmoCost + "[/color] Ammo to refill"
+			});
+
 		}
 		return result;
 	}
@@ -82,7 +90,7 @@
 	}
 
 	o.getAmmo <- function () {
-		return this.m.Ammo == 0	&& ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0	? this.m.AmmoMax + 1: this.m.Ammo;
+		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0 ? this.m.AmmoMax + 1 : this.m.Ammo;
 	}
 
 	o.getAmmoMax <- function () {

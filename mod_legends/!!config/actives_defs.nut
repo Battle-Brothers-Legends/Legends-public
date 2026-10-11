@@ -1144,12 +1144,6 @@ local activesDefs = {
 		IconDisabled = "skills/active_03_sw.png",
 		Overlay = "active_03"
 	},
-	LegendBandage = {
-		Name = "Use Bandages",
-		Icon = "skills/active_105.png",
-		IconDisabled = "skills/active_105_sw.png",
-		Overlay = "active_105"
-	},
 	LegendBansheeScream = {
 		Name = "Banshee Scream",
 		Icon = "skills/active_41.png",
@@ -1268,12 +1262,6 @@ local activesDefs = {
 		Icon = "skills/active_104.png",
 		IconDisabled = "skills/active_104_sw.png",
 		Overlay = "active_104"
-	},
-	LegendFieldTriage = {
-		// to be redone/removed
-		Icon = "skills/triage_square.png",
-		IconDisabled = "skills/triage_square_bw.png",
-		Overlay = "active_41"
 	},
 	LegendFirefield = {},
 	LegendFlagellate = {},

@@ -72,6 +72,13 @@ this.legend_redback_poison_item <- this.inherit("scripts/items/accessory/accesso
 				icon = "ui/icons/warning.png",
 				text = "Cannot be refilled after battle, because the company has no one specializing in Alchemy"
 			});
+		} else {
+			result.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/ammo.png",
+				text = "Costs [color=%negative%]" + this.m.AmmoCost + "[/color] Ammo to refill"
+			});
 		}
 		return result;
 	}
@@ -80,7 +87,7 @@ this.legend_redback_poison_item <- this.inherit("scripts/items/accessory/accesso
 		::Sound.play("sounds/bottle_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
-	function consumeAmmo () {
+	function consumeAmmo() {
 		this.m.AmmoCost = 0;
 		this.setAmmo(::Math.max(0, this.m.Ammo - 1));
 		if (this.getContainer().getActor().isPlayerControlled()) {
@@ -89,19 +96,19 @@ this.legend_redback_poison_item <- this.inherit("scripts/items/accessory/accesso
 		this.m.AmmoCost = 20;
 	}
 
-	function isAmountShown () {
+	function isAmountShown() {
 		return true;
 	}
 
-	function getAmountString () {
+	function getAmountString() {
 		return this.m.Ammo + "/" + this.m.AmmoMax;
 	}
 
-	function getAmmo () {
-		return this.m.Ammo == 0	&& ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0	? this.m.AmmoMax + 1: this.m.Ammo;
+	function getAmmo() {
+		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0 ? this.m.AmmoMax + 1 : this.m.Ammo;
 	}
 
-	function getAmmoMax () {
+	function getAmmoMax() {
 		return this.m.AmmoMax;
 	}
 
@@ -109,7 +116,7 @@ this.legend_redback_poison_item <- this.inherit("scripts/items/accessory/accesso
 		return this.m.AmmoCost;
 	}
 
-	function setAmmo (_a) {
+	function setAmmo(_a) {
 		this.m.Ammo = _a;
 
 		if (this.m.Ammo > 0) {
@@ -138,4 +145,3 @@ this.legend_redback_poison_item <- this.inherit("scripts/items/accessory/accesso
 		this.onEquip();
 	}
 });
-

@@ -1,10 +1,9 @@
-::mods_hookExactClass("items/tools/smoke_bomb_item", function(o) {
+::mods_hookExactClass("items/tools/smoke_bomb_item", function (o) {
 	o.m.OriginalValue <- null;
 	o.m.OriginalDescription <- null;
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "A small pot that quickly creates a dense smoke cloud when broken on the ground. Useful for covering movement. If the company has Alchemy Tools, this item is refilled after each battle, consuming 30 ammunition per use.";
 		this.m.OriginalDescription = this.m.Description;
@@ -17,8 +16,7 @@
 		this.m.RangeMax = 3;
 	}
 
-	o.getTooltip = function()
-	{
+	o.getTooltip = function () {
 		local result = [
 			{
 				id = 1,
@@ -32,17 +30,14 @@
 			}
 		];
 
-		if (this.getIconLarge() != null)
-		{
+		if (this.getIconLarge() != null) {
 			result.push({
 				id = 3,
 				type = "image",
 				image = this.getIconLarge(),
 				isLarge = true
 			});
-		}
-		else
-		{
+		} else {
 			result.push({
 				id = 3,
 				type = "image",
@@ -51,77 +46,77 @@
 		}
 
 		result.extend([
-		{
-			id = 66,
-			type = "text",
-			text = this.getValueString()
-		},
-		{
-			id = 64,
-			type = "text",
-			text = "Worn in Offhand"
-		},
-		{
-			id = 7,
-			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
-		},
-		{
-			id = 5,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Covers [color=%damage%]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
-		}]);
-		if (::World.Assets.m.ProfessionEffect.LegendPetardry <= 0)
-		{
+			{
+				id = 66,
+				type = "text",
+				text = this.getValueString()
+			},
+			{
+				id = 64,
+				type = "text",
+				text = "Worn in Offhand"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
+			},
+			{
+				id = 5,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Covers [color=%damage%]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
+			}
+		]);
+		if (::World.Assets.m.ProfessionEffect.LegendPetardry <= 0) {
 			result.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = "Cannot be refilled after battle, because the company has no one specializing in Petardry"
 			});
+		} else {
+			result.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/ammo.png",
+				text = "Costs [color=%negative%]" + this.m.AmmoCost + "[/color] Ammo to refill"
+			});
 		}
 		return result;
 	}
 
-	o.consumeAmmo <- function()
-	{
+	o.consumeAmmo <- function () {
 		this.m.AmmoCost = 0;
 		this.weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
 		this.m.AmmoCost = 30;
 	}
 
-	o.isAmountShown <- function ()
-	{
+	o.isAmountShown <- function () {
 		return true;
 	}
 
-	o.getAmountString <- function ()
-	{
+	o.getAmountString <- function () {
 		return this.m.Ammo + "/" + this.m.AmmoMax;
 	}
 
-	o.getAmmo <- function() // prevent item from being refilled without the retinue
+	o.getAmmo <- function () // prevent item from being refilled without the retinue
 	{
-		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendPetardry <= 0 ? this.m.AmmoMax + 1 : this.m.Ammo;
+		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendPetardry <= 0 ? this.m.AmmoMax + 1: this.m.Ammo;
 	}
 
-	o.setAmmo <- function ( _a )
-	{
-		this.weapon.setAmmo( _a );
+	o.setAmmo <- function (_a) {
+		this.weapon.setAmmo(_a);
 
-		if (this.m.Ammo > 0)
-		{
+		if (this.m.Ammo > 0) {
 			this.m.Name = "Smoke Pot";
 			this.m.IconLarge = "tools/smoke_bomb_01.png";
 			this.m.Icon = "tools/smoke_bomb_01_70x70.png";
 			this.m.ShowArmamentIcon = true;
 			this.m.Description = this.m.OriginalDescription;
 			this.m.Value = this.m.OriginalValue;
-		}
-		else
-		{
+		} else {
 			this.m.Name = "Smoke Pot (Used)";
 			this.m.IconLarge = "tools/smoke_bomb_01.png";
 			this.m.Icon = "tools/smoke_bomb_01_70x70.png";
@@ -133,23 +128,22 @@
 		this.updateAppearance();
 	}
 
-	o.onPutIntoBag <- function ()
-	{
+	o.onPutIntoBag <- function () {
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchSmokeBomb);
-		if (skill != null && this.getAmmo() > 0)
+		if (skill != null && this.getAmmo() > 0) {
 			skill.setItem(this);
+		}
 	}
 
-	o.onSlingUpdateProperties <- function ()
-	{
+	o.onSlingUpdateProperties <- function () {
 		this.onPutIntoBag();
 	}
 
-	o.onRemovedFromBag <- function()
-	{
+	o.onRemovedFromBag <- function () {
 		this.item.onRemovedFromBag();
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchSmokeBomb);
-		if (skill != null)
+		if (skill != null) {
 			skill.setItem(null);
+		}
 	}
 });

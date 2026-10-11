@@ -72,8 +72,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.SpecCleaver,
 			::Legends.Perk.LegendMasteryMagicStaff,
 			::Legends.Perk.SpecPolearm,
-			::Legends.Perk.LegendMasterySlings,
-			::Legends.Perk.LegendSpecBandage
+			::Legends.Perk.LegendMasterySlings
 		],
 		[
 			::Legends.Perk.Nimble,
@@ -95,8 +94,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.LegendPerfectFocus,
 			::Legends.Perk.LegendFreedomOfMovement,
 			::Legends.Perk.LegendBalance,
-			::Legends.Perk.LegendInspire,
-			::Legends.Perk.LegendFieldTriage
+			::Legends.Perk.LegendInspire
 		],
 		[],
 		[],

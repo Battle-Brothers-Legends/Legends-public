@@ -235,6 +235,7 @@
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
+- bandages now replenish up to 10 HP (only fresh wounds)
 
 ### Armors
 - added Segmented Breastplate
@@ -414,6 +415,7 @@
 ### Consumables
 - `Berserker Mushrooms` - if the character has berserker rage it'll grant 5 points of rage at turn start
 - poisons are now refillable and use the ammo system
+- bandages are now refillable and use the ammo system (but cost medicine)
 - added redback poison vials and blueprints
 
 ### Runes
@@ -971,10 +973,12 @@ Refactors/deletions:
 - `scripts/skills/perks/perk_legend_distant_visions` -> deleted
 - `scripts/skills/perks/perk_legend_dogbreeder` -> deleted
 - `scripts/skills/perks/perk_legend_efficient_packing` -> deleted
+- `scripts/skills/perks/perk_legend_field_triage` -> deleted
 - `scripts/skills/perks/perk_legend_gatherer` -> deleted
 - `scripts/skills/perks/perk_legend_helpful` -> deleted
 - `scripts/skills/perks/perk_legend_inventory_anatomy` -> deleted
 - `scripts/skills/perks/perk_legend_master_trainer` -> deleted
+- `scripts/skills/perks/perk_legend_mastery_bandage` -> deleted
 - `scripts/skills/perks/perk_legend_mastery_chain_lightning` -> deleted
 - `scripts/skills/perks/perk_legend_mastery_dual_wield` -> deleted
 - `scripts/skills/perks/perk_legend_mastery_hailstone` -> deleted
@@ -1034,7 +1038,9 @@ Refactors/deletions:
 - `scripts/skills/backgrounds/legend_guildmaster_background` -> `scripts/skills/backgrounds/legend_guild_master_background`
 - `scripts/skills/backgrounds/legend_lonewolf_background` -> `scripts/skills/backgrounds/legend_lone_wolf_background`
 - `scripts/skills/backgrounds/legend_warlock_summoner_background` -> `scripts/skills/backgrounds/legend_reanimator_background`
+- `scripts/skills/actives/legend_bandage_skill` -> deleted
 - `scripts/skills/actives/legend_drain_skill` -> deleted
+- `scripts/skills/actives/legend_field_triage_skill` -> deleted
 - `scripts/skills/actives/legend_pass_skill` -> deleted
 - `scripts/skills/actives/legend_poison_weapon_skill` -> deleted
 - `scripts/skills/actives/legend_spawn_zombie_low_xbow_skill` -> deleted

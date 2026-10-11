@@ -1,5 +1,4 @@
-::mods_hookExactClass("states/world/asset_manager", function(o)
-{
+::mods_hookExactClass("states/world/asset_manager", function (o) {
 	o.m.FounderNames <- [];
 	o.m.BusinessReputationMax <- 0;
 	o.m.BrothersMax <- 27;
@@ -15,13 +14,11 @@
 
 	o.m.ProfessionEffect <- {}
 
-	o.getArmorPartsF <- function()
-	{
+	o.getArmorPartsF <- function () {
 		return this.m.ArmorParts;
 	}
 
-	o.getMaxAmmo <- function()
-	{
+	o.getMaxAmmo <- function () {
 		local ammo = ::Const.LegendMod.MaxResources[this.m.EconomicDifficulty].Ammo;
 		//::Const.Difficulty.MaxResources[this.m.EconomicDifficulty].Ammo + this.m.AmmoMaxAdditional
 		ammo += this.m.AmmoMaxAdditional;
@@ -29,16 +26,14 @@
 		return ammo;
 	}
 
-	o.getMaxArmorParts <- function()
-	{
+	o.getMaxArmorParts <- function () {
 		local parts = ::Const.LegendMod.MaxResources[this.m.EconomicDifficulty].ArmorParts;
 		parts += this.m.ArmorPartsMaxAdditional; //::Const.Difficulty.MaxResources[this.m.EconomicDifficulty].ArmorParts + this.m.MedicineMaxAdditional
 		parts += ::World.State.getPlayer().getArmorPartsModifier();
 		return parts;
 	}
 
-	o.getMaxMedicine <- function()
-	{
+	o.getMaxMedicine <- function () {
 		local meds = ::Const.LegendMod.MaxResources[this.m.EconomicDifficulty].Medicine;
 		//::Const.Difficulty.MaxResources[this.m.EconomicDifficulty].Ammo
 		meds += this.m.MedicineMaxAdditional;
@@ -47,64 +42,53 @@
 	}
 
 	local addBusinessReputation = o.addBusinessReputation;
-	o.addBusinessReputation = function( _f )
-	{
+	o.addBusinessReputation = function (_f) {
 		local original = this.m.BusinessReputationRate;
-		if (::World.Assets.m.ProfessionEffect.LegendBalladeInTheMaking > 0)
+		if (::World.Assets.m.ProfessionEffect.LegendBalladeInTheMaking > 0) {
 			this.m.BusinessReputationRate *= (1 + ::World.Assets.m.ProfessionEffect.LegendBalladeInTheMaking);
+		}
 		addBusinessReputation(_f);
 		this.m.BusinessReputationRate = original;
 	}
 
-	o.getBusinessReputationMax <- function()
-	{
+	o.getBusinessReputationMax <- function () {
 		return this.m.BusinessReputationMax;
 	}
 
-	o.getBrothersMax = function ()
-	{
+	o.getBrothersMax = function () {
 		return ::Const.Roster.getSizeForTier(::World.Assets.getOrigin().getRosterTier());
 	}
 
-	o.getBrothersMaxInCombat = function ()
-	{
+	o.getBrothersMaxInCombat = function () {
 		return ::Const.Roster.getInCombatSizeForTier(::World.Assets.getOrigin().getRosterTierCombat());
 	}
 
-	o.getBrothersScaleMax = function ()
-	{
+	o.getBrothersScaleMax = function () {
 		return ::Math.min(25, this.m.BrothersScaleMax);
 	}
 
-	o.getFounderNames <- function ()
-	{
+	o.getFounderNames <- function () {
 		return this.m.FounderNames;
 	}
 
-	o.getFormationIndex <- function ()
-	{
+	o.getFormationIndex <- function () {
 		return this.m.FormationIndex;
 	}
 
-	o.getFormationName <- function ()
-	{
+	o.getFormationName <- function () {
 		return this.m.FormationNames[this.m.FormationIndex];
 	}
 
-	o.isCamping = function()
-	{
+	o.isCamping = function () {
 		return ::World.Camp.isCamping();
 	}
 
-	o.setCamping = function( _c )
-	{
+	o.setCamping = function (_c) {
 		::World.Camp.onCamp();
 	}
 
-	o.setAmmo = function( _f )
-	{
+	o.setAmmo = function (_f) {
 		this.m.Ammo = ::Math.min(::Math.max(0, _f), this.getMaxAmmo());
-		this.refillAmmo();
 	}
 
 	o.checkDesertion = function () {
@@ -156,12 +140,13 @@
 	}
 
 	o.refillAmmo = function () {
+		this.refillMedicineAmmo();
 		if (this.m.Ammo == 0) {
 			return;
 		}
 
 		local roster = ::World.getPlayerRoster().getAll();
-		::World.Statistics.getFlags().set("LegendsCanRepairNet", roster.filter(@(_, _bro) (_bro.getFlags().get("LegendsCanRepairNet"))).len() > 0);
+		::World.Statistics.getFlags().set("LegendsCanRepairNet", roster.filter(@(_, _bro)(_bro.getFlags().get("LegendsCanRepairNet"))).len() > 0);
 
 		local allItems = [];
 		foreach (bro in roster) {
@@ -195,42 +180,71 @@
 		}
 	}
 
-	o.setArmorParts = function( _f )
-	{
+	o.refillMedicineAmmo <- function () {
+		if (this.m.Medicine == 0) {
+			return;
+		}
+
+		local roster = ::World.getPlayerRoster().getAll();
+
+		local allItems = [];
+		foreach (bro in roster) {
+			allItems.extend(bro.getItems().getAllItems());
+		}
+
+		foreach (item in allItems) {
+			if (this.m.Medicine == 0) {
+				break;
+			}
+
+			if ((item.isItemType(::Const.Items.ItemType.Ammo) || ("getAmmo" in item && "getAmmoMax" in item)) && item.getAmmo() < item.getAmmoMax() && "getAmmoType" in item && item.getAmmoType() == "Medicine") {
+				local missingAmmo = item.getAmmoMax() - item.getAmmo();
+				local refilledAmmo = ::Math.min(missingAmmo, this.m.Ammo / item.getAmmoCost());
+
+				if (refilledAmmo > 0) {
+					item.setAmmo(item.getAmmo() + refilledAmmo);
+					this.m.Medicine -= refilledAmmo * item.getAmmoCost();
+				}
+			}
+		}
+
+		if (::World.State.getCurrentTown() != null) {
+			::World.State.getTownScreen().updateAssets();
+		}
+	}
+
+	o.setArmorParts = function (_f) {
 		this.m.ArmorParts = ::Math.min(::Math.max(0, _f), this.getMaxArmorParts());
 	}
 
-	o.setMedicine = function( _f )
-	{
+	o.setMedicine = function (_f) {
 		this.m.Medicine = ::Math.min(::Math.max(0, _f), this.getMaxMedicine());
 	}
 
-	o.addAmmo = function( _f )
-	{
+	o.addAmmo = function (_f) {
 		this.m.Ammo = ::Math.min(::Math.max(0, this.m.Ammo + _f), this.getMaxAmmo());
 	}
 
-	o.addArmorParts = function( _f )
-	{
+	o.addArmorParts = function (_f) {
 		this.m.ArmorParts = ::Math.min(::Math.max(0, this.m.ArmorParts + _f), this.getMaxArmorParts());
 	}
 
-	o.addArmorPartsF <- function( _f )
-	{
+	o.addArmorPartsF <- function (_f) {
 		this.m.ArmorParts = ::Math.minf(::Math.maxf(0, this.m.ArmorParts + _f), this.getMaxArmorParts());
 	}
 
-	o.addMedicine = function( _f )
-	{
+	o.addMedicine = function (_f) {
 		this.m.Medicine = ::Math.min(::Math.max(0, this.m.Medicine + _f), this.getMaxMedicine());
 	}
 
 	local addBusinessReputation = o.addBusinessReputation;
-	o.addBusinessReputation = function ( _f )
-	{
+	o.addBusinessReputation = function (_f) {
 		if (_f < 0) {
-			if (this.m.BusinessReputation < 250) _f = 0;
-			else if (this.m.BusinessReputation >= 250 && this.m.BusinessReputation < 500) _f = ::Math.round(0.5 * _f);
+			if (this.m.BusinessReputation < 250) {
+				_f = 0;
+			} else if (this.m.BusinessReputation >= 250 && this.m.BusinessReputation < 500) {
+				_f = ::Math.round(0.5 * _f);
+			}
 		}
 		addBusinessReputation(_f);
 		this.m.BusinessReputationMax = ::Math.max(this.m.BusinessReputation, this.m.BusinessReputationMax);
@@ -238,12 +252,12 @@
 
 	// overwriting due to certain options
 	local setCampaignSettings = o.setCampaignSettings;
-	o.setCampaignSettings = function ( _settings )
-	{
+	o.setCampaignSettings = function (_settings) {
 		this.getStash().setResizable(true); // to make sure all starting item to be added without issue
 
-		if (!("IsExplorationMode" in _settings))
+		if (!("IsExplorationMode" in _settings)) {
 			_settings.IsExplorationMode <- false;
+		}
 
 		setCampaignSettings(_settings);
 		this.calculateStartingStashSize(_settings);
@@ -264,8 +278,7 @@
 		this.m.LastRosterSize = ::World.getPlayerRoster().getSize();
 	}
 
-	o.calculateStartingStashSize <- function( _settings )
-	{
+	o.calculateStartingStashSize <- function (_settings) {
 		local size = ::Const.LegendMod.MaxResources[_settings.EconomicDifficulty].Stash + ::World.Assets.getOrigin().getStashModifier();
 		this.getStash().setResizable(false); // turn off the infinite stash size
 		this.getStash().sort();
@@ -273,8 +286,7 @@
 		::Legends.Stash.setStartingSize(size);
 	}
 
-	o.getHealingRequired = function ()
-	{
+	o.getHealingRequired = function () {
 		local ret = {
 			MedicineMin = 0,
 			MedicineMax = 0,
@@ -286,41 +298,34 @@
 		};
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
+		foreach (bro in roster) {
 			local injuries = bro.getSkills().query(::Const.SkillType.TemporaryInjury);
 
 			local ht;
-			if (bro.getSkills().hasSkill("injury.sickness"))
-			{
+			if (bro.getSkills().hasSkill("injury.sickness")) {
 				injuries.push(bro.getSkills().getSkillByID("injury.sickness"));
 			}
 
-			foreach( inj in injuries )
-			{
+			foreach (inj in injuries) {
 				ht = inj.getHealingTime();
 				ret.MedicineMin += ht.Min * ::Const.World.Assets.MedicinePerInjuryDay;
 				ret.MedicineMax += ht.Max * ::Const.World.Assets.MedicinePerInjuryDay;
 
-				if (ht.Min > ret.DaysMin)
-				{
+				if (ht.Min > ret.DaysMin) {
 					ret.DaysMin = ht.Min;
 				}
 
-				if (ht.Max > ret.DaysMax)
-				{
+				if (ht.Max > ret.DaysMax) {
 					ret.DaysMax = ht.Max;
 				}
 			}
 
-			if (ht)
-			{
+			if (ht) {
 				ret.Injuries.push([ht.Min, ht.Max, bro.getName()]);
 			}
 
 			local rm = bro.getCurrentProperties().Modifiers.Healing * 100.0;
-			if (rm > 0)
-			{
+			if (rm > 0) {
 				ret.Modifiers.push([rm, bro.getName(), bro.getBackground().getNameOnly()]);
 			}
 			ret.Modifier += rm;
@@ -338,8 +343,7 @@
 	}
 
 	local resetToDefaults = o.resetToDefaults;
-	o.resetToDefaults = function ()
-	{
+	o.resetToDefaults = function () {
 		resetToDefaults();
 		this.m.BrothersMax = 27;
 		this.m.BrothersMaxInCombat = 27;
@@ -357,39 +361,29 @@
 			this.m.ProfessionEffect[profession.Const] <- 0;
 		}
 	}
-	o.consumeFood = function ()
-	{
+	o.consumeFood = function () {
 		local items = this.m.Stash.getItems();
 		local food = [];
 
-		foreach(bro in ::World.getPlayerRoster().getAll())
-		{
-			foreach(item in bro.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
-			{
-				if (item != null && item.isItemType(::Const.Items.ItemType.Food) && ::Time.getVirtualTimeF() >= item.getBestBeforeTime())
-				{
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			foreach (item in bro.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)) {
+				if (item != null && item.isItemType(::Const.Items.ItemType.Food) && ::Time.getVirtualTimeF() >= item.getBestBeforeTime()) {
 					item.removeSelf();
 				}
 			}
 		}
 
-		foreach( i, item in items )
-		{
-			if (item != null && item.isItemType(::Const.Items.ItemType.Food))
-			{
-				if (::Time.getVirtualTimeF() >= item.getBestBeforeTime())
-				{
+		foreach (i, item in items) {
+			if (item != null && item.isItemType(::Const.Items.ItemType.Food)) {
+				if (::Time.getVirtualTimeF() >= item.getBestBeforeTime()) {
 					items[i] = null;
-				}
-				else
-				{
+				} else {
 					food.push(item);
 				}
 			}
 		}
 
-		if (!this.m.IsUsingProvisions)
-		{
+		if (!this.m.IsUsingProvisions) {
 			this.m.LastFoodConsumed = ::Time.getVirtualTimeF();
 			return;
 		}
@@ -399,27 +393,21 @@
 		this.m.LastFoodConsumed = ::Time.getVirtualTimeF();
 		local eaten = d * this.getDailyFoodCost() * ::Const.World.TerrainFoodConsumption[::World.State.getPlayer().getTile().Type] * this.m.FoodConsumptionMult * ::Const.World.Assets.FoodConsumptionMult;
 
-		for( local i = 0; i < food.len();  )
-		{
+		for (local i = 0; i < food.len(); ) {
 			local foodLeft = food[i].getAmount() - eaten;
 
-			if (foodLeft <= 0)
-			{
+			if (foodLeft <= 0) {
 				eaten = eaten - food[i].getAmount();
 
-				foreach( j, item in items )
-				{
-					if (item == food[i])
-					{
+				foreach (j, item in items) {
+					if (item == food[i]) {
 						items[j] = null;
 						break;
 					}
 				}
 
 				food.remove(i);
-			}
-			else
-			{
+			} else {
 				food[i].setAmount(foodLeft);
 				break;
 			}
@@ -428,16 +416,14 @@
 		this.updateFood();
 	}
 
-	o.update = function ( _worldState )
-	{
-		if (this.isCamping())
+	o.update = function (_worldState) {
+		if (this.isCamping()) {
 			::World.State.m.Camp.update(_worldState);
+		}
 
-		if (::World.Flags.getAsInt("MandatoryShopRefreshDayMark") + 50 <= ::World.getTime().Days)
-		{
+		if (::World.Flags.getAsInt("MandatoryShopRefreshDayMark") + 50 <= ::World.getTime().Days) {
 			::World.Flags.set("MandatoryShopRefreshDayMark", ::World.getTime().Days);
-			foreach( t in ::World.EntityManager.getSettlements() )
-			{
+			foreach (t in ::World.EntityManager.getSettlements()) {
 				t.updateShop();
 			}
 		}
@@ -451,8 +437,8 @@
 
 			::World.Retinue.onNewDay();
 
-			foreach (item in ::World.Assets.getStash().getItems().filter(@(_,_item) (_item != null))) {
-					item.onNewDay();
+			foreach (item in ::World.Assets.getStash().getItems().filter(@(_, _item)(_item != null))) {
+				item.onNewDay();
 			}
 
 			local companyRep = ::World.Assets.getMoralReputation() / 10;
@@ -527,30 +513,24 @@
 			}
 		}
 
-		if (::World.getTime().Hours != this.m.LastHourUpdated && this.m.IsConsumingAssets)
-		{
+		if (::World.getTime().Hours != this.m.LastHourUpdated && this.m.IsConsumingAssets) {
 			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.consumeFood();
 			local roster = ::World.getPlayerRoster().getAll();
 			local campMultiplier = this.isCamping() ? this.m.CampingMult : 1.0;
 
-			foreach( bro in roster )
-			 {
-			 	local d = bro.getHitpointsMax() - bro.getHitpoints();
+			foreach (bro in roster) {
+				local d = bro.getHitpointsMax() - bro.getHitpoints();
 
-			 	if (bro.getHitpoints() < bro.getHitpointsMax() )
-			 	{
-					 if (bro.getFlags().has("undead"))
-			 		{
-			 			bro.setHitpoints(::Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + (::Const.World.Assets.HitpointsPerHour / 5) * ::Const.Difficulty.HealMult[::World.Assets.getEconomicDifficulty()] * this.m.HitpointsPerHourMult));
+				if (bro.getHitpoints() < bro.getHitpointsMax()) {
+					if (bro.getFlags().has("undead")) {
+						bro.setHitpoints(::Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + (::Const.World.Assets.HitpointsPerHour / 5) * ::Const.Difficulty.HealMult[::World.Assets.getEconomicDifficulty()] * this.m.HitpointsPerHourMult));
+					} else {
+						bro.setHitpoints(::Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + ::Const.World.Assets.HitpointsPerHour * ::Const.Difficulty.HealMult[::World.Assets.getEconomicDifficulty()] * this.m.HitpointsPerHourMult));
 					}
-					else
-					{
-			 			bro.setHitpoints(::Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + ::Const.World.Assets.HitpointsPerHour * ::Const.Difficulty.HealMult[::World.Assets.getEconomicDifficulty()] * this.m.HitpointsPerHourMult ));
-					}
-			 	}
+				}
 
-			 }
+			}
 
 			local toolEfficiency = ::Legends.S.getToolEfficiency();
 			foreach (bro in roster) {
@@ -560,10 +540,10 @@
 
 				// Camp repair is handled in `repair_building.nut`
 				if (this.isCamping()) {
-			 		break;
-			 	}
+					break;
+				}
 
-			 	local items = bro.getItems().getAllItems();
+				local items = bro.getItems().getAllItems();
 				local updateBro = false;
 
 				foreach (item in items) {
@@ -578,15 +558,15 @@
 						local toolsUsed = ::Math.round(d * this.m.ArmorPartsPerArmor * toolEfficiency * 1000.0) / 1000.0;
 						this.m.ArmorParts = ::Math.maxf(0, this.m.ArmorParts - toolsUsed);
 						updateBro = true;
-			 		}
+					}
 
-			 		if (item.getRepair() >= item.getRepairMax()) {
-			 			item.setToBeRepaired(false, 0);
-			 		}
+					if (item.getRepair() >= item.getRepairMax()) {
+						item.setToBeRepaired(false, 0);
+					}
 
-			 		if (this.m.ArmorParts == 0) {
-			 			break;
-			 		}
+					if (this.m.ArmorParts == 0) {
+						break;
+					}
 
 					// Can only repair as many items at the same time as there are bros in the roster
 					if (updateBro) {
@@ -597,72 +577,61 @@
 				if (updateBro) {
 					bro.getSkills().update();
 				}
-			 }
+			}
 
-			 local items = this.m.Stash.getItems();
-			 local stashmaxrepairpotential = ::Math.ceil(roster.len() * ::Const.Difficulty.RepairMult[::World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult * ::Const.World.Assets.ArmorPerHour); //otherwise fixed version will be too good
-			 if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0)
+			local items = this.m.Stash.getItems();
+			local stashmaxrepairpotential = ::Math.ceil(roster.len() * ::Const.Difficulty.RepairMult[::World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult * ::Const.World.Assets.ArmorPerHour); //otherwise fixed version will be too good
+			if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0) {
 				stashmaxrepairpotential *= (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut); // should be taken into account (blacksmith influence)
-			 foreach( item in items )
-			 {
+			}
+			foreach (item in items) {
 				if (this.isCamping()) //disable in camp, otherwise mess
 				{
 					break;
 				}
-			 	if (this.m.ArmorParts == 0)
-			 	{
-			 		break;
-			 	}
-				if (stashmaxrepairpotential <= 0)
-				{
+				if (this.m.ArmorParts == 0) {
 					break;
 				}
-			 	if (item == null)
-			 	{
-			 		continue;
-			 	}
+				if (stashmaxrepairpotential <= 0) {
+					break;
+				}
+				if (item == null) {
+					continue;
+				}
 
-			 	if (item.isToBeRepaired())
-			 	{
-			 		if (item.getRepair() < item.getRepairMax())
-			 		{
+				if (item.isToBeRepaired()) {
+					if (item.getRepair() < item.getRepairMax()) {
 						local d = ::Math.ceil(::Math.minf(stashmaxrepairpotential, item.getRepairMax() - item.getRepair()));
 						item.onRepair(item.getRepair() + d);
 						// Round to 3 decimal places for better determinism
 						local toolsUsed = ::Math.round(d * this.m.ArmorPartsPerArmor * toolEfficiency * 1000.0) / 1000.0;
 						this.m.ArmorParts = ::Math.maxf(0, this.m.ArmorParts - toolsUsed);
 						stashmaxrepairpotential = stashmaxrepairpotential - d;
-			 		}
+					}
 
-			 		if (item.getRepair() >= item.getRepairMax())
-			 		{
-			 			item.setToBeRepaired(false, 0);
-			 		}
-			 	}
-			 }
+					if (item.getRepair() >= item.getRepairMax()) {
+						item.setToBeRepaired(false, 0);
+					}
+				}
+			}
 
-			if (::World.getTime().Hours % 4 == 0)
-			{
+			if (::World.getTime().Hours % 4 == 0) {
 				this.checkDesertion();
 				local towns = ::World.EntityManager.getSettlements();
 				local playerTile = ::World.State.getPlayer().getTile();
 				local town;
 
-				foreach( t in towns )
-				{
-					if (t.getSize() >= 2 && !t.isMilitary() && t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer())
-					{
+				foreach (t in towns) {
+					if (t.getSize() >= 2 && !t.isMilitary() && t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer()) {
 						town = t;
 						break;
 					}
 				}
 
-				foreach( bro in roster )
-				{
+				foreach (bro in roster) {
 					bro.recoverMood();
 
-					if (town != null && bro.getMoodState() <= ::Const.MoodState.Neutral)
-					{
+					if (town != null && bro.getMoodState() <= ::Const.MoodState.Neutral) {
 						bro.improveMood(::Const.MoodChange.NearCity, "Has enjoyed the visit to " + town.getName());
 					}
 				}
@@ -671,12 +640,10 @@
 			_worldState.updateTopbarAssets();
 		}
 
-		if (::World.getTime().Days > this.m.LastDayResourcesUpdated + 7)
-		{
+		if (::World.getTime().Days > this.m.LastDayResourcesUpdated + 7) {
 			this.m.LastDayResourcesUpdated = ::World.getTime().Days;
-			::Legends.Mod.Debug.printLog(format("Day %s: adding resources to each settlement",::World.getTime().Days.tostring()), ::Const.LegendMod.Debug.Flags.WorldEconomy);
-			foreach( t in ::World.EntityManager.getSettlements() )
-			{
+			::Legends.Mod.Debug.printLog(format("Day %s: adding resources to each settlement", ::World.getTime().Days.tostring()), ::Const.LegendMod.Debug.Flags.WorldEconomy);
+			foreach (t in ::World.EntityManager.getSettlements()) {
 				t.addNewResources();
 			}
 		}
@@ -687,31 +654,24 @@
 			"contract.escort_envoy"
 		];
 		local activeContract = ::World.Contracts.getActiveContract();
-		if (activeContract && ::World.FactionManager.getFaction(activeContract.getFaction()).m.Type == ::Const.FactionType.NobleHouse && excluded_contracts.find(activeContract.m.Type) == null &&
-		(activeContract.getActiveState().ID == "Return" || (activeContract.m.Type == "contract.big_game_hunt" && activeContract.getActiveState().Flags.get("HeadsCollected") != 0)))
-		{
+		if (activeContract && ::World.FactionManager.getFaction(activeContract.getFaction()).m.Type == ::Const.FactionType.NobleHouse && excluded_contracts.find(activeContract.m.Type) == null && (activeContract.getActiveState().ID == "Return" || (activeContract.m.Type == "contract.big_game_hunt" && activeContract.getActiveState().Flags.get("HeadsCollected") != 0))) {
 			local contract_faction = ::World.FactionManager.getFaction(activeContract.getFaction());
 			local towns = contract_faction.getSettlements();
-			if (!activeContract.m.Flags.get("UpdatedBulletpoints"))
-			{
+			if (!activeContract.m.Flags.get("UpdatedBulletpoints")) {
 				activeContract.m.BulletpointsObjectives.pop();
-				if (activeContract.m.Type == "contract.big_game_hunt"){
+				if (activeContract.m.Type == "contract.big_game_hunt") {
 					activeContract.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName() + " to get paid");
-				}
-				else{
+				} else {
 					activeContract.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName());
 				}
 				activeContract.m.Flags.set("UpdatedBulletpoints", true);
-				foreach (town in towns)
-				{
+				foreach (town in towns) {
 					town.getSprite("selection").Visible = true;
 				}
 				::World.State.getWorldScreen().updateContract(activeContract);
 			}
-			foreach (town in towns)
-			{
-				if (activeContract.isPlayerAt(town))
-				{
+			foreach (town in towns) {
+				if (activeContract.isPlayerAt(town)) {
 					activeContract.m.Home = this.WeakTableRef(town);
 					break;
 				}
@@ -719,16 +679,13 @@
 		}
 	}
 
-	o.getFormation = function ()
-	{
+	o.getFormation = function () {
 		local maxSlot = 27, ret = [];
 		ret.resize(maxSlot, null);
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( b in roster )
-		{
-			if (b.getPlaceInFormation() >= maxSlot)
-			{
+		foreach (b in roster) {
+			if (b.getPlaceInFormation() >= maxSlot) {
 				this.logError("Bro has invalid place in formation! :: " + b.m.Name);
 				continue;
 			}
@@ -739,13 +696,14 @@
 		return ret;
 	}
 
-	o.changeFormation <- function ( _index )
-	{
-		if (_index == this.m.FormationIndex)
+	o.changeFormation <- function (_index) {
+		if (_index == this.m.FormationIndex) {
 			return;
+		}
 
-		if (_index == null)
+		if (_index == null) {
 			_index = 0;
+		}
 
 		local lastIndex = this.m.FormationIndex;
 		this.m.FormationIndex = _index;
@@ -756,16 +714,14 @@
 		//::World.Assets.getStash().setResizable(true);
 		//Save current loadout and strip all gear into stash if moving into a saved formation
 		local toTransfer = [];
-		foreach (b in roster)
-		{
+		foreach (b in roster) {
 			b.saveFormation();
 			b.getItems().transferToList(toTransfer);
 		}
 
 		local stash = ::World.Assets.getStash();
 		stash.setResizable(true);
-		foreach (item in toTransfer)
-		{
+		foreach (item in toTransfer) {
 			stash.add(item);
 		}
 
@@ -773,33 +729,27 @@
 		//stash.sort()
 
 		//Check if the next Formation has been set, if not, use the previous formation
-		if (this.getFormationName() == "NULL")
-		{
+		if (this.getFormationName() == "NULL") {
 			this.setFormationName(_index, "Formation " + (_index + 1));
-			foreach (b in roster)
-			{
+			foreach (b in roster) {
 				b.copyFormation(lastIndex, _index);
 			}
 		}
 
 		//All gear now in stash, set new formation and build up the next loadout
 		local toTransfer = [];
-		foreach (b in roster)
-		{
+		foreach (b in roster) {
 			local transfers = b.setFormation(_index, stash);
 			toTransfer.push([b, transfers]);
 		}
 
-		foreach (t in toTransfer)
-		{
+		foreach (t in toTransfer) {
 			local bro = t[0];
-			foreach( e in t[1][0])
-			{
+			foreach (e in t[1][0]) {
 				bro.equipItem(e);
 			}
 
-			foreach (b in t[1][1])
-			{
+			foreach (b in t[1][1]) {
 				bro.bagItem(b);
 			}
 		}
@@ -817,8 +767,7 @@
 		local inCombat = 0;
 
 		foreach (b in roster) {
-			if (b.getPlaceInFormation() != NOT_IN_FORMATION	&& formation[b.getPlaceInFormation()] == false	&& (!considerMaxBros || inCombat < this.m.BrothersMaxInCombat))
-			{
+			if (b.getPlaceInFormation() != NOT_IN_FORMATION && formation[b.getPlaceInFormation()] == false && (!considerMaxBros || inCombat < this.m.BrothersMaxInCombat)) {
 				formation[b.getPlaceInFormation()] = true;
 				inCombat = ++inCombat;
 			} else {
@@ -848,13 +797,11 @@
 		}
 	}
 
-	o.clearFormation <- function ()
-	{
+	o.clearFormation <- function () {
 		local roster = ::World.getPlayerRoster().getAll();
 
 		local toTransfer = [];
-		foreach (b in roster)
-		{
+		foreach (b in roster) {
 			b.getItems().transferToList(toTransfer);
 			b.saveFormation();
 		}
@@ -863,8 +810,7 @@
 		//Temporarily set Stash to be resizeable -- this is to prevent fully loaded bros stripping gear into a
 		//full stash and losing the gear
 		stash.setResizable(true);
-		foreach (item in toTransfer)
-		{
+		foreach (item in toTransfer) {
 			stash.add(item);
 		}
 		stash.setResizable(false);
@@ -872,26 +818,22 @@
 		this.updateFormation();
 	}
 
-	o.setFormationName <- function (_index, _name)
-	{
-		if (_name != "")
+	o.setFormationName <- function (_index, _name) {
+		if (_name != "") {
 			this.m.FormationNames[_index] = _name;
+		}
 	}
 
-	o.changeFormationName <- function ( _name )
-	{
+	o.changeFormationName <- function (_name) {
 		this.setFormationName(this.m.FormationIndex, _name);
 	}
 
-	o.saveEquipment = function ()
-	{
+	o.saveEquipment = function () {
 		this.m.RestoreEquipment = [];
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			if (bro.getPlaceInFormation() > 27)
-			{
+		foreach (bro in roster) {
+			if (bro.getPlaceInFormation() > 27) {
 				continue;
 			}
 
@@ -900,12 +842,10 @@
 				Slots = []
 			};
 
-			for( local i = ::Const.ItemSlot.Mainhand; i <= ::Const.ItemSlot.Ammo; i = ++i )
-			{
+			for (local i = ::Const.ItemSlot.Mainhand; i <= ::Const.ItemSlot.Ammo; i = ++i) {
 				local item = bro.getItems().getItemAtSlot(i);
 
-				if (item != null && item != "-1")
-				{
+				if (item != null && item != "-1") {
 					store.Slots.push({
 						Item = item,
 						Slot = i
@@ -913,12 +853,10 @@
 				}
 			}
 
-			for( local i = 0; i < bro.getItems().getUnlockedBagSlots(); i = ++i )
-			{
+			for (local i = 0; i < bro.getItems().getUnlockedBagSlots(); i = ++i) {
 				local item = bro.getItems().getItemAtBagSlot(i);
 
-				if (item != null && item != "-1")
-				{
+				if (item != null && item != "-1") {
 					store.Slots.push({
 						Item = item,
 						Slot = ::Const.ItemSlot.Bag
@@ -930,15 +868,12 @@
 		}
 	}
 
-	o.restoreEquipment = function ()
-	{
-		::World.State.m.AppropriateTimeToRecalc = 0;	//Leonion's fix
-		foreach( s in this.m.RestoreEquipment )
-		{
+	o.restoreEquipment = function () {
+		::World.State.m.AppropriateTimeToRecalc = 0; //Leonion's fix
+		foreach (s in this.m.RestoreEquipment) {
 			local bro = ::Tactical.getEntityByID(s.ID);
 
-			if (bro == null || !bro.isAlive())
-			{
+			if (bro == null || !bro.isAlive()) {
 				continue;
 			}
 
@@ -946,12 +881,10 @@
 			local itemsHandled = [];
 			local overflowItems = [];
 
-			for( local i = ::Const.ItemSlot.Mainhand; i <= ::Const.ItemSlot.Ammo; i = ++i )
-			{
+			for (local i = ::Const.ItemSlot.Mainhand; i <= ::Const.ItemSlot.Ammo; i = ++i) {
 				local item = bro.getItems().getItemAtSlot(i);
 
-				if (item != null && item != "-1")
-				{
+				if (item != null && item != "-1") {
 					currentItems.push({
 						Item = item,
 						Slot = i
@@ -960,12 +893,10 @@
 				}
 			}
 
-			for( local i = 0; i < bro.getItems().getUnlockedBagSlots(); i = ++i )
-			{
+			for (local i = 0; i < bro.getItems().getUnlockedBagSlots(); i = ++i) {
 				local item = bro.getItems().getItemAtBagSlot(i);
 
-				if (item != null && item != "-1")
-				{
+				if (item != null && item != "-1") {
 					currentItems.push({
 						Item = item,
 						Slot = ::Const.ItemSlot.Bag
@@ -974,37 +905,28 @@
 				}
 			}
 
-			foreach( item in s.Slots )
-			{
+			foreach (item in s.Slots) {
 				local itemExists = false;
 
-				foreach( current in currentItems )
-				{
-					if (current.Item.getInstanceID() == item.Item.getInstanceID())
-					{
+				foreach (current in currentItems) {
+					if (current.Item.getInstanceID() == item.Item.getInstanceID()) {
 						itemExists = true;
 						break;
 					}
 				}
 
-				if (!itemExists)
-				{
+				if (!itemExists) {
 					continue;
 				}
 
-				if (item.Slot == ::Const.ItemSlot.Bag)
-				{
-					if (!bro.getItems().addToBag(item.Item))
-					{
+				if (item.Slot == ::Const.ItemSlot.Bag) {
+					if (!bro.getItems().addToBag(item.Item)) {
 						overflowItems.push(item.Item);
 					}
 
 					itemsHandled.push(item.Item.getInstanceID());
-				}
-				else
-				{
-					if (!bro.getItems().equip(item.Item))
-					{
+				} else {
+					if (!bro.getItems().equip(item.Item)) {
 						overflowItems.push(item.Item);
 					}
 
@@ -1012,66 +934,50 @@
 				}
 			}
 
-			foreach( item in currentItems )
-			{
-				if (itemsHandled.find(item.Item.getInstanceID()) != null)
-				{
+			foreach (item in currentItems) {
+				if (itemsHandled.find(item.Item.getInstanceID()) != null) {
 					continue;
 				}
 
-				if (item.Item.getCurrentSlotType() == ::Const.ItemSlot.Bag)
-				{
-					if (!bro.getItems().addToBag(item.Item))
-					{
+				if (item.Item.getCurrentSlotType() == ::Const.ItemSlot.Bag) {
+					if (!bro.getItems().addToBag(item.Item)) {
 						overflowItems.push(item.Item);
 					}
-				}
-				else if (!bro.getItems().equip(item.Item))
-				{
+				} else if (!bro.getItems().equip(item.Item)) {
 					overflowItems.push(item.Item);
 				}
 			}
 
-			foreach( item in overflowItems )
-			{
-				if (itemsHandled.find(item.getInstanceID()) != null)
-				{
+			foreach (item in overflowItems) {
+				if (itemsHandled.find(item.getInstanceID()) != null) {
 					continue;
 				}
 
-				if (this.m.Stash.add(item) == null)
-				{
+				if (this.m.Stash.add(item) == null) {
 					bro.getItems().addToBag(item);
 				}
 			}
 		}
 
 		this.m.RestoreEquipment = [];
-		::World.State.m.AppropriateTimeToRecalc = 1;	//Leonion's fix
-		::World.State.getPlayer().calculateModifiers();	//Leonion's fix
+		::World.State.m.AppropriateTimeToRecalc = 1; //Leonion's fix
+		::World.State.getPlayer().calculateModifiers(); //Leonion's fix
 	}
 
-
-	o.addBrotherEnding = function ( _brothers, _excludedBackgrounds, _isPositive )
-	{
+	o.addBrotherEnding = function (_brothers, _excludedBackgrounds, _isPositive) {
 		local candidates = [];
 
-		foreach( i, bro in _brothers )
-		{
-			if (_excludedBackgrounds.find(bro.getBackground().getID()) != null)
-			{
+		foreach (i, bro in _brothers) {
+			if (_excludedBackgrounds.find(bro.getBackground().getID()) != null) {
 				continue;
 			}
 
-			if (_isPositive && bro.getBackground().getGoodEnding() != null)
-			{
+			if (_isPositive && bro.getBackground().getGoodEnding() != null) {
 				candidates.push({
 					Index = i,
 					Bro = bro
 				});
-			}
-			else if (!_isPositive && bro.getBackground().getBadEnding() != null)
-			{
+			} else if (!_isPositive && bro.getBackground().getBadEnding() != null) {
 				candidates.push({
 					Index = i,
 					Bro = bro
@@ -1079,8 +985,7 @@
 			}
 		}
 
-		if (candidates.len() == 0)
-		{
+		if (candidates.len() == 0) {
 			return "";
 		}
 
@@ -1126,12 +1031,9 @@
 
 		::Const.LegendMod.extendVarsWithPronouns(vars, bro.Bro);
 
-		if (_isPositive)
-		{
+		if (_isPositive) {
 			return "\n\n" + this.buildTextFromTemplate(bro.Bro.getBackground().getGoodEnding(), vars);
-		}
-		else
-		{
+		} else {
 			return "\n\n" + this.buildTextFromTemplate(bro.Bro.getBackground().getBadEnding(), vars);
 		}
 	}
@@ -1149,8 +1051,8 @@
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			local terrains = bro.getCurrentProperties().Modifiers.Terrain;
 			for (local i = 0; i < ::Const.CharacterProperties.TerrainTypeTooltipIDs.len(); i++) {
-            	ret.TerrainModifiers[i][1] += terrains[::Const.CharacterProperties.TerrainTypes[::Const.CharacterProperties.TerrainTypeTooltipIDs[i]]];
-        	}
+				ret.TerrainModifiers[i][1] += terrains[::Const.CharacterProperties.TerrainTypes[::Const.CharacterProperties.TerrainTypeTooltipIDs[i]]];
+			}
 
 			ret.Brothers.push({
 				Name = bro.getName(),
@@ -1170,8 +1072,8 @@
 		}
 
 		foreach (terrain in ret.TerrainModifiers) {
-            terrain[1] *= (1 + ::World.Assets.m.ProfessionEffect.LegendWheelMaintenance) * 100.0;
-        }
+			terrain[1] *= (1 + ::World.Assets.m.ProfessionEffect.LegendWheelMaintenance) * 100.0;
+		}
 
 		ret.Brothers.sort(@(a, b) b.Level - a.Level);
 		return ret;
@@ -1190,33 +1092,29 @@
 	}
 
 	local init = o.init;
-	o.init = function()
-	{
+	o.init = function () {
 		init();
 
-		if ("World" in this.getroottable() && "State" in ::World)
+		if ("World" in this.getroottable() && "State" in ::World) {
 			::World.State.m.Camp.init(); //
+		}
 	}
 
 	local onSerialize = o.onSerialize;
-	o.onSerialize = function ( _out )
-	{
+	o.onSerialize = function (_out) {
 		onSerialize(_out);
 		_out.writeU8(this.m.FormationIndex);
-		foreach( name in this.m.FormationNames)
-		{
+		foreach (name in this.m.FormationNames) {
 			_out.writeString(name);
 		}
 		_out.writeU16(this.m.LastDayResourcesUpdated);
 	}
 
 	local onDeserialize = o.onDeserialize;
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function (_in) {
 		onDeserialize(_in);
 		this.m.FormationIndex = _in.readU8();
-		for (local i = 0; i < ::Const.LegendMod.Formations.Count; i++)
-		{
+		for (local i = 0; i < ::Const.LegendMod.Formations.Count; i++) {
 			this.setFormationName(i, _in.readString());
 		}
 		this.m.LastDayResourcesUpdated = _in.readU16();

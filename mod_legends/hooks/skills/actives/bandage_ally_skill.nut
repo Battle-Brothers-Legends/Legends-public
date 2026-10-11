@@ -2,7 +2,8 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "Save yourself or another character from bleeding to death by applying pressure and provisional bandaging to any such wound. Does not heal hitpoints. Neither the character using this skill nor the patient may be engaged in melee, unless the character using this skill has Bandage Mastery.";
+		this.m.IsStacking = false;
+		this.m.Description = "Save yourself or another character from bleeding to death by applying pressure and provisional bandaging to any such wound. Heals up to 10 hitpoints damage received during this combat. Neither the character using this skill nor the patient may be engaged in melee.";
 	}
 
 	o.getTooltip = function () {
@@ -26,6 +27,12 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
+				text = "Heals up to 10 hitpoints received during this combat"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
 				text = "Removes the Bleeding and Grazed status effect"
 			},
 			{
@@ -36,7 +43,7 @@
 			}
 		];
 
-		if (!::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendSpecBandage) && ::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			tooltip.push({
 				id = 5,
 				type = "text",
@@ -48,21 +55,36 @@
 		return tooltip;
 	}
 
+	o.isHidden <- function () {
+		return this.getCurrentItem().m.Ammo <= 0;
+	}
+
+	o.getCurrentItem <- function () {
+		// search for more bandages if the one under this.m.Item is empty
+		if (this.m.Item.m.Ammo <= 0) {
+			local self = this;
+			local filledBandages = this.getContainer().getActor().getItems().getAllItems().filter(@(_, _item)(_item.getID() == self.m.Item.getID() && _item.m.Ammo > 0));
+			foreach (item in filledBandages) {
+				this.setItem(item);
+				return item;
+			}
+		}
+
+		return this.m.Item;
+	}
+
 	o.isUsable = function () {
 		if (!::Tactical.isActive()) {
 			return false;
 		}
 
 		local actor = this.getContainer().getActor();
-		if (::Legends.S.isEntityNullOrDead(actor)) {
-			return false;
-		}
-		if (actor.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey)) {
+		if (::Legends.S.isEntityNullOrDead(actor) && ::Legends.Backgrounds.has(actor, ::Legends.Background.LegendDonkey)) {
 			return false;
 		}
 
 		local tile = actor.getTile();
-		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.getContainer().hasPerk(::Legends.Perk.LegendSpecBandage));
+		return this.skill.isUsable() && !tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) && this.getCurrentItem().m.Ammo > 0;
 	}
 
 	o.onVerifyTarget = function (_originTile, _targetTile) {
@@ -70,13 +92,10 @@
 			return false;
 		}
 
+		local actor = this.getContainer().getActor();
 		local target = _targetTile.getEntity();
 
-		if (!this.m.Container.getActor().isAlliedWith(target)) {
-			return false;
-		}
-
-		if (_targetTile.hasZoneOfControlOtherThan(this.m.Container.getActor().getAlliedFactions()) && !this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage)) {
+		if (!actor.isAlliedWith(target) || _targetTile.hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
 			return false;
 		}
 
@@ -84,8 +103,7 @@
 			return true;
 		}
 
-		local skill;
-		skill = target.getSkills().getSkillByID("injury.cut_artery");
+		local skill = target.getSkills().getSkillByID("injury.cut_artery");
 
 		if (skill != null && skill.isFresh()) {
 			return true;
@@ -100,6 +118,10 @@
 		skill = target.getSkills().getSkillByID("injury.grazed_neck");
 
 		if (skill != null && skill.isFresh()) {
+			return true;
+		}
+
+		if (::isKindOf(target, "player") && target.getHitpoints() < target.getCombatStartHP()) {
 			return true;
 		}
 
@@ -118,8 +140,7 @@
 			::Legends.Effects.remove(target, ::Legends.Effect.LegendGrazed);
 		}
 
-		local skill;
-		skill = target.getSkills().getSkillByID("injury.cut_artery");
+		local skill = target.getSkills().getSkillByID("injury.cut_artery");
 
 		if (skill != null && skill.isFresh()) {
 			target.getSkills().remove(skill);
@@ -137,9 +158,11 @@
 			target.getSkills().remove(skill);
 		}
 
-		if (this.m.Item != null && !this.m.Item.isNull()) {
-			this.m.Item.removeSelf();
+		if (::isKindOf(target, "player") && target.getHitpoints() < target.getCombatStartHP()) {
+			target.setHitpoints(::Math.min(target.getCombatStartHP(), target.getHitpoints() + 10));
 		}
+
+		this.getCurrentItem().consumeAmmo();
 
 		this.updateAchievement("FirstAid", 1, 1);
 		return true;

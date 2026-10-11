@@ -59,7 +59,7 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Requires " + (::World.Statistics.getFlags().get("LegendsCanRepairNet") ? 10 : 15) + " ammunition to replenish after battle"
+			text = "Requires " + (::World.Statistics.getFlags().get("LegendsCanRepairNet") ? 10 : 15) + " Ammo to repair after battle"
 		});
 		return result;
 	}

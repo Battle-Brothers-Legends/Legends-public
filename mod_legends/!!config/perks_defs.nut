@@ -687,19 +687,6 @@ local perkDefObjects = {
 		Icon = "ui/perks/miasma_circle.png",
 		IconDisabled = "ui/perks/miasma_circle_bw.png",
 	},
-	// removed soon
-	LegendSpecBandage = {
-		ID = "perk.legend_mastery_bandage",
-		Script = "scripts/skills/perks/perk_legend_mastery_bandage",
-		Name = "Bandage Mastery",
-		Icon = "ui/perks/bandage_circle.png",
-		IconDisabled = "ui/perks/bandage_circle_bw.png",
-	},
-	// removed soon
-	LegendFieldTriage = {
-		Icon = "ui/perks/MaxMedsT2.png",
-		IconDisabled = "ui/perks/MaxMedsT2_bw.png"
-	},
 	// to be added
 	LegendIronside = {},
 	// unused other than donkeys, to be deleted but might be harvested for the effect before?

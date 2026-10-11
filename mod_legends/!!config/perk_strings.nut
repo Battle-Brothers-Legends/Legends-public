@@ -614,17 +614,6 @@ A well placed feint can leave your enemy Vulnerable!
 • After missing an attack you leave your opponent [color=%status%]Parried[/color], lowering their defenses by [color=%negative%]10[/color].
 ";
 
-::Const.Strings.PerkDescription.LegendFieldTriage <- @"
-Spend medicine to heal a unit on the battlefield.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Field Triage[/color] skill which heals any adjacent ally by up to [color=%positive%]20[/color] Hitpoints.
-
-• Uses [color=%negative%]1[/color] medicine per [color=%positive%]2[/color] Hitpoints healed.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]16[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendFirefield <- @"
 Unleash a raging inferno at the target location that explodes and then sets the ground alight.
 
@@ -1531,17 +1520,6 @@ Endless training in holding the line in a spear wall has made it a second nature
 • [color=%skill%]Spearwall[/color] AP cost is reduced by [color=%negative%]1[/color].
 
 • [color=%skill%]Spearwall[/color] does [color=%positive%]+25%[/color] damage.
-";
-
-::Const.Strings.PerkDescription.LegendSpecBandage <- @"
-Master the art of bandaging mid battle using any cloth available.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Unlocks the [color=%skill%]Bandage[/color] skill which allows you to bandage allies without a bandage.
-
-• Can bandage while in a zone of control.
-
-• Costs [color=%negative%]6[/color] AP and [color=%negative%]5[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistBlacksmith <- @"

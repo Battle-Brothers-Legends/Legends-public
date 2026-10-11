@@ -79,12 +79,19 @@
 			icon = "ui/icons/special.png",
 			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well"
 		}]);
-		if (::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0)	{
+		if (::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0) {
 			result.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = "Cannot be refilled after battle, because the company has no one specializing in Alchemy"
+			});
+		} else {
+			result.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/ammo.png",
+				text = "Costs [color=%negative%]" + this.m.AmmoCost + "[/color] Ammo to refill"
 			});
 		}
 		return result;

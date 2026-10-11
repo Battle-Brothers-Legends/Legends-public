@@ -57,24 +57,6 @@ if (!("Perks" in ::Const))
 	]
 };
 
-::Const.Perks.HealerClassTree <- {
-	ID = "HealerClassTree",
-	Name = "Healing",
-	Icon = "ui/perks/bandage_circle.png",
-	Descriptions = [
-		"healing"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendSpecBandage],
-		[],
-		[],
-		[::Legends.Perk.LegendFieldTriage]
-	]
-};
-
 ::Const.Perks.FaithClassTree <- {
 	ID = "FaithClassTree",
 	Name = "Faith",
