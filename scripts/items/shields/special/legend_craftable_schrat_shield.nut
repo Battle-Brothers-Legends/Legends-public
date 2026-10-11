@@ -34,6 +34,7 @@ this.legend_craftable_schrat_shield <- this.inherit("scripts/items/shields/named
 		this.m.Block = 13;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
+		this.m.FatigueOnSkillUse = 0;
 	}
 
 	function updateVariant()

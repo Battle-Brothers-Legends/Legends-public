@@ -34,6 +34,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 		this.m.Block = 13;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
+		this.m.FatigueOnSkillUse = 0;
 	}
 
 	function updateVariant()
