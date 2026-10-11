@@ -2,7 +2,8 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		DazeChance = 25,
 		HasLeg = false,
-		FatigueDamage = 5
+		FatigueDamage = 5,
+		SkillsUsed = 0
 	},
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendKick);
@@ -106,6 +107,8 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		if (!success)
 			return success;
 
+		this.m.SkillsUsed = 0;
+
 		this.applyFatigueDamage(target, this.m.FatigueDamage);
 
 		// Remove enemy stances
@@ -125,6 +128,10 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.DazeChance = _properties.IsSpecializedInFists ? 50 : 25;
 		this.m.FatigueDamage = _properties.IsSpecializedInFists ? 10 : 5;
+		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
+			local cost = this.m.ActionPointCost - this.m.SkillsUsed;
+			this.m.ActionPointCost = ::Math.max(cost, 0);
+		}
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
@@ -143,6 +150,24 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
+	}
+
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (_skill != this) {
+			this.m.SkillsUsed += 1;
+		}
+	}
+
+	function onTurnStart() {
+		this.m.SkillsUsed = 0;
+	}
+
+	function onCombatStarted() {
+		this.m.SkillsUsed = 0;
+	}
+
+	function onCombatFinished() {
+		this.m.SkillsUsed = 0;
 	}
 
 });

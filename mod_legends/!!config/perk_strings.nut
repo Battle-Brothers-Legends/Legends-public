@@ -1320,7 +1320,9 @@ A natural talent, realized.
 The first rule of...
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increase [color=%skill%]Hand to Hand[/color] damage by [color=%positive%]25%[/color]. [color=%skill%]Kick[/color] can now be used without a free hand and will do [color=%positive%]10-15[/color] Damage.
+• Increase [color=%skill%]Hand to Hand[/color] damage by [color=%positive%]25%[/color].
+
+• [color=%skill%]Kick[/color] can now be used without a free hand and will do [color=%positive%]10-15[/color] Damage. Additionally each successful attack decreases it's Action Point cost by [color=%negative%]1[/color] until the end of your turn.
 ";
 
 ::Const.Strings.PerkDescription.LegendPummelIntoSubmission <- @"

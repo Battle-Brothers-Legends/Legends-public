@@ -154,6 +154,7 @@
 - `Hammer the Gap` - Grants a stacking +5% to hit as long as you attack the same tile. The bonus is capped at 10%.
 
 ### Perk Changes
+- `Pugilist` - additionally each successful attack reduces the ap cost of `Kick` by 1 until the end of your turn. 
 - `Reach Advantage` - stacks will now decay by 2 at the start of your turn instead of losing all of them
 - `Promised Potential` - the bonus per star in attribute is now 3
 - `Bloody Harvest` - the bonus is now additive multiplier
@@ -436,6 +437,9 @@
 ## Enemies
 ### Dynamic Troops Day To Skip
 - `Dynamic Troops Day To Skip` in the start campaign settings has now been disabled, enemies of varying difficulty will naturally appear as your company becomes stronger
+
+### Orcs
+- `Orc Elite` - now have `Charge`
 
 ### Goblins
 - `Goblin Berserkers` are now called `Goblin Fiends` and have new art from Ivan
