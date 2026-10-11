@@ -1,6 +1,5 @@
-::mods_hookBaseClass("skills/skill", function ( o )
-{
-	while(!("m" in o && "ID" in o.m)) o=o[o.SuperName];
+::mods_hookBaseClass("skills/skill", function (o) {
+	while (!("m" in o && "ID" in o.m)) o = o[o.SuperName];
 
 	o.m.IsForPerkTooltip <- false; // Indicate whether the Perk is a dummy that is being used only to generate unactivated perk tooltip hints
 	o.m.IsForProfessionTooltip <- false;
@@ -10,11 +9,10 @@
 	o.m.IsExecutingOffhand <- false;
 	o.m.BlockBypass <- 0.0; // you add it forward - ie 25% is means block on target is 75%
 
-	o.onShieldHitSkills <- function ( _skill, _attacker, _shield ) {
-	}
+	o.onShieldHitSkills <- function (_skill, _attacker, _shield) {}
 
 	local onShieldHit = o.onShieldHit;
-	o.onShieldHit = function ( _info ) {
+	o.onShieldHit = function (_info) {
 		onShieldHit(_info);
 		_info.TargetEntity.m.Skills.onShieldHitSkills(this, _info.TargetEntity, _info.Shield);
 	}
@@ -44,25 +42,24 @@
 	}
 
 	local getActionPointCost = o.getActionPointCost;
-	o.getActionPointCost = function()
-	{
-		if (this.m.ActionPointCost == 0)
+	o.getActionPointCost = function () {
+		if (this.m.ActionPointCost == 0) {
 			return 0;
+		}
 		return ::Math.floor(getActionPointCost());
 	}
 
 	// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
-	o.getUnactivatedPerkTooltipHints <- function(_actor = null) {
+	o.getUnactivatedPerkTooltipHints <- function (_actor = null) {
 		return [];
 	}
 
-	o.getUnactivatedProfessionTooltipHints <- function() {
+	o.getUnactivatedProfessionTooltipHints <- function () {
 		return [];
 	}
 
 	local getDefaultUtilityTooltip = o.getDefaultUtilityTooltip;
-	o.getDefaultUtilityTooltip = function ()
-	{
+	o.getDefaultUtilityTooltip = function () {
 		local ret = getDefaultUtilityTooltip();
 		if (!this.m.IsAttack && this.m.IsTargetingActor) {
 			ret.push({
@@ -91,23 +88,25 @@
 		return ret;
 	}
 
-	o.getDefaultTooltip = function() {
+	o.getDefaultTooltip = function () {
 		local p = this.factoringOffhand(this.m.Container.buildPropertiesForUse(this, null));
-		local ret = [{
-			id = 1,
-			type = "title",
-			text = this.getName()
-		},
-		{
-			id = 2,
-			type = "description",
-			text = this.getDescription()
-		},
-		{
-			id = 3,
-			type = "text",
-			text = this.getCostString()
-		}];
+		local ret = [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			},
+			{
+				id = 3,
+				type = "text",
+				text = this.getCostString()
+			}
+		];
 		local damage_regular_min = ::Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * (this.m.IsRanged ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMinMult);
 		local damage_regular_max = ::Math.floor(p.DamageRegularMax * p.DamageRegularMult * p.DamageTotalMult * (this.m.IsRanged ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMaxMult);
 		local damage_direct_min = ::Math.floor(damage_regular_min * ::Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + (this.m.IsRanged ? p.DamageDirectRangedAdd : p.DamageDirectMeleeAdd))));
@@ -132,8 +131,7 @@
 				text = "Inflicts [color=%damage%]%direct_min%[/color] - [color=%damage%]%direct_max%[/color] damage that ignores armor",
 				param = damageParams
 			});
-		}
-		else if (this.m.DirectDamageMult > 0.0) {
+		} else if (this.m.DirectDamageMult > 0.0) {
 			ret.push({
 				id = 4,
 				type = "text",
@@ -141,8 +139,7 @@
 				text = "Inflicts [color=%damage%]%regular_min%[/color] - [color=%damage%]%regular_max%[/color] damage to hitpoints, of which [color=%damage%]0[/color] - [color=%damage%]%direct_max%[/color] can ignore armor",
 				param = damageParams
 			});
-		}
-		else {
+		} else {
 			ret.push({
 				id = 4,
 				type = "text",
@@ -165,40 +162,41 @@
 		if (this.m.MaxRange > 1 && this.m.IsRanged) {
 			local rangeBonus = ", more";
 			if (this.m.MaxRangeBonus == 0) {
-				rangeBonus = " or"
-			}
-			else if (this.m.MaxRangeBonus < 0) {
-				rangeBonus = ", less"
+				rangeBonus = " or";
+			} else if (this.m.MaxRangeBonus < 0) {
+				rangeBonus = ", less";
 			}
 			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
 				text = "Has a range of [color=%positive%]%_maxRange%[/color] tiles on even ground%_rangeBonus% if shooting downhill",
-				param = [["_maxRange", this.getMaxRange()], ["_rangeBonus", rangeBonus]]
+				param = [
+					["_maxRange", this.getMaxRange()],
+					["_rangeBonus", rangeBonus]
+				]
 			});
-		}
-		else if (this.m.MaxRange > 1) {
+		} else if (this.m.MaxRange > 1) {
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/vision.png",
 				text = "Has a range of [color=%positive]%_maxRange%[/color] tiles",
-				param = [["_maxRange", this.getMaxRange()]]
+				param = [
+					["_maxRange", this.getMaxRange()]
+				]
 			});
 		}
 
-		local adjustedHitChanceBonus = this.Math.floor(this.m.HitChanceBonus * (this.m.IsRanged ? p.RangedSkillMult : p.MeleeSkillMult));
+		local adjustedHitChanceBonus = ::Math.floor(this.m.HitChanceBonus * (this.m.IsRanged ? p.RangedSkillMult : p.MeleeSkillMult));
 		local hitChanceBonus = [
 			["_hitChanceBonus", adjustedHitChanceBonus],
 			["_additionalHitchance", p.HitChanceAdditionalWithEachTile]
-		]; 
+		];
 		if (adjustedHitChanceBonus != 0 && this.m.IsRanged) {
-			local hitChanceText = adjustedHitChanceBonus > 0 ?
-					"Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" :
-					"Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit";
+			local hitChanceText = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" : "Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit";
 			if (p.HitChanceAdditionalWithEachTile != 0) {
-				hitChanceText += ", and " + (p.HitChanceAdditionalWithEachTile > 0 ? "[color=%positive%]+" : "[color=%negative%]") + "%_additionalHitchance%[/color] per tile of distance"
+				hitChanceText += ", and " + (p.HitChanceAdditionalWithEachTile > 0 ? "[color=%positive%]+" : "[color=%negative%]") + "%_additionalHitchance%[/color] per tile of distance";
 			}
 			ret.push({
 				id = 7,
@@ -207,15 +205,12 @@
 				text = hitChanceText,
 				param = hitChanceBonus
 			});
-		}
-		else if (adjustedHitChanceBonus != 0) {
+		} else if (adjustedHitChanceBonus != 0) {
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = adjustedHitChanceBonus > 0 ?
-					"Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" :
-					"Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit",
+				text = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit": "Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit",
 				param = hitChanceBonus
 			});
 		}
@@ -230,7 +225,9 @@
 				type = "text",
 				icon = "ui/icons/injury.png",
 				text = "Has a [color=%negative%]%injury_threshold%%[/color] lower threshold to inflict injuries",
-				param = [["injury_threshold", ::Math.floor((1.0 - p.ThresholdToInflictInjuryMult) * 100)]]
+				param = [
+					["injury_threshold", ::Math.floor((1.0 - p.ThresholdToInflictInjuryMult) * 100)]
+				]
 			});
 		}
 
@@ -249,7 +246,9 @@
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Reduce the damage mitigated from block by [color=%negative%]%block_by%[/color]",
-				param = [["block_bypass", this.m.BlockBypass]]
+				param = [
+					["block_bypass", this.m.BlockBypass]
+				]
 			});
 		}
 
@@ -259,7 +258,9 @@
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Always inflicts at least [color=%damage%]%damage_min%[/color] damage to hitpoints, regardless of armor",
-				param = [["damage_min", p.DamageMinimum]]
+				param = [
+					["damage_min", p.DamageMinimum]
+				]
 			});
 		}
 
@@ -269,7 +270,9 @@
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
 				text = "Has a combined total [color=%positive%]%hitchance_head%%[/color] chance to hit the head",
-				param = [["hitchance_head", ::Math.min(100, p.HitChance[::Const.BodyPart.Head])]]
+				param = [
+					["hitchance_head", ::Math.min(100, p.HitChance[::Const.BodyPart.Head])]
+				]
 			});
 		}
 
@@ -324,28 +327,26 @@
 		return null;
 	}
 
-	o.getExpectedDamage = function( _target )
-	{
+	o.getExpectedDamage = function (_target) {
 		local actor = this.m.Container.getActor();
 		local p = this.factoringOffhand(this.m.Container.buildPropertiesForUse(this, _target));
 		local d = _target.getSkills().buildPropertiesForDefense(actor, this);
 		local critical = 1.0 + p.getHitchance(::Const.BodyPart.Head) / 100.0 * (p.DamageAgainstMult[::Const.BodyPart.Head] - 1.0);
 		local armor = _target.getArmor(::Const.BodyPart.Head) * (p.getHitchance(::Const.BodyPart.Head) / 100.0) + _target.getArmor(::Const.BodyPart.Body) * (::Math.max(0, p.getHitchance(::Const.BodyPart.Body)) / 100.0);
 		local armorDamage = ::Math.min(armor, p.getArmorDamageAverage());
-		local directDamage = ::Math.max(0, p.getRegularDamageAverage() * (p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + (this.m.IsRanged ? p.DamageDirectRangedAdd : p.DamageDirectMeleeAdd))) * critical - (p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + (this.m.IsRanged ? p.DamageDirectRangedAdd : p.DamageDirectMeleeAdd)) < 1.0 ? (armor - armorDamage) * ::Const.Combat.ArmorDirectDamageMitigationMult : 0));
+		local directDamage = ::Math.max(0, p.getRegularDamageAverage() * (p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + (this.m.IsRanged ? p.DamageDirectRangedAdd : p.DamageDirectMeleeAdd))) * critical - (p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + (this.m.IsRanged ? p.DamageDirectRangedAdd : p.DamageDirectMeleeAdd)) < 1.0
+			? (armor - armorDamage) * ::Const.Combat.ArmorDirectDamageMitigationMult
+			: 0));
 		local hitpointDamage = ::Math.max(0, p.getRegularDamageAverage() * critical - directDamage - armorDamage);
 		armorDamage = armorDamage * (d.DamageReceivedArmorMult * d.DamageReceivedTotalMult);
 		directDamage = directDamage * (d.DamageReceivedDirectMult * d.DamageReceivedTotalMult);
 		hitpointDamage = hitpointDamage * (d.DamageReceivedRegularMult * d.DamageReceivedTotalMult);
 
-		if (this.m.IsRanged)
-		{
+		if (this.m.IsRanged) {
 			armorDamage = armorDamage * (p.RangedDamageMult * d.DamageReceivedRangedMult);
 			directDamage = directDamage * (p.RangedDamageMult * d.DamageReceivedRangedMult);
 			hitpointDamage = hitpointDamage * (p.RangedDamageMult * d.DamageReceivedRangedMult);
-		}
-		else
-		{
+		} else {
 			armorDamage = armorDamage * (p.MeleeDamageMult * d.DamageReceivedMeleeMult);
 			directDamage = directDamage * (p.MeleeDamageMult * d.DamageReceivedMeleeMult);
 			hitpointDamage = hitpointDamage * (p.MeleeDamageMult * d.DamageReceivedMeleeMult);
@@ -360,28 +361,32 @@
 		return ret;
 	}
 
-	o.onUnlocked <- function()
-	{
-	}
+	o.onUnlocked <- function () {}
 
-	o.factoringOffhand <- function( _properties )
-	{
-		if (this.m.Item == null || this.m.Item.isNull()) return _properties;
+	o.factoringOffhand <- function (_properties) {
+		if (this.m.Item == null || this.m.Item.isNull()) {
+			return _properties;
+		}
 
-		if (this.m.Item.getCurrentSlotType() != ::Const.ItemSlot.Offhand) return _properties;
+		if (this.m.Item.getCurrentSlotType() != ::Const.ItemSlot.Offhand) {
+			return _properties;
+		}
 
-		if (!this.m.Item.isItemType(::Const.Items.ItemType.Weapon)) return _properties;
+		if (!this.m.Item.isItemType(::Const.Items.ItemType.Weapon)) {
+			return _properties;
+		}
 
 		this.removeMainhandBonuses(_properties);
 		this.addOffhandBonuses(this.m.Item, _properties);
 		return _properties;
 	}
 
-	o.removeMainhandBonuses <- function( _properties )
-	{
+	o.removeMainhandBonuses <- function (_properties) {
 		local mainhand = this.getContainer().getActor().getMainhandItem();
 
-		if (mainhand == null) return;
+		if (mainhand == null) {
+			return;
+		}
 
 		_properties.DamageRegularMin -= mainhand.m.RegularDamage;
 		_properties.DamageRegularMax -= mainhand.m.RegularDamageMax;
@@ -390,8 +395,7 @@
 		_properties.HitChance[::Const.BodyPart.Head] -= mainhand.m.ChanceToHitHead;
 	}
 
-	o.addOffhandBonuses <- function( _offhand, _properties )
-	{
+	o.addOffhandBonuses <- function (_offhand, _properties) {
 		_properties.DamageRegularMin += _offhand.m.RegularDamage;
 		_properties.DamageRegularMax += _offhand.m.RegularDamageMax;
 		_properties.DamageArmorMult *= _offhand.m.ArmorDamageMult;
@@ -400,18 +404,16 @@
 	}
 
 	local use = o.use;
-	o.use = function ( _targetTile, _forFree = false ) {
+	o.use = function (_targetTile, _forFree = false) {
 		if (this.isAttack() && this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing) {
-            return false;
-        }
+			return false;
+		}
 
 		return use(_targetTile, _forFree);
 	}
 
-	o.onVerifyTarget = function( _originTile, _targetTile )
-	{
-		if (this.m.IsTargetingActor && (_targetTile.IsEmpty || !_targetTile.getEntity().isAttackable() || !_targetTile.getEntity().isAlive() || _targetTile.getEntity().isDying()))
-		{
+	o.onVerifyTarget = function (_originTile, _targetTile) {
+		if (this.m.IsTargetingActor && (_targetTile.IsEmpty || !_targetTile.getEntity().isAttackable() || !_targetTile.getEntity().isAlive() || _targetTile.getEntity().isDying())) {
 			return false;
 		}
 
@@ -423,19 +425,15 @@
 		// 		return false;
 		// }
 
-
-		if (this.m.IsAttack && this.m.IsTargetingActor && this.m.Container.getActor().isAlliedWith(_targetTile.getEntity()))
-		{
+		if (this.m.IsAttack && this.m.IsTargetingActor && this.m.Container.getActor().isAlliedWith(_targetTile.getEntity())) {
 			return false;
 		}
 
-		if (::Math.abs(_targetTile.Level - _originTile.Level) > this.m.MaxLevelDifference)
-		{
+		if (::Math.abs(_targetTile.Level - _originTile.Level) > this.m.MaxLevelDifference) {
 			return false;
 		}
 
-		if (!this.m.IsRanged && this.m.IsVisibleTileNeeded && this.m.MaxRange > 1 && _originTile.getDistanceTo(_targetTile) > 1)
-		{
+		if (!this.m.IsRanged && this.m.IsVisibleTileNeeded && this.m.MaxRange > 1 && _originTile.getDistanceTo(_targetTile) > 1) {
 			local myPos = _originTile.Pos;
 			local targetPos = _targetTile.Pos;
 			local Dx = (targetPos.X - myPos.X) / 2;
@@ -445,8 +443,7 @@
 			local tileCoords = ::Tactical.worldToTile(this.createVec(x, y));
 			local tile = ::Tactical.getTile(tileCoords);
 
-			if (tile.Level > _originTile.Level && (_originTile.Level - tile.Level < -1 || _targetTile.Level - tile.Level < -1))
-			{
+			if (tile.Level > _originTile.Level && (_originTile.Level - tile.Level < -1 || _targetTile.Level - tile.Level < -1)) {
 				return false;
 			}
 		}
@@ -454,23 +451,20 @@
 		return true;
 	}
 
-	o.getHitFactors = function( _targetTile )
-	{
+	o.getHitFactors = function (_targetTile) {
 		local ret = [];
 		local user = this.m.Container.getActor();
 		local myTile = user.getTile();
 		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
 
-		if (this.m.HitChanceBonus > 0)
-		{
+		if (this.m.HitChanceBonus > 0) {
 			ret.push({
 				icon = "ui/tooltips/positive.png",
 				text = this.getName()
 			});
 		}
 
-		if (!this.m.IsRanged && targetEntity != null && targetEntity.getSurroundedCount() != 0)
-		{
+		if (!this.m.IsRanged && targetEntity != null && targetEntity.getSurroundedCount() != 0) {
 			ret.push({
 				icon = "ui/tooltips/positive.png",
 				text = "Surrounded"
@@ -494,13 +488,11 @@
 		if (this.m.IsAttack) {
 			local oath = ::Legends.Traits.get(this, ::Legends.Trait.OathOfWrath);
 
-			if (oath != null)
-			{
+			if (oath != null) {
 				local items = user.getItems();
 				local main = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-				if (main != null && main.isItemType(::Const.Items.ItemType.MeleeWeapon) && (main.isItemType(::Const.Items.ItemType.TwoHanded) || items.getItemAtSlot(::Const.ItemSlot.Offhand) == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand)))
-				{
+				if (main != null && main.isItemType(::Const.Items.ItemType.MeleeWeapon) && (main.isItemType(::Const.Items.ItemType.TwoHanded) || items.getItemAtSlot(::Const.ItemSlot.Offhand) == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand))) {
 					ret.push({
 						icon = "ui/tooltips/positive.png",
 						text = "Oath of Wrath"
@@ -514,35 +506,29 @@
 				icon = "ui/tooltips/negative.png",
 				text = "Too close"
 			});
-		}
-		else if (this.m.HitChanceBonus < 0)
-		{
+		} else if (this.m.HitChanceBonus < 0) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = this.getName()
 			});
 		}
 
-		if ((!("HeightReversed" in this.m) && _targetTile.Level > myTile.Level) || ("HeightReversed" in this.m && _targetTile.Level < myTile.Level))
-		{
+		if ((!("HeightReversed" in this.m) && _targetTile.Level > myTile.Level) || ("HeightReversed" in this.m && _targetTile.Level < myTile.Level)) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "Height disadvantage"
 			});
 		}
 
-		if (myTile.IsBadTerrain)
-		{
+		if (myTile.IsBadTerrain) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "On bad terrain"
 			});
 		}
 
-		if (this.m.IsShieldRelevant)
-		{
-			if (_targetTile.IsOccupiedByActor && targetEntity.isArmedWithShield())
-			{
+		if (this.m.IsShieldRelevant) {
+			if (_targetTile.IsOccupiedByActor && targetEntity.isArmedWithShield()) {
 				ret.push({
 					icon = "ui/tooltips/negative.png",
 					text = "Armed with shield"
@@ -550,8 +536,7 @@
 			}
 		}
 
-		if (_targetTile.IsOccupiedByActor && myTile.getDistanceTo(_targetTile) <= 1 && targetEntity.getSkills().hasEffect(::Legends.Effect.Riposte))
-		{
+		if (_targetTile.IsOccupiedByActor && myTile.getDistanceTo(_targetTile) <= 1 && targetEntity.getSkills().hasEffect(::Legends.Effect.Riposte)) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "Riposte"
@@ -559,22 +544,18 @@
 		}
 
 		// if (this.m.IsRanged && myTile.getDistanceTo(_targetTile) > 1)
-		if (this.m.IsRanged && myTile.getDistanceTo(_targetTile) > ::Math.min(this.m.MinRange, this.m.MinRangeForPerTile))
-		{
-			if (_targetTile.IsOccupiedByActor && ("AdditionalHitChance" in this.m))
-			{
+		if (this.m.IsRanged && myTile.getDistanceTo(_targetTile) > ::Math.min(this.m.MinRange, this.m.MinRangeForPerTile)) {
+			if (_targetTile.IsOccupiedByActor && ("AdditionalHitChance" in this.m)) {
 				ret.push({
-					icon = this.m.AdditionalHitChance > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+					icon = this.m.AdditionalHitChance > 0 ? "ui/tooltips/positive.png": "ui/tooltips/negative.png",
 					text = "Distance of " + _targetTile.getDistanceTo(user.getTile())
 				});
 			}
 
-			if (this.m.IsUsingHitchance)
-			{
+			if (this.m.IsUsingHitchance) {
 				local blockedTiles = ::Const.Tactical.Common.getBlockedTiles(myTile, _targetTile, user.getFaction(), true);
 				local blockChance = ::Const.Combat.RangedAttackBlockedChance * this.getContainer().buildPropertiesForUse(this, targetEntity).RangedAttackBlockedChanceMult;
-				if (blockedTiles.len() != 0 && blockChance != 0.0)
-				{
+				if (blockedTiles.len() != 0 && blockChance != 0.0) {
 					ret.push({
 						icon = "ui/tooltips/negative.png",
 						text = "Line of fire blocked"
@@ -583,29 +564,13 @@
 			}
 		}
 
-		if (this.m.IsAttack && _targetTile.IsOccupiedByActor && targetEntity.getFlags().has("skeleton"))
-		{
-			if (this.m.IsRanged)
-			{
+		if (this.m.IsAttack && _targetTile.IsOccupiedByActor && targetEntity.getFlags().has("skeleton")) {
+			if (this.m.IsRanged) {
 				ret.push({
 					icon = "ui/tooltips/negative.png",
 					text = "Resistance against ranged weapons"
 				});
-			}
-			else if (::Legends.S.oneOf(this.getID(),
-				::Legends.Actives.getID(::Legends.Active.Puncture),
-				::Legends.Actives.getID(::Legends.Active.Thrust),
-				::Legends.Actives.getID(::Legends.Active.Stab),
-				::Legends.Actives.getID(::Legends.Active.Deathblow),
-				::Legends.Actives.getID(::Legends.Active.Impale),
-				::Legends.Actives.getID(::Legends.Active.Rupture),
-				::Legends.Actives.getID(::Legends.Active.Prong),
-				::Legends.Actives.getID(::Legends.Active.Lunge),
-				::Legends.Actives.getID(::Legends.Active.EstocStab),
-				::Legends.Actives.getID(::Legends.Active.Perforate),
-				::Legends.Actives.getID(::Legends.Active.Skewer)
-			))
-			{
+			} else if (::Legends.S.oneOf(this.getID(), ::Legends.Actives.getID(::Legends.Active.Puncture), ::Legends.Actives.getID(::Legends.Active.Thrust), ::Legends.Actives.getID(::Legends.Active.Stab), ::Legends.Actives.getID(::Legends.Active.Deathblow), ::Legends.Actives.getID(::Legends.Active.Impale), ::Legends.Actives.getID(::Legends.Active.Rupture), ::Legends.Actives.getID(::Legends.Active.Prong), ::Legends.Actives.getID(::Legends.Active.Lunge), ::Legends.Actives.getID(::Legends.Active.EstocStab), ::Legends.Actives.getID(::Legends.Active.Perforate), ::Legends.Actives.getID(::Legends.Active.Skewer))) {
 				ret.push({
 					icon = "ui/tooltips/negative.png",
 					text = "Resistance against piercing attacks"
@@ -613,40 +578,35 @@
 			}
 		}
 
-		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToStun && (this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockOut) || this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockOver) || this.getID() == ::Legends.Actives.getID(::Legends.Active.StrikeDown)))
-		{
+		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToStun && (this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockOut) || this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockOver) || this.getID() == ::Legends.Actives.getID(::Legends.Active.StrikeDown))) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "Immune to stun"
 			});
 		}
 
-		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToRoot && (this.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowNet) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Root) || this.getID() == ::Legends.Actives.getID(::Legends.Active.LegendRoot)))
-		{
+		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToRoot && (this.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowNet) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Root) || this.getID() == ::Legends.Actives.getID(::Legends.Active.LegendRoot))) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "Immune to being rooted"
 			});
 		}
 
-		if (_targetTile.IsOccupiedByActor && (targetEntity.getCurrentProperties().IsImmuneToDisarm || targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) == null) && this.getID() == ::Legends.Actives.getID(::Legends.Active.Disarm))
-		{
+		if (_targetTile.IsOccupiedByActor && (targetEntity.getCurrentProperties().IsImmuneToDisarm || targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) == null) && this.getID() == ::Legends.Actives.getID(::Legends.Active.Disarm)) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "Immune to being disarmed"
 			});
 		}
 
-		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab && (this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockBack) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Hook) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Repel)))
-		{
+		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab && (this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockBack) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Hook) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Repel))) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "Immune to being knocked back or hooked"
 			});
 		}
 
-		if (this.m.IsRanged && user.getCurrentProperties().IsAffectedByNight && user.getSkills().hasEffect(::Legends.Effect.Night))
-		{
+		if (this.m.IsRanged && user.getCurrentProperties().IsAffectedByNight && user.getSkills().hasEffect(::Legends.Effect.Night)) {
 			ret.push({
 				icon = "ui/tooltips/negative.png",
 				text = "Nighttime"
@@ -656,48 +616,39 @@
 		return this.modGetHitFactors(ret, _targetTile);
 	}
 
-	o.modGetHitFactors <- function( ret, _targetTile )
-	{
-		if (!ret)
-		{
+	o.modGetHitFactors <- function (ret, _targetTile) {
+		if (!ret) {
 			return ret;
 		}
 
 		local retCount = ret.len();
-		local green = function ( text )
-		{
-			if (!text)
-			{
+		local green = function (text) {
+			if (!text) {
 				return "";
 			}
 
 			return "[color=%positive%]" + text + "[/color]";
 		};
-		local red = function ( text )
-		{
-			if (!text)
-			{
+		local red = function (text) {
+			if (!text) {
 				return "";
 			}
 
 			return "[color=%negative%]" + text + "[/color]";
 		};
-		local isIn = function ( pattern, text )
-		{
-			if (!pattern || !text)
-			{
+		local isIn = function (pattern, text) {
+			if (!pattern || !text) {
 				return false;
 			}
 
 			return this.regexp(pattern).search(text);
 		};
-		local self = this, user = this.m.Container.getActor();
+		local user = this.m.Container.getActor();
 		local myTile = user.getTile();
 		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
-		local getBadTerrainFactor = function ( attributeIcon ) {
+		local getBadTerrainFactor = function (attributeIcon) {
 
-			if (!attributeIcon)
-			{
+			if (!attributeIcon) {
 				return false;
 			}
 
@@ -705,23 +656,16 @@
 				"terrain.swamp"
 			];
 
-			for( local i = 0; i < badTerrains.len(); i++ )
-			{
+			for (local i = 0; i < badTerrains.len(); i++) {
 				local terrainEffect = targetEntity.getSkills().getSkillByID(badTerrains[i]);
 
-				if (!(terrainEffect && "getTooltip" in terrainEffect))
-				{
-				}
-				else
-				{
+				if (!(terrainEffect && "getTooltip" in terrainEffect)) {
+				} else {
 					local tooltip = terrainEffect.getTooltip();
 
-					foreach( _, r in tooltip )
-					{
-						if (("type" in r) && r.type == "text" && ("icon" in r) && "text" in r)
-						{
-							if (isIn(attributeIcon, r.icon))
-							{
+					foreach (_, r in tooltip) {
+						if (("type" in r) && r.type == "text" && ("icon" in r) && "text" in r) {
+							if (isIn(attributeIcon, r.icon)) {
 								return r.text;
 							}
 						}
@@ -736,107 +680,87 @@
 		local modifier = {};
 		local skillName = this.getName();
 		local p = attackingEntity.getCurrentProperties();
-		local skillHitChanceBonus = this.Math.floor(this.m.HitChanceBonus * (this.m.IsRanged ? p.RangedSkillMult : p.MeleeSkillMult));;
-		modifier[skillName] <- function ( row, description )
-		{
-			if (!("icon" in row))
-			{
+		local skillHitChanceBonus = ::Math.floor(this.m.HitChanceBonus * (this.m.IsRanged ? p.RangedSkillMult : p.MeleeSkillMult));
+		;
+		modifier[skillName] <- function (row, description) {
+			if (!("icon" in row)) {
 				return;
 			}
 
 			local icon = row.icon;
 
-			if (icon == "ui/tooltips/positive.png")
-			{
+			if (icon == "ui/tooltips/positive.png") {
 				row.text = green("" + skillHitChanceBonus + "%") + " " + description;
-			}
-			else if (icon == "ui/tooltips/negative.png")
-			{
+			} else if (icon == "ui/tooltips/negative.png") {
 				row.text = red(-skillHitChanceBonus + "%") + " " + description;
 			}
 		};
-		modifier.Surrounded <- function ( row, description )
-		{
-			if (targetEntity.m.CurrentProperties.IsImmuneToSurrounding)
-			{
+		modifier.Surrounded <- function (row, description) {
+			if (targetEntity.m.CurrentProperties.IsImmuneToSurrounding) {
 				return;
 			}
 
 			local malus = ::Math.max(0, p.SurroundedBonus * p.SurroundedBonusMult - targetEntity.getCurrentProperties().SurroundedDefense) * targetEntity.getSurroundedCount();
 
-			if (malus)
-			{
+			if (malus) {
 				row.text = green(malus + "%") + " " + description;
 			}
 		};
-		modifier["Height advantage"] <- function ( row, description )
-		{
+		modifier["Height advantage"] <- function (row, description) {
 			local levelDifference = ::Math.abs(myTile.Level - _targetTile.Level);
 			local bonus = ::Const.Combat.LevelDifferenceToHitBonus * levelDifference;
 			row.text = green(bonus + "%") + " " + description;
 		};
-		modifier["Height disadvantage"] <- function ( row, description )
-		{
+		modifier["Height disadvantage"] <- function (row, description) {
 			local levelDifference = ::Math.abs(myTile.Level - _targetTile.Level);
 			local malus = ::Const.Combat.LevelDifferenceToHitMalus * levelDifference;
 			row.text = red(malus + "%") + " " + description;
 		};
 
-		modifier["Target on bad terrain"] <- function ( row, description )
-		{
+		modifier["Target on bad terrain"] <- function (row, description) {
 			local defenseIcon = thisSkill.m.IsRanged ? "ranged_defense" : "melee_defense";
 			local terrainFactor = getBadTerrainFactor(defenseIcon);
 
-			if (terrainFactor)
-			{
+			if (terrainFactor) {
 				// row.text = green(terrainFactor + "%") + " " + description;
 				row.text = description + " (" + terrainFactor + ")";
 			}
 		};
-		modifier["On bad terrain"] <- function ( row, description )
-		{
+		modifier["On bad terrain"] <- function (row, description) {
 			local attackIcon = thisSkill.m.IsRanged ? "ranged_skill" : "melee_skill";
 			local terrainFactor = getBadTerrainFactor(attackIcon);
 
-			if (terrainFactor)
-			{
+			if (terrainFactor) {
 				// row.text = red(terrainFactor + "%") + " " + description;
 				row.text = description + " (" + terrainFactor + ")";
 			}
 		};
-		local getShieldBonus = function ()
-		{
+		local getShieldBonus = function () {
 			local shield = targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			local shieldBonus = (thisSkill.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
 			return ::Math.floor(shieldBonus);
 		};
-		modifier["Armed with shield"] <- function ( row, description )
-		{
+		modifier["Armed with shield"] <- function (row, description) {
 			row.text = red(getShieldBonus() + "%") + " " + description;
 		};
-		modifier.Shieldwall <- function ( row, description )
-		{
+		modifier.Shieldwall <- function (row, description) {
 			local shieldwallEffect = ::Legends.Effects.get(targetEntity, ::Legends.Effect.Shieldwall);
 			local adjacencyBonus = shieldwallEffect.getBonus();
 			row.text = red(getShieldBonus() + adjacencyBonus + "%") + " " + description;
 		};
-		local isRangedRelevant = function ()
-		{
+		local isRangedRelevant = function () {
 			// return thisSkill.m.IsRanged && myTile.getDistanceTo(_targetTile) > 1 && _targetTile.IsOccupiedByActor;
 			return thisSkill.m.IsRanged && myTile.getDistanceTo(_targetTile) > ::Math.min(this.m.MinRange, this.m.MinRangeForPerTile) && _targetTile.IsOccupiedByActor;
 		};
 
-		if (isRangedRelevant())
-		{
+		if (isRangedRelevant()) {
 			local distanceToTarget = _targetTile.getDistanceTo(user.getTile());
 			local propertiesWithSkill = this.factoringOffhand(thisSkill.m.Container.buildPropertiesForUse(thisSkill, targetEntity));
-			modifier["Distance of " + distanceToTarget] <- function ( row, description )
-			{
+			modifier["Distance of " + distanceToTarget] <- function (row, description) {
 				local hitDistancePenalty = (distanceToTarget - ::Math.min(thisSkill.m.MinRange, thisSkill.m.MinRangeForPerTile)) * propertiesWithSkill.HitChanceAdditionalWithEachTile * propertiesWithSkill.HitChanceWithEachTileMult;
 				row.text = (hitDistancePenalty > 0 ? green(hitDistancePenalty + "%") : red(-hitDistancePenalty + "%")) + " " + description;
 			};
-			modifier["Line of fire blocked"] <- function ( row, description )
-			{
+			modifier["Line of fire blocked"] <- function (row, description) {
 				local blockChance = ::Const.Combat.RangedAttackBlockedChance * propertiesWithSkill.RangedAttackBlockedChanceMult;
 				blockChance = ::Math.ceil(blockChance * 100);
 				row.text = description + "\n(" + red("-" + blockChance + "%") + " Total hit chance)";
@@ -844,45 +768,40 @@
 			// [080]  OP_CLOSE          0     17    0    0
 		}
 
-		modifier.Nighttime <- function ( row, description )
-		{
+		modifier.Nighttime <- function (row, description) {
 			local night = ::Legends.Effects.get(user, ::Legends.Effect.Night);
 			local attributeIcon = "ranged_skill";
 
-			if (!(night && "getTooltip" in night))
-			{
+			if (!(night && "getTooltip" in night)) {
 				return;
 			}
 
 			local tooltip = night.getTooltip();
 
-			foreach( _, r in tooltip )
-			{
-				if (("type" in r) && r.type == "text" && ("icon" in r) && "text" in r)
-				{
-					if (isIn(attributeIcon, r.icon))
-					{
+			foreach (_, r in tooltip) {
+				if (("type" in r) && r.type == "text" && ("icon" in r) && "text" in r) {
+					if (isIn(attributeIcon, r.icon)) {
 						row.text = description + "\n(" + r.text + ")";
 						return;
 					}
 				}
 			}
 		};
-		local getDamageResistance = function ()
-		{
-			if (!targetEntity)
-			{
+		local getDamageResistance = function () {
+			if (!targetEntity) {
 				return null;
 			}
 
 			local racialSkills = targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.Racial);
-			if (racialSkills.len() == 0)
+			if (racialSkills.len() == 0) {
 				return null;
+			}
 
 			local propertiesBefore = targetEntity.getCurrentProperties();
 
-			if (!("DamageReceivedRegularMult" in propertiesBefore))
+			if (!("DamageReceivedRegularMult" in propertiesBefore)) {
 				return null;
+			}
 
 			local hitInfo = clone ::Const.Tactical.HitInfo;
 			local propertiesAfter = propertiesBefore.getClone();
@@ -891,69 +810,61 @@
 			return ::Math.ceil(diff * 100);
 		};
 		local flagResistanceExists = false;
-		modifier["Resistance against ranged weapons"] <- function ( row, description )
-		{
+		modifier["Resistance against ranged weapons"] <- function (row, description) {
 			flagResistanceExists = true;
 			local damageResistance = getDamageResistance();
 
-			if (damageResistance == null)
+			if (damageResistance == null) {
 				return;
+			}
 
 			row.text = description + "\n(" + red("-" + damageResistance + "%") + " Total HP damage using " + thisSkill.getName() + ")";
 		};
-		modifier["Resistance against piercing attacks"] <- function ( row, description )
-		{
+		modifier["Resistance against piercing attacks"] <- function (row, description) {
 			flagResistanceExists = true;
 			local damageResistance = getDamageResistance();
 
-			if (damageResistance == null)
+			if (damageResistance == null) {
 				return;
+			}
 
 			row.text = description + "\n(" + red("-" + damageResistance + "%") + " Total HP damage using " + thisSkill.getName() + ")";
 		};
 
-		for( local i = 0; i < retCount; i++ )
-		{
+		for (local i = 0; i < retCount; i++) {
 			local row = ret[i];
 
-			if ("text" in row)
-			{
+			if ("text" in row) {
 				local description = row.text;
 
-				if (description in modifier)
-				{
+				if (description in modifier) {
 					modifier[description](row, description);
 				}
 			}
 		}
 
-		local getDifferenceInProperty = function ( _property, _targetEntity )
-		{
+		local getDifferenceInProperty = function (_property, _targetEntity) {
 			local props = user.getCurrentProperties();
 
-			if (!(_property in props))
+			if (!(_property in props)) {
 				return null;
+			}
 
 			local propsWithSkill = props.getClone();
 			thisSkill.onAnySkillUsed(thisSkill, _targetEntity, propsWithSkill);
 			return propsWithSkill[_property] - props[_property];
 		};
 
-		if (!thisSkill.m.HitChanceBonus && isRangedRelevant())
-		{
+		if (!thisSkill.m.HitChanceBonus && isRangedRelevant()) {
 			local diff = getDifferenceInProperty("RangedSkill", targetEntity);
 
-			if (diff != null)
-			{
-				if (diff > 0)
-				{
+			if (diff != null) {
+				if (diff > 0) {
 					ret.insert(0, {
 						icon = "ui/tooltips/positive.png",
 						text = green(diff + "%") + " " + thisSkill.getName()
 					});
-				}
-				else if (diff < 0)
-				{
+				} else if (diff < 0) {
 					ret.insert(0, {
 						icon = "ui/tooltips/negative.png",
 						text = red(diff + "%") + " " + thisSkill.getName()
@@ -962,22 +873,20 @@
 			}
 		}
 
-		local addDamageResistanceRow = function ()
-		{
-			if (!flagResistanceExists && thisSkill.m.IsAttack && _targetTile.IsOccupiedByActor)
-			{
+		local addDamageResistanceRow = function () {
+			if (!flagResistanceExists && thisSkill.m.IsAttack && _targetTile.IsOccupiedByActor) {
 				local damageResistance = getDamageResistance();
 
-				if (!damageResistance)
+				if (!damageResistance) {
 					return;
+				}
 
 				local icon = damageResistance > 0 ? "ui/tooltips/negative.png" : "ui/tooltips/positive.png";
 				local desc = damageResistance > 0 ? "Resistance against" : "Susceptible to";
 				local sign = damageResistance > 0 ? "-" : "+";
 				local colorize = damageResistance > 0 ? red : green;
 
-				if (damageResistance < 0)
-				{
+				if (damageResistance < 0) {
 					damageResistance = damageResistance * -1;
 				}
 
@@ -987,23 +896,23 @@
 				});
 			}
 		};
-		local addLungeDamageRow = function ()
-		{
-			if (!thisSkill.m.IsAttack || thisSkill.getID() != ::Legends.Actives.getID(::Legends.Active.Lunge) || !_targetTile.IsOccupiedByActor)
+		local addLungeDamageRow = function () {
+			if (!thisSkill.m.IsAttack || thisSkill.getID() != ::Legends.Actives.getID(::Legends.Active.Lunge) || !_targetTile.IsOccupiedByActor) {
 				return;
+			}
 
 			local diff = getDifferenceInProperty("DamageTotalMult", null);
 
-			if (!diff)
+			if (!diff) {
 				return;
+			}
 
 			local icon = diff > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png";
 			local desc = diff > 0 ? "High initiative" : "Low initiative";
 			local sign = diff > 0 ? "+" : "-";
 			local colorize = diff > 0 ? green : red;
 
-			if (diff < 0)
-			{
+			if (diff < 0) {
 				diff = diff * -1;
 			}
 
@@ -1013,20 +922,23 @@
 				text = desc + " " + "\n(" + colorize(sign + diff + "%") + " Lunge damage)"
 			});
 		};
-		local addShieldDamageRow = function ()
-		{
-			if (thisSkill.getID() != ::Legends.Actives.getID(::Legends.Active.SplitShield) && thisSkill.getID() != ::Legends.Actives.getID(::Legends.Active.ThrowSpear))
+		local addShieldDamageRow = function () {
+			if (thisSkill.getID() != ::Legends.Actives.getID(::Legends.Active.SplitShield) && thisSkill.getID() != ::Legends.Actives.getID(::Legends.Active.ThrowSpear)) {
 				return;
+			}
 
-			if (!_targetTile.IsOccupiedByActor)
+			if (!_targetTile.IsOccupiedByActor) {
 				return;
+			}
 
-			if (!targetEntity.isArmedWithShield())
+			if (!targetEntity.isArmedWithShield()) {
 				return;
+			}
 
 			local damage = thisSkill.calculateDamage(targetEntity);
-			if (targetEntity.getCurrentProperties().IsSpecializedInShields)
+			if (targetEntity.getCurrentProperties().IsSpecializedInShields) {
 				damage *= 0.50;
+			}
 			ret.push({
 				icon = "ui/icons/shield_damage.png",
 				text = red(damage) + " Shield Damage"
@@ -1038,16 +950,17 @@
 		return ret;
 	}
 
-	o.getHitchance = function( _targetEntity )
-	{
-		if (!_targetEntity.isAttackable() && !_targetEntity.isRock() && !_targetEntity.isTree() && !_targetEntity.isBush() && !_targetEntity.isSupplies())
+	o.getHitchance = function (_targetEntity) {
+		if (!_targetEntity.isAttackable() && !_targetEntity.isRock() && !_targetEntity.isTree() && !_targetEntity.isBush() && !_targetEntity.isSupplies()) {
 			return 0;
+		}
 
 		local user = this.m.Container.getActor();
 		local properties = this.factoringOffhand(this.m.Container.buildPropertiesForUse(this, _targetEntity));
 
-		if (!this.isUsingHitchance())
+		if (!this.isUsingHitchance()) {
 			return 100;
+		}
 
 		local allowDiversion = this.m.IsRanged && this.m.MaxRangeBonus > 1;
 		local defenderProperties = _targetEntity.getSkills().buildPropertiesForDefense(user, this);
@@ -1060,26 +973,20 @@
 		local minimumHitChance = ::Legends.Mod.ModSettings.getSetting("MinimumChanceToHit").getValue();
 		local maximumHitChance = ::Legends.Mod.ModSettings.getSetting("MaximumChanceToHit").getValue();
 
-		if (this.m.IsRanged)
-		{
+		if (this.m.IsRanged) {
 			toHit = toHit + (distanceToTarget - ::Math.min(this.m.MinRange, this.m.MinRangeForPerTile)) * properties.HitChanceAdditionalWithEachTile * properties.HitChanceWithEachTileMult;
 		}
 
-		if (levelDifference < 0)
-		{
+		if (levelDifference < 0) {
 			toHit = toHit + ::Const.Combat.LevelDifferenceToHitBonus;
-		}
-		else
-		{
+		} else {
 			toHit = toHit + ::Const.Combat.LevelDifferenceToHitMalus * levelDifference;
 		}
 
-		if (!this.m.IsShieldRelevant)
-		{
+		if (!this.m.IsShieldRelevant) {
 			local shield = _targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-			if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
-			{
+			if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield)) {
 				local shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
 				toHit = toHit + shieldBonus;
 			}
@@ -1089,12 +996,10 @@
 		toHit = toHit + ::Math.max(0, 100 - toHit) * (1.0 - defenderProperties.TotalDefenseToHitMult);
 		local userTile = user.getTile();
 
-		if (allowDiversion && this.m.IsRanged && userTile.getDistanceTo(_targetEntity.getTile()) > 1)
-		{
+		if (allowDiversion && this.m.IsRanged && userTile.getDistanceTo(_targetEntity.getTile()) > 1) {
 			local blockedTiles = ::Const.Tactical.Common.getBlockedTiles(userTile, _targetEntity.getTile(), user.getFaction(), true);
 
-			if (blockedTiles.len() != 0)
-			{
+			if (blockedTiles.len() != 0) {
 				local blockChance = ::Const.Combat.RangedAttackBlockedChance * properties.RangedAttackBlockedChanceMult;
 				toHit = ::Math.floor(toHit * (1.0 - blockChance));
 			}
@@ -1103,8 +1008,7 @@
 		return ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, toHit));
 	}
 
-	o.attackEntity = function( _user, _targetEntity, _allowDiversion = true )
-	{
+	o.attackEntity = function (_user, _targetEntity, _allowDiversion = true) {
 		// if (_targetEntity.isRock())
 		// {
 		// 	if (_user.getSkills().hasSkill("perk.legend_specialist_pickaxe_damage"))
@@ -1166,69 +1070,55 @@
 		// 	return true;
 		// }
 
-		if (_targetEntity.isSupplies())
-		{
+		if (_targetEntity.isSupplies()) {
 			local r = ::Math.rand(1, 100);
-			if (r == 1)
-			{
+			if (r == 1) {
 				local loot = this.new("scripts/items/supplies/legend_ammo_small_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r == 2)
-			{
+			if (r == 2) {
 				local loot = this.new("scripts/items/supplies/legend_armor_parts_small_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r == 3)
-			{
+			if (r == 3) {
 				local loot = this.new("scripts/items/supplies/legend_medicine_small_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r >= 4 && r < 6)
-			{
+			if (r >= 4 && r < 6) {
 				local loot = this.new("scripts/items/supplies/ground_grains_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r >= 7 && r < 9)
-			{
-				if (::Math.rand(1, 8) == 8)
-				{
+			if (r >= 7 && r < 9) {
+				if (::Math.rand(1, 8) == 8) {
 					local loot = this.new("scripts/items/trade/legend_cooking_spices_trade_item");
 					loot.drop(_targetEntity.getTile());
 				}
 			}
-			if (r == 10)
-			{
+			if (r == 10) {
 				local loot = this.new("scripts/items/supplies/legend_fresh_fruit_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r == 11)
-			{
+			if (r == 11) {
 				local loot = this.new("scripts/items/supplies/strange_meat_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r == 12)
-			{
+			if (r == 12) {
 				local loot = this.new("scripts/items/supplies/legend_human_parts");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r == 13)
-			{
+			if (r == 13) {
 				local loot = this.new("scripts/items/supplies/legend_fresh_meat_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r == 14)
-			{
+			if (r == 14) {
 				local loot = this.new("scripts/items/supplies/beer_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (r == 15)
-			{
+			if (r == 15) {
 				local loot = this.new("scripts/items/accessory/bandage_item");
 				loot.drop(_targetEntity.getTile());
 			}
-			if (this.m.SoundOnHit.len() != 0)
-			{
+			if (this.m.SoundOnHit.len() != 0) {
 				::Time.scheduleEvent(::TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
 					Sound = this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)],
 					Pos = _targetEntity.getPos()
@@ -1237,7 +1127,7 @@
 			local tile = _targetEntity.getTile();
 			local x = tile.X;
 			local y = tile.Y;
-			::Tactical.getTile(x,y).removeObject();
+			::Tactical.getTile(x, y).removeObject();
 			return false; //if we don't return false it counts as a success for skills like cleave which try to apply bleed etc afterwards ->
 		}
 
@@ -1289,8 +1179,7 @@
 
 		//lets get on with the rest of the attack
 
-		if (_targetEntity != null && !_targetEntity.isAlive())
-		{
+		if (_targetEntity != null && !_targetEntity.isAlive()) {
 			return false;
 		}
 
@@ -1298,26 +1187,21 @@
 		local userTile = _user.getTile();
 		local astray = false;
 
-		if (_allowDiversion && this.m.IsRanged && userTile.getDistanceTo(_targetEntity.getTile()) > 1)
-		{
+		if (_allowDiversion && this.m.IsRanged && userTile.getDistanceTo(_targetEntity.getTile()) > 1) {
 			local blockedTiles = ::Const.Tactical.Common.getBlockedTiles(userTile, _targetEntity.getTile(), _user.getFaction());
 
-			if (blockedTiles.len() != 0 && ::Math.rand(1, 100) <= ::Math.ceil(::Const.Combat.RangedAttackBlockedChance * properties.RangedAttackBlockedChanceMult * 100))
-			{
+			if (blockedTiles.len() != 0 && ::Math.rand(1, 100) <= ::Math.ceil(::Const.Combat.RangedAttackBlockedChance * properties.RangedAttackBlockedChanceMult * 100)) {
 				_allowDiversion = false;
 				astray = true;
 				_targetEntity = blockedTiles[::Math.rand(0, blockedTiles.len() - 1)].getEntity();
 			}
 		}
 
-		if (!_targetEntity.isAttackable())
-		{
-			if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
-			{
+		if (!_targetEntity.isAttackable()) {
+			if (this.m.IsShowingProjectile && this.m.ProjectileType != 0) {
 				local flip = !this.m.IsProjectileRotated && _targetEntity.getPos().X > _user.getPos().X;
 
-				if (_user.getTile().getDistanceTo(_targetEntity.getTile()) >= ::Const.Combat.SpawnProjectileMinDist)
-				{
+				if (_user.getTile().getDistanceTo(_targetEntity.getTile()) >= ::Const.Combat.SpawnProjectileMinDist) {
 					::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 				}
 			}
@@ -1338,17 +1222,13 @@
 		toHit = toHit + skill;
 		toHit = toHit - defense;
 
-		if (this.m.IsRanged)
-		{
+		if (this.m.IsRanged) {
 			toHit = toHit + (distanceToTarget - ::Math.min(this.m.MinRange, this.m.MinRangeForPerTile)) * properties.HitChanceAdditionalWithEachTile * properties.HitChanceWithEachTileMult;
 		}
 
-		if (levelDifference < 0)
-		{
+		if (levelDifference < 0) {
 			toHit = toHit + ::Const.Combat.LevelDifferenceToHitBonus;
-		}
-		else
-		{
+		} else {
 			toHit = toHit + ::Const.Combat.LevelDifferenceToHitMalus * levelDifference;
 		}
 
@@ -1362,14 +1242,13 @@
 
 		local shieldBonus = 0;
 		local shield = _targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		if (shield != null && !shield.isItemType(::Const.Items.ItemType.Shield))
+		if (shield != null && !shield.isItemType(::Const.Items.ItemType.Shield)) {
 			shield = null;
+		}
 
-		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
-		{
+		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield)) {
 			shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
-			if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
-			{
+			if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall)) {
 				shieldBonus = shieldBonus * 2;
 			}
 		}
@@ -1377,58 +1256,45 @@
 		toHit = toHit * properties.TotalAttackToHitMult;
 		toHit = toHit + ::Math.max(0, 100 - toHit) * (1.0 - defenderProperties.TotalDefenseToHitMult);
 
-		if (this.m.IsRanged && !_allowDiversion && this.m.IsShowingProjectile)
-		{
+		if (this.m.IsRanged && !_allowDiversion && this.m.IsShowingProjectile) {
 			toHit = toHit + properties.HitChanceOnDiversion;
 			properties.DamageTotalMult *= properties.DamageTotalOnDiversionMult;
 		}
 
-		if (defense > -100 && skill > -100)
-		{
+		if (defense > -100 && skill > -100) {
 			toHit = ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, toHit));
 		}
 
 		_targetEntity.onAttacked(_user);
 
-		if (this.m.IsDoingAttackMove && !_user.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer())
-		{
+		if (this.m.IsDoingAttackMove && !_user.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer()) {
 			::Tactical.getShaker().cancel(_user);
 
-			if (this.m.IsDoingForwardMove)
-			{
+			if (this.m.IsDoingForwardMove) {
 				::Tactical.getShaker().shake(_user, _targetEntity.getTile(), 5);
-			}
-			else
-			{
+			} else {
 				local otherDir = _targetEntity.getTile().getDirectionTo(_user.getTile());
 
-				if (_user.getTile().hasNextTile(otherDir))
-				{
+				if (_user.getTile().hasNextTile(otherDir)) {
 					::Tactical.getShaker().shake(_user, _user.getTile().getNextTile(otherDir), 6);
 				}
 			}
 		}
 
-		if (!_targetEntity.isAbleToDie() && _targetEntity.getHitpoints() == 1)
-		{
+		if (!_targetEntity.isAbleToDie() && _targetEntity.getHitpoints() == 1) {
 			toHit = 0;
 		}
 
-		if (!this.isUsingHitchance())
-		{
+		if (!this.isUsingHitchance()) {
 			toHit = 100;
 		}
 
 		local r = ::Math.rand(1, 100);
 
-		if (("Assets" in ::World) && ::World.Assets != null)
-		{
-			if (_user.isPlayerControlled())
-			{
+		if (("Assets" in ::World) && ::World.Assets != null) {
+			if (_user.isPlayerControlled()) {
 				r = ::Math.max(1, r - ::Legends.Difficulty.RollBonus[::World.Assets.getCombatDifficulty()]);
-			}
-			else if (_targetEntity.isPlayerControlled())
-			{
+			} else if (_targetEntity.isPlayerControlled()) {
 				r = ::Math.min(100, r + ::Legends.Difficulty.RollBonus[::World.Assets.getCombatDifficulty()]);
 			}
 		}
@@ -1443,47 +1309,34 @@
 				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " got lucky and rerolled " + this.getName() + ".");
 				r = ::Math.rand(1, 100);
 				isHit = r <= toHit;
-			}
-			else {
+			} else {
 				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + "\' luck didn\'t pan out.");
 			}
 		}
 
-		if (!_user.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer())
-		{
-			if (defenderProperties.IsEvadingAllAttacks)
-			{
+		if (!_user.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer()) {
+			if (defenderProperties.IsEvadingAllAttacks) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and " + ::Const.UI.getColorizedEntityName(_targetEntity) + " evades the attack");
-			}
-			else
-			{
+			} else {
 				local rolled = r;
 				::Tactical.EventLog.log_newline();
 
-				if (astray)
-				{
-					if (this.isUsingHitchance())
-					{
-						if (isHit)
-						{
+				if (astray) {
+					if (this.isUsingHitchance()) {
+						if (isHit) {
 							::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and the shot goes astray and hits " + ::Const.UI.getColorizedEntityName(_targetEntity) + " (Chance: " + ::Math.min(maximumHitChance, ::Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + ")");
-						}
-						else
-						{
+						} else {
 							::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and the shot goes astray and misses " + ::Const.UI.getColorizedEntityName(_targetEntity) + " (Chance: " + ::Math.min(maximumHitChance, ::Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + ")");
 						}
-					}
-					else
-					{
+					} else {
 						::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and the shot goes astray and hits " + ::Const.UI.getColorizedEntityName(_targetEntity));
 					}
-				}
-				else if (this.isUsingHitchance()) {
+				} else if (this.isUsingHitchance()) {
 					local tumble = ::Legends.Perks.get(_targetEntity, ::Legends.Perk.LegendTumble);
 					if (isHit && ::Legends.Perks.has(_targetEntity, ::Legends.Perk.LegendTumble) && tumble.m.CanTeleport) {
 						if (::Const.SkillCounter == tumble.m.HitSkillCounter) {
-            				tumble.m.SequenceHit = true;
-        				}
+							tumble.m.SequenceHit = true;
+						}
 						local tumbleDefense = _targetEntity.getTumbleDefense(_user, this, defenderProperties);
 						local tumbleToHit = ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, toHit + defense - tumbleDefense));
 
@@ -1501,28 +1354,23 @@
 					} else {
 						::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and misses " + ::Const.UI.getColorizedEntityName(_targetEntity) + " (Chance: " + ::Math.min(maximumHitChance, ::Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + ")");
 					}
-				}
-				else {
+				} else {
 					::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and hits " + ::Const.UI.getColorizedEntityName(_targetEntity));
 				}
 			}
 		}
 
-
-
 		if (isHit && ::Math.rand(1, 100) <= defenderProperties.RerollDefenseChance) {
 			r = ::Math.rand(1, 100);
 			isHit = r <= toHit;
-			if(!isHit) {
+			if (!isHit) {
 				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_targetEntity) + " got lucky.");
 			} else {
 				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough.");
 			}
 		}
 
-
-		if (isHit)
-		{
+		if (isHit) {
 			this.getContainer().setBusy(true);
 			local info = {
 				Skill = this,
@@ -1533,29 +1381,23 @@
 				DistanceToTarget = distanceToTarget
 			};
 
-			if (this.m.IsShowingProjectile && this.m.ProjectileType != 0 && _user.getTile().getDistanceTo(_targetEntity.getTile()) >= ::Const.Combat.SpawnProjectileMinDist && (!_user.isHiddenToPlayer() || !_targetEntity.isHiddenToPlayer()))
-			{
+			if (this.m.IsShowingProjectile && this.m.ProjectileType != 0 && _user.getTile().getDistanceTo(_targetEntity.getTile()) >= ::Const.Combat.SpawnProjectileMinDist && (!_user.isHiddenToPlayer() || !_targetEntity.isHiddenToPlayer())) {
 				local flip = !this.m.IsProjectileRotated && _targetEntity.getPos().X > _user.getPos().X;
 				local time = ::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 				::Time.scheduleEvent(::TimeUnit.Virtual, time, this.onScheduledTargetHit, info);
 
-				if (this.m.SoundOnHit.len() != 0)
-				{
+				if (this.m.SoundOnHit.len() != 0) {
 					::Time.scheduleEvent(::TimeUnit.Virtual, time + this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
 						Sound = this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)],
 						Pos = _targetEntity.getPos()
 					});
 				}
-			}
-			else
-			{
-				if (this.m.SoundOnHit.len() != 0)
-				{
+			} else {
+				if (this.m.SoundOnHit.len() != 0) {
 					::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, _targetEntity.getPos());
 				}
 
-				if (::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode && toHit <= 15)
-				{
+				if (::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode && toHit <= 15) {
 					::Sound.play(::Const.Sound.ArenaShock[::Math.rand(0, ::Const.Sound.ArenaShock.len() - 1)], ::Const.Sound.Volume.Tactical * ::Const.Sound.Volume.Arena);
 				}
 
@@ -1563,33 +1405,23 @@
 			}
 
 			return true;
-		}
-		else
-		{
+		} else {
 			local distanceToTarget = _user.getTile().getDistanceTo(_targetEntity.getTile());
 			_targetEntity.onMissed(_user, this, this.m.IsShieldRelevant && shield != null && r <= toHit + shieldBonus * 2);
 			this.m.Container.onTargetMissed(this, _targetEntity);
 			this.m.IsExecutingOffhand = false;
 			local prohibitDiversion = false;
 
-			if (_allowDiversion && this.m.IsRanged && !_user.isPlayerControlled() && ::Math.rand(1, 100) <= 25 && distanceToTarget > 2)
-			{
+			if (_allowDiversion && this.m.IsRanged && !_user.isPlayerControlled() && ::Math.rand(1, 100) <= 25 && distanceToTarget > 2) {
 				local targetTile = _targetEntity.getTile();
 
-				for( local i = 0; i < ::Const.Direction.COUNT; i = ++i )
-				{
-					if (!targetTile.hasNextTile(i))
-					{
-					}
-					else
-					{
+				for (local i = 0; i < ::Const.Direction.COUNT; i = ++i) {
+					if (!targetTile.hasNextTile(i)) {
+					} else {
 						local tile = targetTile.getNextTile(i);
 
-						if (tile.IsEmpty)
-						{
-						}
-						else if (tile.IsOccupiedByActor && tile.getEntity().isAlliedWith(_user))
-						{
+						if (tile.IsEmpty) {
+						} else if (tile.IsOccupiedByActor && tile.getEntity().isAlliedWith(_user)) {
 							prohibitDiversion = true;
 							break;
 						}
@@ -1597,12 +1429,9 @@
 				}
 			}
 
-			if (_allowDiversion && this.m.IsRanged && !(this.m.IsShieldRelevant && shield != null && r <= toHit + shieldBonus * 2) && !prohibitDiversion && distanceToTarget > 2)
-			{
+			if (_allowDiversion && this.m.IsRanged && !(this.m.IsShieldRelevant && shield != null && r <= toHit + shieldBonus * 2) && !prohibitDiversion && distanceToTarget > 2) {
 				this.divertAttack(_user, _targetEntity);
-			}
-			else if (this.m.IsShieldRelevant && shield != null && r <= toHit + shieldBonus * 2)
-			{
+			} else if (this.m.IsShieldRelevant && shield != null && r <= toHit + shieldBonus * 2) {
 				local info = {
 					Skill = this,
 					User = _user,
@@ -1610,50 +1439,37 @@
 					Shield = shield
 				};
 
-				if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
-				{
+				if (this.m.IsShowingProjectile && this.m.ProjectileType != 0) {
 					local divertTile = _targetEntity.getTile();
 					local flip = !this.m.IsProjectileRotated && _targetEntity.getPos().X > _user.getPos().X;
 					local time = 0;
 
-					if (_user.getTile().getDistanceTo(divertTile) >= ::Const.Combat.SpawnProjectileMinDist)
-					{
+					if (_user.getTile().getDistanceTo(divertTile) >= ::Const.Combat.SpawnProjectileMinDist) {
 						time = ::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), divertTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 					}
 
 					::Time.scheduleEvent(::TimeUnit.Virtual, time, this.onShieldHit, info);
-				}
-				else
-				{
+				} else {
 					this.onShieldHit(info);
 				}
-			}
-			else
-			{
-				if (this.m.SoundOnMiss.len() != 0)
-				{
+			} else {
+				if (this.m.SoundOnMiss.len() != 0) {
 					::Sound.play(this.m.SoundOnMiss[::Math.rand(0, this.m.SoundOnMiss.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, _targetEntity.getPos());
 				}
 
-				if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
-				{
+				if (this.m.IsShowingProjectile && this.m.ProjectileType != 0) {
 					local divertTile = _targetEntity.getTile();
 					local flip = !this.m.IsProjectileRotated && _targetEntity.getPos().X > _user.getPos().X;
 
-					if (_user.getTile().getDistanceTo(divertTile) >= ::Const.Combat.SpawnProjectileMinDist)
-					{
+					if (_user.getTile().getDistanceTo(divertTile) >= ::Const.Combat.SpawnProjectileMinDist) {
 						::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), divertTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 					}
 				}
 
-				if (::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode)
-				{
-					if (toHit >= 90 || _targetEntity.getHitpointsPct() <= 0.1)
-					{
+				if (::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode) {
+					if (toHit >= 90 || _targetEntity.getHitpointsPct() <= 0.1) {
 						::Sound.play(::Const.Sound.ArenaMiss[::Math.rand(0, ::Const.Sound.ArenaBigMiss.len() - 1)], ::Const.Sound.Volume.Tactical * ::Const.Sound.Volume.Arena);
-					}
-					else if (::Math.rand(1, 100) <= 20)
-					{
+					} else if (::Math.rand(1, 100) <= 20) {
 						::Sound.play(::Const.Sound.ArenaMiss[::Math.rand(0, ::Const.Sound.ArenaMiss.len() - 1)], ::Const.Sound.Volume.Tactical * ::Const.Sound.Volume.Arena);
 					}
 				}
@@ -1663,8 +1479,7 @@
 		}
 	}
 
-	o.onScheduledTargetHit = function( _info )
-	{
+	o.onScheduledTargetHit = function (_info) {
 		_info.Container.setBusy(false);
 
 		if (::Legends.S.isEntityNullOrDead(_info.TargetEntity)) {
@@ -1677,8 +1492,7 @@
 
 		if (partHit <= _info.Properties.getHitchance(::Const.BodyPart.Head)) {
 			bodyPart = ::Const.BodyPart.Head;
-		}
-		else {
+		} else {
 			bodyPart = ::Const.BodyPart.Body;
 		}
 
@@ -1691,25 +1505,16 @@
 		local damageDirect = ::Math.minf(1.0, _info.Properties.DamageDirectMult * (this.m.DirectDamageMult + _info.Properties.DamageDirectAdd + (this.m.IsRanged ? _info.Properties.DamageDirectRangedAdd : _info.Properties.DamageDirectMeleeAdd)));
 		local injuries;
 
-		if (this.m.InjuriesOnBody != null && bodyPart == ::Const.BodyPart.Body)
-		{
-			if (_info.TargetEntity.getFlags().has("skeleton"))
-			{
+		if (this.m.InjuriesOnBody != null && bodyPart == ::Const.BodyPart.Body) {
+			if (_info.TargetEntity.getFlags().has("skeleton")) {
 				injuries = ::Const.Injury.SkeletonBody;
-			}
-			else
-			{
+			} else {
 				injuries = this.m.InjuriesOnBody;
 			}
-		}
-		else if (this.m.InjuriesOnHead != null && bodyPart == ::Const.BodyPart.Head)
-		{
-			if (_info.TargetEntity.getFlags().has("skeleton"))
-			{
+		} else if (this.m.InjuriesOnHead != null && bodyPart == ::Const.BodyPart.Head) {
+			if (_info.TargetEntity.getFlags().has("skeleton")) {
 				injuries = ::Const.Injury.SkeletonHead;
-			}
-			else
-			{
+			} else {
 				injuries = this.m.InjuriesOnHead;
 			}
 		}
@@ -1728,7 +1533,7 @@
 		hitInfo.Tile = _info.TargetEntity.getTile();
 		_info.Container.onBeforeTargetHit(_info.Skill, _info.TargetEntity, hitInfo);
 
-		local blockValue = this.Math.floor(_info.TargetEntity.getBlock() * (1.0 - this.m.BlockBypass));
+		local blockValue = ::Math.floor(_info.TargetEntity.getBlock() * (1.0 - this.m.BlockBypass));
 		hitInfo.DamageRegular = ::Math.max(::Math.round(hitInfo.DamageRegular) - blockValue, 0);
 		hitInfo.DamageArmor = ::Math.max(::Math.round(hitInfo.DamageArmor) - blockValue, 0);
 
@@ -1752,8 +1557,7 @@
 				};
 				this.onShieldHit(info);
 				_info.TargetEntity.onMissed(_info.User, this, true);
-			}
-			else {
+			} else {
 				_info.TargetEntity.onMissed(_info.User, this, false);
 			}
 			this.m.Container.onTargetMissed(this, _info.TargetEntity);
@@ -1765,44 +1569,36 @@
 		local hasArmorHitSound = _info.TargetEntity.getItems().getAppearance().ImpactSound[bodyPart].len() != 0;
 		_info.TargetEntity.onDamageReceived(_info.User, _info.Skill, hitInfo);
 
-		if (hitInfo.DamageInflictedHitpoints >= ::Const.Combat.PlayHitSoundMinDamage)
-		{
-			if (this.m.SoundOnHitHitpoints.len() != 0)
-			{
+		if (hitInfo.DamageInflictedHitpoints >= ::Const.Combat.PlayHitSoundMinDamage) {
+			if (this.m.SoundOnHitHitpoints.len() != 0) {
 				::Sound.play(this.m.SoundOnHitHitpoints[::Math.rand(0, this.m.SoundOnHitHitpoints.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, pos);
 			}
 		}
 
-		if (hitInfo.DamageInflictedHitpoints == 0 && hitInfo.DamageInflictedArmor >= ::Const.Combat.PlayHitSoundMinDamage)
-		{
-			if (this.m.SoundOnHitArmor.len() != 0)
-			{
+		if (hitInfo.DamageInflictedHitpoints == 0 && hitInfo.DamageInflictedArmor >= ::Const.Combat.PlayHitSoundMinDamage) {
+			if (this.m.SoundOnHitArmor.len() != 0) {
 				::Sound.play(this.m.SoundOnHitArmor[::Math.rand(0, this.m.SoundOnHitArmor.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, pos);
 			}
 		}
 
-		if (typeof _info.User == "instance" && _info.User.isNull() || !_info.User.isAlive() || _info.User.isDying())
-		{
+		if (typeof _info.User == "instance" && _info.User.isNull() || !_info.User.isAlive() || _info.User.isDying()) {
 			return;
 		}
 
 		_info.Container.onTargetHit(_info.Skill, _info.TargetEntity, hitInfo.BodyPart, hitInfo.DamageInflictedHitpoints, hitInfo.DamageInflictedArmor);
 		_info.User.getItems().onDamageDealt(_info.TargetEntity, this, hitInfo);
 
-		if (hitInfo.DamageInflictedHitpoints >= ::Const.Combat.SpawnBloodMinDamage && !_info.Skill.isRanged() && (_info.TargetEntity.getBloodType() == ::Const.BloodType.Red || _info.TargetEntity.getBloodType() == ::Const.BloodType.Dark))
-		{
+		if (hitInfo.DamageInflictedHitpoints >= ::Const.Combat.SpawnBloodMinDamage && !_info.Skill.isRanged() && (_info.TargetEntity.getBloodType() == ::Const.BloodType.Red || _info.TargetEntity.getBloodType() == ::Const.BloodType.Dark)) {
 			_info.User.addBloodied();
 			local item = _info.User.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-			if (item != null && item.isItemType(::Const.Items.ItemType.MeleeWeapon))
-			{
+			if (item != null && item.isItemType(::Const.Items.ItemType.MeleeWeapon)) {
 				item.setBloodied(true);
 			}
 		}
 	}
 
-	o.playSound <- function()
-	{
+	o.playSound <- function () {
 		local sound = this.m.Sound[::Math.rand(0, this.m.Sound.len() - 1)];
 		::Sound.play(sound, ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
 	}
@@ -1811,16 +1607,16 @@
 	o.setItem = function (_i) {
 		setItem(_i);
 
-		if (this.m.Item != null)
+		if (this.m.Item != null) {
 			this.m.IsSerialized = false;
+		}
 	}
 
 	o.getEffectOwner <- function () {
 		return ((!::Legends.S.isEntityNullOrDead(this.m.Actor) && this.m.Actor.isPlacedOnMap()) ? this.m.Actor : this.getContainer().getActor());
 	}
 
-	o.onDeserialize = function( _in )
-	{
+	o.onDeserialize = function (_in) {
 		this.m.IsNew = _in.readBool();
 	}
 });

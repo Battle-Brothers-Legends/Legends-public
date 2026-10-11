@@ -41,7 +41,7 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 			},
 		];
 
-		local paramBonus = [["_bonus", this.getBonus()], ["_rangedBonus", this.Math.round(this.getBonus() / 2)]]
+		local paramBonus = [["_bonus", this.getBonus()], ["_rangedBonus", ::Math.round(this.getBonus() / 2)]];
 		if (::Tactical.isActive()) {
 			tooltip.extend([{
 				id = 10,
@@ -71,6 +71,6 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		local bonus = this.getBonus();
 		_properties.MeleeDefense += bonus;
-		_properties.RangedDefense += this.Math.round(this.getBonus() / 2)
+		_properties.RangedDefense += ::Math.round(this.getBonus() / 2);
 	}
 });

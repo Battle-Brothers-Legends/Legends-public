@@ -229,26 +229,28 @@
 	Gathering = 0.0,
 	Training = 0.0,
 	Enchanting = 0.0,
-	Terrain = function() {
-        local ret = {};
-        foreach (k, _ in ::Const.World.TerrainType) {
-            if (k != "COUNT" && k != "Land") {
-                ret[k] <- 0.0;
-            }
-        }
-        return ret;
-    }()
+	Terrain = function () {
+		local ret = {};
+		foreach (k, _ in ::Const.World.TerrainType) {
+			if (k != "COUNT" && k != "Land") {
+				ret[k] <- 0.0;
+			}
+		}
+		return ret;
+	}
+	()
 };
 
-::Const.CharacterProperties.TerrainTypes <- function() {
-    local ret = {};
-    foreach (k, id in ::Const.World.TerrainType) {
-        if (k != "COUNT" && k != "Land") {
-            ret[id] <- k;
-        }
-    }
-    return ret;
-}();
+::Const.CharacterProperties.TerrainTypes <- function () {
+	local ret = {};
+	foreach (k, id in ::Const.World.TerrainType) {
+		if (k != "COUNT" && k != "Land") {
+			ret[id] <- k;
+		}
+	}
+	return ret;
+}
+();
 
 ::Const.CharacterProperties.TerrainTypeTooltipIDs <- [2, 3, 4, 5, 9, 11, 12, 14, 15, 17, 18];
 
@@ -261,5 +263,5 @@
 };
 
 ::Const.CharacterProperties.getBlock <- function () {
-	return this.Math.floor(this.Math.max(0, this.Block) * this.BlockMult);
+	return ::Math.floor(::Math.max(0, this.Block) * this.BlockMult);
 };

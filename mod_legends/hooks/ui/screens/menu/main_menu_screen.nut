@@ -9,7 +9,7 @@
 		this.m.ScenarioMenuModule.connectUI(this.m.JSHandle);
 		this.m.OptionsMenuModule.connectUI(this.m.JSHandle);
 		this.m.CreditsModule.connectUI(this.m.JSHandle);
-		this.m.JSHandle.asyncCall("setVersion", [this.GameInfo.getVersionNumber() + " " + this.GameInfo.getVersionName(), "Legends Mod " + ::Legends.Version + " " + ::Legends.BuildName]);
+		this.m.JSHandle.asyncCall("setVersion", [::GameInfo.getVersionNumber() + " " + ::GameInfo.getVersionName(), "Legends Mod " + ::Legends.Version + " " + ::Legends.BuildName]);
 		local dlc = [];
 
 		for( local i = 0; i < 32; i = ++i )
