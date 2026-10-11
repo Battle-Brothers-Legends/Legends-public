@@ -413,7 +413,7 @@ Learn to take advantage of your high Initiative and prevent the enemy from attac
 Learn to use the superior reach of large weapons to keep the enemy from getting close enough to land a good hit.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Each hit with a Two-Handed melee weapon adds a stack of [color=%status%]Reach Advantage[/color] which increases your Melee Defense by [color=%positive%]+5[/color], up to a maximum of 5 stacks, until this character's next turn.
+• Each hit with a Two-Handed melee weapon adds a stack of [color=%status%]Reach Advantage[/color] which increases your Melee Defense by [color=%positive%]+5[/color], up to a maximum of 5 stacks, which will reduce by [color=%negative%]2[/color] at the start of your next turn.
 
 • A single attack hitting multiple targets can add several stacks at once.
 

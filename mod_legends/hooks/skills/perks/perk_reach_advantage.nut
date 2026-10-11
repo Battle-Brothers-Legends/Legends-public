@@ -1,19 +1,24 @@
 ::mods_hookExactClass("skills/perks/perk_reach_advantage", function(o) {
 	local onUpdate = o.onUpdate;
-	o.onUpdate = function ( _properties )
-	{
+	o.onUpdate = function ( _properties ) {
 		onUpdate(_properties);
 		local actor = this.getContainer().getActor();
-		if (actor.getMainhandItem() == null || !actor.getMainhandItem().isWeaponType(::Const.Items.WeaponType.Staff))
+		if (actor.getMainhandItem() == null || !actor.getMainhandItem().isWeaponType(::Const.Items.WeaponType.Staff)) {
 			return;
-		if (_properties.IsImmuneToSurrounding == true || actor.getSkills().hasPerk(::Legends.Perk.Underdog))
-		{
+		}
+		if (_properties.IsImmuneToSurrounding == true || actor.getSkills().hasPerk(::Legends.Perk.Underdog)) {
 			_properties.MeleeDefense += 5;
 			_properties.RangedDefense += 5;
 		}
-		else
-		{
+		else {
 			_properties.SurroundedDefense += 5;
+		}
+	}
+
+	o.onTurnStart = function () {
+		this.m.Stacks = this.Math.max(0, this.m.Stacks - 2);
+		if (this.m.Stacks == 0) {
+			this.m.IsHidden = true;
 		}
 	}
 });
