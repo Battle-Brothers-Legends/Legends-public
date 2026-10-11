@@ -150,7 +150,7 @@ if (!("Items" in ::Legends)) {
 		Icon = "ui/icons/fatigue_named.png",
 		Text = ""
 		function isRightTooltip(_tooltip, _properties, _item = "weapon") {
-            local range = _item = "weapon" ? ::Legends.Items.Named.randomizeRanges.StaminaModifier : _item == "shield" ? ::Legends.Items.Named.randomizeRanges.StaminaModifierShield : ::Legends.Items.Named.randomizeRanges.StaminaModifierGloves;
+            local range = _item == "weapon" ? ::Legends.Items.Named.randomizeRanges.StaminaModifier : _item == "shield" ? ::Legends.Items.Named.randomizeRanges.StaminaModifierShield : ::Legends.Items.Named.randomizeRanges.StaminaModifierGloves;
 			local bVal = _properties.StaminaModifier;
 			this.Text = ::Legends.Items.Named.wrapTooltip(::Math.round(bVal * range[0] * 0.01) + " to " + ::Math.round(bVal * range[1] * 0.01));
 			return _tooltip.icon == "ui/icons/fatigue.png";
