@@ -56,9 +56,7 @@
 
 			local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 			this.m.Items.equip(this.new("scripts/items/" + weapon));
-			if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)
-				&& ::Math.rand(1, 100) <= 50)
-			{
+			if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 50) {
 				this.m.Items.equip(this.new("scripts/items/" + weapon));
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendAmbidextrous);
 				this.m.Items.updateDualWield();
@@ -84,8 +82,7 @@
 				[2, ::Legends.Helmet.Standard.mail_coif],
 				[1, ::Legends.Helmet.Standard.feathered_hat],
 				[1, ::Legends.Helmet.Standard.headscarf]
-			]))
-
+			]));
 		}
 	}
 
@@ -112,9 +109,7 @@
 		if (::Math.rand(1, 100) <= 70) {
 			local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 			this.m.Items.equip(this.new("scripts/items/" + weapon));
-			if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)
-				&& ::Math.rand(1, 100) <= 50)
-			{
+			if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 50) {
 				this.m.Items.equip(this.new("scripts/items/" + weapon));
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendAmbidextrous);
 				this.m.Items.updateDualWield();

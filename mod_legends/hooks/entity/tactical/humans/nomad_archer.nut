@@ -1,6 +1,6 @@
-::mods_hookExactClass("entity/tactical/humans/nomad_archer", function(o) {
+::mods_hookExactClass("entity/tactical/humans/nomad_archer", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
@@ -8,15 +8,13 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local weapons = [
 			[
 				"weapons/oriental/composite_bow",
@@ -25,8 +23,7 @@
 		];
 		local n = ::Math.rand(0, weapons.len() - 1);
 
-		foreach( w in weapons[n] )
-		{
+		foreach (w in weapons[n]) {
 			this.m.Items.equip(this.new("scripts/items/" + w));
 		}
 
@@ -37,7 +34,6 @@
 			"weapons/oriental/saif"
 		];
 		this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-
 
 		local armor = [
 			[2, ::Legends.Armor.Southern.nomad_robe],
@@ -59,9 +55,8 @@
 			[1, ::Legends.Outfit.dark_southern_outfit_00]
 		];
 
-		foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) )
-		{
-			this.m.Items.equip(item)
+		foreach (item in ::Const.World.Common.pickOutfit(outfits, armor, helmet)) {
+			this.m.Items.equip(item);
 		}
 	}
 });

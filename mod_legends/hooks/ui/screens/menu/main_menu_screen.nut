@@ -1,7 +1,6 @@
-::mods_hookExactClass("ui/screens/menu/main_menu_screen", function(o) {
+::mods_hookExactClass("ui/screens/menu/main_menu_screen", function (o) {
 
-	o.connect = function ()
-	{
+	o.connect = function () {
 		this.m.JSHandle = this.UI.connect("MainMenuScreen", this);
 		this.m.MainMenuModule.connectUI(this.m.JSHandle);
 		this.m.LoadCampaignModule.connectUI(this.m.JSHandle);
@@ -12,34 +11,31 @@
 		this.m.JSHandle.asyncCall("setVersion", [::GameInfo.getVersionNumber() + " " + ::GameInfo.getVersionName(), "Legends Mod " + ::Legends.Version + " " + ::Legends.BuildName]);
 		local dlc = [];
 
-		for( local i = 0; i < 32; i = ++i )
-		{
-			if (::Const.DLC.Info[i] != null && ::Const.DLC.Info[i].Announce == true)
-			{
+		for (local i = 0; i < 32; i++) {
+			if (::Const.DLC.Info[i] != null && ::Const.DLC.Info[i].Announce == true) {
 				local hasDLC = (::Const.DLC.Mask & 1 << i) != 0;
 				dlc.push({
-					Image = hasDLC ? ::Const.DLC.Info[i].Icon : ::Const.DLC.Info[i].IconDisabled,
+					Image = hasDLC ? ::Const.DLC.Info[i].Icon: ::Const.DLC.Info[i].IconDisabled,
 					Tooltip = "dlc_" + i,
 					URL = ::Const.DLC.Info[i].URL
 				});
 			}
 		}
 
-
 		this.m.JSHandle.asyncCall("setDLC", dlc);
-		local missingFiles = this.checkForRequiredFiles();
-		local test = false;
-		if (!::Const.DLC.Unhold || !::Const.DLC.Wildmen || !::Const.DLC.Desert || missingFiles.len() > 0)
-		{
+		if (!::Const.DLC.Unhold || !::Const.DLC.Wildmen || !::Const.DLC.Desert) {
 			local disabledMotdText = "You are missing critical files!";
-			if (!::Const.DLC.Unhold || !::Const.DLC.Wildmen || !::Const.DLC.Desert) disabledMotdText += "\nLegends extensively uses features and assets from all official DLC. We would not be able to offer this mod experience without all the awesome work from Overhype.";
-			if(!::Const.DLC.Unhold) disabledMotdText += "\nMissing 'Beasts and Exploration' DLC";
-			if(!::Const.DLC.Wildmen) disabledMotdText += "\nMissing 'Warriors of the North' DLC'";
-			if(!::Const.DLC.Desert) disabledMotdText += "\nMissing 'Blazing Deserts' DLC'";
-			if(missingFiles.len() > 0) {
-				foreach (fileType, fileName in missingFiles){
-					disabledMotdText += format("\nMissing %s file %s", fileType, fileName);
-				}
+			if (!::Const.DLC.Unhold || !::Const.DLC.Wildmen || !::Const.DLC.Desert) {
+				disabledMotdText += "\nLegends extensively uses features and assets from all official DLCs. We would not be able to offer this mod's experience without all the awesome work from Overhype.";
+			}
+			if (!::Const.DLC.Unhold) {
+				disabledMotdText += "\nMissing 'Beasts and Exploration' DLC";
+			}
+			if (!::Const.DLC.Wildmen) {
+				disabledMotdText += "\nMissing 'Warriors of the North' DLC";
+			}
+			if (!::Const.DLC.Desert) {
+				disabledMotdText += "\nMissing 'Blazing Deserts' DLC";
 			}
 			this.m.JSHandle.asyncCall("setLMOTD", disabledMotdText);
 		} else {
@@ -47,30 +43,13 @@
 		}
 	}
 
-	o.checkForRequiredFiles <- function (){
-		local missing = {};
-		// local requiredFiles = ::Const.LegendMod.RequiredFiles;
-		// local filesInData = this.IO.enumerateFiles("");
-		// foreach (fileType, fileName in requiredFiles){
-		// 	if(fileName != "" && filesInData.find(fileName) == null){
-		// 		missing[fileType] <- fileName;
-		// 	}
-		// }
-		return missing
-	}
+	o.show = function (_animate) {
+		if (this.m.JSHandle != null && !this.isVisible()) {
+			::Tooltip.hide();
 
-	o.show = function ( _animate )
-	{
-		if (this.m.JSHandle != null && !this.isVisible())
-		{
-			this.Tooltip.hide();
-
-			if (!::Const.DLC.Unhold && !::Const.DLC.Wildmen && !::Const.DLC.Wildmen)
-			{
+			if (!::Const.DLC.Unhold && !::Const.DLC.Wildmen && !::Const.DLC.Wildmen) {
 				this.m.JSHandle.asyncCall("noshow", null);
-			}
-			else
-			{
+			} else {
 				this.m.JSHandle.asyncCall("show", _animate);
 			}
 		}

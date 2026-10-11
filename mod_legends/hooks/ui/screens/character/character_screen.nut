@@ -22,9 +22,7 @@
 			return;
 		}
 
-		if (_filter.Armor.len() == ::Const.Items.ArmorUpgrades.COUNT + 1
-			&& _filter.Helmet.len() == ::Const.Items.HelmetUpgrades.COUNT)
-		{
+		if (_filter.Armor.len() == ::Const.Items.ArmorUpgrades.COUNT + 1 && _filter.Helmet.len() == ::Const.Items.HelmetUpgrades.COUNT) {
 			::UIDataHelper.m.ArmorFilter = null;
 			this.loadStashList();
 		} else {
@@ -37,13 +35,13 @@
 		this.setRosterLimit();
 
 		if (this.m.JSHandle != null) {
-			this.Tooltip.hide();
+			::Tooltip.hide();
 			this.m.JSHandle.asyncCall("show", this.queryData());
 		}
 	}
 
 	o.toggleBrotherReserves <- function () {
-		this.Tooltip.hide();
+		::Tooltip.hide();
 		this.m.JSDataSourceHandle.asyncCall("toggleBrotherReserves", null);
 	}
 
@@ -69,35 +67,35 @@
 				::World.Assets.addMoney(-10 * ::Math.max(1, bro.getDaysWithCompany()));
 
 				if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
-					foreach (otherSlave in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getID() != bro.getID() && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)))){
+					foreach (otherSlave in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getID() != bro.getID() && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)))) {
 						otherSlave.improveMood(::Const.MoodChange.SlaveCompensated, "Glad to see " + bro.getName() + " get reparations for his time");
 					}
 				}
 			} else {
 				local dismissNews = null;
 				if (::World.getPlayerRoster().getSize() > 1) {
-        			if (bro.getLevel() >= 11 && !::World.Statistics.hasNews("dismiss_legend")) {
-            			dismissNews = "dismiss_legend";
-        			} else if (bro.getDaysWithCompany() >= 50 && !::World.Statistics.hasNews("dismiss_veteran") && ::Math.rand(1, 100) <= 33) {
-            			dismissNews = "dismiss_veteran";
-        			} else if (bro.getDaysWithCompany() >= 1 && bro.getLevel() >= 3 && bro.getSkills().hasSkillOfType(::Const.SkillType.PermanentInjury) && !::World.Statistics.hasNews("dismiss_injured") && ::Math.rand(1, 100) <= 33) {
-            			dismissNews = "dismiss_injured";
-        			}
-   				}
+					if (bro.getLevel() >= 11 && !::World.Statistics.hasNews("dismiss_legend")) {
+						dismissNews = "dismiss_legend";
+					} else if (bro.getDaysWithCompany() >= 50 && !::World.Statistics.hasNews("dismiss_veteran") && ::Math.rand(1, 100) <= 33) {
+						dismissNews = "dismiss_veteran";
+					} else if (bro.getDaysWithCompany() >= 1 && bro.getLevel() >= 3 && bro.getSkills().hasSkillOfType(::Const.SkillType.PermanentInjury) && !::World.Statistics.hasNews("dismiss_injured") && ::Math.rand(1, 100) <= 33) {
+						dismissNews = "dismiss_injured";
+					}
+				}
 
 				if (dismissNews != null) {
 					local news = ::World.Statistics.createNews();
-        			news.set("Name", bro.getName());
-        			::World.Statistics.addNews(dismissNews, news);
+					news.set("Name", bro.getName());
+					::World.Statistics.addNews(dismissNews, news);
 				} else if (bro.getDaysWithCompany() >= 7) {
-					foreach (otherBro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getID() != bro.getID()))) {
+					foreach (otherBro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getID() != bro.getID()))) {
 						otherBro.worsenMood(bro.getDaysWithCompany() >= 50 ? ::Const.MoodChange.VeteranDismissed : ::Const.MoodChange.BrotherDismissed, "Dismissed " + bro.getName());
 					}
 				}
 			}
 
 			if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters") {
-				local numberOfIndebted = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))).len();
+				local numberOfIndebted = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))).len();
 				::World.Statistics.getFlags().set("ManhunterIndebted", numberOfIndebted);
 				::World.Statistics.getFlags().set("ManhunterNonIndebted", ::World.getPlayerRoster().getAll().len() - numberOfIndebted);
 			}
@@ -123,9 +121,7 @@
 
 	o.onToggleReserveCharacter <- function (_id) {
 		local bro = ::Tactical.getEntityByID(_id);
-		if (bro != null
-			&& (::World.State.getBrothersInFrontline() < ::World.Assets.getBrothersMaxInCombat() || !bro.isInReserves()))
-		{
+		if (bro != null && (::World.State.getBrothersInFrontline() < ::World.Assets.getBrothersMaxInCombat() || !bro.isInReserves())) {
 			bro.setInReserves(!bro.isInReserves());
 			this.setRosterLimit();
 		} else {
@@ -445,18 +441,12 @@
 			}
 		}
 
-		if (!data.stash.isResizable()
-			&& data.stash.getNumberOfEmptySlots() < targetItems.slotsNeeded - 1)
-		{
+		if (!data.stash.isResizable() && data.stash.getNumberOfEmptySlots() < targetItems.slotsNeeded - 1) {
 			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 		}
 
 		if (targetItems.firstItem != null) {
-			if (!targetItems.firstItem.isInBag()
-				&& !data.inventory.unequip(targetItems.firstItem)
-				|| targetItems.firstItem.isInBag()
-				&& !data.inventory.removeFromBag(targetItems.firstItem))
-			{
+			if (!targetItems.firstItem.isInBag() && !data.inventory.unequip(targetItems.firstItem) || targetItems.firstItem.isInBag() && !data.inventory.removeFromBag(targetItems.firstItem)) {
 				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
 			}
 
@@ -543,10 +533,7 @@
 
 	o.helper_dropItemIntoStash = function (_data) {
 
-		if (_data.targetItemIdx == null
-			&& _data.stash.hasEmptySlot() == false
-			&& !_data.stash.isResizable())
-		{
+		if (_data.targetItemIdx == null && _data.stash.hasEmptySlot() == false && !_data.stash.isResizable()) {
 			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 		}
 
@@ -569,25 +556,16 @@
 			}
 		} else if (_data.targetItemIdx != null) {
 			if (_data.targetItem != null) {
-				if (_data.sourceItem.getSlotType() == ::Const.ItemSlot.Mainhand
-					|| _data.sourceItem.getSlotType() == ::Const.ItemSlot.Offhand)
-				{
+				if (_data.sourceItem.getSlotType() == ::Const.ItemSlot.Mainhand || _data.sourceItem.getSlotType() == ::Const.ItemSlot.Offhand) {
 					if (_data.sourceItem.getSlotType() == ::Const.ItemSlot.Mainhand) {
-						local sourceItemIsBlockingOffhand = _data.sourceItem.getBlockedSlotType() != null
-							&& _data.sourceItem.getBlockedSlotType() == ::Const.ItemSlot.Offhand;
-						local targetItemIsBlockingOffhand = _data.targetItem.getBlockedSlotType() != null
-							&& _data.targetItem.getBlockedSlotType() == ::Const.ItemSlot.Offhand;
+						local sourceItemIsBlockingOffhand = _data.sourceItem.getBlockedSlotType() != null && _data.sourceItem.getBlockedSlotType() == ::Const.ItemSlot.Offhand;
+						local targetItemIsBlockingOffhand = _data.targetItem.getBlockedSlotType() != null && _data.targetItem.getBlockedSlotType() == ::Const.ItemSlot.Offhand;
 
-						if ((sourceItemIsBlockingOffhand == false && _data.inventory.getItemAtSlot(::Const.ItemSlot.Offhand) != null)
-							&& _data.targetItem.getSlotType() == ::Const.ItemSlot.Mainhand
-							&& targetItemIsBlockingOffhand == true)
-						{
+						if ((sourceItemIsBlockingOffhand == false && _data.inventory.getItemAtSlot(::Const.ItemSlot.Offhand) != null) && _data.targetItem.getSlotType() == ::Const.ItemSlot.Mainhand && targetItemIsBlockingOffhand == true) {
 							return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 						}
 
-						if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType()
-							&& !(_data.sourceItem.getSlotType() == ::Const.ItemSlot.Mainhand && sourceItemIsBlockingOffhand && _data.targetItem.getSlotType() == ::Const.ItemSlot.Offhand))
-						{
+						if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType() && !(_data.sourceItem.getSlotType() == ::Const.ItemSlot.Mainhand && sourceItemIsBlockingOffhand && _data.targetItem.getSlotType() == ::Const.ItemSlot.Offhand)) {
 							return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 						}
 					} else if (_data.targetItem.getSlotType() != ::Const.ItemSlot.Offhand) {
@@ -595,9 +573,7 @@
 					}
 				} else if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType()) {
 					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
-				} else if (::mods_isClass(_data.targetItem, "legend_armor_upgrade") != null
-					|| ::mods_isClass(_data.targetItem, "legend_helmet_upgrade") != null)
-				{
+				} else if (::mods_isClass(_data.targetItem, "legend_armor_upgrade") != null || ::mods_isClass(_data.targetItem, "legend_helmet_upgrade") != null) {
 					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 				}
 
@@ -742,9 +718,7 @@
 			};
 		}
 		local bro = ::Tactical.getEntityByID(_data[1]);
-		local upgrade = bro.removeArmorUpgrade(_data[2] == "body"
-			? ::Const.ItemSlot.Body
-			: ::Const.ItemSlot.Head, _data[0]);
+		local upgrade = bro.removeArmorUpgrade(_data[2] == "body" ? ::Const.ItemSlot.Body : ::Const.ItemSlot.Head, _data[0]);
 		if (upgrade != null && !upgrade.isDestroyedOnRemove()) {
 			::World.Assets.getStash().add(upgrade);
 			bro.getSkills().update();
@@ -787,37 +761,6 @@
 		local name = _data[0];
 		::World.Assets.changeFormationName(name);
 		return ::World.Assets.getFormationName();
-	}
-
-	o.onAssignRider <- function (_data) {
-		local riderID = _data[0];
-		local horseID = _data[1];
-
-		local rider = ::Tactical.getEntityByID(_data[0]);
-		local horse = ::Tactical.getEntityByID(_data[1]);
-
-		if (rider == null && horse == null) {
-			return this.onQueryBrothersList();
-		}
-
-		//assign a bro to a horse
-		if (horse != null && rider != null) {
-			horse.setRiderID(_data[0]);
-			rider.setRiderID(_data[0]);
-			return this.onQueryBrothersList();
-		}
-
-		//Removing bro from horse
-		if (horse != null) {
-			horse.setRiderID("");
-		}
-
-		//Removing horse from bro
-		if (rider != null) {
-			rider.setRiderID("");
-		}
-
-		return this.onQueryBrothersList();
 	}
 
 	o.onBrotherSelected <- function (_data) {
@@ -878,10 +821,7 @@
 		}
 
 		// Equipping to offhand
-		if (targetSlot == ::Const.ItemSlot.Offhand
-			&& !ohBlocked
-			&& inventory.canDualWield(entity, sourceItem))
-		{
+		if (targetSlot == ::Const.ItemSlot.Offhand && !ohBlocked && inventory.canDualWield(entity, sourceItem)) {
 
 			local originalSlotType = sourceItem.m.SlotType;
 			sourceItem.m.SlotType = ::Const.ItemSlot.Offhand;
@@ -1201,5 +1141,37 @@
 			stashSpaceUsed = ::Stash.getNumberOfFilledSlots(),
 			stashSpaceMax = ::Stash.getCapacity()
 		};
+	}
+
+	// horse
+	o.onAssignRider <- function (_data) {
+		local riderID = _data[0];
+		local horseID = _data[1];
+
+		local rider = ::Tactical.getEntityByID(_data[0]);
+		local horse = ::Tactical.getEntityByID(_data[1]);
+
+		if (rider == null && horse == null) {
+			return this.onQueryBrothersList();
+		}
+
+		//assign a bro to a horse
+		if (horse != null && rider != null) {
+			horse.setRiderID(_data[0]);
+			rider.setRiderID(_data[0]);
+			return this.onQueryBrothersList();
+		}
+
+		//Removing bro from horse
+		if (horse != null) {
+			horse.setRiderID("");
+		}
+
+		//Removing horse from bro
+		if (rider != null) {
+			rider.setRiderID("");
+		}
+
+		return this.onQueryBrothersList();
 	}
 });

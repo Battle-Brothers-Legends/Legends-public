@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_knight", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/zombie_knight", function (o) {
 	local create = o.create;
 	o.create = function () {
 		create();
@@ -11,13 +10,11 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
 		b.SurroundedBonus = 5; // resetting from vanilla
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.Hitpoints *= 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
@@ -38,10 +35,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function()
-	{
-		local r;
-
+	o.assignRandomEquipment = function () {
 		local weapons = [
 			"weapons/hand_axe",
 			"weapons/morning_star",
@@ -58,8 +52,7 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			local shields = [
 				"shields/worn_heater_shield",
 				"shields/worn_kite_shield"
@@ -74,16 +67,13 @@
 		];
 		local armor = ::Const.World.Common.pickArmor(aList);
 
-
-		if (::Math.rand(1, 100) <= 33)
-		{
+		if (::Math.rand(1, 100) <= 33) {
 			armor.setArmor(::Math.round(armor.getArmorMax() / 2 - 1));
 		}
 
 		this.m.Items.equip(armor);
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null && ::Math.rand(1, 100) <= 90)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null && ::Math.rand(1, 100) <= 90) {
 			local helmet = [
 				[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],
 				[3, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
@@ -92,8 +82,7 @@
 			];
 			local h = ::Const.World.Common.pickHelmet(helmet);
 
-			if (::Math.rand(1, 100) <= 33)
-			{
+			if (::Math.rand(1, 100) <= 33) {
 				h.setArmor(::Math.round(h.getArmorMax() / 2 - 1));
 			}
 
@@ -101,10 +90,8 @@
 		}
 	}
 
-	o.makeMiniboss = function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss = function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -135,12 +122,9 @@
 
 		local shields = clone ::Const.Items.NamedUndeadShields;
 
-		if (::Math.rand(1, 100) <= 80)
-		{
+		if (::Math.rand(1, 100) <= 80) {
 			this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		}
-		else
-		{
+		} else {
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 

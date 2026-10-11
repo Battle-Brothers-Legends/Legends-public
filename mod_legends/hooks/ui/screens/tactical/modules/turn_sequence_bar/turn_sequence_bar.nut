@@ -26,11 +26,8 @@
 
 		local result = this.findEntityByID(this.m.AllEntities, _entityId);
 
-		if (result != null
-			&& !::Legends.S.isEntityNullOrDead(result.entity)
-			&& result.entity.isPlacedOnMap())
-		{
-			this.Tooltip.reloadDataIfEqual(_entityId);
+		if (result != null && !::Legends.S.isEntityNullOrDead(result.entity) && result.entity.isPlacedOnMap()) {
+			::Tooltip.reloadDataIfEqual(_entityId);
 			::Time.scheduleEvent(::TimeUnit.Real, 10, function (_tag) {
 
 				if (_tag.bar == null || _tag.bar.m.CurrentEntities.len() == 0) {
@@ -79,5 +76,4 @@
 			}
 		}.bindenv(this), null);
 	}
-	
 });

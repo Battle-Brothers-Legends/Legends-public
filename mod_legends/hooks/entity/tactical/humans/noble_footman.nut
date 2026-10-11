@@ -27,23 +27,14 @@
 	}
 
 	o.assignRandomEquipment = function () {
-		local r;
-		local banner = 3;
-
-		if (!::Tactical.State.isScenarioMode()) {
-			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
-		} else {
-			banner = this.getFaction();
-		}
-
+		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
 
 		if (::Math.rand(1, 100) <= 90) {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-		r = ::Math.rand(1, 4);
-
+		local r = ::Math.rand(1, 4);
 		if (r == 1) {
 			this.m.Items.equip(this.new("scripts/items/weapons/military_pick"));
 		} else if (r == 2) {

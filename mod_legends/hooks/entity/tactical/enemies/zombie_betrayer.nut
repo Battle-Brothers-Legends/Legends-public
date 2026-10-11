@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_betrayer", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/zombie_betrayer", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.OnDeathLootTable.extend([
 			[1.0, "scripts/items/misc/legend_masterwork_fabric"],
@@ -12,28 +10,23 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
 		b.SurroundedBonus = 5; // resetting from vanilla
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeSkill += 10;
 			b.Hitpoints *= 1.5;
 			b.Armor[::Const.BodyPart.Head] += 50;
-			b.ArmorMax[::Const.BodyPart.Head] += 50;		
+			b.ArmorMax[::Const.BodyPart.Head] += 50;
 			b.Armor[::Const.BodyPart.Body] += 100;
 			b.ArmorMax[::Const.BodyPart.Body] += 100;
 		}
 	}
 
-	o.assignRandomEquipment <- function()
-	{
-		local r;
-
+	o.assignRandomEquipment <- function () {
 		local weapons = [
 			"weapons/winged_mace",
 			"weapons/legend_zweihander",
@@ -49,8 +42,7 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			local shields = [
 				"shields/worn_heater_shield",
 				"shields/worn_kite_shield"
@@ -65,16 +57,13 @@
 		];
 		local armor = ::Const.World.Common.pickArmor(aList);
 
-
-		if (::Math.rand(1, 100) <= 33)
-		{
+		if (::Math.rand(1, 100) <= 33) {
 			armor.setArmor(::Math.round(armor.getArmorMax() / 2 - 1));
 		}
 
 		this.m.Items.equip(armor);
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null && ::Math.rand(1, 100) <= 90)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null && ::Math.rand(1, 100) <= 90) {
 			local helmet = [
 				[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
 				[1, ::Legends.Helmet.Standard.decayed_full_helm],
@@ -82,8 +71,7 @@
 			];
 			local h = ::Const.World.Common.pickHelmet(helmet);
 
-			if (::Math.rand(1, 100) <= 33)
-			{
+			if (::Math.rand(1, 100) <= 33) {
 				h.setArmor(::Math.round(h.getArmorMax() / 2 - 1));
 			}
 
@@ -91,15 +79,13 @@
 		}
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss <- function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
 		this.m.BaseProperties.Armor[::Const.BodyPart.Head] += 50;
-		this.m.BaseProperties.ArmorMax[::Const.BodyPart.Head] += 50;		
+		this.m.BaseProperties.ArmorMax[::Const.BodyPart.Head] += 50;
 		this.m.BaseProperties.Armor[::Const.BodyPart.Body] += 100;
 		this.m.BaseProperties.ArmorMax[::Const.BodyPart.Body] += 100;
 
@@ -126,8 +112,9 @@
 		local shields = clone ::Const.Items.NamedUndeadShields;
 
 		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
+		}
 
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);

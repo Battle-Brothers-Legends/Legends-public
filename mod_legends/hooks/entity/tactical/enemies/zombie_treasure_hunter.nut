@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_treasure_hunter", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/zombie_treasure_hunter", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
 		b.SurroundedBonus = 5; // resetting from vanilla
@@ -10,19 +8,14 @@
 		this.m.Skills.update();
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
-
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
-		{
+	o.assignRandomEquipment = function () {
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null) {
 			local weapons = [
 				"weapons/shamshir",
 				"weapons/oriental/heavy_southern_mace"
 			];
 
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-			{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 				weapons.extend([
 					"weapons/oriental/two_handed_scimitar"
 				]);

@@ -1,6 +1,6 @@
-::mods_hookExactClass("entity/tactical/humans/noble_greatsword", function(o) {
+::mods_hookExactClass("entity/tactical/humans/noble_greatsword", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
@@ -8,8 +8,7 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
@@ -18,8 +17,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecSword);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackswing);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
@@ -31,21 +29,10 @@
 	}
 
 	o.assignRandomEquipment = function () {
-		local banner = 3;
-
-		if (!::Tactical.State.isScenarioMode())
-		{
-			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
-		}
-		else
-		{
-			banner = this.getFaction();
-		}
-
+		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
 
-		if (::Math.rand(1, 100) <= 50)
-		{
+		if (::Math.rand(1, 100) <= 50) {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
@@ -60,8 +47,6 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-
-
 		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Standard.mail_hauberk, 28],
 			[1, ::Legends.Armor.Standard.scale_armor],
@@ -70,7 +55,6 @@
 			[1, ::Legends.Armor.Standard.seedmaster_noble_armor],
 			[1, ::Legends.Armor.Standard.citreneking_noble_armor]
 		]));
-
 
 		this.m.Items.equip(::Const.World.Common.pickHelmet([
 			//[1, ::Legends.Helmet.Standard.greatsword_hat],  Only 70 durability
@@ -82,10 +66,8 @@
 		]));
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss <- function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -96,12 +78,9 @@
 			"weapons/named/legend_named_flamberge"
 		];
 
-		if (::Math.rand(1, 100) <= 70)
-		{
+		if (::Math.rand(1, 100) <= 70) {
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		}
-		else
-		{
+		} else {
 			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[2, ::Legends.Armor.Named.black_and_gold_armor],
 				[2, ::Legends.Armor.Named.blue_studded_mail_armor],

@@ -1,110 +1,91 @@
-::mods_hookExactClass("entity/tactical/humans/noble", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/noble", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		this.m.Name = ::Const.Strings.NobleTitles[::Math.rand(0, ::Const.Strings.NobleTitles.len() - 1)] + " " + (this.getGender() != 1 ? ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)] : ::Const.Strings.CharacterNamesFemale[::Math.rand(0, ::Const.Strings.CharacterNamesFemale.len() - 1)]); // these are the nobles in faction screen, employers etc.
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
+	o.assignRandomEquipment = function () {
 		this.m.Surcoat = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		local surcoat = "surcoat_" + (this.m.Surcoat < 10 ? "0" + this.m.Surcoat : this.m.Surcoat);
-		r = ::Math.rand(1, 7);
+		local r = ::Math.rand(1, 7);
 		local withDetails = true;
 		local alwaysWithDetails = false;
 		local withHelmet = true;
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.noble_tunic]
 			]));
 			alwaysWithDetails = true;
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.coat_of_plates]
 			]));
 			withDetails = false;
 			withHelmet = false;
 
-			if (::Math.rand(1, 100) <= 75)
-			{
+			if (::Math.rand(1, 100) <= 75) {
 				this.getSprite("surcoat").setBrush(surcoat);
 			}
 
-			if (::Math.rand(1, 100) <= 25)
-			{
+			if (::Math.rand(1, 100) <= 25) {
 				local h = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.greatsword_faction_helm, ::World.FactionManager.getFaction(this.getFaction()).getBanner()]
 				]);
 				this.m.Items.equip(h);
 			}
 
-			if (::Math.rand(1, 100) <= 33)
-			{
+			if (::Math.rand(1, 100) <= 33) {
 				local variants = [
 					"02",
 					"10"
 				];
 				this.getSprite("surcoat").setBrush("bust_body_noble_" + variants[::Math.rand(0, variants.len() - 1)]);
 			}
-		}
-		else if (r == 3)
-		{
+		} else if (r == 3) {
 			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.coat_of_scales]
 			]));
 			withDetails = false;
 			withHelmet = false;
 
-			if (::Math.rand(1, 100) <= 75)
-			{
+			if (::Math.rand(1, 100) <= 75) {
 				this.getSprite("surcoat").setBrush(surcoat);
 			}
 
-			if (::Math.rand(1, 100) <= 25)
-			{
+			if (::Math.rand(1, 100) <= 25) {
 				local h = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.greatsword_faction_helm, ::World.FactionManager.getFaction(this.getFaction()).getBanner()]
 				]);
 				this.m.Items.equip(h);
 			}
 
-			if (::Math.rand(1, 100) <= 33)
-			{
+			if (::Math.rand(1, 100) <= 33) {
 				local variants = [
 					"02",
 					"10"
 				];
 				this.getSprite("surcoat").setBrush("bust_body_noble_" + variants[::Math.rand(0, variants.len() - 1)]);
 			}
-		}
-		else
-		{
+		} else {
 			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.noble_gear]
 			]));
 		}
 
-		if (withDetails && (alwaysWithDetails || ::Math.rand(1, 100) <= 50))
-		{
+		if (withDetails && (alwaysWithDetails || ::Math.rand(1, 100) <= 50)) {
 			local variants = [
 				"01",
 				"02",
@@ -116,14 +97,13 @@
 			this.getSprite("surcoat").setBrush("bust_body_noble_" + variants[::Math.rand(0, variants.len() - 1)]);
 		}
 
-		if (withHelmet && ::Math.rand(1, 100) <= 50)
-		{
+		if (withHelmet && ::Math.rand(1, 100) <= 50) {
 			::Const.World.Common.pickHelmet([
-					//[1, "legend_helmet_noble_floppy_hat"],
-					//[1, "legend_helmet_noble_hat"],
-					//[1, "legend_helmet_noble_hood"],
-					[1, ""]
-			])
+				//[1, "legend_helmet_noble_floppy_hat"],
+				//[1, "legend_helmet_noble_hat"],
+				//[1, "legend_helmet_noble_hood"],
+				[1, ""]
+			]);
 		}
 	}
 });

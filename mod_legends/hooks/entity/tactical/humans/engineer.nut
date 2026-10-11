@@ -1,15 +1,14 @@
-::mods_hookExactClass("entity/tactical/humans/engineer", function(o) {
+::mods_hookExactClass("entity/tactical/humans/engineer", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
 		b.TargetAttractionMult = 2.0;
@@ -17,28 +16,20 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
-		local banner = 3;
+	o.assignRandomEquipment = function () {
+		if (::Math.rand(1, 100) <= 50) {
+			local r = ::Math.rand(1, 2);
 
-		if (::Math.rand(1, 100) <= 50)
-		{
-			r = ::Math.rand(1, 2);
-
-			if (r == 1)
-			{
+			if (r == 1) {
 				this.m.Items.equip(this.new("scripts/items/weapons/knife"));
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				this.m.Items.equip(this.new("scripts/items/weapons/wooden_stick"));
 			}
 		}
 		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));
-		local helm =::Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.engineer_hat]
 		]);
 		this.m.Items.equip(helm);

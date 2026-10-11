@@ -1,6 +1,6 @@
-::mods_hookExactClass("entity/tactical/humans/noble_sergeant", function(o) {
+::mods_hookExactClass("entity/tactical/humans/noble_sergeant", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
@@ -8,33 +8,24 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		if (::Math.rand(1, 100) <= 33)
-		{
+		if (::Math.rand(1, 100) <= 33) {
 			local r = ::Math.rand(1, 4);
 
-			if (r == 1)
-			{
+			if (r == 1) {
 				local sprite = this.getSprite("permanent_injury_4");
 				sprite.setBrush("permanent_injury_04");
 				sprite.Visible = true;
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				local sprite = this.getSprite("permanent_injury_2");
 				sprite.setBrush("permanent_injury_02");
 				sprite.Visible = true;
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				local sprite = this.getSprite("permanent_injury_1");
 				sprite.setBrush("permanent_injury_01");
 				sprite.Visible = true;
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				local sprite = this.getSprite("permanent_injury_scarred");
 				sprite.setBrush("permanent_injury_scarred");
 				sprite.Visible = true;
@@ -44,8 +35,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
@@ -57,23 +47,11 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local banner = 3;
-
-		if (!::Tactical.State.isScenarioMode())
-		{
-			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
-		}
-		else
-		{
-			banner = this.getFaction();
-		}
-
+	o.assignRandomEquipment = function () {
+		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
 
-		if (::Math.rand(1, 100) <= 80)
-		{
+		if (::Math.rand(1, 100) <= 80) {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 

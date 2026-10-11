@@ -15,7 +15,6 @@ this.camp_screen <- {
 			[::Legends.Camp.CampBuildings.Fletcher]  = { name = "Fletcher",  dataFn = "queryLoad" },
 			[::Legends.Camp.CampBuildings.Gatherer] = { name = "Gatherer", dataFn = "queryLoad" },
 			[::Legends.Camp.CampBuildings.Healer] = { name = "Healer", dataFn = "onShow" },
-			//[::Legends.Camp.CampBuildings.Hunter]  = { name = "Hunter",  dataFn = "queryLoad" },
 			[::Legends.Camp.CampBuildings.Kitchen] = { name = "Kitchen", dataFn = "queryLoad" },
 			[::Legends.Camp.CampBuildings.Painter]  = { name = "Painter",  dataFn = "queryRosterInformation" },
 			[::Legends.Camp.CampBuildings.Repair] = { name = "Repair", dataFn = "onShow" },
@@ -62,29 +61,29 @@ this.camp_screen <- {
 		this.m.JSHandle = this.UI.connect("CampScreen", this);
 
 		this.m.Modules["Main"] <- this.new("scripts/ui/screens/world/modules/camp_screen/camp_main_dialog_module");
-        this.m.Modules["Main"].setParent(this);
-        this.m.Modules["Main"].connectUI(this.m.JSHandle);
+		this.m.Modules["Main"].setParent(this);
+		this.m.Modules["Main"].connectUI(this.m.JSHandle);
 
 		foreach (id, config in this.m.ModuleConfig) {
-            this.m.Modules[id] <- this.new("scripts/ui/screens/world/modules/camp_screen/camp_" + config.name.tolower() + "_dialog_module");
-            this.m.Modules[id].setParent(this);
-            this.m.Modules[id].connectUI(this.m.JSHandle);
-        }
+			this.m.Modules[id] <- this.new("scripts/ui/screens/world/modules/camp_screen/camp_" + config.name.tolower() + "_dialog_module");
+			this.m.Modules[id].setParent(this);
+			this.m.Modules[id].connectUI(this.m.JSHandle);
+		}
 	}
 
 	function destroy() {
 		this.clearEventListener();
 		foreach (module in this.m.Modules) {
-            module.destroy();
-        }
+			module.destroy();
+		}
 		this.m.Modules = {};
 		this.m.JSHandle = this.UI.disconnect(this.m.JSHandle);
 	}
 
 	function clear() {
 		foreach (module in this.m.Modules) {
-            module.clear();
-        }
+			module.clear();
+		}
 	}
 
 	function show() {
@@ -96,7 +95,7 @@ this.camp_screen <- {
 		}
 	}
 
-	function hide()	{
+	function hide() {
 		if (this.m.JSHandle != null) {
 			this.m.LastActiveModule = null;
 			this.m.JSHandle.asyncCall("hide", null);
@@ -125,39 +124,42 @@ this.camp_screen <- {
 		this.showLastActiveDialog();
 	}
 
-	function showLastActiveDialog()	{
+	function showLastActiveDialog() {
 		if (this.m.LastActiveModule != null && this.m.LastActiveModule in this.m.Modules) {
-            this.showCampBuildingDialog(this.m.LastActiveModule);
-        } else {
-            this.showMainDialog();
-        }
+			this.showCampBuildingDialog(this.m.LastActiveModule);
+		} else {
+			this.showMainDialog();
+		}
 	}
 
 	function showMainDialog() {
 		if (this.m.JSHandle != null && this.isVisible()) {
 			this.m.LastActiveModule = null;
-			this.Tooltip.hide();
+			::Tooltip.hide();
 			this.m.JSHandle.asyncCall("showMainDialog", this.queryAssetsInformation());
 		}
 	}
 
-	function showCampBuildingDialog( _id ) {
+	function showCampBuildingDialog(_id) {
 		if (this.m.JSHandle != null && this.isVisible()) {
 
-            local module = this.m.Modules[_id];
-            local config = this.m.ModuleConfig[_id];
-            
-            this.m.LastActiveModule = _id;
-            this.Tooltip.hide();
-            
-            local data = null;
-            if (config.dataFn == "queryLoad") data = module.queryLoad();
-            else if (config.dataFn == "onShow") data = module.onShow();
-            else if (config.dataFn == "queryRosterInformation") data = module.queryRosterInformation();
+			local module = this.m.Modules[_id];
+			local config = this.m.ModuleConfig[_id];
 
+			this.m.LastActiveModule = _id;
+			::Tooltip.hide();
 
-            this.m.JSHandle.asyncCall("show" + config.name + "Dialog", data);
-        }
+			local data = null;
+			if (config.dataFn == "queryLoad") {
+				data = module.queryLoad();
+			} else if (config.dataFn == "onShow") {
+				data = module.onShow();
+			} else if (config.dataFn == "queryRosterInformation") {
+				data = module.queryRosterInformation();
+			}
+
+			this.m.JSHandle.asyncCall("show" + config.name + "Dialog", data);
+		}
 	}
 
 	function updateContracts() {
@@ -169,7 +171,7 @@ this.camp_screen <- {
 	}
 
 	function onScreenConnected() {
-		if (this.m.Listeners.OnConnected != null)	{
+		if (this.m.Listeners.OnConnected != null) {
 			this.m.Listeners.OnConnected();
 		}
 	}
@@ -195,12 +197,12 @@ this.camp_screen <- {
 	}
 
 	function onBrothersButtonPressed() {
-		if (this.m.Listeners.OnBrothersButtonPressed != null)	{
+		if (this.m.Listeners.OnBrothersButtonPressed != null) {
 			this.m.Listeners.OnBrothersButtonPressed();
 		}
 	}
 
-	function onCommanderButtonPressed()	{
+	function onCommanderButtonPressed() {
 		if (this.m.returnModule != null) {
 			return false;
 		}
@@ -214,12 +216,12 @@ this.camp_screen <- {
 		return true;
 	}
 
-	function onShowTentBuilding( _id ) {
+	function onShowTentBuilding(_id) {
 		if (this.m.returnModule != null) {
 			return false;
 		}
 
-		if (this.m.Listeners.OnTentButtonPressed == null)	{
+		if (this.m.Listeners.OnTentButtonPressed == null) {
 			return false;
 		}
 
@@ -228,9 +230,10 @@ this.camp_screen <- {
 		return true;
 	}
 
-	function onEncounterClicked (_data) {
-		if (this.isAnimating())
+	function onEncounterClicked(_data) {
+		if (this.isAnimating()) {
 			return;
+		}
 		::World.Camp.onEncounterClicked(_data, this);
 	}
 
@@ -241,19 +244,20 @@ this.camp_screen <- {
 	}
 
 	function onCampClosed() {
-		if (this.m.Listeners.OnCamp != null)	{
+		if (this.m.Listeners.OnCamp != null) {
 			this.m.Listeners.OnCamp();
 		}
 	}
 
-	function onContractClicked( _data ) {
-		if (this.isAnimating())
+	function onContractClicked(_data) {
+		if (this.isAnimating()) {
 			return;
+		}
 		::World.Contracts.showContractByID(_data);
 	}
 
-	function onSlotClicked( _data ) {
-		if (this.isAnimating())	{
+	function onSlotClicked(_data) {
+		if (this.isAnimating()) {
 			return;
 		}
 
@@ -289,7 +293,7 @@ this.camp_screen <- {
 		return ::World.Camp.getCampingTerrain();
 	}
 
-	function queryCampInformation()	{
+	function queryCampInformation() {
 		return this.getUIInformation();
 	}
 
@@ -297,11 +301,10 @@ this.camp_screen <- {
 		return ::UIDataHelper.convertAssetsInformationToUIData();
 	}
 
-	function getUIInformation()	{
+	function getUIInformation() {
 		local result = ::World.Camp.getUIInformation();
 		result.Assets <- this.queryAssetsInformation();
 		return result;
 	}
 
 };
-

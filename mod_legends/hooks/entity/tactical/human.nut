@@ -1,48 +1,41 @@
-::mods_hookExactClass("entity/tactical/human", function(o)
-{
+::mods_hookExactClass("entity/tactical/human", function (o) {
 
 	o.m.Outfits <- [];  //Always overridden if it's used
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Gender = -1;
 	}
 
-	o.getPronoun <- function (_neuter)
-	{
+	o.getPronoun <- function (_neuter) {
 		return ::Const.LegendMod.getPronoun(this.getGender(), _neuter);
 	}
 
 	// -1 = Default Male, 0 = Male, 1 = Female
-	o.getGender <- function ()
-	{
+	o.getGender <- function () {
 		return this.m.Gender;
 	}
 
-	o.setGender <- function ( _v, _reroll = true)
-	{
-		if ("LegendMod" in ::World && ::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() == 0)
+	o.setGender <- function (_v, _reroll = true) {
+		if ("LegendMod" in ::World && ::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() == 0) {
 			_v = 0;
+		}
 
 		this.m.Gender = _v;
-		if(this.m.Gender == 1)
-		{
+		if (this.m.Gender == 1) {
 			this.m.Faces = ::Const.Faces.AllFemale;
 			this.m.Beards = null;
 			this.m.Bodies = ::Const.Bodies.AllFemale;
 			this.m.BeardChance = 0;
 			this.m.Hairs = ::Const.Hair.AllFemale;
-			if (this.m.Ethnicity == 1)
-			{
+			if (this.m.Ethnicity == 1) {
 				this.m.Bodies = ::Const.Bodies.SouthernFemale;
 				this.m.Faces = ::Const.Faces.SouthernFemale;
 				this.m.Hairs = ::Const.Hair.SouthernFemale;
 				this.m.HairColors = ::Const.HairColors.Southern;
 			}
 
-			if (_reroll)
-			{
+			if (_reroll) {
 				this.m.VoiceSet = ::Math.rand(0, ::Const.WomanSounds.len() - 1);
 				this.m.Body = ::Math.rand(0, this.m.Bodies.len() - 1);
 			}
@@ -53,11 +46,8 @@
 			this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Const.WomanSounds[this.m.VoiceSet].Flee;
 			this.m.Sound[::Const.Sound.ActorEvent.Fatigue] = ::Const.WomanSounds[this.m.VoiceSet].Fatigue;
 			this.m.SoundPitch = ::Math.rand(105, 115) * 0.01;
-		}
-		else
-		{
-			if (_reroll)
-			{
+		} else {
+			if (_reroll) {
 				this.m.VoiceSet = ::Math.rand(0, ::Const.HumanSounds.len() - 1);
 				this.m.Body = ::Math.rand(0, this.m.Bodies.len() - 1);
 			}
@@ -76,31 +66,25 @@
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Fatigue] = 0.95;
 	}
 
-	o.playSound = function ( _type, _volume, _pitch = 1.0 )
-	{
-		if (this.m.Sound[_type].len() == 0)
-		{
+	o.playSound = function (_type, _volume, _pitch = 1.0) {
+		if (this.m.Sound[_type].len() == 0) {
 			return;
 		}
 
 		local volume = 1.0;
-		if(this.m.Gender == 1)
-		{
-			if (this.m.VoiceSet > ::Const.WomanSounds.len() - 1)
-			{
+		if (this.m.Gender == 1) {
+			if (this.m.VoiceSet > ::Const.WomanSounds.len() - 1) {
 				this.m.VoiceSet = ::Math.rand(0, ::Const.WomanSounds.len() - 1);
 			}
 			volume *= ::Const.WomanSounds[this.m.VoiceSet].Volume;
-		}
-		else
-		{
+		} else {
 			volume *= ::Const.HumanSounds[this.m.VoiceSet].Volume;
 		}
 
 		::Sound.play(this.m.Sound[_type][::Math.rand(0, this.m.Sound[_type].len() - 1)], volume, this.getPos(), _pitch);
 	}
 
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
 		local originalFunc = null;
 		local needToCheese = this.getFlags().get("donkey");
 
@@ -134,8 +118,7 @@
 			decal.Scale = targetScale;
 			decal.setBrightness(targetBrightness);
 
-			if (sprite_body_tattoo.HasBrush && this.doesBrushExist(sprite_body_tattoo.getBrush().Name + "_dead"))
-			{
+			if (sprite_body_tattoo.HasBrush && this.doesBrushExist(sprite_body_tattoo.getBrush().Name + "_dead")) {
 				local decal = _tile.spawnDetail(sprite_body_tattoo.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Color = sprite_head.Color;
 				decal.Saturation = sprite_head.Saturation;
@@ -153,10 +136,9 @@
 			];
 
 			if (appearance.CorpseArmorUpgradeFront != "") {
-		    	armorLayers.push("CorpseArmorUpgradeBack");
-			} 
-			else {
-    			armorLayers.insert(3, "CorpseArmorUpgradeBack");
+				armorLayers.push("CorpseArmorUpgradeBack");
+			} else {
+				armorLayers.insert(3, "CorpseArmorUpgradeBack");
 			}
 
 			foreach (layer in armorLayers) {
@@ -167,59 +149,44 @@
 				}
 			}
 
-			if (this.m.Surcoat != null)
-			{
+			if (this.m.Surcoat != null) {
 				decal = _tile.spawnDetail("surcoat_" + (this.m.Surcoat < 10 ? "0" + this.m.Surcoat : this.m.Surcoat) + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 				decal.setBrightness(targetBrightness);
 			}
 
-			if (sprite_accessory.HasBrush && this.doesBrushExist(sprite_accessory.getBrush().Name + "_dead"))
-			{
+			if (sprite_accessory.HasBrush && this.doesBrushExist(sprite_accessory.getBrush().Name + "_dead")) {
 				decal = _tile.spawnDetail(sprite_accessory.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 				decal.setBrightness(targetBrightness);
 			}
 
-			if (sprite_accessory_special.HasBrush && this.doesBrushExist(sprite_accessory_special.getBrush().Name + "_dead"))
-			{
+			if (sprite_accessory_special.HasBrush && this.doesBrushExist(sprite_accessory_special.getBrush().Name + "_dead")) {
 				decal = _tile.spawnDetail(sprite_accessory_special.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 				decal.setBrightness(targetBrightness);
 			}
 
-			if (_fatalityType == ::Const.FatalityType.None && (!_skill || _skill.getProjectileType() == ::Const.ProjectileType.None) && ::Math.rand(1, 100) <= 33)
-			{
+			if (_fatalityType == ::Const.FatalityType.None && (!_skill || _skill.getProjectileType() == ::Const.ProjectileType.None) && ::Math.rand(1, 100) <= 33) {
 				decal = _tile.spawnDetail("dead_body_splatter", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Alpha = 160;
 			}
 
-			if (_fatalityType == ::Const.FatalityType.Disemboweled)
-			{
+			if (_fatalityType == ::Const.FatalityType.Disemboweled) {
 				decal = _tile.spawnDetail("bust_body_guts_0" + ::Math.rand(1, 3), ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
-				if (appearance.CorpseArmor != "")
-				{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
+				if (appearance.CorpseArmor != "") {
 					decal = _tile.spawnDetail(appearance.CorpseArmor + "_arrows", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
-				}
-				else
-				{
+				} else {
 					decal = _tile.spawnDetail(appearance.Corpse + "_arrows", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				}
 
 				decal.Scale = targetScale;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
-				if (appearance.CorpseArmor != "")
-				{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
+				if (appearance.CorpseArmor != "") {
 					decal = _tile.spawnDetail(appearance.CorpseArmor + "_javelin", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
-				}
-				else
-				{
+				} else {
 					decal = _tile.spawnDetail(appearance.Corpse + "_javelin", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				}
 
@@ -227,17 +194,17 @@
 			}
 
 			local helmetLowerLayers = [
-					"HelmetLayerVanityLowerCorpse",
-					"HelmetLayerVanity2LowerCorpse"
+				"HelmetLayerVanityLowerCorpse",
+				"HelmetLayerVanity2LowerCorpse"
 			];
 			local helmetLayers = [
-					"HelmetCorpse",
-					"HelmetLayerHelmLowerCorpse",
-					"HelmetLayerTopLowerCorpse",
-					"HelmetLayerHelmCorpse",
-					"HelmetLayerTopCorpse",
-					"HelmetLayerVanityCorpse",
-					"HelmetLayerVanity2Corpse"
+				"HelmetCorpse",
+				"HelmetLayerHelmLowerCorpse",
+				"HelmetLayerTopLowerCorpse",
+				"HelmetLayerHelmCorpse",
+				"HelmetLayerTopCorpse",
+				"HelmetLayerVanityCorpse",
+				"HelmetLayerVanity2Corpse"
 			];
 
 			if (_fatalityType != ::Const.FatalityType.Decapitated) {
@@ -249,8 +216,7 @@
 					}
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					local decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
@@ -258,8 +224,7 @@
 					decal.setBrightness(targetBrightness);
 				}
 
-				if (sprite_head_tattoo.HasBrush && this.doesBrushExist(sprite_head_tattoo.getBrush().Name + "_dead"))
-				{
+				if (sprite_head_tattoo.HasBrush && this.doesBrushExist(sprite_head_tattoo.getBrush().Name + "_dead")) {
 					local decal = _tile.spawnDetail(sprite_head_tattoo.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
@@ -267,16 +232,14 @@
 					decal.setBrightness(targetBrightness);
 				}
 
-				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush) {
 					local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_beard.Color;
 					decal.Saturation = sprite_beard.Saturation;
 					decal.Scale = targetScale;
 					decal.setBrightness(targetBrightness);
 
-					if (sprite_beard_top.HasBrush)
-					{
+					if (sprite_beard_top.HasBrush) {
 						local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 						decal.Color = sprite_beard.Color;
 						decal.Saturation = sprite_beard.Saturation;
@@ -285,8 +248,7 @@
 					}
 				}
 
-				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush) {
 					local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_hair.Color;
 					decal.Saturation = sprite_hair.Saturation;
@@ -294,12 +256,10 @@
 					decal.setBrightness(targetBrightness);
 				}
 
-				if (_fatalityType == ::Const.FatalityType.Smashed)
-				{
+				if (_fatalityType == ::Const.FatalityType.Smashed) {
 					decal = _tile.spawnDetail("bust_head_smashed_01", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Scale = targetScale;
-				}
-				else {
+				} else {
 					foreach (layer in helmetLayers) {
 						if (appearance[layer] != "") {
 							local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
@@ -308,9 +268,7 @@
 						}
 					}
 				}
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [];
 
 				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
@@ -320,23 +278,19 @@
 				//	}
 				//}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					layers.push(sprite_head.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideCorpseHead && sprite_head_tattoo.HasBrush && this.doesBrushExist(sprite_head_tattoo.getBrush().Name + "_dead"))
-				{
+				if (!appearance.HideCorpseHead && sprite_head_tattoo.HasBrush && this.doesBrushExist(sprite_head_tattoo.getBrush().Name + "_dead")) {
 					layers.push(sprite_head_tattoo.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideBeard && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard.HasBrush) {
 					layers.push(sprite_beard.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideHair && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && sprite_hair.HasBrush) {
 					layers.push(sprite_hair.getBrush().Name + "_dead");
 				}
 
@@ -346,8 +300,7 @@
 				//	}
 				//}
 
-				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard_top.HasBrush) {
 					layers.push(sprite_beard_top.getBrush().Name + "_dead");
 				}
 
@@ -362,7 +315,7 @@
 				//	}
 				//}
 
-				if (!appearance.HideCorpseHead)	{
+				if (!appearance.HideCorpseHead) {
 					decap[idx].Color = sprite_head.Color;
 					decap[idx].Saturation = sprite_head.Saturation;
 					decap[idx].Scale = targetScale;
@@ -370,14 +323,13 @@
 					idx = ++idx;
 				}
 
-				if (!appearance.HideCorpseHead && sprite_head_tattoo.HasBrush && this.doesBrushExist(sprite_head_tattoo.getBrush().Name + "_dead"))	{
+				if (!appearance.HideCorpseHead && sprite_head_tattoo.HasBrush && this.doesBrushExist(sprite_head_tattoo.getBrush().Name + "_dead")) {
 					decap[idx].Scale = targetScale;
 					decap[idx].setBrightness(targetBrightness);
 					idx = ++idx;
 				}
 
-				if (!appearance.HideBeard && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard.HasBrush) {
 					decap[idx].Color = sprite_beard.Color;
 					decap[idx].Saturation = sprite_beard.Saturation;
 					decap[idx].Scale = targetScale;
@@ -385,8 +337,7 @@
 					idx = ++idx;
 				}
 
-				if (!appearance.HideHair && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && sprite_hair.HasBrush) {
 					decap[idx].Color = sprite_hair.Color;
 					decap[idx].Saturation = sprite_hair.Saturation;
 					decap[idx].Scale = targetScale;
@@ -402,8 +353,7 @@
 				//	}
 				//}
 
-				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard_top.HasBrush) {
 					decap[idx].Color = sprite_beard.Color;
 					decap[idx].Saturation = sprite_beard.Saturation;
 					decap[idx].Scale = targetScale;
@@ -411,8 +361,7 @@
 				}
 			}
 
-			if (appearance.CorpseArmorUpgradeFront != "")
-			{
+			if (appearance.CorpseArmorUpgradeFront != "") {
 				decal = _tile.spawnDetail(appearance.CorpseArmorUpgradeFront, ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 				decal.setBrightness(targetBrightness);
@@ -450,8 +399,7 @@
 	}
 
 	local onFactionChanged = o.onFactionChanged;
-	o.onFactionChanged = function()
-	{
+	o.onFactionChanged = function () {
 		onFactionChanged();
 		local flip = !this.isAlliedWithPlayer();
 		this.getSprite("permanent_injury_scarred").setHorizontalFlipping(flip);
@@ -473,23 +421,21 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
-		if (this.m.Body >= this.m.Bodies.len())
+	o.onInit = function () {
+		if (this.m.Body >= this.m.Bodies.len()) {
 			this.m.Body = ::Math.rand(0, this.m.Bodies.len() - 1);
+		}
 
 		local self = this; // attempting to inject new sprite layer at certain positions
 		local original_addSprite = self.addSprite;
-		self.addSprite = function( _id )
-		{
-			if (_id == "accessory" || _id == "accessory_special" || _id == "armor_upgrade_back" || _id == "armor_upgrade_front")
+		self.addSprite = function (_id) {
+			if (_id == "accessory" || _id == "accessory_special" || _id == "armor_upgrade_back" || _id == "armor_upgrade_front") {
 				return null;
-			else if (_id == "surcoat") {
+			} else if (_id == "surcoat") {
 				original_addSprite("armor_layer_chain");
 				original_addSprite("armor_layer_plate");
 				original_addSprite("armor_layer_tabard");
-			}
-			else if (_id == "helmet") {
+			} else if (_id == "helmet") {
 				original_addSprite("accessory");
 				original_addSprite("accessory_special");
 				original_addSprite("helmet_vanity_lower");
@@ -501,18 +447,15 @@
 			if (_id == "helmet") {
 				original_addSprite("helmet_helm_lower");
 				original_addSprite("helmet_top_lower");
-			}
-			else if (_id == "surcoat") {
+			} else if (_id == "surcoat") {
 				original_addSprite("armor_upgrade_back");
 				original_addSprite("armor_layer_cloak");
 				original_addSprite("armor_layer_cloak_front");
 				original_addSprite("armor_upgrade_back_top");
-			}
-			else if (_id == "permanent_injury_2") {
+			} else if (_id == "permanent_injury_2") {
 				original_addSprite("permanent_injury_scarred");
 				original_addSprite("permanent_injury_burned");
-			}
-			else if (_id == "helmet_damage") {
+			} else if (_id == "helmet_damage") {
 				original_addSprite("helmet_helm");
 				original_addSprite("helmet_top");
 				original_addSprite("helmet_vanity");
@@ -530,64 +473,48 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendDemonHoundAura);
 	}
 
-	o.setArmorAlpha <- function (level)
-	{
-		foreach (a in ::Const.CharacterSprites.Armor)
-		{
-			if (!this.hasSprite(a))
-			{
+	o.setArmorAlpha <- function (level) {
+		foreach (a in ::Const.CharacterSprites.Armor) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.getSprite(a).Alpha = level;
 		}
 	}
 
-	o.setArmorSaturation <- function (level)
-	{
-		foreach (a in ::Const.CharacterSprites.Armor)
-		{
-			if (!this.hasSprite(a))
-			{
+	o.setArmorSaturation <- function (level) {
+		foreach (a in ::Const.CharacterSprites.Armor) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.getSprite(a).Saturation = level;
 		}
 	}
 
-	o.setArmorBrightness <- function (level)
-	{
-		foreach (a in ::Const.CharacterSprites.Armor)
-		{
-			if (!this.hasSprite(a))
-			{
+	o.setArmorBrightness <- function (level) {
+		foreach (a in ::Const.CharacterSprites.Armor) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.getSprite(a).setBrightness(level);
 		}
 	}
 
-	o.setBrushAlpha <- function (level)
-	{
+	o.setBrushAlpha <- function (level) {
 		this.setArmorAlpha(10);
-		foreach (a in ::Const.CharacterSprites.Human)
-		{
-			if (!this.hasSprite(a))
-			{
+		foreach (a in ::Const.CharacterSprites.Human) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.getSprite(a).Alpha = level;
 		}
 	}
 
-	o.onSerialize = function ( _out )
-	{
+	o.onSerialize = function (_out) {
 		this.actor.onSerialize(_out);
-		if (this.m.Surcoat != null)
-		{
+		if (this.m.Surcoat != null) {
 			_out.writeU8(this.m.Surcoat);
-		}
-		else
-		{
+		} else {
 			_out.writeU8(0);
 		}
 
@@ -597,13 +524,11 @@
 		_out.writeU8(this.m.Body);
 	}
 
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function (_in) {
 		this.actor.onDeserialize(_in);
 		this.m.Surcoat = _in.readU8();
 
-		if (this.m.Surcoat == 0)
-		{
+		if (this.m.Surcoat == 0) {
 			this.m.Surcoat = null;
 		}
 
