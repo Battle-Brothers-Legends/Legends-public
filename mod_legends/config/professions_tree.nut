@@ -115,7 +115,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.WoodworkingProfessionTree <- [
+::Const.Professions.TannerProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendLeatherworking],
@@ -157,28 +157,10 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.TannerProfessionTree <- [
+::Const.Professions.WoodworkingProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendWoodcutting],
 	[::Legends.Profession.LegendWoodworking],
-	[],
-	[],
-	[],
-	[],
-	[],
-	[],
-	[],
-	[]
-];
-
-::Const.Professions.OrganizedProfessionTree <- [
-	[],
-	[
-		::Legends.Profession.LegendEfficientPacking,
-		::Legends.Profession.LegendReserveBundles,
-		::Legends.Profession.LegendToolsDrawers
-	],
-	[],
 	[],
 	[],
 	[],
