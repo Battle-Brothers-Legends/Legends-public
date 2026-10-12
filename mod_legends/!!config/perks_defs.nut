@@ -45,7 +45,6 @@ if (!("Perk" in ::Legends)) {
 
 	if (!("Name" in _def)) {
 		_def.Name <- ::Legends.DefsHelpers.convertToDisplayName(_def.Const);
-
 	}
 
 	_def.Tooltip <- ::Const.Strings.PerkDescription[_def.Const];
