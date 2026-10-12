@@ -1,37 +1,26 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_light", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/skeleton_light", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local r = ::Math.rand(1, 3);
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/broken_ancient_sword"));
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/falx"));
-		}
-		else if (r == 3)
-		{
+		} else if (r == 3) {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
 		}
 
-		if (::Math.rand(1, 100) <= 66)
-		{
+		if (::Math.rand(1, 100) <= 66) {
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/auxiliary_shield"));
 		}
 
@@ -41,14 +30,11 @@
 		local item = ::Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 
-
-
 		item = ::Const.World.Common.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_household_helmet],
 			[34, ::Legends.Helmet.None]
 		]);
-		if (item != null)
-		{
+		if (item != null) {
 			this.m.Items.equip(item);
 		}
 	}

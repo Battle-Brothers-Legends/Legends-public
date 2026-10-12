@@ -464,6 +464,9 @@
 - Estoc removed from `Robber Barron` and `Bandit Leader`
 - Added dagger mastery to `Swordmasters` and `Fencers` for the purposes of vanilla estoc compatibility
 
+### Beasts
+- Nachzehrers and Skin Ghouls are once again vulnerable to poisons
+
 ### Nomads
 - `Escaped Gladiator` - new enemy that will appear in nomad comps, more or less will feel familiar to regular Gladiators you meet in arena, but they aren't dressed like they're putting on a show
 > `Lithe` will replace `Nimble` vs regular gladiators
@@ -608,6 +611,7 @@
 - prayer of hope and prayer of faith effects now have their respective mini icons (the ones that appear above the character in battle)
 - fatality chances can now be hidden if they are clogging your skill tooltips
 - reworked on actor hover tooltips to allow dynamic combat descriptions
+- changed the way immunities are displayed on enemy tooltip, expanded the list of displayed immunities
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -970,6 +974,7 @@ Refactors/deletions:
 - `scripts/skills/perks/perk_legend_call_lightning` -> deleted
 - `scripts/skills/perks/perk_legend_camp_cook` -> deleted
 - `scripts/skills/perks/perk_legend_climb` -> deleted
+- `scripts/skills/perks/perk_legend_composure` -> deleted
 - `scripts/skills/perks/perk_legend_crusher` -> deleted
 - `scripts/skills/perks/perk_legend_deflect` -> deleted
 - `scripts/skills/perks/perk_legend_distant_visions` -> deleted
@@ -989,6 +994,7 @@ Refactors/deletions:
 - `scripts/skills/perks/perk_legend_off_book_deal` -> deleted
 - `scripts/skills/perks/perk_legend_ore_hunter` -> deleted
 - `scripts/skills/perks/perk_legend_paymaster` -> deleted
+- `scripts/skills/perks/perk_legend_poison_immunity` -> deleted
 - `scripts/skills/perks/perk_legend_possess_undead` -> deleted
 - `scripts/skills/perks/perk_legend_potion_brewer` -> deleted
 - `scripts/skills/perks/perk_legend_prepared_for_anything` -> deleted

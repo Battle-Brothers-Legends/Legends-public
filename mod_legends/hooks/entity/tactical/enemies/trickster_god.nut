@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/tactical/enemies/trickster_god", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/trickster_god", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.OnDeathLootTable.extend([
 			[15, "scripts/items/misc/legend_masterwork_tools"]
@@ -10,13 +8,9 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		local b = this.m.BaseProperties;
-		b.IsAffectedByRain = false;
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		this.m.BaseProperties.IsAffectedByRain = false;
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);

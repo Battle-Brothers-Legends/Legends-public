@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/tactical/enemies/orc_warlord", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/orc_warlord", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.OnDeathLootTable.extend([
 			[5, "scripts/items/misc/legend_masterwork_fabric"],
@@ -11,17 +9,14 @@
 		]);
 	}
 
-	o.onFactionChanged <- function ()
-	{
+	o.onFactionChanged <- function () {
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
 		local v = 8;
 		local v2 = -15;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
-			if (!this.hasSprite(a))
-			{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
@@ -29,13 +24,12 @@
 		}
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.OrcWarlord);
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.WarlordStatIncreaseDay)	{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.WarlordStatIncreaseDay) {
 			b.MeleeSkill += 5;
 			b.DamageTotalMult += 0.1;
 		}
@@ -63,17 +57,14 @@
 		local injury = this.addSprite("injury");
 		injury.Visible = false;
 		injury.setBrush("bust_orc_04_head_injured");
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
 			this.addSprite(a);
 		}
 		this.setAlwaysApplySpriteOffset(true);
 		local v = 8;
 		local v2 = -15;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
-			if (!this.hasSprite(a))
-			{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.setSpriteOffset(a, this.createVec(v2, v));
@@ -103,10 +94,9 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -115,21 +105,18 @@
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
-		this.legend_orc.onDeath( _killer, _skill, _tile, _fatalityType );
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
+		this.legend_orc.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
-		{
+	o.assignRandomEquipment = function () {
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null) {
 			local weapons = [
 				"weapons/greenskins/orc_axe",
 				"weapons/greenskins/orc_cleaver"
 			];
 
-			if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-			{
+			if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 				weapons.extend([
 					"weapons/greenskins/orc_axe_2h",
 					"weapons/greenskins/orc_axe_2h"
@@ -139,30 +126,25 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null) {
 			local item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Greenskin.orc_warlord_armor]
 			]);
 			this.m.Items.equip(item);
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
 			local item = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Greenskin.orc_warlord_helmet]
 			]);
-			if (item != null)
-			{
+			if (item != null) {
 				this.m.Items.equip(item);
 			}
 		}
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss <- function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -177,12 +159,9 @@
 			"shields/named/named_orc_heavy_shield"
 		];
 
-		if (::Math.rand(1, 100) <= 80)
-		{
+		if (::Math.rand(1, 100) <= 80) {
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		}
-		else
-		{
+		} else {
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 

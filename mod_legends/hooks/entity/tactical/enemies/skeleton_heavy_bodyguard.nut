@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_heavy_bodyguard", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/skeleton_heavy_bodyguard", function (o) {
 	// o.onFactionChanged <- function ()
 	// {
 	// 	this.actor.onFactionChanged();
@@ -16,12 +15,9 @@
 	// }
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
@@ -29,8 +25,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local weapons = [
 			"weapons/ancient/ancient_sword",
 			"weapons/ancient/crypt_cleaver",
@@ -42,8 +37,7 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
 
@@ -59,17 +53,14 @@
 		local item = ::Const.World.Common.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_honorguard_helmet]
 		]);
-		if (item != null)
-		{
+		if (item != null) {
 			this.m.Items.equip(item);
 		}
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss <- function () {
+
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 		this.getSprite("miniboss").setBrush("bust_miniboss");
@@ -80,9 +71,8 @@
 			"legend_named_gladius"
 		];
 		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
 

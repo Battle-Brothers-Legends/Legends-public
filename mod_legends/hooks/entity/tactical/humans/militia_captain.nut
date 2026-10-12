@@ -12,7 +12,7 @@
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);

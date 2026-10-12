@@ -1,14 +1,11 @@
-::mods_hookExactClass("entity/tactical/enemies/goblin_leader", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/goblin_leader", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
@@ -28,10 +25,8 @@
 		this.m.Items.equip(item);
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss <- function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 

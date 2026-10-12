@@ -43,6 +43,7 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendRobberBaron);
 		b.IsImmuneToDisarm = true;
+		b.IsImmuneToStun = true;
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -77,7 +78,6 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 		::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf); // Am I unfair? No - it is the players who are wrong.
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
 

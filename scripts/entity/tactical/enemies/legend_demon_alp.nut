@@ -9,8 +9,8 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Rune.LegendRswUnbreaking,
 		]
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendDemonAlp;
 		this.m.BloodType = ::Const.BloodType.Dark;
 		this.m.XP = ::Const.Tactical.Actor.LegendDemonAlp.XP;
@@ -77,18 +77,19 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Flags.add("alp");
 
 		this.m.OnDeathLootTable.extend([
-			[50,  function () {
+			[50, function () {
 				local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
 				local rune = ::new(::Legends.Runes.get(selected).Script);
 				rune.setRuneVariant(selected);
 				rune.setRuneBonus(true);
 				rune.updateRuneSigilToken();
 				return rune;
-			}.bindenv(this)]
+			}.bindenv(this)
+			]
 		]);
 
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[33, "scripts/items/misc/legend_demon_alp_skin_item"],
 				[50, "scripts/items/misc/legend_demon_alp_skin_item"],
@@ -98,49 +99,40 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function playIdleSound()
-	{
-		if (::Math.rand(1, 100) <= 50)
-		{
+	function playIdleSound() {
+		if (::Math.rand(1, 100) <= 50) {
 			this.playSound(::Const.Sound.ActorEvent.Other1, ::Const.Sound.Volume.Actor * ::Const.Sound.Volume.ActorIdle * this.m.SoundVolume[::Const.Sound.ActorEvent.Other1] * this.m.SoundVolumeOverall * (::Math.rand(50, 90) * 0.01) * (this.isHiddenToPlayer ? 0.5 : 1.0), this.m.SoundPitch * (::Math.rand(50, 100) * 0.01));
-		}
-		else
-		{
+		} else {
 			this.playSound(::Const.Sound.ActorEvent.Idle, ::Const.Sound.Volume.Actor * ::Const.Sound.Volume.ActorIdle * this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] * this.m.SoundVolumeOverall * (::Math.rand(50, 100) * 0.01) * (this.isHiddenToPlayer ? 0.5 : 1.0), this.m.SoundPitch * (::Math.rand(60, 105) * 0.01));
 		}
 	}
 
-	function loadResources()
-	{
+	function loadResources() {
 		this.actor.loadResources();
 
-		foreach( r in [
+		foreach (r in [
 			"sounds/enemies/dlc2/alp_nightmare_01.wav",
 			"sounds/enemies/dlc2/alp_nightmare_02.wav",
 			"sounds/enemies/dlc2/alp_nightmare_03.wav",
 			"sounds/enemies/dlc2/alp_nightmare_04.wav",
 			"sounds/enemies/dlc2/alp_nightmare_05.wav",
 			"sounds/enemies/dlc2/alp_nightmare_06.wav"
-		])
-		{
+		]) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in [
+		foreach (r in [
 			"sounds/enemies/ghost_death_01.wav",
 			"sounds/enemies/ghost_death_02.wav"
-		])
-		{
+		]) {
 			::Tactical.addResource(r);
 		}
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(1, 100) < 50;
 
-		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
-		{
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled()) {
 			this.updateAchievement("SleepTight", 1, 1);
 		}
 
@@ -149,8 +141,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		local skin = this.getSprite("body");
 		local sprite_head = this.getSprite("head");
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			skin.Alpha = 255;
 			local decal = _tile.spawnDetail("bust_demonalp_body_01_dead", ::Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 			decal.Color = skin.Color;
@@ -158,20 +149,16 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 
-			if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local decap = ::Tactical.spawnHeadEffect(this.getTile(), [sprite_head.getBrush().Name + "_dead"], this.createVec(-45, 30), 180.0, sprite_head.getBrush().Name + "_bloodpool");
 
-				foreach( sprite in decap )
-				{
+				foreach (sprite in decap) {
 					sprite.Color = skin.Color;
 					sprite.Saturation = skin.Saturation;
 					sprite.Scale = 0.9;
 					sprite.setBrightness(0.9);
 				}
-			}
-			else
-			{
+			} else {
 				decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Color = skin.Color;
 				decal.Saturation = skin.Saturation;
@@ -179,26 +166,19 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 				decal.setBrightness(0.9);
 			}
 
-			if (_fatalityType == ::Const.FatalityType.Disemboweled)
-			{
+			if (_fatalityType == ::Const.FatalityType.Disemboweled) {
 				decal = _tile.spawnDetail("bust_alp_guts", ::Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
-			}
-			else if (_fatalityType == ::Const.FatalityType.Smashed)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Smashed) {
 				decal = _tile.spawnDetail("bust_alp_skull", ::Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail("bust_alp_body_01_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail("bust_alp_body_01_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
@@ -225,10 +205,9 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
-		corpse.CorpseName = "An " + this.getName();
+		corpse.CorpseName = "A " + this.getName();
 		corpse.Tile = _tile;
 		corpse.Value = 2.0;
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
@@ -237,30 +216,30 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onKillAllSummonedMinions()
-	{
+	function onKillAllSummonedMinions() {
 		local id = this.getID();
 
-		foreach( a in ::Tactical.Entities.getAllInstancesAsArray() )
-		{
-			if (!a.getFlags().has("living_nightmare"))
+		foreach (a in ::Tactical.Entities.getAllInstancesAsArray()) {
+			if (!a.getFlags().has("living_nightmare")) {
 				continue;
+			}
 
-			if (a.getFlags().get("living_nightmare") != id)
+			if (a.getFlags().get("living_nightmare") != id) {
 				continue;
+			}
 
 			a.killSilently();
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendDemonAlp);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToPoison = true;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -290,10 +269,8 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.Hitpoints -= 100;
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -301,4 +278,3 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

@@ -1,15 +1,14 @@
-::mods_hookExactClass("entity/tactical/humans/knight", function(o) {
+::mods_hookExactClass("entity/tactical/humans/knight", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
 		}
 	}
-	
+
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.OnDeathLootTable.extend([
 			[2.5, "scripts/items/misc/legend_masterwork_fabric"],
@@ -18,15 +17,14 @@
 		]);
 	}
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
@@ -37,7 +35,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
@@ -45,7 +42,7 @@
 	o.assignRandomEquipment = function () {
 		local banner = 6;
 
-		if (("State" in ::Tactical) && ::Tactical.State != null && !::Tactical.State.isScenarioMode())	{
+		if (("State" in ::Tactical) && ::Tactical.State != null && !::Tactical.State.isScenarioMode()) {
 			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		} else {
 			banner = this.getFaction();
@@ -57,13 +54,11 @@
 
 		this.m.Surcoat = banner;
 
-		if (::Math.rand(1, 100) <= 90)
-		{
+		if (::Math.rand(1, 100) <= 90) {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
 			local weapons = [
 				"weapons/fighting_axe",
 				"weapons/noble_sword",
@@ -73,8 +68,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 			local shields = [
 				"shields/faction_heater_shield",
 				"shields/faction_kite_shield"
@@ -112,8 +106,7 @@
 
 		this.m.Items.equip(armor);
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
 			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[30, ::Legends.Helmet.Standard.full_helm],
 				[5, ::Legends.Helmet.Standard.legend_helm_breathed],
@@ -136,15 +129,14 @@
 		}
 	}
 
-	o.makeMiniboss = function ()
-	{
-		if (!this.actor.makeMiniboss())	{
+	o.makeMiniboss = function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
 		local banner = 9;
 
-		if (("State" in ::Tactical) && ::Tactical.State != null && !::Tactical.State.isScenarioMode())	{
+		if (("State" in ::Tactical) && ::Tactical.State != null && !::Tactical.State.isScenarioMode()) {
 			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		} else {
 			banner = this.getFaction();
@@ -174,16 +166,11 @@
 
 		local r = ::Math.rand(1, 3);
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
-		}
-		else
-		{
+		} else {
 			local h = ::Const.World.Common.pickArmor(
 				::Const.World.Common.convNameToList(
 					armor
@@ -199,7 +186,7 @@
 				local r = ::Math.rand(0, upgrades.len() - 1);
 				local pauldrons = ::new("scripts/items/legend_armor/" + upgrades[r]);
 
-				if(r == 0) {
+				if (r == 0) {
 					local bannerVariants = {
 						[3] = 4,
 						[4] = 3,
@@ -227,7 +214,6 @@
 			[3, ::Legends.Helmet.Named.italo_norman_helm_named],
 			[1, ::Legends.Helmet.Named.legend_helm_full_named]
 		]));
-
 
 		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);

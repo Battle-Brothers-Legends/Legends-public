@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_heavy", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/skeleton_heavy", function (o) {
 	// o.onFactionChanged <- function ()
 	// {
 	// 	this.actor.onFactionChanged();
@@ -16,12 +15,9 @@
 	// }
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
@@ -29,18 +25,15 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
+	o.assignRandomEquipment = function () {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
 			local weapons = [
 				"weapons/ancient/ancient_sword",
 				"weapons/ancient/legend_gladius",
 				"weapons/ancient/khopesh"
 			];
 
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-			{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 				weapons.extend([
 					"weapons/ancient/warscythe",
 					"weapons/ancient/crypt_cleaver",
@@ -51,14 +44,11 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
 
-
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
 			local armor = [
 				[1, ::Legends.Armor.Ancient.ancient_plated_scale_hauberk],
 				[1, ::Legends.Armor.Ancient.ancient_scale_coat],
@@ -69,22 +59,18 @@
 			this.m.Items.equip(item);
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
 			local item = ::Const.World.Common.pickHelmet([
 				[66, ::Legends.Helmet.Ancient.ancient_honorguard_helmet]
 			]);
-			if (item != null)
-			{
+			if (item != null) {
 				this.m.Items.equip(item);
 			}
 		}
 	}
 
-	o.makeMiniboss = function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss = function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -96,9 +82,8 @@
 			"legend_named_gladius"
 		];
 		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
 

@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/spider_eggs", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/spider_eggs", function (o) {
 	o.m.SpawnDelay <- 0; // Number of combat rounds before the egg can spawn spiders; 0 = on Round 1 onwards, 1 = only on Round 2 onwards etc.
 	o.m.MaxSpawnCount <- 4; // The maximum number of spider spawns allowed. Vanilla is always 4
 
@@ -7,8 +6,7 @@
 	o.create = function () {
 		create();
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++)
-		{
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[60, "scripts/items/loot/webbed_valuables_item"],
 				[30, "scripts/items/misc/spider_silk_item"]
@@ -17,58 +15,41 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		local b = this.m.BaseProperties;	
+		local b = this.m.BaseProperties;
 		b.Armor[::Const.BodyPart.Body] = 40;
 		b.ArmorMax[::Const.BodyPart.Body] = 40;
-        this.m.CurrentProperties = clone b;
+		this.m.CurrentProperties = clone b;
 	}
 
-	o.onSpawn = function ( _tile )
-	{
-		if (_tile.IsEmpty)
-		{
+	o.onSpawn = function (_tile) {
+		if (_tile.IsEmpty) {
 			return;
 		}
 
-		if (!_tile.IsOccupiedByActor || _tile.getEntity().getType() != ::Const.EntityType.SpiderEggs || ::Tactical.TurnSequenceBar.getCurrentRound() < 1 + this.getSpawnDelay())
-		{
+		if (!_tile.IsOccupiedByActor || _tile.getEntity().getType() != ::Const.EntityType.SpiderEggs || ::Tactical.TurnSequenceBar.getCurrentRound() < 1 + this.getSpawnDelay()) {
 			return;
 		}
 
-		if (::Tactical.Entities.isEnemyRetreating())
-		{
+		if (::Tactical.Entities.isEnemyRetreating()) {
 			return;
 		}
 
 		local tile;
 
-		for( local i = 0; i < 6; i = ++i )
-		{
-			if (!_tile.hasNextTile(i))
-			{
-			}
-			else
-			{
+		for (local i = 0; i < 6; i++) {
+			if (_tile.hasNextTile(i)) {
 				local nextTile = _tile.getNextTile(i);
-
-				if (!nextTile.IsEmpty || ::Math.abs(nextTile.Level - _tile.Level) > 1)
-				{
-				}
-				else
-				{
+				if (!nextTile.IsEmpty || ::Math.abs(nextTile.Level - _tile.Level) > 1) {
+				} else {
 					tile = nextTile;
 					break;
 				}
 			}
 		}
 
-		if (tile != null)
-		{
+		if (tile != null) {
 			local spawn = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_spider_cluster", tile.Coords);
 			// spawn.setSize(::Math.rand(60, 75) * 0.01);
 			spawn.setFaction(this.getFaction());
@@ -76,10 +57,8 @@
 			// spawn.setName(spawn.getName() + " Hatchling");
 			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getFaction());
 
-			foreach( a in allies )
-			{
-				if (a.getType() == ::Const.EntityType.Hexe)
-				{
+			foreach (a in allies) {
+				if (a.getType() == ::Const.EntityType.Hexe) {
 					::Legends.Effects.grant(spawn, ::Legends.Effect.FakeCharmed);
 					break;
 				}
@@ -88,33 +67,26 @@
 			++this.m.Count;
 		}
 
-		if (this.m.Count < this.getMaxSpawnCount())
-		{
+		if (this.m.Count < this.getMaxSpawnCount()) {
 			this.registerSpawnEvent();
-		}
-		else
-		{
+		} else {
 			this.killSilently();
 		}
 	}
 
-	o.getSpawnDelay <- function ()
-	{
+	o.getSpawnDelay <- function () {
 		return this.m.SpawnDelay;
 	}
 
-	o.setSpawnDelay <- function ( _turns )
-	{
+	o.setSpawnDelay <- function (_turns) {
 		this.m.SpawnDelay = _turns;
 	}
 
-	o.getMaxSpawnCount <- function ()
-	{
+	o.getMaxSpawnCount <- function () {
 		return this.m.MaxSpawnCount;
 	}
 
-	o.setMaxSpawnCount <- function ( _int )
-	{
+	o.setMaxSpawnCount <- function (_int) {
 		this.m.MaxSpawnCount = _int;
 	}
 });

@@ -16,7 +16,6 @@
 	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Effects.grant(this, ::Legends.Effect.Dodge);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

@@ -253,13 +253,6 @@ A well honed mind can perceive more in each instant, making time appear slower i
 • Doubles the armor ignore bonus if under the effect of the following potions: Iron Will, Lionheart, Cat, Second Wind or Hexen Ichor.
 ";
 
-::Const.Strings.PerkDescription.LegendComposure <- @"
-Train to keep your cool, under even the most challenging circumstances.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Makes you immune to [color=%status%]Stuns[/color]
-";
-
 ::Const.Strings.PerkDescription.LegendConservation <- @"
 Conduct profane rituals meant to stave off the passage of time, further preserving the means of your craft.
 
@@ -1243,13 +1236,6 @@ Don't fire until you see the whites of their eyes!
 • Renders the character immune to poison.
 
 • Increases the number of charges applied while coating a weapon in poison by 2.
-";
-
-::Const.Strings.PerkDescription.LegendPoisonImmunity <- @"
-With a well developed immune system and incredible fitness, a warrior's system can shrug off even powerful toxins.
-
-[color=%passive%][u]Passive:[/u][/color]
-• This character becomes immune to all poisons.
 ";
 
 ::Const.Strings.PerkDescription.LegendPossession <- @"

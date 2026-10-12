@@ -33,7 +33,6 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 			[
 				::Legends.Perk.Dodge,
 				::Legends.Perk.HoldOut,
-				::Legends.Perk.LegendComposure,
 				::Legends.Perk.SteelBrow,
 				::Legends.Perk.LegendHorseLiberty,
 				::Legends.Perk.LegendHorseBitting,

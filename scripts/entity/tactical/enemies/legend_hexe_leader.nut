@@ -7,8 +7,8 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Rune.LegendRshLuck
 		]
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendHexeLeader;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendHexeLeader.XP;
@@ -97,10 +97,11 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 				rune.setRuneBonus(true);
 				rune.updateRuneSigilToken();
 				return rune;
-			}.bindenv(this)]
+			}.bindenv(this)
+			]
 		]);
 		local rolls = ::Legends.S.extraLootChance(2);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_witch_leader_hair_item"],
 				[20, "scripts/items/misc/mysterious_herbs_item"],
@@ -108,34 +109,26 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			]);
 		}
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++)
-			this.m.OnDeathLootTable.push([3, "scripts/items/misc/legend_ancient_scroll_item"]);
+		for (local i = 0; i < rolls; i++) this.m.OnDeathLootTable.push([3, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}
 
-	function playIdleSound()
-	{
+	function playIdleSound() {
 		local r = ::Math.rand(1, 30);
 
-		if (r <= 5)
-		{
+		if (r <= 5) {
 			this.playSound(::Const.Sound.ActorEvent.Idle, ::Const.Sound.Volume.Actor * ::Const.Sound.Volume.ActorIdle * this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] * this.m.SoundVolumeOverall * (::Math.rand(60, 100) * 0.01) * (this.isHiddenToPlayer ? 0.33 : 1.0), this.m.SoundPitch * (::Math.rand(85, 115) * 0.01));
-		}
-		else
-		{
+		} else {
 			this.playSound(::Const.Sound.ActorEvent.Other1, ::Const.Sound.Volume.Actor * ::Const.Sound.Volume.ActorIdle * this.m.SoundVolume[::Const.Sound.ActorEvent.Other1] * this.m.SoundVolumeOverall * (::Math.rand(60, 100) * 0.01) * (this.isHiddenToPlayer ? 0.33 : 1.0), this.m.SoundPitch * (::Math.rand(85, 115) * 0.01));
 		}
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
-		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
-		{
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled()) {
 			this.updateAchievement("BagAHag", 1, 1);
 		}
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -149,17 +142,14 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != ::Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
 				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
 				decal = _tile.spawnDetail(hair.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [
 					head.getBrush().Name + "_dead",
 					hair.getBrush().Name + "_dead"
@@ -171,13 +161,10 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 				decap[1].Scale = 0.95;
 			}
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail(body.getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail(body.getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
@@ -201,8 +188,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Hexe";
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
@@ -211,8 +197,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
@@ -225,8 +210,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("charm_hair").setHorizontalFlipping(flip);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendHexeLeader);
@@ -273,66 +257,53 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendMagicMissile);
 		::Legends.Actives.grant(this, ::Legends.Active.FakeDrinkNightVision);
 
-
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			b.IsImmuneToStun = true;
 			::Legends.Traits.grant(this, ::Legends.Trait.RacialSchrat);
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	function onUpdateInjuryLayer()
-	{
-		if (!this.hasSprite("injury"))
-		{
+	function onUpdateInjuryLayer() {
+		if (!this.hasSprite("injury")) {
 			return;
 		}
 
-		if (this.m.IsCharming)
-		{
+		if (this.m.IsCharming) {
 			return;
 		}
 
 		local injury = this.getSprite("injury");
 		local p = this.getHitpointsPct();
 
-		if (p > 0.5)
-		{
-			if (injury.Visible)
-			{
+		if (p > 0.5) {
+			if (injury.Visible) {
 				injury.Visible = false;
 				this.setDirty(true);
 			}
-		}
-		else if (!injury.Visible)
-		{
+		} else if (!injury.Visible) {
 			injury.Visible = true;
 			this.setDirty(true);
 		}
 	}
 
-	function assignRandomEquipment()
-	{
-		 this.getItems().equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
+	function assignRandomEquipment() {
+		this.getItems().equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
 	}
 
-	function setCharming( _f )
-	{
-		if (_f == this.m.IsCharming)
-		{
+	function setCharming(_f) {
+		if (_f == this.m.IsCharming) {
 			return;
 		}
 
 		this.m.IsCharming = _f;
 		local t = 300;
 
-		if (this.m.IsCharming)
-		{
+		if (this.m.IsCharming) {
 			local sprite;
 			sprite = this.getSprite("charm_body");
 			sprite.Visible = true;
@@ -354,10 +325,8 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			sprite.fadeOutAndHide(t);
 			sprite = this.getSprite("injury");
 			sprite.fadeOutAndHide(t);
-			::Time.scheduleEvent(::TimeUnit.Virtual, t + 100, function ( _e )
-			{
-				if (!_e.isAlive())
-				{
+			::Time.scheduleEvent(::TimeUnit.Virtual, t + 100, function (_e) {
+				if (!_e.isAlive()) {
 					return;
 				}
 
@@ -372,9 +341,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 				sprite.Visible = false;
 				_e.setDirty(true);
 			}, this);
-		}
-		else
-		{
+		} else {
 			local sprite;
 			sprite = this.getSprite("charm_body");
 			sprite.fadeOutAndHide(t);
@@ -396,10 +363,8 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			sprite = this.getSprite("injury");
 			sprite.fadeIn(t);
 			this.onUpdateInjuryLayer();
-			::Time.scheduleEvent(::TimeUnit.Virtual, t + 100, function ( _e )
-			{
-				if (!_e.isAlive())
-				{
+			::Time.scheduleEvent(::TimeUnit.Virtual, t + 100, function (_e) {
+				if (!_e.isAlive()) {
 					return;
 				}
 

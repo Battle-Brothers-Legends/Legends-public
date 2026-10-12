@@ -51,7 +51,6 @@ this.legend_commander_crusader_background <- this.inherit("scripts/skills/backgr
 			[
 				::Legends.Perk.Student,
 				::Legends.Perk.Pathfinder,
-				// ::Legends.Perk.LegendComposure,
 				::Legends.Perk.Adrenaline,
 				::Legends.Perk.LegendHolyFlame
 			],

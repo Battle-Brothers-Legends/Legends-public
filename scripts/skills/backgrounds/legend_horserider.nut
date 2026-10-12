@@ -32,7 +32,6 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			[
 				::Legends.Perk.Dodge,
 				::Legends.Perk.HoldOut,
-				::Legends.Perk.LegendComposure,
 				::Legends.Perk.SteelBrow
 			],
 			[

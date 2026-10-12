@@ -33,8 +33,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		local targetScale = 0.9;
 		local flip = ::Math.rand(1, 100) < 50;
 		this.m.IsCorpseFlipped = flip;
-		local isResurrectable = _fatalityType != ::Const.FatalityType.Decapitated
-			&& this.m.IsResurrectable;
+		local isResurrectable = _fatalityType != ::Const.FatalityType.Decapitated && this.m.IsResurrectable;
 		local corpse = clone ::Const.Corpse;
 
 		if (_tile != null) {
@@ -157,9 +156,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				local armorDecal;
 
-				if (appearance.CorpseArmor != ""
-					&& this.doesBrushExist(appearance.CorpseArmor + "_skeleton"))
-				{
+				if (appearance.CorpseArmor != "" && this.doesBrushExist(appearance.CorpseArmor + "_skeleton")) {
 					armorDecal = appearance.CorpseArmor + "_skeleton_arrows";
 				} else if (appearance.CorpseArmor != "") {
 					armorDecal = appearance.CorpseArmor + "_arrows";
@@ -174,9 +171,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				local armorDecal;
 
-				if (appearance.CorpseArmor != ""
-					&& this.doesBrushExist(appearance.CorpseArmor + "_skeleton"))
-				{
+				if (appearance.CorpseArmor != "" && this.doesBrushExist(appearance.CorpseArmor + "_skeleton")) {
 					armorDecal = appearance.CorpseArmor + "_skeleton_javelin";
 				} else if (appearance.CorpseArmor != "") {
 					armorDecal = appearance.CorpseArmor + "_javelin";
@@ -261,8 +256,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 					local otherActor = otherTile.getEntity();
 					local numEnemies = otherTile.getZoneOfControlCountOtherThan(otherActor.getAlliedFactions());
 
-					if (otherActor.m.MaxEnemiesThisTurn < numEnemies && !otherActor.isAlliedWith(this))
-					{
+					if (otherActor.m.MaxEnemiesThisTurn < numEnemies && !otherActor.isAlliedWith(this)) {
 						local difficulty = ::Math.maxf(10.0, 50.0 - this.getXPValue() * 0.1);
 						otherActor.checkMorale(-1, difficulty);
 						otherActor.m.MaxEnemiesThisTurn = numEnemies;
@@ -354,6 +348,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToPoison = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
@@ -367,6 +362,5 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 	}
 });

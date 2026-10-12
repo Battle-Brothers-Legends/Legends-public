@@ -1,7 +1,7 @@
 this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendGreenwoodSchratSmall;
 		this.m.BloodType = ::Const.BloodType.Wood;
 		this.m.XP = ::Const.Tactical.Actor.LegendGreenwoodSchratSmall.XP;
@@ -60,11 +60,9 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -90,8 +88,7 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A " + this.getName();
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
@@ -100,12 +97,13 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		return corpse;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendGreenwoodSchratSmall);
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToStun = true;
+		b.IsImmuneToPoison = true;
 		b.IsImmuneToRoot = true;
 		b.IsIgnoringArmorOnAttack = true;
 		b.IsAffectedByNight = false;
@@ -136,11 +134,8 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		::Legends.Actives.grant(this, ::Legends.Active.UprootSmall);
 		::Legends.Actives.grant(this, ::Legends.Active.UprootSmallZoc);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -149,23 +144,18 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	function onDamageReceived( _attacker, _skill, _hitInfo )
-	{
+	function onDamageReceived(_attacker, _skill, _hitInfo) {
 		_hitInfo.BodyPart = ::Const.BodyPart.Body;
 		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
-	function onUpdateInjuryLayer()
-	{
+	function onUpdateInjuryLayer() {
 		local body = this.getSprite("body");
 		local p = this.m.Hitpoints / this.getHitpointsMax();
 
-		if (p >= 0.5)
-		{
+		if (p >= 0.5) {
 			body.setBrush("bust_schrat_green_body_small_01");
-		}
-		else
-		{
+		} else {
 			body.setBrush("bust_schrat_green_body_small_01_injured");
 		}
 

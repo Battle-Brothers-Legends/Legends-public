@@ -9,7 +9,6 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		// this.m.Skills.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.BaseProperties.Hitpoints *= 1.5;

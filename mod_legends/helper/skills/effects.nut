@@ -88,3 +88,15 @@ if (!("Effects" in ::Legends))
 	_target.m.IconMini = defs.IconMini;
 	_target.m.Overlay = defs.Overlay;
 }
+
+::Legends.Effects.Immunities <- {
+	Bleeding = "IsImmuneToBleeding",
+	Disarm = "IsImmuneToDisarm",
+	Fire = "IsImmuneToFire",
+	Headshots = "IsImmuneToHeadshots",
+	Knockback = "IsImmuneToKnockBackAndGrab",
+	Poison = "IsImmuneToPoison",
+	Root = "IsImmuneToRoot",
+	Rotation = "IsImmuneToRotation",
+	Stun = "IsImmuneToStun"
+}

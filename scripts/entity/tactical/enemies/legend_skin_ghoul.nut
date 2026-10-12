@@ -4,18 +4,16 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		Head = 1,
 		ScaleStartTime = 0
 	},
-	function getSize()
-	{
+
+	function getSize() {
 		return this.m.Size;
 	}
 
-	function getXP()
-	{
+	function getXP() {
 		return this.m.XP * this.m.Size;
 	}
 
-	function create()
-	{
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendSkinGhoul;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendSkinGhoul.XP;
@@ -111,26 +109,26 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
-				[100,  function () {
-					if (::Const.DLC.Unhold)
+				[100, function () {
+					if (::Const.DLC.Unhold) {
 						return ::new("scripts/items/misc/legend_skin_ghoul_skin_item");
+					}
 					return ::new("scripts/items/misc/ghoul_teeth_item");
-				}],
+				}
+				],
 			]);
 		}
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
 		local isResurrectable = _fatalityType != ::Const.FatalityType.Decapitated;
 		local sprite_body = this.getSprite("body");
 		local sprite_head = this.getSprite("head");
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local decal;
 			local skin = this.getSprite("body");
 			this.m.IsCorpseFlipped = flip;
@@ -140,23 +138,19 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 
-			if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [
 					sprite_head.getBrush().Name + "_dead"
 				];
 				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-45, 10), 55.0, sprite_head.getBrush().Name + "_bloodpool");
 
-				foreach( sprite in decap )
-				{
+				foreach (sprite in decap) {
 					sprite.Color = skin.Color;
 					sprite.Saturation = skin.Saturation;
 					sprite.Scale = 0.9;
 					sprite.setBrightness(0.9);
 				}
-			}
-			else
-			{
+			} else {
 				decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = skin.Color;
 				decal.Saturation = skin.Saturation;
@@ -164,14 +158,11 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 				decal.setBrightness(0.9);
 			}
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
@@ -196,8 +187,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A " + this.getName();
 		corpse.Tile = _tile;
@@ -209,23 +199,19 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onAfterDeath( _tile )
-	{
-		if (this.m.Size < 3)
-		{
+	function onAfterDeath(_tile) {
+		if (this.m.Size < 3) {
 			return;
 		}
 
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendSkinGhoulSwallowWhole);
-		if (skill == null)
-		{
+		if (skill == null) {
 			return;
 		}
 
 		local e = skill.getSwallowedEntity();
 
-		if (e == null)
-		{
+		if (e == null) {
 			return;
 		}
 
@@ -236,15 +222,13 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		slime.Visible = true;
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.actor.onFactionChanged();
 		local flip = !this.isAlliedWithPlayer();
 		this.getSprite("body_blood").setHorizontalFlipping(flip);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendSkinGhoul);
@@ -283,9 +267,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
@@ -295,30 +277,25 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	function grow( _instant = false )
-	{
-		if (this.m.Size == 3)
-		{
+	function grow(_instant = false) {
+		if (this.m.Size == 3) {
 			return;
 		}
 
-		if (!_instant && this.m.Sound[::Const.Sound.ActorEvent.Other1].len() != 0)
-		{
+		if (!_instant && this.m.Sound[::Const.Sound.ActorEvent.Other1].len() != 0) {
 			::Sound.play(this.m.Sound[::Const.Sound.ActorEvent.Other1][::Math.rand(0, this.m.Sound[::Const.Sound.ActorEvent.Other1].len() - 1)], ::Const.Sound.Volume.Actor, this.getPos());
 		}
 
 		this.m.Size = ::Math.min(3, this.m.Size + 1);
 
-		if (this.m.Size == 2)
-		{
+		if (this.m.Size == 2) {
 			this.m.SoundPitch = 1.06;
 			this.getSprite("body").setBrush("bust_ghoulskin_body_02");
 			this.getSprite("head").setBrush("bust_ghoulskin_02_head_0" + this.m.Head);
 			this.getSprite("injury").setBrush("bust_ghoulskin_02_injured");
 			this.getSprite("injury").Visible = false;
 
-			if (!_instant)
-			{
+			if (!_instant) {
 				this.setRenderCallbackEnabled(true);
 				this.m.ScaleStartTime = ::Time.getVirtualTimeF();
 			}
@@ -330,17 +307,14 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 			this.getSprite("status_rooted_back").Scale = 0.5;
 			this.setSpriteOffset("status_rooted", this.createVec(-4, 10));
 			this.setSpriteOffset("status_rooted_back", this.createVec(-4, 10));
-		}
-		else if (this.m.Size == 3)
-		{
+		} else if (this.m.Size == 3) {
 			this.m.SoundPitch = 1.0;
 			this.getSprite("body").setBrush("bust_ghoulskin_body_03");
 			this.getSprite("head").setBrush("bust_ghoulskin_03_head_0" + this.m.Head);
 			this.getSprite("injury").setBrush("bust_ghoulskin_03_injured");
 			this.getSprite("injury").Visible = false;
 
-			if (!_instant)
-			{
+			if (!_instant) {
 				this.setRenderCallbackEnabled(true);
 				this.m.ScaleStartTime = ::Time.getVirtualTimeF();
 			}
@@ -359,29 +333,23 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		this.setDirty(true);
 	}
 
-	function onRender()
-	{
+	function onRender() {
 		this.actor.onRender();
 
-		if (this.m.Size == 2)
-		{
+		if (this.m.Size == 2) {
 			this.getSprite("body").Scale = ::Math.minf(1.0, 0.96 + 0.04 * ((::Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
 			this.getSprite("head").Scale = ::Math.minf(1.0, 0.96 + 0.04 * ((::Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
 			this.moveSpriteOffset("body", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime);
 
-			if (this.moveSpriteOffset("head", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime))
-			{
+			if (this.moveSpriteOffset("head", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime)) {
 				this.setRenderCallbackEnabled(false);
 			}
-		}
-		else if (this.m.Size == 3)
-		{
+		} else if (this.m.Size == 3) {
 			this.getSprite("body").Scale = ::Math.minf(1.0, 0.94 + 0.06 * ((::Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
 			this.getSprite("head").Scale = ::Math.minf(1.0, 0.94 + 0.06 * ((::Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
 			this.moveSpriteOffset("body", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime);
 
-			if (this.moveSpriteOffset("head", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime))
-			{
+			if (this.moveSpriteOffset("head", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime)) {
 				this.setRenderCallbackEnabled(false);
 			}
 		}

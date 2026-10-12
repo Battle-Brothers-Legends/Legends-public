@@ -1,7 +1,7 @@
 this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.IsActingEachTurn = false;
 		this.m.IsNonCombatant = true;
 		this.m.IsShakingOnHit = false;
@@ -36,24 +36,19 @@ this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local decal;
 			local skin = this.getSprite("body");
 			decal = _tile.spawnDetail("donkey_tactical_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = skin.Color;
 			decal.Saturation = skin.Saturation;
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				_tile.spawnDetail("donkey_tactical_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				_tile.spawnDetail("donkey_tactical_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 			}
 
@@ -71,40 +66,36 @@ this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 
-		if (this.m.WorldTroop != null && ("Party" in this.m.WorldTroop) && this.m.WorldTroop.Party != null)
-		{
+		if (this.m.WorldTroop != null && ("Party" in this.m.WorldTroop) && this.m.WorldTroop.Party != null) {
 			local numDonkeys = 0;
 			local troops = this.m.WorldTroop.Party.getTroops();
 
-			foreach( t in troops )
-			{
-				if (t.Script == "scripts/entity/tactical/objective/donkey")
-				{
+			foreach (t in troops) {
+				if (t.Script == "scripts/entity/tactical/objective/donkey") {
 					numDonkeys = ++numDonkeys;
 				}
 			}
 		}
 	}
 
-	function onDamageReceived( _attacker, _skill, _hitInfo )
-	{
+	function onDamageReceived(_attacker, _skill, _hitInfo) {
 		_hitInfo.BodyPart = ::Const.BodyPart.Body;
 		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
-	function setFlipped( _f )
-	{
+	function setFlipped(_f) {
 		this.getSprite("body").setHorizontalFlipping(_f);
 		this.getSprite("injury").setHorizontalFlipping(_f);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Donkey);
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToStun = true;
+		b.IsImmuneToPoison = true;
 		b.IsAffectedByNight = false;
 		b.IsMovable = false;
 		b.TargetAttractionMult = 1.5;
@@ -122,10 +113,6 @@ this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 		injury.setBrush("donkey_tactical_injured");
 		this.addDefaultStatusSprites();
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		this.m.Skills.update();
 	}
-
-
 });

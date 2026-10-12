@@ -4,8 +4,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		SpawnType = null
 	},
 
-	function create()
-	{
+	function create() {
 		this.m.IsControlledByPlayer = true;
 		this.m.IsCreatingAgent = false;
 		this.zombie.create();
@@ -16,14 +15,14 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		this.m.IsSummoned = true;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.m.SpawnType);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToPoison = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -76,15 +75,11 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		beard.setHorizontalFlipping(true);
 		beard.varyColor(0.02, 0.02, 0.02);
 
-		if (::Math.rand(1, 100) <= 50)
-		{
-			if (this.m.InjuryType == 4)
-			{
+		if (::Math.rand(1, 100) <= 50) {
+			if (this.m.InjuryType == 4) {
 				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.ZombieExtended[::Math.rand(0, ::Const.Beards.ZombieExtended.len() - 1)]);
 				beard.setBrightness(0.9);
-			}
-			else
-			{
+			} else {
 				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.Zombie[::Math.rand(0, ::Const.Beards.Zombie.len() - 1)]);
 			}
 		}
@@ -97,15 +92,12 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		hair.setHorizontalFlipping(true);
 		hair.Color = beard.Color;
 
-		if (::Math.rand(0, ::Const.Hair.Zombie.len()) != ::Const.Hair.Zombie.len())
-		{
+		if (::Math.rand(0, ::Const.Hair.Zombie.len()) != ::Const.Hair.Zombie.len()) {
 			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.Zombie[::Math.rand(0, ::Const.Hair.Zombie.len() - 1)]);
 		}
 
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
-			if (!this.hasSprite(a))
-			{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(true);
@@ -114,8 +106,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		local beard_top = this.addSprite("beard_top");
 		beard_top.setHorizontalFlipping(true);
 
-		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top"))
-		{
+		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top")) {
 			beard_top.setBrush(beard.getBrush().Name + "_top");
 			beard_top.Color = beard.Color;
 		}
@@ -135,81 +126,67 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		this.addDefaultStatusSprites();
 		this.getSprite("arms_icon").setBrightness(0.85);
 		this.getSprite("status_rooted").Scale = 0.55;
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 	}
 
-	function isGuest()
-	{
+	function isGuest() {
 		return false;
 	}
 
-	function addXP(_xp)
-	{
+	function addXP(_xp) {}
 
-	}
-
-	function setItem( _i )
-	{
-		if (typeof _i == "instance")
-		{
+	function setItem(_i) {
+		if (typeof _i == "instance") {
 			this.m.Item = _i;
-			return
+			return;
 		}
 
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	function setVariant( _v )
-	{
+	function setVariant(_v) {
 
 	}
 
-	function isReallyKilled(_fatalityType)
-	{
+	function isReallyKilled(_fatalityType) {
 		return false;
 	}
 
-	function onActorKilled( _actor, _tile, _skill )
-	{
+	function onActorKilled(_actor, _tile, _skill) {
 		this.actor.onActorKilled(_actor, _tile, _skill);
 		local XPkiller = ::Math.floor(_actor.getXPValue() * ::Const.XP.XPForKillerPct);
 		local XPgroup = _actor.getXPValue() * (1.0 - ::Const.XP.XPForKillerPct);
 
 		local summoner = getFlags().get("Summoner");
-		if (summoner != null && "addXP" in summoner)
-		{
+		if (summoner != null && "addXP" in summoner) {
 			summoner.addXP(::Math.floor(XPkiller * 0.50));
 		}
 
 		local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 		local summonedCount = 0;
-		
-		foreach( bro in brothers )
-		{
-			if (bro.getFlags().has("IsSummoned")) summonedCount += 1;	//"Summon the Elector Counts!"
+
+		foreach (bro in brothers) {
+			if (bro.getFlags().has("IsSummoned")) {
+				summonedCount += 1; //"Summon the Elector Counts!"
+			}
 		}
-		
-		if (brothers.len() == 1)
-		{
+
+		if (brothers.len() == 1) {
 			this.addXP(XPgroup);
-		}
-		else
-		{
-			foreach( bro in brothers )
-			{
+		} else {
+			foreach (bro in brothers) {
 				bro.addXP(::Math.max(1, ::Math.floor(XPgroup * 1.0 / (brothers.len() - summonedCount))));
 			}
 		}
 	}
 
-	function isPlayerControlled(){
+	function isPlayerControlled() {
 		return this.getFaction() == ::Const.Faction.PlayerAnimals && this.m.IsControlledByPlayer;
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType ) {
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local appearance = this.getItems().getAppearance();
 		local targetBrightness = 0.9;
 		local targetScale = 0.9;
@@ -231,8 +208,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 			decal.Scale = targetScale;
 			decal.setBrightness(targetBrightness);
 
-			if (tattoo_body.HasBrush)
-			{
+			if (tattoo_body.HasBrush) {
 				decal = _tile.spawnDetail(tattoo_body.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Color = tattoo_body.Color;
 				decal.Saturation = tattoo_body.Saturation;
@@ -250,10 +226,9 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 			];
 
 			if (appearance.CorpseArmorUpgradeFront != "") {
-		    	armorLayers.push("CorpseArmorUpgradeBack");
-			} 
-			else {
-    			armorLayers.insert(3, "CorpseArmorUpgradeBack");
+				armorLayers.push("CorpseArmorUpgradeBack");
+			} else {
+				armorLayers.insert(3, "CorpseArmorUpgradeBack");
 			}
 
 			foreach (layer in armorLayers) {
@@ -264,46 +239,43 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				}
 			}
 
-			if (this.m.Surcoat != null)
-			{
+			if (this.m.Surcoat != null) {
 				decal = _tile.spawnDetail("surcoat_" + (this.m.Surcoat < 10 ? "0" + this.m.Surcoat : this.m.Surcoat) + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 				decal.setBrightness(targetBrightness);
 			}
 
 			local helmetLowerLayers = [
-					"HelmetLayerVanityLowerCorpse",
-					"HelmetLayerVanity2LowerCorpse"
+				"HelmetLayerVanityLowerCorpse",
+				"HelmetLayerVanity2LowerCorpse"
 			];
 			local helmetLayers = [
-					"HelmetCorpse",
-					"HelmetLayerHelmLowerCorpse",
-					"HelmetLayerTopLowerCorpse",
-					"HelmetLayerHelmCorpse",
-					"HelmetLayerTopCorpse",
-					"HelmetLayerVanityCorpse",
-					"HelmetLayerVanity2Corpse"
+				"HelmetCorpse",
+				"HelmetLayerHelmLowerCorpse",
+				"HelmetLayerTopLowerCorpse",
+				"HelmetLayerHelmCorpse",
+				"HelmetLayerTopCorpse",
+				"HelmetLayerVanityCorpse",
+				"HelmetLayerVanity2Corpse"
 			];
 
-			if (_fatalityType != ::Const.FatalityType.Decapitated && !this.m.IsHeadless)	{
+			if (_fatalityType != ::Const.FatalityType.Decapitated && !this.m.IsHeadless) {
 				foreach (layer in helmetLowerLayers) {
 					if (appearance[layer] != "") {
 						local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
-							decal.Scale = targetScale;
-							decal.setBrightness(targetBrightness);
+						decal.Scale = targetScale;
+						decal.setBrightness(targetBrightness);
 					}
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					local decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
 					decal.Scale = targetScale;
 					decal.setBrightness(targetBrightness);
 
-					if (tattoo_head.HasBrush)
-					{
+					if (tattoo_head.HasBrush) {
 						local decal = _tile.spawnDetail(tattoo_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 						decal.Color = tattoo_head.Color;
 						decal.Saturation = tattoo_head.Saturation;
@@ -312,16 +284,14 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 					}
 				}
 
-				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush) {
 					local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_beard.Color;
 					decal.Saturation = sprite_beard.Saturation;
 					decal.Scale = targetScale;
 					decal.setBrightness(targetBrightness);
 
-					if (sprite_beard_top.HasBrush)
-					{
+					if (sprite_beard_top.HasBrush) {
 						local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 						decal.Color = sprite_beard.Color;
 						decal.Saturation = sprite_beard.Saturation;
@@ -330,15 +300,13 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 					}
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					local decal = _tile.spawnDetail("zombify_0" + this.m.InjuryType + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Scale = targetScale;
 					decal.setBrightness(0.75);
 				}
 
-				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush) {
 					local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_hair.Color;
 					decal.Saturation = sprite_hair.Saturation;
@@ -346,12 +314,10 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 					decal.setBrightness(targetBrightness);
 				}
 
-				if (_fatalityType == ::Const.FatalityType.Smashed)
-				{
+				if (_fatalityType == ::Const.FatalityType.Smashed) {
 					local decal = _tile.spawnDetail("bust_head_smashed_02", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.setBrightness(0.8);
-				}
-				else if (appearance.HelmetCorpse != "")	{
+				} else if (appearance.HelmetCorpse != "") {
 					foreach (layer in helmetLayers) {
 						if (appearance[layer] != "") {
 							local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
@@ -360,9 +326,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 						}
 					}
 				}
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated && !this.m.IsHeadless)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated && !this.m.IsHeadless) {
 				local layers = [];
 
 				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
@@ -372,28 +336,23 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				//	}
 				//}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					layers.push(sprite_head.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideCorpseHead && tattoo_head.HasBrush)
-				{
+				if (!appearance.HideCorpseHead && tattoo_head.HasBrush) {
 					layers.push(sprite_head.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideBeard && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard.HasBrush) {
 					layers.push(sprite_beard.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					layers.push("zombify_0" + this.m.InjuryType + "_dead");
 				}
 
-				if (!appearance.HideHair && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && sprite_hair.HasBrush) {
 					layers.push(sprite_hair.getBrush().Name + "_dead");
 				}
 
@@ -403,8 +362,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				//	}
 				//}
 
-				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard_top.HasBrush) {
 					layers.push(sprite_beard_top.getBrush().Name + "_dead");
 				}
 
@@ -419,8 +377,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				//	}
 				//}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					decap[idx].Color = sprite_head.Color;
 					decap[idx].Saturation = sprite_head.Saturation;
 					decap[idx].Scale = targetScale;
@@ -428,8 +385,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 					idx = ++idx;
 				}
 
-				if (!appearance.HideCorpseHead && tattoo_head.HasBrush)
-				{
+				if (!appearance.HideCorpseHead && tattoo_head.HasBrush) {
 					decap[idx].Color = tattoo_head.Color;
 					decap[idx].Saturation = tattoo_head.Saturation;
 					decap[idx].Scale = targetScale;
@@ -437,8 +393,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 					idx = ++idx;
 				}
 
-				if (!appearance.HideBeard && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard.HasBrush) {
 					decap[idx].Color = sprite_beard.Color;
 					decap[idx].Saturation = sprite_beard.Saturation;
 					decap[idx].Scale = targetScale;
@@ -446,15 +401,13 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 					idx = ++idx;
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					decap[idx].Scale = targetScale;
 					decap[idx].setBrightness(0.75);
 					idx = ++idx;
 				}
 
-				if (!appearance.HideHair && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && sprite_hair.HasBrush) {
 					decap[idx].Color = sprite_hair.Color;
 					decap[idx].Saturation = sprite_hair.Saturation;
 					decap[idx].Scale = targetScale;
@@ -470,8 +423,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				//	}
 				//}
 
-				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard_top.HasBrush) {
 					decap[idx].Color = sprite_beard.Color;
 					decap[idx].Saturation = sprite_beard.Saturation;
 					decap[idx].Scale = targetScale;
@@ -479,28 +431,19 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				}
 			}
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
-				if (appearance.CorpseArmor != "")
-				{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
+				if (appearance.CorpseArmor != "") {
 					decal = _tile.spawnDetail(appearance.CorpseArmor + "_arrows", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
-				}
-				else
-				{
+				} else {
 					decal = _tile.spawnDetail(appearance.Corpse + "_arrows", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				}
 
 				decal.Saturation = 0.85;
 				decal.setBrightness(0.85);
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
-				if (appearance.CorpseArmor != "")
-				{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
+				if (appearance.CorpseArmor != "") {
 					decal = _tile.spawnDetail(appearance.CorpseArmor + "_javelin", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
-				}
-				else
-				{
+				} else {
 					decal = _tile.spawnDetail(appearance.Corpse + "_javelin", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				}
 
@@ -508,8 +451,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				decal.setBrightness(0.85);
 			}
 
-			if (appearance.CorpseArmorUpgradeFront != "")
-			{
+			if (appearance.CorpseArmorUpgradeFront != "") {
 				decal = _tile.spawnDetail(appearance.CorpseArmorUpgradeFront, ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 				decal.setBrightness(targetBrightness);
@@ -522,12 +464,12 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				InjuryType = this.m.InjuryType,
 				Face = sprite_head.getBrush().Name,
 				Body = sprite_body.getBrush().Name,
-				TattooBody = tattoo_body.HasBrush ? tattoo_body.getBrush().Name : null,
-				TattooHead = tattoo_head.HasBrush ? tattoo_head.getBrush().Name : null,
-				Hair = sprite_hair.HasBrush ? sprite_hair.getBrush().Name : null,
+				TattooBody = tattoo_body.HasBrush ? tattoo_body.getBrush().Name: null,
+				TattooHead = tattoo_head.HasBrush ? tattoo_head.getBrush().Name: null,
+				Hair = sprite_hair.HasBrush ? sprite_hair.getBrush().Name: null,
 				HairColor = sprite_hair.Color,
 				HairSaturation = sprite_hair.Saturation,
-				Beard = sprite_beard.HasBrush ? sprite_beard.getBrush().Name : null,
+				Beard = sprite_beard.HasBrush ? sprite_beard.getBrush().Name: null,
 				Surcoat = this.m.Surcoat
 			};
 			local corpse = clone ::Const.Corpse;
@@ -556,5 +498,4 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		//this.getItems().dropAll(_tile, _killer, !flip);
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
-
 });

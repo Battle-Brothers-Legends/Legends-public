@@ -197,6 +197,8 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		b.setValues(WardenProperties);
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToRoot = true;
+		b.IsImmuneToPoison = true;
+		b.IsImmuneToStun = true;
 		b.IsImmuneToZoneOfControl = false;
 		b.IsIgnoringArmorOnAttack = true;
 		b.IsAffectedByNight = false;
@@ -238,8 +240,6 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Traits.grant(this, ::Legends.Trait.Loyal); //Should prevent charm
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		// additional skills based on Vala's daily swap?
 	}
 });

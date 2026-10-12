@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_boss", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/skeleton_boss", function (o) {
 	// o.onFactionChanged <- function ()
 	// {
 	// 	this.actor.onFactionChanged();
@@ -16,25 +15,20 @@
 	// }
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		this.m.Items.equip(this.new("scripts/items/weapons/named/named_crypt_cleaver"));
 
-		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
 
@@ -46,11 +40,10 @@
 		local item = ::Const.World.Common.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_laurels]
 		]);
-		if (item != null)
-		{
+		if (item != null) {
 			this.m.Items.equip(item);
 		}
-		local b = this.m.BaseProperties;	
+		local b = this.m.BaseProperties;
 		b.Armor[::Const.BodyPart.Head] = 50 - item.getArmorMax(); // set head armor of the conqueror to vanilla levels while respecting the outfit
 		b.ArmorMax[::Const.BodyPart.Head] = 50 - item.getArmorMax();
 	}

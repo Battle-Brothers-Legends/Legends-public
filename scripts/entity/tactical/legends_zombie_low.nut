@@ -1,8 +1,7 @@
 this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie", {
 	m = {},
 
-	function onInit()
-	{
+	function onInit() {
 		this.m.SpawnType = ::Const.Tactical.Actor.LegendZombieLight;
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
@@ -10,9 +9,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		// this.m.Skills.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			this.m.BaseProperties.Hitpoints *= 1.5;
 			this.m.Hitpoints *= 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
@@ -21,44 +18,29 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 
 		local r = ::Math.rand(1, 7);
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_militia_glaive"));
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
-		}
-		else if (r == 3)
-		{
+		} else if (r == 3) {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
-		}
-		else if (r == 4)
-		{
+		} else if (r == 4) {
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_spear"));
-		}
-		else if (r == 5)
-		{
+		} else if (r == 5) {
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_sickle"));
-		}
-		else if (r == 6)
-		{
+		} else if (r == 6) {
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_hammer"));
 		}
 
 		local r = ::Math.rand(1, 2);
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield_old"));
 		}
 
@@ -88,8 +70,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]);
 
-		if (item != null)
-		{
+		if (item != null) {
 			this.m.Items.equip(item);
 		}
 	}

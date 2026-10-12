@@ -3,16 +3,15 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		WasInjured = false,
 		IsLady = false
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendVampireLord;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.MoraleState = ::Const.MoraleState.Ignore;
 		this.m.XP = ::Const.Tactical.Actor.LegendVampireLord.XP;
- 		if(::Math.rand(1, 100) <= 50)
-		 {
-			 this.m.IsLady = true;
-		 }
+		if (::Math.rand(1, 100) <= 50) {
+			this.m.IsLady = true;
+		}
 
 		this.actor.create();
 		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
@@ -41,17 +40,15 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 			[7, "scripts/items/misc/legend_masterwork_tools"]
 		]);
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[3, "scripts/items/misc/legend_ancient_scroll_item"]
 			]);
 		}
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
-		{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled()) {
 			this.updateAchievement("BackToTheGrave", 1, 1);
 		}
 
@@ -59,8 +56,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		local flip = ::Math.rand(0, 100) < 50;
 		this.m.IsCorpseFlipped = flip;
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local decal = _tile.spawnDetail("bust_vampire_lord_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false);
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
@@ -83,8 +79,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.Faction = this.getFaction();
 		corpse.CorpseName = "A " + this.getName();
@@ -97,8 +92,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.actor.onFactionChanged();
 		local flip = !this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
@@ -118,45 +112,35 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("dirt").setHorizontalFlipping(flip);
 	}
 
-	function onDamageReceived( _attacker, _skill, _hitInfo )
-	{
-		if (_hitInfo.DamageRegular >= 25)
-		{
+	function onDamageReceived(_attacker, _skill, _hitInfo) {
+		if (_hitInfo.DamageRegular >= 25) {
 			this.m.WasInjured = true;
 		}
 
 		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
-	function onUpdateInjuryLayer()
-	{
+	function onUpdateInjuryLayer() {
 		local p = this.getHitpointsPct();
 		local bodyBrush = this.getSprite("body").getBrush().Name;
 		local headBrush = this.getSprite("head").getBrush().Name;
 
-		if (p <= 0.33)
-		{
+		if (p <= 0.33) {
 			this.getSprite("body").setBrush("bust_vampire_lord_body_03");
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_03_injured");
 			this.getSprite("head").setBrush("bust_vampire_lord_head_03");
 			this.getSprite("injury").setBrush("bust_skeleton_head_03_injured");
-		}
-		else if (p <= 0.66)
-		{
+		} else if (p <= 0.66) {
 			this.getSprite("body").setBrush("bust_vampire_lord_body_02");
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_04_injured");
 			this.getSprite("head").setBrush("bust_vampire_lord_head_02");
 			this.getSprite("injury").setBrush("bust_skeleton_head_04_injured");
-		}
-		else if (this.m.IsLady == true)
-		{
+		} else if (this.m.IsLady == true) {
 			this.getSprite("body").setBrush("bust_vampire_lady_body_02");
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
 			this.getSprite("head").setBrush("bust_vampire_lady_head_02");
 			this.getSprite("injury").setBrush("bust_skeleton_head_05_injured");
-		}
-		else
-		{
+		} else {
 			this.getSprite("body").setBrush("bust_vampire_lord_body_01");
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
 			this.getSprite("head").setBrush("bust_vampire_lord_head_01");
@@ -166,8 +150,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("body_injury").Visible = this.m.WasInjured;
 		this.getSprite("injury").Visible = this.m.WasInjured;
 
-		if (bodyBrush != this.getSprite("body").getBrush().Name)
-		{
+		if (bodyBrush != this.getSprite("body").getBrush().Name) {
 			local old_body = this.getSprite("old_body");
 			old_body.Visible = true;
 			old_body.Alpha = 255;
@@ -183,13 +166,13 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		this.setDirty(true);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Vampire);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
+		b.IsImmuneToPoison = true;
 		b.IsSpecializedInSwords = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -206,14 +189,12 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		this.addSprite("armor");
 		local head_detail = this.addSprite("head_detail");
 
-		if (::Math.rand(1, 100) <= 50)
-		{
+		if (::Math.rand(1, 100) <= 50) {
 			this.m.IsLady ? head_detail.setBrush("bust_vampire_head_lady_detail_01") : head_detail.setBrush("bust_skeleton_head_detail_01");
 		}
 
 		local body_detail = this.addSprite("body_detail");
-		if (::Math.rand(1, 100) <= 75)
-		{
+		if (::Math.rand(1, 100) <= 75) {
 			this.m.IsLady ? body_detail.setBrush("bust_vampire_lady_detail_0" + ::Math.rand(1, 2)) : body_detail.setBrush("bust_skeleton_detail_0" + ::Math.rand(2, 3));
 		}
 		local head = this.addSprite("head");
@@ -228,14 +209,11 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		beard.varyColor(0.02, 0.02, 0.02);
 		local hair = this.addSprite("hair");
 		hair.Color = beard.Color;
-		if (::Math.rand(1, 100) <= 75 && !this.m.IsLady)
-		{
+		if (::Math.rand(1, 100) <= 75 && !this.m.IsLady) {
 			local idx = ::Math.rand(0, ::Const.Hair.Vampire.len() - 1);
 			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.Vampire[idx]);
 			this.setSpriteOffset("hair", this.createVec(0, -3));
-		}
-		else if (::Math.rand(1, 100) <= 67 && this.m.IsLady)
-		{
+		} else if (::Math.rand(1, 100) <= 67 && this.m.IsLady) {
 			local idx = ::Math.rand(0, ::Const.Hair.VampireLady.len() - 1);
 			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.VampireLady[idx]);
 		}
@@ -243,8 +221,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		this.addSprite("helmet");
 		this.addSprite("helmet_damage");
 
-		if (this.m.IsLady)
-		{
+		if (this.m.IsLady) {
 			this.getSprite("body").setBrush("bust_vampire_lady_body_02");
 			this.getSprite("head").setBrush("bust_vampire_lady_head_02");
 		}
@@ -268,11 +245,9 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			b.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
@@ -283,8 +258,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 		this.getItems().equip(::Const.World.Common.pickItem([
 			[1, "weapons/ancient/crypt_cleaver"],
 			[1, "weapons/ancient/legend_great_khopesh"]
@@ -298,10 +272,10 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		// ]));
 	}
 
-	function makeMiniboss()
-	{
-		if (!this.actor.makeMiniboss())
+	function makeMiniboss() {
+		if (!this.actor.makeMiniboss()) {
 			return false;
+		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 

@@ -4,8 +4,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		SpawnType = null
 	},
 
-	function create()
-	{
+	function create() {
 		this.m.IsControlledByPlayer = true;
 		this.m.Type = ::Const.EntityType.SkeletonLight;
 		this.skeleton.create();
@@ -15,24 +14,22 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		this.m.IsSummoned = true;
 	}
 
-	function isGuest()
-	{
+	function isGuest() {
 		return false;
 	}
 
-	function addXP(_xp)
-	{
+	function addXP(_xp) {
 
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.m.SpawnType);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToPoison = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -43,25 +40,20 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		this.addSprite("socket").setBrush("bust_base_undead");
 		local body = this.addSprite("body");
 
-		if (::Math.rand(1, 2) == 1)
-		{
+		if (::Math.rand(1, 2) == 1) {
 			body.setBrush("bust_skeleton_body_0" + ::Math.rand(1, 2));
-		}
-		else
-		{
+		} else {
 			body.setBrush("bust_skeleton_body_01");
 		}
 
 		body.setHorizontalFlipping(true);
 		body.Saturation = 0.8;
 
-		if (::Math.rand(0, 100) < 75)
-		{
+		if (::Math.rand(0, 100) < 75) {
 			body.varySaturation(0.2);
 		}
 
-		if (::Math.rand(0, 100) < 90)
-		{
+		if (::Math.rand(0, 100) < 90) {
 			body.varyColor(0.025, 0.025, 0.025);
 		}
 
@@ -83,8 +75,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		local beard = this.addSprite("beard");
 		beard.varyColor(0.02, 0.02, 0.02);
 
-		if (::Math.rand(1, 100) <= 25)
-		{
+		if (::Math.rand(1, 100) <= 25) {
 			beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.ZombieOnly[::Math.rand(0, ::Const.Beards.ZombieOnly.len() - 1)]);
 		}
 
@@ -94,20 +85,17 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		hair.setHorizontalFlipping(true);
 		hair.Color = beard.Color;
 
-		if (::Math.rand(1, 100) <= 50)
-		{
+		if (::Math.rand(1, 100) <= 50) {
 			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.ZombieOnly[::Math.rand(0, ::Const.Hair.ZombieOnly.len() - 1)]);
 		}
 
 		this.setSpriteOffset("hair", this.createVec(0, -3));
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
-			this.addSprite(a)
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			this.addSprite(a);
 		}
 		local beard_top = this.addSprite("beard_top");
 
-		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top"))
-		{
+		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top")) {
 			beard_top.setBrush(beard.getBrush().Name + "_top");
 			beard_top.Color = beard.Color;
 		}
@@ -126,71 +114,58 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 	}
 
-	function setItem( _i )
-	{
-		if (typeof _i == "instance")
-		{
+	function setItem(_i) {
+		if (typeof _i == "instance") {
 			this.m.Item = _i;
-			return
+			return;
 		}
 
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	function setVariant( _v )
-	{
+	function setVariant(_v) {
 
 	}
 
-
-	function isReallyKilled(_fatalityType)
-	{
+	function isReallyKilled(_fatalityType) {
 		return false;
 	}
 
-
-	function onActorKilled( _actor, _tile, _skill )
-	{
+	function onActorKilled(_actor, _tile, _skill) {
 		this.actor.onActorKilled(_actor, _tile, _skill);
 		local XPkiller = ::Math.floor(_actor.getXPValue() * ::Const.XP.XPForKillerPct);
 		local XPgroup = _actor.getXPValue() * (1.0 - ::Const.XP.XPForKillerPct);
 
 		local summoner = getFlags().get("Summoner");
-		if (summoner != null && "addXP" in summoner)
-		{
+		if (summoner != null && "addXP" in summoner) {
 			summoner.addXP(::Math.floor(XPkiller * 0.50));
 		}
 
 		local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
-		if (brothers.len() == 1)
-		{
+		if (brothers.len() == 1) {
 			this.addXP(XPgroup);
-		}
-		else
-		{
-			foreach( bro in brothers )
-			{
+		} else {
+			foreach (bro in brothers) {
 				bro.addXP(::Math.max(1, ::Math.floor(XPgroup / brothers.len())));
 			}
 		}
 	}
 
-	function isPlayerControlled(){
+	function isPlayerControlled() {
 		return this.getFaction() == ::Const.Faction.PlayerAnimals && this.m.IsControlledByPlayer;
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType ) {		
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local appearance = this.getItems().getAppearance();
 		local targetScale = 0.9;
 		local flip = false;
 		this.m.IsCorpseFlipped = false;
 		local isResurrectable = false;
 		local corpse = clone ::Const.Corpse;
-		
+
 		if (_tile != null) {
 			local sprite_body = this.getSprite("body");
 			local sprite_head = this.getSprite("head");
@@ -203,16 +178,12 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 			decal.Saturation = sprite_body.Saturation;
 			decal.Scale = targetScale;
 
-			if (appearance.CorpseArmor != "")
-			{
+			if (appearance.CorpseArmor != "") {
 				local armorDecal;
 
-				if (this.doesBrushExist(appearance.CorpseArmor + "_skeleton"))
-				{
+				if (this.doesBrushExist(appearance.CorpseArmor + "_skeleton")) {
 					armorDecal = appearance.CorpseArmor + "_skeleton";
-				}
-				else
-				{
+				} else {
 					armorDecal = appearance.CorpseArmor;
 				}
 
@@ -221,45 +192,41 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 			}
 
 			local helmetLowerLayers = [
-					"HelmetLayerVanityLowerCorpse",
-					"HelmetLayerVanity2LowerCorpse"
+				"HelmetLayerVanityLowerCorpse",
+				"HelmetLayerVanity2LowerCorpse"
 			];
 			local helmetLayers = [
-					"HelmetCorpse",
-					"HelmetLayerHelmLowerCorpse",
-					"HelmetLayerTopLowerCorpse",
-					"HelmetLayerHelmCorpse",
-					"HelmetLayerTopCorpse",
-					"HelmetLayerVanityCorpse",
-					"HelmetLayerVanity2Corpse"
+				"HelmetCorpse",
+				"HelmetLayerHelmLowerCorpse",
+				"HelmetLayerTopLowerCorpse",
+				"HelmetLayerHelmCorpse",
+				"HelmetLayerTopCorpse",
+				"HelmetLayerVanityCorpse",
+				"HelmetLayerVanity2Corpse"
 			];
 
-			if (_fatalityType != ::Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
 				foreach (layer in helmetLowerLayers) {
 					if (appearance[layer] != "") {
 						local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
-							decal.Scale = targetScale;
+						decal.Scale = targetScale;
 					}
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					local decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
 					decal.Scale = targetScale;
 				}
 
-				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush) {
 					local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_beard.Color;
 					decal.Saturation = sprite_beard.Saturation;
 					decal.Scale = targetScale;
 
-					if (sprite_beard_top.HasBrush)
-					{
+					if (sprite_beard_top.HasBrush) {
 						local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 						decal.Color = sprite_beard.Color;
 						decal.Saturation = sprite_beard.Saturation;
@@ -267,16 +234,14 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 					}
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					local decal = _tile.spawnDetail(sprite_face.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_face.Color;
 					decal.Saturation = sprite_face.Saturation;
 					decal.Scale = targetScale;
 				}
 
-				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush) {
 					local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_hair.Color;
 					decal.Saturation = sprite_hair.Saturation;
@@ -289,9 +254,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 						decal.Scale = targetScale;
 					}
 				}
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [];
 
 				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
@@ -301,23 +264,19 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				//	}
 				//}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					layers.push(sprite_head.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideBeard && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard.HasBrush) {
 					layers.push(sprite_beard.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					layers.push(sprite_face.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideHair && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && sprite_hair.HasBrush) {
 					layers.push(sprite_hair.getBrush().Name + "_dead");
 				}
 
@@ -327,8 +286,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				//	}
 				//}
 
-				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard_top.HasBrush) {
 					layers.push(sprite_beard_top.getBrush().Name + "_dead");
 				}
 
@@ -342,7 +300,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				//	}
 				//}
 
-				if (!appearance.HideCorpseHead)	{
+				if (!appearance.HideCorpseHead) {
 					decap[idx].Color = sprite_head.Color;
 					decap[idx].Saturation = sprite_head.Saturation;
 					decap[idx].Scale = targetScale;
@@ -350,8 +308,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 					idx = ++idx;
 				}
 
-				if (!appearance.HideBeard && sprite_beard.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard.HasBrush) {
 					decap[idx].Color = sprite_beard.Color;
 					decap[idx].Saturation = sprite_beard.Saturation;
 					decap[idx].Scale = targetScale;
@@ -359,15 +316,13 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 					idx = ++idx;
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					decap[idx].Scale = targetScale;
 					decap[idx].setHorizontalFlipping(true);
 					idx = ++idx;
 				}
 
-				if (!appearance.HideHair && sprite_hair.HasBrush)
-				{
+				if (!appearance.HideHair && sprite_hair.HasBrush) {
 					decap[idx].Color = sprite_hair.Color;
 					decap[idx].Saturation = sprite_hair.Saturation;
 					decap[idx].Scale = targetScale;
@@ -383,8 +338,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				//	}
 				//}
 
-				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
-				{
+				if (!appearance.HideBeard && sprite_beard_top.HasBrush) {
 					decap[idx].Color = sprite_beard.Color;
 					decap[idx].Saturation = sprite_beard.Saturation;
 					decap[idx].Scale = targetScale;
@@ -392,48 +346,33 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				}
 			}
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				local armorDecal;
 
-				if (appearance.CorpseArmor != "" && this.doesBrushExist(appearance.CorpseArmor + "_skeleton"))
-				{
+				if (appearance.CorpseArmor != "" && this.doesBrushExist(appearance.CorpseArmor + "_skeleton")) {
 					armorDecal = appearance.CorpseArmor + "_skeleton_arrows";
-				}
-				else if (appearance.CorpseArmor != "")
-				{
+				} else if (appearance.CorpseArmor != "") {
 					armorDecal = appearance.CorpseArmor + "_arrows";
-				}
-				else
-				{
+				} else {
 					armorDecal = appearance.Corpse + "_arrows";
 				}
 
-				if (this.doesBrushExist(armorDecal))
-				{
+				if (this.doesBrushExist(armorDecal)) {
 					decal = _tile.spawnDetail(armorDecal, ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Saturation = 0.85;
 				}
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				local armorDecal;
 
-				if (appearance.CorpseArmor != "" && this.doesBrushExist(appearance.CorpseArmor + "_skeleton"))
-				{
+				if (appearance.CorpseArmor != "" && this.doesBrushExist(appearance.CorpseArmor + "_skeleton")) {
 					armorDecal = appearance.CorpseArmor + "_skeleton_javelin";
-				}
-				else if (appearance.CorpseArmor != "")
-				{
+				} else if (appearance.CorpseArmor != "") {
 					armorDecal = appearance.CorpseArmor + "_javelin";
-				}
-				else
-				{
+				} else {
 					armorDecal = appearance.Corpse + "_javelin";
 				}
 
-				if (this.doesBrushExist(armorDecal))
-				{
+				if (this.doesBrushExist(armorDecal)) {
 					decal = _tile.spawnDetail(armorDecal, ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Saturation = 0.85;
 				}
@@ -443,10 +382,10 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 			local custom = {
 				Face = sprite_face.getBrush().Name,
 				Body = sprite_body.getBrush().Name,
-				Hair = sprite_hair.HasBrush ? sprite_hair.getBrush().Name : null,
+				Hair = sprite_hair.HasBrush ? sprite_hair.getBrush().Name: null,
 				HairColor = sprite_hair.Color,
 				HairSaturation = sprite_hair.Saturation,
-				Beard = sprite_beard.HasBrush ? sprite_beard.getBrush().Name : null,
+				Beard = sprite_beard.HasBrush ? sprite_beard.getBrush().Name: null,
 				BodyColor = sprite_body.Color,
 				BodySaturation = sprite_body.Saturation
 			};
@@ -479,6 +418,5 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
-
 
 });

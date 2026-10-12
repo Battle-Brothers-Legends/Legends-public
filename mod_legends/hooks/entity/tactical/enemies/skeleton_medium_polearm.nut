@@ -1,26 +1,18 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_medium_polearm", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/skeleton_medium_polearm", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		if (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::Math.max(10, 60 - ::World.getTime().Days))
-		{
+	o.assignRandomEquipment = function () {
+		if (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::Math.max(10, 60 - ::World.getTime().Days)) {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/broken_bladed_pike"));
-		}
-		else
-		{
+		} else {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/bladed_pike"));
 		}
 
@@ -35,8 +27,7 @@
 		local item = ::Const.World.Common.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_legionary_helmet]
 		]);
-		if (item != null)
-		{
+		if (item != null) {
 			this.m.Items.equip(item);
 		}
 	}

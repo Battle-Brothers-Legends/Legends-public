@@ -13,8 +13,8 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		DistortTargetPrevD = this.createVec(0, 0),
 		DistortAnimationStartTimeD = 0
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendBanshee;
 		this.m.BloodType = ::Const.BloodType.None;
 		this.m.MoraleState = ::Const.MoraleState.Ignore;
@@ -40,24 +40,21 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_banshee_essence_item"]
 			]);
 		}
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(1, 100) < 50;
 
-		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
-		{
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled()) {
 			this.updateAchievement("OvercomingFear", 1, 1);
 		}
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local effect = {
 				Delay = 0,
 				Quantity = 12,
@@ -129,13 +126,14 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendBanshee);
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToStun = true;
+		b.IsImmuneToPoison = true;
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToDisarm = true;
 		b.IsIgnoringArmorOnAttack = true;
@@ -143,8 +141,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay) {
 			b.MeleeDefense += 5;
 		}
 
@@ -185,11 +182,8 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialGhost);
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Actives.grant(this, ::Legends.Active.LegendNightmareTouch);
@@ -199,57 +193,48 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 
 	}
 
-	function onRender()
-	{
+	function onRender() {
 		this.actor.onRender();
 
-		if (this.m.DistortTargetA == null)
-		{
+		if (this.m.DistortTargetA == null) {
 			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeA = ::Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("head", this.m.DistortTargetPrevA, this.m.DistortTargetA, 3.8, this.m.DistortAnimationStartTimeA))
-		{
+		if (this.moveSpriteOffset("head", this.m.DistortTargetPrevA, this.m.DistortTargetA, 3.8, this.m.DistortAnimationStartTimeA)) {
 			this.m.DistortAnimationStartTimeA = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
 			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
-		if (this.m.DistortTargetB == null)
-		{
+		if (this.m.DistortTargetB == null) {
 			this.m.DistortTargetB = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeB = ::Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("blur_1", this.m.DistortTargetPrevB, this.m.DistortTargetB, 4.9000001, this.m.DistortAnimationStartTimeB))
-		{
+		if (this.moveSpriteOffset("blur_1", this.m.DistortTargetPrevB, this.m.DistortTargetB, 4.9000001, this.m.DistortAnimationStartTimeB)) {
 			this.m.DistortAnimationStartTimeB = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
 			this.m.DistortTargetB = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
-		if (this.m.DistortTargetC == null)
-		{
+		if (this.m.DistortTargetC == null) {
 			this.m.DistortTargetC = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeC = ::Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("body", this.m.DistortTargetPrevC, this.m.DistortTargetC, 4.3, this.m.DistortAnimationStartTimeC))
-		{
+		if (this.moveSpriteOffset("body", this.m.DistortTargetPrevC, this.m.DistortTargetC, 4.3, this.m.DistortAnimationStartTimeC)) {
 			this.m.DistortAnimationStartTimeC = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevC = this.m.DistortTargetC;
 			this.m.DistortTargetC = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
-		if (this.m.DistortTargetD == null)
-		{
+		if (this.m.DistortTargetD == null) {
 			this.m.DistortTargetD = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeD = ::Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("blur_2", this.m.DistortTargetPrevD, this.m.DistortTargetD, 5.5999999, this.m.DistortAnimationStartTimeD))
-		{
+		if (this.moveSpriteOffset("blur_2", this.m.DistortTargetPrevD, this.m.DistortTargetD, 5.5999999, this.m.DistortAnimationStartTimeD)) {
 			this.m.DistortAnimationStartTimeD = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevD = this.m.DistortTargetD;
 			this.m.DistortTargetD = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
@@ -257,4 +242,3 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

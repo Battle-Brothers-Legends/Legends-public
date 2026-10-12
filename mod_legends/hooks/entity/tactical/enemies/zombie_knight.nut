@@ -22,7 +22,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		}
 		::Legends.S.scaleBaseProperties(b);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 	}
 

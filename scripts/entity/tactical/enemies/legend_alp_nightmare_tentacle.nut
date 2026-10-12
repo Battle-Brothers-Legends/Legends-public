@@ -1,12 +1,11 @@
 this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enemies/legend_alp_shadow", {
 	m = {},
-	function getMode()
-	{
+
+	function getMode() {
 		return 1;
 	}
 
-	function create()
-	{
+	function create() {
 		this.legend_alp_shadow.create();
 
 		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
@@ -31,20 +30,13 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.KrakenTentacle);
-
-		b.IsAffectedByNight = false;
 		b.IsMovable = false;
-		b.IsAffectedByInjuries = false;
-		b.IsImmuneToDisarm = true;
-		b.IsAffectedByRain = false;
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5) {
 			b.MeleeSkill += 5;
 			b.RangedSkill += 5;
 		}
@@ -83,13 +75,11 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 
 		this.applySignatureAbilities();
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.legend_alp_shadow.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
@@ -98,6 +88,4 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		this.getSprite("blur_2").setHorizontalFlipping(flip);
 	}
 
-
 });
-

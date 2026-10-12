@@ -1,7 +1,7 @@
 this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.SkeletonGladiator;
 		this.m.XP = ::Const.Tactical.Actor.SkeletonGladiator.XP;
 		this.m.ResurrectionValue = 3.0;
@@ -11,14 +11,14 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.SkeletonGladiator);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToPoison = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -28,10 +28,8 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecThrowing);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
@@ -39,8 +37,7 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 		}
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 
 		this.getItems().equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
 		this.getItems().equip(this.new("scripts/items/weapons/throwing_spear"));
@@ -61,4 +58,3 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 	}
 
 });
-

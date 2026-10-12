@@ -16,8 +16,6 @@
 				this.addSprite(a);
 			}
 		}
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 	}
 
 	o.assignRandomEquipment = function () {
@@ -33,7 +31,7 @@
 		if (item != null) {
 			this.m.Items.equip(item);
 		}
-		local b = this.m.BaseProperties;	
+		local b = this.m.BaseProperties;
 		b.Armor[::Const.BodyPart.Head] = 80 - item.getArmorMax(); // set head armor of the lorekeeper to vanilla levels while respecting the outfit
 		b.ArmorMax[::Const.BodyPart.Head] = 80 - item.getArmorMax();
 	}

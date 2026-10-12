@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/tactical/enemies/bandit_leader", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/bandit_leader", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bandit_melee_agent_less_flanking");
 		this.m.AIAgent.setActor(this);
@@ -13,8 +11,7 @@
 		]);
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.BanditLeader);
@@ -48,10 +45,9 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			b.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
@@ -61,17 +57,14 @@
 		}
 	}
 
-	o.onAppearanceChanged = function ( _appearance, _setDirty = true )
-	{
+	o.onAppearanceChanged = function (_appearance, _setDirty = true) {
 		this.actor.onAppearanceChanged(_appearance, false);
 		//this.setArmorBrightness(0.9);
 		this.setDirty(true);
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
-		{
+	o.assignRandomEquipment = function () {
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null) {
 			local weapons = [
 				"weapons/noble_sword",
 				"weapons/fighting_axe",
@@ -82,8 +75,7 @@
 				"weapons/military_cleaver"
 			];
 
-			if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-			{
+			if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 				weapons.extend([
 					"weapons/greatsword",
 					"weapons/greataxe",
@@ -97,8 +89,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			local shields = [
 				"shields/wooden_shield",
 				"shields/heater_shield",
@@ -107,8 +98,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
-		if (::Math.rand(1, 100) <= 35)
-		{
+		if (::Math.rand(1, 100) <= 35) {
 			local weapons = [
 				"weapons/throwing_axe",
 				"weapons/javelin"
@@ -116,8 +106,7 @@
 			this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
 			local armor = [
 				[1, ::Legends.Armor.Standard.coat_of_plates],
 				[1, ::Legends.Armor.Standard.coat_of_scales],
@@ -147,15 +136,13 @@
 				[1, ::Legends.Outfit.red_bandit_leader_outfit_00]
 			];
 
-			foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) )
-			{
+			foreach (item in ::Const.World.Common.pickOutfit(outfits, armor, helmet)) {
 				this.m.Items.equip(item);
 			}
 			return;
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null) {
 			local armor = [
 				[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
 				[2, ::Legends.Armor.Standard.heavy_lamellar_armor],
@@ -169,8 +156,7 @@
 			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
 			local item = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.closed_mail_coif],
 				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
@@ -183,17 +169,14 @@
 				[1, ::Legends.Helmet.Standard.bascinet_with_mail],
 				[1, ::Legends.Helmet.Standard.red_bandit_leader_helmet]
 			]);
-			if (item != null)
-			{
+			if (item != null) {
 				this.m.Items.equip(item);
 			}
 		}
 	}
 
-	o.makeMiniboss = function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss = function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -205,28 +188,21 @@
 		]);
 		local r = ::Math.rand(1, 100);
 
-		if (r < 30)
-		{
-			local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;		// Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
+		if (r < 30) {
+			local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;  // Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_battle_whip");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
-			this.getItems().equip(::Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
-		}
-		else if (r < 60)
-		{
+			this.getItems().equip(::Const.World.Common.pickItem(namedWeaponArray.map(@(_it)[1, _it]), "scripts/items/"));
+		} else if (r < 60) {
 			local named = ::Const.Items.NamedArmors;
 			local weightName = ::Const.World.Common.convNameToList(named);
 			this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
-		}
-		else if (r < 90)
-		{
+		} else if (r < 90) {
 			local named = ::Const.Items.NamedHelmets;
 			local weightName = ::Const.World.Common.convNameToList(named);
 			this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
-		}
-		else
-		{
+		} else {
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 

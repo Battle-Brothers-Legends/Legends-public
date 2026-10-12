@@ -111,7 +111,7 @@ if (!("EnemyPerks" in ::Const))
 ::Const.EnemyPerks.FreeCompanyInfantry <- [
 	[3, ::Legends.Perk.BattleForged, 3],
 	[3, ::Legends.Perk.LegendMuscularity, 3],
-	[2, ::Legends.Perk.LegendComposure, 2],
+	//[2, ::Legends.Perk.LegendComposure, 2], removed as of composure removal and migration to usage of vanilla base properties IsImmuneToStun directly
 	[3, ::Legends.Perk.LegendFlux, 2],
 	[3, ::Legends.Perk.LegendSmackdown, 2],
 	[1, ::Legends.Perk.LegendStrengthInNumbers, 1],

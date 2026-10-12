@@ -11,8 +11,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		IsFlipping = false
 	},
 
-	function create()
-	{
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendSpiderCluster;
 		this.m.BloodType = ::Const.BloodType.Green;
 		this.m.XP = ::Const.Tactical.Actor.LegendSpiderCluster.XP;
@@ -85,29 +84,25 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[60, "scripts/items/misc/poison_gland_item"]
 			]);
 		}
 	}
 
-	function playSound( _type, _volume, _pitch = 1.0 )
-	{
-		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 33)
-		{
+	function playSound(_type, _volume, _pitch = 1.0) {
+		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 33) {
 			return;
 		}
 
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onRender()
-	{
+	function onRender() {
 		this.actor.onRender();
 
-		if (this.m.DistortTargetA == null)
-		{
+		if (this.m.DistortTargetA == null) {
 			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
 			this.m.DistortTargetB = !this.m.IsFlipping ? this.createVec(-0.5 * this.m.Size, 0) : this.createVec(0.5 * this.m.Size, 0);
 			this.m.DistortTargetC = !this.m.IsFlipping ? this.createVec(0.5 * this.m.Size, 0) : this.createVec(-0.5 * this.m.Size, 0);
@@ -118,8 +113,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		this.moveSpriteOffset("injury", this.m.DistortTargetPrevA, this.m.DistortTargetA, 1.0, this.m.DistortAnimationStartTimeA);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
 		if (_tile != null) {
 			local decal;
@@ -151,8 +145,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A dead cluster of Hatchlings";
 		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
@@ -162,14 +155,13 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onDamageReceived( _attacker, _skill, _hitInfo ) //effectively, this is an entity with only a body, like the kraken tentacle
+	function onDamageReceived(_attacker, _skill, _hitInfo) //effectively, this is an entity with only a body, like the kraken tentacle
 	{
 		_hitInfo.BodyPart = ::Const.BodyPart.Body;
 		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
@@ -183,8 +175,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			b.DamageDirectAdd += 0.05;
 
-			if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsSpiderClusterStatIncreaseDay2)
-			{
+			if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsSpiderClusterStatIncreaseDay2) {
 				b.DamageDirectAdd += 0.05;
 				b.MeleeDefense += 5;
 				b.RangedDefense += 5;
@@ -201,18 +192,15 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		local body = this.addSprite("body");
 		body.setBrush("bust_spider_cluster_body_01");
 
-		if (::Math.rand(0, 100) < 90)
-		{
+		if (::Math.rand(0, 100) < 90) {
 			body.varySaturation(0.3);
 		}
 
-		if (::Math.rand(0, 100) < 90)
-		{
+		if (::Math.rand(0, 100) < 90) {
 			body.varyColor(0.1, 0.1, 0.1);
 		}
 
-		if (::Math.rand(0, 100) < 90)
-		{
+		if (::Math.rand(0, 100) < 90) {
 			body.varyBrightness(0.1);
 		}
 
@@ -231,10 +219,8 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendClusterSpider);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
@@ -242,8 +228,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function setSize( _s )
-	{
+	function setSize(_s) {
 		this.m.Size = _s;
 		this.m.DecapitateBloodAmount = _s * 0.75;
 		this.getSprite("body").Scale = _s;
@@ -258,4 +243,3 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

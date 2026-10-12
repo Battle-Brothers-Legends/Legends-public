@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/hexe", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/hexe", function (o) {
 	o.m.DroppableRunes <- [
 		::Legends.Rune.LegendRshClarity,
 		::Legends.Rune.LegendRshBravery,
@@ -16,25 +15,23 @@
 			rune.setRuneBonus(true);
 			rune.updateRuneSigilToken();
 			return rune;
-		}.bindenv(this)]);
+		}.bindenv(this)
+		]);
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++)
-			this.m.OnDeathLootTable.push([0.5, "scripts/items/misc/legend_ancient_scroll_item"]);
+		for (local i = 0; i < rolls; i++) this.m.OnDeathLootTable.push([0.5, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
 		::Legends.Actives.grant(this, ::Legends.Active.Wither);
 
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicMissile);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			b.Initiative += 50;
 			b.RangedSkill += 75;
@@ -42,11 +39,9 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		 if(::Legends.isLegendaryDifficulty())
-		 {
-		 	this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
-		 }
+	o.assignRandomEquipment = function () {
+		if (::Legends.isLegendaryDifficulty()) {
+			this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
+		}
 	}
 });

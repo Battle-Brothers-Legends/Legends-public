@@ -11,8 +11,9 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 	function onInit()
 	{
 		this.orc_warlord.onInit();
+		local b = this.m.BaseProperties;
+		b.IsImmuneToStun = true;
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 		::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

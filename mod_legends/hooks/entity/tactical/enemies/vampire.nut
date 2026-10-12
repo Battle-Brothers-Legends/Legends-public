@@ -1,49 +1,38 @@
-::mods_hookExactClass("entity/tactical/enemies/vampire", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/vampire", function (o) {
 	o.m.IsLady <- false;
 
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.IsLady = ::Math.rand(1, 100) <= 50;
 
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++)
-		{
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.push([0.5, "scripts/items/misc/legend_ancient_scroll_item"]);
 		}
 	}
 
-	o.onUpdateInjuryLayer = function ()
-	{
+	o.onUpdateInjuryLayer = function () {
 		local p = this.getHitpointsPct();
 		local bodyBrush = this.getSprite("body").getBrush().Name;
 		local headBrush = this.getSprite("head").getBrush().Name;
 
-		if (p <= 0.33)
-		{
+		if (p <= 0.33) {
 			this.getSprite("body").setBrush("bust_skeleton_body_03");
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_03_injured");
 			this.getSprite("head").setBrush("bust_skeleton_head_03");
 			this.getSprite("injury").setBrush("bust_skeleton_head_03_injured");
-		}
-		else if (p <= 0.66)
-		{
+		} else if (p <= 0.66) {
 			this.getSprite("body").setBrush("bust_skeleton_body_04");
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_04_injured");
 			this.getSprite("head").setBrush("bust_skeleton_head_04");
 			this.getSprite("injury").setBrush("bust_skeleton_head_04_injured");
-		}
-		else if (this.m.IsLady == true)
-		{
+		} else if (this.m.IsLady == true) {
 			this.getSprite("body").setBrush("bust_vampire_lady_body_01");
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
 			this.getSprite("head").setBrush("bust_vampire_lady_head_01");
 			this.getSprite("injury").setBrush("bust_skeleton_head_05_injured");
-		}
-		else
-		{
+		} else {
 			this.getSprite("body").setBrush("bust_skeleton_body_05");
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
 			this.getSprite("head").setBrush("bust_skeleton_head_05");
@@ -53,8 +42,7 @@
 		this.getSprite("body_injury").Visible = this.m.WasInjured;
 		this.getSprite("injury").Visible = this.m.WasInjured;
 
-		if (bodyBrush != this.getSprite("body").getBrush().Name)
-		{
+		if (bodyBrush != this.getSprite("body").getBrush().Name) {
 			local old_body = this.getSprite("old_body");
 			old_body.Visible = true;
 			old_body.Alpha = 255;
@@ -70,8 +58,7 @@
 		this.setDirty(true);
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Vampire);
@@ -93,8 +80,7 @@
 		this.addSprite("armor");
 		local body_detail = this.addSprite("body_detail");
 
-		if (::Math.rand(1, 100) <= 75)
-		{
+		if (::Math.rand(1, 100) <= 75) {
 			this.m.IsLady ? body_detail.setBrush("bust_vampire_lady_detail_0" + ::Math.rand(1, 2)) : body_detail.setBrush("bust_skeleton_detail_0" + ::Math.rand(2, 3));
 		}
 
@@ -107,8 +93,7 @@
 		injury.setBrush("bust_skeleton_head_05_injured");
 		local head_detail = this.addSprite("head_detail");
 
-		if (::Math.rand(1, 100) <= 50)
-		{
+		if (::Math.rand(1, 100) <= 50) {
 			this.m.IsLady ? head_detail.setBrush("bust_vampire_head_lady_detail_01") : head_detail.setBrush("bust_skeleton_head_detail_01");
 		}
 
@@ -118,13 +103,10 @@
 		local hair = this.addSprite("hair");
 		hair.Color = beard.Color;
 
-		if (::Math.rand(1, 100) <= 75 && !this.m.IsLady)
-		{
+		if (::Math.rand(1, 100) <= 75 && !this.m.IsLady) {
 			local idx = ::Math.rand(0, ::Const.Hair.Vampire.len() - 1);
 			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.Vampire[idx]);
-		}
-		else if (::Math.rand(1, 100) <= 67 && this.m.IsLady)
-		{
+		} else if (::Math.rand(1, 100) <= 67 && this.m.IsLady) {
 			local idx = ::Math.rand(0, ::Const.Hair.VampireLady.len() - 1);
 			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.VampireLady[idx]);
 		}
@@ -132,8 +114,7 @@
 		this.setSpriteOffset("hair", this.createVec(0, -3));
 		local v = -3;
 		local v2 = 0;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
 			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
@@ -142,8 +123,7 @@
 
 		local beard_top = this.addSprite("beard_top");
 
-		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top"))
-		{
+		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top")) {
 			beard_top.setBrush(beard.getBrush().Name + "_top");
 			beard_top.Color = beard.Color;
 		}
@@ -174,11 +154,9 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
@@ -187,10 +165,8 @@
 		}
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss <- function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -202,14 +178,13 @@
 	}
 
 	local onFactionChanged = o.onFactionChanged;
-	o.onFactionChanged = function ()
-	{
+	o.onFactionChanged = function () {
 		onFactionChanged();
 		local flip = !this.isAlliedWithPlayer();
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
-			if (!this.hasSprite(a))
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			if (!this.hasSprite(a)) {
 				continue;
+			}
 			this.getSprite(a).setHorizontalFlipping(flip);
 		}
 	}

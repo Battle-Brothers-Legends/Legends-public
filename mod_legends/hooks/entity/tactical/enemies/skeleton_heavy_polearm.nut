@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_heavy_polearm", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/skeleton_heavy_polearm", function (o) {
 	// o.onFactionChanged <- function ()
 	// {
 	// 	this.actor.onFactionChanged();
@@ -16,37 +15,27 @@
 	// }
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local r = ::Math.rand(1, 3);
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/bladed_pike"));
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/warscythe"));
-		}
-		else
-		{
+		} else {
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/legend_royal_lance"));
 		}
 
-		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
 
@@ -62,16 +51,13 @@
 		local item = ::Const.World.Common.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_honorguard_helmet]
 		]);
-		if (item != null)
-		{
+		if (item != null) {
 			this.m.Items.equip(item);
 		}
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss <- function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 

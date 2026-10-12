@@ -338,8 +338,6 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		// perks need to be added
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialGhost);
 		::Legends.Traits.get(this, ::Legends.Trait.RacialGhost).m.IsWicht = true;
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);

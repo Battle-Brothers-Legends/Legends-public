@@ -174,6 +174,8 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		b.setValues(::Const.Tactical.Actor.LegendGreenwoodSchrat);
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToRoot = true;
+		b.IsImmuneToStun = true;
+		b.IsImmuneToPoison = true;
 		b.IsIgnoringArmorOnAttack = true;
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
@@ -215,8 +217,6 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.Uproot);
 		::Legends.Actives.grant(this, ::Legends.Active.UprootZoc);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if (::Legends.isLegendaryDifficulty()) {
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;

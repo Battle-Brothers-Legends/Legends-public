@@ -26,6 +26,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
 		if (::Legends.isLegendaryDifficulty()) {
+			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendLightningReflexes);
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendFlourish, function (_skill) {
 				_skill.m.IsRemoved = false;
@@ -35,7 +36,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendReturnFavor);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

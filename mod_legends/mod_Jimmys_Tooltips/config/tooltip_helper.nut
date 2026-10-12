@@ -75,7 +75,7 @@
 		}
 
 		pushSectionName(items, title, startID);
-		startID = startID + 1;
+		startID += 1;
 
 		foreach (i, item in items) {
 			local name = item.getName();
@@ -99,7 +99,7 @@
 			}
 
 			if (stackInOneLine && stacks[name] > 1) {
-				text = text + (" [color=%negative%]" + "x" + stacks[name] + "[/color]");
+				text += (" [color=%negative%]" + "x" + stacks[name] + "[/color]");
 			}
 
 			local itemRow = {
@@ -287,6 +287,23 @@
 			pushRemainingAP();
 		}
 
+		local immunities = "";
+		foreach (effectName, property in ::Legends.Effects.Immunities) {
+			if (_entity.getCurrentProperties()[property]) {
+				local formattedName = ("[color=%negative%]" + effectName.slice(0, 1) + "[/color]" + effectName.slice(1));
+				immunities += (immunities.len() ? ", " : "") + formattedName;
+			}
+		}
+		if (immunities.len()) {
+			pushSectionName([1], "Immunities", 250);
+			tooltip.push({
+				id = 199,
+				type = "text",
+				icon = "ui/icons/immunity.png",
+				text = immunities
+			});
+		}
+
 		local activePerks = _entity.getSkills().query(::Const.SkillType.Active, false, true);
 		activePerks = removeDuplicates(activePerks);
 		pushSection(activePerks, "Usable perks", 200, 1);
@@ -311,7 +328,7 @@
 				local name = perk.m.Name;
 
 				if (name && name.len() > 1) {
-					texts = texts + ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1) + ", ");
+					texts += ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1) + ", ");
 				}
 			}
 

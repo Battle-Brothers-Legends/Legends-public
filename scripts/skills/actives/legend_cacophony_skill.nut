@@ -3,7 +3,7 @@ this.legend_cacophony_skill <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCacophony);
-		this.m.Description = "Assault the senses of your target with a wild clamor and noise from your instrument leave them distracted. Does no damage and requires an instrument.";
+		this.m.Description = "Assault the senses of your target with a wild clamor and noise from your instrument, leaving them distracted. Does no damage and requires an instrument.";
 		this.m.KilledString = "";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stupefy", 5);
 		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];

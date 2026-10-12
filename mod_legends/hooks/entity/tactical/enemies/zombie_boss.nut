@@ -1,15 +1,11 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_boss", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/zombie_boss", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
 		b.SurroundedBonus = 5; // resetting from vanilla
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.Hitpoints *= 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
@@ -20,27 +16,23 @@
 	}
 
 	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
 		onDeath(_killer, _skill, _tile, _fatalityType);
 		local mapSize = ::Tactical.getMapSize();
 		local attempts = 0;
 		local n = 0;
 
-		while (attempts++ < 250)
-		{
+		while (attempts++ < 250) {
 			local x = ::Math.rand(::Math.max(0, this.m.Info.Tile.SquareCoords.X - 5), ::Math.min(mapSize.X - 1, this.m.Info.Tile.SquareCoords.X + 5));
 			local y = ::Math.rand(::Math.max(0, this.m.Info.Tile.SquareCoords.Y - 5), ::Math.min(mapSize.Y - 1, this.m.Info.Tile.SquareCoords.Y + 5));
 
-			if (!::Tactical.isValidTileSquare(x, y))
-			{
+			if (!::Tactical.isValidTileSquare(x, y)) {
 				continue;
 			}
 
 			local tile = ::Tactical.getTileSquare(x, y);
 
-			if (!tile.IsEmpty || tile.ID == this.m.Info.Tile.ID)
-			{
+			if (!tile.IsEmpty || tile.ID == this.m.Info.Tile.ID) {
 				continue;
 			}
 
@@ -50,8 +42,7 @@
 			e.assignRandomEquipment();
 			n = ++n;
 
-			if (n >= 5)
-			{
+			if (n >= 5) {
 				break;
 			}
 		}

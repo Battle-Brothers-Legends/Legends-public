@@ -1,28 +1,22 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_priest", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/skeleton_priest", function (o) {
 	local create = o.create;
 	o.create = function () {
 		create();
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++)
-			this.m.OnDeathLootTable.push([5, "scripts/items/misc/legend_ancient_scroll_item"]);
+		for (local i = 0; i < rolls; i++) this.m.OnDeathLootTable.push([5, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local armor = [
 			[1, ::Legends.Armor.Ancient.ancient_priest_attire]
 		];
@@ -32,11 +26,10 @@
 		local item = ::Const.World.Common.pickHelmet([
 			[99, ::Legends.Helmet.Ancient.ancient_priest_diadem]
 		]);
-		if (item != null)
-		{
+		if (item != null) {
 			this.m.Items.equip(item);
 		}
-		local b = this.m.BaseProperties;	
+		local b = this.m.BaseProperties;
 		b.Armor[::Const.BodyPart.Head] = 50 - item.getArmorMax(); // set head armor of ancient priests to vanilla levels while respecting the outfit
 		b.ArmorMax[::Const.BodyPart.Head] = 50 - item.getArmorMax();
 	}
