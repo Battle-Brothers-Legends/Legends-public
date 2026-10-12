@@ -245,7 +245,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Reduce the damage mitigated from block by [color=%negative%]%block_by%[/color]",
+				text = "Reduce the damage mitigated from block by [color=%negative%]%block_bypass%[/color]",
 				param = [
 					["block_bypass", this.m.BlockBypass]
 				]
