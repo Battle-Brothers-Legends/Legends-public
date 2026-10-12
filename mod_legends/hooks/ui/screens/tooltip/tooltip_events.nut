@@ -1,8 +1,4 @@
 ::mods_hookExactClass("ui/screens/tooltip/tooltip_events", function (o) {
-	o.onQueryUIProfessionTooltipData <- function (_entityId, _professionId) {
-		return ::TooltipEvents.general_queryUIProfessionTooltipData(_entityId, _professionId);
-	}
-
 	o.general_queryUIProfessionTooltipData <- function (_entityId, _professionId) {
 		local player = ::Tactical.getEntityByID(_entityId);
 		local profession = player.getBackground().getProfession(_professionId);
@@ -68,71 +64,6 @@
 });
 
 ::mods_hookNewObject("ui/screens/tooltip/tooltip_events", function (o) {
-	o.onQueryFollowerTooltipData = function (_followerID) {
-		if (typeof _followerID == "integer") {
-			local ret = [
-				{
-					id = 1,
-					type = "title",
-					text = "Free Space"
-				},
-				{
-					id = 4,
-					type = "description",
-					text = "There\'s space here to buy more equipment for your company specialists to use."
-				},
-				{
-					id = 1,
-					type = "hint",
-					icon = "ui/icons/mouse_left_button.png",
-					text = "Buy Equipment"
-				}
-			];
-			return ret;
-		} else {
-			local p = ::World.Retinue.getFollower(_followerID);
-			return p.getTooltip();
-		}
-	}
-
-	local _onQuerySkillTooltipData = o.onQuerySkillTooltipData;
-	o.onQuerySkillTooltipData = function (_entityId, _skillId) {
-		local tooltip = _onQuerySkillTooltipData(_entityId, _skillId);
-
-		if (tooltip == null) {
-			local entity = ::Tactical.getEntityByID(_entityId);
-			local item = entity.getItems().getItemByInstanceID(_skillId);
-
-			if (item != null) {
-				local currentItem = entity.getItems().getItemAtSlot(item.getSlotType());
-				tooltip = [
-					{
-						id = 1,
-						type = "title",
-						text = "Switch to " + item.getName()
-					},
-					{
-						id = 2,
-						type = "description",
-						text = "Quickly switch to another item from your bag"
-					},
-					{
-						id = 3,
-						type = "text",
-						text = "Costs [b][color=%positive%] " + entity.getItems().getActionCost(currentItem != null ? [
-							currentItem,
-							item
-						] : [
-							item
-						]) + "[/color][/b] AP to switch"
-					}
-				];
-			}
-		}
-
-		return tooltip;
-	}
-
 	o.tactical_queryUIItemTooltipData = function (_entityId, _itemId, _itemOwner) {
 		local entity = ::Tactical.getEntityByID(_entityId);
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
@@ -5065,5 +4996,130 @@
 		}
 
 		return general_queryUIElementTooltipData(_entityId, _elementId, _elementOwner);
+	}
+
+	//Jimmys Tooltips cannibalized section
+	local function patchTooltip(_tooltip) {
+		if (_tooltip == null) {
+			return _tooltip;
+		}
+		foreach (entry in _tooltip) {
+			if (entry == null) {
+				continue;
+			}
+			if ("text" in entry) {
+				entry.text = ::Legends.tooltip(entry.text, "param" in entry ? entry.param : []);
+			}
+		}
+		return _tooltip;
+	}
+
+	local onQueryTileTooltipData = o.onQueryTileTooltipData;
+	o.onQueryTileTooltipData = function () {
+		return patchTooltip(onQueryTileTooltipData());
+	};
+
+	local onQueryEntityTooltipData = o.onQueryEntityTooltipData;
+	o.onQueryEntityTooltipData = function (_entityId, _isTileEntity) {
+		return patchTooltip(onQueryEntityTooltipData(_entityId, _isTileEntity));
+	};
+
+	local onQueryRosterEntityTooltipData = o.onQueryRosterEntityTooltipData;
+	o.onQueryRosterEntityTooltipData = function (_entityId) {
+		return patchTooltip(onQueryRosterEntityTooltipData(_entityId));
+	};
+
+	local onQuerySkillTooltipData = o.onQuerySkillTooltipData;
+	o.onQuerySkillTooltipData = function (_entityId, _skillId) {
+		local tooltip = onQuerySkillTooltipData(_entityId, _skillId);
+
+		if (tooltip == null) {
+			local entity = ::Tactical.getEntityByID(_entityId);
+			local item = entity.getItems().getItemByInstanceID(_skillId);
+
+			if (item != null) {
+				local currentItem = entity.getItems().getItemAtSlot(item.getSlotType());
+				tooltip = [
+					{
+						id = 1,
+						type = "title",
+						text = "Switch to " + item.getName()
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Quickly switch to another item from your bag"
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Costs [b][color=%positive%] " + entity.getItems().getActionCost(currentItem != null ? [
+							currentItem,
+							item
+						] : [
+							item
+						]) + "[/color][/b] AP to switch"
+					}
+				];
+			}
+		}
+
+		return patchTooltip(tooltip);
+	}
+
+	local onQueryStatusEffectTooltipData = o.onQueryStatusEffectTooltipData;
+	o.onQueryStatusEffectTooltipData = function (_entityId, _statusEffectId) {
+		return patchTooltip(onQueryStatusEffectTooltipData(_entityId, _statusEffectId));
+	};
+
+	local onQuerySettlementStatusEffectTooltipData = o.onQuerySettlementStatusEffectTooltipData;
+	o.onQuerySettlementStatusEffectTooltipData = function (_statusEffectId) {
+		return patchTooltip(onQuerySettlementStatusEffectTooltipData(_statusEffectId));
+	};
+
+	local onQueryUIItemTooltipData = o.onQueryUIItemTooltipData;
+	o.onQueryUIItemTooltipData = function (_entityId, _itemId, _itemOwner) {
+		return patchTooltip(onQueryUIItemTooltipData(_entityId, _itemId, _itemOwner));
+	};
+
+	local onQueryUIPerkTooltipData = o.onQueryUIPerkTooltipData;
+	o.onQueryUIPerkTooltipData = function (_entityId, _perkId) {
+		return patchTooltip(onQueryUIPerkTooltipData(_entityId, _perkId));
+	};
+
+	local onQueryUIElementTooltipData = o.onQueryUIElementTooltipData;
+	o.onQueryUIElementTooltipData = function (_entityId, _elementId, _elementOwner) {
+		return patchTooltip(onQueryUIElementTooltipData(_entityId, _elementId, _elementOwner));
+	};
+
+	o.onQueryFollowerTooltipData = function (_followerID) {
+		if (typeof _followerID == "integer") {
+			local ret = [
+				{
+					id = 1,
+					type = "title",
+					text = "Free Space"
+				},
+				{
+					id = 4,
+					type = "description",
+					text = "There\'s space here to buy more equipment for your company specialists to use."
+				},
+				{
+					id = 1,
+					type = "hint",
+					icon = "ui/icons/mouse_left_button.png",
+					text = "Buy Equipment"
+				}
+			];
+			return patchTooltip(ret);
+		} else {
+			local p = ::World.Retinue.getFollower(_followerID);
+			return patchTooltip(p.getTooltip());
+		}
+	}
+
+	o.onQueryUIProfessionTooltipData <- function (_entityId, _professionId) {
+		return patchTooltip(::TooltipEvents.general_queryUIProfessionTooltipData(_entityId, _professionId));
 	}
 });

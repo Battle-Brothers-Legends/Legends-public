@@ -2,12 +2,11 @@
 	skipCamp = @() ::Legends.Mod.ModSettings.getSetting("SkipCamp").getValue() || ::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_risen_legion", "scenario.legends_solo_necro", "scenario.raiders")
 }
 
-function addNCSetting( _page, _setting ) {
+function addNCSetting(_page, _setting) {
 	_setting.getData().NewCampaign <- true;
 	_setting.getData().NewCampaignOnly <- true;
 	_page.addElement(_setting);
 }
-
 
 // Campaign Settings
 local campaign = ::Legends.Mod.ModSettings.addPage("Campaign Options");
@@ -87,45 +86,58 @@ tooltip.addElement(::MSU.Class.BooleanSetting("ExactEngageNumbers", false, "Exac
 tooltip.addDivider("TooltipDivider4");
 tooltip.addTitle("TooltipUI", "UI");
 
+tooltip.addTitle("JimmysTooltips", "Jimmy's Tooltips");
+tooltip.addTitle("title", "Edit what you see on the Tactical Tooltip");
+tooltip.addDivider("divider");
+tooltip.addBooleanSetting("DefaultTooltip", false);
+tooltip.addBooleanSetting("ProgressBarValues", true);
+tooltip.addBooleanSetting("Items", true);
+tooltip.addBooleanSetting("ItemDurability", true);
+tooltip.addBooleanSetting("Skills", true);
+tooltip.addBooleanSetting("Stats", true);
+
 local cpLight = tooltip.addElement(::MSU.Class.ColorPickerSetting("HighlightLightBackground", "2,55,189,1", "Highlighted Text (Light Background)", "Customize the color for special highlighted text occurring in light backgrounds, such as in tooltips"));
-::Const.UI.Color.getHighlightLightBackgroundValue <- @() "#" + cpLight.getValueAsHexString().slice(0,6);
+::Const.UI.Color.getHighlightLightBackgroundValue <- @()"#" + cpLight.getValueAsHexString().slice(0, 6);
 local cpDark = tooltip.addElement(::MSU.Class.ColorPickerSetting("HighlightDarkBackground", "111,145,201,1", "Highlighted Text (Dark Background)", "Customize the color of special highlighted text occurring in dark backgrounds, such as in events"));
-::Const.UI.Color.getHighlightDarkBackgroundValue <- @() "#" + cpDark.getValueAsHexString().slice(0,6);
+::Const.UI.Color.getHighlightDarkBackgroundValue <- @()"#" + cpDark.getValueAsHexString().slice(0, 6);
 local cpFade = tooltip.addElement(::MSU.Class.ColorPickerSetting("FadeDarkBackground", "135,114,81,1", "Faded Text (Dark Background)", "Customize the color of faded text occurring in dark backgrounds, such as in events"));
-::Const.UI.Color.getFadeDarkBackgroundValue <- @() "#" + cpFade.getValueAsHexString().slice(0,6);
-tooltip.addElement(::MSU.Class.EnumSetting("ContractCategoryIconAlignment", "Middle", ["Left","Middle","Right","Below"], "Contract Category Icon Alignment", "Adjust the position of the Contract Category icon at the bottom of Contracts in the Settlement screen"));
+::Const.UI.Color.getFadeDarkBackgroundValue <- @()"#" + cpFade.getValueAsHexString().slice(0, 6);
+tooltip.addElement(::MSU.Class.EnumSetting("ContractCategoryIconAlignment", "Middle", ["Left", "Middle", "Right", "Below"], "Contract Category Icon Alignment", "Adjust the position of the Contract Category icon at the bottom of Contracts in the Settlement screen"));
 
 local betterobituary = ::Legends.Mod.ModSettings.addPage("Obituary");
-betterobituary.addBooleanSetting("SwapPerks",    false, "Show Perks", "Swaps the trait/permanent injuries columns for perks.");
-betterobituary.addBooleanSetting("SwapStats", 	 false, "Swap Stat Order", "Swaps the position of first 4 stats (hp, fatigue, initiative, bravery) with the last 4 (attack / defense).");
+betterobituary.addBooleanSetting("SwapPerks", false, "Show Perks", "Swaps the trait/permanent injuries columns for perks.");
+betterobituary.addBooleanSetting("SwapStats", false, "Swap Stat Order", "Swaps the position of first 4 stats (hp, fatigue, initiative, bravery) with the last 4 (attack / defense).");
 betterobituary.addBooleanSetting("StackedStars", false, "Stacked Talent Stars", "Replace the 3 star talent icon (row of 3) with a triangle of stars.");
 betterobituary.addDivider("Divider");
-betterobituary.addBooleanSetting("HideObituarySetting",    false, "Hide Obituary Settings", "Hide the checkbox settings shown in top right of the obituary.\n\nThese mirror the settings above, providing a way to change them whilst in the obituary without using hotkeys, or simply to view the current settings.");
+betterobituary.addBooleanSetting("HideObituarySetting", false, "Hide Obituary Settings", "Hide the checkbox settings shown in top right of the obituary.\n\nThese mirror the settings above, providing a way to change them whilst in the obituary without using hotkeys, or simply to view the current settings.");
 betterobituary.addBooleanSetting("HideDismissOption", false, "Hide Dismiss Option", "Hide the checkbox option for adding a bro to the obituary when dismissing them.");
-betterobituary.addRangeSetting("Backgroundspecific", 50, 0, 100, 1, "Background specific fates", "Chance of getting a background specific message when dismissing a bro, as opposed to a generic message.\n\ne.g. Crusader:\n 'Continued their righteous war' vs 'Parted amicably' \n\nSet to 0 to disable and only use generic messaging." );
+betterobituary.addRangeSetting("Backgroundspecific", 50, 0, 100, 1, "Background specific fates", "Chance of getting a background specific message when dismissing a bro, as opposed to a generic message.\n\ne.g. Crusader:\n 'Continued their righteous war' vs 'Parted amicably' \n\nSet to 0 to disable and only use generic messaging.");
 betterobituary.addDivider("Divider");
 betterobituary.addTitle("DisplayLimit", "Display Limit (Icons shrink beyond defaults)");
-betterobituary.addRangeSetting( "show_num_traits", 8, 1, 12, 1, "Traits" );
-betterobituary.addRangeSetting( "show_num_perminjuries", 3, 1, 5, 1, "Permanent Injuries" );
-betterobituary.addRangeSetting( "show_num_perks", 10, 1, 20, 1, "Perks" );
+betterobituary.addRangeSetting("show_num_traits", 8, 1, 12, 1, "Traits");
+betterobituary.addRangeSetting("show_num_perminjuries", 3, 1, 5, 1, "Permanent Injuries");
+betterobituary.addRangeSetting("show_num_perks", 10, 1, 20, 1, "Perks");
 betterobituary.addDivider("Divider");
 betterobituary.addTitle("TooltipSettings", "Tooltip Settings");
 betterobituary.addColorPickerSetting("obituary_hotkey_text_colour", "255,255,0,1", "Hotkey Text Colour");
 
 // Obituary settings hotkeys
-::Legends.Mod.Keybinds.addJSKeybind("toggle_perks",				"shift+p", "Obituary - Show Perks");
-::Legends.Mod.Keybinds.addJSKeybind("toggle_stat_order",		"shift+s", "Obituary - Swap Stat Order");
-::Legends.Mod.Keybinds.addJSKeybind("stacked_talent_stars",		"shift+t", "Obituary - Stacked Talent Stars");
+::Legends.Mod.Keybinds.addJSKeybind("toggle_perks", "shift+p", "Obituary - Show Perks");
+::Legends.Mod.Keybinds.addJSKeybind("toggle_stat_order", "shift+s", "Obituary - Swap Stat Order");
+::Legends.Mod.Keybinds.addJSKeybind("stacked_talent_stars", "shift+t", "Obituary - Stacked Talent Stars");
 
 local logging = ::Legends.Mod.ModSettings.addPage("Logging");
-foreach(f in ::Const.LegendMod.Debug.FlagDefs)
-{
+foreach (f in ::Const.LegendMod.Debug.FlagDefs) {
 	local b = logging.addElement(::MSU.Class.BooleanSetting(f.ID, f.Value, f.Name, f.Description)); // Set the default MSU Debug logging flags based on configuration in ::Const.LegendMod.Debug.FlagDefs
 	b.Data.FlagID <- f.ID;
-	b.addBeforeChangeCallback(function(_value)
-		{
-			::Legends.Mod.Debug.setFlag(this.Data.FlagID, _value);
-		}
-	);
+	b.addBeforeChangeCallback(function (_value) {
+		::Legends.Mod.Debug.setFlag(this.Data.FlagID, _value);
+	});
 }
 logging.addElement(::MSU.Class.BooleanSetting("LogOutfits", false, "Log Outfits", "An option for fashion submissions which will log the entire outfit someone is wearing when you hover it, used to add custom outfits in Legends."));
+
+// Jimmys Tooltips Keybind
+::Legends.Mod.Keybinds.addSQKeybind("updateTooltip", "tab", ::MSU.Key.State.Tactical, function () {
+	::Tactical.Entities.getFlags().set("JimmysTooltips_ShowLootChance", !::Tactical.Entities.getFlags().get("JimmysTooltips_ShowLootChance"));
+	::Tooltip.reload();
+}, "Toggle to see loot chance", null, "Press this keybind to display the chance to loot item from enemy.");

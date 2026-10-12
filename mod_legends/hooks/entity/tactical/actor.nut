@@ -1,6 +1,5 @@
-::mods_hookExactClass("entity/tactical/actor", function(o)
-{
-//	while(!("BloodSaturation" in o.m)) o = o[o.SuperName];
+::mods_hookExactClass("entity/tactical/actor", function (o) {
+	//	while(!("BloodSaturation" in o.m)) o = o[o.SuperName];
 	o.m.KillerPercentOnKillOtherActorModifier <- 1.0;
 	o.m.KillerFlatOnKillOtherActorModifier <- 0;
 	o.m.BloodSaturation = 1.5;
@@ -13,11 +12,16 @@
 	o.m.HitInfo <- null;
 	o.m.IsOffhandFlipped <- false;
 
-	o.getBlock <- function() {
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function (_targetedWithSkill = null) {
+		return ::Legends.JimmysTooltips.modTacticalTooltip(getTooltip(_targetedWithSkill), _targetedWithSkill, this);
+	}
+
+	o.getBlock <- function () {
 		return this.getCurrentProperties().getBlock();
 	}
 
-	o.getGender <- function() {
+	o.getGender <- function () {
 		return -1;
 	}
 
@@ -31,7 +35,7 @@
 	}
 
 	local setCurrentMovementType = o.setCurrentMovementType;
-	o.setCurrentMovementType = function( _t ) // to trigger the removal of stances skill upon being moved out of will
+	o.setCurrentMovementType = function (_t) // to trigger the removal of stances skill upon being moved out of will
 	{
 		if (_t == ::Const.Tactical.MovementType.Involuntary && !::Tactical.TurnSequenceBar.isActiveEntity(this)) {
 			this.getFlags().remove("CanNotBeStaggered"); // a hack to prevent teamplayer user from staggering ally
@@ -41,42 +45,38 @@
 		setCurrentMovementType(_t);
 	}
 
-	o.querySwitchableItems <- function()
-	{
+	o.querySwitchableItems <- function () {
 		local items = [];
 		local inv = this.getItems();
 
-		if (inv.isActionAffordable([]))
-		{
-			for( local i = 0; i < inv.getUnlockedBagSlots(); i++ )
-			{
+		if (inv.isActionAffordable([])) {
+			for (local i = 0; i < inv.getUnlockedBagSlots(); i++) {
 				local item = inv.getItemAtBagSlot(i);
 
-				if (item == null)
-				{
+				if (item == null) {
 					continue;
 				}
 
 				local slot = item.getSlotType();
 
-				if (slot == ::Const.ItemSlot.None || slot == ::Const.ItemSlot.Bag)
-				{
+				if (slot == ::Const.ItemSlot.None || slot == ::Const.ItemSlot.Bag) {
 					continue;
 				}
 
 				local currentItem = inv.getItemAtSlot(slot);
-				if (item == null)
+				if (item == null) {
 					continue;
-				if (!item.isChangeableInBattle())
+				}
+				if (!item.isChangeableInBattle()) {
 					continue;
+				}
 
 				if ((item.isItemType(::Const.Items.ItemType.Weapon) || item.isItemType(::Const.Items.ItemType.Tool) || item.isItemType(::Const.Items.ItemType.Shield) || item.isItemType(::Const.Items.ItemType.Accessory) || item.isItemType(::Const.Items.ItemType.Ammo) && item.m.Ammo != 0) && inv.isActionAffordable(currentItem != null ? [
 					currentItem,
 					item
 				] : [
 					item
-				]))
-				{
+				])) {
 					items.append(item);
 				}
 			}
@@ -86,10 +86,10 @@
 	}
 
 	local onOtherActorDeath = o.onOtherActorDeath;
-	o.onOtherActorDeath = function ( _killer, _victim, _skill )
-	{
-		if (::Legends.S.isEntityNullOrDead(this))
+	o.onOtherActorDeath = function (_killer, _victim, _skill) {
+		if (::Legends.S.isEntityNullOrDead(this)) {
 			return;
+		}
 
 		if (_killer != null && this.getAlliedFactions().find(_victim.getFaction()) != null) {
 			this.m.KillerPercentOnKillOtherActorModifier = _killer.getPercentOnKillOtherActorModifier();
@@ -102,39 +102,32 @@
 	}
 
 	local checkMorale = o.checkMorale;
-	o.checkMorale = function (_change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false)
-	{
-		if (this.m.KillerPercentOnKillOtherActorModifier != 1.0)
+	o.checkMorale = function (_change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false) {
+		if (this.m.KillerPercentOnKillOtherActorModifier != 1.0) {
 			_difficulty = ::Math.floor(_difficulty * this.m.KillerPercentOnKillOtherActorModifier);
+		}
 
 		return checkMorale(_change, _difficulty + this.m.KillerFlatOnKillOtherActorModifier, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
-	o.getPercentOnKillOtherActorModifier <- function ()
-	{
+	o.getPercentOnKillOtherActorModifier <- function () {
 		return this.getCurrentProperties().PercentOnKillOtherActorModifier;
 	}
 
-	o.getFlatOnKillOtherActorModifier <- function ()
-	{
+	o.getFlatOnKillOtherActorModifier <- function () {
 		return this.getCurrentProperties().FlatOnKillOtherActorModifier;
 	}
 
-	o.isStabled <- function ()
-	{
+	o.isStabled <- function () {
 		return false;
 	}
 
 	local isTurnDone = o.isTurnDone;
-	o.isTurnDone = function()
-	{
-		if (!::Tactical.getNavigator().isTravelling(this) && this.isPlayerControlled() && !this.m.CurrentProperties.IsStunned && !this.Settings.getGameplaySettings().DontAutoEndTurns)
-		{
+	o.isTurnDone = function () {
+		if (!::Tactical.getNavigator().isTravelling(this) && this.isPlayerControlled() && !this.m.CurrentProperties.IsStunned && !this.Settings.getGameplaySettings().DontAutoEndTurns) {
 			local usableSkill = false;
-			foreach (skill in this.m.Skills.queryActives())
-			{
-				if (skill != null && skill.isUsable() && skill.isAffordable())
-				{
+			foreach (skill in this.m.Skills.queryActives()) {
+				if (skill != null && skill.isUsable() && skill.isAffordable()) {
 					usableSkill = true;
 					break;
 				}
@@ -144,7 +137,7 @@
 		return isTurnDone();
 	}
 
-	o.onMovementFinish = function(_tile) {
+	o.onMovementFinish = function (_tile) {
 		this.m.IsMoving = true;
 		this.updateVisibility(_tile, this.m.CurrentProperties.getVision(), this.getFaction());
 
@@ -197,10 +190,7 @@
 		this.m.CurrentMovementType = ::Const.Tactical.MovementType.Default;
 		this.m.MaxEnemiesThisTurn = ::Math.max(1, numOfEnemiesAdjacentToMe);
 
-		if (this.isPlayerControlled() && this.getMoraleState() > ::Const.MoraleState.Breaking &&
-			this.getMoraleState() != ::Const.MoraleState.Ignore &&
-			(_tile.SquareCoords.X == 0 || _tile.SquareCoords.Y == 0 || _tile.SquareCoords.X == 31 || _tile.SquareCoords.Y == 31)
-		) {
+		if (this.isPlayerControlled() && this.getMoraleState() > ::Const.MoraleState.Breaking && this.getMoraleState() != ::Const.MoraleState.Ignore && (_tile.SquareCoords.X == 0 || _tile.SquareCoords.Y == 0 || _tile.SquareCoords.X == 31 || _tile.SquareCoords.Y == 31)) {
 			local change = this.getMoraleState() - ::Const.MoraleState.Breaking;
 			this.checkMorale(-change, -1000);
 		}
@@ -222,30 +212,25 @@
 		this.m.IsMoving = false;
 	}
 
-	o.isArmedWithMagicStaff <- function()
-	{
+	o.isArmedWithMagicStaff <- function () {
 		local item = this.getMainhandItem();
 		return item != null && item.isWeaponType(::Const.Items.WeaponType.MagicStaff);
 	}
 
-	o.isArmedWithPoleWeapon <- function ()
-	{
+	o.isArmedWithPoleWeapon <- function () {
 		local item = this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 		return item != null && item.isItemType(::Const.Items.ItemType.MeleeWeapon) && item.m.RangeMax > 1;
 	}
 
-	o.equipItem <- function( _item)
-	{
+	o.equipItem <- function (_item) {
 		return this.getItems().equip(_item);
 	}
 
-	o.bagItem <- function (_item)
-	{
+	o.bagItem <- function (_item) {
 		return this.getItems().addToBag(_item);
 	}
 
-	o.setArmor <- function (_bodyPart, _value)
-	{
+	o.setArmor <- function (_bodyPart, _value) {
 		this.m.BaseProperties.Armor[_bodyPart] = _value;
 	}
 
@@ -296,51 +281,42 @@
 		}
 	}
 
-	o.resetPerks <- function ()
-	{
-		local perks =  0;
+	o.resetPerks <- function () {
+		local perks = 0;
 
 		// Get all items that are adding skills to this character and unequip them to remove those skills
 		// Necessary, as some items may add perks
 		local items = this.getItems().getAllItems().filter(@(idx, item) item.getSkills().len() != 0);
-		foreach (item in items)
-		{
+		foreach (item in items) {
 			this.getItems().unequip(item);
 		}
 
 		local skills = this.getSkills();
 
-		foreach( skill in skills.m.Skills)
-		{
-			if (!skill.isGarbage() && skill.m.IsSerialized && skill.isType(::Const.SkillType.Perk) && !skill.isType(::Const.SkillType.Racial))
-			{
+		foreach (skill in skills.m.Skills) {
+			if (!skill.isGarbage() && skill.m.IsSerialized && skill.isType(::Const.SkillType.Perk) && !skill.isType(::Const.SkillType.Racial)) {
 				perks += 1;
 			}
 		}
 
 		perks += this.m.PerkPoints;
-		this.logDebug("perks before: "+ perks);
+		this.logDebug("perks before: " + perks);
 		local hasStudent = false;
 		local hasGifted = false;
 
-		if (this.getLevel() >= 12 && this.getSkills().hasPerk(::Legends.Perk.Student))
-		{
+		if (this.getLevel() >= 12 && this.getSkills().hasPerk(::Legends.Perk.Student)) {
 			perks = perks - 1;
 			hasStudent = true;
 		}
-		if (this.getSkills().hasPerk(::Legends.Perk.Gifted))
-		{
+		if (this.getSkills().hasPerk(::Legends.Perk.Gifted)) {
 			perks = perks - 1;
 			hasGifted = true;
 		}
 
 		local nonRefundable = [];
-		foreach (row in this.getBackground().m.PerkTree)
-		{
-			foreach (perk in row)
-			{
-				if (!perk.IsRefundable)
-				{
+		foreach (row in this.getBackground().m.PerkTree) {
+			foreach (perk in row) {
+				if (!perk.IsRefundable) {
 					this.logInfo(perk.ID + " is non refundable");
 					nonRefundable.push(perk.ID);
 				}
@@ -351,8 +327,7 @@
 		this.m.PerkPointsSpent = 0;
 
 		local skillsToRemove = this.getSkills().getSkillsByFunction(@(_skill) _skill.isType(::Const.SkillType.Perk) && _skill.m.IsSerialized && nonRefundable.find(_skill.getID()) == null);
-		foreach (s in skillsToRemove)
-		{
+		foreach (s in skillsToRemove) {
 			this.getSkills().removeByID(s.getID());
 		}
 
@@ -360,79 +335,78 @@
 
 		this.m.PerkPoints = perks;
 
-		if (hasStudent)
-		{
+		if (hasStudent) {
 			this.m.PerkPointsSpent += 1;
 			::Legends.Perks.grant(this, ::Legends.Perk.Student);
 		}
 
-		if (hasGifted)
-		{
+		if (hasGifted) {
 			this.m.PerkPointsSpent += 1;
 			::Legends.Perks.grant(this, ::Legends.Perk.Gifted, function (_perk) {
 				_perk.m.IsApplied = true;
 			}.bindenv(this));
 		}
 
-		foreach (item in items)
-		{
+		foreach (item in items) {
 			this.getItems().equip(item);
 		}
 	}
 
 	local onAppearanceChanged = o.onAppearanceChanged;
-	o.onAppearanceChanged = function( _appearance, _setDirty = true )
-	{
-		if (::Legends.S.isEntityNullOrDead(this)) return;
+	o.onAppearanceChanged = function (_appearance, _setDirty = true) {
+		if (::Legends.S.isEntityNullOrDead(this)) {
+			return;
+		}
 
-		foreach(key, id in ::Const.LegendOnAppearanceChangedSprites.Helmet) // for layered helmet
+		foreach (key, id in ::Const.LegendOnAppearanceChangedSprites.Helmet) // for layered helmet
 		{
-			if (!this.hasSprite(id))
+			if (!this.hasSprite(id)) {
 				continue;
+			}
 
 			if (_appearance[key].len() != 0 && !this.m.IsHidingHelmet) {
 				local helmet = this.getSprite(id);
 				helmet.setBrush(_appearance[key]);
 				helmet.Color = _appearance.HelmetColor;
 				helmet.Visible = true;
-			}
-			else {
+			} else {
 				this.getSprite(id).Visible = false;
 			}
 		}
 
-		foreach(key, id in ::Const.LegendOnAppearanceChangedSprites.Armor) // for layered armor
+		foreach (key, id in ::Const.LegendOnAppearanceChangedSprites.Armor) // for layered armor
 		{
-			if (!this.hasSprite(id))
+			if (!this.hasSprite(id)) {
 				continue;
+			}
 
 			if (_appearance[key].len() != 0) {
 				local helmet = this.getSprite(id);
 				helmet.setBrush(_appearance[key]);
 				helmet.Visible = true;
-			}
-			else {
+			} else {
 				this.getSprite(id).Visible = false;
 			}
 		}
 
-		if (this.hasSprite("permanent_injury_scarred"))
+		if (this.hasSprite("permanent_injury_scarred")) {
 			this.getSprite("permanent_injury_scarred").Visible = !_appearance.HideHead;
+		}
 
-		if (this.hasSprite("permanent_injury_burned"))
+		if (this.hasSprite("permanent_injury_burned")) {
 			this.getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
+		}
 
 		onAppearanceChanged(_appearance, _setDirty);
 
-		if (this.hasSprite("armor_upgrade_back_top"))
-		{
+		if (this.hasSprite("armor_upgrade_back_top")) {
 			local pauldronBackTop = this.getSprite("armor_upgrade_back_top");
-			if (_appearance.ArmorUpgradeFront.len() != 0) { // if has front-back upgrade - draw back upgrade over cloak and hide the regular upgrade
+			if (_appearance.ArmorUpgradeFront.len() != 0) {
+				// if has front-back upgrade - draw back upgrade over cloak and hide the regular upgrade
 				pauldronBackTop.setBrush(_appearance.ArmorUpgradeBack);
 				pauldronBackTop.Visible = true;
 				this.getSprite("armor_upgrade_back").Visible = false;
-			}
-			else {
+			} else {
 				pauldronBackTop.Visible = false;
 			}
 		}
@@ -479,41 +453,34 @@
 	}
 
 	local setHitpoints = o.setHitpoints;
-	o.setHitpoints = function( _h )
-	{
+	o.setHitpoints = function (_h) {
 		local healGoal = _h + this.m.HealRemainder;
 		local healTick = ::Math.floor(healGoal);
 		this.m.HealRemainder = healGoal - healTick;
 		setHitpoints(healTick);
 	}
 
-	o.removeArmorUpgrade <- function ( _slot, _item)
-	{
+	o.removeArmorUpgrade <- function (_slot, _item) {
 		local armor = this.getItems().getItemAtSlot(_slot);
-		if (armor == null)
-		{
+		if (armor == null) {
 			return null;
 		}
 
-		return armor.removeUpgrade( _item );
+		return armor.removeUpgrade(_item);
 	}
 
-	o.setRiderID <- function ( _id)
-	{
-		if (_id == null)
-		{
+	o.setRiderID <- function (_id) {
+		if (_id == null) {
 			_id = "";
 		}
 		this.m.RiderID = _id;
 	}
 
-	o.getRiderID <- function()
-	{
+	o.getRiderID <- function () {
 		return this.m.RiderID;
 	}
 
-	o.getRider <- function()
-	{
+	o.getRider <- function () {
 		return null;
 	}
 
@@ -522,23 +489,20 @@
 	// 	return -1;
 	// }
 
-	o.setTarget <- function (_entity)
-	{
-		if (this.m.AIAgent == null) return;
+	o.setTarget <- function (_entity) {
+		if (this.m.AIAgent == null) {
+			return;
+		}
 
 		this.m.AIAgent.setPriorityTarget(_entity);
 	}
 
-	o.TherianthropeInfection <- function (_killer)
-	{
-	}
+	o.TherianthropeInfection <- function (_killer) {}
 
 	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function ()
-	{
+	o.makeMiniboss = function () {
 		local ret = makeMiniboss();
-		if (ret)
-		{
+		if (ret) {
 			this.m.OnDeathLootTable.extend([
 				[5, "scripts/items/misc/legend_masterwork_fabric"],
 				[5, "scripts/items/misc/legend_masterwork_metal"],
@@ -549,26 +513,21 @@
 	}
 
 	local isReallyKilled = o.isReallyKilled;
-	o.isReallyKilled = function( _fatalityType )
-	{
+	o.isReallyKilled = function (_fatalityType) {
 		local ret = isReallyKilled(_fatalityType);
 		//if (!ret) TherianthropeInfection(_killer);
 		return ret;
 	}
 
 	local getSurroundedCount = o.getSurroundedCount;
-	o.getSurroundedCount = function ()
-	{
+	o.getSurroundedCount = function () {
 		return !this.isPlacedOnMap() ? 0 : getSurroundedCount();
 	}
 
-	o.setBrushAlpha <- function(level)
-	{
-	}
+	o.setBrushAlpha <- function (level) {}
 
 	local onDamageReceived = o.onDamageReceived;
-	o.onDamageReceived = function( _attacker, _skill, _hitInfo )
-	{
+	o.onDamageReceived = function (_attacker, _skill, _hitInfo) {
 		this.m.HitInfo <- _hitInfo; // live reference hitinfo so the correct value is retrieved when vanilla onDamageReceived calls kill
 		_hitInfo.BodyDamageMultBeforeSteelBrow = _hitInfo.BodyDamageMult;
 		local ret = onDamageReceived(_attacker, _skill, _hitInfo);
@@ -577,20 +536,26 @@
 
 	local getLootForTile = o.getLootForTile;
 	o.getLootForTile = function (_killer, _loot) {
-		if (!(_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals))
+		if (!(_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)) {
 			return getLootForTile(_killer, _loot);
+		}
 
 		foreach (entry in this.m.OnDeathLootTable) {
-			if (entry == null) continue;
-			if (entry[0] == 0) { // no division by zero!
+			if (entry == null) {
+				continue;
+			}
+			if (entry[0] == 0) {
+				// no division by zero!
 				::logError("division by zero, skipping " + entry[1]);
 				continue;
 			}
 			local chance = entry[0];
-			if (chance < 0.005)
+			if (chance < 0.005) {
 				chance = 0.005; // limited by 16 bit rand
-			if (chance > 100)
+			}
+			if (chance > 100) {
 				chance = 100;
+			}
 			if (chance < 10 ? ::Math.rand(1, ::Math.round(100 / chance)) == 1 : Math.rand(1, 100) <= ::Math.round(chance)) {
 				if (typeof(entry[1]) == "function") {
 					_loot.push(entry[1]());
@@ -603,24 +568,20 @@
 		return getLootForTile(_killer, _loot);
 	}
 
-
 	local onSerialize = o.onSerialize;
-	o.onSerialize = function( _out )
-	{
+	o.onSerialize = function (_out) {
 		onSerialize(_out);
 		_out.writeString(this.m.RiderID);
 	}
 
 	local onDeserialize = o.onDeserialize;
-	o.onDeserialize = function( _in )
-	{
+	o.onDeserialize = function (_in) {
 		onDeserialize(_in);
 		this.m.RiderID = _in.readString();
 	}
 
 	local onMovementStart = o.onMovementStart;
-	o.onMovementStart = function(_tile, _numTiles)
-	{
+	o.onMovementStart = function (_tile, _numTiles) {
 		local oldID = ::Const.Movement.HiddenStatusEffectID;
 		::Const.Movement.HiddenStatusEffectID = "effects.lol_nothing"; //necro encouraged this
 		onMovementStart(_tile, _numTiles);
@@ -629,13 +590,15 @@
 
 	local kill = o.kill;
 	o.kill = function (_killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false) {
-		if (!this.isHiddenToPlayer() && this.m.HitInfo)
+		if (!this.isHiddenToPlayer() && this.m.HitInfo) {
 			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + "\'s " + ::Const.Strings.BodyPartName[this.m.HitInfo.BodyPart] + " is hit for [b]" + ::Math.floor(this.m.HitInfo.DamageInflictedHitpoints) + "[/b] damage");
+		}
 
 		this.m.HitInfo = null; // yeet hit info that was saved earlier
-		if (this.getFlags().has("tail")) // ignore killer when is tail
+		if (this.getFlags().has("tail")) {
+			// ignore killer when is tail
 			kill(null, _skill, _fatalityType, _silent);
-		else {
+		} else {
 			if (this.isAlive() && this.m.IsMiniboss && !::Tactical.State.isScenarioMode() && !::Legends.S.isEntityNullOrDead(_killer) && _killer.isPlayerControlled()) {
 				if ((::Tactical.State.getStrategicProperties() == null || !::Tactical.State.getStrategicProperties().IsArenaMode) && ::World.Assets.m.ProfessionEffect.LegendBlackBook > 0) {
 					::World.Assets.addMoney(::Math.floor(this.getXPValue() * ::World.Assets.m.ProfessionEffect.LegendBlackBook));
@@ -646,11 +609,13 @@
 	}
 
 	local onDeath = o.onDeath;
-	o.onDeath = function(_killer, _skill, _tile, _fatalityType) {
-		if (this.getFlags().has("tail")) // ignore killer when is tail
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
+		if (this.getFlags().has("tail")) {
+			// ignore killer when is tail
 			onDeath(null, _skill, _tile, _fatalityType);
-		else
+		} else {
 			onDeath(_killer, _skill, _tile, _fatalityType);
+		}
 	}
 
 	o.getTumbleDefense <- function (_attackingEntity, _skill, _properties) {
@@ -660,13 +625,13 @@
 		local shieldMeleeDefense = 0;
 
 		if (!this.m.CurrentProperties.IsImmuneToSurrounding) {
-			malus = _attackingEntity != null ? ::Math.max(0, _attackingEntity.getCurrentProperties().SurroundedBonus * _attackingEntity.getCurrentProperties().SurroundedBonusMult - this.getCurrentProperties().SurroundedDefense) * this.getSurroundedCount()	: ::Math.max(0, 5 - this.getCurrentProperties().SurroundedDefense) * this.getSurroundedCount();
+			malus = _attackingEntity != null ? ::Math.max(0, _attackingEntity.getCurrentProperties().SurroundedBonus * _attackingEntity.getCurrentProperties().SurroundedBonusMult - this.getCurrentProperties().SurroundedDefense) * this.getSurroundedCount() : ::Math.max(0, 5 - this.getCurrentProperties().SurroundedDefense) * this.getSurroundedCount();
 		}
 
 		local shield = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
 		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield)) {
-			shieldMeleeDefense = shield.getMeleeDefense() * (this.m.CurrentProperties.IsSpecializedInShields ? 1.25	: 1.0);
+			shieldMeleeDefense = shield.getMeleeDefense() * (this.m.CurrentProperties.IsSpecializedInShields ? 1.25 : 1.0);
 			shieldRangedDefense = shield.getRangedDefense() * (this.m.CurrentProperties.IsSpecializedInShields ? 1.25 : 1.0);
 		}
 

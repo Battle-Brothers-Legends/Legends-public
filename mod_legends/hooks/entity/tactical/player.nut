@@ -293,7 +293,7 @@
 			});
 		}
 
-		return tooltip;
+		return ::Legends.JimmysTooltips.modTacticalTooltip(tooltip, _targetedWithSkill, this);
 	}
 
 	o.getRosterTooltip = function () {

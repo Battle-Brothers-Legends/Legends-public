@@ -1,5 +1,15 @@
-::ModJimmysTooltips.modTacticalTooltip <- function (tooltip, _targetedWithSkill, _entity) {
-	if (::ModJimmysTooltips.Mod.ModSettings.getSetting("DefaultTooltip").getValue()) {
+::Legends.JimmysTooltips <- {};
+
+::Legends.JimmysTooltips.ItemImagePaths <- [];
+
+local items_directory = "gfx/";
+foreach (_, directory in ::IO.enumerateFiles(items_directory + "ui/items/")) {
+	::Legends.JimmysTooltips.ItemImagePaths.push(directory.slice(items_directory.len()) + ".png");
+}
+
+
+::Legends.JimmysTooltips.modTacticalTooltip <- function (tooltip, _targetedWithSkill, _entity) {
+	if (::Legends.Mod.ModSettings.getSetting("DefaultTooltip").getValue()) {
 		return tooltip;
 	}
 
@@ -103,7 +113,7 @@
 			local itemRow = {
 				id = startID + i,
 				type = "text",
-				icon = checkForIcon(prependIcon, item),
+				icon = ::Legends.JimmysTooltips.checkForIcon(prependIcon, item),
 				text = text
 			};
 
@@ -132,7 +142,7 @@
 		if (!items) {
 			return items;
 		}
-		return items.filter(@(_, item) !(item.getName() in shownPerks));
+		return items.filter(@(_, item) ! (item.getName() in shownPerks));
 	};
 	local getPlural = function (items) {
 		if (!items) {
@@ -159,7 +169,7 @@
 		return perk.getIcon();
 	};
 
-	if (::ModJimmysTooltips.Mod.ModSettings.getSetting("ProgressBarValues").getValue()) {
+	if (::Legends.Mod.ModSettings.getSetting("ProgressBarValues").getValue()) {
 
 		if (!this.isKindOf(_entity, "player")) {
 			local _type = "progressbar";
@@ -211,7 +221,7 @@
 	}
 	*/
 
-	if (!::Tactical.Entities.getFlags().get("ModJimmysTooltips_ShowLootChance")) {
+	if (!::Tactical.Entities.getFlags().get("JimmysTooltips_ShowLootChance")) {
 		local statusEffects = _entity.getSkills().query(::Const.SkillType.StatusEffect | ::Const.SkillType.TemporaryInjury, false, true);
 		local count = tooltip.len() - statusEffects.len();
 
@@ -336,13 +346,13 @@
 			return {
 				id = _id,
 				type = "text",
-				icon = checkForIcon("ui/items/", _item),
+				icon = ::Legends.JimmysTooltips.checkForIcon("ui/items/", _item),
 				text = _item.getName() + " " + (_item.isItemType(::Const.Items.ItemType.Ammo) ? (_item.getAmmo() + " / " + _item.getAmmoMax()) : (_item.getCondition() + " / " + _item.getConditionMax()))
 			}
 		}
 
 		local mainhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		if (::ModJimmysTooltips.Mod.ModSettings.getSetting("Items").getValue()) {
+		if (::Legends.Mod.ModSettings.getSetting("Items").getValue()) {
 			if (mainhand != null) {
 				pushSectionName(mainhand, "Equipped Items:", 400);
 				tooltip.push(getItemTooltip(401, mainhand));
@@ -366,7 +376,7 @@
 		local ammos = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Ammo);
 		pushSection(ammos, "Ammo", 700, 0, "ui/items/");
 
-		if (_targetedWithSkill == null && ::ModJimmysTooltips.Mod.ModSettings.getSetting("Skills").getValue() && mainhand != null) {
+		if (_targetedWithSkill == null && ::Legends.Mod.ModSettings.getSetting("Skills").getValue() && mainhand != null) {
 			local skills = mainhand.getSkills();
 			local startID = 500;
 			foreach (skill in skills.filter(@(_, _skill)(_skill.getContainer() != null && "getActor" in _skill.getContainer() && _skill.getContainer().getActor() != null && _skill.isUsable()))) {
@@ -379,12 +389,12 @@
 		local itemsOnGround = _entity.getTile().Items;
 		pushSection(itemsOnGround, "Item" + getPlural(itemsOnGround) + " on ground", 700, 0, "ui/items/", true);
 	} else {
-		pushSectionName("ModJimmysTooltips_ShowLootChance", "Chance to loot equipment:", 700);
+		pushSectionName("JimmysTooltips_ShowLootChance", "Chance to loot equipment:", 700);
 		tooltip.top().type = "hint"; // move this to hint to separate as sections
-		tooltip.extend(::ModJimmysTooltips.modGetEquipmentLootChance(_entity, _targetedWithSkill, 700));
+		tooltip.extend(::Legends.JimmysTooltips.modGetEquipmentLootChance(_entity, _targetedWithSkill, 700));
 	}
 
-	if (::ModJimmysTooltips.Mod.ModSettings.getSetting("Stats").getValue()) {
+	if (::Legends.Mod.ModSettings.getSetting("Stats").getValue()) {
 		local properties = _entity.getCurrentProperties();
 		tooltip.push({
 			id = 600,
@@ -434,7 +444,7 @@
 		id = 607,
 		type = "hint",
 		icon = "ui/skin/icon_wait.png",
-		text = "Press \"" + ::MSU.System.Keybinds.KeybindsByMod[::ModJimmysTooltips.ID].rawget("updateTooltip").getKeyCombinations() + "\" key to show the " + (::Tactical.Entities.getFlags().get("ModJimmysTooltips_ShowLootChance") ? "default tooltip" : "chance to loot equipment")
+		text = "Press \"" + ::MSU.System.Keybinds.KeybindsByMod[::Legends.ID].rawget("updateTooltip").getKeyCombinations() + "\" key to show the " + (::Tactical.Entities.getFlags().get("JimmysTooltips_ShowLootChance") ? "default tooltip" : "chance to loot equipment")
 	});
 
 	return tooltip;
@@ -444,7 +454,7 @@ local function colorizeLootChance(_value) {
 	return (_value > 0 ? "[color=%positive%]" : "[color=%negative%]") + " (" + _value + "%)[/color]";
 }
 
-::ModJimmysTooltips.modGetEquipmentLootChance <- function (_entity, _targetedWithSkill = null, _startID = 0) {
+::Legends.JimmysTooltips.modGetEquipmentLootChance <- function (_entity, _targetedWithSkill = null, _startID = 0) {
 	if (_entity.isAlliedWithPlayer() || (::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode)) {
 		return [
 			{
@@ -459,11 +469,11 @@ local function colorizeLootChance(_value) {
 	local tooltip = [], expectedDamage;
 
 	if (_targetedWithSkill != null && ::MSU.isKindOf(_targetedWithSkill, "skill") && _targetedWithSkill.isAttack()) {
-		expectedDamage = ::ModJimmysTooltips.getExpectedArmorDamage(_targetedWithSkill, _entity);
+		expectedDamage = ::Legends.JimmysTooltips.getExpectedArmorDamage(_targetedWithSkill, _entity);
 	}
 
 	foreach (_, _item in _entity.getItems().getAllItems().filter(@(_, _i)(_i.m.IsDroppedAsLoot))) {
-		local upgradeIconPaths = ::ModJimmysTooltips.getItemIconPaths(_item);
+		local upgradeIconPaths = ::Legends.JimmysTooltips.getItemIconPaths(_item);
 
 		local ret = {
 			id = _startID,
@@ -475,28 +485,28 @@ local function colorizeLootChance(_value) {
 
 		switch (_item.getSlotType()) {
 			case ::Const.ItemSlot.Mainhand:
-				tooltip.push(::ModJimmysTooltips.modGetWeaponLootChance(ret, _item));
+				tooltip.push(::Legends.JimmysTooltips.modGetWeaponLootChance(ret, _item));
 				break;
 
 			case ::Const.ItemSlot.Offhand:
-				tooltip.push(::ModJimmysTooltips.modGetOffhandLootChance(ret, _item));
+				tooltip.push(::Legends.JimmysTooltips.modGetOffhandLootChance(ret, _item));
 				break;
 
 			case ::Const.ItemSlot.Ammo:
-				tooltip.push(::ModJimmysTooltips.modGetAmmoLootChance(ret, _item));
+				tooltip.push(::Legends.JimmysTooltips.modGetAmmoLootChance(ret, _item));
 				break;
 
 			case ::Const.ItemSlot.Body:
-				tooltip.push(::ModJimmysTooltips.modGetBodyArmorLootChance(ret, _item, expectedDamage));
+				tooltip.push(::Legends.JimmysTooltips.modGetBodyArmorLootChance(ret, _item, expectedDamage));
 				break;
 
 			case ::Const.ItemSlot.Head:
-				tooltip.push(::ModJimmysTooltips.modGetHeadArmorLootChance(ret, _item, expectedDamage));
+				tooltip.push(::Legends.JimmysTooltips.modGetHeadArmorLootChance(ret, _item, expectedDamage));
 				break;
 
 			case ::Const.ItemSlot.Accessory:
 			case ::Const.ItemSlot.Bag:
-				if (!::ModJimmysTooltips.modGetStandardLootChance(ret, _item)) {
+				if (!::Legends.JimmysTooltips.modGetStandardLootChance(ret, _item)) {
 					ret.text += colorizeLootChance(0);
 				}
 
@@ -518,17 +528,17 @@ local function colorizeLootChance(_value) {
 	return tooltip;
 }
 
-::ModJimmysTooltips.checkForIcon <- function (toAdd, _item) {
-	if (_item.getIcon() == "" || _item == "ui/items/" && ::ModJimmysTooltips.ItemImagePaths.find(toAdd + _item.getIcon()) == null) {
+::Legends.JimmysTooltips.checkForIcon <- function (toAdd, _item) {
+	if (_item.getIcon() == "" || _item == "ui/items/" && ::Legends.JimmysTooltips.ItemImagePaths.find(toAdd + _item.getIcon()) == null) {
 		return "ui/items/supplies/legend_placeholder.png";
 	} else {
 		return toAdd + _item.getIcon();
 	}
 }
 
-::ModJimmysTooltips.getItemIconPaths <- function (_item) {
+::Legends.JimmysTooltips.getItemIconPaths <- function (_item) {
 	local paths = [];
-	local baseIcon = ::ModJimmysTooltips.checkForIcon("ui/items/", _item);
+	local baseIcon = ::Legends.JimmysTooltips.checkForIcon("ui/items/", _item);
 	paths.push(baseIcon);
 
 	local slot = _item.getSlotType();
@@ -544,7 +554,7 @@ local function colorizeLootChance(_value) {
 	return paths;
 }
 
-::ModJimmysTooltips.modGetStandardLootChance <- function (_tooltip, _item, _isArmor = false) {
+::Legends.JimmysTooltips.modGetStandardLootChance <- function (_tooltip, _item, _isArmor = false) {
 	if (_item.isNamed()) {
 		_tooltip.text += colorizeLootChance(100);
 		return true;
@@ -553,8 +563,8 @@ local function colorizeLootChance(_value) {
 	return false;
 }
 
-::ModJimmysTooltips.modGetWeaponLootChance <- function (_tooltip, _item) {
-	if (::ModJimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
+::Legends.JimmysTooltips.modGetWeaponLootChance <- function (_tooltip, _item) {
+	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
 		return _tooltip;
 	}
 
@@ -571,8 +581,8 @@ local function colorizeLootChance(_value) {
 	return _tooltip;
 }
 
-::ModJimmysTooltips.modGetOffhandLootChance <- function (_tooltip, _item) {
-	if (::ModJimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
+::Legends.JimmysTooltips.modGetOffhandLootChance <- function (_tooltip, _item) {
+	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
 		return _tooltip;
 	}
 
@@ -586,8 +596,8 @@ local function colorizeLootChance(_value) {
 	return _tooltip;
 }
 
-::ModJimmysTooltips.modGetAmmoLootChance <- function (_tooltip, _item) {
-	if (::ModJimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
+::Legends.JimmysTooltips.modGetAmmoLootChance <- function (_tooltip, _item) {
+	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
 		return _tooltip;
 	}
 
@@ -596,8 +606,8 @@ local function colorizeLootChance(_value) {
 	return _tooltip;
 }
 
-::ModJimmysTooltips.modGetBodyArmorLootChance <- function (_tooltip, _item, _expectedDamage = null) {
-	if (::ModJimmysTooltips.modGetStandardLootChance(_tooltip, _item, true)) {
+::Legends.JimmysTooltips.modGetBodyArmorLootChance <- function (_tooltip, _item, _expectedDamage = null) {
+	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item, true)) {
 		return _tooltip;
 	}
 
@@ -624,8 +634,8 @@ local function colorizeLootChance(_value) {
 	return _tooltip;
 }
 
-::ModJimmysTooltips.modGetHeadArmorLootChance <- function (_tooltip, _item, _expectedDamage = null) {
-	if (::ModJimmysTooltips.modGetStandardLootChance(_tooltip, _item, true)) {
+::Legends.JimmysTooltips.modGetHeadArmorLootChance <- function (_tooltip, _item, _expectedDamage = null) {
+	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item, true)) {
 		return _tooltip;
 	}
 
@@ -652,7 +662,7 @@ local function colorizeLootChance(_value) {
 	return _tooltip;
 }
 
-::ModJimmysTooltips.getExpectedArmorDamage <- function (_skill, _target) {
+::Legends.JimmysTooltips.getExpectedArmorDamage <- function (_skill, _target) {
 	local actor = _skill.getContainer().getActor();
 	local p = _skill.factoringOffhand(_skill.getContainer().buildPropertiesForUse(_skill, _target));
 	local d = _target.getSkills().buildPropertiesForDefense(actor, _skill);
