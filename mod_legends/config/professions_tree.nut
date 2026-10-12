@@ -311,20 +311,6 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.PathfinderProfessionTree <- [
-	[::Legends.Profession.LegendScouting],
-	[::Legends.Profession.LegendLookout],
-	[],
-	[::Legends.Profession.LegendLayOfTheLand],
-	[],
-	[],
-	[],
-	[],
-	[],
-	[],
-	[]
-];
-
 ::Const.Professions.CookingProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendMealPreparation],
@@ -386,7 +372,7 @@ if (!("Professions" in ::Const)) {
 	[::Legends.Profession.LegendToolsDrawers],
 	[],
 	[],
-	[::Const.Strings.ProfessionDescription.LegendPersonalSeal],
+	[::Legends.Profession.LegendPersonalSeal],
 	[],
 	[],
 	[],
