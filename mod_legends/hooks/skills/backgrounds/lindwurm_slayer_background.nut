@@ -36,7 +36,7 @@
 		];
 		this.m.Level = ::Math.rand(4, 6);
 		this.m.PerkTreeDynamicMins.Traits = 8;
-		this.m.PerkTreeDynamicMins.Armor = 3;
+		this.m.PerkTreeDynamicMins.Defense = 3;
 		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.ExpertHunter;
@@ -53,7 +53,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. They says %they% is the %offspring% of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
+		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. %They% says %they% is the %offspring% of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
 	}
 
 	o.onChangeAttributes = function ()
