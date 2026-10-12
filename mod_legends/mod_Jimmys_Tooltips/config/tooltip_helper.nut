@@ -50,9 +50,7 @@
 		if (filter == 1) {
 			items = items.filter(isPerk);
 		} else if (filter == 2) {
-			items = items.filter(function (i, item) {
-				return !isPerk(i, item);
-			});
+			items = items.filter(@(_idx, _item)(!isPerk(_idx, _item)));
 		}
 
 		local stacks = {};
@@ -134,10 +132,7 @@
 		if (!items) {
 			return items;
 		}
-
-		return items.filter(function (i, item) {
-			return !(item.getName() in shownPerks);
-		});
+		return items.filter(@(_, item) !(item.getName() in shownPerks));
 	};
 	local getPlural = function (items) {
 		if (!items) {
@@ -224,22 +219,15 @@
 			if (tooltip[count].text == statusEffects[0].getName()) {
 				tooltip.resize(count);
 				pushRemainingAP();
-				statusEffects = statusEffects.filter(function (_, item) {
-					return !isInjury(_, item);
-				});
-				statusEffects = removeDuplicates(statusEffects);
+				statusEffects = removeDuplicates(statusEffects.filter(@(_, item)(!isInjury(_, item))));
 				pushSection(statusEffects, null, 100, 2, "", true);
 				local injuries = _entity.getSkills().query(::Const.SkillType.TemporaryInjury, false, true);
 
 				foreach (i, injury in injuries) {
-					local children = injury.getTooltip().filter(function (_, row) {
-						return isTextRow(_, row);
-					});
+					local children = injury.getTooltip().filter(@(_, row)(isTextRow(_, row)));
 					local addedTooltipHints = [];
 					injury.addTooltipHint(addedTooltipHints);
-					addedTooltipHints = addedTooltipHints.filter(function (_, row) {
-						return isTextRow(_, row);
-					});
+					addedTooltipHints = addedTooltipHints.filter(@(_, row)(isTextRow(_, row)));
 					local added_count = addedTooltipHints.len();
 
 					if (added_count) {
@@ -344,71 +332,32 @@
 			});
 		}
 
+		local getItemTooltip = function (_id, _item) {
+			return {
+				id = _id,
+				type = "text",
+				icon = checkForIcon("ui/items/", _item),
+				text = _item.getName() + " " + (_item.isItemType(::Const.Items.ItemType.Ammo) ? (_item.getAmmo() + " / " + _item.getAmmoMax()) : (_item.getCondition() + " / " + _item.getConditionMax()))
+			}
+		}
+
 		local mainhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (::ModJimmysTooltips.Mod.ModSettings.getSetting("Items").getValue()) {
 			if (mainhand != null) {
-				local name = mainhand.getName();
-				//::logInfo(name);
 				pushSectionName(mainhand, "Equipped Items:", 400);
-				if (mainhand.isItemType(::Const.Items.ItemType.Ammo)) {
-					tooltip.push({
-						id = 401,
-						type = "text",
-						icon = checkForIcon("ui/items/", mainhand),
-						text = name + " " + mainhand.getAmmo() + " / " + mainhand.getAmmoMax()
-					});
-				} else {
-					tooltip.push({
-						id = 401,
-						type = "text",
-						icon = checkForIcon("ui/items/", mainhand),
-						text = name + " " + mainhand.getCondition() + " / " + mainhand.getConditionMax()
-					});
-				}
+				tooltip.push(getItemTooltip(401, mainhand));
 			}
 
 			local offhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (offhand != null) {
-				local name = offhand.getName();
-				// ::logInfo(name);
-				if (offhand.isItemType(::Const.Items.ItemType.Ammo)) {
-					tooltip.push({
-						id = 421,
-						type = "text",
-						icon = checkForIcon("ui/items/", offhand),
-						text = name + " " + offhand.getAmmo() + " / " + offhand.getAmmoMax()
-					});
-				} else {
-					tooltip.push({
-						id = 421,
-						type = "text",
-						icon = checkForIcon("ui/items/", offhand),
-						text = name + " " + offhand.getCondition() + " / " + offhand.getConditionMax()
-					});
-				}
+				tooltip.push(getItemTooltip(421, offhand));
 			}
+		}
 
-			local items = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
-			foreach (item in items) {
-				local name = item.getName();
-				// ::logInfo(name);
-				pushSectionName(item, "Bags", 430);
-				if (item.isItemType(::Const.Items.ItemType.Ammo)) {
-					tooltip.push({
-						id = 431,
-						type = "text",
-						icon = checkForIcon("ui/items/", item),
-						text = name + " " + item.getAmmo() + " / " + item.getAmmoMax()
-					});
-				} else {
-					tooltip.push({
-						id = 431,
-						type = "text",
-						icon = checkForIcon("ui/items/", item),
-						text = name + " " + item.getCondition() + " / " + item.getConditionMax()
-					});
-				}
-			}
+		local items = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
+		foreach (item in items) {
+			pushSectionName(item, "Bags", 430);
+			tooltip.push(getItemTooltip(431, item));
 		}
 
 		local accessories = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Accessory);
@@ -420,15 +369,10 @@
 		if (_targetedWithSkill == null && ::ModJimmysTooltips.Mod.ModSettings.getSetting("Skills").getValue() && mainhand != null) {
 			local skills = mainhand.getSkills();
 			local startID = 500;
-			foreach (skill in skills) {
-				if (skill.getContainer() == null || !("getActor" in skill.getContainer()) || skill.getContainer().getActor() == null) {
-					continue;
-				}
-				if (skill.isUsable()) {
-					pushSectionName(skill, skill.getName(), startID, "" + skill.getIcon());
-					tooltip.extend(skill.noDescriptionDefaultTooltip(startID));
-					startID = startID + 10;
-				}
+			foreach (skill in skills.filter(@(_, _skill)(_skill.getContainer() != null && "getActor" in _skill.getContainer() && _skill.getContainer().getActor() != null && _skill.isUsable()))) {
+				pushSectionName(skill, skill.getName(), startID, "" + skill.getIcon());
+				tooltip.extend(skill.noDescriptionDefaultTooltip(startID));
+				startID += 10;
 			}
 		}
 
@@ -486,25 +430,19 @@
 			divider = "bottom" // add a diviver
 		});
 	}
-
-	if (!::Tactical.Entities.getFlags().get("ModJimmysTooltips_ShowLootChance")) {
-		tooltip.push({
-			id = 607,
-			type = "hint",
-			icon = "ui/skin/icon_wait.png",
-			text = "Press \"" + ::MSU.System.Keybinds.KeybindsByMod[::ModJimmysTooltips.ID].rawget("updateTooltip").getKeyCombinations() + "\" key to show the chance to loot equipment"
-		});
-	} else {
-		tooltip.push({
-			id = 607,
-			type = "hint",
-			icon = "ui/skin/icon_wait.png",
-			text = "Press \"" + ::MSU.System.Keybinds.KeybindsByMod[::ModJimmysTooltips.ID].rawget("updateTooltip").getKeyCombinations() + "\" key to show the default tooltip"
-		});
-	}
+	tooltip.push({
+		id = 607,
+		type = "hint",
+		icon = "ui/skin/icon_wait.png",
+		text = "Press \"" + ::MSU.System.Keybinds.KeybindsByMod[::ModJimmysTooltips.ID].rawget("updateTooltip").getKeyCombinations() + "\" key to show the " + (::Tactical.Entities.getFlags().get("ModJimmysTooltips_ShowLootChance") ? "default tooltip" : "chance to loot equipment")
+	});
 
 	return tooltip;
 };
+
+local function colorizeLootChance(_value) {
+	return (_value > 0 ? "[color=%positive%]" : "[color=%negative%]") + " (" + _value + "%)[/color]";
+}
 
 ::ModJimmysTooltips.modGetEquipmentLootChance <- function (_entity, _targetedWithSkill = null, _startID = 0) {
 	if (_entity.isAlliedWithPlayer() || (::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode)) {
@@ -524,11 +462,7 @@
 		expectedDamage = ::ModJimmysTooltips.getExpectedArmorDamage(_targetedWithSkill, _entity);
 	}
 
-	foreach (_, _item in _entity.getItems().getAllItems()) {
-		if (!_item.m.IsDroppedAsLoot) {
-			continue;
-		}
-
+	foreach (_, _item in _entity.getItems().getAllItems().filter(@(_, _i)(_i.m.IsDroppedAsLoot))) {
 		local upgradeIconPaths = ::ModJimmysTooltips.getItemIconPaths(_item);
 
 		local ret = {
@@ -563,14 +497,14 @@
 			case ::Const.ItemSlot.Accessory:
 			case ::Const.ItemSlot.Bag:
 				if (!::ModJimmysTooltips.modGetStandardLootChance(ret, _item)) {
-					ret.text += "[color=%negative%]" + " (0%)" + "[/color]";
+					ret.text += colorizeLootChance(0);
 				}
 
 				tooltip.push(ret);
 				break;
 
 			default:
-				ret.text += "[color=%negative%]" + " (0%)" + "[/color]";
+				ret.text += colorizeLootChance(0);
 				tooltip.push(ret);
 		}
 
@@ -612,7 +546,7 @@
 
 ::ModJimmysTooltips.modGetStandardLootChance <- function (_tooltip, _item, _isArmor = false) {
 	if (_item.isNamed()) {
-		_tooltip.text += "[color=%positive%]" + " (100%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(100);
 		return true;
 	}
 
@@ -626,12 +560,12 @@
 
 	if (_item.m.AmmoMax == 0 && (_item.m.Condition >= 12 || _item.m.ConditionMax <= 1)) {
 		// is normal weapon
-		_tooltip.text += "[color=%positive%]" + " (90%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(90);
 	} else if (_item.m.Ammo > 0 && (_item.getCurrentSlotType() != ::Const.ItemSlot.Bag || _item.m.Ammo < _item.m.AmmoMax)) {
 		// is throwing weapon
-		_tooltip.text += "[color=%positive%]" + " (90%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(90);
 	} else {
-		_tooltip.text += "[color=%negative%]" + " (0%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(0);
 	}
 
 	return _tooltip;
@@ -644,9 +578,9 @@
 
 	if (!_item.isItemType(::Const.Items.ItemType.Shield)) {
 		// is normal weapon
-		_tooltip.text += "[color=%positive%]" + " (100%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(100);
 	} else if (_item.m.Condition >= 6 && _item.m.Condition / _item.m.ConditionMax >= 0.25) {
-		_tooltip.text += "[color=%positive%]" + " (90%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(90);
 	}
 
 	return _tooltip;
@@ -657,12 +591,7 @@
 		return _tooltip;
 	}
 
-	if (_item.getCurrentSlotType() != ::Const.ItemSlot.Bag) {
-		// is normal weapon
-		_tooltip.text += "[color=%positive%]" + " (66%)" + "[/color]";
-	} else {
-		_tooltip.text += "[color=%negative%]" + " (0%)" + "[/color]";
-	}
+	_tooltip.text += colorizeLootChance(_item.getCurrentSlotType() != ::Const.ItemSlot.Bag ? 66 : 0);
 
 	return _tooltip;
 }
@@ -681,25 +610,15 @@
 	}
 
 	if (condition != conditionExpected) {
-		local chance = 0;
-
-		if (isValid) {
-			chance += 100;
-		}
+		local chance = isValid ? 100 : 0;
 
 		if (!(conditionExpected > 10 && conditionExpected / conditionMax >= 0.2)) {
 			chance = ::Math.max(0, chance * 0.01 * _expectedDamage.Properties.getHitchance(::Const.BodyPart.Head));
 		}
 
-		if (chance > 0) {
-			_tooltip.text += "[color=%positive%]" + " (" + ::Math.min(95, chance) + "%)" + "[/color]";
-		} else {
-			_tooltip.text += "[color=%negative%]" + " (0%)" + "[/color]";
-		}
-	} else if (isValid) {
-		_tooltip.text += "[color=%positive%]" + " (95%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(::Math.min(95, chance));
 	} else {
-		_tooltip.text += "[color=%negative%]" + " (0%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(isValid ? 95 : 0);
 	}
 
 	return _tooltip;
@@ -719,25 +638,15 @@
 	}
 
 	if (condition != conditionExpected) {
-		local chance = 0;
-
-		if (isValid) {
-			chance += 70;
-		}
+		local chance = isValid ? 70 : 0;
 
 		if (!(conditionExpected > 30 && conditionExpected / conditionMax >= 0.25)) {
 			chance = ::Math.max(0, chance * 0.01 * _expectedDamage.Properties.getHitchance(::Const.BodyPart.Body));
 		}
 
-		if (chance > 0) {
-			_tooltip.text += "[color=%positive%]" + " (" + ::Math.min(95, chance) + "%)" + "[/color]";
-		} else {
-			_tooltip.text += "[color=%negative%]" + " (0%)" + "[/color]";
-		}
-	} else if (isValid) {
-		_tooltip.text += "[color=%positive%]" + " (70%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(::Math.min(95, chance));
 	} else {
-		_tooltip.text += "[color=%negative%]" + " (0%)" + "[/color]";
+		_tooltip.text += colorizeLootChance(isValid ? 70 : 0);
 	}
 
 	return _tooltip;
@@ -752,9 +661,9 @@
 	local armorDamage = ::Math.min(armor, p.getArmorDamageAverage()) * (d.DamageReceivedArmorMult * d.DamageReceivedTotalMult);
 
 	if (_skill.isRanged()) {
-		armorDamage = armorDamage * (p.RangedDamageMult * d.DamageReceivedRangedMult);
+		armorDamage *= p.RangedDamageMult * d.DamageReceivedRangedMult;
 	} else {
-		armorDamage = armorDamage * (p.MeleeDamageMult * d.DamageReceivedMeleeMult);
+		armorDamage *= p.MeleeDamageMult * d.DamageReceivedMeleeMult;
 	}
 
 	return {
