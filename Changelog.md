@@ -449,7 +449,7 @@
 ### Beasts
 - revamped art for `Demon Alp` from Misha
 - `Schrat` shield gains 10 block
-- `Greenwood Schrat` shield gains 15 block but now has 30 Melee Defense and Ranged Defense down from 40
+- `Greenwood Schrat` shield gains 15 block but now has 30 Melee Defense and Ranged Defense down from 40, condition is down to 64 from 128
 
 ### Bandits
 - `Bandit Executioner` - new enemy that will appear in bandit comps, dressed to impress and armed with cleavers - including the new executioner sword
