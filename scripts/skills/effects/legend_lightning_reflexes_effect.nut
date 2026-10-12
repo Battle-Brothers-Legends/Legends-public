@@ -22,7 +22,11 @@ this.legend_lightning_reflexes_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getBonus(_attacker, _defender) {
-		return (::Legends.S.isEntityNullOrDead(_attacker, _defender) ? 1 : (1 - ::Math.minf(1, ::Math.maxf(0.0, ::Math.pow((_defender.getInitiative() - _attacker.getInitiative()) / 100.0, 0.4))) * 0.8));
+		local initDiff = _defender.getInitiative() - _attacker.getInitiative();
+		if (::Legends.S.isEntityNullOrDead(_attacker, _defender) || initDiff <= 0) {
+			return 1;
+		}
+		return 1 - 0.8 * ::Math.minf(1, ::Math.pow(initDiff / 100.0, 0.4));
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
