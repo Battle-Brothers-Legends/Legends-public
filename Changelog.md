@@ -949,6 +949,7 @@ Refactors/deletions:
 - `scripts/skills/perks/perk_legend_insects` -> `scripts/skills/perks/perk_legend_insect_swarm`
 - `scripts/skills/perks/perk_legend_woodworking` -> deleted
 - `scripts/skills/perks/perk_legend_summon_catapult` -> deleted
+- `scripts/skills/perks/perk_legend_bruiser` -> deleted, replaced with smackdown on the entities that used it
 - `scripts/skills/perks/perk_legend_debilitate` -> deleted
 - `scripts/skills/perks/perk_legend_lookout` -> deleted
 - `scripts/skills/perks/perk_legend_hippology` -> deleted

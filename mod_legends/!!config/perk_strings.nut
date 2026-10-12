@@ -179,13 +179,6 @@ Even if your strikes don't penetrate the opponent's armor, you'll make sure they
 • Increases hitpoint damage and always inflict a minimum amount of damage to hitpoints equal to [color=%positive%]10%[/color] of the armor damage done to the target. Attacks that don't deal armor damage or fully penetrate the target's armor will not receive any bonuses, and the bonus damage is subject to damage reductions from the target.
 ";
 
-::Const.Strings.PerkDescription.LegendBruiser <- @"
-Your muscles are an unstoppable force, shattering armor with every strike!
-
-[color=%passive%][u]Passive:[/u][/color]
-• Effectiveness vs. Armor is increased by [color=%positive%]+10%[/color] for any weapon used.
-";
-
 ::Const.Strings.PerkDescription.LegendCacophony <- @"
 Assault the senses of your target with a wild clamor and noise from your instrument leave them distracted.
 

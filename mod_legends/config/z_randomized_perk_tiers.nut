@@ -608,7 +608,7 @@
 		::Legends.Perk.ShieldBash
     ],
     LegendaryPerks = [
-		::Legends.Perk.LegendBruiser
+		::Legends.Perk.LegendSmackdown
     ],
 	LegendaryTraits = [
 		::Legends.Trait.Fearless

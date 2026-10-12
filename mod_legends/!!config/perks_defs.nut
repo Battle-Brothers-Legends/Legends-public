@@ -370,10 +370,6 @@ local perkDefObjects = {
 	LegendBloodbath = {},
 	LegendBloodyHarvest = {},
 	LegendBoneBreaker = {},
-	LegendBruiser = {
-		Icon = "ui/perks/perk_40.png",
-		IconDisabled = "ui/perks/perk_40_sw.png"
-	},
 	LegendCacophony = {
 		Icon = "ui/perks/legend_stupefy.png",
 		IconDisabled = "ui/perks/legend_stupefy_bw.png"
