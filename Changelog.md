@@ -498,6 +498,7 @@
 - Trenches (generic) - legion only
 - Training (cyclical) - legion only
 - Crypt (unique) - legion only
+- added an event requiring a wolf to be equipped
 
 ## Retinue
 - removed all current retinues
