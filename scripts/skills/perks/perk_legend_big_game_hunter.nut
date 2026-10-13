@@ -2,7 +2,6 @@ this.perk_legend_big_game_hunter <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBigGameHunter);
-		this.m.Icon = "ui/perks/BigGameHunterPerk.png";
 		this.m.IconMini = "mini_big_game_hunter";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 	}
