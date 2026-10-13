@@ -1,4 +1,4 @@
-if (!("Professions" in ::Const)) {
+if (!("Professions" in ::Legends)) {
 	::Legends.Professions <- {};
 }
 

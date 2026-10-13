@@ -2,48 +2,42 @@ if (!("Traits" in ::Legends)) {
 	::Legends.Traits <- {};
 }
 
-if (!("Trait" in ::Legends)) {
-	::Legends.Trait <- {};
+::Legends.Traits.TraitDefObjects <- {};
+::Legends.Traits.LookupMap <- {};
+
+::Legends.Traits.defaultDef <- function(_def) {
+	local tokens = ::Legends.DefsHelpers.tokenizeConst(_def.Const);
+	local type = "trait";
+	if (tokens.find("Racial") == 0) {
+		type = "racial";
+		tokens.remove(0);
+	}
+	local transformedConst = tokens.reduce(@(p, c) p + c);
+	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(transformedConst);
+	return {
+		Const = _def.Const,
+		ID = ::format("%s.%s", type, snakeCase),
+		Script = ::format("scripts/skills/%s/%s_%s", (type == "trait" ? "traits" : type), snakeCase, type),
+		Name = ::Legends.DefsHelpers.convertToDisplayName(transformedConst),
+		Icon = ::format("ui/traits/%s.png", snakeCase),
+		Random = false,
+		VisibleOnRecruitment = false
+	}
 }
 
-::Legends.Traits.createTraitDef <- function (_def) {
-	::Legends.Trait[_def.Const] <- null;
-	local constString = _def.Const;
-	local type = "trait";
-	if (constString.find("Racial") == 0) {
-		constString = constString.slice(6);
-		type = "racial";
+::Legends.Traits.transformDef <- function (_def) {
+	local defaultDef = ::Legends.Traits.defaultDef(_def);
+	foreach (key, value in _def) {
+		if (key in defaultDef) {
+			defaultDef[key] = value; // overwrite
+		} else {
+			// here's weird situation, we have a slot that was not defined in default, which most likely means bug
+			defaultDef[key] <- value;
+			::logWarning(::format("trait '%s' defines unknown field '%s' in traits_defs", defaultDef.ID, key));
+		}
 	}
-	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(constString);
-	if (!("ID" in _def)) {
-		_def.ID <- type + "." + snakeCase;
-	}
-
-	if (!("Script" in _def)) {
-		_def.Script <- "scripts/skills/" + (type == "trait" ? "traits" : type) + "/" + snakeCase + "_" + type;
-	}
-
-	if (!("Name" in _def)) {
-		_def.Name <- ::Legends.DefsHelpers.convertToDisplayName(constString);
-	}
-
-	if (!("Icon" in _def)) {
-		_def.Icon <- "ui/traits/" + snakeCase + ".png";
-	}
-
-	if (!("Random" in _def)) {
-		_def.Random <- false;
-	}
-
-	if (!("VisibleOnRecruitment" in _def)) {
-		_def.VisibleOnRecruitment <- false;
-	}
-
-	return _def;
+	return defaultDef;
 };
-
-::Legends.Traits.TraitDefObjects <- [];
-::Legends.Traits.LookupMap <- {};
 
 ::Legends.Traits.pushToCharacterTraits <- function (_obj) {
 	foreach (obj in ::Const.CharacterTraits) {
@@ -55,142 +49,271 @@ if (!("Trait" in ::Legends)) {
 }
 
 ::Legends.Traits.addTraitDefObjects <- function (_traitDefObjects) {
-	local size = ::Legends.Traits.TraitDefObjects.len();
-	local i = 0;
 	foreach (constName, def in _traitDefObjects) {
 		def.Const <- constName;
-		::Legends.Traits.TraitDefObjects.push(::Legends.Traits.createTraitDef(def));
+		def = ::Legends.Traits.transformDef(def);
+		local hash = ::IO.scriptHashByFilename(def.Script);
+		if (hash == null)
+			::logError(::format("%s: hash is null for '%s'", def.Const, def.Script));
+		::Legends.Traits.TraitDefObjects[hash] <- def;
 		if (def.Const in ::Legends.Trait) {
-			::Legends.Trait[def.Const] = size + i;
+			::Legends.Trait[def.Const] = hash;
 		} else {
-			::Legends.Trait[def.Const] <- size + i;
+			::Legends.Trait[def.Const] <- hash;
 		}
-		if ("Random" in def && def.Random) {
+		if (def.Random)
 			::Legends.Traits.pushToCharacterTraits(def);
-		}
 		::Legends.Traits.LookupMap[def.ID] <- def;
-		i++;
 	}
 }
 
 // the pool of random traits that spawn on bros
-local traitDefs = {
+::Legends.Trait <- {
 	// not setting icons on Vanilla stuff currently, they don't use onCreate anyway
-	Ailing = {},
-	Asthmatic = {},
+	Ailing = {
+		Random = true
+	},
+	Asthmatic = {
+		Random = true
+	},
 	Athletic = {
-		VisibleOnRecruitment = true
+		VisibleOnRecruitment = true,
+		Random = true
 	},
-	Bleeder = {},
-	Bloodthirsty = {},
-	Brave = {},
-	Bright = {},
-	Brute = {},
-	Clubfooted = {},
-	Clumsy = {},
+	Bleeder = {
+		Random = true
+	},
+	Bloodthirsty = {
+		Random = true
+	},
+	Brave = {
+		Random = true
+	},
+	Bright = {
+		Random = true
+	},
+	Brute = {
+		Random = true
+	},
+	Clubfooted = {
+		Random = true
+	},
+	Clumsy = {
+		Random = true
+	},
 	Cocky = {
-		VisibleOnRecruitment = true
+		VisibleOnRecruitment = true,
+		Random = true
 	},
-	Craven = {},
-	Dastard = {},
-	Deathwish = {},
-	Determined = {},
-	Dexterous = {},
-	Disloyal = {},
-	Drunkard = {},
-	Dumb = {},
-	EagleEyes = {},
-	Fainthearted = {},
+	Craven = {
+		Random = true
+	},
+	Dastard = {
+		Random = true
+	},
+	Deathwish = {
+		Random = true
+	},
+	Determined = {
+		Random = true
+	},
+	Dexterous = {
+		Random = true
+	},
+	Disloyal = {
+		Random = true
+	},
+	Drunkard = {
+		Random = true
+	},
+	Dumb = {
+		Random = true
+	},
+	EagleEyes = {
+		Random = true
+	},
+	Fainthearted = {
+		Random = true
+	},
 	Fat = {
-		VisibleOnRecruitment = true
+		VisibleOnRecruitment = true,
+		Random = true
 	},
 	FearBeasts = {
-		Name = "Fear of Beasts"
+		Name = "Fear of Beasts",
+		Random = true
 	},
 	FearGreenskins = {
-		Name = "Fear of Greenskins"
+		Name = "Fear of Greenskins",
+		Random = true
 	},
-	Fearless = {},
+	Fearless = {
+		Random = true
+	},
 	FearUndead = {
-		Name = "Fear of Undead"
+		Name = "Fear of Undead",
+		Random = true
 	},
-	Fragile = {},
-	Gluttonous = {},
-	Greedy = {},
+	Fragile = {
+		Random = true
+	},
+	Gluttonous = {
+		Random = true
+	},
+	Greedy = {
+		Random = true
+	},
 	HateBeasts = {
-		Name = "Hate for Beasts"
+		Name = "Hate for Beasts",
+		Random = true
 	},
 	HateGreenskins = {
-		Name = "Hate for Greenskins"
+		Name = "Hate for Greenskins",
+		Random = true
 	},
 	HateUndead = {
-		Name = "Hate for Undead"
+		Name = "Hate for Undead",
+		Random = true
 	},
 	Hesitant = {
-		VisibleOnRecruitment = true
+		VisibleOnRecruitment = true,
+		Random = true
 	},
 	Huge = {
-		VisibleOnRecruitment = true
+		VisibleOnRecruitment = true,
+		Random = true
 	},
-	Impatient = {},
-	Insecure = {},
-	IronJaw = {},
-	IronLungs = {},
-	Irrational = {},
-	Loyal = {},
-	Lucky = {},
-	NightBlind = {},
-	NightOwl = {},
-	Optimist = {},
-	Paranoid = {},
-	Pessimist = {},
-	Quick = {},
-	ShortSighted = {},
-	Spartan = {},
-	Strong = {},
-	Superstitious = {},
-	SureFooting = {},
-	Survivor = {},
-	Swift = {},
-	Teamplayer = {},
+	Impatient = {
+		Random = true
+	},
+	Insecure = {
+		Random = true
+	},
+	IronJaw = {
+		Random = true
+	},
+	IronLungs = {
+		Random = true
+	},
+	Irrational = {
+		Random = true
+	},
+	Loyal = {
+		Random = true
+	},
+	Lucky = {
+		Random = true
+	},
+	NightBlind = {
+		Random = true
+	},
+	NightOwl = {
+		Random = true
+	},
+	Optimist = {
+		Random = true
+	},
+	Paranoid = {
+		Random = true
+	},
+	Pessimist = {
+		Random = true
+	},
+	Quick = {
+		Random = true
+	},
+	ShortSighted = {
+		Random = true
+	},
+	Spartan = {
+		Random = true
+	},
+	Strong = {
+		Random = true
+	},
+	Superstitious = {
+		Random = true
+	},
+	SureFooting = {
+		Random = true
+	},
+	Survivor = {
+		Random = true
+	},
+	Swift = {
+		Random = true
+	},
+	Teamplayer = {
+		Random = true
+	},
 	Tiny = {
-		VisibleOnRecruitment = true
+		VisibleOnRecruitment = true,
+		Random = true
 	},
-	Tough = {},
-	Weasel = {},
-	LegendAggressive = {},
-	LegendAmbitious = {},
-	LegendCharming = {},
-	LegendDoubleTongued = {},
-	LegendNyctophobia = {},
+	Tough = {
+		Random = true
+	},
+	Weasel = {
+		Random = true
+	},
+	LegendAggressive = {
+		Random = true
+	},
+	LegendAmbitious = {
+		Random = true
+	},
+	LegendCharming = {
+		Random = true
+	},
+	LegendDoubleTongued = {
+		Random = true
+	},
+	LegendNyctophobia = {
+		Random = true
+	},
 	LegendFearNobles = {
-		Name = "Fear of Nobles"
+		Name = "Fear of Nobles",
+		Random = true
 	},
 	LegendHateNobles = {
-		Name = "Hate for Nobles"
+		Name = "Hate for Nobles",
+		Random = true
 	},
 	LegendLumbering = {
-		VisibleOnRecruitment = true
+		VisibleOnRecruitment = true,
+		Random = true
 	},
 	LegendLight = {
-		VisibleOnRecruitment = true
+		VisibleOnRecruitment = true,
+		Random = true
 	},
-	LegendMartial = {},
-	LegendSeductive = {},
-	LegendSlack = {},
-	LegendSteadyHands = {},
-	LegendSureshot = {},
-	LegendTalented = {},
-	LegendPragmatic = {},
-	LegendPredictable = {},
-	LegendUnpredictable = {},
-};
-foreach (_, def in traitDefs) {
-	def.Random <- true;
-}
-
-// the pool of other traits and racials
-local otherTraitDefs = {
+	LegendMartial = {
+		Random = true
+	},
+	LegendSeductive = {
+		Random = true
+	},
+	LegendSlack = {
+		Random = true
+	},
+	LegendSteadyHands = {
+		Random = true
+	},
+	LegendSureshot = {
+		Random = true
+	},
+	LegendTalented = {
+		Random = true
+	},
+	LegendPragmatic = {
+		Random = true
+	},
+	LegendPredictable = {
+		Random = true
+	},
+	LegendUnpredictable = {
+		Random = true
+	},
 	Addict = {},
 	ArenaFighter = {},
 	ArenaVeteran = {},
@@ -285,7 +408,9 @@ local otherTraitDefs = {
 	RacialAlp = {
 		Name = ""
 	},
-	RacialChampion = {},
+	RacialChampion = {
+		Name = "Champion"
+	},
 	RacialFleshGolem = {
 		Name = "Flesh Golem Racial"
 	},
@@ -362,9 +487,4 @@ local otherTraitDefs = {
 	}
 }
 
-// merge staticTraitDefs into traitDefs
-foreach (key, def in otherTraitDefs) {
-	traitDefs[key] <- def;
-}
-
-::Legends.Traits.addTraitDefObjects(traitDefs);
+::Legends.Traits.addTraitDefObjects(clone ::Legends.Trait);
