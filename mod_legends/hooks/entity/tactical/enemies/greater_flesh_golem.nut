@@ -32,6 +32,8 @@
 			return false;
 		}
 		this.getSprite("miniboss").setBrush("bust_miniboss_undead");
+		this.getSprite("body").setBrush("bust_greater_flesh_golem_armor_04");
+		this.getSprite("head").setBrush("bust_greater_flesh_golem_head_02");
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		return true;
 	}
