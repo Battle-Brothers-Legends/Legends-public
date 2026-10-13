@@ -21,42 +21,9 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.MoraleState = ::Const.MoraleState.Ignore;
 		this.m.XP = ::Const.Tactical.Actor.LegendWicht.XP;
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/ghost_death_01.wav",
-			"sounds/enemies/ghost_death_02.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/geist_idle_13.wav",
-			"sounds/enemies/geist_idle_14.wav",
-			"sounds/enemies/geist_idle_15.wav",
-			"sounds/enemies/geist_idle_16.wav",
-			"sounds/enemies/geist_idle_17.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
-			"sounds/enemies/wicht_movement_01.wav",
-			"sounds/enemies/wicht_movement_02.wav",
-			"sounds/enemies/wicht_movement_03.wav",
-			"sounds/enemies/wicht_movement_04.wav",
-			"sounds/enemies/wicht_movement_05.wav",
-			"sounds/enemies/wicht_movement_06.wav",
-			"sounds/enemies/wicht_movement_07.wav",
-			"sounds/enemies/wicht_movement_08.wav",
-			"sounds/enemies/wicht_movement_09.wav",
-			"sounds/enemies/wicht_movement_10.wav",
-			"sounds/enemies/wicht_movement_11.wav",
-			"sounds/enemies/wicht_movement_12.wav",
-			"sounds/enemies/wicht_movement_13.wav",
-			"sounds/enemies/wicht_movement_14.wav",
-			"sounds/enemies/wicht_movement_15.wav",
-			"sounds/enemies/wicht_movement_16.wav",
-			"sounds/enemies/wicht_movement_17.wav",
-			"sounds/enemies/wicht_movement_18.wav",
-			"sounds/enemies/wicht_movement_19.wav",
-			"sounds/enemies/wicht_movement_20.wav",
-			"sounds/enemies/wicht_movement_21.wav",
-			"sounds/enemies/wicht_movement_22.wav",
-			"sounds/enemies/wicht_movement_23.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/ghost_death", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/geist_idle", 5, 13);
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/enemies/wicht_movement", 23);
 		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/zombie_agent");
@@ -70,10 +37,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function onDeath(_killer, _skill, _tile, _fatalityType) {
-		if (!::Tactical.State.isScenarioMode()
-			&& _killer != null
-			&& _killer.isPlayerControlled())
-		{
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled()) {
 			this.updateAchievement("OvercomingFear", 1, 1);
 		}
 		local flip = !this.isAlliedWithPlayer();
@@ -167,8 +131,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 				}
 			}
 
-			if (!appearance.HideCorpseHead && _fatalityType != ::Const.FatalityType.Decapitated)
-			{
+			if (!appearance.HideCorpseHead && _fatalityType != ::Const.FatalityType.Decapitated) {
 				local helmetLayers = [
 					"HelmetLayerVanityLowerCorpse",
 					"HelmetLayerVanity2LowerCorpse",

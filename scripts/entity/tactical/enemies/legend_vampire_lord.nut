@@ -14,21 +14,9 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		}
 
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/vampire_hurt_01.wav",
-			"sounds/enemies/vampire_hurt_02.wav",
-			"sounds/enemies/vampire_hurt_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/vampire_death_01.wav",
-			"sounds/enemies/vampire_death_02.wav",
-			"sounds/enemies/vampire_death_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/vampire_idle_01.wav",
-			"sounds/enemies/vampire_idle_02.wav",
-			"sounds/enemies/vampire_idle_03.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/vampire_hurt", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/vampire_death", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/vampire_idle", 3);
 		this.getFlags().add("undead");
 		this.getFlags().add("vampire");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/vampire_agent");

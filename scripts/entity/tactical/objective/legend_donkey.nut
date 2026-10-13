@@ -12,25 +12,9 @@ this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.actor.create();
 		this.m.Name = "Caravan Donkey";
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/misc/donkey_hurt_01.wav",
-			"sounds/misc/donkey_hurt_02.wav",
-			"sounds/misc/donkey_hurt_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/misc/donkey_death_01.wav",
-			"sounds/misc/donkey_death_02.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/misc/donkey_idle_01.wav",
-			"sounds/misc/donkey_idle_02.wav",
-			"sounds/misc/donkey_idle_03.wav",
-			"sounds/misc/donkey_idle_04.wav",
-			"sounds/misc/donkey_idle_05.wav",
-			"sounds/misc/donkey_idle_06.wav",
-			"sounds/misc/donkey_idle_07.wav",
-			"sounds/misc/donkey_idle_08.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/misc/donkey_hurt", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/misc/donkey_death", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/misc/donkey_idle", 8);
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 0.35;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/donkey_agent");
 		this.m.AIAgent.setActor(this);

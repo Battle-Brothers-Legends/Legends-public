@@ -1,7 +1,7 @@
 this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendRockUnhold;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendRockUnhold.XP;
@@ -10,41 +10,11 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.DecapitateBloodAmount = 3.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/unhold_death_01.wav",
-			"sounds/enemies/unhold_death_02.wav",
-			"sounds/enemies/unhold_death_03.wav",
-			"sounds/enemies/unhold_death_04.wav",
-			"sounds/enemies/unhold_death_05.wav",
-			"sounds/enemies/unhold_death_06.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/unhold_flee_01.wav",
-			"sounds/enemies/unhold_flee_02.wav",
-			"sounds/enemies/unhold_flee_03.wav",
-			"sounds/enemies/unhold_flee_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/unhold_hurt_01.wav",
-			"sounds/enemies/unhold_hurt_02.wav",
-			"sounds/enemies/unhold_hurt_03.wav",
-			"sounds/enemies/unhold_hurt_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/unhold_idle_01.wav",
-			"sounds/enemies/unhold_idle_02.wav",
-			"sounds/enemies/unhold_idle_03.wav",
-			"sounds/enemies/unhold_idle_04.wav",
-			"sounds/enemies/unhold_idle_05.wav",
-			"sounds/enemies/unhold_idle_06.wav",
-			"sounds/enemies/unhold_idle_07.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
-			"sounds/enemies/unhold_confused_01.wav",
-			"sounds/enemies/unhold_confused_02.wav",
-			"sounds/enemies/unhold_confused_03.wav",
-			"sounds/enemies/unhold_confused_04.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/unhold_death", 6);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/unhold_hurt", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/unhold_idle", 7);
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/enemies/unhold_confused", 4);
 		this.m.SoundPitch = ::Math.rand(0.9, 1.1);
 		this.m.SoundVolumeOverall = 1.25;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/unhold_agent");
@@ -54,7 +24,7 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 			[33, "scripts/items/supplies/strange_meat_item"]
 		]);
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_rock_unhold_bones_item"],
 				[50, "scripts/items/misc/legend_rock_unhold_hide_item"],
@@ -65,22 +35,18 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function playSound( _type, _volume, _pitch = 1.0 )
-	{
-		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50)
-		{
+	function playSound(_type, _volume, _pitch = 1.0) {
+		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50) {
 			return;
 		}
 
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(1, 100) < 50;
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			this.m.IsCorpseFlipped = flip;
 			this.spawnBloodPool(_tile, 1);
 			local decal;
@@ -93,17 +59,14 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 
-			if (appearance.CorpseArmor != "")
-			{
+			if (appearance.CorpseArmor != "") {
 				decal = _tile.spawnDetail(appearance.CorpseArmor, ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
 
-			if (_fatalityType != ::Const.FatalityType.Decapitated)
-			{
-				if (!appearance.HideCorpseHead)
-				{
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
+				if (!appearance.HideCorpseHead) {
 					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
@@ -111,32 +74,26 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 					decal.setBrightness(0.9);
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
+				if (appearance.HelmetCorpse.len() != 0) {
 					decal = _tile.spawnDetail(appearance.HelmetCorpse, ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Scale = 0.9;
 					decal.setBrightness(0.9);
 				}
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [];
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					layers.push(sprite_head.getBrush().Name + "_dead");
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
+				if (appearance.HelmetCorpse.len() != 0) {
 					layers.push(appearance.HelmetCorpse);
 				}
 
 				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-75, 50), 90.0, sprite_head.getBrush().Name + "_dead_bloodpool");
 				local idx = 0;
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					decap[idx].Color = sprite_head.Color;
 					decap[idx].Saturation = sprite_head.Saturation;
 					decap[idx].Scale = 0.9;
@@ -144,26 +101,20 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 					idx = ++idx;
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
+				if (appearance.HelmetCorpse.len() != 0) {
 					decap[idx].Scale = 0.9;
 					decap[idx].setBrightness(0.9);
 					idx = ++idx;
 				}
 			}
 
-			if (_fatalityType == ::Const.FatalityType.Disemboweled)
-			{
+			if (_fatalityType == ::Const.FatalityType.Disemboweled) {
 				decal = _tile.spawnDetail("bust_unhold_guts", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 			}
@@ -186,8 +137,7 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Rock Unhold";
 		corpse.Tile = _tile;
@@ -198,20 +148,17 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendRockUnhold);
 		b.IsImmuneToDisarm = true;
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsUnholdDamageIncreaseDay2)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsUnholdDamageIncreaseDay2) {
 			b.DamageTotalMult += 0.2;
 		}
 
@@ -252,8 +199,7 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.SweepZoc);
 		::Legends.Actives.grant(this, ::Legends.Active.FlingBack);
 		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
@@ -267,8 +213,6 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	function assignRandomEquipment()
-	{
-	}
+	function assignRandomEquipment() {}
 
 });

@@ -10,37 +10,12 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.DecapitateBloodAmount = 1.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/misc/donkey_hurt_01.wav",
-			"sounds/misc/donkey_hurt_02.wav",
-			"sounds/misc/donkey_hurt_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/misc/donkey_death_01.wav",
-			"sounds/misc/donkey_death_02.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/misc/donkey_idle_01.wav",
-			"sounds/misc/donkey_idle_02.wav",
-			"sounds/misc/donkey_idle_03.wav",
-			"sounds/misc/donkey_idle_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/misc/donkey_idle_01.wav",
-			"sounds/misc/donkey_idle_02.wav",
-			"sounds/misc/donkey_idle_03.wav",
-			"sounds/misc/donkey_idle_04.wav",
-			"sounds/misc/donkey_idle_05.wav",
-			"sounds/misc/donkey_idle_06.wav",
-			"sounds/misc/donkey_idle_07.wav",
-			"sounds/misc/donkey_idle_08.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Attack] = [
-			"sounds/combat/gallop.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/werewolf_fatigue_01.wav",
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/misc/donkey_hurt", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/misc/donkey_death", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/misc/donkey_idle", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/misc/donkey_idle", 8);
+		this.m.Sound[::Const.Sound.ActorEvent.Attack] = ["sounds/combat/gallop.wav"];
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ["sounds/enemies/werewolf_fatigue_01.wav",];
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] = 0.8;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 0.7;
 		this.m.SoundPitch = ::Math.rand(95, 105) * 0.01;

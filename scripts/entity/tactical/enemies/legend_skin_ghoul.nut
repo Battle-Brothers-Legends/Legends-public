@@ -23,82 +23,12 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.BloodPoolScale = 0.7;
 		this.m.ConfidentMoraleBrush = "icon_confident_undead";
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/ghoul_hurt_01.wav",
-			"sounds/enemies/ghoul_hurt_02.wav",
-			"sounds/enemies/ghoul_hurt_03.wav",
-			"sounds/enemies/ghoul_hurt_04.wav",
-			"sounds/enemies/ghoul_hurt_05.wav",
-			"sounds/enemies/ghoul_hurt_06.wav",
-			"sounds/enemies/ghoul_hurt_07.wav",
-			"sounds/enemies/ghoul_hurt_08.wav",
-			"sounds/enemies/ghoul_hurt_09.wav",
-			"sounds/enemies/ghoul_hurt_10.wav",
-			"sounds/enemies/ghoul_hurt_11.wav",
-			"sounds/enemies/ghoul_hurt_12.wav",
-			"sounds/enemies/ghoul_hurt_13.wav",
-			"sounds/enemies/ghoul_hurt_14.wav",
-			"sounds/enemies/ghoul_hurt_15.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/ghoul_death_01.wav",
-			"sounds/enemies/ghoul_death_02.wav",
-			"sounds/enemies/ghoul_death_03.wav",
-			"sounds/enemies/ghoul_death_04.wav",
-			"sounds/enemies/ghoul_death_05.wav",
-			"sounds/enemies/ghoul_death_06.wav",
-			"sounds/enemies/ghoul_death_07.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/ghoul_flee_01.wav",
-			"sounds/enemies/ghoul_flee_02.wav",
-			"sounds/enemies/ghoul_flee_03.wav",
-			"sounds/enemies/ghoul_flee_04.wav",
-			"sounds/enemies/ghoul_flee_05.wav",
-			"sounds/enemies/ghoul_flee_06.wav",
-			"sounds/enemies/ghoul_flee_07.wav",
-			"sounds/enemies/ghoul_flee_08.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/ghoul_idle_01.wav",
-			"sounds/enemies/ghoul_idle_02.wav",
-			"sounds/enemies/ghoul_idle_03.wav",
-			"sounds/enemies/ghoul_idle_04.wav",
-			"sounds/enemies/ghoul_idle_05.wav",
-			"sounds/enemies/ghoul_idle_06.wav",
-			"sounds/enemies/ghoul_idle_07.wav",
-			"sounds/enemies/ghoul_idle_08.wav",
-			"sounds/enemies/ghoul_idle_09.wav",
-			"sounds/enemies/ghoul_idle_10.wav",
-			"sounds/enemies/ghoul_idle_11.wav",
-			"sounds/enemies/ghoul_idle_12.wav",
-			"sounds/enemies/ghoul_idle_13.wav",
-			"sounds/enemies/ghoul_idle_14.wav",
-			"sounds/enemies/ghoul_idle_15.wav",
-			"sounds/enemies/ghoul_idle_16.wav",
-			"sounds/enemies/ghoul_idle_17.wav",
-			"sounds/enemies/ghoul_idle_18.wav",
-			"sounds/enemies/ghoul_idle_19.wav",
-			"sounds/enemies/ghoul_idle_20.wav",
-			"sounds/enemies/ghoul_idle_21.wav",
-			"sounds/enemies/ghoul_idle_22.wav",
-			"sounds/enemies/ghoul_idle_23.wav",
-			"sounds/enemies/ghoul_idle_24.wav",
-			"sounds/enemies/ghoul_idle_25.wav",
-			"sounds/enemies/ghoul_idle_26.wav",
-			"sounds/enemies/ghoul_idle_27.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
-			"sounds/enemies/ghoul_grows_01.wav",
-			"sounds/enemies/ghoul_grows_02.wav",
-			"sounds/enemies/ghoul_grows_03.wav",
-			"sounds/enemies/ghoul_grows_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Other2] = [
-			"sounds/enemies/ghoul_death_fullbelly_01.wav",
-			"sounds/enemies/ghoul_death_fullbelly_02.wav",
-			"sounds/enemies/ghoul_death_fullbelly_03.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/ghoul_hurt", 15);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/ghoul_death", 7);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/ghoul_flee", 8);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/ghoul_idle", 27);
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/enemies/ghoul_grows", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Other2] = ::Legends.S.setSounds("sounds/enemies/ghoul_death_fullbelly", 3);
 		this.m.SoundPitch = 1.5;
 		local onArmorHitSounds = this.getItems().getAppearance().ImpactSound;
 		onArmorHitSounds[::Const.BodyPart.Body] = ::Const.Sound.ArmorLeatherImpact;

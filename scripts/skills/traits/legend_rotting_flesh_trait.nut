@@ -192,58 +192,13 @@ this.legend_rotting_flesh_trait <- this.inherit("scripts/skills/traits/character
 		local actor = this.getContainer().getActor();
 		actor.m.MoraleState = ::Const.MoraleState.Ignore;
 		actor.m.BloodType = ::Const.BloodType.Dark;
-		actor.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = [
-			"sounds/enemies/zombie_idle_14.wav",
-			"sounds/enemies/zombie_idle_15.wav",
-			"sounds/enemies/zombie_idle_16.wav"
-		];
-		actor.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/zombie_hurt_01.wav",
-			"sounds/enemies/zombie_hurt_02.wav",
-			"sounds/enemies/zombie_hurt_03.wav",
-			"sounds/enemies/zombie_hurt_04.wav",
-			"sounds/enemies/zombie_hurt_05.wav",
-			"sounds/enemies/zombie_hurt_06.wav",
-			"sounds/enemies/zombie_hurt_07.wav"
-		];
-		actor.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/zombie_death_01.wav",
-			"sounds/enemies/zombie_death_02.wav",
-			"sounds/enemies/zombie_death_03.wav",
-			"sounds/enemies/zombie_death_04.wav",
-			"sounds/enemies/zombie_death_05.wav",
-			"sounds/enemies/zombie_death_06.wav"
-		];
-		actor.m.Sound[::Const.Sound.ActorEvent.Fatigue] = [
-			"sounds/enemies/zombie_bite_01.wav",
-			"sounds/enemies/zombie_bite_02.wav",
-			"sounds/enemies/zombie_bite_03.wav"
-		];
-		actor.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/zombie_bite_01.wav",
-			"sounds/enemies/zombie_bite_02.wav",
-			"sounds/enemies/zombie_bite_03.wav"
-		];
-		actor.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/zombie_idle_01.wav",
-			"sounds/enemies/zombie_idle_02.wav",
-			"sounds/enemies/zombie_idle_03.wav",
-			"sounds/enemies/zombie_idle_04.wav",
-			"sounds/enemies/zombie_idle_05.wav",
-			"sounds/enemies/zombie_idle_06.wav",
-			"sounds/enemies/zombie_idle_07.wav",
-			"sounds/enemies/zombie_idle_08.wav",
-			"sounds/enemies/zombie_idle_09.wav",
-			"sounds/enemies/zombie_idle_10.wav",
-			"sounds/enemies/zombie_idle_11.wav",
-			"sounds/enemies/zombie_idle_12.wav",
-			"sounds/enemies/zombie_idle_13.wav"
-		];
-		actor.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/zombie_bite_01.wav",
-			"sounds/enemies/zombie_bite_02.wav",
-			"sounds/enemies/zombie_bite_03.wav"
-		];
+		actor.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = ::Legends.S.setSounds("sounds/enemies/zombie_idle", 3, 14);
+		actor.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/zombie_hurt", 7);
+		actor.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/zombie_death", 6);
+		actor.m.Sound[::Const.Sound.ActorEvent.Fatigue] = ::Legends.S.setSounds("sounds/enemies/zombie_idle", 13);
+		actor.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/zombie_idle", 13);
+		actor.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/zombie_idle", 13);
+		actor.m.Sound[::Const.Sound.ActorEvent.Move] = ::Legends.S.setSounds("sounds/enemies/zombie_idle", 13);
 	}
 
 	function onRemoved() {

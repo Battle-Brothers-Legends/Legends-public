@@ -8,21 +8,8 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 	function create() {
 		this.legend_alp_shadow.create();
 
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/dlc2/tentacle_hurt_01.wav",
-			"sounds/enemies/dlc2/tentacle_hurt_02.wav",
-			"sounds/enemies/dlc2/tentacle_hurt_03.wav",
-			"sounds/enemies/dlc2/tentacle_hurt_04.wav",
-			"sounds/enemies/dlc2/tentacle_hurt_05.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
-			"sounds/enemies/dlc2/krake_choke_01.wav",
-			"sounds/enemies/dlc2/krake_choke_02.wav",
-			"sounds/enemies/dlc2/krake_choke_03.wav",
-			"sounds/enemies/dlc2/krake_choke_04.wav",
-			"sounds/enemies/dlc2/krake_choke_05.wav"
-		];
-
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/dlc2/tentacle_hurt", 5);
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/enemies/dlc2/krake_choke", 5);
 		this.m.Flags.set("type", "tentacle");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/kraken_tentacle_agent");
 		this.m.AIAgent.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_alp_teleport"));

@@ -18,23 +18,24 @@
 		this.skill.setItem(_item);
 	}
 
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
 
-		ret.extend([{
-			id = 8,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.StunChance + "%[/color] chance to stun on a hit"
-		},
-		{
-			id = 9,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Can hit up to 6 targets"
-		}]);
-		
+		ret.extend([
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]" + this.m.StunChance + "%[/color] chance to stun on a hit"
+			},
+			{
+				id = 9,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Can hit up to 6 targets"
+			}
+		]);
+
 		if (this.m.IsChain) {
 			foreach (tooltip in ret) {
 				if (tooltip.id == 8) {
@@ -86,7 +87,7 @@
 		return ret;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				this.m.HitChanceBonus += 5;

@@ -1,19 +1,15 @@
-::mods_hookExactClass("entity/tactical/enemies/direwolf", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/direwolf", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendWerewolf);
 		}
 	}
 
-	o.setVariant <- function (_v, _c, _s, _hp = 1.0)
-	{
+	o.setVariant <- function (_v, _c, _s, _hp = 1.0) {
 		this.m.Items.getAppearance().Body = "bust_direwolf_0" + _v;
 		this.m.Items.getAppearance().Armor = "bust_wolf_02_armor_01";
 
@@ -31,13 +27,10 @@
 		armor.setBrush("bust_wolf_02_armor_01");
 		armor.Visible = false;
 
-		if(_hp != 1.0)
-		{
+		if (_hp != 1.0) {
 			this.m.Hitpoints = this.getHitpointsMax() * _hp;
 			this.onUpdateInjuryLayer();
-		}
-		else
-		{
+		} else {
 			this.setDirty(true);
 		}
 	}

@@ -1,31 +1,11 @@
 this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemies/legend_alp_shadow", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_alp_shadow.create();
 
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/dlc6/snake_hurt_01.wav",
-			"sounds/enemies/dlc6/snake_hurt_02.wav",
-			"sounds/enemies/dlc6/snake_hurt_03.wav",
-			"sounds/enemies/dlc6/snake_hurt_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/dlc6/snake_idle_01.wav",
-			"sounds/enemies/dlc6/snake_idle_02.wav",
-			"sounds/enemies/dlc6/snake_idle_03.wav",
-			"sounds/enemies/dlc6/snake_idle_04.wav",
-			"sounds/enemies/dlc6/snake_idle_05.wav",
-			"sounds/enemies/dlc6/snake_idle_06.wav",
-			"sounds/enemies/dlc6/snake_idle_07.wav",
-			"sounds/enemies/dlc6/snake_idle_08.wav",
-			"sounds/enemies/dlc6/snake_idle_09.wav",
-			"sounds/enemies/dlc6/snake_idle_10.wav",
-			"sounds/enemies/dlc6/snake_idle_11.wav",
-			"sounds/enemies/dlc6/snake_idle_12.wav",
-			"sounds/enemies/dlc6/snake_idle_13.wav"
-		];
-
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/dlc6/snake_hurt", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/dlc6/snake_idle", 13);
 		this.m.Flags.set("type", "serpent");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/serpent_agent");
 		this.m.AIAgent.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_alp_teleport"));
@@ -33,8 +13,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Serpent);
@@ -42,15 +21,16 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay1)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay1) {
 			b.MeleeDefense += 5;
 
-			if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
+			if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3) {
 				b.DamageDirectMult += 0.15;
+			}
 
-			if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay4)
+			if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay4) {
 				b.MeleeSkill += 10;
+			}
 		}
 
 		this.m.ActionPoints = b.ActionPoints;
@@ -87,8 +67,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_serpent_hook_skill"));
 		::Legends.Actives.grant(this, ::Legends.Active.SerpentBite);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
@@ -98,8 +77,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.applySignatureAbilities();
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.legend_alp_shadow.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
@@ -107,6 +85,4 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.getSprite("blur_1").setHorizontalFlipping(flip);
 		this.getSprite("blur_2").setHorizontalFlipping(flip);
 	}
-
 });
-

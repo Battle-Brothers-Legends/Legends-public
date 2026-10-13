@@ -2,13 +2,12 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 	m = {
 		NormalAIChance = 40,
 	},
-	function isLow()
-	{
+
+	function isLow() {
 		return getFlags().has("low");
 	}
 
-	function create()
-	{
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendBasiliskDrone;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendBasiliskDrone.XP;
@@ -30,41 +29,11 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 			"injury.sprained_ankle",
 			"injury.burnt_hands"
 		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [ //credit to wellington for all sounds
-			"sounds/enemies/Basilisk_death01.wav",
-			"sounds/enemies/Basilisk_death02.wav",
-			"sounds/enemies/Basilisk_death03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [ //i've spelt this with a capital B as thats what the files are right now. I can't seem to change the file names on git so im changing them here otherwise this whole process crashes on start when this entity is involved. We should change B to lowercase for all .wav files at a later date - Luft, 24/10/23. Fuck me.
-			"sounds/enemies/Basilisk_flee01.wav",
-			"sounds/enemies/Basilisk_flee02.wav",
-			"sounds/enemies/Basilisk_flee03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/Basilisk_hurt01.wav",
-			"sounds/enemies/Basilisk_hurt02.wav",
-			"sounds/enemies/Basilisk_hurt03.wav",
-			"sounds/enemies/Basilisk_hurt04.wav",
-			"sounds/enemies/Basilisk_hurt05.wav",
-			"sounds/enemies/Basilisk_hurt06.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/Basilisk_idle01.wav",
-			"sounds/enemies/Basilisk_idle02.wav",
-			"sounds/enemies/Basilisk_idle03.wav",
-			"sounds/enemies/Basilisk_idle04.wav",
-			"sounds/enemies/Basilisk_idle05.wav",
-			"sounds/enemies/Basilisk_idle06.wav",
-			"sounds/enemies/Basilisk_idle07.wav",
-			"sounds/enemies/Basilisk_idle08.wav",
-			"sounds/enemies/Basilisk_idle09.wav",
-			"sounds/enemies/Basilisk_idle10.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/Basilisk_fatigue01.wav",
-			"sounds/enemies/Basilisk_fatigue02.wav",
-			"sounds/enemies/Basilisk_fatigue03.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/basilisk_death", 3); //credit to wellington for all sounds
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/basilisk_flee", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/basilisk_hurt", 6);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/basilisk_idle", 10);
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ::Legends.S.setSounds("sounds/enemies/basilisk_fatigue", 3);
 
 		this.m.SoundPitch = ::Math.rand(0.9, 1.1);
 		this.m.SoundVolumeOverall = 1.25;
@@ -74,7 +43,7 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 			[66, "scripts/items/supplies/strange_meat_item"],
 		]);
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[40, "scripts/items/misc/legend_basilisk_feathers_item"],
 				[40, "scripts/items/loot/legend_basilisk_talon_item"],
@@ -83,32 +52,28 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function setupAIAgent()
-	{
-		if (::Math.rand(1, 100) <= m.NormalAIChance)
+	function setupAIAgent() {
+		if (::Math.rand(1, 100) <= m.NormalAIChance) {
 			this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_basilisk_drone_agent"); //normal
-		else
+		} else {
 			this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_basilisk_drone_aggressive_agent"); //aggressive
+		}
 
 		this.m.AIAgent.setActor(this);
 	}
 
-	function playSound( _type, _volume, _pitch = 1.0 )
-	{
-		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50)
-		{
+	function playSound(_type, _volume, _pitch = 1.0) {
+		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50) {
 			return;
 		}
 
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(1, 100) < 50;
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			this.m.IsCorpseFlipped = flip;
 			this.spawnBloodPool(_tile, 1);
 			local decal;
@@ -121,17 +86,14 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 
-			if (appearance.CorpseArmor != "")
-			{
+			if (appearance.CorpseArmor != "") {
 				decal = _tile.spawnDetail(appearance.CorpseArmor, ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
 
-			if (_fatalityType != ::Const.FatalityType.Decapitated)
-			{
-				if (!appearance.HideCorpseHead)
-				{
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
+				if (!appearance.HideCorpseHead) {
 					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
@@ -139,32 +101,26 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 					decal.setBrightness(0.9);
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
+				if (appearance.HelmetCorpse.len() != 0) {
 					decal = _tile.spawnDetail(appearance.HelmetCorpse, ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Scale = 0.9;
 					decal.setBrightness(0.9);
 				}
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [];
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					layers.push(sprite_head.getBrush().Name + "_dead");
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
+				if (appearance.HelmetCorpse.len() != 0) {
 					layers.push(appearance.HelmetCorpse);
 				}
 
 				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-75, 50), 90.0, sprite_head.getBrush().Name + "_dead_bloodpool");
 				local idx = 0;
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead) {
 					decap[idx].Color = sprite_head.Color;
 					decap[idx].Saturation = sprite_head.Saturation;
 					decap[idx].Scale = 0.9;
@@ -172,26 +128,20 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 					idx = ++idx;
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
+				if (appearance.HelmetCorpse.len() != 0) {
 					decap[idx].Scale = 0.9;
 					decap[idx].setBrightness(0.9);
 					idx = ++idx;
 				}
 			}
 
-			if (_fatalityType == ::Const.FatalityType.Disemboweled)
-			{
+			if (_fatalityType == ::Const.FatalityType.Disemboweled) {
 				decal = _tile.spawnDetail("bust_unhold_guts", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 			}
@@ -215,8 +165,7 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Basilisk Drone";
 		corpse.Tile = _tile;
@@ -227,8 +176,7 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendBasiliskDrone);
@@ -273,21 +221,18 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 
-			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBasiliskHeadhunterDay)
-			{
+			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBasiliskHeadhunterDay) {
 				b.MeleeDefense += 5;
 				b.RangedDefense += 5;
 				::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 			}
 
-			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBasiliskEscapeArtistDay)
-			{
+			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBasiliskEscapeArtistDay) {
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
 			}
 		}
 
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeDefense += 5;
 			b.RangedDefense += 5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
@@ -296,9 +241,6 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 
 	}
 
-	function assignRandomEquipment()
-	{
-	}
+	function assignRandomEquipment() {}
 
 });
-

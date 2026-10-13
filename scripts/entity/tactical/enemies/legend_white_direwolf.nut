@@ -1,7 +1,7 @@
 this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendWhiteDirewolf;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendWhiteDirewolf.XP;
@@ -9,51 +9,24 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.DecapitateSplatterOffset = this.createVec(-10, -25);
 		this.m.DecapitateBloodAmount = 1.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
+		this.m.ExcludedInjuries = [
+			"injury.fractured_hand",
+			"injury.crushed_finger",
+			"injury.fractured_elbow",
+			"injury.smashed_hand",
+			"injury.broken_arm",
+			"injury.cut_arm_sinew",
+			"injury.cut_arm",
+			"injury.split_hand",
+			"injury.pierced_hand",
+			"injury.pierced_arm_muscles",
+			"injury.burnt_hands"
+		];
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/werewolf_hurt_01.wav",
-			"sounds/enemies/werewolf_hurt_02.wav",
-			"sounds/enemies/werewolf_hurt_03.wav",
-			"sounds/enemies/werewolf_hurt_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/werewolf_death_01.wav",
-			"sounds/enemies/werewolf_death_02.wav",
-			"sounds/enemies/werewolf_death_03.wav",
-			"sounds/enemies/werewolf_death_04.wav",
-			"sounds/enemies/werewolf_death_05.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/werewolf_flee_01.wav",
-			"sounds/enemies/werewolf_flee_02.wav",
-			"sounds/enemies/werewolf_flee_03.wav",
-			"sounds/enemies/werewolf_flee_04.wav",
-			"sounds/enemies/werewolf_flee_05.wav",
-			"sounds/enemies/werewolf_flee_06.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/werewolf_idle_01.wav",
-			"sounds/enemies/werewolf_idle_02.wav",
-			"sounds/enemies/werewolf_idle_03.wav",
-			"sounds/enemies/werewolf_idle_04.wav",
-			"sounds/enemies/werewolf_idle_05.wav",
-			"sounds/enemies/werewolf_idle_06.wav",
-			"sounds/enemies/werewolf_idle_07.wav",
-			"sounds/enemies/werewolf_idle_08.wav",
-			"sounds/enemies/werewolf_idle_09.wav",
-			"sounds/enemies/werewolf_idle_10.wav",
-			"sounds/enemies/werewolf_idle_11.wav",
-			"sounds/enemies/werewolf_idle_12.wav",
-			"sounds/enemies/werewolf_idle_13.wav",
-			"sounds/enemies/werewolf_idle_14.wav",
-			"sounds/enemies/werewolf_idle_15.wav",
-			"sounds/enemies/werewolf_idle_16.wav",
-			"sounds/enemies/werewolf_idle_17.wav",
-			"sounds/enemies/werewolf_idle_18.wav",
-			"sounds/enemies/werewolf_idle_19.wav",
-			"sounds/enemies/werewolf_idle_20.wav",
-			"sounds/enemies/werewolf_idle_21.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/werewolf_hurt", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/werewolf_death", 5);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/werewolf_flee", 6);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/werewolf_idle", 21);
 		this.m.Sound[::Const.Sound.ActorEvent.Attack] = [
 			"sounds/enemies/werewolf_idle_01.wav",
 			"sounds/enemies/werewolf_idle_02.wav",
@@ -63,15 +36,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/werewolf_idle_07.wav",
 			"sounds/enemies/werewolf_idle_08.wav"
 		];
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/werewolf_fatigue_01.wav",
-			"sounds/enemies/werewolf_fatigue_02.wav",
-			"sounds/enemies/werewolf_fatigue_03.wav",
-			"sounds/enemies/werewolf_fatigue_04.wav",
-			"sounds/enemies/werewolf_fatigue_05.wav",
-			"sounds/enemies/werewolf_fatigue_06.wav",
-			"sounds/enemies/werewolf_fatigue_07.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ::Legends.S.setSounds("sounds/enemies/werewolf_fatigue", 7);
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] = 0.8;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 0.7;
 		this.m.SoundPitch = ::Math.rand(95, 105) * 0.01;
@@ -79,7 +44,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[100, "scripts/items/misc/legend_white_wolf_pelt_item"],
 				[100, "scripts/items/loot/sabertooth_item"],
@@ -93,23 +58,18 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function playAttackSound()
-	{
-		if (::Math.rand(1, 100) <= 50)
-		{
+	function playAttackSound() {
+		if (::Math.rand(1, 100) <= 50) {
 			this.playSound(::Const.Sound.ActorEvent.Attack, ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] * (::Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
 		}
 	}
 
-	function playSound( _type, _volume, _pitch = 1.0 )
-	{
+	function playSound(_type, _volume, _pitch = 1.0) {
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged())
-		{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged()) {
 			this.updateAchievement("Ulfhednar", 1, 1);
 		}
 
@@ -138,7 +98,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 				}
 			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [
-				head.getBrush().Name + "_dead"
+					head.getBrush().Name + "_dead"
 				];
 
 				if (head_frenzy.HasBrush) {
@@ -182,8 +142,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Direwolf";
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
@@ -192,8 +151,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendWhiteDirewolf);
@@ -208,13 +166,11 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		local body = this.addSprite("body");
 		body.setBrush("bust_direwolf_white_01_body");
 
-		if (::Math.rand(0, 100) < 90)
-		{
+		if (::Math.rand(0, 100) < 90) {
 			body.varySaturation(0.2);
 		}
 
-		if (::Math.rand(0, 100) < 90)
-		{
+		if (::Math.rand(0, 100) < 90) {
 			body.varyColor(0.05, 0.05, 0.05);
 		}
 
@@ -251,8 +207,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendWerewolf);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);

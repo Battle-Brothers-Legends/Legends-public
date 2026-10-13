@@ -1,5 +1,4 @@
-::mods_hookExactClass("skills/actives/disarm_skill", function(o)
-{
+::mods_hookExactClass("skills/actives/disarm_skill", function (o) {
 	o.getTooltip = function () {
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
@@ -11,16 +10,14 @@
 		return ret;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			if (_properties.IsSpecializedInCleavers) {
 				this.m.HitChanceBonus += 15;
 			}
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.DamageTotalMult = 0.0;
-			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
+			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		}
 	}
 });

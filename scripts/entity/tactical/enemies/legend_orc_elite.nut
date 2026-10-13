@@ -1,7 +1,7 @@
 this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendOrcElite;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendOrcElite.XP;
@@ -10,69 +10,12 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		this.m.DecapitateBloodAmount = 3.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/orc_death_01.wav",
-			"sounds/enemies/orc_death_02.wav",
-			"sounds/enemies/orc_death_03.wav",
-			"sounds/enemies/orc_death_04.wav",
-			"sounds/enemies/orc_death_05.wav",
-			"sounds/enemies/orc_death_06.wav",
-			"sounds/enemies/orc_death_07.wav",
-			"sounds/enemies/orc_death_08.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/orc_flee_01.wav",
-			"sounds/enemies/orc_flee_02.wav",
-			"sounds/enemies/orc_flee_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/orc_hurt_01.wav",
-			"sounds/enemies/orc_hurt_02.wav",
-			"sounds/enemies/orc_hurt_03.wav",
-			"sounds/enemies/orc_hurt_04.wav",
-			"sounds/enemies/orc_hurt_05.wav",
-			"sounds/enemies/orc_hurt_06.wav",
-			"sounds/enemies/orc_hurt_07.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/orc_idle_01.wav",
-			"sounds/enemies/orc_idle_02.wav",
-			"sounds/enemies/orc_idle_03.wav",
-			"sounds/enemies/orc_idle_04.wav",
-			"sounds/enemies/orc_idle_05.wav",
-			"sounds/enemies/orc_idle_06.wav",
-			"sounds/enemies/orc_idle_07.wav",
-			"sounds/enemies/orc_idle_08.wav",
-			"sounds/enemies/orc_idle_09.wav",
-			"sounds/enemies/orc_idle_10.wav",
-			"sounds/enemies/orc_idle_11.wav",
-			"sounds/enemies/orc_idle_12.wav",
-			"sounds/enemies/orc_idle_13.wav",
-			"sounds/enemies/orc_idle_14.wav",
-			"sounds/enemies/orc_idle_15.wav",
-			"sounds/enemies/orc_idle_16.wav",
-			"sounds/enemies/orc_idle_17.wav",
-			"sounds/enemies/orc_idle_18.wav",
-			"sounds/enemies/orc_idle_19.wav",
-			"sounds/enemies/orc_idle_20.wav",
-			"sounds/enemies/orc_idle_21.wav",
-			"sounds/enemies/orc_idle_22.wav",
-			"sounds/enemies/orc_idle_23.wav",
-			"sounds/enemies/orc_idle_24.wav",
-			"sounds/enemies/orc_idle_25.wav",
-			"sounds/enemies/orc_idle_26.wav",
-			"sounds/enemies/orc_idle_27.wav",
-			"sounds/enemies/orc_idle_28.wav",
-			"sounds/enemies/orc_idle_29.wav",
-			"sounds/enemies/orc_fatigue_01.wav",
-			"sounds/enemies/orc_fatigue_02.wav",
-			"sounds/enemies/orc_fatigue_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/orc_fatigue_01.wav",
-			"sounds/enemies/orc_fatigue_02.wav",
-			"sounds/enemies/orc_fatigue_03.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/orc_death", 8);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/orc_flee", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/orc_hurt", 7);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/orc_death", 29);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle].extend(::Legends.S.setSounds("sounds/enemies/orc_fatigue", 3));
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ::Legends.S.setSounds("sounds/enemies/orc_fatigue", 3);
 		this.m.SoundPitch = 0.9;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 1.25;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 1.0;
@@ -81,10 +24,8 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		this.m.AIAgent.setActor(this);
 	}
 
-	function playSound( _type, _volume, _pitch = 1.0 )
-	{
-		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50)
-		{
+	function playSound(_type, _volume, _pitch = 1.0) {
+		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50) {
 			return;
 		}
 
@@ -95,8 +36,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		this.legend_orc.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "An Orc Elite";
 		corpse.Tile = _tile;
@@ -107,17 +47,14 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		return corpse;
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
 		local v = 1;
 		local v2 = -6;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
-			if (!this.hasSprite(a))
-			{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
@@ -125,14 +62,12 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendOrcElite);
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.LegendsOrcHighStatIncreaseDay)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.LegendsOrcHighStatIncreaseDay) {
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.2;
 		}
@@ -165,8 +100,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		this.setAlwaysApplySpriteOffset(true);
 		local v = 1;
 		local v2 = -6;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
 			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
@@ -192,8 +126,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			this.m.Hitpoints = 1.5 * b.Hitpoints;
 			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
@@ -206,13 +139,11 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	function onFinish()
-	{
+	function onFinish() {
 		this.actor.onFinish();
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 		if (::Math.rand(1, 100) <= 15) {
 			this.getItems().equip(::Const.World.Common.pickItem([
 				[1, "weapons/greenskins/orc_cleaver"],
@@ -241,10 +172,10 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		]));
 	}
 
-	function makeMiniboss()
-	{
-		if (!this.actor.makeMiniboss())
+	function makeMiniboss() {
+		if (!this.actor.makeMiniboss()) {
 			return false;
+		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss_greenskins");
 
@@ -261,7 +192,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 			], "scripts/items/"));
 		}
 
-		if(::Legends.isLegendaryDifficulty()) {
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);

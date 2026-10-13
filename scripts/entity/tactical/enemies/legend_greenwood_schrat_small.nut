@@ -11,44 +11,11 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		this.m.DeathBloodAmount = 0.35;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/dlc2/schrat_hurt_shield_up_01.wav",
-			"sounds/enemies/dlc2/schrat_hurt_shield_up_02.wav",
-			"sounds/enemies/dlc2/schrat_hurt_shield_up_03.wav",
-			"sounds/enemies/dlc2/schrat_hurt_shield_up_04.wav",
-			"sounds/enemies/dlc2/schrat_hurt_shield_up_05.wav",
-			"sounds/enemies/dlc2/schrat_hurt_shield_up_06.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Resurrect] = [
-			"sounds/enemies/dlc2/schrat_regrowth_01.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_02.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_03.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/dlc2/sapling_death_01.wav",
-			"sounds/enemies/dlc2/sapling_death_02.wav",
-			"sounds/enemies/dlc2/sapling_death_03.wav",
-			"sounds/enemies/dlc2/sapling_death_04.wav",
-			"sounds/enemies/dlc2/sapling_death_05.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/dlc2/schrat_idle_01.wav",
-			"sounds/enemies/dlc2/schrat_idle_02.wav",
-			"sounds/enemies/dlc2/schrat_idle_03.wav",
-			"sounds/enemies/dlc2/schrat_idle_04.wav",
-			"sounds/enemies/dlc2/schrat_idle_05.wav",
-			"sounds/enemies/dlc2/schrat_idle_06.wav",
-			"sounds/enemies/dlc2/schrat_idle_07.wav",
-			"sounds/enemies/dlc2/schrat_idle_08.wav",
-			"sounds/enemies/dlc2/schrat_idle_09.wav",
-			"sounds/ambience/terrain/forest_branch_crack_00.wav",
-			"sounds/ambience/terrain/forest_branch_crack_01.wav",
-			"sounds/ambience/terrain/forest_branch_crack_02.wav",
-			"sounds/ambience/terrain/forest_branch_crack_03.wav",
-			"sounds/ambience/terrain/forest_branch_crack_04.wav",
-			"sounds/ambience/terrain/forest_branch_crack_05.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/dlc2/schrat_hurt_shield_up", 6);
+		this.m.Sound[::Const.Sound.ActorEvent.Resurrect] = ::Legends.S.setSounds("sounds/enemies/dlc2/schrat_regrowth", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/dlc2/sapling_death", 5);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/dlc2/schrat_idle", 9);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle].extend(::Legends.S.setSounds("sounds/ambience/terrain/forest_branch_crack", 6, 0));
 		this.m.Sound[::Const.Sound.ActorEvent.Move] = this.m.Sound[::Const.Sound.ActorEvent.Idle];
 		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 4.0;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Resurrect] = 4.0;

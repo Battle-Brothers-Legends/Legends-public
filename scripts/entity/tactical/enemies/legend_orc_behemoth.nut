@@ -10,51 +10,11 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/legend_orc", {
 		this.m.DecapitateBloodAmount = 3.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/orcgiant_death_01.wav",
-			"sounds/enemies/orcgiant_death_02.wav",
-			"sounds/enemies/orcgiant_death_03.wav",
-			"sounds/enemies/orcgiant_death_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/orcgiant_flee_01.wav",
-			"sounds/enemies/orcgiant_flee_02.wav",
-			"sounds/enemies/orcgiant_flee_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/orcgiant_hurt_01.wav",
-			"sounds/enemies/orcgiant_hurt_02.wav",
-			"sounds/enemies/orcgiant_hurt_03.wav",
-			"sounds/enemies/orcgiant_hurt_04.wav",
-			"sounds/enemies/orcgiant_hurt_05.wav",
-			"sounds/enemies/orcgiant_hurt_06.wav",
-			"sounds/enemies/orcgiant_hurt_07.wav",
-			"sounds/enemies/orcgiant_hurt_08.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/orcgiant_idle_01.wav",
-			"sounds/enemies/orcgiant_idle_02.wav",
-			"sounds/enemies/orcgiant_idle_03.wav",
-			"sounds/enemies/orcgiant_idle_04.wav",
-			"sounds/enemies/orcgiant_idle_05.wav",
-			"sounds/enemies/orcgiant_idle_06.wav",
-			"sounds/enemies/orcgiant_idle_07.wav",
-			"sounds/enemies/orcgiant_idle_08.wav",
-			"sounds/enemies/orcgiant_idle_09.wav",
-			"sounds/enemies/orcgiant_idle_10.wav",
-			"sounds/enemies/orcgiant_idle_11.wav",
-			"sounds/enemies/orcgiant_idle_12.wav",
-			"sounds/enemies/orcgiant_idle_13.wav",
-			"sounds/enemies/orcgiant_idle_14.wav",
-			"sounds/enemies/orcgiant_idle_15.wav",
-			"sounds/enemies/orcgiant_idle_16.wav",
-			"sounds/enemies/orcgiant_idle_17.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/orc_fatigue_01.wav",
-			"sounds/enemies/orc_fatigue_02.wav",
-			"sounds/enemies/orc_fatigue_03.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/orcgiant_death", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/orcgiant_flee", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/orcgiant_hurt", 8);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/orcgiant_idle", 17);
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ::Legends.S.setSounds("sounds/enemies/orc_fatigue", 3);
 		this.m.SoundPitch = 0.6;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 1.25;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 1.0;

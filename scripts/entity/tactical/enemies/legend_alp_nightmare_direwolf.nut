@@ -1,38 +1,11 @@
 this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enemies/legend_alp_shadow", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_alp_shadow.create();
 
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/werewolf_hurt_01.wav",
-			"sounds/enemies/werewolf_hurt_02.wav",
-			"sounds/enemies/werewolf_hurt_03.wav",
-			"sounds/enemies/werewolf_hurt_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/werewolf_idle_01.wav",
-			"sounds/enemies/werewolf_idle_02.wav",
-			"sounds/enemies/werewolf_idle_03.wav",
-			"sounds/enemies/werewolf_idle_04.wav",
-			"sounds/enemies/werewolf_idle_05.wav",
-			"sounds/enemies/werewolf_idle_06.wav",
-			"sounds/enemies/werewolf_idle_07.wav",
-			"sounds/enemies/werewolf_idle_08.wav",
-			"sounds/enemies/werewolf_idle_09.wav",
-			"sounds/enemies/werewolf_idle_10.wav",
-			"sounds/enemies/werewolf_idle_11.wav",
-			"sounds/enemies/werewolf_idle_12.wav",
-			"sounds/enemies/werewolf_idle_13.wav",
-			"sounds/enemies/werewolf_idle_14.wav",
-			"sounds/enemies/werewolf_idle_15.wav",
-			"sounds/enemies/werewolf_idle_16.wav",
-			"sounds/enemies/werewolf_idle_17.wav",
-			"sounds/enemies/werewolf_idle_18.wav",
-			"sounds/enemies/werewolf_idle_19.wav",
-			"sounds/enemies/werewolf_idle_20.wav",
-			"sounds/enemies/werewolf_idle_21.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/werewolf_hurt", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/werewolf_idle", 21);
 		this.m.Sound[::Const.Sound.ActorEvent.Attack] = [
 			"sounds/enemies/werewolf_idle_01.wav",
 			"sounds/enemies/werewolf_idle_02.wav",
@@ -42,15 +15,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 			"sounds/enemies/werewolf_idle_07.wav",
 			"sounds/enemies/werewolf_idle_08.wav"
 		];
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/werewolf_fatigue_01.wav",
-			"sounds/enemies/werewolf_fatigue_02.wav",
-			"sounds/enemies/werewolf_fatigue_03.wav",
-			"sounds/enemies/werewolf_fatigue_04.wav",
-			"sounds/enemies/werewolf_fatigue_05.wav",
-			"sounds/enemies/werewolf_fatigue_06.wav",
-			"sounds/enemies/werewolf_fatigue_07.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ::Legends.S.setSounds("sounds/enemies/werewolf_fatigue", 7);
 
 		this.m.Flags.set("type", "direwolf");
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] = 0.8;
@@ -62,14 +27,13 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		this.m.AIAgent.setActor(this);
 	}
 
-	function playAttackSound()
-	{
-		if (::Math.rand(1, 100) <= 50)
+	function playAttackSound() {
+		if (::Math.rand(1, 100) <= 50) {
 			this.playSound(::Const.Sound.ActorEvent.Attack, ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] * (::Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
+		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.FrenziedDirewolf);
@@ -78,8 +42,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		b.IsImmuneToDisarm = true;
 		b.DamageTotalMult = 1.25;
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay2)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay2) {
 			b.MeleeSkill += 5;
 			b.MeleeDefense += 5;
 		}
@@ -116,8 +79,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
@@ -127,8 +89,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		this.applySignatureAbilities();
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.legend_alp_shadow.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
@@ -137,6 +98,4 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		this.getSprite("blur_2").setHorizontalFlipping(flip);
 	}
 
-
 });
-

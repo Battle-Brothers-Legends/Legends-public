@@ -33,49 +33,10 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 			"injury.burnt_hands"
 		];
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/dlc2/giant_spider_hurt_01.wav",
-			"sounds/enemies/dlc2/giant_spider_hurt_02.wav",
-			"sounds/enemies/dlc2/giant_spider_hurt_03.wav",
-			"sounds/enemies/dlc2/giant_spider_hurt_04.wav",
-			"sounds/enemies/dlc2/giant_spider_hurt_05.wav",
-			"sounds/enemies/dlc2/giant_spider_hurt_06.wav",
-			"sounds/enemies/dlc2/giant_spider_hurt_07.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/dlc2/giant_spider_death_01.wav",
-			"sounds/enemies/dlc2/giant_spider_death_02.wav",
-			"sounds/enemies/dlc2/giant_spider_death_03.wav",
-			"sounds/enemies/dlc2/giant_spider_death_04.wav",
-			"sounds/enemies/dlc2/giant_spider_death_05.wav",
-			"sounds/enemies/dlc2/giant_spider_death_06.wav",
-			"sounds/enemies/dlc2/giant_spider_death_07.wav",
-			"sounds/enemies/dlc2/giant_spider_death_08.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/dlc2/giant_spider_flee_01.wav",
-			"sounds/enemies/dlc2/giant_spider_flee_02.wav",
-			"sounds/enemies/dlc2/giant_spider_flee_03.wav",
-			"sounds/enemies/dlc2/giant_spider_flee_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/dlc2/giant_spider_idle_01.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_02.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_03.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_04.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_05.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_06.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_07.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_08.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_09.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_10.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_11.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_12.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_13.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_14.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_15.wav",
-			"sounds/enemies/dlc2/giant_spider_idle_16.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_hurt", 7);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_death", 8);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_flee", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_idle", 16);
 		this.m.Sound[::Const.Sound.ActorEvent.Move] = this.m.Sound[::Const.Sound.ActorEvent.Idle];
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 0.5;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 1.0;

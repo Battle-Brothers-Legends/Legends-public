@@ -21,19 +21,9 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.XP = ::Const.Tactical.Actor.LegendBanshee.XP;
 		this.m.IsEmittingMovementSounds = false;
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/banshee_death_01.wav",
-			"sounds/enemies/banshee_death_02.wav",
-			"sounds/enemies/banshee_death_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/banshee_idle_01.wav",
-			"sounds/enemies/banshee_idle_02.wav",
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/banshee_hit_01.wav",
-			"sounds/enemies/banshee_hit_02.wav",
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/banshee_death", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/banshee_idle", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/banshee_hit", 2);
 		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/ghost_agent");
@@ -240,5 +230,4 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.DistortTargetD = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 	}
-
 });

@@ -21,10 +21,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.XP = ::Const.Tactical.Actor.AlpShadow.XP;
 		this.m.IsEmittingMovementSounds = false;
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/ghost_death_01.wav",
-			"sounds/enemies/ghost_death_02.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/ghost_death", 2);
 		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [];
 		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.m.Flags.add("alp");

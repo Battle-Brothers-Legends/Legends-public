@@ -22,26 +22,10 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.XP = ::Const.Tactical.Actor.LegendDemonHound.XP;
 		this.m.IsEmittingMovementSounds = true;
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/hollen_hurt_01.wav",
-			"sounds/enemies/hollen_hurt_02.wav",
-			"sounds/enemies/hollen_hurt_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/hollen_death_01.wav",
-			"sounds/enemies/hollen_death_02.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/hollen_idle_01.wav",
-			"sounds/enemies/hollen_idle_02.wav",
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/hollen_charge_01.wav",
-			"sounds/enemies/hollen_charge_02.wav",
-			"sounds/enemies/hollen_charge_03.wav",
-			"sounds/enemies/hollen_charge_04.wav",
-			"sounds/enemies/hollen_charge_05.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/hollen_hurt", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/hollen_death", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/hollen_idle", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ::Legends.S.setSounds("sounds/enemies/hollen_charge", 5);
 		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
 		this.getFlags().add("skeleton");

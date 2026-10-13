@@ -4,8 +4,8 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		LastBodyPartHit = ::Const.BodyPart.Body,
 		Info = null
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.BanditOutrider;
 		this.m.XP = ::Const.Tactical.Actor.BanditOutrider.XP;
 		this.human.create();
@@ -23,35 +23,16 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 				"helmet_damage"
 			]
 		];
-		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
-			"sounds/misc/donkey_hurt_01.wav",
-			"sounds/misc/donkey_hurt_02.wav",
-			"sounds/misc/donkey_hurt_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Other2] = [
-			"sounds/misc/donkey_death_01.wav",
-			"sounds/misc/donkey_death_02.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/misc/donkey_idle_01.wav",
-			"sounds/misc/donkey_idle_02.wav",
-			"sounds/misc/donkey_idle_03.wav",
-			"sounds/misc/donkey_idle_04.wav",
-			"sounds/misc/donkey_idle_05.wav",
-			"sounds/misc/donkey_idle_06.wav",
-			"sounds/misc/donkey_idle_07.wav",
-			"sounds/misc/donkey_idle_08.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/misc/donkey_hurt", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Other2] = ::Legends.S.setSounds("sounds/misc/donkey_death", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/misc/donkey_idle", 8);
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 0.6;
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/werewolf_fatigue_01.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ["sounds/enemies/werewolf_fatigue_01.wav"];
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bandit_outrider_agent"); //todo: change the ai agent
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.human.onInit();
 
 		local b = this.m.BaseProperties;
@@ -66,7 +47,6 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("head").setBrush(::Const.Faces.AllHuman[::Math.rand(0, ::Const.Faces.AllHuman.len() - 1)]);
 		this.getSprite("head").setHorizontalFlipping(true);
 		this.getSprite("helmet").setHorizontalFlipping(true);
-
 
 		local playerOffset = this.createVec(7, 12);
 		this.setAlwaysApplySpriteOffset(true);
@@ -115,8 +95,7 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseCharge);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorsePirouette);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
@@ -125,21 +104,18 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function onAfterInit()
-	{
+	function onAfterInit() {
 		this.getSprite("status_rooted").Scale = 0.57;
 		this.setSpriteOffset("status_rooted", this.createVec(-2, -3));
 		this.actor.onAfterInit();
 	}
 
-	function onDamageReceived( _attacker, _skill, _hitInfo )
-	{
+	function onDamageReceived(_attacker, _skill, _hitInfo) {
 		this.m.LastBodyPartHit = _hitInfo.BodyPart;
 		this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		this.m.Info = {
 			Tile = this.getTile(),
 			Faction = this.getFaction(),
@@ -152,38 +128,27 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 			Morale = ::Math.max(::Const.MoraleState.Breaking, this.getMoraleState())
 		};
 
-		if (this.m.LastBodyPartHit == ::Const.BodyPart.Body)
-		{
+		if (this.m.LastBodyPartHit == ::Const.BodyPart.Body) {
 			this.spawnDeadWolf(_killer, _skill, _tile, _fatalityType);
-		}
-		else
-		{
+		} else {
 			this.goblin.onDeath(_killer, _skill, _tile, _fatalityType);
 		}
 	}
 
-	function onAfterDeath( _tile )
-	{
-		if (::Tactical.Entities.getHostilesNum() == 0)
-		{
+	function onAfterDeath(_tile) {
+		if (::Tactical.Entities.getHostilesNum() == 0) {
 			return;
 		}
 
-		if (!this.m.Info.Tile.IsEmpty)
-		{
+		if (!this.m.Info.Tile.IsEmpty) {
 			local changed = false;
 
-			for( local i = 0; i != 6; i = ++i )
-			{
-				if (!this.m.Info.Tile.hasNextTile(i))
-				{
-				}
-				else
-				{
+			for (local i = 0; i != 6; i = ++i) {
+				if (!this.m.Info.Tile.hasNextTile(i)) {
+				} else {
 					local tile = this.m.Info.Tile.getNextTile(i);
 
-					if (tile.IsEmpty && ::Math.abs(tile.Level - this.m.Info.Tile.Level) <= 1)
-					{
+					if (tile.IsEmpty && ::Math.abs(tile.Level - this.m.Info.Tile.Level) <= 1) {
 						this.m.Info.Tile = tile;
 						changed = true;
 						break;
@@ -191,26 +156,20 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 				}
 			}
 
-			if (!changed)
-			{
+			if (!changed) {
 				return;
 			}
 		}
 
-		if (this.m.LastBodyPartHit == ::Const.BodyPart.Body)
-		{
+		if (this.m.LastBodyPartHit == ::Const.BodyPart.Body) {
 			this.spawnGoblin(this.m.Info);
-		}
-		else
-		{
+		} else {
 			this.spawnWolf(this.m.Info);
 		}
 	}
 
-	function spawnDeadWolf( _killer, _skill, _tile, _fatalityType )
-	{
-		if (_tile == null)
-		{
+	function spawnDeadWolf(_killer, _skill, _tile, _fatalityType) {
+		if (_tile == null) {
 			return;
 		}
 
@@ -224,28 +183,21 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		decal.setBrightness(0.9);
 		decal.Scale = 0.95;
 
-		if (_fatalityType != ::Const.FatalityType.Decapitated)
-		{
+		if (_fatalityType != ::Const.FatalityType.Decapitated) {
 			decal = _tile.spawnDetail(this.getSprite("wolf_head").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.setBrightness(0.9);
 			decal.Scale = 0.95;
-		}
-		else if (_fatalityType == ::Const.FatalityType.Decapitated)
-		{
+		} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 			local layers = [
 				this.getSprite("wolf_head").getBrush().Name + "_dead"
 			];
 			local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), 0.0, "bust_wolf_head_bloodpool");
 			decap[0].setBrightness(0.9);
 			decap[0].Scale = 0.95;
-		}
-		else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-		{
+		} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 			decal = _tile.spawnDetail(this.getSprite("wolf").getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Scale = 0.95;
-		}
-		else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-		{
+		} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 			decal = _tile.spawnDetail(this.getSprite("wolf").getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Scale = 0.95;
 		}
@@ -259,26 +211,22 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		::Tactical.Entities.addCorpse(_tile);
 	}
 
-	function spawnWolf( _info )
-	{
+	function spawnWolf(_info) {
 		::Sound.play(this.m.Sound[::Const.Sound.ActorEvent.DamageReceived][::Math.rand(0, this.m.Sound[::Const.Sound.ActorEvent.DamageReceived].len() - 1)], ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Other1], _info.Tile.Pos, 1.0);
 		local entity = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_horse", _info.Tile.Coords.X, _info.Tile.Coords.Y);
 
-		if (entity != null)
-		{
+		if (entity != null) {
 			entity.setVariant(this.m.Variant);
 			entity.setFaction(_info.Faction);
 			entity.setMoraleState(_info.Morale);
 		}
 	}
 
-	function spawnGoblin( _info )
-	{
+	function spawnGoblin(_info) {
 		::Sound.play(this.m.Sound[::Const.Sound.ActorEvent.Other1][::Math.rand(0, this.m.Sound[::Const.Sound.ActorEvent.Other1].len() - 1)], ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Other1], _info.Tile.Pos, 1.0);
 		local entity = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_thug", _info.Tile.Coords.X, _info.Tile.Coords.Y);
 
-		if (entity != null)
-		{
+		if (entity != null) {
 			// local newBody = entity.getSprite("body");
 			// newBody.setBrush(_info.Body);
 			// newBody.Color = _info.Color;
@@ -296,14 +244,10 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function playSound( _type, _volume, _pitch = 1.0 )
-	{
-		if (_type == ::Const.Sound.ActorEvent.DamageReceived && this.m.LastBodyPartHit == ::Const.BodyPart.Body)
-		{
+	function playSound(_type, _volume, _pitch = 1.0) {
+		if (_type == ::Const.Sound.ActorEvent.DamageReceived && this.m.LastBodyPartHit == ::Const.BodyPart.Body) {
 			_type = ::Const.Sound.ActorEvent.Other1;
-		}
-		else if (_type == ::Const.Sound.ActorEvent.Death && this.m.LastBodyPartHit == ::Const.BodyPart.Body)
-		{
+		} else if (_type == ::Const.Sound.ActorEvent.Death && this.m.LastBodyPartHit == ::Const.BodyPart.Body) {
 			_type = ::Const.Sound.ActorEvent.Other2;
 			this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 0.7;
 		}
@@ -312,8 +256,7 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 1.0;
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 		this.getItems().equip(::Const.World.Common.pickItem([
 			[1, "weapons/legend_militia_glaive"],
 			[1, "weapons/militia_spear"],
@@ -324,8 +267,7 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Armor.Standard.padded_surcoat]
 		]));
 
-		if (::Math.rand(1, 100) <= 75)
-		{
+		if (::Math.rand(1, 100) <= 75) {
 			this.getItems().equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.open_leather_cap],
@@ -337,4 +279,3 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

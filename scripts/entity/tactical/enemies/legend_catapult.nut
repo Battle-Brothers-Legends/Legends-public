@@ -1,35 +1,27 @@
 this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendCatapult;
 		this.m.BloodType = ::Const.BloodType.Wood;
 		this.m.XP = ::Const.Tactical.Actor.LegendCatapult.XP;
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/catapult_hurt_01.wav",
-			"sounds/enemies/catapult_hurt_02.wav",
-			"sounds/enemies/catapult_hurt_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/catapult_death_02.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/catapult_hurt", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ["sounds/enemies/catapult_death_02.wav"];
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_catapult_agent");
 		this.m.AIAgent.setActor(this);
-
 		this.m.OnDeathLootTable.extend([
 			[100, "scripts/items/supplies/ammo_item"],
 		]);
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[100, "scripts/items/trade/quality_wood_item"],
 			]);
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendCatapult);
@@ -55,22 +47,17 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 		b.IsSpecializedInCrossbows = true;
 		b.IsSpecializedInSlings = true;
 
-
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40) {
 			b.RangedDefense += 5;
 		}
 
 		::Legends.Actives.grant(this, ::Legends.Active.LegendCatapultBoulder);
 
-
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 20)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 20) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
@@ -79,13 +66,9 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-
-
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			this.m.IsCorpseFlipped = flip;
 			local decal;
 			local appearance = this.getItems().getAppearance();
@@ -96,19 +79,13 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 
-
-			if (_fatalityType == ::Const.FatalityType.Disemboweled)
-			{
+			if (_fatalityType == ::Const.FatalityType.Disemboweled) {
 				decal = _tile.spawnDetail("bust_unhold_guts", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 			}
@@ -131,8 +108,7 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A catapult";
 		corpse.Tile = _tile;
@@ -142,4 +118,3 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 		return corpse;
 	}
 });
-

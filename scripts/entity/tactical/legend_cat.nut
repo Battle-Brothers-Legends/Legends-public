@@ -3,30 +3,24 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 		Item = null,
 		Name = "Cat"
 	},
-	function setItem( _i )
-	{
-		if (typeof _i == "instance")
-		{
+
+	function setItem(_i) {
+		if (typeof _i == "instance") {
 			this.m.Item = _i;
-		}
-		else
-		{
+		} else {
 			this.m.Item = this.WeakTableRef(_i);
 		}
 	}
 
-	function setName( _n )
-	{
+	function setName(_n) {
 		this.m.Name = _n;
 	}
 
-	function getName()
-	{
+	function getName() {
 		return this.m.Name;
 	}
 
-	function create()
-	{
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendCat;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendCat.XP;
@@ -35,55 +29,25 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.DecapitateSplatterOffset = this.createVec(-4, -25);
 		this.m.DecapitateBloodAmount = 0.5;
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/cat_hurt_01.wav",
-			"sounds/enemies/cat_hurt_02.wav",
-			"sounds/enemies/cat_hurt_03.wav",
-			"sounds/enemies/cat_hurt_04.wav",
-			"sounds/enemies/cat_hurt_05.wav",
-			"sounds/enemies/cat_hurt_06.wav",
-			"sounds/enemies/cat_hurt_07.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/cat_death_01.wav",
-			"sounds/enemies/cat_death_02.wav",
-			"sounds/enemies/cat_death_03.wav",
-			"sounds/enemies/cat_death_04.wav",
-			"sounds/enemies/cat_death_05.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/cat_flee_01.wav",
-			"sounds/enemies/cat_flee_02.wav",
-			"sounds/enemies/cat_flee_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/cat_idle_01.wav",
-			"sounds/enemies/cat_idle_02.wav",
-			"sounds/enemies/cat_idle_03.wav",
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
-			"sounds/enemies/cat_attack_01.wav",
-			"sounds/enemies/cat_attack_02.wav",
-			"sounds/enemies/cat_attack_03.wav",
-			"sounds/enemies/cat_attack_04.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/cat_hurt", 7);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/cat_death", 5);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/cat_flee", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/cat_idle", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = ::Legends.S.setSounds("sounds/enemies/cat_attack", 4);
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_cat_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
-	function setVariant( _v )
-	{
+	function setVariant(_v) {
 		this.m.Items.getAppearance().Body = "bust_cat_01_body_0" + _v;
 		this.getSprite("body").setBrush("bust_cat_01_body_0" + _v);
 		this.getSprite("head").setBrush("bust_cat_01_head_0" + _v);
 		this.setDirty(true);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local appearance = this.getItems().getAppearance();
 			local decal;
 			this.m.IsCorpseFlipped = flip;
@@ -91,21 +55,17 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 			decal.setBrightness(0.9);
 			decal.Scale = 0.95;
 
-			if (appearance.CorpseArmor != "")
-			{
+			if (appearance.CorpseArmor != "") {
 				decal = _tile.spawnDetail(appearance.CorpseArmor, ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.setBrightness(0.9);
 				decal.Scale = 0.95;
 			}
 
-			if (_fatalityType != ::Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
 				decal = _tile.spawnDetail(this.getSprite("head").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.setBrightness(0.9);
 				decal.Scale = 0.95;
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [
 					this.getSprite("head").getBrush().Name + "_dead"
 				];
@@ -115,12 +75,9 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 				decap[0].setHorizontalFlipping(true);
 			}
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				_tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				_tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 			}
 
@@ -128,8 +85,9 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 			this.spawnFlies(_tile);
 		}
 
-		if (this.m.Item != null && !this.m.Item.isNull())
+		if (this.m.Item != null && !this.m.Item.isNull()) {
 			this.m.Item = null;
+		}
 
 		local deathLoot = this.getItems().getDroppableLoot(_killer);
 		local tileLoot = this.getLootForTile(_killer, deathLoot);
@@ -146,8 +104,7 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = this.getName();
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
@@ -156,8 +113,7 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.actor.onFactionChanged();
 		local flip = !this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
@@ -166,39 +122,31 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("injury").setHorizontalFlipping(flip);
 		this.getSprite("closed_eyes").setHorizontalFlipping(flip);
 
-		if (!::Tactical.State.isScenarioMode())
-		{
+		if (!::Tactical.State.isScenarioMode()) {
 			local f = ::World.FactionManager.getFaction(this.getFaction());
 
-			if (f != null)
-			{
+			if (f != null) {
 				this.getSprite("socket").setBrush(f.getTacticalBase());
 			}
-		}
-		else
-		{
+		} else {
 			this.getSprite("socket").setBrush(::Const.FactionBase[this.getFaction()]);
 		}
 	}
 
-	function onActorKilled( _actor, _tile, _skill )
-	{
+	function onActorKilled(_actor, _tile, _skill) {
 		this.actor.onActorKilled(_actor, _tile, _skill);
 
-		if (this.getFaction() == ::Const.Faction.Player || this.getFaction() == ::Const.Faction.PlayerAnimals)
-		{
+		if (this.getFaction() == ::Const.Faction.Player || this.getFaction() == ::Const.Faction.PlayerAnimals) {
 			local XPgroup = _actor.getXPValue();
 			local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
-			foreach( bro in brothers )
-			{
+			foreach (bro in brothers) {
 				bro.addXP(::Math.max(1, ::Math.floor(XPgroup / brothers.len())));
 			}
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendCat);

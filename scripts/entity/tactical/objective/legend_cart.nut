@@ -1,7 +1,7 @@
 this.legend_cart <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.IsActingEachTurn = false;
 		this.m.IsNonCombatant = true;
 		this.m.IsShakingOnHit = false;
@@ -12,48 +12,27 @@ this.legend_cart <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.actor.create();
 		this.m.Name = "Caravan Donkey";
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/misc/donkey_hurt_01.wav",
-			"sounds/misc/donkey_hurt_02.wav",
-			"sounds/misc/donkey_hurt_03.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/misc/donkey_death_01.wav",
-			"sounds/misc/donkey_death_02.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/misc/donkey_idle_01.wav",
-			"sounds/misc/donkey_idle_02.wav",
-			"sounds/misc/donkey_idle_03.wav",
-			"sounds/misc/donkey_idle_04.wav",
-			"sounds/misc/donkey_idle_05.wav",
-			"sounds/misc/donkey_idle_06.wav",
-			"sounds/misc/donkey_idle_07.wav",
-			"sounds/misc/donkey_idle_08.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/misc/donkey_hurt", 3);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/misc/donkey_death", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/misc/donkey_idle", 8);
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 0.35;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/donkey_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local decal;
 			local skin = this.getSprite("body");
 			decal = _tile.spawnDetail("donkey_tactical_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = skin.Color;
 			decal.Saturation = skin.Saturation;
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				_tile.spawnDetail("donkey_tactical_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				_tile.spawnDetail("donkey_tactical_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 			}
 
@@ -71,35 +50,29 @@ this.legend_cart <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 
-		if (this.m.WorldTroop != null && ("Party" in this.m.WorldTroop) && this.m.WorldTroop.Party != null)
-		{
+		if (this.m.WorldTroop != null && ("Party" in this.m.WorldTroop) && this.m.WorldTroop.Party != null) {
 			local numDonkeys = 0;
 			local troops = this.m.WorldTroop.Party.getTroops();
 
-			foreach( t in troops )
-			{
-				if (t.Script == "scripts/entity/tactical/objective/donkey")
-				{
+			foreach (t in troops) {
+				if (t.Script == "scripts/entity/tactical/objective/donkey") {
 					numDonkeys = ++numDonkeys;
 				}
 			}
 		}
 	}
 
-	function onDamageReceived( _attacker, _skill, _hitInfo )
-	{
+	function onDamageReceived(_attacker, _skill, _hitInfo) {
 		_hitInfo.BodyPart = ::Const.BodyPart.Body;
 		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
-	function setFlipped( _f )
-	{
+	function setFlipped(_f) {
 		this.getSprite("body").setHorizontalFlipping(_f);
 		this.getSprite("injury").setHorizontalFlipping(_f);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Donkey);
@@ -127,8 +100,7 @@ this.legend_cart <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.update();
 	}
 
-	function onPlacedOnMap()
-	{
+	function onPlacedOnMap() {
 		this.actor.onPlacedOnMap();
 		local directionPriority = [
 			::Const.Direction.NW,
@@ -142,20 +114,13 @@ this.legend_cart <- this.inherit("scripts/entity/tactical/actor", {
 		local tile;
 		local dir = -1;
 
-		for( local i = 0; i < 6; i = ++i )
-		{
-			if (!myTile.hasNextTile(directionPriority[i]))
-			{
-			}
-			else
-			{
+		for (local i = 0; i < 6; i = ++i) {
+			if (!myTile.hasNextTile(directionPriority[i])) {
+			} else {
 				local nextTile = myTile.getNextTile(directionPriority[i]);
 
-				if (!nextTile.IsEmpty || ::Math.abs(nextTile.Level - myTile.Level) > 1)
-				{
-				}
-				else
-				{
+				if (!nextTile.IsEmpty || ::Math.abs(nextTile.Level - myTile.Level) > 1) {
+				} else {
 					tile = nextTile;
 					dir = i;
 					break;
@@ -163,17 +128,13 @@ this.legend_cart <- this.inherit("scripts/entity/tactical/actor", {
 			}
 		}
 
-		if (tile != null)
-		{
+		if (tile != null) {
 			local cart = ::Tactical.spawnEntity("scripts/entity/tactical/objects/cart", tile.Coords);
 
-			if (directionPriority[dir] == ::Const.Direction.NE)
-			{
+			if (directionPriority[dir] == ::Const.Direction.NE) {
 				cart.setFlipped(true);
 				this.setFlipped(true);
-			}
-			else if (directionPriority[dir] == ::Const.Direction.SE)
-			{
+			} else if (directionPriority[dir] == ::Const.Direction.SE) {
 				cart.setFlipped(true);
 			}
 		}

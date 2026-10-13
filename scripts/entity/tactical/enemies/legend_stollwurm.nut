@@ -52,37 +52,10 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.DecapitateBloodAmount = 2.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/lindwurm_hurt_01.wav",
-			"sounds/enemies/lindwurm_hurt_02.wav",
-			"sounds/enemies/lindwurm_hurt_03.wav",
-			"sounds/enemies/lindwurm_hurt_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/lindwurm_death_01.wav",
-			"sounds/enemies/lindwurm_death_02.wav",
-			"sounds/enemies/lindwurm_death_03.wav",
-			"sounds/enemies/lindwurm_death_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/lindwurm_flee_01.wav",
-			"sounds/enemies/lindwurm_flee_02.wav",
-			"sounds/enemies/lindwurm_flee_03.wav",
-			"sounds/enemies/lindwurm_flee_04.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/lindwurm_idle_01.wav",
-			"sounds/enemies/lindwurm_idle_02.wav",
-			"sounds/enemies/lindwurm_idle_03.wav",
-			"sounds/enemies/lindwurm_idle_04.wav",
-			"sounds/enemies/lindwurm_idle_05.wav",
-			"sounds/enemies/lindwurm_idle_06.wav",
-			"sounds/enemies/lindwurm_idle_07.wav",
-			"sounds/enemies/lindwurm_idle_08.wav",
-			"sounds/enemies/lindwurm_idle_09.wav",
-			"sounds/enemies/lindwurm_idle_10.wav",
-			"sounds/enemies/lindwurm_idle_11.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/lindwurm_hurt", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/lindwurm_death", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/lindwurm_flee", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/lindwurm_idle", 11);
 		this.m.Sound[::Const.Sound.ActorEvent.Move] = this.m.Sound[::Const.Sound.ActorEvent.Idle];
 		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 1.5;
 		this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 1.5;

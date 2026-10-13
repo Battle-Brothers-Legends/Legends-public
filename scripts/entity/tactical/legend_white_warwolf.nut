@@ -3,30 +3,24 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		Item = null,
 		Name = "White Warwolf"
 	},
-	function setItem( _i )
-	{
-		if (typeof _i == "instance")
-		{
+
+	function setItem(_i) {
+		if (typeof _i == "instance") {
 			this.m.Item = _i;
-		}
-		else
-		{
+		} else {
 			this.m.Item = this.WeakTableRef(_i);
 		}
 	}
 
-	function setName( _n )
-	{
+	function setName(_n) {
 		this.m.Name = _n;
 	}
 
-	function getName()
-	{
+	function getName() {
 		return this.m.Name;
 	}
 
-	function create()
-	{
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendWhiteWarwolf;
 		this.m.XP = ::Const.Tactical.Actor.LegendWhiteWarwolf.XP;
 		this.m.BloodType = ::Const.BloodType.Red;
@@ -34,26 +28,23 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(-4, -25);
 		this.m.DecapitateBloodAmount = 0.5;
+		this.m.ExcludedInjuries = [
+			"injury.fractured_hand",
+			"injury.crushed_finger",
+			"injury.fractured_elbow",
+			"injury.smashed_hand",
+			"injury.broken_arm",
+			"injury.cut_arm_sinew",
+			"injury.cut_arm",
+			"injury.split_hand",
+			"injury.pierced_hand",
+			"injury.pierced_arm_muscles",
+			"injury.burnt_hands"
+		];
 		this.actor.create();
-		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
-			"sounds/enemies/wolf_death_00.wav",
-			"sounds/enemies/wolf_death_01.wav",
-			"sounds/enemies/wolf_death_02.wav",
-			"sounds/enemies/wolf_death_03.wav",
-			"sounds/enemies/wolf_death_04.wav",
-			"sounds/enemies/wolf_death_05.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/wolf_flee_00.wav",
-			"sounds/enemies/wolf_flee_01.wav",
-			"sounds/enemies/wolf_flee_02.wav"
-		];
-		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/wolf_hurt_00.wav",
-			"sounds/enemies/wolf_hurt_01.wav",
-			"sounds/enemies/wolf_hurt_02.wav",
-			"sounds/enemies/wolf_hurt_03.wav"
-		];
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/wolf_death", 6, 0);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/wolf_flee", 3, 0);
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/wolf_hurt", 4, 0);
 		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/wolf_idle_00.wav",
 			"sounds/enemies/wolf_idle_01.wav",
@@ -71,10 +62,8 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		if (_tile != null)
-		{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		if (_tile != null) {
 			local flip = ::Math.rand(0, 100) < 50;
 			local appearance = this.getItems().getAppearance();
 			local decal;
@@ -83,35 +72,27 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 			decal.setBrightness(0.9);
 			decal.Scale = 0.95;
 
-			if (appearance.CorpseArmor != "")
-			{
+			if (appearance.CorpseArmor != "") {
 				decal = _tile.spawnDetail(appearance.CorpseArmor, ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.setBrightness(0.9);
 				decal.Scale = 0.95;
 			}
 
-			if (_fatalityType != ::Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
 				decal = _tile.spawnDetail(this.getSprite("head").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.setBrightness(0.9);
 				decal.Scale = 0.95;
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [
 					this.getSprite("head").getBrush().Name + "_dead"
 				];
 				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), 0.0, "bust_wolf_head_bloodpool");
 				decap[0].setBrightness(0.9);
 				decap[0].Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
@@ -125,18 +106,13 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 			::Tactical.Entities.addCorpse(_tile);
 		}
 
-		if (this.m.Item != null && !this.m.Item.isNull())
-		{
+		if (this.m.Item != null && !this.m.Item.isNull()) {
 			this.m.Item.setEntity(null);
 
-			if (this.m.Item.getContainer() != null)
-			{
-				if (this.m.Item.getCurrentSlotType() == ::Const.ItemSlot.Bag)
-				{
+			if (this.m.Item.getContainer() != null) {
+				if (this.m.Item.getCurrentSlotType() == ::Const.ItemSlot.Bag) {
 					this.m.Item.getContainer().removeFromBag(this.m.Item.get());
-				}
-				else
-				{
+				} else {
 					this.m.Item.getContainer().unequip(this.m.Item.get());
 				}
 			}
@@ -147,8 +123,7 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function onFactionChanged()
-	{
+	function onFactionChanged() {
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
@@ -156,50 +131,42 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("head").setHorizontalFlipping(flip);
 		this.getSprite("injury").setHorizontalFlipping(flip);
 
-		if (!::Tactical.State.isScenarioMode())
-		{
+		if (!::Tactical.State.isScenarioMode()) {
 			local f = ::World.FactionManager.getFaction(this.getFaction());
 
-			if (f != null)
-			{
+			if (f != null) {
 				this.getSprite("socket").setBrush(f.getTacticalBase());
 			}
-		}
-		else
-		{
+		} else {
 			this.getSprite("socket").setBrush(::Const.FactionBase[this.getFaction()]);
 		}
 	}
 
-	function onActorKilled( _actor, _tile, _skill )
-	{
+	function onActorKilled(_actor, _tile, _skill) {
 		this.actor.onActorKilled(_actor, _tile, _skill);
 
-		if (this.getFaction() == ::Const.Faction.Player || this.getFaction() == ::Const.Faction.PlayerAnimals)
-		{
+		if (this.getFaction() == ::Const.Faction.Player || this.getFaction() == ::Const.Faction.PlayerAnimals) {
 			local XPgroup = _actor.getXPValue();
 			local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
-			foreach( bro in brothers )
-			{
+			foreach (bro in brothers) {
 				bro.addXP(::Math.max(1, ::Math.floor(XPgroup / brothers.len())));
 			}
 		}
 	}
 
-	function setVariant(_v, _c, _s, _hp = 1.0)
-	{
+	function setVariant(_v, _c, _s, _hp = 1.0) {
 		this.m.Items.getAppearance().Body = "bust_direwolf_white_tame_0" + _v + "_body";
 		this.m.Items.getAppearance().Armor = "bust_wolf_02_armor_01";
 
 		local body = getSprite("body");
 		local head = getSprite("head");
 
-		if(_hp != 1.0) { //goblin riders still spawn regular ones
+		if (_hp != 1.0) {
+			//goblin riders still spawn regular ones
 			body.setBrush("bust_direwolf_white_01_body");
 			head.setBrush("bust_direwolf_white_01_head");
-		}
-		else {
+		} else {
 			body.setBrush("bust_direwolf_white_tame_0" + _v + "_body");
 			head.setBrush("bust_direwolf_white_tame_0" + _v + "_head");
 		}
@@ -213,22 +180,18 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		armor.setBrush("bust_wolf_02_armor_01");
 		armor.Visible = false;
 
-		if(_hp != 1.0)
-		{
+		if (_hp != 1.0) {
 			local c = this.m.CurrentProperties;
 			this.m.Hitpoints = this.getHitpointsMax() * _hp;
 			c.Armor[::Const.BodyPart.Body] = c.Armor[::Const.BodyPart.Body] * _hp;
 			c.Armor[::Const.BodyPart.Head] = c.Armor[::Const.BodyPart.Head] * _hp;
 			this.onUpdateInjuryLayer();
-		}
-		else
-		{
+		} else {
 			this.setDirty(true);
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendWhiteWarwolf);
@@ -278,4 +241,3 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

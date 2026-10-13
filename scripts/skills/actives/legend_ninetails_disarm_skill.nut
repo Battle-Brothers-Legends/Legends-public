@@ -81,7 +81,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 			}
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.DamageTotalMult = 0.0;
-			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
+			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		}
 	}
 

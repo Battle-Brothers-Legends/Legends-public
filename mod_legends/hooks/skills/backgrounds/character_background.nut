@@ -1,5 +1,4 @@
-::mods_hookExactClass("skills/backgrounds/character_background", function(o)
-{
+::mods_hookExactClass("skills/backgrounds/character_background", function (o) {
 	o.m.Names = [];
 	o.m.Name <- "";
 	o.m.BackgroundType <- ::Const.BackgroundType.None;
@@ -18,7 +17,8 @@
 		Magic = 1,
 		MagicChance = 0
 	};
-	o.m.PerkTreeCustomMins <- { // overwritten if needed
+	o.m.PerkTreeCustomMins <- {
+		// overwritten if needed
 		Weapon = 0,
 		Defense = 0,
 		Traits = 0,
@@ -29,7 +29,8 @@
 		Magic = 0,
 		MagicChance = 0
 	};
-	o.m.PerkTreeDynamicBase <- { // this is a base perk tree so even if you don't add custom or dynamic perk tree it will default to this and build an average bro
+	o.m.PerkTreeDynamicBase <- {
+		// this is a base perk tree so even if you don't add custom or dynamic perk tree it will default to this and build an average bro
 		Weapon = [
 			::Const.Perks.SwordTree,
 			::Const.Perks.SpearTree,
@@ -73,17 +74,16 @@
 	}
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.convertToBackgroundType();
 	}
 
-	o.convertToBackgroundType <- function ()
-	{
-		function addToBackgroundType(_type, _constType){
-			if (!_type) return
-			this.m.BackgroundType = this.m.BackgroundType == ::Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType;
+	o.convertToBackgroundType <- function () {
+		function addToBackgroundType(_type, _constType) {
+			if (!_type) {
+				return this.m.BackgroundType = this.m.BackgroundType == ::Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType;
+			}
 		}
 		this.addToBackgroundType(this.m.IsScenarioOnly, ::Const.BackgroundType.Scenario);
 		this.addToBackgroundType(this.m.IsUntalented, ::Const.BackgroundType.Untalented);
@@ -93,15 +93,12 @@
 		this.addToBackgroundType(this.m.IsLowborn, ::Const.BackgroundType.Lowborn);
 	}
 
-	o.isBackgroundType <- function ( _type )
-	{
+	o.isBackgroundType <- function (_type) {
 		return (this.m.BackgroundType & _type) != 0;
 	}
 
-	o.addBackgroundType <- function ( _type )
-	{
-		if (!this.isBackgroundType(_type))
-		{
+	o.addBackgroundType <- function (_type) {
+		if (!this.isBackgroundType(_type)) {
 			this.m.BackgroundType = this.m.BackgroundType | _type;
 		}
 		// else
@@ -110,14 +107,10 @@
 		// }
 	}
 
-	o.removeBackgroundType <- function ( _type )
-	{
-		if (this.isBackgroundType(_type))
-		{
+	o.removeBackgroundType <- function (_type) {
+		if (this.isBackgroundType(_type)) {
 			this.m.BackgroundType -= _type;
-		}
-		else
-		{
+		} else {
 			this.logError(_type + " is not contained in " + this.getID());
 		}
 	}
@@ -147,72 +140,63 @@
 		return isLowborn() || this.isBackgroundType(::Const.BackgroundType.Lowborn);
 	}
 
-	o.getIconColored <- function ()
-	{
-		if(this.isBackgroundType(::Const.BackgroundType.ConvertedCultist)) {
+	o.getIconColored <- function () {
+		if (this.isBackgroundType(::Const.BackgroundType.ConvertedCultist)) {
 			return "ui/backgrounds/background_34.png";
 		}
 		return this.m.Icon;
 	}
 
-	o.isHidden = function ()
-	{
+	o.isHidden = function () {
 		return this.skill.isHidden() || this.isBackgroundType(::Const.BackgroundType.Scenario);
 	}
 
-	o.getName = function ()
-	{
-		if(this.isBackgroundType(::Const.BackgroundType.ConvertedCultist)) {
+	o.getName = function () {
+		if (this.isBackgroundType(::Const.BackgroundType.ConvertedCultist)) {
 			return "Background: Cultist " + this.m.Name;
 		}
 		return "Background: " + this.m.Name;
 	}
 
-	o.getPerkTreeGroupDescription <- function ( _p, _prefix = "")
-	{
-		if( _p.len() == 0) {
+	o.getPerkTreeGroupDescription <- function (_p, _prefix = "") {
+		if (_p.len() == 0) {
 			return "";
 		}
 		local i = 0;
 		local text = _prefix + " " + _p[i].Descriptions[::Math.rand(0, _p[i].Descriptions.len() - 1)];
-		if (i == _p.len() - 1)
-		{
+		if (i == _p.len() - 1) {
 			return text + ".\n";
 		}
 
 		i = 1;
-		if (i == _p.len() - 1)
-		{
+		if (i == _p.len() - 1) {
 			text = text + " and " + _p[i].Descriptions[::Math.rand(0, _p[i].Descriptions.len() - 1)];
 			return text + ".\n";
 		}
 
 		text = text + ", ";
-		for (i; i < _p.len(); i++)
-		{
+		for (i; i < _p.len(); i++) {
 			text = text + _p[i].Descriptions[::Math.rand(0, _p[i].Descriptions.len() - 1)];
-			if (i <  _p.len() - 2)
-			{
+			if (i < _p.len() - 2) {
 				text = text + ", ";
-			}
-			else if (i <  _p.len() - 1)
-			{
+			} else if (i < _p.len() - 1) {
 				text = text + " and ";
 			}
 		}
 		return text + ".\n";
 	}
 
-	o.getPerkBackgroundDescription <- function ( _tree )
-	{
+	o.getPerkBackgroundDescription <- function (_tree) {
 		local text = "";
-		if (_tree == null) // donkeys don't have tree
+		if (_tree == null) {
+			// donkeys don't have tree
 			return text;
-		text += this.getPerkTreeGroupDescription(_tree.Weapon,  "Has an aptitude for");
-		text += this.getPerkTreeGroupDescription(_tree.Defense,  "Likes wearing");
-		text += this.getPerkTreeGroupDescription(_tree.Enemy,  "Prefers fighting");
-		text += this.getPerkTreeGroupDescription(_tree.Class,  "Is skilled in") ;
-		text += this.getPerkTreeGroupDescription(_tree.Traits,  "");
+		}
+		text += this.getPerkTreeGroupDescription(_tree.Weapon, "Has an aptitude for");
+		text += this.getPerkTreeGroupDescription(_tree.Defense, "Likes wearing");
+		text += this.getPerkTreeGroupDescription(_tree.Enemy, "Prefers fighting");
+		text += this.getPerkTreeGroupDescription(_tree.Class, "Is skilled in");
+		text += this.getPerkTreeGroupDescription(_tree.Traits, "");
 		return text;
 	}
 
@@ -225,7 +209,6 @@
 			text = text + this.m.BackgroundDescription + "\n";
 			text = text + "\n" + this.getPerkBackgroundDescription(this.m.PerkTreeDynamic) + "\n";
 		}
-
 		local mtext = "";
 		local modifiers = this.getContainer().getActor().getCurrentProperties().Modifiers;
 		foreach (k, v in modifiers)
@@ -234,12 +217,10 @@
 			{
 				continue;
 			}
-
 			if (v == 0)
 			{
 				continue;
 			}
-
 			switch (k)
 			{
 				case "Ammo":
@@ -259,7 +240,6 @@
 		{
 			text += "\n" + mtext;
 		}
-
 		local terrains = modifiers.Terrain;
 		local val = 0.0;
 		local ttext = "";
@@ -311,7 +291,6 @@
 		if (val > 0) {
 			ttext += "\nOases +" + val +"%";
 		}
-
 		if (ttext != "")
 		{
 		 	text += "\nTerrain Movement Modifiers:" + ttext;
@@ -507,8 +486,7 @@
 		return tooltip;
 	}
 
-	o.getGenericTooltip <- function ()
-	{
+	o.getGenericTooltip <- function () {
 		local tooltip = [
 			{
 				id = 1,
@@ -517,8 +495,7 @@
 			}
 		];
 
-		if (::Legends.Mod.ModSettings.getSetting("ShowCharacterBackgroundType").getValue())
-		{
+		if (::Legends.Mod.ModSettings.getSetting("ShowCharacterBackgroundType").getValue()) {
 			tooltip.push({
 				id = 2,
 				type = "description",
@@ -531,9 +508,8 @@
 		return tooltip;
 	}
 
-	o.getTooltip <- function ()
-	{
-		local ret =  [
+	o.getTooltip <- function () {
+		local ret = [
 			{
 				id = 1,
 				type = "title",
@@ -545,8 +521,7 @@
 				text = this.getDescription()
 			}
 		];
-		if (this.getContainer() != null && this.getContainer().getActor().getLevel() >= 12)
-		{
+		if (this.getContainer() != null && this.getContainer().getActor().getLevel() >= 12) {
 			ret.push({
 				id = 10,
 				type = "text",
@@ -554,18 +529,20 @@
 				text = "Gain a perk point every [color=%positive%]" + this.getContainer().getActor().getVeteranPerks() + "[/color] Levels"
 			});
 		}
-		if (this.getContainer() != null) ret.extend(this.getAttributesTooltip());
+		if (this.getContainer() != null) {
+			ret.extend(this.getAttributesTooltip());
+		}
 		return ret;
 	}
 
-	o.getAttributesTooltip <- function() {
+	o.getAttributesTooltip <- function () {
 		local bro = this.getContainer().getActor();
 
 		if (bro.getLevel() >= 12) {
 			return [];
 		}
 
-		local getStat = function(_attribute, _addDistance = true) {
+		local getStat = function (_attribute, _addDistance = true) {
 			local text = ::String.replace(::Legends.S.getStatPotential(bro, _attribute), "-", " to ");
 
 			if (!_addDistance) {
@@ -610,189 +587,155 @@
 		];
 	}
 
-	o.getPerkTreeDescription <- function ()
-	{
+	o.getPerkTreeDescription <- function () {
 		local text = "";
-		foreach (i, group in this.m.PerkTree)
-		{
+		foreach (i, group in this.m.PerkTree) {
 			text += "\nTier " + (i + 1) + ": ";
-			foreach (p in group)
-			{
+			foreach (p in group) {
 				text += p.Name + ", ";
 			}
 		}
 		return text;
 	}
 
-	o.getPerkTree <- function ()
-	{
-		if (this.m.PerkTree != null)
-		{
+	o.getPerkTree <- function () {
+		if (this.m.PerkTree != null) {
 			return this.m.PerkTree;
 		}
 
 		local pT = ::Const.Perks.PerksTreeTemplate;
-		if (pT == null)
-		{
+		if (pT == null) {
 			return [];
 		}
 		return pT.Tree;
 	}
 
 	// Input can be a Perk Id or a PerkDef
-	o.getPerk <- function ( _perk )
-	{
+	o.getPerk <- function (_perk) {
 		local id;
 		local perkDef;
-		if (typeof _perk == "string")
-		{
+		if (typeof _perk == "string") {
 			id = _perk;
 			local basePerkDefObject = ::Const.Perks.findById(_perk);
 			perkDef = ::Legends.Perk[basePerkDefObject.Const];
-		}
-		else
-		{
+		} else {
 			id = ::Const.Perks.PerkDefObjects[_perk].ID;
 			perkDef = _perk;
 		}
 
-		if (!(id in this.m.PerkTreeMap))
-		{
+		if (!(id in this.m.PerkTreeMap)) {
 			return null;
 		}
 
 		return this.m.PerkTreeMap[id];
 	}
 
-    o.addPerk <- function ( _perk, _preferredRow = 0, _isRefundable = true )
-    {
-        local perkDefObject = clone ::Const.Perks.PerkDefObjects[_perk];
+	o.addPerk <- function (_perk, _preferredRow = 0, _isRefundable = true) {
+		local perkDefObject = clone ::Const.Perks.PerkDefObjects[_perk];
 
-        // Don't add duplicates
-        if (this.m.PerkTreeMap == null || perkDefObject.ID in this.m.PerkTreeMap)
-        {
-            return false;
-        }
+		// Don't add duplicates
+		if (this.m.PerkTreeMap == null || perkDefObject.ID in this.m.PerkTreeMap) {
+			return false;
+		}
 
-        // Attempt to find a valid row
-        local finalRow = _preferredRow;
-        local foundRow = false;
+		// Attempt to find a valid row
+		local finalRow = _preferredRow;
+		local foundRow = false;
 
-        for (local i = 0; i <= 6; i++)
-        {
-            local tryRow = (_preferredRow + i) % 7;
+		for (local i = 0; i <= 6; i++) {
+			local tryRow = (_preferredRow + i) % 7;
 
-            // Ensure row exists
-            while (this.getPerkTree().len() <= tryRow)
-            {
-                this.getPerkTree().push([]);
-            }
+			// Ensure row exists
+			while (this.getPerkTree().len() <= tryRow) {
+				this.getPerkTree().push([]);
+			}
 
-            if (this.getPerkTree()[tryRow].len() < 13)
-            {
-                finalRow = tryRow;
-                foundRow = true;
-                break;
-            }
-        }
+			if (this.getPerkTree()[tryRow].len() < 13) {
+				finalRow = tryRow;
+				foundRow = true;
+				break;
+			}
+		}
 
-        if (!foundRow)
-        {
-            // All rows are full, fallback to preferredRow
-            finalRow = _preferredRow;
-        }
+		if (!foundRow) {
+			// All rows are full, fallback to preferredRow
+			finalRow = _preferredRow;
+		}
 
-        perkDefObject.Row <- finalRow;
-        perkDefObject.Unlocks <- finalRow;
-        perkDefObject.IsRefundable <- _isRefundable;
+		perkDefObject.Row <- finalRow;
+		perkDefObject.Unlocks <- finalRow;
+		perkDefObject.IsRefundable <- _isRefundable;
 
-        // Extend perk tree if not enough rows exist
-        while (this.getPerkTree().len() <= finalRow)
-        {
-            this.getPerkTree().push([]);
-        }
-        while (this.m.CustomPerkTree.len() <= finalRow)
-        {
-            this.m.CustomPerkTree.push([]);
-        }
+		// Extend perk tree if not enough rows exist
+		while (this.getPerkTree().len() <= finalRow) {
+			this.getPerkTree().push([]);
+		}
+		while (this.m.CustomPerkTree.len() <= finalRow) {
+			this.m.CustomPerkTree.push([]);
+		}
 
-        this.getPerkTree()[finalRow].push(perkDefObject);
-        this.m.CustomPerkTree[finalRow].push(_perk);
-        this.m.PerkTreeMap[perkDefObject.ID] <- perkDefObject;
+		this.getPerkTree()[finalRow].push(perkDefObject);
+		this.m.CustomPerkTree[finalRow].push(_perk);
+		this.m.PerkTreeMap[perkDefObject.ID] <- perkDefObject;
 
-        return true;
-    }
+		return true;
+	}
 
 	o.addPerkGroup <- function (_Tree) {
-		foreach(index, arrAdd in _Tree)
-		{
-			foreach (perkAdd in arrAdd)
-			{
+		foreach (index, arrAdd in _Tree) {
+			foreach (perkAdd in arrAdd) {
 				this.addPerk(perkAdd, index);
 			}
 		}
 	}
 
-	o.removePerk <- function ( _perk )
-	{
+	o.removePerk <- function (_perk) {
 		local perkDefObject = ::Const.Perks.PerkDefObjects[_perk];
-		if (!(perkDefObject.ID in this.m.PerkTreeMap))
-		{
+		if (!(perkDefObject.ID in this.m.PerkTreeMap)) {
 			return false;
 		}
 
 		local row = this.m.PerkTreeMap[perkDefObject.ID].Row;
 
 		local perkTree = this.getPerkTree();
-		foreach (i, perk in perkTree[row])
-		{
-			if (perk.ID == perkDefObject.ID)
-			{
+		foreach (i, perk in perkTree[row]) {
+			if (perk.ID == perkDefObject.ID) {
 				perkTree[row].remove(i);
 				break;
 			}
 		}
 
-		foreach (i, perk in this.m.CustomPerkTree[row])
-		{
-			if (perk == _perk)
-			{
+		foreach (i, perk in this.m.CustomPerkTree[row]) {
+			if (perk == _perk) {
 				this.m.CustomPerkTree[row].remove(i);
 				break;
 			}
 		}
 
 		delete this.m.PerkTreeMap[perkDefObject.ID];
-
 		return true;
 	}
 
-	o.hasPerkGroup <- function ( _group )
-	{
-		foreach (row in _group.Tree)
-		{
-			foreach (perk in row)
-			{
-				if (!this.hasPerk(perk)) return false;
+	o.hasPerkGroup <- function (_group) {
+		foreach (row in _group.Tree) {
+			foreach (perk in row) {
+				if (!this.hasPerk(perk)) {
+					return false;
+				}
 			}
 		}
-
 		return true;
 	}
 
-	o.removePerkGroup <- function ( _group )
-	{
-		foreach (_, row in _group.Tree)
-		{
-			foreach (perk in row)
-			{
+	o.removePerkGroup <- function (_group) {
+		foreach (_, row in _group.Tree) {
+			foreach (perk in row) {
 				this.removePerk(perk);
 			}
 		}
 	}
 
-	o.hasPerk <- function ( _perk )
-	{
+	o.hasPerk <- function (_perk) {
 		return ::Const.Perks.PerkDefObjects[_perk].ID in this.m.PerkTreeMap;
 	}
 
@@ -804,8 +747,7 @@
 	 * 	- CompleteGroupsIDs: Table whose keys are perk group categories; values are arrays containing IDs of complete perk groups
 	 * 	- RemainingPerkDefs: Array of perkDefs (numbers representing indeces in ::Const.Perks.PerkDefObjects) that do not belong to any complete perk group
 	 */
-	o.getPerkGroups <- function ()
-	{
+	o.getPerkGroups <- function () {
 		local tmp = {};
 		local nonStrayPerks = {};
 		local possibleStrayPerks = [];
@@ -814,20 +756,16 @@
 			RemainingPerkDefs = [] // Array of perkDefs that do not belong to any complete perk group
 		}
 
-		foreach (perk in this.m.PerkTreeMap)
-		{
+		foreach (perk in this.m.PerkTreeMap) {
 			// 1. Find out which perk groups are possible
 			// 2. Check if each perk group is fully represented
 			// 3. List out all fully represented perk groups, and the remaining number of ungrouped perks
-			foreach (entry in perk.PerkGroups)
-			{
-				if (entry.IsForEnemies)
-				{
+			foreach (entry in perk.PerkGroups) {
+				if (entry.IsForEnemies) {
 					continue;
 				}
-				
-				if (!(entry.ID in tmp))
-				{
+
+				if (!(entry.ID in tmp)) {
 					tmp[entry.ID] <- {
 						Category = entry.Category,
 						PerkDefs = {}
@@ -838,32 +776,23 @@
 			}
 		}
 
-		foreach (id, entry in tmp)
-		{
-			if (::Legends.Perks.isPerkGroupFullyRepresented(id, entry.PerkDefs))
-			{
+		foreach (id, entry in tmp) {
+			if (::Legends.Perks.isPerkGroupFullyRepresented(id, entry.PerkDefs)) {
 				ret.CompleteGroupsIDs[entry.Category].push(id);
-				foreach (key, _ in entry.PerkDefs)
-				{
-					if (!(key in nonStrayPerks))
-					{
+				foreach (key, _ in entry.PerkDefs) {
+					if (!(key in nonStrayPerks)) {
 						nonStrayPerks[key] <- true;
 					}
 				}
-			}
-			else
-			{
-				foreach (key, _ in entry.PerkDefs)
-				{
+			} else {
+				foreach (key, _ in entry.PerkDefs) {
 					possibleStrayPerks.push(key);
 				}
 			}
 		}
 
-		foreach (perkDef in possibleStrayPerks)
-		{
-			if (!(perkDef in nonStrayPerks))
-			{
+		foreach (perkDef in possibleStrayPerks) {
+			if (!(perkDef in nonStrayPerks)) {
 				ret.RemainingPerkDefs.push(perkDef);
 			}
 		}
@@ -876,16 +805,13 @@
 	 *
 	 * @param arr An array of tables to hold the tooltip data, as seen in tooltip_events.nut
 	 */
-	o.extendKnownPerksTooltip <- function(arr)
-	{
+	o.extendKnownPerksTooltip <- function (arr) {
 		local data = this.getPerkGroups();
 		local last = arr[arr.len() - 1];
 		local iter = "id" in last ? last.id : 3;
-		foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder)
-		{
+		foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder) {
 			iter++;
-			if (data.CompleteGroupsIDs[category].len() > 0)
-			{
+			if (data.CompleteGroupsIDs[category].len() > 0) {
 				arr.push({
 					id = iter,
 					type = "text",
@@ -895,15 +821,14 @@
 
 			local counter = 0;
 
-			foreach (_, group in data.CompleteGroupsIDs[category])
-			{
+			foreach (_, group in data.CompleteGroupsIDs[category]) {
 				counter++;
 				arr.push({
 					id = iter,
 					type = "textDualColumn",
 					listCount = counter,
 					listLength = data.CompleteGroupsIDs[category].len(),
-					icon = "Icon" in ::Const.Perks[group] ? ::Const.Perks[group].Icon : "ui/perks/legend_vala_days.png",
+					icon = "Icon" in ::Const.Perks[group] ? ::Const.Perks[group].Icon: "ui/perks/legend_vala_days.png",
 					text = ::Const.Perks[group].Name
 				});
 			}
@@ -934,17 +859,17 @@
 		local id = typeof _profession == "string" ? _profession : ::Const.Professions.ProfessionDefObjects[_profession].ID;
 
 		if (id in this.m.ProfessionTreeMap) {
-        	return this.m.ProfessionTreeMap[id];
-    	}
-    	return null;
+			return this.m.ProfessionTreeMap[id];
+		}
+		return null;
 	}
 
 	o.addProfession <- function (_profession, _preferredRow = 0) {
 		local professionDefObject = clone ::Const.Professions.ProfessionDefObjects[_profession];
 
 		if (this.m.ProfessionTreeMap == null) {
-     	   this.buildProfessionTree();
-    	}
+			this.buildProfessionTree();
+		}
 
 		// Don't add duplicates
 		if (professionDefObject.ID in this.m.ProfessionTreeMap) {
@@ -970,7 +895,7 @@
 		}
 
 		professionDefObject.Row <- finalRow;
-    	professionDefObject.Unlocks <- finalRow;
+		professionDefObject.Unlocks <- finalRow;
 
 		this.m.ProfessionTree[finalRow].push(professionDefObject);
 		this.m.CustomProfessionTree[finalRow].push(_profession);
@@ -979,7 +904,7 @@
 		return true;
 	}
 
-	o.addProfessionTree <- function ( _treeDef ) {
+	o.addProfessionTree <- function (_treeDef) {
 		if (this.m.CustomProfessionTree == null) {
 			local baseTree = [];
 			foreach (row in ::Const.Professions.DefaultProfessionTree) {
@@ -997,7 +922,7 @@
 				this.addProfession(professionDef, rowIndex);
 			}
 		}
-    }
+	}
 
 	o.addProfessionGroup <- function (_trees) {
 		foreach (tree in _trees) {
@@ -1036,23 +961,23 @@
 	}
 
 	o.buildProfessionTree <- function () {
-        if (this.m.ProfessionTree != null) return;
+		if (this.m.ProfessionTree != null) {
+			return;
+		}
 
-        if (this.m.CustomProfessionTree == null) {
-            this.m.ProfessionTree = ::Const.Professions.ProfessionsTreeTemplate.Tree;
-            this.m.ProfessionTreeMap = ::Const.Professions.ProfessionsTreeTemplate.Map;
-            this.m.CustomProfessionTree = ::Const.Professions.getCustomProfessionTree(this.m.ProfessionTree);
-        } else {
-            local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
-            this.m.ProfessionTree = pT.Tree;
-            this.m.ProfessionTreeMap = pT.Map;
-        }
-    }
+		if (this.m.CustomProfessionTree == null) {
+			this.m.ProfessionTree = ::Const.Professions.ProfessionsTreeTemplate.Tree;
+			this.m.ProfessionTreeMap = ::Const.Professions.ProfessionsTreeTemplate.Map;
+			this.m.CustomProfessionTree = ::Const.Professions.getCustomProfessionTree(this.m.ProfessionTree);
+		} else {
+			local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
+			this.m.ProfessionTree = pT.Tree;
+			this.m.ProfessionTreeMap = pT.Map;
+		}
+	}
 
-	o.buildDescription = function( _isFinal = false )
-	{
-		if (this.isBackgroundType(::Const.BackgroundType.Scenario))
-		{
+	o.buildDescription = function (_isFinal = false) {
+		if (this.isBackgroundType(::Const.BackgroundType.Scenario)) {
 			return;
 		}
 
@@ -1060,14 +985,10 @@
 		local citystates = [];
 		local northern = [];
 
-		for( local i = 0; i < villages.len(); i = ++i )
-		{
-			if (villages[i].isSouthern())
-			{
+		for (local i = 0; i < villages.len(); i = ++i) {
+			if (villages[i].isSouthern()) {
 				citystates.push(villages[i]);
-			}
-			else
-			{
+			} else {
 				northern.push(villages[i]);
 			}
 		}
@@ -1118,8 +1039,7 @@
 		];
 		this.onPrepareVariables(vars);
 
-		if (!_isFinal)
-		{
+		if (!_isFinal) {
 			this.m.RawDescription = this.buildTextFromTemplate(this.onBuildDescription(), vars);
 		}
 
@@ -1141,12 +1061,11 @@
 		this.m.Description = this.buildTextFromTemplate(this.m.RawDescription, vars);
 	}
 
-	o.buildAttributes = function (_tag = null, _attrs = null)
-	{
+	o.buildAttributes = function (_tag = null, _attrs = null) {
 		// helper function to sum all keys in the table, that ensures [min, max], regardless the input
 		local sum = function (_a, _b) {
 			local ret = {};
-			foreach(k, v in _a) {
+			foreach (k, v in _a) {
 				local aMin = ::Math.min(v[0], v[1]);
 				local aMax = ::Math.max(v[0], v[1]);
 				if (k in _b) {
@@ -1155,7 +1074,8 @@
 						aMin + ::Math.min(bv[0], bv[1]),
 						aMax + ::Math.max(bv[0], bv[1])
 					];
-				} else { // key doesn't exist in _b, so just use what's in _a
+				} else {
+					// key doesn't exist in _b, so just use what's in _a
 					ret[k] <- [aMin, aMax];
 				}
 			}
@@ -1171,28 +1091,32 @@
 		}
 
 		a = sum(a, this.onChangeAttributes());
-		if (_attrs != null)
+		if (_attrs != null) {
 			a = sum(a, _attrs);
+		}
 
 		this.getContainer().getActor().m.Hiring.AttributeLimits <- clone a;
 
 		local b = this.getContainer().getActor().getBaseProperties();
 		b.ActionPoints = 9;
-		foreach(k, v in a) { // set avg of 2 rolls to `b`
+		foreach (k, v in a) {
+			// set avg of 2 rolls to `b`
 			b[k] = ::Math.round((::Math.rand(v[0], v[1]) + ::Math.rand(v[0], v[1])) / 2);
 		}
 
 		this.getContainer().getActor().m.CurrentProperties = clone b;
 		this.getContainer().getActor().setHitpoints(b.Hitpoints);
 
-		local calc = function(_a, _b, _field) {
+		local calc = function (_a, _b, _field) {
 			local a = _a[_field];
 			local b = _b[_field];
-			if (a[1] == a[0])
+			if (a[1] == a[0]) {
 				return 50;
+			}
 			local weight = ::Math.floor(::Math.abs(b - a[0]) * 100.0 / ::Math.abs(a[1] - a[0]));
-			if (weight == 0)
+			if (weight == 0) {
 				return 50;
+			}
 			return weight;
 		}
 
@@ -1209,8 +1133,7 @@
 		return weighted;
 	}
 
-	o.rebuildPerkTree <- function ( _tree )
-	{
+	o.rebuildPerkTree <- function (_tree) {
 		this.m.CustomPerkTree = _tree;
 		this.m.CustomPerkTree = ::Const.Perks.MergeDynamicPerkTree(_tree, this.m.PerkTreeDynamic);
 		local pT = ::Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
@@ -1218,39 +1141,36 @@
 		this.m.PerkTreeMap = pT.Map;
 	}
 
-	o.rebuildProfessionTree <- function ( _tree )
-    {
-        this.m.CustomProfessionTree = _tree;
-        local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
-    	this.m.ProfessionTree = pT.Tree;
-    	this.m.ProfessionTreeMap = pT.Map;
-    }
+	o.rebuildProfessionTree <- function (_tree) {
+		this.m.CustomProfessionTree = _tree;
+		local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
+		this.m.ProfessionTree = pT.Tree;
+		this.m.ProfessionTreeMap = pT.Map;
+	}
 
-	o.getPerkTreeDynamicMins <- function ()
-	{
+	o.getPerkTreeDynamicMins <- function () {
 		local mins = this.m.PerkTreeDynamicMins;
-		if (this.isBackgroundType(::Const.BackgroundType.Educated))
+		if (this.isBackgroundType(::Const.BackgroundType.Educated)) {
 			mins.ProfessionChance += 0.09;
-		if (this.isBackgroundType(::Const.BackgroundType.Lowborn))
+		}
+		if (this.isBackgroundType(::Const.BackgroundType.Lowborn)) {
 			mins.ClassChance += 0.09;
+		}
 		return mins;
 	}
 
-	o.buildPerkTree <- function ()
-	{
+	o.buildPerkTree <- function () {
 		local a = clone ::Legends.Backgrounds.EmptyAttr;
 
-		if (this.m.PerkTree != null)
-		{
+		if (this.m.PerkTree != null) {
 			return a;
 		}
 
-		if (this.m.CustomPerkTree == null)
-		{
+		if (this.m.CustomPerkTree == null) {
 			local tree = this.m.PerkTreeDynamic == null ? this.m.PerkTreeDynamicBase : this.m.PerkTreeDynamic;
 			local mins = this.getPerkTreeDynamicMins();
 
-			local result  = ::Const.Perks.GetDynamicPerkTree(mins, tree, false);
+			local result = ::Const.Perks.GetDynamicPerkTree(mins, tree, false);
 			this.m.CustomPerkTree = result.Tree;
 			a = result.Attributes;
 		}
@@ -1259,8 +1179,7 @@
 		this.m.PerkTree = pT.Tree;
 		this.m.PerkTreeMap = pT.Map;
 
-		if (this.m.PerkTreeDynamic != null)
-		{
+		if (this.m.PerkTreeDynamic != null) {
 			this.rebuildPerkTree(this.m.CustomPerkTree);
 		}
 
@@ -1271,8 +1190,7 @@
 		// THE COMMENT ABOVE IS PROBABLY WRONG. Scenario doesn't seem to be null here on deserialize. But some weird
 		// shenanigans are still happening, so I will test some more. -- Midas
 		local origin = ::World.Assets.getOrigin();
-		if (origin != null && this.getContainer() != null && !this.getContainer().getActor().getFlags().get("ScenarioPerkSet"))
-		{
+		if (origin != null && this.getContainer() != null && !this.getContainer().getActor().getFlags().get("ScenarioPerkSet")) {
 			this.getContainer().getActor().getFlags().set("ScenarioPerkSet", true);
 			origin.onBuildPerkTree(this);
 		}
@@ -1312,15 +1230,12 @@
 		}
 	}
 
-	o.setAppearance = function(_tag = null)
-	{
-		if (this.m.HairColors == null)
-		{
+	o.setAppearance = function (_tag = null) {
+		if (this.m.HairColors == null) {
 			return;
 		}
 
-		if (_tag == "zombie")
-		{
+		if (_tag == "zombie") {
 			local actor = this.getContainer().getActor();
 			local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
 
@@ -1342,22 +1257,18 @@
 			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.Zombie[::Math.rand(0, ::Const.Hair.Zombie.len() - 1)]);
 			hair.varyColor(0.02, 0.02, 0.02);
 
-			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance)
-			{
+			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance) {
 				local beard = actor.getSprite("beard");
 				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.Zombie[::Math.rand(0, ::Const.Beards.Zombie.len() - 1)]);
 				beard.Color = hair.Color;
 
-				if (this.doesBrushExist(beard.getBrush().Name + "_top"))
-				{
+				if (this.doesBrushExist(beard.getBrush().Name + "_top")) {
 					local sprite = actor.getSprite("beard_top");
 					sprite.setBrush(beard.getBrush().Name + "_top");
 					sprite.Color = actor.getSprite("hair").Color;
 				}
 			}
-		}
-		else if (_tag == "skeleton")
-		{
+		} else if (_tag == "skeleton") {
 			local actor = this.getContainer().getActor();
 			local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
 
@@ -1377,27 +1288,22 @@
 			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.ZombieOnly[::Math.rand(0, ::Const.Hair.ZombieOnly.len() - 1)]);
 			hair.varyColor(0.02, 0.02, 0.02);
 
-			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance)
-			{
+			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance) {
 				local beard = actor.getSprite("beard");
 				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.ZombieOnly[::Math.rand(0, ::Const.Beards.ZombieOnly.len() - 1)]);
 				beard.Color = hair.Color;
 
-				if (this.doesBrushExist(beard.getBrush().Name + "_top"))
-				{
+				if (this.doesBrushExist(beard.getBrush().Name + "_top")) {
 					local sprite = actor.getSprite("beard_top");
 					sprite.setBrush(beard.getBrush().Name + "_top");
 					sprite.Color = actor.getSprite("hair").Color;
 				}
 			}
-		}
-		else
-		{
+		} else {
 			local actor = this.getContainer().getActor();
 			local hairColor = this.m.HairColors[::Math.rand(0, this.m.HairColors.len() - 1)];
 
-			if (this.m.Faces != null)
-			{
+			if (this.m.Faces != null) {
 				local sprite = actor.getSprite("head");
 				sprite.setBrush(this.m.Faces[::Math.rand(0, this.m.Faces.len() - 1)]);
 				sprite.Color = this.createColor("#fbffff");
@@ -1408,11 +1314,10 @@
 				body.Saturation = sprite.Saturation;
 			}
 
-			if (this.m.Hairs != null && ::Math.rand(0, this.m.Hairs.len()) != this.m.Hairs.len())
-			{
+			if (this.m.Hairs != null && ::Math.rand(0, this.m.Hairs.len()) != this.m.Hairs.len()) {
 				local sprite = actor.getSprite("hair");
 				local hair = this.m.Hairs[::Math.rand(0, this.m.Hairs.len() - 1)];
-				if(hair != "") {
+				if (hair != "") {
 					sprite.setBrush("hair_" + hairColor + "_" + hair);
 
 					if (hairColor != "grey") {
@@ -1423,29 +1328,25 @@
 				}
 			}
 
-			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance)
-			{
+			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance) {
 				local beard = actor.getSprite("beard");
 				beard.setBrush("beard_" + hairColor + "_" + this.m.Beards[::Math.rand(0, this.m.Beards.len() - 1)]);
 				beard.Color = actor.getSprite("hair").Color;
 
-				if (this.doesBrushExist(beard.getBrush().Name + "_top"))
-				{
+				if (this.doesBrushExist(beard.getBrush().Name + "_top")) {
 					local sprite = actor.getSprite("beard_top");
 					sprite.setBrush(beard.getBrush().Name + "_top");
 					sprite.Color = actor.getSprite("hair").Color;
 				}
 			}
 
-			if (this.m.Bodies != null)
-			{
+			if (this.m.Bodies != null) {
 				local body = this.m.Bodies[::Math.rand(0, this.m.Bodies.len() - 1)];
 				actor.getSprite("body").setBrush(body);
 				actor.getSprite("injury_body").setBrush(body + "_injured");
 			}
 
-			if (this.m.Ethnicity == 1 && hairColor != "grey")
-			{
+			if (this.m.Ethnicity == 1 && hairColor != "grey") {
 				local hair = actor.getSprite("hair");
 				hair.Saturation = 0.8;
 				hair.setBrightness(0.4);
@@ -1469,14 +1370,12 @@
 			local roster = ::World.getPlayerRoster().getAll();
 			local levels = 0;
 			local count = 0;
-
 			foreach( _, bro in roster )
 			{
 				local brolevel = bro.getLevel();
 				levels = levels + brolevel;
 				count = count + 1;
 			}
-
 			local avgLevel = ::Math.floor(levels / count);
 			local busRep = ::World.Assets.getBusinessReputation();
 			local repPoints = ::Math.floor(busRep / 1000);
@@ -1490,10 +1389,8 @@
 		}
 	}*/
 
-	o.onAdded = function()
-	{
-		if (this.m.DailyCost > 0)
-		{
+	o.onAdded = function () {
+		if (this.m.DailyCost > 0) {
 			this.m.DailyCost += 1;
 		}
 
@@ -1501,13 +1398,11 @@
 		actor.m.Background = this;
 		actor.m.Ethnicity = this.m.Ethnicity;
 
-		if (!this.m.IsNew)
-		{
+		if (!this.m.IsNew) {
 			return;
 		}
 
-		if (("State" in ::Tactical) && ::Tactical.State != null && ::Tactical.State.isScenarioMode())
-		{
+		if (("State" in ::Tactical) && ::Tactical.State != null && ::Tactical.State.isScenarioMode()) {
 			return;
 		}
 
@@ -1517,7 +1412,7 @@
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
 
-		if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && ::Math.rand(0, 1) == 1)	{
+		if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && ::Math.rand(0, 1) == 1) {
 			local lastName = this.m.LastNames[::Math.rand(0, this.m.LastNames.len() - 1)];
 			if (this.getContainer().getActor().getGender()) {
 				lastName = ::String.replace(lastName, "Ibn ", "Bint "); // changes southern "son of" to "daughter of"
@@ -1525,36 +1420,26 @@
 			actor.setTitle(lastName);
 		}
 
-		if (actor.getTitle() == "" && this.m.Titles.len() != 0 && ::Math.rand(0, 3) == 3)
-		{
+		if (actor.getTitle() == "" && this.m.Titles.len() != 0 && ::Math.rand(0, 3) == 3) {
 			actor.setTitle(this.m.Titles[::Math.rand(0, this.m.Titles.len() - 1)]);
 		}
 
-		if (actor.getNameOnly() == "")
-		{
+		if (actor.getNameOnly() == "") {
 			local names = this.m.Names;
 
-			if (names == null || this.m.Names.len() == 0)
-			{
+			if (names == null || this.m.Names.len() == 0) {
 				names = ::Const.Strings.CharacterNames;
-				if (this.m.Ethnicity == 1)
-				{
+				if (this.m.Ethnicity == 1) {
 					names = ::Const.Strings.SouthernNames;
-				}
-				else if (this.m.Ethnicity == 2)
-				{
+				} else if (this.m.Ethnicity == 2) {
 					names = ::Const.Strings.BarbarianNames;
 				}
 
-				if (this.isBackgroundType(::Const.BackgroundType.Female))
-				{
+				if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 					names = ::Const.Strings.CharacterNamesFemale;
-					if (this.m.Ethnicity == 1)
-					{
+					if (this.m.Ethnicity == 1) {
 						names = ::Const.Strings.SouthernFemaleNames;
-					}
-					else if (this.m.Ethnicity == 2)
-					{
+					} else if (this.m.Ethnicity == 2) {
 						names = ::Const.Strings.CharacterNamesFemaleNorse;
 					}
 				}
@@ -1565,21 +1450,14 @@
 
 		//this.m.Level += actor.m.Background.calculateAdditionalRecruitmentLevels(); old recruit scaling option
 
-		if (this.m.Level != 1)
-		{
-			if (this.m.Level <= 12)
-			{
+		if (this.m.Level != 1) {
+			if (this.m.Level <= 12) {
 				actor.m.PerkPoints = this.m.Level - 1;
-			}
-			else
-			{
+			} else {
 				local vetPerk = this.getContainer().getActor().getVeteranPerks();
-				if (vetPerk == 0)
-				{
+				if (vetPerk == 0) {
 					actor.m.PerkPoints = 11;
-				}
-				else
-				{
+				} else {
 					actor.m.PerkPoints = 11 + ::Math.floor((this.m.Level - 12) / this.getContainer().getActor().getVeteranPerks());
 				}
 			}
@@ -1589,67 +1467,35 @@
 			actor.m.XP = ::Const.LevelXP[this.m.Level - 1];
 		}
 
-		if(::MSU.isKindOf(actor, "legend_player_legion") && !::isKindOf(this, "legend_legion_background")) {
+		if (::MSU.isKindOf(actor, "legend_player_legion") && !::isKindOf(this, "legend_legion_background")) {
 			::Legends.Traits.grant(actor, ::Legends.Trait.LegendFleshless);
 		}
 	}
-	o.onCombatStarted <- function()
-	{
+	o.onCombatStarted <- function () {
 		local actor = this.getContainer().getActor();
 
-		if (this.isBackgroundType(::Const.BackgroundType.Female))
-		{
-			actor.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = [
-				"sounds/humans/legends/woman_light_01.wav",
-				"sounds/humans/legends/woman_light_02.wav",
-				"sounds/humans/legends/woman_light_03.wav",
-				"sounds/humans/legends/woman_light_04.wav",
-				"sounds/humans/legends/woman_light_05.wav"
-			];
-			actor.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
-				"sounds/humans/legends/woman_injury_01.wav",
-				"sounds/humans/legends/woman_injury_02.wav",
-				"sounds/humans/legends/woman_injury_03.wav"
-			];
-			actor.m.Sound[::Const.Sound.ActorEvent.Death] = [
-				"sounds/humans/legends/woman_death_01.wav",
-				"sounds/humans/legends/woman_death_02.wav",
-				"sounds/humans/legends/woman_death_03.wav"
-			];
-			actor.m.Sound[::Const.Sound.ActorEvent.Fatigue] = [
-				"sounds/humans/legends/woman_fatigue_01.wav",
-				"sounds/humans/legends/woman_fatigue_02.wav",
-				"sounds/humans/legends/woman_fatigue_03.wav",
-				"sounds/humans/legends/woman_fatigue_04.wav",
-				"sounds/humans/legends/woman_fatigue_05.wav",
-				"sounds/humans/legends/woman_fatigue_06.wav",
-				"sounds/humans/legends/woman_fatigue_07.wav"
-			];
-			actor.m.Sound[::Const.Sound.ActorEvent.Flee] = [
-				"sounds/humans/legends/woman_flee_01.wav",
-				"sounds/humans/legends/woman_flee_02.wav",
-				"sounds/humans/legends/woman_flee_03.wav",
-				"sounds/humans/legends/woman_flee_04.wav",
-				"sounds/humans/legends/woman_flee_05.wav",
-				"sounds/humans/legends/woman_flee_06.wav"
-			];
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
+			actor.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = ::Legends.S.setSounds("sounds/humans/legends/woman_light", 5);
+			actor.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/humans/legends/woman_injury", 3);
+			actor.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/humans/legends/woman_death", 3);
+			actor.m.Sound[::Const.Sound.ActorEvent.Fatigue] = ::Legends.S.setSounds("sounds/humans/legends/woman_fatigue", 7);
+			actor.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/humans/legends/woman_flee", 6);
 			actor.m.SoundPitch = ::Math.rand(105, 115) * 0.01;
 		}
 	}
-	o.getBackgroundTypes <- function()
-	{
+	o.getBackgroundTypes <- function () {
 
 		local ret = "";
 
-		foreach (type, name in ::Const.BackgroundTypeName)
-		{
-		    if (this.isBackgroundType(::Const.BackgroundType[type]))
-		    {
-		        ret += name + ", ";
-		    }
+		foreach (type, name in ::Const.BackgroundTypeName) {
+			if (this.isBackgroundType(::Const.BackgroundType[type])) {
+				ret += name + ", ";
+			}
 		}
 
-		if (ret.len() == 0) return "";
+		if (ret.len() == 0) {
+			return "";
+		}
 
 		return "[color=%negative%]Background Type: " + ret.slice(0, ret.len() - 2) + "[/color]";
 	}
@@ -1666,9 +1512,9 @@
 	}
 
 	o.setCommanderGender <- function () {
-		if(::Legends.Mod.ModSettings.getSetting("CommanderAvatarGender").getValue() == "Female"){
+		if (::Legends.Mod.ModSettings.getSetting("CommanderAvatarGender").getValue() == "Female") {
 			return 1;
-		} else if(::Legends.Mod.ModSettings.getSetting("CommanderAvatarGender").getValue() == "Male") {
+		} else if (::Legends.Mod.ModSettings.getSetting("CommanderAvatarGender").getValue() == "Male") {
 			return 0;
 		} else if (::Math.rand(1, 100) <= ::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue()) {
 			return 1;
@@ -1681,9 +1527,9 @@
 		this.m[_bodyPart] = _spriteObject != null && _bodyPart in _spriteObject ? _spriteObject[_bodyPart] : (_gender ? this.m.DefaultSprites.Female[_bodyPart] : this.m.DefaultSprites.Male[_bodyPart]);
 	}
 
-	o.setBodyCharacteristics <- function(_gender, _spriteObject = null, _beardChanceForce = null) {
+	o.setBodyCharacteristics <- function (_gender, _spriteObject = null, _beardChanceForce = null) {
 		local sprites = ["Bodies", "Faces", "Hairs", "HairColors", "Beards"];
-		foreach(sprite in sprites){
+		foreach (sprite in sprites) {
 			this.setDefaultGenderedSprite(_gender, sprite, _spriteObject);
 		}
 		if (_gender) {
@@ -1696,15 +1542,13 @@
 		}
 	}
 
-	o.Convert <- function()
-	{
+	o.Convert <- function () {
 		this.addBackgroundType(::Const.BackgroundType.ConvertedCultist);
 		this.addPerkGroup(::Const.Perks.NinetailsClassTree.Tree);
 		this.getContainer().getActor().getFlags().add("cultist");
 	}
 
-	o.onSerialize = function ( _out )
-	{
+	o.onSerialize = function (_out) {
 		this.skill.onSerialize(_out);
 		_out.writeString(this.m.Description);
 		_out.writeString(this.m.RawDescription);
@@ -1713,56 +1557,46 @@
 		_out.writeF32(this.m.DailyCostMult);
 		_out.writeBool(this.isBackgroundType(::Const.BackgroundType.Female));
 		_out.writeBool(this.isBackgroundType(::Const.BackgroundType.ConvertedCultist));
-		if (this.m.CustomPerkTree == null)
-		{
+		if (this.m.CustomPerkTree == null) {
 			_out.writeU8(0);
-		}
-		else
-		{
+		} else {
 			_out.writeU8(this.m.CustomPerkTree.len());
-			for( local i = 0; i < this.m.CustomPerkTree.len(); i = ++i )
-			{
+			for (local i = 0; i < this.m.CustomPerkTree.len(); i = ++i) {
 				_out.writeU8(this.m.CustomPerkTree[i].len());
-				for( local j = 0; j < this.m.CustomPerkTree[i].len(); j = ++j )
-				{
+				for (local j = 0; j < this.m.CustomPerkTree[i].len(); j = ++j) {
 					_out.writeU16(this.m.CustomPerkTree[i][j]);
 				}
 			}
 		}
 
 		local nonRefundablePerks = [];
-		foreach (row in this.m.PerkTree)
-		{
-			foreach (perk in row)
-			{
-				if (!perk.IsRefundable)
-				{
+		foreach (row in this.m.PerkTree) {
+			foreach (perk in row) {
+				if (!perk.IsRefundable) {
 					nonRefundablePerks.push(::Legends.Perk[perk.Const]);
 				}
 			}
 		}
 
 		_out.writeU8(nonRefundablePerks.len());
-		foreach (perk in nonRefundablePerks)
-		{
+		foreach (perk in nonRefundablePerks) {
 			_out.writeU16(perk);
 		}
 
 		if (this.m.CustomProfessionTree == null) {
-            _out.writeU8(0);
-        } else {
-            _out.writeU8(this.m.CustomProfessionTree.len());
-            for (local i = 0; i < this.m.CustomProfessionTree.len(); i = ++i) {
-                _out.writeU8(this.m.CustomProfessionTree[i].len());
-                for (local j = 0; j < this.m.CustomProfessionTree[i].len(); j = ++j) {
-                    _out.writeU16(this.m.CustomProfessionTree[i][j]);
-                }
-            }
-        }
+			_out.writeU8(0);
+		} else {
+			_out.writeU8(this.m.CustomProfessionTree.len());
+			for (local i = 0; i < this.m.CustomProfessionTree.len(); i = ++i) {
+				_out.writeU8(this.m.CustomProfessionTree[i].len());
+				for (local j = 0; j < this.m.CustomProfessionTree[i].len(); j = ++j) {
+					_out.writeU16(this.m.CustomProfessionTree[i][j]);
+				}
+			}
+		}
 	}
 
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function (_in) {
 		this.skill.onDeserialize(_in);
 		this.m.Description = _in.readString();
 		this.m.RawDescription = _in.readString();
@@ -1770,51 +1604,42 @@
 		this.m.IsNew = _in.readBool();
 		this.m.DailyCostMult = _in.readF32();
 
-		if(_in.readBool())
-		{
+		if (_in.readBool()) {
 			this.addBackgroundType(::Const.BackgroundType.Female);
 			this.setGender(1);
-		}
-		else
-		{
+		} else {
 			this.setGender(0);
 		}
 
-		if (_in.readBool())
-		{
+		if (_in.readBool()) {
 			this.addBackgroundType(::Const.BackgroundType.ConvertedCultist);
 		}
 
 		this.m.CustomPerkTree = [];
 		local numRows = _in.readU8();
-		for( local i = 0; i < numRows; i = ++i )
-		{
+		for (local i = 0; i < numRows; i = ++i) {
 			local numPerks = _in.readU8();
 			local perks = [];
-			for( local j = 0; j < numPerks; j = ++j )
-			{
+			for (local j = 0; j < numPerks; j = ++j) {
 				perks.push(_in.readU16());
 			}
 			this.m.CustomPerkTree.push(perks);
 		}
 
-		if (this.m.CustomPerkTree != null)
-		{
+		if (this.m.CustomPerkTree != null) {
 			this.buildPerkTree();
 		}
 
 		local num = _in.readU8();
-		for (local i = 0; i < num; i++)
-		{
+		for (local i = 0; i < num; i++) {
 			this.getPerk(_in.readU16()).IsRefundable <- false;
 		}
 
 		this.m.CustomProfessionTree = [];
-        local numProfRows = _in.readU8();
+		local numProfRows = _in.readU8();
 		if (numProfRows == 0) {
-            this.m.CustomProfessionTree = null;
-        }
-		else {
+			this.m.CustomProfessionTree = null;
+		} else {
 			this.m.CustomProfessionTree = [];
 			for (local i = 0; i < numProfRows; i = ++i) {
 				local numProfessions = _in.readU8();
