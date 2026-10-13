@@ -30,8 +30,8 @@ if (!("Professions" in ::Legends)) {
 	[],
 	[::Legends.Profession.LegendScrapping],
 	[::Legends.Profession.LegendAmmoScrounger],
-	[::Legends.Profession.LegendVulture],
-	[],
+	[::Legends.Profession.LegendVulture, ::Legends.Profession.LegendFerretItOut],
+	[::Legends.Profession.LegendMaterialist],
 	[],
 	[],
 	[],
@@ -115,6 +115,20 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
+::Legends.Professions.TrapperProfessionTree <- [
+	[::Legends.Profession.LegendHunting],
+	[],
+	[],
+	[::Legends.Profession.LegendSkinning],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
 ::Legends.Professions.TannerProfessionTree <- [
 	[],
 	[],
@@ -171,10 +185,52 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.BlacksmithProfessionTree <- [
+::Legends.Professions.WoodsmanProfessionTree <- [
+	[::Legends.Profession.LegendForaging, ::Legends.Profession.LegendHunting],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
+::Legends.Professions.PennypincherProfessionTree <- [
 	[::Legends.Profession.LegendCrafting],
-	[::Legends.Profession.LegendToolsDrawers],
+	[::Legends.Profession.LegendToolsDrawers, ::Legends.Profession.LegendMetalworking],
 	[::Legends.Profession.LegendSpareParts],
+	[::Legends.Profession.LegendPaymaster],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
+::Legends.Professions.InventorProfessionTree <- [
+	[::Legends.Profession.LegendScholar],
+	[],
+	[::Legends.Profession.LegendProsthetics],
+	[::Legends.Profession.LegendFieldSurgery],
+	[::Legends.Profession.LegendSpareParts],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
+::Legends.Professions.BlacksmithProfessionTree <- [
+	[::Legends.Profession.LegendCrafting, ::Legends.Profession.LegendRepairing],
+	[::Legends.Profession.LegendToolsDrawers, ::Legends.Profession.LegendMetalworking],
+	[::Legends.Profession.LegendSpareParts, ::Legends.Profession.LegendMaterialist],
 	[::Legends.Profession.LegendHammerThemOut],
 	[],
 	[],
@@ -227,11 +283,95 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
+::Legends.Professions.TradesmanProfessionTree <- [
+	[],
+	[],
+	[::Legends.Profession.LegendFriendsInRightPlaces],
+	[::Legends.Profession.LegendConvincingProposals],
+	[::Legends.Profession.LegendOffBookDeal, ::Legends.Profession.LegendTradesman],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
+::Legends.Professions.BeastSlayerProfessionTree <- [
+	[::Legends.Profession.LegendHunting],
+	[::Legends.Profession.LegendTrophyCarving],
+	[],
+	[::Legends.Profession.LegendBigGameHunter, ::Legends.Profession.LegendSkinning],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
+::Legends.Professions.EnchanterProfessionTree <- [
+	[],
+	[::Legends.Profession.LegendEnchantersAssistant],
+	[],
+	[::Legends.Profession.LegendAncientKnowledge],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
+::Legends.Professions.SpyProfessionTree <- [
+	[],
+	[::Legends.Profession.LegendShadyDeals, ::Legends.Profession.LegendLookout],
+	[],
+	[::Legends.Profession.LegendOnTheGrapevine],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
+::Legends.Professions.RecruiterProfessionTree <- [
+	[::Legends.Profession.LegendSpotTheTells],
+	[::Legends.Profession.LegendSizeThemUp],
+	[::Legends.Profession.LegendEyeForTalent],
+	[::Legends.Profession.LegendConvincingProposals],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
 ::Legends.Professions.GladiatorProfessionTree <- [
 	[],
 	[],
 	[],
 	[::Legends.Profession.LegendBreadAndGames],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[]
+];
+
+::Legends.Professions.ScribeProfessionTree <- [
+	[::Legends.Profession.LegendScholar],
+	[],
+	[],
+	[::Legends.Profession.LegendInterpretation],
 	[],
 	[],
 	[],
@@ -286,20 +426,6 @@ if (!("Professions" in ::Legends)) {
 ::Legends.Professions.PathfinderProfessionTree <- [
 	[::Legends.Profession.LegendScouting],
 	[::Legends.Profession.LegendLookout, ::Legends.Profession.LegendTrailblazer],
-	[],
-	[::Legends.Profession.LegendLayOfTheLand],
-	[],
-	[],
-	[],
-	[],
-	[],
-	[],
-	[]
-];
-
-::Legends.Professions.RecruiterProfessionTree <- [
-	[::Legends.Profession.LegendScouting],
-	[::Legends.Profession.LegendLookout],
 	[],
 	[::Legends.Profession.LegendLayOfTheLand],
 	[],

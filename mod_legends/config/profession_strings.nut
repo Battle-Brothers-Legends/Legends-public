@@ -1,7 +1,5 @@
-// delete the comments later
 ::Const.Strings.ProfessionDescription <- {}
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendAlchemy <- @"
 Mixing volatile ingredients in the makeshift conditions of a field camp usually ends poorly, unless one knows exactly what one's doing.
 
@@ -13,7 +11,6 @@ Mixing volatile ingredients in the makeshift conditions of a field camp usually 
 • Increases the crafting speed of potions and poisons.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendAlcoholPreparation <- @"
 Any camp worth its salt has an alcohol still fashioned out of whatever could be pulled together.
 
@@ -23,7 +20,6 @@ Any camp worth its salt has an alcohol still fashioned out of whatever could be 
 • Increases the crafting speed of alcohol.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendAmmoScrounger <- @"
 Digging through corpses to retrieve intact ammunition is just good economic sense.
 
@@ -38,7 +34,6 @@ The ancients were able to channel magic in a very controlled manner.
 • Increases the minimum quality of crafted runes.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendAmusingOurselvesToDeath <- @"
 Shared japes and strong drink. Anything to keep the company from thinking ahead.
 
@@ -48,7 +43,6 @@ Shared japes and strong drink. Anything to keep the company from thinking ahead.
 • Reduces the chance of desertion by 50%.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendBalladeInTheMaking <- @"
 A tale of gruesome slaughter sounds almost pleasant to the ear when set to a lute and heavily exaggerated.
 
@@ -56,7 +50,6 @@ A tale of gruesome slaughter sounds almost pleasant to the ear when set to a lut
 • Increases the renown gained by the company.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendBandageBales <- @"
 A heavy pack of clean linen and salves to close the deepest smiles a cleaver can open.
 
@@ -71,7 +64,6 @@ The greater the task, the bigger the payout. And the weapon one needs to prevail
 • More extremely high-threat contracts are offered to the company.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendBlackBook <- @"
 It pays to keep a ledger filled with debts, transgressions and names of those willing to pay for collecting them.
 
@@ -79,7 +71,6 @@ It pays to keep a ledger filled with debts, transgressions and names of those wi
 • Gather bounties for slaying champions.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendBountyHunter <- @"
 They say its difficult to let go of some of the more refined tastes once one acquires them.
 
@@ -94,7 +85,6 @@ It was ten feet tall, breathed fire and I killed it with a spoon. Obviously.
 • Increases the number of available recruits.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendBreadAndGames <- @"
 The thrill of the fight can keep everyone entertained, both those partaking in the fight and those cheering from the stands.
 
@@ -104,7 +94,6 @@ The thrill of the fight can keep everyone entertained, both those partaking in t
 • Makes mercenaries in reserve never lose mood from not taking part in battles.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendButcherBarber <- @"
 They say that practice makes perfect. It just so happens that this one favours practicing the saw.
 
@@ -114,7 +103,6 @@ They say that practice makes perfect. It just so happens that this one favours p
 • Adds a chance to lower the magnitude of permanent injuries.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendCarouser <- @"
 Nothing loosens the tongues like a good drink. And no one drinks like a mercenary.
 
@@ -124,7 +112,6 @@ Nothing loosens the tongues like a good drink. And no one drinks like a mercenar
 • Tavern rumours are more likely to contain useful information.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendCartographer <- @"
 Knowledge is power. Power is money. Selling accurate maps is money, too.
 
@@ -134,7 +121,6 @@ Knowledge is power. Power is money. Selling accurate maps is money, too.
 • Legendary locations pay extra.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendCharlatan <- @"
 A fool and his gold are easily parted, especially when one doesn't have any qualms about it.
 
@@ -155,7 +141,6 @@ A mercenary who knows how to count can be a tremendous asset. One that unfortuna
 • Increases the daily pay rate by [color=%negative%]+25%[/color].
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendCooking <- @"
 Taking gristle, bone, and whatever else the dog dragged in, and confidently calling it a stew.
 
@@ -163,7 +148,6 @@ Taking gristle, bone, and whatever else the dog dragged in, and confidently call
 • Increases the speed at which meals are prepared.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendCrafting <- @"
 Weave and spin, smith and seam, hammer and cut. The art of crafting.
 
@@ -171,7 +155,6 @@ Weave and spin, smith and seam, hammer and cut. The art of crafting.
 • Increases the speed at which items are crafted.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendCutToTheChase <- @"
 Time is money, and pleasantries can cost the company a drink.
 
@@ -181,7 +164,6 @@ Time is money, and pleasantries can cost the company a drink.
 • Reveals the most expensive items in the rumoured location.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendDiplomacy <- @"
 Knowing when to bow, when to keep silent and when to laugh heartily can go a long way.
 
@@ -193,7 +175,6 @@ Knowing when to bow, when to keep silent and when to laugh heartily can go a lon
 • Bad relations recover faster.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendDogBreeder <- @"
 A loyal hound asks for nothing but a fair meal and will gladly give its life in return.
 
@@ -203,7 +184,6 @@ A loyal hound asks for nothing but a fair meal and will gladly give its life in 
 • Increases the dog breeding speed.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendDrillSergeant <- @"
 Move it, you maggots!
 
@@ -211,7 +191,6 @@ Move it, you maggots!
 • Grants extra experience to mercenaries below the veteran level.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendEfficientPacking <- @"
 A place for everything, and everything forcefully crammed into its rightful place.
 
@@ -240,7 +219,6 @@ Nobody buries their valuables deep enough to hide them from a truly motivated lo
 • Grants a chance to find additional loot.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendFieldSurgery <- @"
 Sew up the holes, saw off the rot, and pour boiling wine over whatever is left.
 
@@ -250,7 +228,6 @@ Sew up the holes, saw off the rot, and pour boiling wine over whatever is left.
 • Increases the chance of a brother surviving with a permanent injury when struck down.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendFletching <- @"
 Replenish what was used before they come again. And again. And again.
 
@@ -258,7 +235,6 @@ Replenish what was used before they come again. And again. And again.
 • Increases the speed at which ammunition is created.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendFoodPreservation <- @"
 Salt, smoke, and careful packing ensure the food doesn't spoil prematurely.
 
@@ -280,7 +256,6 @@ The best wares are always kept in the back room, reserved for the very best clie
 • Increases the amount of trade goods available for sale by in towns.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendGathering <- @"
 Knowledge of the landscape and vegetation provides a wealth of opportunities for those willing to take advantage.
 
@@ -288,7 +263,6 @@ Knowledge of the landscape and vegetation provides a wealth of opportunities for
 • Improves the speed at which supplies are gathered.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendGreasedPalms <- @"
 A few extra coins slipped to a caravan guard can expose exactly which wagons are worth raiding.
 
@@ -296,7 +270,6 @@ A few extra coins slipped to a caravan guard can expose exactly which wagons are
 • Reveals the most expensive items in a caravan.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendHammerThemOut <- @"
 A shrewd mercenary learns to patch the holes in their gear swiftly whenever opportunity presents itself.
 
@@ -304,7 +277,6 @@ A shrewd mercenary learns to patch the holes in their gear swiftly whenever oppo
 • Increases repair speed.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendHealing <- @"
 When armor gives out, it is flesh that needs tending as much as the steel.
 
@@ -321,7 +293,6 @@ The woods can be a source of valuable materials, provided one knows the differen
 • Increases the herbal remedy crafting speed.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendHighwayman <- @"
 Your money or your life. Or both, more likely.
 
@@ -329,7 +300,6 @@ Your money or your life. Or both, more likely.
 • Show the position of some caravans outside the sight radius.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendHippology <- @"
 A good donkey is worth more than a bad mercenary, and it usually smells better, too.
 
@@ -355,7 +325,6 @@ Words have hidden meanings, and every silken lie hides a single thread of truth.
 • Increases the scroll writing speed.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendLayOfTheLand <- @"
 Rumours of a fabled treasure are only rumours until one learns to connect the dots the right way.
 
@@ -363,7 +332,6 @@ Rumours of a fabled treasure are only rumours until one learns to connect the do
 • Increases the chance of gathering information to be drawn on maps after camp fights.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendLeatherworking <- @"
 Skin, the most flexible and durable material known to man.
 
@@ -373,7 +341,6 @@ Skin, the most flexible and durable material known to man.
 • Increases the crafting speed of leather equipment.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendLookout <- @"
 Learn to find your enemies before they find you.
 
@@ -392,7 +359,6 @@ A careful hand can pick apart carrion and recover what yet may be worth precious
 • Equipment looted from enemies can be recovered in slightly better condition.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendMealPreparation <- @"
 Nothing like a warm meal after a good deal of killing.
 
@@ -411,7 +377,6 @@ A quality armor can save one's life. Even if that life isn't worth the cost of s
 • Increases the crafting speed of metal equipment.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendMining <- @"
 The earth itself carries a wealth of valuables. Rock and stone, ores and gems.
 
@@ -421,7 +386,6 @@ The earth itself carries a wealth of valuables. Rock and stone, ores and gems.
 • Increases the effectiveness of Mining while Gathering.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendNegotiator <- @"
 Getting paid more for doing less is what one calls a successful negotiation.
 
@@ -438,7 +402,6 @@ There is no such thing as 'not for sale' provided one names the right price.
 • Merchants gain extra stock at a premium price.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendOnTheGrapevine <- @"
 It is amazing what one can hear about a place without ever setting foot there. Such is the strength of gossip.
 
@@ -457,7 +420,6 @@ Shifting numbers, negotiating pay terms and usury are all valid ways of driving 
 • Prevents mercenaries from demanding more pay.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendPersonalSeal <- @"
 A mark of a craftsman can make steel famous without a hand wielding it.
 
@@ -465,7 +427,6 @@ A mark of a craftsman can make steel famous without a hand wielding it.
 • Crafting equipment increases renown slightly.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendPetardry <- @"
 One can get used to everything. There comes a time when even explosions become mundane.
 
@@ -486,7 +447,6 @@ When you leave a part of yourself on a battlefield, a well-crafted prosthetic is
 • Increases the crafting speed of prosthetics.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendRationing <- @"
 Discipline is what keeps the larder from emptying too soon.
 
@@ -501,7 +461,6 @@ Dented and damaged steel is no good at softening blows. Nor it is at dealing the
 • Increases the speed at which items are repaired.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendReserveBundles <- @"
 For when they simply don't stop coming.
 
@@ -520,7 +479,6 @@ Broadening one's perspective by reading at times gives better results than pract
 • Adds an extra profession point (when?).
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendScrapping <- @"
 The new quickly becomes the old, but even then it has its uses.
 
@@ -528,7 +486,6 @@ The new quickly becomes the old, but even then it has its uses.
 • Increases the speed at which items are scrapped.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendScouting <- @"
 Sharp wits, keen eyes and acute ears. Three hallmarks of a mercenary who doesn't lie down to die.
 
@@ -545,7 +502,6 @@ The most valuable goods often change hands in dark alleys, far away from the rul
 • Lowers the prices at the black markets.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendSilverTongued <- @"
 Convincing a farmhand to die for a fraction of the original price is the hallmark of a great recruiter.
 
@@ -567,7 +523,6 @@ By creating neat stacks and tying gear down well ensure not a single inch goes t
 • Grants additional stash space.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendSkinning <- @"
 Killing the beast is only half the work and a proper payday requires a careful hand.
 
@@ -575,7 +530,6 @@ Killing the beast is only half the work and a proper payday requires a careful h
 • Grants a chance to loot extra monster trophies.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendSpareParts <- @"
 A snapped spear shaft today is a surprisingly effective tent peg tomorrow.
 
@@ -590,7 +544,6 @@ A twitching eye, a sweating brow or a reddened ear - every liar reveals themselv
 • Get more accurate information on the traits of potential recruits.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendTailoring <- @"
 It is the beautifully stitched cloak that distinguishes a feared professional from just another ragged killer.
 
@@ -600,7 +553,6 @@ It is the beautifully stitched cloak that distinguishes a feared professional fr
 • Increases the crafting speed of light equipment.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendThrifty <- @"
 Why use it all when a small part will do? Wealth is built one coin at a time.
 
@@ -608,7 +560,6 @@ Why use it all when a small part will do? Wealth is built one coin at a time.
 • Grants a chance to save ingredients while crafting.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendToolsDrawers <- @"
 A place for the right hammer for every nail.
 
@@ -632,7 +583,6 @@ An experienced foot carves its own path instead of following winding roads.
 • Prevents sickness and accidents due to terrain.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendTraining <- @"
 My sword is my best friend. It is my life. I must master it as I must master my life.
 
@@ -649,7 +599,6 @@ Some trophies can be more than just a grisly remnant of a past kill.
 • Increases the crafting speed of trophies.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendVulture <- @"
 The dead have no use for their boots, and pride alone doesn't keep one's feet warm.
 
@@ -657,7 +606,6 @@ The dead have no use for their boots, and pride alone doesn't keep one's feet wa
 • Recover tools and supplies for every armor destroyed during battle.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendWheelMaintenance <- @"
 There is a sickness in the ancient, pitted cobbles of the old imperial roads and one must prepare to traverse them.
 
@@ -665,7 +613,6 @@ There is a sickness in the ancient, pitted cobbles of the old imperial roads and
 • Increases the speed on the world map.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendWhipThemIntoShape <- @"
 There is no quicker school of war than on the battlefield.
 
@@ -675,7 +622,6 @@ There is no quicker school of war than on the battlefield.
 • Veterans are level 12 and above.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendWoodcutting <- @"
 While any fool can wield an axe, there are certain intricacies to the art of cutting wood.
 
@@ -685,7 +631,6 @@ While any fool can wield an axe, there are certain intricacies to the art of cut
 • Increases the effectiveness of Woodcutting while Gathering.
 ";
 
-// mapped
 ::Const.Strings.ProfessionDescription.LegendWoodworking <- @"
 Wood bends, splinters, and breaks, but the right hands can shape them into a bulwark against death.
 
