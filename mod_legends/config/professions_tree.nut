@@ -200,9 +200,9 @@ if (!("Professions" in ::Legends)) {
 ];
 
 ::Legends.Professions.PennypincherProfessionTree <- [
-	[::Legends.Profession.LegendCrafting],
-	[::Legends.Profession.LegendToolsDrawers, ::Legends.Profession.LegendMetalworking],
-	[::Legends.Profession.LegendSpareParts],
+	[],
+	[],
+	[],
 	[::Legends.Profession.LegendPaymaster],
 	[],
 	[],
