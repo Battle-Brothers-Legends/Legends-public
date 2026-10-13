@@ -1235,14 +1235,8 @@ local runeSigilEffectDefs = {
 
 foreach (constName, def in runeSigilEffectDefs) {
 	if (!("Name" in def)) {
-		def.Name <- "Rune Sigil: " + (@(_string) _string.slice((function (_string) {
-			for (local i = _string.len() - 1; i >= 0; i--) {
-				if (_string[i] >= 65 && _string[i] <= 90) {
-					return i;
-				}
-			}
-			return 0;
-		})(_string)))(constName);
+		local nameTokens = ::Legends.DefsHelpers.tokenizeConst(constName);
+		def.Name <- "Rune Sigil: " + nameTokens[nameTokens.len() - 1];
 	}
 
 	if (!("Icon" in def)) {

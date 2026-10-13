@@ -21,7 +21,7 @@
 			ID = _id,
 			Version = _lastKnownNotWorkingVersion,
 			Replacement = _replacement
-		})
+		});
 	}
 };
 
@@ -35,7 +35,7 @@
 			ID = _id,
 			Version = _lastKnownNotWorkingVersion,
 			Replacement = _replacement
-		})
+		});
 	}
 };
 
@@ -47,7 +47,7 @@
 			ID = _id,
 			Patch = _wherePatch,
 			PatchID = _patchModId
-		})
+		});
 	}
 }
 
@@ -61,7 +61,7 @@
 		this.List.push({
 			ID = _id,
 			Version = _compatVersions
-		})
+		});
 	}
 }
 
@@ -75,7 +75,7 @@
 			ID = _name,
 			Files = _filesToCheck,
 			Replacement = _replacement
-		})
+		});
 	}
 }
 
