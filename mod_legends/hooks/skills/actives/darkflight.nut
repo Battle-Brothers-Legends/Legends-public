@@ -1,7 +1,8 @@
-::mods_hookExactClass("skills/actives/darkflight", function(o) {
+::mods_hookExactClass("skills/actives/darkflight", function (o) {
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
-		this.m.Description = "Disapparate from your current location and reappear on the other side of the battlefield.";
+		::Legends.Actives.onCreate(this, ::Legends.Active.Darkflight);
+		this.m.Description = "Disapparate from your current location to quickly travel through the battlefield.";
 	}
 });
