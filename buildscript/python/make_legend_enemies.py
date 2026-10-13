@@ -606,9 +606,9 @@ enemies = r"""
 <sprite id="bust_ghost_body_01" offsetY="35" ic="FF364656" width="104" height="142" img="entity\undead\bust_ghost_body_01.png" left="-39" right="43" top="-61" bottom="13" />
 <sprite id="bust_ghost_head_01" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\undead\bust_ghost_head_01.png" left="-20" right="30" top="-21" bottom="47" />
 
-  <sprite id="bust_greater_flesh_golem_armor_04" offsetY="35" ic="FF333749" width="174" height="214" img="entity\undead\bust_greater_flesh_golem_armor_02.png" left="-64" right="66" top="-59" bottom="47" />
-  <sprite id="bust_greater_flesh_golem_armor_04_damaged" offsetY="35" ic="FF333648" width="174" height="214" img="entity\undead\bust_greater_flesh_golem_armor_02_damaged.png" left="-64" right="66" top="-60" bottom="48" />
-  <sprite id="bust_greater_flesh_golem_armor_04_dead" offsetY="30" f="6402" ic="FF343649" width="225" height="215" img="entity\undead\bust_greater_flesh_golem_armor_02_dead.png" left="-74" right="62" top="-70" bottom="50" />
+  <sprite id="bust_greater_flesh_golem_armor_04" offsetY="35" ic="FF333749" width="174" height="214" img="entity\undead\bust_greater_flesh_golem_armor_04.png" left="-64" right="66" top="-59" bottom="47" />
+  <sprite id="bust_greater_flesh_golem_armor_04_damaged" offsetY="35" ic="FF333648" width="174" height="214" img="entity\undead\bust_greater_flesh_golem_armor_04_damaged.png" left="-64" right="66" top="-60" bottom="48" />
+  <sprite id="bust_greater_flesh_golem_armor_04_dead" offsetY="30" f="6402" ic="FF343649" width="225" height="215" img="entity\undead\bust_greater_flesh_golem_armor_04_dead.png" left="-74" right="62" top="-70" bottom="50" />
 """
 
 
