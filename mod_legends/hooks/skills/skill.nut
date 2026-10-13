@@ -287,16 +287,16 @@
 
 		if (::Legends.Mod.ModSettings.getSetting("ShowFatalityChance").getValue()) {
 			local decapitateParams = [
-				["chance_smash", ::Math.min(100, this.m.ChanceSmash * p.FatalityChanceMult)],
-				["chance_decap", ::Math.min(100, this.m.ChanceDecapitate * p.FatalityChanceMult)],
-				["chance_disembowel", ::Math.min(100, this.m.ChanceDisembowel * p.FatalityChanceMult)]
+				["chance_smash", ::Math.min(100, this.getChanceSmash() * p.FatalityChanceMult)],
+				["chance_decapitate", ::Math.min(100, this.getChanceDecapitate() * p.FatalityChanceMult)],
+				["chance_disembowel", ::Math.min(100, this.getChanceDisembowel() * p.FatalityChanceMult)]
 			];
 			if (this.m.ChanceSmash > 0) {
 				ret.push({
 					id = 10,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=%positive%]%chance_decap%%[/color] chance to smash the target on hits to the head that are killing blows",
+					text = "[color=%positive%]%chance_smash%%[/color] chance to smash the target on hits to the head that are killing blows",
 					param = decapitateParams
 				});
 			}
@@ -305,7 +305,7 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=%positive%]%chance_smash%%[/color] chance to decapitate the target on hits to the head that are killing blows",
+					text = "[color=%positive%]%chance_decapitate%%[/color] chance to decapitate the target on hits to the head that are killing blows",
 					param = decapitateParams
 				});
 			}
