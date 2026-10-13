@@ -15,7 +15,7 @@
 
 	o.getName <- function () {
 		local name = this.building.getName();
-		return name + " (" + ::Const.Professions.ProfessionDefObjects[this.m.TaxidermistSpecialization].Name + ")";
+		return name + " (" + ::Legends.Professions.ProfessionDefObjects[this.m.TaxidermistSpecialization].Name + ")";
 	}
 
 	o.onSerialize = function (_out) {

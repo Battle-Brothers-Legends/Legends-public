@@ -1,66 +1,64 @@
-if (!("Professions" in ::Const)) {
-    ::Const.Professions <- {};
+if (!("Professions" in ::Legends)) {
+    ::Legends.Professions <- {};
 }
 
-if (!("Profession" in ::Legends)) {
-    ::Legends.Profession <- {};
-}
+::Legends.Professions.ProfessionDefObjects <- {};
+::Legends.Professions.ProfessionDefs <- {};
 
-::Const.Professions.ProfessionDefObjects <- [];
-::Const.Professions.ProfessionDefs <- {};
-
-::Const.Professions.createProfessionDef <- function (_def) {
-    ::Legends.Profession[_def.Const] <- null;
+::Legends.Professions.defaultDef <- function(_def) {
     local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
-    if (!("ID" in _def)) {
-        _def.ID <- "profession." + snakeCase;
+    return {
+        Const = _def.Const,
+        ID = ::format("profession.%s", snakeCase),
+        Script = ::format("scripts/skills/professions/profession_%s", snakeCase),
+        Name = ::Legends.DefsHelpers.convertToDisplayName(_def.Const),
+        Tooltip = ::Const.Strings.ProfessionDescription[_def.Const],
+        Icon = ::format("ui/professions/%s.png", snakeCase),
+        IconDisabled = ::format("ui/professions/%s_bw.png", snakeCase),
+        ScalingArray = [0,0],
+        ScalingFactor = 0
     }
+}
 
-    if (!("Script" in _def)) {
-        _def.Script <- "scripts/skills/professions/profession_" + snakeCase;
+::Legends.Professions.transformDef <- function (_def) {
+    local defaultDef = ::Legends.Professions.defaultDef(_def);
+    foreach (key, value in _def) {
+        if (key in defaultDef) {
+            defaultDef[key] = value; // overwrite
+        } else {
+            // here's weird situation, we have a slot that was not defined in default, which most likely means bug
+            defaultDef[key] <- value;
+            ::logWarning(::format("profession '%s' defines unknown field '%s' in professions_defs", defaultDef.ID, key));
+        }
     }
-
-    if (!("Name" in _def)) {
-        _def.Name <- ::Legends.DefsHelpers.convertToDisplayName(_def.Const);
-
-    }
-
-    _def.Tooltip <- ::Const.Strings.ProfessionDescription[_def.Const];
-
-    if (!("Icon" in _def)) {
-        _def.Icon <- "ui/professions/" + snakeCase + ".png";
-    }
-
-    if (!("IconDisabled" in _def)) {
-        _def.IconDisabled <- "ui/professions/" + snakeCase + "_bw.png";
-    }
-
-    return _def;
+    return defaultDef;
 };
 
 /**
  * @param _professionDefObjects is an array of profession definitions
  * @param _container is namespace where ids will reside, you can use your own in submods
  */
-
-::Const.Professions.addProfessionDefObjects <- function (_professionDefObjects, _container = ::Legends.Profession) {
-    local size = ::Const.Professions.ProfessionDefObjects.len();
-    local i = 0;
+::Legends.Professions.addProfessionDefObjects <- function (_professionDefObjects, _container = null) {
+    if (_container == null)
+        _container = ::Legends.Profession;
     foreach (constName, def in _professionDefObjects) {
         def.Const <- constName;
-        ::Const.Professions.ProfessionDefObjects.push(::Const.Professions.createProfessionDef(def));
+        def = ::Legends.Professions.transformDef(def);
+        local hash = ::IO.scriptHashByFilename(def.Script);
+        if (hash == null)
+            ::logError(::format("%s: hash is null for '%s'", def.Const, def.Script));
+        ::Legends.Professions.ProfessionDefObjects[hash] <- def;
         if (def.Const in _container) {
-            _container[def.Const] = size + i;
+            _container[def.Const] = hash;
         } else {
-            _container[def.Const] <- size + i;
+            _container[def.Const] <- hash;
         }
-        ::Const.Professions.ProfessionDefs[def.Const] <- size + i;
-        ::Const.Professions.LookupMap[def.ID] <- def;
-        i++;
+        ::Legends.Professions.ProfessionDefs[def.Const] <- hash;
+        ::Legends.Professions.LookupMap[def.ID] <- def;
     }
 }
 
-local professionDefObjects = {
+::Legends.Profession <- {
     LegendAlchemy = {
         ScalingArray = [0, 2], // crafting modifier
         ScalingFactor = 0.5
@@ -381,4 +379,4 @@ local professionDefObjects = {
     }
 };
 
-::Const.Professions.addProfessionDefObjects(professionDefObjects);
+::Legends.Professions.addProfessionDefObjects(clone ::Legends.Profession);

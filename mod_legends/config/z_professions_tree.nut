@@ -1,9 +1,9 @@
 if (!("Professions" in ::Const))
 {
-	::Const.Professions <- {};
+	::Legends.Professions <- {};
 }
 
-/*::Const.Professions.HealerProfessionTree <- {
+/*::Legends.Professions.HealerProfessionTree <- {
 	ID = "HealerProfessionTree",
 	Name = "Apothecary",
 	Icon = "ui/professions/MaxMedsT2.png",
@@ -21,7 +21,7 @@ if (!("Professions" in ::Const))
 	]
 };
 
-::Const.Professions.ChefProfessionTree <- {
+::Legends.Professions.ChefProfessionTree <- {
 	ID = "ChefProfessionTree",
 	Name = "Chef",
 	Icon = "ui/professions/meal_prep_circle.png",
@@ -39,7 +39,7 @@ if (!("Professions" in ::Const))
 	]
 };
 
-::Const.Professions.RepairProfessionTree <- {
+::Legends.Professions.RepairProfessionTree <- {
 	ID = "RepairProfessionTree",
 	Name = "Repair",
 	Icon = "ui/professions/MaxToolsT1.png",
@@ -57,7 +57,7 @@ if (!("Professions" in ::Const))
 	]
 };
 
-::Const.Professions.BarterProfessionTree <- {
+::Legends.Professions.BarterProfessionTree <- {
 	ID = "BarterProfessionTree",
 	Name = "Barter",
 	Icon = "ui/professions/BarterT1.png",
@@ -84,7 +84,7 @@ if (!("Professions" in ::Const))
 	]
 };
 
-::Const.Professions.DogBreederProfessionTree <- {
+::Legends.Professions.DogBreederProfessionTree <- {
 	ID = "DogBreederProfessionTree",
 	Name = "Dog Breeder",
 	Icon = "ui/professions/profession_dogs.png",
@@ -102,7 +102,7 @@ if (!("Professions" in ::Const))
 	]
 };
 
-::Const.Professions.MinerProfessionTree <- {
+::Legends.Professions.MinerProfessionTree <- {
 	ID = "MinerProfessionTree",
 	Name = "Mining",
 	Icon = "ui/professions/pickaxe_02.png",
@@ -120,7 +120,7 @@ if (!("Professions" in ::Const))
 	]
 };*/
 
-::Const.Professions.WoodworkingProfessionTree <- {
+::Legends.Professions.WoodworkingProfessionTree <- {
 	ID = "WoodworkingProfessionTree",
 	Name = "Woodworking",
 	Icon = "ui/professions/woodworking.png",
@@ -138,7 +138,7 @@ if (!("Professions" in ::Const))
 	]
 };
 
-/*::Const.Professions.CaravaneerProfessionTree <- {
+/*::Legends.Professions.CaravaneerProfessionTree <- {
 	ID = "CaravaneerProfessionTree",
 	Name = "Caravaneering",
 	Icon = "ui/professions/wheel_maintenance.png",
@@ -163,7 +163,7 @@ if (!("Professions" in ::Const))
 	]
 };
 
-::Const.Professions.HerbalistProfessionTree <- {
+::Legends.Professions.HerbalistProfessionTree <- {
 	ID = "HerbalistProfessionTree",
 	Name = "Herbalism",
 	Icon = "ui/professions/herbs_circle.png",
@@ -181,7 +181,7 @@ if (!("Professions" in ::Const))
 	]
 };
 
-::Const.Professions.FencingTeacherProfessionTree <- {
+::Legends.Professions.FencingTeacherProfessionTree <- {
 	ID = "FencingTeacherProfessionTree",
 	Name = "Master Trainer",
 	Icon = "ui/professions/profession_training_01.png",
@@ -201,19 +201,19 @@ if (!("Professions" in ::Const))
 	]
 };*/
 
-::Const.Professions.ProfessionTrees <- {
+::Legends.Professions.ProfessionTrees <- {
 	GroupsCategory = "Profession",
 	Tree = [
-		/*::Const.Professions.BarterProfessionTree,
-		::Const.Professions.CaravaneerProfessionTree,
-		::Const.Professions.ChefProfessionTree,
-		::Const.Professions.DogBreederProfessionTree,
-		::Const.Professions.FencingTeacherProfessionTree,
-		::Const.Professions.HealerProfessionTree,
-		::Const.Professions.HerbalistProfessionTree,
-		::Const.Professions.MinerProfessionTree,
-		::Const.Professions.RepairProfessionTree,*/
-		::Const.Professions.WoodworkingProfessionTree,
+		/*::Legends.Professions.BarterProfessionTree,
+		::Legends.Professions.CaravaneerProfessionTree,
+		::Legends.Professions.ChefProfessionTree,
+		::Legends.Professions.DogBreederProfessionTree,
+		::Legends.Professions.FencingTeacherProfessionTree,
+		::Legends.Professions.HealerProfessionTree,
+		::Legends.Professions.HerbalistProfessionTree,
+		::Legends.Professions.MinerProfessionTree,
+		::Legends.Professions.RepairProfessionTree,*/
+		::Legends.Professions.WoodworkingProfessionTree,
 	],
 	function getRandom(_exclude)
 	{

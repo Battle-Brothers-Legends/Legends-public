@@ -2,59 +2,52 @@ if (!("Backgrounds" in ::Legends)) {
     ::Legends.Backgrounds <- {};
 }
 
-if (!("Background" in ::Legends)) {
-    ::Legends.Background <- {};
-}
-
-::Legends.Backgrounds.BackgroundDefObjects <- [];
+::Legends.Backgrounds.BackgroundDefObjects <- {};
 ::Legends.Backgrounds.BackgroundDefs <- {};
 ::Legends.Backgrounds.LookupMap <- {};
 
-::Legends.Backgrounds.createBackgroundDef <- function (_def) {
-    ::Legends.Background[_def.Const] <- null;
+::Legends.Backgrounds.defaultDef <- function(_def) {
     local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
-    if (!("ID" in _def)) {
-        _def.ID <- "background." + snakeCase;
+    return {
+        Const = _def.Const,
+        ID = ::format("background.%s", snakeCase),
+        Script = ::format("scripts/skills/backgrounds/%s_background", snakeCase),
+        Name = ::Legends.DefsHelpers.convertToDisplayName(_def.Const),
+        Icon = ::format("ui/backgrounds/%s.png", snakeCase),
+        HiringCost = 0,
+        DailyCost = 0
     }
+}
 
-    if (!("Script" in _def)) {
-        _def.Script <- "scripts/skills/backgrounds/" + snakeCase + "_background";
+::Legends.Backgrounds.transformDef <- function (_def) {
+    local defaultDef = ::Legends.Backgrounds.defaultDef(_def);
+    foreach (key, value in _def) {
+        if (key in defaultDef) {
+            defaultDef[key] = value; // overwrite
+        } else {
+            // here's weird situation, we have a slot that was not defined in default, which most likely means bug
+            defaultDef[key] <- value;
+            ::logWarning(::format("background '%s' defines unknown field '%s' in backgrounds_defs", defaultDef.ID, key));
+        }
     }
-
-    if (!("Name" in _def)) {
-        _def.Name <- ::Legends.DefsHelpers.convertToDisplayName(_def.Const);
-
-    }
-
-    if (!("Icon" in _def)) {
-        _def.Icon <- "ui/backgrounds/" + snakeCase + ".png";
-    }
-
-    if (!("HiringCost" in _def)) {
-        _def.HiringCost <- 0;
-    }
-
-    if (!("DailyCost" in _def)) {
-        _def.DailyCost <- 0;
-    }
-
-    return _def;
+    return defaultDef;
 };
 
 ::Legends.Backgrounds.addBackgroundDefObjects <- function (_backgroundDefObjects) {
-    local size = ::Legends.Backgrounds.BackgroundDefObjects.len();
-    local i = 0;
     foreach (constName, def in _backgroundDefObjects) {
         def.Const <- constName;
-        ::Legends.Backgrounds.BackgroundDefObjects.push(::Legends.Backgrounds.createBackgroundDef(def));
+        def = ::Legends.Backgrounds.transformDef(def);
+        local hash = ::IO.scriptHashByFilename(def.Script);
+        if (hash == null)
+            ::logError(::format("%s: hash is null for '%s'", def.Const, def.Script));
+        ::Legends.Backgrounds.BackgroundDefObjects[hash] <- def;
         if (def.Const in ::Legends.Background) {
-            ::Legends.Background[def.Const] = size + i;
+            ::Legends.Background[def.Const] = hash;
         } else {
-            ::Legends.Background[def.Const] <- size + i;
+            ::Legends.Background[def.Const] <- hash;
         }
-        ::Legends.Backgrounds.BackgroundDefs[def.Const] <- size + i;
+        ::Legends.Backgrounds.BackgroundDefs[def.Const] <- hash;
         ::Legends.Backgrounds.LookupMap[def.ID] <- def;
-        i++;
     }
 }
 
@@ -67,11 +60,10 @@ if (!("Background" in ::Legends)) {
     if (_backgroundID != null && _backgroundID in ::Legends.Backgrounds.LookupMap) {
         return ::Legends.Backgrounds.LookupMap[_backgroundID];
     }
-
     return null;
 };
 
-local backgroundDefs = {
+::Legends.Background <- {
     AdventurousNoble = {
         HiringCost = 300,
         DailyCost = 35,
@@ -922,7 +914,7 @@ local backgroundDefs = {
         // @wiki_skip
         HiringCost = 10000,
         DailyCost = 1,
-        Icon = "ui/backgrounds/donkey.png"
+        Icon = "ui/backgrounds/legend_donkey.png"
     },
     LegendHorseCourser = {
         // @wiki_skip
@@ -944,4 +936,4 @@ local backgroundDefs = {
     }
 };
 
-::Legends.Backgrounds.addBackgroundDefObjects(backgroundDefs);
+::Legends.Backgrounds.addBackgroundDefObjects(clone ::Legends.Background);

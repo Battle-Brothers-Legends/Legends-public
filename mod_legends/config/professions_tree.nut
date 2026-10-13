@@ -1,8 +1,8 @@
 if (!("Professions" in ::Const)) {
-	::Const.Professions <- {};
+	::Legends.Professions <- {};
 }
 
-::Const.Professions.DefaultProfessionTree <- [
+::Legends.Professions.DefaultProfessionTree <- [
 	[
 		::Legends.Profession.LegendCooking,
 		::Legends.Profession.LegendCrafting,
@@ -26,7 +26,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.ScavengerProfessionTree <- [
+::Legends.Professions.ScavengerProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendScrapping],
 	[::Legends.Profession.LegendAmmoScrounger],
@@ -40,7 +40,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.BardProfessionTree <- [
+::Legends.Professions.BardProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendBalladeInTheMaking],
@@ -54,7 +54,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.ScavengerProfessionTree <- [
+::Legends.Professions.ScavengerProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendScrapping],
 	[::Legends.Profession.LegendAmmoScrounger],
@@ -68,7 +68,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.ChiurgeonProfessionTree <- [
+::Legends.Professions.ChiurgeonProfessionTree <- [
 	[::Legends.Profession.LegendHealing],
 	[::Legends.Profession.LegendBandageBales],
 	[],
@@ -82,7 +82,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.FletcherProfessionTree <- [
+::Legends.Professions.FletcherProfessionTree <- [
 	[::Legends.Profession.LegendEfficientPacking],
 	[::Legends.Profession.LegendReserveBundles],
 	[::Legends.Profession.LegendAmmoScrounger],
@@ -96,7 +96,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.OrganizedProfessionTree <- [
+::Legends.Professions.OrganizedProfessionTree <- [
 	[],
 	[
 		::Legends.Profession.LegendEfficientPacking,
@@ -115,7 +115,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.TannerProfessionTree <- [
+::Legends.Professions.TannerProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendLeatherworking],
@@ -126,10 +126,10 @@ if (!("Professions" in ::Const)) {
 	[],
 	[],
 	[],
-	[]	
+	[]
 ];
 
-::Const.Professions.CaravaneeringProfessionTree <- [
+::Legends.Professions.CaravaneeringProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendWheelMaintenance, ::Legends.Profession.LegendHippology],
@@ -143,7 +143,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.TrainerProfessionTree <- [
+::Legends.Professions.TrainerProfessionTree <- [
 	[::Legends.Profession.LegendTraining],
 	[],
 	[::Legends.Profession.LegendDrillSergeant],
@@ -157,7 +157,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.WoodworkingProfessionTree <- [
+::Legends.Professions.WoodworkingProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendWoodcutting],
 	[::Legends.Profession.LegendWoodworking],
@@ -171,7 +171,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.BlacksmithProfessionTree <- [
+::Legends.Professions.BlacksmithProfessionTree <- [
 	[::Legends.Profession.LegendCrafting],
 	[::Legends.Profession.LegendToolsDrawers],
 	[::Legends.Profession.LegendSpareParts],
@@ -185,7 +185,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.HighwaymanProfessionTree <- [
+::Legends.Professions.HighwaymanProfessionTree <- [
 	[],
 	[],
 	[],
@@ -199,7 +199,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.SweetTalkerProfessionTree <- [
+::Legends.Professions.SweetTalkerProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendBraggart],
 	[::Legends.Profession.LegendCarouser, ::Legends.Profession.LegendSilverTongued],
@@ -213,7 +213,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.NegotiatorProfessionTree <- [
+::Legends.Professions.NegotiatorProfessionTree <- [
 	[],
 	[],
 	[],
@@ -227,7 +227,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.GladiatorProfessionTree <- [
+::Legends.Professions.GladiatorProfessionTree <- [
 	[],
 	[],
 	[],
@@ -241,7 +241,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.AlchemistProfessionTree <- [
+::Legends.Professions.AlchemistProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendHerbcraft],
 	[::Legends.Profession.LegendCharlatan],
@@ -255,7 +255,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.CartographyProfessionTree <- [
+::Legends.Professions.CartographyProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendCartographer],
@@ -269,7 +269,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.MiningProfessionTree <- [
+::Legends.Professions.MiningProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendMining],
 	[],
@@ -283,7 +283,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.PathfinderProfessionTree <- [
+::Legends.Professions.PathfinderProfessionTree <- [
 	[::Legends.Profession.LegendScouting],
 	[::Legends.Profession.LegendLookout, ::Legends.Profession.LegendTrailblazer],
 	[],
@@ -297,7 +297,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.RecruiterProfessionTree <- [
+::Legends.Professions.RecruiterProfessionTree <- [
 	[::Legends.Profession.LegendScouting],
 	[::Legends.Profession.LegendLookout],
 	[],
@@ -311,7 +311,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.CookingProfessionTree <- [
+::Legends.Professions.CookingProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendMealPreparation],
 	[::Legends.Profession.LegendFoodPreservation],
@@ -325,7 +325,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.DogBreedingProfessionTree <- [
+::Legends.Professions.DogBreedingProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendDogBreeder],
 	[::Legends.Profession.LegendHippology],
@@ -339,7 +339,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.BountyHunterProfessionTree <- [
+::Legends.Professions.BountyHunterProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendBlackBook],
@@ -353,7 +353,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.TailorProfessionTree <- [
+::Legends.Professions.TailorProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendLeatherworking, ::Legends.Profession.LegendTailoring],
@@ -367,7 +367,7 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.GuildsmanProfessionTree <- [
+::Legends.Professions.GuildsmanProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendToolsDrawers],
 	[],
@@ -381,13 +381,13 @@ if (!("Professions" in ::Const)) {
 	[]
 ];
 
-::Const.Professions.BuildCustomProfessionTree <- function (_custom) {
+::Legends.Professions.BuildCustomProfessionTree <- function (_custom) {
 	local pT = {
 		Tree = [],
 		Map = {}
 	};
 	pT.addProfession <- function (_profession, _row = 0) {
-		local profession = clone ::Const.Professions.ProfessionDefObjects[_profession];
+		local profession = clone ::Legends.Professions.ProfessionDefObjects[_profession];
 
 		if (profession.ID in this.Map) {
 			return;
@@ -395,7 +395,7 @@ if (!("Professions" in ::Const)) {
 
 		profession.Row <- _row;
 		profession.Unlocks <- _row;
-		
+
 		for (local i = this.Tree.len(); i < _row + 1; i = ++i) {
 			this.Tree.push([]);
 		}
@@ -416,22 +416,22 @@ if (!("Professions" in ::Const)) {
 	return pT;
 };
 
-::Const.Professions.ProfessionsTreeTemplate <- ::Const.Professions.BuildCustomProfessionTree(::Const.Professions.DefaultProfessionTree);
+::Legends.Professions.ProfessionsTreeTemplate <- ::Legends.Professions.BuildCustomProfessionTree(::Legends.Professions.DefaultProfessionTree);
 
 /**
  * Take a profession tree like character_background.m.ProfessionTree
  * convert it to something like character_background.m.CustomProfessionTree
- * 
+ *
  * @param _tree An array of arrays; the latter contains profession objects
- * 
+ *
  * @return An array of arrays; the latter contains integers (profession defs)
  */
-::Const.Professions.getCustomProfessionTree <- function (_tree) {
+::Legends.Professions.getCustomProfessionTree <- function (_tree) {
 	local result = [];
     foreach (row in _tree) {
     	local arr = [];
     	foreach (profession in row) {
-    		arr.push(::Const.Professions.ProfessionDefs[profession.Const]);
+    		arr.push(::Legends.Professions.ProfessionDefs[profession.Const]);
     	}
     	result.push(arr);
     }

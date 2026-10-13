@@ -357,7 +357,7 @@
 		for (local i = 0; i < ::Const.LegendMod.Formations.Count; ++i) {
 			this.m.FormationNames.push(i == 0 ? "Formation 1" : "NULL");
 		}
-		foreach (profession in ::Const.Professions.ProfessionDefObjects) {
+		foreach (profession in ::Legends.Professions.ProfessionDefObjects) {
 			this.m.ProfessionEffect[profession.Const] <- 0;
 		}
 	}

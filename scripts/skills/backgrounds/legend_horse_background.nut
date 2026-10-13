@@ -1,4 +1,4 @@
-this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_horse_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {
 		Variant = 0
 	},

@@ -137,17 +137,17 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		if (this.getAssignedBros() != 0) {
 			local hours = ::Math.ceil((::Time.getVirtualTimeF() - this.m.TargetStartTime) / (::World.getTime().SecondsPerDay / 24)) + 1;
 			if (this.m.CurrentTarget != null) {
-				text.push((::Const.Professions.ProfessionDefObjects[this.m.CurrentTarget.Profession].Name + " " + this.m.CurrentTarget.Name) + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
+				text.push((::Legends.Professions.ProfessionDefObjects[this.m.CurrentTarget.Profession].Name + " " + this.m.CurrentTarget.Name) + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
 			} else if (this.m.PreviousTarget != null) {
-				text.push((::String.replace(::Const.Professions.ProfessionDefObjects[this.m.PreviousTarget.Profession].Name, "ing", "ed ") + this.m.PreviousTarget.Name + "!") + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
-			}			
+				text.push((::String.replace(::Legends.Professions.ProfessionDefObjects[this.m.PreviousTarget.Profession].Name, "ing", "ed ") + this.m.PreviousTarget.Name + "!") + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
+			}
 		}
 
 		return text;
 	}
 
 	function calcTargetDifficulty(_profession, _difficulty) {
-		return _difficulty / (1 + ::World.Assets.m.ProfessionEffect[::Const.Professions.ProfessionDefObjects[_profession].Const]);
+		return _difficulty / (1 + ::World.Assets.m.ProfessionEffect[::Legends.Professions.ProfessionDefObjects[_profession].Const]);
 	}
 
 	// To get a sense of scale for values for hunting/foraging, see https://docs.google.com/spreadsheets/d/1PaYY4woUIxKwOCHK_O6whWq60KYmDoAZaQqJp7AIeao/edit?usp=sharing
@@ -216,9 +216,9 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
         local cumulativeFailChance = 1.0;
 
         for (local i = 1; i <= ::Math.ceil(1.0 / chancePerStep); i++) {
-            local successChance = ::Math.minf(1.0, i * chancePerStep); 
-            expectedHours += i * cumulativeFailChance * successChance; 
-            cumulativeFailChance *= (1.0 - successChance); 
+            local successChance = ::Math.minf(1.0, i * chancePerStep);
+            expectedHours += i * cumulativeFailChance * successChance;
+            cumulativeFailChance *= (1.0 - successChance);
             if (cumulativeFailChance <= 0.0) {
 				break;
 			}
@@ -234,7 +234,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local huntLevel = this.getHuntingLevel();
 		ret.push("Hunting Tier: " + (huntLevel != null ? (::Math.min(3, ::Math.floor(huntLevel / 7))) : 0));
 
-		ret.push(::Legends.tooltip("Allowed gathering: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.LegendMod.Language.arrayToText(this.getAllowedTargets().map(@(_v) (::Const.Professions.ProfessionDefObjects[_v].Name))) + "</span>"));
+		ret.push(::Legends.tooltip("Allowed gathering: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.LegendMod.Language.arrayToText(this.getAllowedTargets().map(@(_v) (::Legends.Professions.ProfessionDefObjects[_v].Name))) + "</span>"));
 
 		local biome = ::World.Camp.getCampingTerrain();
 		ret.push("Current biome: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.World.TerrainLocation[biome] + "</span>") ;
@@ -245,13 +245,13 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		local biomeRewards = ::Legends.GatheringLoot.Biomes[biome];
 		foreach (prof in [::Legends.Profession.LegendForaging, ::Legends.Profession.LegendHunting, ::Legends.Profession.LegendMining, ::Legends.Profession.LegendWoodcutting]) {
-            ret.push("<u>" + ::Const.Professions.ProfessionDefObjects[prof].Name + "</u>");
-            
+            ret.push("<u>" + ::Legends.Professions.ProfessionDefObjects[prof].Name + "</u>");
+
             foreach (targetData in biomeRewards[prof]) {
                 local target = targetData[1];
                 local hours = this.estimateGatheringTime(calcTargetDifficulty(prof, target.Difficulty), mod.Craft);
                 local text = "- " + target.Name + (hours != null ? " (around " + hours + " " + ::Legends.S.pluralize(hours, "hour") + ")" : "");
-                
+
                 if (prof == ::Legends.Profession.LegendHunting && !::Legends.GatheringLoot.hasSufficientHuntingLevelForTier(huntLevel, target.Tier) && hours != null) {
                     ret.push("<s>" + text + "</s>");
                     ret.push("<span style=\"color:%negative%; display: inline-block; padding-left: 2rem;\">Requires Hunting Tier " + target.Tier + "</span>");
@@ -260,7 +260,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
                 }
             }
         }
-		
+
 		return ret;
 	}
 

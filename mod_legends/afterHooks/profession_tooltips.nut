@@ -2,13 +2,13 @@
 (function () {
 	local professionToTreeMap = {};
 	local trees = [];
-	if ("ProfessionTrees" in ::Const.Professions && "Tree" in ::Const.Professions.ProfessionTrees) {
-        trees.extend(::Const.Professions.ProfessionTrees.Tree);
+	if ("ProfessionTrees" in ::Legends.Professions && "Tree" in ::Legends.Professions.ProfessionTrees) {
+        trees.extend(::Legends.Professions.ProfessionTrees.Tree);
     }
-	if ("DefaultProfessionTree" in ::Const.Professions) {
+	if ("DefaultProfessionTree" in ::Legends.Professions) {
         trees.push({
             Name = "Core",
-            Tree = ::Const.Professions.DefaultProfessionTree
+            Tree = ::Legends.Professions.DefaultProfessionTree
         });
     }
 
@@ -32,7 +32,7 @@
     foreach (professionDef, treeNames in professionToTreeMap) {
         if (treeNames.len() == 0) continue;
 
-        local defObject = ::Const.Professions.ProfessionDefObjects[professionDef];
+        local defObject = ::Legends.Professions.ProfessionDefObjects[professionDef];
 
         if (!(defObject.Const in ::Const.Strings.ProfessionDescription)) {
             ::Const.Strings.ProfessionDescription[defObject.Const] <- defObject.Tooltip;
@@ -63,9 +63,9 @@
         ::Const.Strings.ProfessionDescription[defObject.Const] = description;
         defObject.Tooltip = description;
 
-        local profID = "ID" in defObject ? defObject.ID : professionDef; 
-        if (profID in ::Const.Professions.ProfessionsTreeTemplate.Map) {
-            ::Const.Professions.ProfessionsTreeTemplate.Map[profID].Tooltip = description;
+        local profID = "ID" in defObject ? defObject.ID : professionDef;
+        if (profID in ::Legends.Professions.ProfessionsTreeTemplate.Map) {
+            ::Legends.Professions.ProfessionsTreeTemplate.Map[profID].Tooltip = description;
         }
     }
 })();

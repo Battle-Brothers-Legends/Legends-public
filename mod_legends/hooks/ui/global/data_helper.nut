@@ -63,7 +63,7 @@
 	}
 
 	o.convertProfessionToUIData <- function ( _professionId )	{
-		local profession = ::Const.Professions.findById(_professionId);
+		local profession = ::Legends.Professions.findById(_professionId);
 
 		if (profession != null)	{
 			return {
@@ -361,7 +361,7 @@
 	}
 
 	o.convertProfessionsToUIData <- function ()	{
-		return ::Const.Professions.ProfessionsTreeTemplate;
+		return ::Legends.Professions.ProfessionsTreeTemplate;
 	}
 
 	local convertItemToUIData = o.convertItemToUIData;

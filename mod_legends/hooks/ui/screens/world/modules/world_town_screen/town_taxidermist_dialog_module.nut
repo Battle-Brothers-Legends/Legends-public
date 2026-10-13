@@ -14,7 +14,7 @@
 	{
 		local result = queryBlueprints();
 		local taxidermist = ::MSU.isKindOf(::World.State.getCurrentTown(), "city_state") ? "building.taxidermist_oriental" : "building.taxidermist";
-		result.Title = "Taxidermist (" + ::Const.Professions.ProfessionDefObjects[::World.State.getCurrentTown().getBuilding(taxidermist).m.TaxidermistSpecialization].Name + ")" ;
+		result.Title = "Taxidermist (" + ::Legends.Professions.ProfessionDefObjects[::World.State.getCurrentTown().getBuilding(taxidermist).m.TaxidermistSpecialization].Name + ")" ;
 		result.SubTitle = "A taxidermist can create useful items from all kinds of beast trophies that you bring";
 
 		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);

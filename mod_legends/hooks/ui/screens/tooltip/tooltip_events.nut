@@ -3970,7 +3970,7 @@
 					{
 						id = 1,
 						type = "title",
-						text = "Taxidermist (" + ::Const.Professions.ProfessionDefObjects[building.m.TaxidermistSpecialization].Name + ")"
+						text = "Taxidermist (" + ::Legends.Professions.ProfessionDefObjects[building.m.TaxidermistSpecialization].Name + ")"
 					},
 					{
 						id = 2,

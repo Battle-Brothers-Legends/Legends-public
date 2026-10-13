@@ -1,4 +1,4 @@
-this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_horserider_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 
 	function create() {

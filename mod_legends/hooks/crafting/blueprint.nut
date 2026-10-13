@@ -21,8 +21,8 @@
 				if(skillID == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala)) {
 					skillID = ::Legends.Professions.getID(::Legends.Profession.LegendEnchantersAssistant);
 				}
-				
-				local professionDef = ::Const.Professions.findById(skillID);
+
+				local professionDef = ::Legends.Professions.findById(skillID);
 				if(professionDef != null) {
 					local effect = ::World.Assets.m.ProfessionEffect[professionDef.Const];
 					if (effect > 0) {
@@ -349,7 +349,7 @@
 		if (::Legends.S.oneOf(this.m.Type, ::Const.Items.ItemType.Ammo, ::Const.Items.ItemType.Armor, ::Const.Items.ItemType.Helmet, ::Const.Items.ItemType.Shield, ::Const.Items.ItemType.Weapon)) {
 			::World.Assets.addBusinessReputation(::World.Assets.m.ProfessionEffect.LegendPersonalSeal * this.m.Cost * 0.01);
 		}
-	
+
 		this.onCraft(stash);
 	}
 

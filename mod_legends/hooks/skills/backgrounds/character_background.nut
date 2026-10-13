@@ -851,12 +851,12 @@
 			return this.m.ProfessionTree;
 		}
 
-		local pT = ::Const.Professions.ProfessionsTreeTemplate;
+		local pT = ::Legends.Professions.ProfessionsTreeTemplate;
 		return pT != null ? pT.Tree : [];
 	}
 
 	o.getProfession <- function (_profession) {
-		local id = typeof _profession == "string" ? _profession : ::Const.Professions.ProfessionDefObjects[_profession].ID;
+		local id = typeof _profession == "string" ? _profession : ::Legends.Professions.ProfessionDefObjects[_profession].ID;
 
 		if (id in this.m.ProfessionTreeMap) {
 			return this.m.ProfessionTreeMap[id];
@@ -865,7 +865,7 @@
 	}
 
 	o.addProfession <- function (_profession, _preferredRow = 0) {
-		local professionDefObject = clone ::Const.Professions.ProfessionDefObjects[_profession];
+		local professionDefObject = clone ::Legends.Professions.ProfessionDefObjects[_profession];
 
 		if (this.m.ProfessionTreeMap == null) {
 			this.buildProfessionTree();
@@ -907,7 +907,7 @@
 	o.addProfessionTree <- function (_treeDef) {
 		if (this.m.CustomProfessionTree == null) {
 			local baseTree = [];
-			foreach (row in ::Const.Professions.DefaultProfessionTree) {
+			foreach (row in ::Legends.Professions.DefaultProfessionTree) {
 				local newRow = [];
 				foreach (p in row) newRow.push(p);
 				baseTree.push(newRow);
@@ -931,7 +931,7 @@
 	}
 
 	o.removeProfession <- function (_profession) {
-		local professionDefObject = ::Const.Professions.ProfessionDefObjects[_profession];
+		local professionDefObject = ::Legends.Professions.ProfessionDefObjects[_profession];
 		if (!(professionDefObject.ID in this.m.ProfessionTreeMap)) {
 			return false;
 		}
@@ -957,7 +957,7 @@
 	}
 
 	o.hasProfession <- function (_profession) {
-		return ::Const.Professions.ProfessionDefObjects[_profession].ID in this.m.ProfessionTreeMap;
+		return ::Legends.Professions.ProfessionDefObjects[_profession].ID in this.m.ProfessionTreeMap;
 	}
 
 	o.buildProfessionTree <- function () {
@@ -966,11 +966,11 @@
 		}
 
 		if (this.m.CustomProfessionTree == null) {
-			this.m.ProfessionTree = ::Const.Professions.ProfessionsTreeTemplate.Tree;
-			this.m.ProfessionTreeMap = ::Const.Professions.ProfessionsTreeTemplate.Map;
-			this.m.CustomProfessionTree = ::Const.Professions.getCustomProfessionTree(this.m.ProfessionTree);
+			this.m.ProfessionTree = ::Legends.Professions.ProfessionsTreeTemplate.Tree;
+			this.m.ProfessionTreeMap = ::Legends.Professions.ProfessionsTreeTemplate.Map;
+			this.m.CustomProfessionTree = ::Legends.Professions.getCustomProfessionTree(this.m.ProfessionTree);
 		} else {
-			local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
+			local pT = ::Legends.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
 			this.m.ProfessionTree = pT.Tree;
 			this.m.ProfessionTreeMap = pT.Map;
 		}
@@ -1143,7 +1143,7 @@
 
 	o.rebuildProfessionTree <- function (_tree) {
 		this.m.CustomProfessionTree = _tree;
-		local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
+		local pT = ::Legends.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
 		this.m.ProfessionTree = pT.Tree;
 		this.m.ProfessionTreeMap = pT.Map;
 	}

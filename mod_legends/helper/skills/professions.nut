@@ -37,7 +37,7 @@ if (!("Professions" in ::Legends))
  */
 ::Legends.Professions.grant <- function (_target, _def, _applyFn = null) {
 	local container = ::Legends.Professions.getContainer(_target, "on grant");
-	local effectDef = ::Const.Professions.ProfessionDefObjects[_def];
+	local effectDef = ::Legends.Professions.ProfessionDefObjects[_def];
 
 	local skill = null;
 	if (container.hasSkill(effectDef.ID)) {
@@ -52,7 +52,7 @@ if (!("Professions" in ::Legends))
 }
 
 ::Legends.Professions.getID <- function (_def) {
-	return ::Const.Professions.ProfessionDefObjects[_def].ID;
+	return ::Legends.Professions.ProfessionDefObjects[_def].ID;
 }
 
 ::Legends.Professions.get <- function (_target, _def) {
@@ -73,11 +73,11 @@ if (!("Professions" in ::Legends))
 }
 
 ::Legends.Professions.new <- function (_def) {
-	return ::new(::Const.Professions.ProfessionDefObjects[_def].Script);
+	return ::new(::Legends.Professions.ProfessionDefObjects[_def].Script);
 }
 
 ::Legends.Professions.onCreate <- function (_profession, _professionDef) {
-	local def = ::Const.Professions.ProfessionDefObjects[_professionDef];
+	local def = ::Legends.Professions.ProfessionDefObjects[_professionDef];
 	_profession.m.ID = def.ID;
 	_profession.m.Name = def.Name;
 	_profession.m.Description = def.Tooltip;
@@ -106,7 +106,7 @@ if (!("Professions" in ::Legends))
 }
 
 ::Legends.Professions.recalculateAllProfessions <- function() {
-    foreach (prof in ::Const.Professions.ProfessionDefObjects) {
+    foreach (prof in ::Legends.Professions.ProfessionDefObjects) {
 		if ("ScalingArray" in prof) {
         	::Legends.Professions.setProfessionEffect(prof);
 		}
