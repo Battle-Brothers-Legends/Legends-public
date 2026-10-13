@@ -1,17 +1,6 @@
 /**
  * This file contains definitions and helper function for perks used in Legends.
  *
- * To add new perk, add definition to perkDefObjects:
- * perkDefObjects.push({
- *		ID = "perk.legend_ballistics", 									<- by convention, use legend_ prefix for your perk name or use your own if that's submod
- *		Script = "scripts/skills/perks/perk_legend_ballistics", 		<- same here
- *		Name = ::Const.Strings.PerkName.LegendBallistics,   			<- Name and Tooltip should be defined in perk_strings.nut
- *		Tooltip = ::Const.Strings.PerkDescription.LegendBallistics,
- *		Icon = "ui/perks/ballistics56_circle.png",						<- provide both icons, that will be used on perk screen, here's perk granted version
- *		IconDisabled = "ui/perks/ballistics56_circle_bw.png",			<- perk not granted version
- *		Const = "LegendBallistics" 										<- constant name this definition will be available at ::Const.Perks.PerkDefs, by convention, use Legend prefix for your perk or use your own if that's submod
- *	});
- *
  *	In perk implementation create() method it's encouraged to use helper function to set defined fields automatically by using
  *  ::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBallistics);
  *  Use your name, this will ensure there's not mismatch or typos in ID, Icons etc.
@@ -27,53 +16,55 @@
 if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
-
-if (!("Perk" in ::Legends)) {
-	::Legends.Perk <- {};
-}
-
-::Const.Perks.createPerkDef <- function (_def) {
-	::Legends.Perk[_def.Const] <- null;
-	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
-	if (!("ID" in _def)) {
-		_def.ID <- "perk." + snakeCase;
-	}
-
-	if (!("Script" in _def)) {
-		_def.Script <- "scripts/skills/perks/perk_" + snakeCase;
-	}
-
-	if (!("Name" in _def)) {
-		_def.Name <- ::Legends.DefsHelpers.convertToDisplayName(_def.Const);
-	}
-
-	_def.Tooltip <- ::Const.Strings.PerkDescription[_def.Const];
-
-	if (!("Icon" in _def)) {
-		_def.Icon <- "ui/perks/" + snakeCase + ".png";
-	}
-
-	if (!("IconDisabled" in _def)) {
-		_def.IconDisabled <- "ui/perks/" + snakeCase + "_bw.png";
-	}
-
-	return _def;
-};
-
 ::Const.Perks.PerkDefObjects <- [];
 ::Const.Perks.PerkDefs <- {};
 
+::Const.Perks.defaultDef <- function(_def) {
+	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
+	return {
+		Const = _def.Const,
+		ID = ::format("perk.%s", snakeCase),
+		Script = ::format("scripts/skills/perks/perk_%s", snakeCase),
+		Name = ::Legends.DefsHelpers.convertToDisplayName(_def.Const),
+		Tooltip = ::Const.Strings.PerkDescription[_def.Const],
+		Icon = ::format("ui/perks/%s.png", snakeCase)
+		IconDisabled = ::format("ui/perks/%s_bw.png", snakeCase),
+		HasUnactivatedPerkTooltipHints = false
+	}
+}
+
+/**
+* Overwrites default def with non-standard fields defined here
+* @param _def table with field overwrites
+*/
+::Const.Perks.transformDef <- function(_def) {
+	local defaultDef = ::Const.Perks.defaultDef(_def);
+	foreach (key, value in _def) {
+		if (key in defaultDef) {
+			defaultDef[key] = value; // overwrite
+		} else {
+			// here's weird situation, we have a slot that was not defined in default, which most likely means bug
+			defaultDef[key] <- value;
+			::logWarning(::format("perk '%s' defines unknown field '%s' in perk_defs", obj.ID, key));
+		}
+	}
+	return defaultDef;
+};
+
 /**
  * @param _perkDefObjects is an array of perk definitions
- * @param _container is namespace where ids will reside, you can use your own in submods
+ * @param _container is namespace where ids will reside, you can use your own in submods, default is ::Legends.Perk
  */
+::Const.Perks.addPerkDefObjects <- function(_perkDefObjects, _container = null) {
+	if (_container == null)
+		_container = ::Legends.Perk;
 
-::Const.Perks.addPerkDefObjects <- function (_perkDefObjects, _container = ::Legends.Perk) {
 	local size = ::Const.Perks.PerkDefObjects.len();
 	local i = 0;
 	foreach (constName, def in _perkDefObjects) {
 		def.Const <- constName;
-		::Const.Perks.PerkDefObjects.push(::Const.Perks.createPerkDef(def));
+		def = ::Const.Perks.transformDef(def);
+		::Const.Perks.PerkDefObjects.push(def);
 		if (def.Const in _container) {
 			_container[def.Const] = size + i;
 		} else {
@@ -85,7 +76,25 @@ if (!("Perk" in ::Legends)) {
 	}
 }
 
-local perkDefObjects = {
+::Const.Perks.validate <- function(_defs) {
+	local scripts = ::IO.enumerateFiles("scripts/skills/perks/");
+	local icons = ::IO.enumerateFiles("gfx/").map(@(_f) _f + ".png");
+
+	foreach(key, value in _defs) {
+		if (scripts.find(::Const.Perks.PerkDefObjects[value].Script) == null)
+			::logError(::format("%s: script `%s` is missing", key, ::Const.Perks.PerkDefObjects[value].Script));
+		if (icons.find("gfx/" + ::Const.Perks.PerkDefObjects[value].Icon) == null)
+			::logError(::format("%s: icon `%s` is missing", key, ::Const.Perks.PerkDefObjects[value].Icon));
+		if (icons.find("gfx/" + ::Const.Perks.PerkDefObjects[value].IconDisabled) == null)
+			::logError(::format("%s: icon disabled `%s` is missing", key, ::Const.Perks.PerkDefObjects[value].IconDisabled));
+	}
+}
+
+/**
+* Provide non-standard slot overwrites here
+* Defs get overwritten by int index at runtime.
+*/
+::Legends.Perk <- {
 	// Vanilla defined perks
 	Adrenaline = {
 		Script = "scripts/skills/perks/perk_adrenalin",
@@ -768,4 +777,6 @@ local perkDefObjects = {
 	}
 };
 
-::Const.Perks.addPerkDefObjects(perkDefObjects);
+::Const.Perks.addPerkDefObjects(clone ::Legends.Perk);
+
+::Const.Perks.validate(::Legends.Perk);

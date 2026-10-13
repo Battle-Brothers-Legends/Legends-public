@@ -794,7 +794,7 @@
 			];
 
 			if (!player.hasPerk(_perkId)) {
-				if ((::World.State.isInCharacterScreen() || (::Tactical.isActive() && ::Tactical.State.isInCharacterScreen())) && "HasUnactivatedPerkTooltipHints" in perk && perk.HasUnactivatedPerkTooltipHints) {
+				if ((::World.State.isInCharacterScreen() || (::Tactical.isActive() && ::Tactical.State.isInCharacterScreen())) && perk.HasUnactivatedPerkTooltipHints) {
 					// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
 					local tempPerk = this.new(perk.Script); // Need to instantiate a dummy perk because the player character's perk tree doesn't hold actual perks
 					tempPerk.m.IsForPerkTooltip = true; // onAdded() can check for this so it doesn't do anything when the dummy perk is added to the dummy skill container
