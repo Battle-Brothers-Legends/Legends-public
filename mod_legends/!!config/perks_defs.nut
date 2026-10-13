@@ -16,7 +16,7 @@
 if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
-::Const.Perks.PerkDefObjects <- [];
+::Const.Perks.PerkDefObjects <- {};
 ::Const.Perks.PerkDefs <- {};
 
 ::Const.Perks.defaultDef <- function(_def) {
@@ -45,7 +45,7 @@ if (!("Perks" in ::Const)) {
 		} else {
 			// here's weird situation, we have a slot that was not defined in default, which most likely means bug
 			defaultDef[key] <- value;
-			::logWarning(::format("perk '%s' defines unknown field '%s' in perk_defs", obj.ID, key));
+			::logWarning(::format("perk '%s' defines unknown field '%s' in perk_defs", defaultDef.ID, key));
 		}
 	}
 	return defaultDef;
@@ -59,20 +59,20 @@ if (!("Perks" in ::Const)) {
 	if (_container == null)
 		_container = ::Legends.Perk;
 
-	local size = ::Const.Perks.PerkDefObjects.len();
-	local i = 0;
 	foreach (constName, def in _perkDefObjects) {
 		def.Const <- constName;
 		def = ::Const.Perks.transformDef(def);
-		::Const.Perks.PerkDefObjects.push(def);
+		local hash = ::IO.scriptHashByFilename(def.Script);
+		if (hash == null)
+			::logError(::format("%s: hash is null for '%s'", def.Const, def.Script));
+		::Const.Perks.PerkDefObjects[hash] <- def;
 		if (def.Const in _container) {
-			_container[def.Const] = size + i;
+			_container[def.Const] = hash;
 		} else {
-			_container[def.Const] <- size + i;
+			_container[def.Const] <- hash;
 		}
-		::Const.Perks.PerkDefs[def.Const] <- size + i;
+		::Const.Perks.PerkDefs[def.Const] <- hash;
 		::Const.Perks.LookupMap[def.ID] <- def;
-		i++;
 	}
 }
 

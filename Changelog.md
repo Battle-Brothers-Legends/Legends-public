@@ -1,7 +1,8 @@
  19.5.0 - Name Pending
 
-## Blazing Desert Plus
+## Blazing Desert Plus and OFF+
 - added a patch for BD+ by Sato
+- added a patch for OFF+ by Sato
 
 ## Origins
 ### Legion
@@ -680,7 +681,7 @@
 - bloodbath effect tooltip correctly shows a flat increase to relevant stats rather than a % increase
 
 ### For modders:
-- it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
+- it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
 - added color templates to event lists, instead of vanilla way, you can specify colors as `[color=%positive%]` now
 - defs created for backgrounds
 - background_stats created for background stat rolls and migrated them from bgs
@@ -709,6 +710,7 @@
 - added names and icons to trait defs; traits are now using onCreate
 - scenarios now support onNewDay handling
 - scenarios now use their ID to set their player figures
+- slight change to `::Legends.Effects.EffectDefObjects`, `::Legends.Actives.ActiveDefObjects` and `::Const.Perks.PerkDefObjects`. They're a table now, if you just access them, nothing is changing for you, if you iterate over them, you need to add key to your loops too.
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`
@@ -787,6 +789,7 @@ Refactors/deletions:
 - `legend_drink_recovery_potion_skill` -> deleted
 - `perk_legend_enthrall` -> deleted
 - `legend_enthrall_skill` -> deleted
+- `legend_hold_the_line` -> renamed to `legend_hold_the_line_skill`
 - `perk_legend_entice` -> deleted
 - `perk_legend_revolt` -> deleted
 - `legend_field_repairs_skill` -> deleted
@@ -880,6 +883,11 @@ Refactors/deletions:
 - `legend_commander_abstract_effect` -> moved to skills from skills/effects
 - `legend_backswing_effect` -> deleted
 - `legend_graze_prepared_effect` -> deleted
+- `legend_pushing_forward` -> renamed to `legend_pushing_forward_effect`
+- `legend_skin_ghoul_claws` -> renamed to `legend_skin_ghoul_claws_skill`
+- `legend_RSS_radiance_effect` -> renamed to `legend_rss_radiance_effect`
+- `legend_RSW_bleeding_effect` -> renamed to `legend_rsw_bleeding_effect`
+- `legend_RSW_poison_effect` -> renamed to `legend_rsw_poison_effect`
 - `perk_legend_magic_daze` -> `perk_legend_stupefy`
 - `legend_magic_daze_skill` -> `legend_stupefy_skill`
 - `legend_daze_effect` -> `legend_stupefy_effect`

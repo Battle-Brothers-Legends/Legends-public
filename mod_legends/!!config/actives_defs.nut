@@ -2,58 +2,56 @@ if (!("Actives" in ::Legends)) {
 	::Legends.Actives <- {};
 }
 
-if (!("Active" in ::Legends)) {
-	::Legends.Active <- {};
+::Legends.Actives.defaultDef <- function(_def) {
+	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
+	return {
+		Const = _def.Const,
+		ID = ::format("actives.%s", snakeCase),
+		Script = ::format("scripts/skills/actives/%s_skill", snakeCase),
+		Name = ::Legends.DefsHelpers.convertToDisplayName(_def.Const),
+		Icon = ::format("skills/%s.png", snakeCase)
+		IconDisabled = ::format("skills/%s_bw.png", snakeCase),
+		Overlay = snakeCase
+	}
 }
 
-::Legends.Actives.createActiveDef <- function (_def) {
-	::Legends.Active[_def.Const] <- null;
-	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
-	if (!("ID" in _def)) {
-		_def.ID <- "actives." + snakeCase;
+::Legends.Actives.transformDef <- function (_def) {
+	local defaultDef = ::Legends.Actives.defaultDef(_def);
+	foreach (key, value in _def) {
+		if (key in defaultDef) {
+			defaultDef[key] = value; // overwrite
+		} else {
+			// here's weird situation, we have a slot that was not defined in default, which most likely means bug
+			defaultDef[key] <- value;
+			::logWarning(::format("active '%s' defines unknown field '%s' in actives_defs", defaultDef.ID, key));
+		}
 	}
-
-	if (!("Script" in _def)) {
-		_def.Script <- "scripts/skills/actives/" + snakeCase + "_skill";
-	}
-
-	if (!("Name" in _def)) {
-		_def.Name <- ::Legends.DefsHelpers.convertToDisplayName(_def.Const);
-	}
-
-	if (!("Icon" in _def)) {
-		_def.Icon <- "skills/" + snakeCase + ".png";
-	}
-
-	if (!("IconDisabled" in _def)) {
-		_def.IconDisabled <- "skills/" + snakeCase + "_bw.png";
-	}
-
-	if (!("Overlay" in _def)) {
-		_def.Overlay <- snakeCase;
-	}
-
-	return _def;
+	return defaultDef;
 };
 
-::Legends.Actives.ActiveDefObjects <- [];
+::Legends.Actives.ActiveDefObjects <- {};
 
 ::Legends.Actives.addActiveDefObjects <- function (_activeDefObjects) {
-	local size = ::Legends.Actives.ActiveDefObjects.len();
-	local i = 0;
 	foreach (constName, def in _activeDefObjects) {
 		def.Const <- constName;
-		::Legends.Actives.ActiveDefObjects.push(::Legends.Actives.createActiveDef(def));
+		def = ::Legends.Actives.transformDef(def);
+		local hash = ::IO.scriptHashByFilename(def.Script);
+		if (hash == null)
+			::logError(::format("%s: hash is null for '%s'", def.Const, def.Script));
+		::Legends.Actives.ActiveDefObjects[hash] <- def;
 		if (def.Const in ::Legends.Active) {
-			::Legends.Active[def.Const] = size + i;
+			::Legends.Active[def.Const] = hash;
 		} else {
-			::Legends.Active[def.Const] <- size + i;
+			::Legends.Active[def.Const] <- hash;
 		}
-		i++;
 	}
 }
 
-local activesDefs = {
+/**
+* Provide non-standard slot overwrites here
+* Defs get overwritten by int index at runtime.
+*/
+::Legends.Active <- {
 	Adrenaline = {
 		Icon = "ui/perks/perk_37_active.png",
 		IconDisabled = "ui/perks/perk_37_active_sw.png",
@@ -83,8 +81,8 @@ local activesDefs = {
 		Overlay = "active_105"
 	},
 	BarbarianFury = {
-		Icon = "ui/skills/active_175.png",
-		IconDisabled = "ui/skills/active_175.png",
+		Icon = "skills/active_175.png",
+		IconDisabled = "skills/active_175.png",
 		Overlay = "active_175"
 	},
 	Bash = {
@@ -1415,12 +1413,6 @@ local activesDefs = {
 	LegendRust = {},
 	LegendSafeguard = {},
 	LegendScry = {},
-	LegendScryTrance = {
-		Name = "Scry Area (Trance)",
-		Icon = "skills/legend_scry.png",
-		IconDisabled = "skills/legend_scry_bw.png",
-		Overlay = "legend_scry"
-	},
 	LegendSecondWind = {
 		Overlay = "perk_54_active"
 	},
@@ -1585,4 +1577,4 @@ local activesDefs = {
 	}
 };
 
-::Legends.Actives.addActiveDefObjects(activesDefs);
+::Legends.Actives.addActiveDefObjects(clone ::Legends.Active);

@@ -1,4 +1,4 @@
-this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
+this.legend_skin_ghoul_claws_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		SoundsA = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3),
 		SoundsB = ::Legends.S.setSounds("sounds/combat/chop_hit", 3)

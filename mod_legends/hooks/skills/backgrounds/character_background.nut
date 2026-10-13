@@ -1564,7 +1564,7 @@
 			for (local i = 0; i < this.m.CustomPerkTree.len(); i = ++i) {
 				_out.writeU8(this.m.CustomPerkTree[i].len());
 				for (local j = 0; j < this.m.CustomPerkTree[i].len(); j = ++j) {
-					_out.writeU16(this.m.CustomPerkTree[i][j]);
+					_out.writeU32(this.m.CustomPerkTree[i][j]);
 				}
 			}
 		}
@@ -1580,7 +1580,7 @@
 
 		_out.writeU8(nonRefundablePerks.len());
 		foreach (perk in nonRefundablePerks) {
-			_out.writeU16(perk);
+			_out.writeU32(perk);
 		}
 
 		if (this.m.CustomProfessionTree == null) {
@@ -1590,7 +1590,7 @@
 			for (local i = 0; i < this.m.CustomProfessionTree.len(); i = ++i) {
 				_out.writeU8(this.m.CustomProfessionTree[i].len());
 				for (local j = 0; j < this.m.CustomProfessionTree[i].len(); j = ++j) {
-					_out.writeU16(this.m.CustomProfessionTree[i][j]);
+					_out.writeU32(this.m.CustomProfessionTree[i][j]);
 				}
 			}
 		}
@@ -1621,7 +1621,7 @@
 			local numPerks = _in.readU8();
 			local perks = [];
 			for (local j = 0; j < numPerks; j = ++j) {
-				perks.push(_in.readU16());
+				perks.push(_in.readU32());
 			}
 			this.m.CustomPerkTree.push(perks);
 		}
@@ -1632,7 +1632,7 @@
 
 		local num = _in.readU8();
 		for (local i = 0; i < num; i++) {
-			this.getPerk(_in.readU16()).IsRefundable <- false;
+			this.getPerk(_in.readU32()).IsRefundable <- false;
 		}
 
 		this.m.CustomProfessionTree = [];
@@ -1645,7 +1645,7 @@
 				local numProfessions = _in.readU8();
 				local professions = [];
 				for (local j = 0; j < numProfessions; j = ++j) {
-					professions.push(_in.readU16());
+					professions.push(_in.readU32());
 				}
 				this.m.CustomProfessionTree.push(professions);
 			}

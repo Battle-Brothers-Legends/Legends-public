@@ -2,58 +2,66 @@ if (!("Effects" in ::Legends)) {
 	::Legends.Effects <- {};
 }
 
-if (!("Effect" in ::Legends)) {
-	::Legends.Effect <- {};
+::Legends.Effects.defaultDef <- function(_def) {
+	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
+	return {
+		Const = _def.Const,
+		ID = ::format("%s.%s", _def.Type == "effects_world" ? "effects" : _def.Type, snakeCase),
+		Script = ::format("scripts/skills/%s/%s_effect", _def.Type, snakeCase),
+		Name = ::Legends.DefsHelpers.convertToDisplayName(_def.Const),
+		Icon = ::format("skills/%s_effect.png", snakeCase),
+		IconMini = ::format("%s_effect_mini", snakeCase),
+		Overlay = ::format("%s_effect", snakeCase),
+		Type = _def.Type
+	}
 }
 
-::Legends.Effects.createEffectDef <- function (_def, _type) {
-	::Legends.Effect[_def.Const] <- null;
-	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
-	if (!("ID" in _def)) {
-		_def.ID <- (_type == "effects_world" ? "effects" : _type) + "." + snakeCase;
+::Legends.Effects.transformDef <- function (_def) {
+	local defaultDef = ::Legends.Effects.defaultDef(_def);
+	if (_def.Type == "rune_sigils") {
+		local nameTokens = ::Legends.DefsHelpers.tokenizeConst(_def.Const);
+		defaultDef.Name <- "Rune Sigil: " + nameTokens[nameTokens.len() - 1];
+		defaultDef.Icon <- "ui/rune_sigils/legend_rune_sigil.png";
+		defaultDef.IconMini <- "";
+		defaultDef.Overlay <- "";
 	}
-
-	if (!("Script" in _def)) {
-		_def.Script <- "scripts/skills/" + _type + "/" + snakeCase + "_effect";
+	foreach (key, value in _def) {
+		if (key in defaultDef) {
+			defaultDef[key] = value; // overwrite
+		} else {
+			// here's weird situation, we have a slot that was not defined in default, which most likely means bug
+			defaultDef[key] <- value;
+			::logWarning(::format("effect '%s' defines unknown field '%s' in effects_defs", defaultDef.ID, key));
+		}
 	}
-
-	if (!("Name" in _def)) {
-		_def.Name <- ::Legends.DefsHelpers.convertToDisplayName(_def.Const);
-	}
-
-	if (!("Icon" in _def)) {
-		_def.Icon <- "skills/" + snakeCase + "_effect.png";
-	}
-
-	if (!("IconMini" in _def)) {
-		_def.IconMini <- snakeCase + "_effect_mini";
-	}
-
-	if (!("Overlay" in _def)) {
-		_def.Overlay <- snakeCase + "_effect";
-	}
-
-	return _def;
+	return defaultDef;
 };
 
-::Legends.Effects.EffectDefObjects <- [];
+::Legends.Effects.EffectDefObjects <- {};
 
-::Legends.Effects.addEffectDefObjects <- function (_effectDefObjects, _type = "effects") {
-	local size = ::Legends.Effects.EffectDefObjects.len();
-	local i = 0;
+::Legends.Effects.addEffectDefObjects <- function (_effectDefObjects) {
 	foreach (constName, def in _effectDefObjects) {
+		if (!("Type" in def))
+			def.Type <- "effects";
 		def.Const <- constName;
-		::Legends.Effects.EffectDefObjects.push(::Legends.Effects.createEffectDef(def, _type));
+		def = ::Legends.Effects.transformDef(def);
+		local hash = ::IO.scriptHashByFilename(def.Script);
+		if (hash == null)
+			::logError(::format("%s: hash is null for '%s'", def.Const, def.Script));
+		::Legends.Effects.EffectDefObjects[hash] <- def;
 		if (def.Const in ::Legends.Effect) {
-			::Legends.Effect[def.Const] = size + i;
+			::Legends.Effect[def.Const] = hash;
 		} else {
-			::Legends.Effect[def.Const] <- size + i;
+			::Legends.Effect[def.Const] <- hash;
 		}
-		i++;
 	}
 }
 
-local effectDefs = {
+/**
+* Provide non-standard slot overwrites here
+* Defs get overwritten by int index at runtime.
+*/
+::Legends.Effect <- {
 	// be advised that only a few hooks are using onCreate
 	Acid = {
 		Name = "Sprayed with Acid",
@@ -677,7 +685,7 @@ local effectDefs = {
 	LegendConstrained = {
 		// could use new icons, these ones are acid eating chain mail
 		Icon = "skills/status_effect_78.png",
-		MiniIcon = "status_effect_78_mini",
+		IconMini = "status_effect_78_mini",
 		Overlay = "status_effect_78"
 	},
 	LegendCurseOfTheMummy = {},
@@ -1046,210 +1054,242 @@ local effectDefs = {
 		// to be remade/removed
 		Icon = "skills/status_effect_92.png",
 		IconMini = "status_effect_92_mini",
-		verlay = "status_effect_92"
+		Overlay = "status_effect_92"
 	},
 	LegendZombiePoison = {
 		Name = "Infected",
 		Icon = "skills/status_effect_54.png",
 		IconMini = "status_effect_54_mini",
 		Overlay = ""
-	}
-};
+	},
 
-::Legends.Effects.addEffectDefObjects(effectDefs);
-
-local worldEffectDefs = {
+	// world effects
 	Afraid = {
 		Icon = "skills/status_effect_52.png",
 		IconMini = "status_effect_52_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "effects_world"
 	},
 	Drunk = {
 		Icon = "skills/status_effect_61.png",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "effects_world"
 	},
 	Exhausted = {
 		Icon = "skills/status_effect_53.png",
 		IconMini = "status_effect_53_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "effects_world"
 	},
 	Hangover = {
 		Icon = "skills/status_effect_62.png",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "effects_world"
 	},
 	KnowledgePotion = {
 		Name = "Enhanced Learning",
 		Icon = "skills/status_effect_94.png",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "effects_world"
 	},
 	Trained = {
 		Script = "scripts/skills/effects_world/new_trained_effect",
 		Name = "Training Experience",
 		Icon = "skills/status_effect_62.png",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "effects_world"
 	},
 	LegendHeadache = {
 		Icon = "skills/status_effect_62.png",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "effects_world"
 	},
 	LegendIrritable = {
 		Icon = "skills/status_effect_62.png",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "effects_world"
 	},
 	LegendWellTended = {
 		IconMini = "",
-		Overlay = ""
-	}
-};
+		Overlay = "",
+		Type = "effects_world"
+	},
 
-::Legends.Effects.addEffectDefObjects(worldEffectDefs, "effects_world");
-
-local specialEffectDefs = {
+	// special effects
 	BagFatigue = {
 		Script = "scripts/skills/special/bag_fatigue",
 		Icon = "",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	DoubleGrip = {
 		Script = "scripts/skills/special/double_grip",
 		Icon = "skills/passive_07.png",
 		IconMini = "passive_07_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	MoodCheck = {
 		Script = "scripts/skills/special/mood_check",
 		Icon = "skills/status_effect_02.png",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	MoraleCheck = {
 		Script = "scripts/skills/special/morale_check",
 		Icon = "skills/status_effect_02.png",
 		IconMini = "status_effect_02_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	Night = {
 		Name = "Nighttime",
 		Icon = "skills/status_effect_35.png",
 		IconMini = "status_effect_35_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	NoAmmoWarning = {
 		Script = "scripts/skills/special/no_ammo_warning",
 		Name = "No Ammunition!",
 		Icon = "skills/status_effect_63.png",
 		IconMini = "status_effect_63_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	OathOfFortificationWarning = {
 		Script = "scripts/skills/special/oath_of_fortification_warning",
 		Name = "Fortifying!",
 		Icon = "skills/status_effect_159.png",
 		IconMini = "status_effect_159_mini",
-		Overlay = "status_effect_159"
+		Overlay = "status_effect_159",
+		Type = "special"
 	},
 	OathOfHonorWarning = {
 		Script = "scripts/skills/special/oath_of_honor_warning",
 		Name = "Honorable Combat!",
 		Icon = "skills/status_effect_160.png",
 		IconMini = "status_effect_160_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	StatsCollector = {
 		Script = "scripts/skills/special/stats_collector",
 		Icon = "",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	WeaponBreakingWarning = {
 		Script = "scripts/skills/special/weapon_breaking_warning",
 		Name = "Weapon in poor condition!",
 		Icon = "skills/status_effect_59.png",
 		IconMini = "status_effect_59_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	LegendRain = {
 		Name = "Raining",
 		IconMini = "status_effect_35_mini",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	// unused
 	LegendRelationshipCheck = {
 		Icon = "skills/status_effect_01.png",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	},
 	LegendHorserider = {
 		Icon = "",
 		IconMini = "",
-		Overlay = ""
+		Overlay = "",
+		Type = "special"
 	}
-};
 
-::Legends.Effects.addEffectDefObjects(specialEffectDefs, "special");
+	// runes
 
-local runeSigilEffectDefs = {
-	LegendRsaEndurance = {},
-	LegendRsaResilience = {},
-	LegendRsaSafety = {},
-	LegendRshBravery = {},
-	LegendRshClarity = {},
-	LegendRshLuck = {},
-	LegendRshPatience = {},
-	LegendRssDefense = {},
-	LegendRssDurability = {},
-	LegendRssRadiance = {},
+	LegendRsaEndurance = {
+		Type = "rune_sigils"
+	},
+	LegendRsaResilience = {
+		Type = "rune_sigils"
+	},
+	LegendRsaSafety = {
+		Type = "rune_sigils"
+	},
+	LegendRshBravery = {
+		Type = "rune_sigils"
+	},
+	LegendRshClarity = {
+		Type = "rune_sigils"
+	},
+	LegendRshLuck = {
+		Type = "rune_sigils"
+	},
+	LegendRshPatience = {
+		Type = "rune_sigils"
+	},
+	LegendRssDefense = {
+		Type = "rune_sigils"
+	},
+	LegendRssDurability = {
+		Type = "rune_sigils"
+	},
+	LegendRssRadiance = {
+		Type = "rune_sigils"
+	},
 	LegendRssRadianceBlind = {
 		Name = "Blinded",
 		Icon = "skills/status_effect_52.png",
 		IconMini = "status_effect_52_mini",
-		Overlay = "status_effect_52"
+		Overlay = "status_effect_52",
+		Type = "rune_sigils"
 	},
-	LegendRswAccuracy = {},
-	LegendRswBlazing = {},
-	LegendRswBleeding = {},
+	LegendRswAccuracy = {
+		Type = "rune_sigils"
+	},
+	LegendRswBlazing = {
+		Type = "rune_sigils"
+	},
+	LegendRswBleeding = {
+		Type = "rune_sigils"
+	},
 	LegendRswBleedingBleed = {
 		Name = "Bleeding",
 		Icon = "skills/status_effect_01.png",
 		IconMini = "status_effect_01_mini",
-		Overlay = "status_effect_01"
+		Overlay = "status_effect_01",
+		Type = "rune_sigils"
 	},
-	LegendRswFeeding = {},
-	LegendRswPoison = {},
+	LegendRswFeeding = {
+		Type = "rune_sigils"
+	},
+	LegendRswPoison = {
+		Type = "rune_sigils"
+	},
 	LegendRswPoisonPoison = {
 		Name = "Poisoned (rune)",
 		Icon = "skills/status_effect_54.png",
 		IconMini = "status_effect_54_mini",
-		Overlay = "status_effect_54"
+		Overlay = "status_effect_54",
+		Type = "rune_sigils"
 	},
-	LegendRswPower = {},
-	LegendRswUnbreaking = {}
+	LegendRswPower = {
+		Type = "rune_sigils"
+	},
+	LegendRswUnbreaking = {
+		Type = "rune_sigils"
+	}
 };
 
-foreach (constName, def in runeSigilEffectDefs) {
-	if (!("Name" in def)) {
-		local nameTokens = ::Legends.DefsHelpers.tokenizeConst(constName);
-		def.Name <- "Rune Sigil: " + nameTokens[nameTokens.len() - 1];
-	}
-
-	if (!("Icon" in def)) {
-		def.Icon <- "ui/rune_sigils/legend_rune_sigil.png";
-	}
-
-	if (!("IconMini" in def)) {
-		def.IconMini <- "";
-	}
-
-	if (!("Overlay" in def)) {
-		def.Overlay <- "";
-	}
-}
-
-::Legends.Effects.addEffectDefObjects(runeSigilEffectDefs, "rune_sigils");
+::Legends.Effects.addEffectDefObjects(clone ::Legends.Effect);

@@ -1,4 +1,4 @@
-this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
+this.legend_hold_the_line_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
