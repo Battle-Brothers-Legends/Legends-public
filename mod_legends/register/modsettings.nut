@@ -84,18 +84,17 @@ tooltip.addDivider("TooltipDivider3");
 tooltip.addTitle("TooltipWorldMap", "Tooltips - World Map");
 tooltip.addElement(::MSU.Class.BooleanSetting("ExactEngageNumbers", false, "Exact engagement numbers", "Display exact engagement numbers."));
 tooltip.addDivider("TooltipDivider4");
-tooltip.addTitle("TooltipUI", "UI");
-
 tooltip.addTitle("JimmysTooltips", "Jimmy's Tooltips");
 tooltip.addTitle("title", "Edit what you see on the Tactical Tooltip");
-tooltip.addDivider("divider");
+tooltip.addDivider("TooltipDivider5");
 tooltip.addBooleanSetting("DefaultTooltip", false);
 tooltip.addBooleanSetting("ProgressBarValues", true);
 tooltip.addBooleanSetting("Items", true);
 tooltip.addBooleanSetting("ItemDurability", true);
 tooltip.addBooleanSetting("Skills", true);
 tooltip.addBooleanSetting("Stats", true);
-
+tooltip.addDivider("TooltipDivider6");
+tooltip.addTitle("TooltipUI", "UI");
 local cpLight = tooltip.addElement(::MSU.Class.ColorPickerSetting("HighlightLightBackground", "2,55,189,1", "Highlighted Text (Light Background)", "Customize the color for special highlighted text occurring in light backgrounds, such as in tooltips"));
 ::Const.UI.Color.getHighlightLightBackgroundValue <- @()"#" + cpLight.getValueAsHexString().slice(0, 6);
 local cpDark = tooltip.addElement(::MSU.Class.ColorPickerSetting("HighlightDarkBackground", "111,145,201,1", "Highlighted Text (Dark Background)", "Customize the color of special highlighted text occurring in dark backgrounds, such as in events"));
@@ -138,6 +137,6 @@ logging.addElement(::MSU.Class.BooleanSetting("LogOutfits", false, "Log Outfits"
 
 // Jimmys Tooltips Keybind
 ::Legends.Mod.Keybinds.addSQKeybind("updateTooltip", "tab", ::MSU.Key.State.Tactical, function () {
-	::Tactical.Entities.getFlags().set("JimmysTooltips_ShowLootChance", !::Tactical.Entities.getFlags().get("JimmysTooltips_ShowLootChance"));
+	::Tactical.Entities.getFlags().set("JimmysTooltips_ShowExpandedDescriptions", !::Tactical.Entities.getFlags().get("JimmysTooltips_ShowExpandedDescriptions"));
 	::Tooltip.reload();
-}, "Toggle to see loot chance", null, "Press this keybind to display the chance to loot item from enemy.");
+}, "Toggle to see loot chance", null, "Press this keybind to display expanded effect descriptions");

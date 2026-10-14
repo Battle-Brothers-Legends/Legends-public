@@ -1896,10 +1896,11 @@ TooltipModule.prototype.addContentTextDiv = function(_parentDIV, _data, _isChild
 
 	var useFullWidth = true;
 	var hasIcon = ('icon' in _data);
+	var hasIconsArray = ('icons' in _data && _data.icons.length > 0);
 	var hasLabel = ('label' in _data);
 	var leftColumn = null;
 
-	if (hasIcon || hasLabel)
+	if (hasIcon || hasIconsArray || hasLabel)
 	{
 		useFullWidth = false;
 
@@ -1911,8 +1912,24 @@ TooltipModule.prototype.addContentTextDiv = function(_parentDIV, _data, _isChild
 		leftColumn.append(label);
 
 		// prefer icon over label
-		if (hasIcon)
-		{
+		if (hasIconsArray) {
+		var imageLayer = $('<div class="hint-image-layer"></div>');
+            imageLayer.css({ 'position': 'relative', 'display': 'inline-block' });
+            label.append(imageLayer);
+
+            for (var i = 0; i < _data.icons.length; i++)
+            {
+                var image = $('<img/>');
+                image.attr('src', Path.GFX + _data.icons[i]);          
+                if (i === 0) {
+                    image.css({ 'display': 'block' });
+                } else {
+                    image.css({ 'position': 'absolute', 'top': '0', 'left': '0', 'pointer-events': 'none' });
+                }
+                imageLayer.append(image);
+            }
+        }
+        else if (hasIcon) {
 			var image = $('<img/>');
 			image.attr('src', Path.GFX + _data.icon);
 			label.append(image);

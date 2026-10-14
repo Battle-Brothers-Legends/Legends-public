@@ -1,544 +1,27 @@
 ::Legends.JimmysTooltips <- {};
 
-::Legends.JimmysTooltips.ItemImagePaths <- [];
+local ItemImagePaths = [];
 
 local items_directory = "gfx/";
 foreach (_, directory in ::IO.enumerateFiles(items_directory + "ui/items/")) {
-	::Legends.JimmysTooltips.ItemImagePaths.push(directory.slice(items_directory.len()) + ".png");
+	ItemImagePaths.push(directory.slice(items_directory.len()) + ".png");
 }
-
-
-::Legends.JimmysTooltips.modTacticalTooltip <- function (tooltip, _targetedWithSkill, _entity) {
-	if (::Legends.Mod.ModSettings.getSetting("DefaultTooltip").getValue()) {
-		return tooltip;
-	}
-
-	if (tooltip.len() < 3) {
-		return tooltip;
-	}
-
-	local shownPerks = {};
-	local stackEffects = function (effects) {
-		local stacks = {};
-
-		foreach (_, effect in effects) {
-			local name = effect.getName();
-
-			if (name in stacks) {
-				stacks[name] += 1;
-			} else {
-				stacks[name] <- 1;
-			}
-		}
-
-		return stacks;
-	};
-	local pushSectionName = function (items, title, startID, icon = "") {
-		if (items.len() && title) {
-			local ret = {
-				id = startID,
-				type = "text",
-				text = "[u][size=14]" + title + "[/size][/u]"
-			};
-
-			if (icon.len() > 0) {
-				ret.icon <- icon;
-			}
-
-			tooltip.push(ret);
-		}
-	};
-	local isPerk = @(_, _skill) _skill.isType(::Const.SkillType.Perk);
-	local isInjury = @(_, _skill) _skill.isType(::Const.SkillType.TemporaryInjury);
-	local isTextRow = @(_, row)("type" in row) && row.type == "text";
-
-	local pushSection = function (items, title, startID, filter = 0, prependIcon = "", stackInOneLine = false) {
-		if (!items) {
-			return;
-		}
-
-		if (filter == 1) {
-			items = items.filter(isPerk);
-		} else if (filter == 2) {
-			items = items.filter(@(_idx, _item)(!isPerk(_idx, _item)));
-		}
-
-		local stacks = {};
-
-		if (stackInOneLine) {
-			stacks = stackEffects(items);
-			local newItems = [];
-			local added = {};
-
-			foreach (_, item in items) {
-				local name = item.getName();
-
-				if (!(name in added)) {
-					newItems.push(item);
-					added[name] <- 1;
-				}
-			}
-
-			items = newItems;
-		}
-
-		pushSectionName(items, title, startID);
-		startID += 1;
-
-		foreach (i, item in items) {
-			local name = item.getName();
-			local text = name;
-
-			// debug for if there is a null entry so that the tt wont crash
-			if (name == null && text == null) {
-				// ::logInfo("weird NULL issue for perk tooltips");
-				::logWarning("There is a something with a null name: ");
-				local id = item.getID();
-				local desc = item.getDescription();
-				local type = item.getType();
-				::logInfo("id of the thing: " + id);
-				::logInfo("description of the thing: " + desc);
-				::logInfo("type of the thing: " + type);
-				continue;
-			}
-
-			if (filter != 0) {
-				shownPerks[name] <- 1;
-			}
-
-			if (stackInOneLine && stacks[name] > 1) {
-				text += (" [color=%negative%]" + "x" + stacks[name] + "[/color]");
-			}
-
-			local itemRow = {
-				id = startID + i,
-				type = "text",
-				icon = ::Legends.JimmysTooltips.checkForIcon(prependIcon, item),
-				text = text
-			};
-
-			if (title == "Ammo" && this.isKindOf(_entity, "player")) {
-				itemRow.text += " Ammo: " + item.getAmmo() + " / " + item.getAmmoMax();
-			} else if (title == "Ammo" && !this.isKindOf(_entity, "player")) {
-				itemRow.text += " " + "Ammo: infinite";
-			}
-
-			tooltip.push(itemRow);
-
-			if (::isKindOf(item, "skill")) {
-				local extraDesc = item.getActorHoverTooltip(::Tactical.TurnSequenceBar.getActiveEntity());
-				if (extraDesc != null) {
-					tooltip.push({
-						id = startID + i,
-						type = "text",
-						icon = "ui/perks/none.png"
-						text = extraDesc
-					});
-				}
-			}
-		}
-	};
-	local removeDuplicates = function (items) {
-		if (!items) {
-			return items;
-		}
-		return items.filter(@(_, item) ! (item.getName() in shownPerks));
-	};
-	local getPlural = function (items) {
-		if (!items) {
-			return "";
-		}
-
-		return items.len() > 1 ? "s" : "";
-	};
-	local patchedPerkIcons = {};
-	patchedPerkIcons[::Const.Strings.PerkName.BatteringRam] <- "ui/settlement_status/settlement_effect_13.png";
-	local getRealPerkIcon = function (perk) {
-		local realPerk = ::Const.Perks.findById(perk.getID());
-
-		if (realPerk) {
-			return realPerk.Icon;
-		}
-
-		local name = perk.getName();
-
-		if (name in patchedPerkIcons) {
-			return patchedPerkIcons[name];
-		}
-
-		return perk.getIcon();
-	};
-
-	if (::Legends.Mod.ModSettings.getSetting("ProgressBarValues").getValue()) {
-
-		if (!this.isKindOf(_entity, "player")) {
-			local _type = "progressbar";
-
-			foreach (_, row in tooltip) {
-				if (("type" in row) && row.type == _type && ("id" in row) && "icon" in row) {
-					if (row.id == 5 && row.icon == "ui/icons/armor_head.png") {
-						row.text <- "" + _entity.getArmor(::Const.BodyPart.Head) + " / " + _entity.getArmorMax(::Const.BodyPart.Head) + "";
-					} else if (row.id == 6 && row.icon == "ui/icons/armor_body.png") {
-						row.text <- "" + _entity.getArmor(::Const.BodyPart.Body) + " / " + _entity.getArmorMax(::Const.BodyPart.Body) + "";
-					} else if (row.id == 7 && row.icon == "ui/icons/health.png") {
-						row.text <- "" + _entity.getHitpoints() + " / " + _entity.getHitpointsMax() + "";
-					} else if (row.id == 9 && row.icon == "ui/icons/fatigue.png") {
-						row.text <- "" + _entity.getFatigue() + " / " + _entity.getFatigueMax() + "";
-					}
-				}
-			}
-		}
-	}
-
-	local pushRemainingAP = function () {
-		local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(_entity.getID());
-		local remainingAP = _entity.m.IsTurnDone || turnsToGo == null ? 0 : _entity.getActionPoints();
-		tooltip.push({
-			id = 10,
-			type = "progressbar",
-			icon = "ui/icons/action_points.png",
-			value = remainingAP,
-			valueMax = _entity.getActionPointsMax(),
-			text = "" + _entity.getActionPoints() + " / " + _entity.getActionPointsMax() + "",
-			style = "action-points-slim"
-		});
-	};
-
-	/*
-	if (_targetedWithSkill != null && this.isKindOf(_targetedWithSkill, "skill"))
-	{
-		local tile = this.getTile();
-		if (tile.IsVisibleForEntity && _targetedWithSkill.isUsableOn(tile))
-		{
-			tooltip.push({
-				id = 2048,
-				type = "hint",
-				icon = "ui/icons/mouse_right_button.png",
-				text = "Expand tooltip"
-			});
-			return tooltip;
-		}
-	}
-	*/
-
-	if (!::Tactical.Entities.getFlags().get("JimmysTooltips_ShowLootChance")) {
-		local statusEffects = _entity.getSkills().query(::Const.SkillType.StatusEffect | ::Const.SkillType.TemporaryInjury, false, true);
-		local count = tooltip.len() - statusEffects.len();
-
-		if (statusEffects.len() && count > 0) {
-			if (tooltip[count].text == statusEffects[0].getName()) {
-				tooltip.resize(count);
-				pushRemainingAP();
-				statusEffects = removeDuplicates(statusEffects.filter(@(_, item)(!isInjury(_, item))));
-				pushSection(statusEffects, null, 100, 2, "", true);
-				local injuries = _entity.getSkills().query(::Const.SkillType.TemporaryInjury, false, true);
-
-				foreach (i, injury in injuries) {
-					local children = injury.getTooltip().filter(@(_, row)(isTextRow(_, row)));
-					local addedTooltipHints = [];
-					injury.addTooltipHint(addedTooltipHints);
-					addedTooltipHints = addedTooltipHints.filter(@(_, row)(isTextRow(_, row)));
-					local added_count = addedTooltipHints.len();
-
-					if (added_count) {
-						children.resize(children.len() - added_count);
-					}
-
-					local isUnderIronWill = function () {
-						local pattern = this.regexp("Iron Will");
-
-						foreach (_, row in addedTooltipHints) {
-							if (("text" in row) && pattern.search(row.text)) {
-								return true;
-							}
-						}
-
-						return false;
-					}
-					();
-					local injuryRow = {
-						id = 133 + i,
-						type = "text",
-						icon = injury.getIcon(),
-						text = injury.getName()
-					};
-
-					if (!isUnderIronWill) {
-						injuryRow.children <- children;
-					} else {
-						injuryRow.text += "[color=%positive%]" + " (Iron Will)[/color]";
-					}
-
-					tooltip.push(injuryRow);
-				}
-
-				statusEffects = removeDuplicates(statusEffects);
-				pushSection(statusEffects, "Status perks", 150, 1);
-			} else {
-				foreach (_, row in tooltip) {
-					if (("type" in row) && row.type == "text" && "text" in row) {
-						shownPerks[row.text] <- 1;
-					}
-				}
-			}
-		} else if (!statusEffects.len()) {
-			pushRemainingAP();
-		}
-
-		local immunities = "";
-		foreach (effectName, property in ::Legends.Effects.Immunities) {
-			if (_entity.getCurrentProperties()[property]) {
-				local formattedName = ("[color=%negative%]" + effectName.slice(0, 1) + "[/color]" + effectName.slice(1));
-				immunities += (immunities.len() ? ", " : "") + formattedName;
-			}
-		}
-		if (immunities.len()) {
-			pushSectionName([1], "Immunities", 250);
-			tooltip.push({
-				id = 199,
-				type = "text",
-				icon = "ui/icons/immunity.png",
-				text = immunities
-			});
-		}
-
-		local activePerks = _entity.getSkills().query(::Const.SkillType.Active, false, true);
-		activePerks = removeDuplicates(activePerks);
-		pushSection(activePerks, "Usable perks", 200, 1);
-		local thresholdToCompact = 0;
-		local perks = _entity.getSkills().query(::Const.SkillType.Perk, true, true);
-		perks = removeDuplicates(perks);
-		pushSectionName(perks, "Perks", 300);
-
-		if (perks.len() < thresholdToCompact) {
-			foreach (i, perk in perks) {
-				tooltip.push({
-					id = 301 + i,
-					type = "text",
-					icon = getRealPerkIcon(perk),
-					text = perk.m.Name
-				});
-			}
-		} else {
-			local texts = "";
-
-			foreach (_, perk in perks) {
-				local name = perk.m.Name;
-
-				if (name && name.len() > 1) {
-					texts += ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1) + ", ");
-				}
-			}
-
-			if (texts.len() > 2) {
-				texts = texts.slice(0, -2);
-			}
-
-			tooltip.push({
-				id = 301,
-				type = "text",
-				icon = "ui/icons/perks.png",
-				text = texts
-			});
-		}
-
-		local getItemTooltip = function (_id, _item) {
-			return {
-				id = _id,
-				type = "text",
-				icon = ::Legends.JimmysTooltips.checkForIcon("ui/items/", _item),
-				text = _item.getName() + " " + (_item.isItemType(::Const.Items.ItemType.Ammo) ? (_item.getAmmo() + " / " + _item.getAmmoMax()) : (_item.getCondition() + " / " + _item.getConditionMax()))
-			}
-		}
-
-		local mainhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		if (::Legends.Mod.ModSettings.getSetting("Items").getValue()) {
-			if (mainhand != null) {
-				pushSectionName(mainhand, "Equipped Items:", 400);
-				tooltip.push(getItemTooltip(401, mainhand));
-			}
-
-			local offhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-			if (offhand != null) {
-				tooltip.push(getItemTooltip(421, offhand));
-			}
-		}
-
-		local items = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
-		foreach (item in items) {
-			pushSectionName(item, "Bags", 430);
-			tooltip.push(getItemTooltip(431, item));
-		}
-
-		local accessories = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Accessory);
-		pushSection(accessories, "Accessory", 600, 0, "ui/items/");
-
-		local ammos = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Ammo);
-		pushSection(ammos, "Ammo", 700, 0, "ui/items/");
-
-		if (_targetedWithSkill == null && ::Legends.Mod.ModSettings.getSetting("Skills").getValue() && mainhand != null) {
-			local skills = mainhand.getSkills();
-			local startID = 500;
-			foreach (skill in skills.filter(@(_, _skill)(_skill.getContainer() != null && "getActor" in _skill.getContainer() && _skill.getContainer().getActor() != null && _skill.isUsable()))) {
-				pushSectionName(skill, skill.getName(), startID, "" + skill.getIcon());
-				tooltip.extend(skill.noDescriptionDefaultTooltip(startID));
-				startID += 10;
-			}
-		}
-
-		local itemsOnGround = _entity.getTile().Items;
-		pushSection(itemsOnGround, "Item" + getPlural(itemsOnGround) + " on ground", 700, 0, "ui/items/", true);
-	} else {
-		pushSectionName("JimmysTooltips_ShowLootChance", "Chance to loot equipment:", 700);
-		tooltip.top().type = "hint"; // move this to hint to separate as sections
-		tooltip.extend(::Legends.JimmysTooltips.modGetEquipmentLootChance(_entity, _targetedWithSkill, 700));
-	}
-
-	if (::Legends.Mod.ModSettings.getSetting("Stats").getValue()) {
-		local properties = _entity.getCurrentProperties();
-		tooltip.push({
-			id = 600,
-			type = "hint",
-			icon = "ui/icons/melee_skill.png",
-			text = "[color=%positive%]" + properties.getMeleeSkill() + "[/color] Melee Skill"
-		});
-		tooltip.push({
-			id = 601,
-			type = "hint",
-			icon = "ui/icons/melee_defense.png",
-			text = "[color=%positive%]" + properties.getMeleeDefense() + "[/color] Melee Defense"
-		});
-		tooltip.push({
-			id = 602,
-			type = "hint",
-			icon = "ui/icons/ranged_skill.png",
-			text = "[color=%positive%]" + properties.getRangedSkill() + "[/color] Ranged Skill"
-		});
-		tooltip.push({
-			id = 603,
-			type = "hint",
-			icon = "ui/icons/ranged_defense.png",
-			text = "[color=%positive%]" + properties.getRangedDefense() + "[/color] Ranged Defense"
-		});
-		tooltip.push({
-			id = 604,
-			type = "hint",
-			icon = "ui/icons/initiative.png",
-			text = "[color=%positive%]" + _entity.getInitiative() + "[/color] Initiative"
-		});
-		tooltip.push({
-			id = 605,
-			type = "hint",
-			icon = "ui/icons/bravery.png",
-			text = "[color=%positive%]" + _entity.getBravery() + "[/color] Resolve"
-		});
-		tooltip.push({
-			id = 606,
-			type = "hint",
-			icon = "ui/icons/fatigue.png",
-			text = "[color=%positive%]" + properties.FatigueRecoveryRate + "[/color] Fatigue Recovery per Turn"
-			divider = "bottom" // add a diviver
-		});
-	}
-	tooltip.push({
-		id = 607,
-		type = "hint",
-		icon = "ui/skin/icon_wait.png",
-		text = "Press \"" + ::MSU.System.Keybinds.KeybindsByMod[::Legends.ID].rawget("updateTooltip").getKeyCombinations() + "\" key to show the " + (::Tactical.Entities.getFlags().get("JimmysTooltips_ShowLootChance") ? "default tooltip" : "chance to loot equipment")
-	});
-
-	return tooltip;
-};
 
 local function colorizeLootChance(_value) {
-	return (_value > 0 ? "[color=%positive%]" : "[color=%negative%]") + " (" + _value + "%)[/color]";
+	return (_value > 0 ? "[color=%positive%]" : "[color=%negative%]") + "(" + _value + "%)[/color]";
 }
 
-::Legends.JimmysTooltips.modGetEquipmentLootChance <- function (_entity, _targetedWithSkill = null, _startID = 0) {
-	if (_entity.isAlliedWithPlayer() || (::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode)) {
-		return [
-			{
-				id = _startID,
-				type = "hint",
-				text = "[color=%negative%]" + "Can\'t loot any equipment from this entity" + "[/color]"
-				divider = "bottom" // add a diviver
-			}
-		];
-	}
-
-	local tooltip = [], expectedDamage;
-
-	if (_targetedWithSkill != null && ::MSU.isKindOf(_targetedWithSkill, "skill") && _targetedWithSkill.isAttack()) {
-		expectedDamage = ::Legends.JimmysTooltips.getExpectedArmorDamage(_targetedWithSkill, _entity);
-	}
-
-	foreach (_, _item in _entity.getItems().getAllItems().filter(@(_, _i)(_i.m.IsDroppedAsLoot))) {
-		local upgradeIconPaths = ::Legends.JimmysTooltips.getItemIconPaths(_item);
-
-		local ret = {
-			id = _startID,
-			type = "hint",
-			icon = upgradeIconPaths[0],
-			icons = upgradeIconPaths
-			text = _item.makeName()
-		};
-
-		switch (_item.getSlotType()) {
-			case ::Const.ItemSlot.Mainhand:
-				tooltip.push(::Legends.JimmysTooltips.modGetWeaponLootChance(ret, _item));
-				break;
-
-			case ::Const.ItemSlot.Offhand:
-				tooltip.push(::Legends.JimmysTooltips.modGetOffhandLootChance(ret, _item));
-				break;
-
-			case ::Const.ItemSlot.Ammo:
-				tooltip.push(::Legends.JimmysTooltips.modGetAmmoLootChance(ret, _item));
-				break;
-
-			case ::Const.ItemSlot.Body:
-				tooltip.push(::Legends.JimmysTooltips.modGetBodyArmorLootChance(ret, _item, expectedDamage));
-				break;
-
-			case ::Const.ItemSlot.Head:
-				tooltip.push(::Legends.JimmysTooltips.modGetHeadArmorLootChance(ret, _item, expectedDamage));
-				break;
-
-			case ::Const.ItemSlot.Accessory:
-			case ::Const.ItemSlot.Bag:
-				if (!::Legends.JimmysTooltips.modGetStandardLootChance(ret, _item)) {
-					ret.text += colorizeLootChance(0);
-				}
-
-				tooltip.push(ret);
-				break;
-
-			default:
-				ret.text += colorizeLootChance(0);
-				tooltip.push(ret);
-		}
-
-		++_startID;
-	}
-
-	if (tooltip.len() > 0) {
-		tooltip.top().divider <- "bottom"; // add a diviver
-	}
-
-	return tooltip;
-}
-
-::Legends.JimmysTooltips.checkForIcon <- function (toAdd, _item) {
-	if (_item.getIcon() == "" || _item == "ui/items/" && ::Legends.JimmysTooltips.ItemImagePaths.find(toAdd + _item.getIcon()) == null) {
+local function checkForIcon(toAdd, _item) {
+	if (_item.getIcon() == "" || _item == "ui/items/" && ItemImagePaths.find(toAdd + _item.getIcon()) == null) {
 		return "ui/items/supplies/legend_placeholder.png";
 	} else {
 		return toAdd + _item.getIcon();
 	}
 }
 
-::Legends.JimmysTooltips.getItemIconPaths <- function (_item) {
+local function getItemIconPaths(_item) {
 	local paths = [];
-	local baseIcon = ::Legends.JimmysTooltips.checkForIcon("ui/items/", _item);
+	local baseIcon = checkForIcon("ui/items/", _item);
 	paths.push(baseIcon);
 
 	local slot = _item.getSlotType();
@@ -554,118 +37,13 @@ local function colorizeLootChance(_value) {
 	return paths;
 }
 
-::Legends.JimmysTooltips.modGetStandardLootChance <- function (_tooltip, _item, _isArmor = false) {
-	if (_item.isNamed()) {
-		_tooltip.text += colorizeLootChance(100);
-		return true;
+local function getExpectedArmorDamage(_skill, _target) {
+	if (_skill == null || !::MSU.isKindOf(_skill, "skill") || !_skill.isAttack()) {
+		return null;
 	}
 
-	return false;
-}
-
-::Legends.JimmysTooltips.modGetWeaponLootChance <- function (_tooltip, _item) {
-	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
-		return _tooltip;
-	}
-
-	if (_item.m.AmmoMax == 0 && (_item.m.Condition >= 12 || _item.m.ConditionMax <= 1)) {
-		// is normal weapon
-		_tooltip.text += colorizeLootChance(90);
-	} else if (_item.m.Ammo > 0 && (_item.getCurrentSlotType() != ::Const.ItemSlot.Bag || _item.m.Ammo < _item.m.AmmoMax)) {
-		// is throwing weapon
-		_tooltip.text += colorizeLootChance(90);
-	} else {
-		_tooltip.text += colorizeLootChance(0);
-	}
-
-	return _tooltip;
-}
-
-::Legends.JimmysTooltips.modGetOffhandLootChance <- function (_tooltip, _item) {
-	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
-		return _tooltip;
-	}
-
-	if (!_item.isItemType(::Const.Items.ItemType.Shield)) {
-		// is normal weapon
-		_tooltip.text += colorizeLootChance(100);
-	} else if (_item.m.Condition >= 6 && _item.m.Condition / _item.m.ConditionMax >= 0.25) {
-		_tooltip.text += colorizeLootChance(90);
-	}
-
-	return _tooltip;
-}
-
-::Legends.JimmysTooltips.modGetAmmoLootChance <- function (_tooltip, _item) {
-	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item)) {
-		return _tooltip;
-	}
-
-	_tooltip.text += colorizeLootChance(_item.getCurrentSlotType() != ::Const.ItemSlot.Bag ? 66 : 0);
-
-	return _tooltip;
-}
-
-::Legends.JimmysTooltips.modGetBodyArmorLootChance <- function (_tooltip, _item, _expectedDamage = null) {
-	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item, true)) {
-		return _tooltip;
-	}
-
-	local condition = _item.getRepair(), conditionMax = _item.getRepairMax();
-	local isValid = condition > 10 && condition / conditionMax >= 0.2;
-	local conditionExpected = condition;
-
-	if (_expectedDamage != null) {
-		conditionExpected -= _expectedDamage.ArmorDamage;
-	}
-
-	if (condition != conditionExpected) {
-		local chance = isValid ? 100 : 0;
-
-		if (!(conditionExpected > 10 && conditionExpected / conditionMax >= 0.2)) {
-			chance = ::Math.max(0, chance * 0.01 * _expectedDamage.Properties.getHitchance(::Const.BodyPart.Head));
-		}
-
-		_tooltip.text += colorizeLootChance(::Math.min(95, chance));
-	} else {
-		_tooltip.text += colorizeLootChance(isValid ? 95 : 0);
-	}
-
-	return _tooltip;
-}
-
-::Legends.JimmysTooltips.modGetHeadArmorLootChance <- function (_tooltip, _item, _expectedDamage = null) {
-	if (::Legends.JimmysTooltips.modGetStandardLootChance(_tooltip, _item, true)) {
-		return _tooltip;
-	}
-
-	local condition = _item.getRepair(), conditionMax = _item.getRepairMax();
-	local isValid = condition >= 5 && condition / conditionMax >= 0.2;
-	local conditionExpected = condition;
-
-	if (_expectedDamage != null) {
-		conditionExpected -= _expectedDamage.ArmorDamage;
-	}
-
-	if (condition != conditionExpected) {
-		local chance = isValid ? 70 : 0;
-
-		if (!(conditionExpected > 30 && conditionExpected / conditionMax >= 0.25)) {
-			chance = ::Math.max(0, chance * 0.01 * _expectedDamage.Properties.getHitchance(::Const.BodyPart.Body));
-		}
-
-		_tooltip.text += colorizeLootChance(::Math.min(95, chance));
-	} else {
-		_tooltip.text += colorizeLootChance(isValid ? 70 : 0);
-	}
-
-	return _tooltip;
-}
-
-::Legends.JimmysTooltips.getExpectedArmorDamage <- function (_skill, _target) {
-	local actor = _skill.getContainer().getActor();
 	local p = _skill.factoringOffhand(_skill.getContainer().buildPropertiesForUse(_skill, _target));
-	local d = _target.getSkills().buildPropertiesForDefense(actor, _skill);
+	local d = _target.getSkills().buildPropertiesForDefense(_skill.getContainer().getActor(), _skill);
 	local critical = 1.0 + p.getHitchance(::Const.BodyPart.Head) / 100.0 * (p.DamageAgainstMult[::Const.BodyPart.Head] - 1.0);
 	local armor = _target.getArmor(::Const.BodyPart.Head) * (p.getHitchance(::Const.BodyPart.Head) / 100.0) + _target.getArmor(::Const.BodyPart.Body) * (::Math.max(0, p.getHitchance(::Const.BodyPart.Body)) / 100.0);
 	local armorDamage = ::Math.min(armor, p.getArmorDamageAverage()) * (d.DamageReceivedArmorMult * d.DamageReceivedTotalMult);
@@ -680,4 +58,526 @@ local function colorizeLootChance(_value) {
 		ArmorDamage = armorDamage,
 		Properties = p
 	};
+};
+
+local function getItemLootChance(_entity, _item, _targetedWithSkill = null) {
+	local text = "";
+	if (_entity.isAlliedWithPlayer() || (::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode)) {
+		return text;
+	}
+
+	local expectedDamage = getExpectedArmorDamage(_targetedWithSkill, _entity);
+
+	if (_item.isNamed()) {
+		text += colorizeLootChance(100);
+	} else {
+		switch (_item.getSlotType()) {
+			case ::Const.ItemSlot.Mainhand:
+				if (_item.m.AmmoMax == 0 && (_item.m.Condition >= 12 || _item.m.ConditionMax <= 1)) {
+					// is normal weapon
+					text += colorizeLootChance(90);
+				} else if (_item.m.Ammo > 0 && (_item.getCurrentSlotType() != ::Const.ItemSlot.Bag || _item.m.Ammo < _item.m.AmmoMax)) {
+					// is throwing weapon
+					text += colorizeLootChance(90);
+				} else {
+					text += colorizeLootChance(0);
+				}
+				break;
+
+			case ::Const.ItemSlot.Offhand:
+				if (!_item.isItemType(::Const.Items.ItemType.Shield)) {
+					// normal weapons in offhand, shouldn't we do the same as mainhand in this case? is it just tooltip?
+					text += colorizeLootChance(100);
+				} else if (_item.m.Condition >= 6 && _item.m.Condition / _item.m.ConditionMax >= 0.25) {
+					text += colorizeLootChance(90);
+				} else {
+					text += colorizeLootChance(0);
+				}
+				break;
+
+			case ::Const.ItemSlot.Ammo:
+				text += colorizeLootChance(_item.getCurrentSlotType() != ::Const.ItemSlot.Bag ? 66 : 0);
+				break;
+
+			case ::Const.ItemSlot.Body:
+				local condition = _item.getRepair(), conditionMax = _item.getRepairMax();
+				local isValid = condition > 10 && condition / conditionMax >= 0.2;
+				local conditionExpected = condition;
+
+				if (expectedDamage != null) {
+					conditionExpected -= expectedDamage.ArmorDamage;
+				}
+
+				if (condition != conditionExpected) {
+					local chance = isValid ? 100 : 0;
+
+					if (!(conditionExpected > 10 && conditionExpected / conditionMax >= 0.2)) {
+						chance = ::Math.max(0, chance * 0.01 * expectedDamage.Properties.getHitchance(::Const.BodyPart.Head));
+					}
+
+					text += colorizeLootChance(::Math.min(95, chance));
+				} else {
+					text += colorizeLootChance(isValid ? 95 : 0);
+				}
+				break;
+
+			case ::Const.ItemSlot.Head:
+				local condition = _item.getRepair(), conditionMax = _item.getRepairMax();
+				local isValid = condition >= 5 && condition / conditionMax >= 0.2;
+				local conditionExpected = condition;
+
+				if (expectedDamage != null) {
+					conditionExpected -= expectedDamage.ArmorDamage;
+				}
+
+				if (condition != conditionExpected) {
+					local chance = isValid ? 70 : 0;
+
+					if (!(conditionExpected > 30 && conditionExpected / conditionMax >= 0.25)) {
+						chance = ::Math.max(0, chance * 0.01 * expectedDamage.Properties.getHitchance(::Const.BodyPart.Body));
+					}
+
+					text += colorizeLootChance(::Math.min(95, chance));
+				} else {
+					text += colorizeLootChance(isValid ? 70 : 0);
+				}
+				break;
+
+			default:
+				// accessory and bag
+				text += colorizeLootChance(0);
+		}
+	}
+	return text;
+}
+
+local function stackEffects(_effects) {
+	local stacks = {};
+	foreach (_, effect in _effects) {
+		local name = effect.getName();
+		if (name in stacks) {
+			stacks[name] += 1;
+		} else {
+			stacks[name] <- 1;
+		}
+	}
+	return stacks;
+};
+
+local function addTitle(title, startID, icon = "") {
+	local ret = {
+		id = startID,
+		type = "text",
+		text = "[u][size=14]" + title + "[/size][/u]"
+	};
+
+	if (icon.len() > 0) {
+		ret.icon <- icon;
+	}
+
+	return ret;
+};
+
+local function getPlural(items) {
+	return (!items ? "" : items.len() > 1 ? "s" : "");
+};
+
+local function pushSection(_tooltip, _entity, _shownPerks, _items, _title, _startID, _filter = 0, _prependIcon = "", _stackInOneLine = false) {
+	if (!_items) {
+		return;
+	}
+
+	local isPerk = @(_, _skill) _skill.isType(::Const.SkillType.Perk);
+	if (_filter == 1) {
+		_items = _items.filter(isPerk);
+	} else if (_filter == 2) {
+		_items = _items.filter(@(_idx, _item)(!isPerk(_idx, _item)));
+	}
+
+	local stacks = {};
+	if (_stackInOneLine) {
+		stacks = stackEffects(_items);
+		local newItems = [];
+		local added = {};
+
+		foreach (_, item in _items) {
+			local name = item.getName();
+			if (!(name in added)) {
+				newItems.push(item);
+				added[name] <- 1;
+			}
+		}
+		_items = newItems;
+	}
+
+	if (_items.len() > 0 && _title) {
+		_tooltip.push(addTitle(_title, _startID));
+	}
+	_startID += 1;
+
+	foreach (i, item in _items) {
+		local name = item.getName();
+		local text = name;
+
+		if (name == null && text == null) {
+			::logDebug("Error: Tooltip with a null name in tooltips. (id + " + item.getID() + ", description: " + item.getDescription() + ")");
+			continue;
+		}
+
+		if (_filter != 0) {
+			_shownPerks[name] <- 1;
+		}
+
+		if (_stackInOneLine && stacks[name] > 1) {
+			text += (" [color=%negative%]" + "x" + stacks[name] + "[/color]");
+		}
+
+		local itemRow = {
+			id = _startID + i,
+			type = "text",
+			icon = checkForIcon(_prependIcon, item),
+			text = text
+		};
+
+		if (_title == "Ammo") {
+			itemRow.text += " Ammo: " + (::isKindOf(_entity, "player") ? (item.getAmmo() + " / " + item.getAmmoMax() + " [leg_img](gfx/ui/icons/ammo.png,height=16px,width=16px)[/leg_img]") : "infinite");
+		}
+
+		_tooltip.push(itemRow);
+
+		if (::Tactical.Entities.getFlags().get("JimmysTooltips_ShowExpandedDescriptions") && ::MSU.isKindOf(item, "skill")) {
+			local extraDesc = item.getActorHoverTooltip(::Tactical.TurnSequenceBar.getActiveEntity());
+			if (extraDesc != null) {
+				_tooltip.push({
+					id = _startID + i,
+					type = "text",
+					icon = "ui/perks/none.png"
+					text = extraDesc
+				});
+			}
+		}
+	}
+};
+
+local function removeDuplicates(_shownPerks, _items) {
+	return (!_items ? _items : _items.filter(@(_, item) ! (item.getName() in _shownPerks)));
+};
+
+local function addProgressBars(_tooltip, _entity) {
+	if (::Legends.Mod.ModSettings.getSetting("ProgressBarValues").getValue() && !_entity.isPlayerControlled()) {
+		foreach (_, row in _tooltip) {
+			if (("type" in row) && row.type == "progressbar" && ("id" in row) && "icon" in row) {
+				if (row.id == 5 && row.icon == "ui/icons/armor_head.png") {
+					row.text <- "" + _entity.getArmor(::Const.BodyPart.Head) + " / " + _entity.getArmorMax(::Const.BodyPart.Head) + "";
+				} else if (row.id == 6 && row.icon == "ui/icons/armor_body.png") {
+					row.text <- "" + _entity.getArmor(::Const.BodyPart.Body) + " / " + _entity.getArmorMax(::Const.BodyPart.Body) + "";
+				} else if (row.id == 7 && row.icon == "ui/icons/health.png") {
+					row.text <- "" + _entity.getHitpoints() + " / " + _entity.getHitpointsMax() + "";
+				} else if (row.id == 9 && row.icon == "ui/icons/fatigue.png") {
+					row.text <- "" + _entity.getFatigue() + " / " + _entity.getFatigueMax() + "";
+				}
+			}
+		}
+	}
+}
+
+local function addStatusEffects(_tooltip, _entity, _shownPerks) {
+	local statusEffects = _entity.getSkills().query(::Const.SkillType.StatusEffect | ::Const.SkillType.TemporaryInjury, false, true);
+	local count = _tooltip.len() - statusEffects.len();
+
+	local pushRemainingAP = function () {
+		local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(_entity.getID());
+		local remainingAP = _entity.m.IsTurnDone || turnsToGo == null ? 0 : _entity.getActionPoints();
+		_tooltip.push({
+			id = 10,
+			type = "progressbar",
+			icon = "ui/icons/action_points.png",
+			value = remainingAP,
+			valueMax = _entity.getActionPointsMax(),
+			text = "" + _entity.getActionPoints() + " / " + _entity.getActionPointsMax() + "",
+			style = "action-points-slim"
+		});
+	};
+
+	if (statusEffects.len() && count > 0) {
+		if (_tooltip[count].text == statusEffects[0].getName()) {
+			_tooltip.resize(count);
+			pushRemainingAP();
+			local isInjury = @(_, _skill) _skill.isType(::Const.SkillType.TemporaryInjury);
+			local isTextRow = @(_, row)("type" in row) && row.type == "text";
+			statusEffects = removeDuplicates(_shownPerks, statusEffects.filter(@(_, item)(!isInjury(_, item))));
+			pushSection(_tooltip, _entity, _shownPerks, statusEffects, "Status effects", 100, 2, "", true);
+
+			local injuries = _entity.getSkills().query(::Const.SkillType.TemporaryInjury, false, true);
+			foreach (i, injury in injuries) {
+				local children = injury.getTooltip().filter(@(_, row)(isTextRow(_, row)));
+				local addedTooltipHints = [];
+				injury.addTooltipHint(addedTooltipHints);
+				addedTooltipHints = addedTooltipHints.filter(@(_, row)(isTextRow(_, row)));
+				local added_count = addedTooltipHints.len();
+
+				if (added_count) {
+					children.resize(children.len() - added_count);
+				}
+
+				local isUnderIronWill = (function () {
+					local pattern = this.regexp("Iron Will");
+
+					foreach (_, row in addedTooltipHints) {
+						if (("text" in row) && pattern.search(row.text)) {
+							return true;
+						}
+					}
+
+					return false;
+				})();
+
+				local injuryRow = {
+					id = 133 + i,
+					type = "text",
+					icon = injury.getIcon(),
+					text = injury.getName()
+				};
+
+				if (!isUnderIronWill) {
+					injuryRow.children <- children;
+				} else {
+					injuryRow.text += "[color=%positive%]" + " (Iron Will)[/color]";
+				}
+
+				_tooltip.push(injuryRow);
+			}
+
+			statusEffects = removeDuplicates(_shownPerks, statusEffects);
+			pushSection(_tooltip, _entity, _shownPerks, statusEffects, null, 150, 1);
+		} else {
+			foreach (_, row in _tooltip) {
+				if (("type" in row) && row.type == "text" && "text" in row) {
+					_shownPerks[row.text] <- 1;
+				}
+			}
+		}
+	} else if (!statusEffects.len()) {
+		pushRemainingAP();
+	}
+}
+
+local function addImmunities(_tooltip, _entity) {
+	local immunities = "";
+	foreach (effectName, property in ::Legends.Effects.Immunities) {
+		if (_entity.getCurrentProperties()[property]) {
+			immunities += (immunities.len() ? ", " : "") + ("[color=%negative%]" + effectName.slice(0, 1) + "[/color]" + effectName.slice(1));
+		}
+	}
+	if (immunities.len()) {
+		_tooltip.push(addTitle("Immunities", 250));
+		_tooltip.push({
+			id = 199,
+			type = "text",
+			icon = "ui/icons/immunity.png",
+			text = immunities
+		});
+	}
+}
+
+local function addPerks(_tooltip, _entity, _shownPerks) {
+	local activePerks = removeDuplicates(_shownPerks, _entity.getSkills().query(::Const.SkillType.Active, false, true));
+	pushSection(_tooltip, _entity, _shownPerks, activePerks, "Usable perks", 200, 1);
+
+	//local thresholdToCompact = 0;
+	local perks = removeDuplicates(_shownPerks, _entity.getSkills().query(::Const.SkillType.Perk, true, true));
+	if (perks.len()) {
+		_tooltip.push(addTitle("Perks", 300));
+
+		/*if (perks.len() < thresholdToCompact) { //non compact perks to be moved to page 2?
+			foreach (i, perk in perks) {
+				tooltip.push({
+					id = 301 + i,
+					type = "text",
+					icon = ::Const.Perks.findById(perk.getID()).Icon,
+					text = perk.m.Name
+				});
+			}
+		} else {*/
+
+		local perksText = "";
+		foreach (_, perk in perks) {
+			local name = perk.m.Name;
+			perksText += (perksText.len() ? ", " : "") + ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1));
+		}
+
+		_tooltip.push({
+			id = 301,
+			type = "text",
+			icon = "ui/icons/perks.png",
+			text = perksText
+		});
+		//}
+	}
+}
+
+local function addItems(_tooltip, _entity, _shownPerks, _targetedWithSkill) {
+	local getItemTooltip = function (_id, _item) {
+		local text = _item.makeName() + " ";
+		if (_item.isItemType(::Const.Items.ItemType.Ammo) || ("getAmmoMax" in _item && _item.getAmmoMax() > 0)) {
+			text += _item.getAmmo() + " / " + _item.getAmmoMax() + " [leg_img](gfx/ui/icons/ammo.png,height=16px,width=16px)[/leg_img]" + " ";
+		}
+		if (_entity.isPlayerControlled()) {
+			if (_item.getConditionMax() > 1) {
+				text += _item.getCondition() + " / " + _item.getConditionMax() + " ";
+			}
+		} else {
+			if (_item.isItemType(::Const.Items.ItemType.Shield)) {
+				text += _item.getCondition() + " / " + _item.getConditionMax() + " ";
+			}
+			if (_item.m.IsDroppedAsLoot) {
+				text += getItemLootChance(_entity, _item, _targetedWithSkill);
+			}
+		}
+
+		local iconPaths = getItemIconPaths(_item);
+		return {
+			id = _id,
+			type = "text",
+			icon = iconPaths[0],
+			icons = iconPaths,
+			text = text
+		};
+	}
+
+	_tooltip.push(addTitle("Equipped Items:", 400));
+	local mainhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+	if (::Legends.Mod.ModSettings.getSetting("Items").getValue()) {
+		if (mainhand != null) {
+			_tooltip.push(getItemTooltip(401, mainhand));
+		}
+
+		local offhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		if (offhand != null) {
+			_tooltip.push(getItemTooltip(421, offhand));
+		}
+	}
+
+	if (!_entity.isPlayerControlled()) {
+		local bodyArmor = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Body);
+		if (bodyArmor != null) {
+			_tooltip.push(getItemTooltip(441, bodyArmor));
+		}
+
+		local headArmor = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Head);
+		if (headArmor != null) {
+			_tooltip.push(getItemTooltip(461, headArmor));
+		}
+	}
+
+	local items = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
+	if (items.len()) {
+		_tooltip.push(addTitle("Bags", 430));
+		foreach (item in items) {
+			_tooltip.push(getItemTooltip(481, item));
+		}
+	}
+
+	local accessories = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Accessory);
+	pushSection(_tooltip, _entity, _shownPerks, accessories, "Accessory", 600, 0, "ui/items/");
+
+	local ammo = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Ammo);
+	pushSection(_tooltip, _entity, _shownPerks, ammo, "Ammo", 700, 0, "ui/items/");
+
+	local itemsOnGround = _entity.getTile().Items;
+	pushSection(_tooltip, _entity, _shownPerks, itemsOnGround, "Item" + getPlural(itemsOnGround) + " on the ground", 700, 0, "ui/items/", true);
+}
+
+local function addStats(_tooltip, _entity) {
+	if (::Legends.Mod.ModSettings.getSetting("Stats").getValue()) {
+		local properties = _entity.getCurrentProperties();
+		_tooltip.push({
+			id = 600,
+			type = "hint",
+			icon = "ui/icons/melee_skill.png",
+			text = "[color=%positive%]" + properties.getMeleeSkill() + "[/color] Melee Skill"
+		});
+		_tooltip.push({
+			id = 601,
+			type = "hint",
+			icon = "ui/icons/melee_defense.png",
+			text = "[color=%positive%]" + properties.getMeleeDefense() + "[/color] Melee Defense"
+		});
+		_tooltip.push({
+			id = 602,
+			type = "hint",
+			icon = "ui/icons/ranged_skill.png",
+			text = "[color=%positive%]" + properties.getRangedSkill() + "[/color] Ranged Skill"
+		});
+		_tooltip.push({
+			id = 603,
+			type = "hint",
+			icon = "ui/icons/ranged_defense.png",
+			text = "[color=%positive%]" + properties.getRangedDefense() + "[/color] Ranged Defense"
+		});
+		_tooltip.push({
+			id = 604,
+			type = "hint",
+			icon = "ui/icons/initiative.png",
+			text = "[color=%positive%]" + _entity.getInitiative() + "[/color] Initiative"
+		});
+		_tooltip.push({
+			id = 605,
+			type = "hint",
+			icon = "ui/icons/bravery.png",
+			text = "[color=%positive%]" + _entity.getBravery() + "[/color] Resolve"
+		});
+		_tooltip.push({
+			id = 606,
+			type = "hint",
+			icon = "ui/icons/fatigue.png",
+			text = "[color=%positive%]" + properties.FatigueRecoveryRate + "[/color] Fatigue Recovery per Turn"
+			divider = "bottom" // add a divider
+		});
+	}
+}
+
+local function addEnemySkills(_tooltip, _entity, _targetedWithSkill) {
+
+	local mainhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+	if (_targetedWithSkill == null && ::Legends.Mod.ModSettings.getSetting("Skills").getValue() && mainhand != null) {
+		local skills = _entity.getSkills().query(::Const.SkillType.Active);
+		local startID = 500;
+		foreach (skill in skills.filter(@(_, _skill)(_skill.getContainer() != null && _skill.getContainer().getActor() != null && _skill.isUsable()))) {
+			_tooltip.push(addTitle(skill.getName(), startID, "" + skill.getIcon()));
+			_tooltip.extend(skill.noDescriptionDefaultTooltip(startID));
+			startID += 10;
+		}
+	}
+}
+
+::Legends.JimmysTooltips.modTacticalTooltip <- function (_tooltip, _targetedWithSkill, _entity) {
+	if (::Legends.Mod.ModSettings.getSetting("DefaultTooltip").getValue() || _tooltip.len() < 3) {
+		return _tooltip;
+	}
+
+	addProgressBars(_tooltip, _entity);
+
+	local shownPerks = {};
+
+	if (!::Tactical.Entities.getFlags().get("JimmysTooltips_ShowExpandedDescriptions")) {
+		addStatusEffects(_tooltip, _entity, shownPerks);
+		addImmunities(_tooltip, _entity);
+		addPerks(_tooltip, _entity, shownPerks);
+		addItems(_tooltip, _entity, shownPerks, _targetedWithSkill);
+	} else {
+		addStatusEffects(_tooltip, _entity, shownPerks);
+		//addEnemySkills(_tooltip, _entity, _targetedWithSkill); incomplete feature, missing icons etc.
+	}
+
+	addStats(_tooltip, _entity);
+
+	_tooltip.push({
+		id = 607,
+		type = "hint",
+		icon = "ui/skin/icon_wait.png",
+		text = "Press \"" + ::MSU.System.Keybinds.KeybindsByMod[::Legends.ID].rawget("updateTooltip").getKeyCombinations() + "\" key to show the " + (::Tactical.Entities.getFlags().get("JimmysTooltips_ShowExpandedDescriptions") ? "default tooltip" : "expanded effect descriptions")
+	});
+
+	return _tooltip;
 };

@@ -1635,36 +1635,40 @@
 			return ret;
 		}
 
-		if (this.m.DirectDamageMult == 1.0) {
-			ret.push({
-				id = startID,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=%damage%]" + damage_direct_min + "[/color] - [color=%damage%]" + damage_direct_max + "[/color] damage that ignores armor"
-			});
-		} else if (this.m.DirectDamageMult > 0.0) {
-			ret.push({
-				id = startID + 1,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage to hitpoints, of which [color=%damage%]0[/color] - [color=%damage%]" + damage_direct_max + "[/color] can ignore armor"
-			});
-		} else {
-			ret.push({
-				id = startID + 2,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage to hitpoints"
-			});
-		}
+		if (this.isAttack()) {
+			if (this.m.DirectDamageMult == 1.0) {
+				ret.push({
+					id = startID,
+					type = "text",
+					icon = "ui/icons/regular_damage.png",
+					text = "Inflicts [color=%damage%]" + damage_direct_min + "[/color] - [color=%damage%]" + damage_direct_max + "[/color] damage that ignores armor"
+				});
+			} else if (this.m.DirectDamageMult > 0.0) {
+				ret.push({
+					id = startID + 1,
+					type = "text",
+					icon = "ui/icons/regular_damage.png",
+					text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage to hitpoints, of which [color=%damage%]0[/color] - [color=%damage%]" + damage_direct_max + "[/color] can ignore armor"
+				});
+			} else {
+				if (damage_regular_max > 0) {
+					ret.push({
+						id = startID + 2,
+						type = "text",
+						icon = "ui/icons/regular_damage.png",
+						text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage to hitpoints"
+					});
+				}
+			}
 
-		if (damage_armor_max > 0) {
-			ret.push({
-				id = startID + 3,
-				type = "text",
-				icon = "ui/icons/armor_damage.png",
-				text = "Inflicts [color=%damage%]" + damage_armor_min + "[/color] - [color=%damage%]" + damage_armor_max + "[/color] damage to armor"
-			});
+			if (damage_armor_max > 0) {
+				ret.push({
+					id = startID + 3,
+					type = "text",
+					icon = "ui/icons/armor_damage.png",
+					text = "Inflicts [color=%damage%]" + damage_armor_min + "[/color] - [color=%damage%]" + damage_armor_max + "[/color] damage to armor"
+				});
+			}
 		}
 
 		return ret;
