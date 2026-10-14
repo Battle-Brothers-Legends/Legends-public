@@ -1859,12 +1859,6 @@ Every fight is like a dance, and you have just the right moves.
 • Costs [color=%negative%]3[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendTasteThePain <- @"
-You are invigorated by pain.
-
-[color=%passive%][u]Passive:[/u][/color]Whenever getting hurt would normally trigger a morale check, instead gain [color=%positive%]10[/color] morale.
-";
-
 ::Const.Strings.PerkDescription.LegendTerrifyingVisage <- @"
 The mere sight of this character sends enemies fleeing.
 

@@ -121,6 +121,7 @@
 	<sprite id="legend_summoned_hound_effect" ic="FF23165B" img="skills\legend_summoned_hound_effect.png" />
 	<sprite id="legend_summoned_sighthound_effect" ic="2E343FFF" img="skills\legend_summoned_sighthound_effect.png" />
 	<sprite id="legend_summoned_wolf_effect" ic="FF23165B" img="skills\legend_summoned_wolf_effect.png" />
+	<sprite id="legend_taste_the_pain_effect" ic="FF23165B" img="skills\legend_taste_the_pain_effect.png" />
 	<sprite id="legend_war_chant_effect" ic="FF23165B" img="skills\legend_war_chant_effect.png" />
 	
 	<!-- Effects Mini -->
@@ -169,6 +170,7 @@
 	<sprite id="legend_summoned_hound_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_summoned_hound_effect.png" />
 	<sprite id="legend_summoned_sighthound_effect_mini" ic="2E343FFF" img="skills\mini\legend_summoned_sighthound_effect.png" />
 	<sprite id="legend_summoned_wolf_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_summoned_wolf_effect.png" />
+	<sprite id="legend_taste_the_pain_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_taste_the_pain_effect.png" />
 	<sprite id="legend_threw_sand_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_threw_sand_effect.png" />
 	<sprite id="legend_vengeance_effect_mini" ic ="322E2DFF" img="skills\mini\legend_vengeance_effect.png" />
 	<sprite id="legend_war_chant_effect_mini" offsetY="35" ic="FF374B50" img="skills/mini/legend_war_chant_effect.png" />

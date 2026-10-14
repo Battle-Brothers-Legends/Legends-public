@@ -48,4 +48,8 @@
 			this.addRage(3);
 		}
 	}
+
+	o.getActorHoverTooltip <- function (_activeEntity) {
+		return "Receiving and dealing damage increases Resolve, Damage and Initiative";
+	}
 });

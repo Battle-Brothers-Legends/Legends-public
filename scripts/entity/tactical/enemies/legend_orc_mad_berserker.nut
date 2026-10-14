@@ -26,7 +26,7 @@ this.legend_orc_mad_berserker <- this.inherit("scripts/entity/tactical/enemies/o
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendAmbidextrous);
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendTasteThePain);
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendTasteThePain);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 		}
 	}

@@ -123,7 +123,7 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/legend_orc", {
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendAssuredConquest);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendTasteThePain);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendTasteThePain);
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);

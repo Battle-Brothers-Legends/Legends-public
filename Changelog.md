@@ -1036,6 +1036,7 @@ Refactors/deletions:
 - `scripts/skills/perks/perk_legend_specialist_spearwall` -> `scripts/skills/perks/perk_legend_spearwaller`
 - `scripts/skills/perks/perk_legend_prayer_of_life` -> `scripts/skills/perks/perk_legend_prayer_of_hope`
 - `scripts/skills/perks/perk_legend_magic_missile_mastery` -> `scripts/skills/perks/perk_legend_mastery_magic_missile`
+- `scripts/skills/perks/perk_legend_taste_the_pain` -> `scripts/skills/effects/legend_taste_the_pain_effect`
 - `scripts/skills/actives/legend_magic_stun_skill` -> `scripts/skills/actives/legend_paralyze_skill`
 - `scripts/skills/actives/legend_magic_sleep_skill` -> `scripts/skills/actives/legend_slumber_skill`
 - `legend_catapult_blueprint` -> deleted

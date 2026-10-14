@@ -985,6 +985,7 @@ if (!("Effects" in ::Legends)) {
 	LegendSummonedWolf = {
 		Name = "Summoned a Wolf"
 	},
+	LegendTasteThePain = {},
 	LegendThrewSand = {},
 	// these 3 vala chant effects have a weird system of setting and resetting icons in effects themselves, we should fix that when changing them eventually
 	LegendValaChantDisharmony = {

@@ -19,7 +19,7 @@ if (!("Perks" in ::Const)) {
 ::Const.Perks.PerkDefObjects <- {};
 ::Const.Perks.PerkDefs <- {};
 
-::Const.Perks.defaultDef <- function(_def) {
+::Const.Perks.defaultDef <- function (_def) {
 	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
 	return {
 		Const = _def.Const,
@@ -37,7 +37,7 @@ if (!("Perks" in ::Const)) {
 * Overwrites default def with non-standard fields defined here
 * @param _def table with field overwrites
 */
-::Const.Perks.transformDef <- function(_def) {
+::Const.Perks.transformDef <- function (_def) {
 	local defaultDef = ::Const.Perks.defaultDef(_def);
 	foreach (key, value in _def) {
 		if (key in defaultDef) {
@@ -55,16 +55,18 @@ if (!("Perks" in ::Const)) {
  * @param _perkDefObjects is an array of perk definitions
  * @param _container is namespace where ids will reside, you can use your own in submods, default is ::Legends.Perk
  */
-::Const.Perks.addPerkDefObjects <- function(_perkDefObjects, _container = null) {
-	if (_container == null)
+::Const.Perks.addPerkDefObjects <- function (_perkDefObjects, _container = null) {
+	if (_container == null) {
 		_container = ::Legends.Perk;
+	}
 
 	foreach (constName, def in _perkDefObjects) {
 		def.Const <- constName;
 		def = ::Const.Perks.transformDef(def);
 		local hash = ::IO.scriptHashByFilename(def.Script);
-		if (hash == null)
+		if (hash == null) {
 			::logError(::format("%s: hash is null for '%s'", def.Const, def.Script));
+		}
 		::Const.Perks.PerkDefObjects[hash] <- def;
 		if (def.Const in _container) {
 			_container[def.Const] = hash;
@@ -76,17 +78,20 @@ if (!("Perks" in ::Const)) {
 	}
 }
 
-::Const.Perks.validate <- function(_defs) {
+::Const.Perks.validate <- function (_defs) {
 	local scripts = ::IO.enumerateFiles("scripts/skills/perks/");
 	local icons = ::IO.enumerateFiles("gfx/").map(@(_f) _f + ".png");
 
-	foreach(key, value in _defs) {
-		if (scripts.find(::Const.Perks.PerkDefObjects[value].Script) == null)
+	foreach (key, value in _defs) {
+		if (scripts.find(::Const.Perks.PerkDefObjects[value].Script) == null) {
 			::logError(::format("%s: script `%s` is missing", key, ::Const.Perks.PerkDefObjects[value].Script));
-		if (icons.find("gfx/" + ::Const.Perks.PerkDefObjects[value].Icon) == null)
+		}
+		if (icons.find("gfx/" + ::Const.Perks.PerkDefObjects[value].Icon) == null) {
 			::logError(::format("%s: icon `%s` is missing", key, ::Const.Perks.PerkDefObjects[value].Icon));
-		if (icons.find("gfx/" + ::Const.Perks.PerkDefObjects[value].IconDisabled) == null)
+		}
+		if (icons.find("gfx/" + ::Const.Perks.PerkDefObjects[value].IconDisabled) == null) {
 			::logError(::format("%s: icon disabled `%s` is missing", key, ::Const.Perks.PerkDefObjects[value].IconDisabled));
+		}
 	}
 }
 
@@ -513,10 +518,7 @@ if (!("Perks" in ::Const)) {
 	LegendPerfectFocus = {},
 	LegendPointBlank = {},
 	LegendPoisoner = {},
-	LegendPossession = {
-		Icon = "ui/perks/possession_circle_56.png",
-		IconDisabled = "ui/perks/possession_circle_56_bw.png"
-	},
+	LegendPossession = {},
 	LegendPrayerOfFaith = {},
 	LegendPrayerOfHope = {},
 	LegendPrepared = {},
@@ -624,10 +626,6 @@ if (!("Perks" in ::Const)) {
 	LegendTacticalManeuvers = {
 		Icon = "ui/perks/perk_11.png",
 		IconDisabled = "ui/perks/perk_11_sw.png"
-	},
-	LegendTasteThePain = {
-		Icon = "ui/perks/twirl_circle.png", // todo icons?
-		IconDisabled = "ui/perks/twirl_circle_bw.png"
 	},
 	LegendTerrifyingVisage = {},
 	LegendThrowSand = {},
@@ -760,7 +758,9 @@ if (!("Perks" in ::Const)) {
 		IconDisabled = "ui/perks/perk_23_sw.png"
 	},
 	LegendHorseMovement = {
-		Name = "Horse Movement"
+		Name = "Horse Movement",
+		Icon = "ui/perks/legend_horse_charge.png",
+		IconDisabled = "ui/perks/legend_horse_charge_bw.png"
 	},
 	LegendHorseCollection = {
 		Name = "Collection"
