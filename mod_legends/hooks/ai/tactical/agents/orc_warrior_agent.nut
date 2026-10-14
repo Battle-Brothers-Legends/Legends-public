@@ -2,6 +2,6 @@
 	local onAddBehaviors = o.onAddBehaviors;
 	o.onAddBehaviors = function () {
 		onAddBehaviors();
-		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_attack_charge"));
+		this.addBehavior(::new("scripts/ai/tactical/behaviors/ai_charge"));
 	}
 });
