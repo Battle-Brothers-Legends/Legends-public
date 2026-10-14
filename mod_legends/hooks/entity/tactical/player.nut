@@ -1587,10 +1587,10 @@
 			local scriptPath = ::IO.scriptFilenameByHash(skill.ClassNameHash);
 
 			// Find matching perk definition
-			local matches = all_perks.filter(@(_, perk) perk.Script == scriptPath);
+			local matches = ::MSU.Table.filter(all_perks, @(_, perk) perk.Script == scriptPath);
 
 			if (matches.len() > 0) {
-				local def = matches[0];  // first match (should only be one)
+				local def = ::MSU.Table.values(matches)[0];  // first match (should only be one)
 				list_perks.append({
 					id = scriptPath,
 					icon = def.Icon
