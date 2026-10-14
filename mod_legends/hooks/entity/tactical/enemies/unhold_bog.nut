@@ -7,6 +7,7 @@
 		b.setValues(::Const.Tactical.Actor.UnholdBog);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRotation = true;
+		b.IsImmuneToStun = true;
 
 		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;
@@ -50,7 +51,6 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
-		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialUnhold);

@@ -42,14 +42,6 @@
 		// Legends Stun immunity logic here (Immovable Object, Steel Brow)
 		local actor = this.getContainer().getActor();
 		local properties = actor.getCurrentProperties();
-		if (properties.IsImmuneToStun) {
-			if (actor.getTile().IsVisibleForPlayer) {
-				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " is immune to Stun.");
-			}
-			this.removeSelf();
-			return;
-		}
-
 		local immovableObject = ::Legends.Perks.get(this, ::Legends.Perk.LegendImmovableObject);
 		local steelBrow = ::Legends.Perks.get(this, ::Legends.Perk.SteelBrow);
 		if (steelBrow != null || (immovableObject != null && immovableObject.m.isGrantingStunImmunity)) {

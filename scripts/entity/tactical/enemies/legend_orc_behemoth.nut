@@ -74,6 +74,7 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/legend_orc", {
 		this.m.BaseProperties.DamageTotalMult -= 0.1;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInCleavers = true;
+		b.IsImmuneToStun = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints * 2;
 		this.m.CurrentProperties = clone b;
@@ -118,7 +119,6 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/legend_orc", {
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
-		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);

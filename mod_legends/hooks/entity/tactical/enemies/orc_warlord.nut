@@ -36,6 +36,7 @@
 
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInCleavers = true;
+		b.IsImmuneToStun = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -85,7 +86,6 @@
 		::Legends.Actives.grant(this, ::Legends.Active.Warcry);
 		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.Captain);
-		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);

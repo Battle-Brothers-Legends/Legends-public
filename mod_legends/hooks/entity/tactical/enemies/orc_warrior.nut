@@ -32,6 +32,7 @@
 		this.m.BaseProperties.DamageTotalMult -= 0.1;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInCleavers = true;
+		b.IsImmuneToStun = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -71,7 +72,6 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
-		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);

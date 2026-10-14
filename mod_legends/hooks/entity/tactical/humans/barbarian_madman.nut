@@ -1,11 +1,11 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_madman", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/barbarian_madman", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
-		if(::Legends.isLegendaryDifficulty())
-		{
+		::Legends.Perks.remove(this, ::Legends.Perk.BatteringRam);
+		local b = this.m.BaseProperties;
+		b.IsImmuneToStun = true;
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
@@ -16,27 +16,21 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
+	o.assignRandomEquipment = function () {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
 			local weapons = [
 				"weapons/named/named_rusty_warblade"
 			];
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-
-
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
 			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Barbarian.barbarian_ritual_armor]
 			]));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
 			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Barbarian.barbarian_ritual_helmet]
 			]));

@@ -26,6 +26,7 @@
 		b.IsSpecializedInCleavers = true;
 		b.IsSpecializedInFlails = true;
 		b.IsAffectedByFreshInjuries = false;
+		b.IsImmuneToStun = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -82,7 +83,6 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage, function (_skill) {
 			_skill.m.IsBerserker = true;
 		}.bindenv(this));
-		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

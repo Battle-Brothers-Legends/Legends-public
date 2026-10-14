@@ -1,40 +1,34 @@
-::mods_hookExactClass("entity/tactical/enemies/unhold_frost", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/unhold_frost", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
+		::Legends.Perks.remove(this, ::Legends.Perk.BatteringRam);
+		b.IsImmuneToStun = true;
 		local body = this.getSprite("body");
 		local head = this.getSprite("head");
-		if (::Math.rand(1, 100) < 10)
-		{
+		if (::Math.rand(1, 100) < 10) {
 			head.setBrush("bust_unhold_head_06");
-		}
-		else
-		{
+		} else {
 			head.setBrush("bust_unhold_head_01");
 		}
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
-			if (a == "helmet")
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			if (a == "helmet") {
 				continue;
+			}
 			this.addSprite(a);
 		}
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-
 	}
 
-	o.onFactionChanged = function()
-	{
+	o.onFactionChanged = function () {
 		this.unhold.onFactionChanged();
 	}
 });
