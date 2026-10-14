@@ -1,7 +1,6 @@
-::mods_hookExactClass("ui/screens/tactical/tactical_combat_result_screen", function(o) {
+::mods_hookExactClass("ui/screens/tactical/tactical_combat_result_screen", function (o) {
 
-	o.getStashChangeData <- function ()
-	{
+	o.getStashChangeData <- function () {
 		local ret = {
 			popup = false,
 			deletedNum = 0
@@ -9,12 +8,9 @@
 		local capacity = ::Stash.getCapacity();
 		local current = "State" in ::World ? ::World.State.getPlayer().calculateStashModifier(false) : capacity;
 
-		if (capacity > current)
-		{
-			for (local i = current - 1 ; i < capacity - 1; i = ++i)
-			{
-				if (::Stash.getItemAtIndex(i).item != null)
-				{
+		if (capacity > current) {
+			for (local i = current - 1; i < capacity - 1; i++) {
+				if (::Stash.getItemAtIndex(i).item != null) {
 					ret.deletedNum += 1;
 				}
 			}
@@ -24,7 +20,7 @@
 		return ret;
 	}
 
-	o.onSortButtonClicked <- function() {
+	o.onSortButtonClicked <- function () {
 		::Stash.sort();
 		this.loadStashList();
 	}
@@ -36,7 +32,7 @@
 			return data;
 		}
 
-		local isErrored = ::Legends.Inventory.onUpgradeInventoryItem (data);
+		local isErrored = ::Legends.Inventory.onUpgradeInventoryItem(data);
 		if (isErrored != null) {
 			return isErrored;
 		}
@@ -49,7 +45,7 @@
 
 	o.removeInventoryItemUpgrades <- function (_data) {
 		local armor = ::Stash.getItemAtIndex(_data[0]).item;
-		return this.removeAllUpgradesFromItem(armor)
+		return this.removeAllUpgradesFromItem(armor);
 	}
 
 	o.removeAllUpgradesFromItem <- function (_item, _entity = null) {
@@ -63,7 +59,7 @@
 	local onLootAllItemsButtonPressed = o.onLootAllItemsButtonPressed;
 	o.onLootAllItemsButtonPressed = function () {
 		local loot = ::Tactical.CombatResultLoot.getItems();
-		
+
 		foreach (idx, _ in loot) {
 			this.applyAutomationStateEffectsOnLoot(::Tactical.CombatResultLoot.getItemAtIndex(idx));
 		}
@@ -83,7 +79,7 @@
 		return onSwapItem(_data);
 	}
 
-	o.applyAutomationStateEffectsOnLoot <- function(_itemWrapper) {
+	o.applyAutomationStateEffectsOnLoot <- function (_itemWrapper) {
 		if (_itemWrapper != null && _itemWrapper.item != null) {
 			local item = _itemWrapper.item;
 			::Legends.Inventory.applyAutomationStateEffects(item, 0, ::Legends.Inventory.getCompositeAutomationState(item));
@@ -97,9 +93,10 @@
 		local stash = ::Stash.getItems();
 
 		// eat supplies
+		::World.Assets.refillAmmo();
 		for (local i = 0; i < loot.len(); i++) {
 			local item = loot[i];
-			if (item != null && item.isItemType(::Const.Items.ItemType.Supply))	{
+			if (item != null && item.isItemType(::Const.Items.ItemType.Supply)) {
 				item.consume();
 				loot[i] = null;
 			}
