@@ -469,8 +469,6 @@
 		onInit();
 		// return to normal
 		self.addSprite = original_addSprite;
-		// add this as aura effect
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendDemonHoundAura);
 	}
 
 	o.setArmorAlpha <- function (level) {

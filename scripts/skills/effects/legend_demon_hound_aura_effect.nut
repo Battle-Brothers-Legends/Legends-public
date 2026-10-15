@@ -2,20 +2,18 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Penalty = 0
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundAura);
 		this.m.Description = "The Höllenhund's presence has sapped the strength from this character\'s limbs, slowing them down.";
-		this.m.Icon = "ui/orientation/hollenhound_orientation.png";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
+		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getTooltip()
-	{
-		local penalty = this.m.Penalty;
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -31,105 +29,33 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=%negative%]-" + penalty * 100 + "%[/color] Initative"
+				text = "[color=%negative%]-" + this.m.Penalty * 100 + "%[/color] Initiative"
 			}
 		];
 	}
 
-	function getPenalty( _properties )
-	{
+	function isHidden() {
+		return this.m.Penalty == 0;
+	}
+
+	function calculatePenalty(_properties) {
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
-		{
+		if (!actor.isPlacedOnMap() || !::Tactical.isActive()) {
 			return 0;
 		}
 
 		local myTile = actor.getTile();
-		if (myTile == null)
-		{
-			return 0;
-		}
-
-		if (!("Entities" in ::Tactical))
-		{
-			return 0;
-		}
-
-		if (::Tactical.Entities == null)
-		{
-			return 0;
-		}
-
-		if (!::Tactical.isActive())
-		{
-			return 0;
-		}
-
 		local worstPenalty = 0;
-		local targets = ::Tactical.Entities.getAllInstancesAsArray();
-
-		foreach(t in targets)
-		{
-			if (t.getID() == actor.getID() || !t.isPlacedOnMap())
-			{
-				continue;
-			}
-
-			if (t.getType() != ::Const.EntityType.LegendDemonHound)
-			{
-				continue;
-			}
-
-			local distance = t.getTile().getDistanceTo(myTile);
-			if (distance > 2)
-			{
-				continue;
-			}
-
-			local distance = t.getTile().getDistanceTo(myTile);
-			local penalty = 0.25;
-
-			if (distance == 1)
-			{
-				penalty = 0.50;
-			}
-
-			if (penalty > worstPenalty)
-			{
-				worstPenalty = penalty;
-			}
-
+		foreach (t in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _hound)(_hound.getType() == ::Const.EntityType.LegendDemonHound && _hound.isPlacedOnMap() && actor.getID() != _hound.getID()))) {
+			worstPenalty = ::Math.maxf(worstPenalty, ::Math.maxf(0, 1.0 - (0.25 * (t.getTile().getDistanceTo(myTile) + 1))));
 		}
-
 
 		return worstPenalty;
 	}
 
-	function onUpdate( _properties )
-	{
-		this.m.IsHidden = true;
-		this.m.Penalty = 0;
+	function onUpdate(_properties) {
+		this.m.Penalty = this.calculatePenalty(_properties);
+		_properties.InitiativeMult *= 1.0 - this.m.Penalty;
 	}
-
-	function onAfterUpdate( _properties )
-	{
-		local penalty = this.getPenalty(_properties);
-		if (penalty == 0)
-		{
-			return;
-		}
-		_properties.InitiativeMult *= 1.0 - penalty;
-		this.m.Penalty = penalty;
-		this.m.IsHidden = false;
-	}
-
-	function onCombatFinished()
-	{
-		this.skill.onCombatFinished();
-		this.m.IsHidden = true;
-		this.m.Penalty = 0;
-	}
-
 });
-

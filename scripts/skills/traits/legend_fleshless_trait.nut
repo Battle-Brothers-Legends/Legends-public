@@ -22,7 +22,7 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 			{
 				id = 7,
 				type = "text",
-				icon = "ui/icons/damage_received.png",
+				icon = "ui/icons/immunity.png",
 				text = "Immune to Bleeding, poison and most fresh injuries."
 			},
 			{

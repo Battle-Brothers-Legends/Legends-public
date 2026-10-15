@@ -696,7 +696,10 @@ if (!("Effects" in ::Legends)) {
 		Overlay = "status_effect_147"
 	},
 	LegendDemonHoundAura = {
-		Name = "Sluggish",
+		Name = "Sluggish"
+	},
+	LegendDemonHoundAuraSource = {
+		Icon = "",
 		IconMini = "",
 		Overlay = ""
 	},
