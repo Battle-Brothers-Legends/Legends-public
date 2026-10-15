@@ -64,7 +64,7 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 			[1, "weapons/named/legend_named_royal_lance"]
 		], "scripts/items/"));
 
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendForcefulSwings);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 	}

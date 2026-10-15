@@ -124,7 +124,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
 
 					if (::Legends.isLegendaryDifficulty()) {
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+						::Legends.Effects.grant(this, ::Legends.Effect.LegendForcefulSwings);
 					}
 				} else if (r == 4) {
 					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
@@ -168,7 +168,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					}
 				} else if (r == 9) {
 					this.m.Items.equip(this.new("scripts/items/weapons/legend_zweihander"));
-					::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+					::Legends.Effects.grant(this, ::Legends.Effect.LegendForcefulSwings);
 
 					if (::Legends.isLegendaryDifficulty()) {
 						::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);

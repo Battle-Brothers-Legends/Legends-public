@@ -989,6 +989,7 @@ Refactors/deletions:
 - `scripts/skills/perks/perk_legend_dogbreeder` -> deleted
 - `scripts/skills/perks/perk_legend_efficient_packing` -> deleted
 - `scripts/skills/perks/perk_legend_field_triage` -> deleted
+- `scripts/skills/perks/legend_forceful_swing` -> `scripts/skills/effects/legend_forceful_swings_effect`
 - `scripts/skills/perks/perk_legend_gatherer` -> deleted
 - `scripts/skills/perks/perk_legend_helpful` -> deleted
 - `scripts/skills/perks/perk_legend_inventory_anatomy` -> deleted

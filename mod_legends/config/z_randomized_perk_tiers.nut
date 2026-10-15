@@ -345,7 +345,7 @@
         [1, ["two_handed_wooden_flail", 70], [::Legends.Perk.HeadHunter]],
         [1, ["legend_ranged_flail", 70], [::Legends.Perk.Colossus]],
         [1, ["legend_reinforced_flail", 70], [::Legends.Perk.LegendVengeance]],
-        [1, ["two_handed_mace", 70], [::Legends.Perk.LegendForcefulSwing]],
+        [1, ["two_handed_mace", 70], [::Legends.Effect.LegendForcefulSwings]],
         [1, ["greatsword", 70], [::Legends.Perk.Colossus]],
         [1, ["longsword",  70], [::Legends.Perk.Duelist]],
         [1, ["legend_two_handed_club", 70], [::Legends.Perk.LegendSmashingShields]],

@@ -7,7 +7,7 @@ this.legend_legion_background <- this.inherit("scripts/skills/backgrounds/charac
 			{
 				id = 7,
 				type = "text",
-				icon = "ui/icons/damage_received.png",
+				icon = "ui/icons/immunity.png",
 				text = "Immune to Bleeding, poison and most fresh injuries"
 			},
 			{

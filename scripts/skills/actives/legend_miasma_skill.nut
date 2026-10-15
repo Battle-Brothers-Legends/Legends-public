@@ -48,7 +48,7 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 			{
 				id = 10,
 				type = "text",
-				icon = "ui/icons/damage_received.png",
+				icon = "ui/icons/damage_dealt.png",
 				text = "Deals 5-10 damage per turn over four turns"
 			}
 		];

@@ -40,7 +40,7 @@ this.legend_peasant_woodsman <- this.inherit("scripts/entity/tactical/human", {
 			b.Hitpoints *= 1.25;
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendForcefulSwings);
 			::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

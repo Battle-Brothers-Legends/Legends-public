@@ -96,6 +96,7 @@
 	<sprite id="legend_curse_of_the_mummy_effect" ic="FF23165B" img="skills\legend_curse_of_the_mummy_effect.png" />
 	<sprite id="legend_demon_hound_bite_effect" ic="FF23165B" img="skills\legend_demon_hound_bite_effect.png" />
 	<sprite id="legend_enraged_hyena_bite_effect" ic="FF1B293C" img="skills\legend_enraged_hyena_bite_effect.png" />
+	<sprite id="legend_forceful_swings_effect" ic="FF1B293C" img="skills\legend_forceful_swings_effect.png" />
 	<sprite id="legend_grappled_effect" ic="5E3f37FF" img="skills\legend_grappled_effect.png" />
 	<sprite id="legend_gravedigging_effect" ic="FF23165B" img="skills\legend_gravedigging_effect.png" />
 	<sprite id="legend_grazed_effect" ic="FF23165B" img="skills\legend_grazed_effect.png" />
@@ -140,7 +141,7 @@
 	<sprite id="legend_demon_hound_bite_effect_mini"  offsetY="35" ic="FF344955" img="skills\mini\legend_demon_hound_bite_effect.png" />
 	<sprite id="legend_enraged_hyena_bite_effect_mini" ic="FF1B293C" img="skills\mini\legend_enraged_hyena_bite_effect.png" />
 	<sprite id="legend_flourish_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_flourish_effect.png" />
-	<sprite id="legend_lightning_reflexes_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_lightning_reflexes_effect.png" />
+	<sprite id="legend_forceful_swings_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_forceful_swings_effect.png" />
 	<sprite id="legend_grappled_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_grappled_effect.png" />
 	<sprite id="legend_grazed_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_grazed_effect.png" />
 	<sprite id="legend_heartwood_focus_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_heartwood_focus_effect.png" />
@@ -149,6 +150,7 @@
 	<sprite id="legend_knockback_prepared_effect_mini" ic="2E343FFF" img="skills\mini\legend_knockback_prepared_effect.png" />
 	<sprite id="legend_knocked_over_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_knocked_over_effect.png" />
 	<sprite id="legend_levitating_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_levitating_effect.png" />
+	<sprite id="legend_lightning_reflexes_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_lightning_reflexes_effect.png" />
 	<sprite id="legend_lurking_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_lurking_effect.png" />
 	<sprite id="legend_marked_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_marked_effect.png" />
 	<sprite id="legend_martial_march_effect_mini" offsetY="35" ic="FF374B50" img="skills/mini/legend_martial_march_effect.png" />

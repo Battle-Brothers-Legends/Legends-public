@@ -753,6 +753,7 @@ if (!("Effects" in ::Legends)) {
 		Icon = "ui/perks/perk_41.png",
 		Overlay = ""
 	},
+	LegendForcefulSwings = {},
 	LegendGrappled = {},
 	LegendGravedigging = {
 		IconMini = "", //"shovel_01_mini.png";

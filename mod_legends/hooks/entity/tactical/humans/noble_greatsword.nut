@@ -19,7 +19,7 @@
 
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendForcefulSwings);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);

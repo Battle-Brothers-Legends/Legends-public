@@ -544,13 +544,6 @@ The path to martial prowess is beset by the fake and the weak. Only one can stan
 • Unlocks a very difficult recurring encounter in which a Swordmaster champion challenges a brother to single combat.
 ";
 
-::Const.Strings.PerkDescription.LegendForcefulSwing <- @"
-Use the power of your hips and core to imbue more force into your swings.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Melee AOE skills do [color=%positive%]+10%[/color] damage.
-";
-
 //No contract
 //Lich and Emperor not included
 //Treasure hunters and betrayers included as knights

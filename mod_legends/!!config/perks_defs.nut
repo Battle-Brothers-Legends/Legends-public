@@ -436,7 +436,6 @@ if (!("Perks" in ::Const)) {
 	LegendFirefield = {},
 	LegendFirstBlood = {},
 	LegendFlux = {},
-	LegendForcefulSwing = {},
 	LegendFreedomOfMovement = {},
 	LegendGrappler = {},
 	LegendGruesomeFeast = {},
