@@ -445,7 +445,6 @@ if (!("Perks" in ::Const)) {
 	LegendHimshaw = {},
 	LegendHoldTheLine = {},
 	LegendHolyFlame = {},
-	LegendHorrify = {},
 	LegendImmovableObject = {},
 	LegendIncoming = {
 		Name = "Incoming!"

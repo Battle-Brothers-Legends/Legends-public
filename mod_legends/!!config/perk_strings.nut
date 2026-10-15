@@ -723,17 +723,6 @@ ed[/color], and [color=%status%]Morale checks[/color] when taking damage.
 • Costs [color=%negative%]7[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendHorrify <- @"
-Blare out a piercing, unworldly sound that is more than likely to distress anyone unfortunate enough to hear it.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks [color=%skill%]Horrify[/color] skill which has a [color=%positive%]100%[/color] chance to Horrify on hit.
-
-• Horrified enemies are unable to act next turn.
-
-• Costs [color=%negative%]6[/color] AP and [color=%negative%]15[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendImmovableObject <- @"
 Heavy armor, a trusty shield and your heels dug into the ground and you can weather any storm.
 

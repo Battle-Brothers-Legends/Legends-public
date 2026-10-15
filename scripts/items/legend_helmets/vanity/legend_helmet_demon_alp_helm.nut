@@ -52,7 +52,7 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 
 	function onEquip() {
 		this.legend_helmet_upgrade.onEquip();
-		if (!::Legends.Perks.has(this, ::Legends.Perk.LegendHorrify)) {
+		if (!::Legends.Perks.has(this, ::Legends.Perk.LegendTerrifyingVisage)) {
 			::Legends.Actives.grant(this, ::Legends.Effect.HorrificScream, function (_skill) {
 				_skill.m.ActionPointCost = 6;
 				_skill.m.FatigueCost = 30;
@@ -64,7 +64,7 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 	function onUnequip() {
 		local actor = this.getContainer().getActor();
 		this.legend_helmet_upgrade.onUnequip();
-		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendHorrify) && !::Legends.Actives.has(actor, ::Legends.Active.HorrificScream)) {
+		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendTerrifyingVisage) && !::Legends.Actives.has(actor, ::Legends.Active.HorrificScream)) {
 			::Legends.Actives.grant(actor, ::Legends.Active.HorrificScream);
 		}
 	}
