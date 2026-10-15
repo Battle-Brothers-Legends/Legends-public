@@ -373,24 +373,19 @@
 	return array(_count).map(@(_) format(_prefix + "_%02d" + _suffix, i++));
 }
 
-
 // unused
-/*::Legends.S.getNeighbouringActors <- function (_tile) { 
+/*::Legends.S.getNeighbouringActors <- function (_tile) {
 	local actors = [];
-
 	for (local i = 0; i < 6; i++) {
 		if (_tile.hasNextTile(i)) {
 			local next = _tile.getNextTile(i);
-
 			if (next.IsOccupiedByActor && ::Math.abs(next.Level - _tile.Level) <= 1) {
 				actors.push(next.getEntity());
 			}
 		}
 	}
-
 	return actors;
 }
-
 ::Legends.S.getOverlappingNeighbourActors <- function (_actor, _secondActor) {
 	local firstActorEntities = ::Legends.S.getNeighbouringActors(_actor.getTile());
 	local overlaps = [];
@@ -399,30 +394,23 @@
 			overlaps.push(entity);
 		}
 	}
-
 	return overlaps;
 }
-
 ::Legends.S.isInZocWithActor <- function (_actor, _secondActor) {
 	if (::Legends.S.isEntityNullOrDead(_secondActor)) {
 		return false;
 	}
-
 	if (_secondActor.isNonCombatant()) {
 		return false;
 	}
-
 	if (_secondActor.isAlliedWith(_actor)) {
 		return false;
 	}
-
 	if (!_secondActor.m.IsUsingZoneOfControl) {
 		return false;
 	}
-
 	if (!_secondActor.getCurrentProperties().IsStunned || !_secondActor.isArmedWithRangedWeapon()) {
 		return false;
 	}
-
 	return true;
 }*/

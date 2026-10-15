@@ -60,7 +60,7 @@ this.legend_helmet_lindwurm_helm <- this.inherit("scripts/items/legend_helmets/l
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Being surrounded no longer affects this character's defences at all"
+			text = "Surrounding enemies no longer reduce this character's Defenses"
 		});
 		result.push({
 			id = 8,

@@ -32,7 +32,7 @@ this.legend_demon_alp_potion_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Not affected by being surrounded"
+				text = "Surrounding enemies no longer reduce this character's Defenses"
 			},
 			{
 				id = 12,

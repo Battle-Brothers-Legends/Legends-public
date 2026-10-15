@@ -711,6 +711,7 @@
 - scenarios now support onNewDay handling
 - scenarios now use their ID to set their player figures
 - slight change to `::Legends.Backgrounds.BackgroundDefObjects`,`::Legends.Effects.EffectDefObjects`, `::Legends.Actives.ActiveDefObjects` and `::Const.Perks.PerkDefObjects`. They're a table now, if you just access them, nothing is changing for you, if you iterate over them, you need to add key to your loops too.
+- fixed Anticipation and Bone Plating not affecting enemies in full
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

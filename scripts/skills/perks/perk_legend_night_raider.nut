@@ -12,9 +12,9 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function onAdded() // make this perk work when added to non-player
-	{
-		if (!this.getContainer().getActor().isPlayerControlled()) {
+	function onAdded() {
+		// make this perk work when added to non-player
+		if (!::MSU.isKindOf(this.getContainer().getActor(), "player")) {
 			this.onCombatStarted();
 		}
 	}
