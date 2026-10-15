@@ -46,7 +46,7 @@
 			mod += 25;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping))
 			mod += 50;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendTackled))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendKnockedOver))
 			mod += 50;
 		if (_targetEntity.getCurrentProperties().IsRooted)
 			mod += 25;

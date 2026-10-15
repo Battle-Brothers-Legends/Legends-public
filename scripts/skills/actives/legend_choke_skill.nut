@@ -102,7 +102,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			mod += 50;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
 			mod += 25;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendTackled))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendKnockedOver))
 			mod += 50;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping))
 			mod += 50;
