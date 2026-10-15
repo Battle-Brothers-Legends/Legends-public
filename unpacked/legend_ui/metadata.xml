@@ -93,6 +93,7 @@
 	<sprite id="legend_commanded_effect" ic="724543FF" img="skills\legend_commanded_effect.png" />
 	<sprite id="legend_compromised_armor_effect" ic="724543FF" img="skills\legend_compromised_armor_effect.png" />
 	<sprite id="legend_consecrated_effect" ic="724543FF" img="skills\legend_consecrated_effect.png" />
+	<sprite id="legend_coordinating_volleys_effect" ic="724543FF" img="skills\legend_coordinating_volleys_effect.png" />
 	<sprite id="legend_curse_of_the_mummy_effect" ic="FF23165B" img="skills\legend_curse_of_the_mummy_effect.png" />
 	<sprite id="legend_demon_hound_bite_effect" ic="FF23165B" img="skills\legend_demon_hound_bite_effect.png" />
 	<sprite id="legend_enraged_hyena_bite_effect" ic="FF1B293C" img="skills\legend_enraged_hyena_bite_effect.png" />
@@ -137,6 +138,7 @@
 	<sprite id="legend_commanded_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_commanded_effect.png" />
 	<sprite id="legend_compromised_armor_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_compromised_armor_effect.png" />
 	<sprite id="legend_consecrated_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_consecrated_effect.png" />
+	<sprite id="legend_coordinating_volleys_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_coordinating_volleys_effect.png" />
 	<sprite id="legend_curse_of_the_mummy_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_curse_of_the_mummy_effect.png" />
 	<sprite id="legend_demon_hound_bite_effect_mini"  offsetY="35" ic="FF344955" img="skills\mini\legend_demon_hound_bite_effect.png" />
 	<sprite id="legend_enraged_hyena_bite_effect_mini" ic="FF1B293C" img="skills\mini\legend_enraged_hyena_bite_effect.png" />
