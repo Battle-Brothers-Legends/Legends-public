@@ -5,12 +5,8 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		//this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Icon = "skills/status_effect_57.png";
-		//this.m.IconMini = "status_effect_57_mini";
-		//this.m.Overlay = "status_effect_57";
-
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
@@ -96,19 +92,19 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Melee Skill due to being a favored enemy"
+				text = "[color=%positive%]+" + stats.HitChance + "[/color] Melee Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Ranged Skill due to being a favored enemy"
+				text = "[color=%positive%]+" + stats.HitChance + "[/color] Ranged Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Max Damage due to being a favored enemy"
+				text = "[color=%positive%]" + stats.HitChance + "%[/color] more Max Damage"
 			}
 		];
 		if (this.m.BraveryMult > 1)
@@ -117,8 +113,8 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=%positive%]+" + ::Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve due to being a favored enemy"
-			})
+				text = "[color=%positive%]" + ::Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] more Resolve"
+			});
 		}
 		resp.push({
 			id = 16,
@@ -153,7 +149,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 			{
 				id = 3,
 				type = "hint",
-				icon = "ui/tooltips/positive.png"
+				icon = "ui/tooltips/positive.png",
 				text = format("Activating this perk will grant a %s bonus to the relevant stats", ::Const.UI.getColorized("+" + stats.HitChance + "%", ::Const.UI.Color.PositiveValue))
 			},
 			{
@@ -241,7 +237,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		::Const.LegendMod.FavEnemyPerkMap.addEnemies(this.m.ValidTypes, this.m.ID)
+		::Const.LegendMod.FavEnemyPerkMap.addEnemies(this.m.ValidTypes, this.m.ID);
 	}
 
 	// Requires MSU; this will add tooltips to display bonuses when targeting an enemy
