@@ -24,7 +24,7 @@ this.perk_legend_barrage <- this.inherit("scripts/skills/skill", {
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SlingStone)) {
 			if (headshot) {
 				this.grantEffect(::Legends.Effect.Debilitated, "debilitated", _targetEntity, user);
-			} else {
+			} else if (!_targetEntity.getCurrentProperties().IsImmuneToDaze) {
 				this.grantEffect(::Legends.Effect.LegendBaffled, "baffled", _targetEntity, user);
 			}
 

@@ -1,68 +1,46 @@
 this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendOnslaught);
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/bash", 3);
 		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/bash_hit", 3);
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
-		local fat = getBonus();
-
 		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Current melee damage bonus is [color=%positive%]+" + fat + "%" + "[/color]"
-
+			text = "Current melee damage bonus is [color=%positive%]+" + getBonus() + "%" + "[/color]"
 		});
-
 		return tooltip;
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		this.getBonus() == 0;
 	}
 
-	function getBonus()
-	{
+	function getBonus() {
 		local actor = this.getContainer().getActor();
 		return 0.02 * (actor.getArmor(::Const.BodyPart.Head) + actor.getArmor(::Const.BodyPart.Body));
 	}
 
-	function onUpdate( _properties )
-	{
-		local bonus = this.getBonus();
-		_properties.MeleeDamageMult *= 1 + bonus * 0.01;
+	function onUpdate(_properties) {
+		_properties.MeleeDamageMult *= 1 + this.getBonus() * 0.01;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (::Legends.S.isEntityNullOrDead(_targetEntity) || _targetEntity.isNonCombatant()) {
 			return false;
-
-		if (_targetEntity.getCurrentProperties().IsImmuneToStun)
-			return false;
-
-		if (_targetEntity.isNonCombatant())
-			return false;
+		}
 
 		local user = this.getContainer().getActor();
-		local ourInit =  user.getInitiative();
-		local targetInit = _targetEntity.getInitiative();
-
-
-		if (ourInit <= targetInit)
+		if (user.getInitiative() <= _targetEntity.getInitiative() || ::Math.rand(1, 100) > 50) {
 			return false;
-
-
-		if ( ::Math.rand(1, 100) > 50)
-			return false;
+		}
 
 		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendBaffled)) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBaffled);

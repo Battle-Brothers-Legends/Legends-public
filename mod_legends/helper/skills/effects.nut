@@ -1,23 +1,29 @@
-if (!("Effects" in ::Legends))
+if (!("Effects" in ::Legends)) {
 	::Legends.Effects <- {};
+}
 
 ::Legends.Effects.getContainer <- function (_target, _onError = "") {
 	local container = null;
 	if (_target == null) {
-		::logError( "_target == null " + _onError);
+		::logError("_target == null " + _onError);
 		throw "_target == null";
 	}
-	if (::MSU.isKindOf(_target, "skill"))
+	if (::MSU.isKindOf(_target, "skill")) {
 		return _target.getContainer();
-	if (::MSU.isKindOf(_target, "skill_container"))
+	}
+	if (::MSU.isKindOf(_target, "skill_container")) {
 		return _target;
-	if (::MSU.isKindOf(_target, "actor"))
+	}
+	if (::MSU.isKindOf(_target, "actor")) {
 		return _target.getSkills();
-	if (::MSU.isKindOf(_target, "character_background"))
+	}
+	if (::MSU.isKindOf(_target, "character_background")) {
 		return _target.getContainer();
-	if (::MSU.isKindOf(_target, "item"))
+	}
+	if (::MSU.isKindOf(_target, "item")) {
 		return ::Legends.Effects.getContainer(_target.getContainer().getActor());
-	::logError( "Unsupported _target class " + _onError);
+	}
+	::logError("Unsupported _target class " + _onError);
 	throw "Unsupported _target class";
 }
 
@@ -49,8 +55,9 @@ if (!("Effects" in ::Legends))
 	} else {
 		skill = ::new(effectDef.Script);
 	}
-	if (_applyFn != null)
+	if (_applyFn != null) {
 		_applyFn(skill);
+	}
 	container.add(skill);
 	return skill;
 }
@@ -62,8 +69,9 @@ if (!("Effects" in ::Legends))
 ::Legends.Effects.get <- function (_target, _def) {
 	local container = ::Legends.Effects.getContainer(_target, "on get");
 	local id = ::Legends.Effects.getID(_def);
-	if (container.hasSkill(id))
+	if (container.hasSkill(id)) {
 		return container.getSkillByID(id);
+	}
 	return null;
 }
 
@@ -76,11 +84,11 @@ if (!("Effects" in ::Legends))
 	container.removeByID(::Legends.Effects.getID(_def));
 }
 
-::Legends.Effects.new <- function(_def) {
+::Legends.Effects.new <- function (_def) {
 	return ::new(::Legends.Effects.EffectDefObjects[_def].Script);
 }
 
-::Legends.Effects.onCreate <- function(_target, _def) {
+::Legends.Effects.onCreate <- function (_target, _def) {
 	local defs = ::Legends.Effects.EffectDefObjects[_def];
 	_target.m.ID = defs.ID;
 	_target.m.Name = defs.Name;
@@ -90,13 +98,17 @@ if (!("Effects" in ::Legends))
 }
 
 ::Legends.Effects.Immunities <- {
-	Bleeding = "IsImmuneToBleeding",
-	Disarm = "IsImmuneToDisarm",
-	Fire = "IsImmuneToFire",
-	Headshots = "IsImmuneToHeadshots",
-	Knockback = "IsImmuneToKnockBackAndGrab",
-	Poison = "IsImmuneToPoison",
-	Root = "IsImmuneToRoot",
-	Rotation = "IsImmuneToRotation",
-	Stun = "IsImmuneToStun"
+	IsImmuneToBleeding = "Bleeding",
+	IsImmuneToDamageReflection = "Damage Reflection",
+	IsImmuneToDaze = "Daze",
+	IsImmuneToDisarm = "Disarm",
+	IsImmuneToFire = "Fire",
+	IsImmuneToHeadshots = "Headshots",
+	IsImmuneToKnockBackAndGrab = "Knockback",
+	IsImmuneToOverwhelm = "Overwhelm",
+	IsImmuneToPoison = "Poison",
+	IsImmuneToRoot = "Root",
+	IsImmuneToRotation = "Rotation",
+	IsImmuneToStun = "Stun",
+	IsImmuneToSurrounding = "Surrounding",
 }

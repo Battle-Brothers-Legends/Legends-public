@@ -1,7 +1,7 @@
 this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPrayerOfFaith);
 		this.m.Description = "Grant defense to your allies with your chant of holy scripture, granting +20% of your resolve as melee and ranged defense. Adjacent undead and cultists are Baffled.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/ambience/buildings/temple_prayer", 3, 0);
@@ -20,8 +20,7 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 
 		local ret = [
 			{
@@ -44,35 +43,27 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		return this.skill.isUsable();
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
 		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 
-		foreach( a in actors )
-		{
-			if (a.getID() == _user.getID())
-			{
+		foreach (a in actors) {
+			if (a.getID() == _user.getID()) {
 				continue;
 			}
 
-			if (myTile.getDistanceTo(a.getTile()) > 1)
-			{
+			if (myTile.getDistanceTo(a.getTile()) > 1) {
 				continue;
 			}
 
-			if ((a.getFlags().has("undead") && !a.getFlags().has("ghoul")) || a.getFlags().has("cultist"))
-			{
+			if ((a.getFlags().has("undead") && !a.getFlags().has("ghoul")) || a.getFlags().has("cultist")) {
 				::Legends.Effects.grant(a, ::Legends.Effect.LegendBaffled);
-			}
-			else if (a.getFaction() == _user.getFaction())
-			{
-				::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfFaith, function(_effect) {
+			} else if (a.getFaction() == _user.getFaction()) {
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfFaith, function (_effect) {
 					_effect.m.Resolve = this.getContainer().getActor().getBravery();
 				}.bindenv(this));
 			}
@@ -80,6 +71,4 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 
 		return true;
 	}
-
 });
-

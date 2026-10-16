@@ -251,7 +251,7 @@
 		local bros = _roster.getAll();
 		this.addBroToRoster(_roster, ::Legends.Background.LegendLeechPeddler, 3);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendManAtArms, 7);
-		this.addBroToRoster(_roster, ::Legends.Background.Nightwatch, 5);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendNightwatch, 5);
 
 		foreach (_, bro in bros) {
 			if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Stabled)) //keep lowborn and stabled, delete all else.

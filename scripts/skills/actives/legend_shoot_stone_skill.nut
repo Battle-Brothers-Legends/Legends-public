@@ -3,6 +3,7 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 		AdditionalAccuracy = 0,
 		AdditionalHitChance = 0
 	},
+
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootStone);
 		this.m.Description = "Pull back and loose a stone at a target. Can\'t be used while engaged in melee.";
@@ -42,24 +43,27 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.HitChanceBonus = 20;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultTooltip();
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * ::Const.Combat.FatigueReceivedPerHit;
 
-		ret.extend([{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Inflicts [color=%damage%]%fatPerHit%[/color] extra fatigue",
-			param = [["_fatPerHit", fatPerHit]]
-		},
-		{
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Has a [color=%negative%]100%[/color] chance to baffle a target on a hit to the head"
-		}]);
+		ret.extend([
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Inflicts [color=%damage%]%fatPerHit%[/color] extra fatigue",
+				param = [
+					["_fatPerHit", fatPerHit]
+				]
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=%negative%]100%[/color] chance to baffle a target on a hit to the head"
+			}
+		]);
 
 		if (::Tactical.isActive() && this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
@@ -77,14 +81,13 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 		return !::Tactical.isActive() || (this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
 	}
 
-	function onAfterUpdate( _properties ) {
+	function onAfterUpdate(_properties) {
 		this.m.MaxRange = this.m.Item.getRangeMax() + (_properties.IsSpecializedInSlings ? 1 : 0);
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile ) {
-		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
-		{
+	function onUse(_user, _targetTile) {
+		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer) {
 			this.getContainer().setBusy(true);
 			local tag = {
 				Skill = this,
@@ -98,18 +101,17 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 			}
 
 			return true;
-		}
-		else {
+		} else {
 			return this.attackEntity(_user, _targetTile.getEntity());
 		}
 	}
 
-	function onPerformAttack( _tag ) {
+	function onPerformAttack(_tag) {
 		_tag.Skill.getContainer().setBusy(false);
 		return _tag.Skill.attackEntity(_tag.User, _tag.TargetTile.getEntity());
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {	
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
 
@@ -123,29 +125,30 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 
 			_properties.RangedSkill += this.m.HitChanceBonus;
 			_properties.HitChanceAdditionalWithEachTile -= 10;
-			_properties.FatigueDealtPerHitMult += 1.0;			
+			_properties.FatigueDealtPerHitMult += 1.0;
 		}
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
-		if (_skill != this)
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (_skill != this) {
 			return;
+		}
 
-		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
+		}
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToDaze)
+		if (_targetEntity.getCurrentProperties().IsImmuneToDaze) {
 			return;
+		}
 
 		local targetTile = _targetEntity.getTile();
 		local user = this.getContainer().getActor();
 
-		if (_bodyPart == ::Const.BodyPart.Head)
-		{
+		if (_bodyPart == ::Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBaffled);
 
-			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-			{
+			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " confused");
 			}
 		}

@@ -1,7 +1,7 @@
 this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBucklerBash);
 		this.m.Description = "A quick punch forward with a solid buckler. Anyone hit with a blow like this will be dazed and gasping for air, unable to put full force behind their blows for two turns.";
 		this.m.KilledString = "Bashed to death";
@@ -29,8 +29,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceSmash = 33;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultTooltip();
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * ::Const.Combat.FatigueReceivedPerHit;
 		ret.push({
@@ -48,34 +47,28 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 
-		if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
-		{
+		if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash)) {
 			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
 			this.m.ActionPointCost = 3;
 		}
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local success = this.attackEntity(_user, target);
 
-		if (!_user.isAlive() || _user.isDying())
-		{
+		if (!_user.isAlive() || _user.isDying()) {
 			return success;
 		}
 
-		if (success && target.isAlive())
-		{
+		if (success && target.isAlive() && !target.getCurrentProperties().IsImmuneToDaze) {
 			::Legends.Effects.grant(target, ::Legends.Effect.LegendBaffled);
 
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			{
+			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(target) + " baffled");
 			}
 		}
@@ -83,7 +76,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		return success;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageRegularMin = this.getItem().m.RegularDamage;
 			_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
@@ -147,10 +140,9 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 			::logWarning("buckler bash is null for follow up attack for some reason");
 			return;
 		}
-		
+
 		_info.Skill.m.IsExecutingOffhand = true;
 		_info.Skill.useForFree(_info.TargetTile);
 	}
 
 });
-

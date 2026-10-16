@@ -82,14 +82,18 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		_properties.DamageTotalMult *= 0.85;
-		_properties.InitiativeMult *= 0.85;
-		_properties.StaminaMult *= 0.85;
+		if (!actor.getCurrentProperties().IsImmuneToDaze) {
+			_properties.DamageTotalMult *= 0.85;
+			_properties.InitiativeMult *= 0.85;
+			_properties.StaminaMult *= 0.85;
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
-			actor.getSprite("status_stunned").setBrush("bust_dazed");
-			actor.getSprite("status_stunned").Visible = true;
-			actor.setDirty(true);
+			if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
+				actor.getSprite("status_stunned").setBrush("bust_dazed");
+				actor.getSprite("status_stunned").Visible = true;
+				actor.setDirty(true);
+			}
+		} else {
+			this.removeSelf();
 		}
 	}
 
