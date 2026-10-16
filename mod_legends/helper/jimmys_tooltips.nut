@@ -365,7 +365,7 @@ local function addStatusEffects(_tooltip, _entity, _shownPerks) {
 local function addImmunities(_tooltip, _entity) {
 	local immunities = "";
 	foreach (effectName, property in ::Legends.Effects.Immunities) {
-		if (_entity.getCurrentProperties()[property]) {
+		if (property in _entity.getCurrentProperties()) {
 			immunities += (immunities.len() ? ", " : "") + ("[color=%negative%]" + effectName.slice(0, 1) + "[/color]" + effectName.slice(1));
 		}
 	}
