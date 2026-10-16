@@ -654,12 +654,6 @@ if (!("Effects" in ::Legends)) {
 	LegendBerserkerRage = {
 		Name = "Rage",
 	},
-	LegendBleedPrepared = {
-		Name = "Prepared to Inflict Bleeding",
-		Icon = "skills/bleed_circle.png",
-		IconMini = "mini_bleed_circle",
-		Overlay = ""
-	},
 	LegendBlooddrinker = {
 		Icon = "",
 		IconMini = "",

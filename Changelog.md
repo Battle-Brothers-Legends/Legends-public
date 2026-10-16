@@ -883,6 +883,7 @@ Refactors/deletions:
 - `legend_rations_effect` -> deleted
 - `legend_commander_abstract_effect` -> moved to skills from skills/effects
 - `legend_backswing_effect` -> deleted
+- `legend_bleed_prepared_effect` -> deleted
 - `legend_graze_prepared_effect` -> deleted
 - `legend_pushing_forward` -> renamed to `legend_pushing_forward_effect`
 - `legend_skin_ghoul_claws` -> renamed to `legend_skin_ghoul_claws_skill`
