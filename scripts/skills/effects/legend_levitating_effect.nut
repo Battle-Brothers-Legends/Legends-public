@@ -1,5 +1,7 @@
 this.legend_levitating_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		TurnsLeft = 1
+	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLevitating);
@@ -9,27 +11,45 @@ this.legend_levitating_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = "Base movement Action Point costs set to [color=%positive%]1[/color]"
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = "Base movement Fatigue costs set to [color=%positive%]2[/color]"
+			}
+		]);
+		return tooltip;
+	}
+
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		actor.m.ActionPointCosts = ::Const.LegendFlightMovementAPCost;
-		actor.m.FatigueCosts = ::Const.LegendFlightMovementFatigueCost;
+		actor.m.FatigueCosts = clone ::Const.LegendFlightMovementFatigueCost;
 		actor.m.LevelActionPointCost = 0;
 	}
 
-	function onTurnEnd() {
+	function removeEffect() {
 		local actor = this.getContainer().getActor();
 		actor.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
-		actor.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		actor.m.FatigueCosts = clone ::Const.DefaultMovementFatigueCost;
 		actor.m.LevelActionPointCost = ::Const.Movement.LevelDifferenceActionPointCost;
 		this.removeSelf();
+	}
+
+	function onTurnEnd() {
+		this.removeEffect();
 	}
 
 	function onCombatFinished() {
-		local actor = this.getContainer().getActor();
-		actor.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
-		actor.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
-		actor.m.LevelActionPointCost = ::Const.Movement.LevelDifferenceActionPointCost;
-		this.removeSelf();
+		this.removeEffect();
 	}
-
 });

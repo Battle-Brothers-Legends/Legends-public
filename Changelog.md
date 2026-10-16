@@ -679,6 +679,10 @@
 - fixed Vala not getting xp for warden kills
 - fixed crash when the company retreats from battle and someone has the footwork skill
 - bloodbath effect tooltip correctly shows a flat increase to relevant stats rather than a % increase
+- fixed Anticipation and Bone Plating not affecting enemies in full
+- fixed Onslaught's Baffled effect being stopped by stun immunity
+- Baffled effect is now correctly stopped by daze immunity
+- fixed levitating effect conflicts
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
@@ -711,9 +715,8 @@
 - scenarios now support onNewDay handling
 - scenarios now use their ID to set their player figures
 - slight change to `::Legends.Backgrounds.BackgroundDefObjects`,`::Legends.Effects.EffectDefObjects`, `::Legends.Actives.ActiveDefObjects` and `::Const.Perks.PerkDefObjects`. They're a table now, if you just access them, nothing is changing for you, if you iterate over them, you need to add key to your loops too.
-- fixed Anticipation and Bone Plating not affecting enemies in full
-- fixed Onslaught's Baffled effect being stopped by stun immunity
-- Baffled effect is now correctly stopped by daze immunity
+- Jimmy's tooltips have been integrated directly into Legends codebase
+- demon hound aura is no longer applied to all human's in every fight indiscriminately, but instead uses `LegendDemonHoundAuraSource` directly on hollenhunds which adds the effect in fights featuring them
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`
