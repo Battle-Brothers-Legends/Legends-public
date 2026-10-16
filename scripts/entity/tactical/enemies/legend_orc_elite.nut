@@ -192,13 +192,6 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 			], "scripts/items/"));
 		}
 
-		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
-			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
-		}
-
 		return true;
 	}
-
 });
