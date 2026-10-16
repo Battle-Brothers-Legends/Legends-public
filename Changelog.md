@@ -683,6 +683,7 @@
 - fixed Onslaught's Baffled effect being stopped by stun immunity
 - Baffled effect is now correctly stopped by daze immunity
 - fixed levitating effect conflicts
+- Second Wind now procs at falling below 50% hp as intended rather than after taking a hit while being under 50% hp
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
