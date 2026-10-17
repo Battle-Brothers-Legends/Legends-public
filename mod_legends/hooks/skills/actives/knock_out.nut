@@ -77,15 +77,14 @@
 
 		return ret;
 	}
-
-	local onAfterUpdate = o.onAfterUpdate;
+	
 	o.onAfterUpdate = function(_properties) {
 		if (this.m.IsStaffKnockOut) {
 			this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 			this.m.StunChance = _properties.IsSpecializedInStaffStun ? 100 : 75;
 		} else {
-			onAfterUpdate(_properties);
-			this.m.StunChance = _properties.IsSpecializedInStaffStun ? 100 : 75;
+			this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+			this.m.StunChance = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 100 : 75;
 		}
 	}
 
