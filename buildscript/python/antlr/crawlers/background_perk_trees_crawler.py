@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from . import Scrawler
-from .background_stats_scrawler import StatType, StatRange
+from . import Crawler
+from .background_stats_crawler import StatType, StatRange
 from ..ast.AstUtils import AstUtils
 from ..ast.SquirrelAstVisitor import SquirrelAstVisitor
 from ..ast.nodes import *
@@ -11,7 +11,7 @@ class PerkTrees:
 	target: str| None = None
 	trees: list[str] = field(default_factory=list)
 
-class BackgroundPerkTreesScrawler(Scrawler[list[PerkTrees]]):
+class BackgroundPerkTreesCrawler(Crawler[list[PerkTrees]]):
 	@staticmethod
 	def filter_tables(table: TableConstruction):
 		""" Filters all tables in file to find correct for the case"""

@@ -5,7 +5,7 @@ from antlr.ast.AstUtils import AstUtils
 from antlr.ast.SquirrelAstVisitor import SquirrelAstVisitor
 from antlr.ast.nodes import Newslot, TableConstruction, Literal, ArrayConstruction, DotAccess, BasicTableSlot, \
 	StringLiteral
-from antlr.scrawlers import Scrawler
+from antlr.crawlers import Crawler
 
 
 @dataclass(frozen=True)
@@ -23,7 +23,7 @@ class PerkTreeDef:
 	tree: list[PerkNode] = field(default_factory=list)
 
 
-class PerkTreeScrawler(Scrawler[list[PerkTreeDef]]):
+class PerkTreeCrawler(Crawler[list[PerkTreeDef]]):
 	def run(self, code: str) -> list[PerkTreeDef]:
 		tree = SquirrelAstVisitor.parse(code)
 		comments = SquirrelAstVisitor.parseComments(code)

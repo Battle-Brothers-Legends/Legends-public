@@ -2,7 +2,7 @@ import re
 from abc import ABC, abstractmethod
 
 
-class Scrawler[T](ABC):
+class Crawler[T](ABC):
 	@abstractmethod
 	def run(self, code:str) -> T:
 		pass

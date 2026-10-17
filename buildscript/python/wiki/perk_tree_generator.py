@@ -3,7 +3,7 @@ import re
 from typing import assert_never
 
 from antlr import Antlr4Runner
-from antlr.scrawlers.perk_tree_scrawler import PerkTreeScrawler, PerkTreeDef
+from antlr.crawlers.perk_tree_crawler import PerkTreeCrawler, PerkTreeDef
 from wiki.generator import Generator
 
 
@@ -66,5 +66,5 @@ class PerkTreeGenerator(Generator):
 
 	def _get_trees(self, file) -> list[PerkTreeDef]:
 		return Antlr4Runner.run(
-			self.get_content((self.root / f"mod_legends/config/{file}").resolve()), PerkTreeScrawler()
+			self.get_content((self.root / f"mod_legends/config/{file}").resolve()), PerkTreeCrawler()
 		)

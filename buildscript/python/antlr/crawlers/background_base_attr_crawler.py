@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from . import Scrawler
-from .background_stats_scrawler import StatType, StatRange
+from . import Crawler
+from .background_stats_crawler import StatType, StatRange
 from ..ast.AstUtils import AstUtils
 from ..ast.SquirrelAstVisitor import SquirrelAstVisitor
 from ..ast.nodes import *
@@ -22,7 +22,7 @@ class BackgroundBaseAttr:
 		}
 
 
-class BackgroundBaseAttrScrawler(Scrawler[list[BackgroundBaseAttr]]):
+class BackgroundBaseAttrCrawler(Crawler[list[BackgroundBaseAttr]]):
 	@staticmethod
 	def get_range(table, name):
 		""" Parses values from arrays """

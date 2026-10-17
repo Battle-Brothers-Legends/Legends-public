@@ -1,6 +1,6 @@
 from enum import Enum
 
-from . import Scrawler
+from . import Crawler
 from ..ast.AstUtils import AstUtils
 from ..ast.SquirrelAstVisitor import SquirrelAstVisitor
 from ..ast.nodes import *
@@ -45,7 +45,7 @@ class Clone:
 BackgroundStat = Concrete | Clone
 
 
-class BackgroundStatsScrawler(Scrawler[list[BackgroundStat]]):
+class BackgroundStatsCrawler(Crawler[list[BackgroundStat]]):
 	@staticmethod
 	def get_range(table, name):
 		""" Parses values from arrays """

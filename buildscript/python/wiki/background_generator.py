@@ -4,12 +4,12 @@ from dataclasses import asdict
 from typing import assert_never
 
 from antlr import Antlr4Runner
-from antlr.scrawlers.background_base_attr_scrawler import BackgroundBaseAttrScrawler, BackgroundBaseAttr
-from antlr.scrawlers.background_defs_scrawler import BackgroundDef, BackgroundDefsScrawler
-from antlr.scrawlers.background_perk_trees_scrawler import PerkTrees, BackgroundPerkTreesScrawler
-from antlr.scrawlers.background_stats_scrawler import BackgroundStatsScrawler, StatType, StatRange, BackgroundStat, \
+from antlr.crawlers.background_base_attr_crawler import BackgroundBaseAttrCrawler, BackgroundBaseAttr
+from antlr.crawlers.background_defs_crawler import BackgroundDef, BackgroundDefsCrawler
+from antlr.crawlers.background_perk_trees_crawler import PerkTrees, BackgroundPerkTreesCrawler
+from antlr.crawlers.background_stats_crawler import BackgroundStatsCrawler, StatType, StatRange, BackgroundStat, \
 	Concrete, Clone
-from antlr.scrawlers.perk_tree_scrawler import PerkTreeDef, PerkTreeScrawler
+from antlr.crawlers.perk_tree_crawler import PerkTreeDef, PerkTreeCrawler
 from wiki.generator import Generator
 from wiki.perk_tree_generator import PerkTreeGenerator
 
@@ -161,7 +161,7 @@ class BackgroundGenerator(Generator):
 		code = self.get_content((self.root / "mod_legends/!!config/background_stats.nut").resolve())
 		try:
 			result: dict[str, dict[StatType, StatRange]] = {}
-			entries: list[BackgroundStat] = Antlr4Runner.run(code, BackgroundStatsScrawler())
+			entries: list[BackgroundStat] = Antlr4Runner.run(code, BackgroundStatsCrawler())
 
 			for entry in entries:
 				match entry:
@@ -181,7 +181,7 @@ class BackgroundGenerator(Generator):
 		code = self.get_content((self.root / "mod_legends/!!config/backgrounds_defs.nut").resolve())
 		try:
 			return {entry.const: entry for entry in
-					Antlr4Runner.run(code, BackgroundDefsScrawler())}
+					Antlr4Runner.run(code, BackgroundDefsCrawler())}
 		except Exception as e:
 			print(f"Error parsing background defs: {str(e)}")
 			return None
@@ -190,20 +190,20 @@ class BackgroundGenerator(Generator):
 		code = self.get_content((self.root / "mod_legends/!!config/character_backgrounds.nut").resolve())
 		try:
 			return {entry.target: entry for entry in
-					Antlr4Runner.run(code, BackgroundBaseAttrScrawler())}
+					Antlr4Runner.run(code, BackgroundBaseAttrCrawler())}
 		except Exception as e:
 			print(f"Error parsing char base stats: {str(e)}")
 			return None
 
 	def _get_all_trees(self, file) -> list[PerkTreeDef]:
 		return Antlr4Runner.run(self.get_content((self.root / f"mod_legends/config/{file}").resolve()),
-								PerkTreeScrawler())
+								PerkTreeCrawler())
 
 	def _get_perk_trees(self) -> dict[str, PerkTrees] | None:
 		code = self.get_content((self.root / "mod_legends/config/zz_background_perk_trees.nut").resolve())
 		try:
 			return {str(entry.target.split('.')[-1]): entry for entry in
-					Antlr4Runner.run(code, BackgroundPerkTreesScrawler())}
+					Antlr4Runner.run(code, BackgroundPerkTreesCrawler())}
 		except Exception as e:
 			print(f"Error parsing background perk trees: {str(e)}")
 			return None

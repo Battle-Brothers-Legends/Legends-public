@@ -1,6 +1,6 @@
 import sys
 
-from .scrawlers import Scrawler
+from .crawlers import Crawler
 
 try:
 	from antlr4 import CommonTokenStream, InputStream, ParseTreeWalker
@@ -12,7 +12,7 @@ except ImportError:
 
 class Antlr4Runner(object):
 	@staticmethod
-	def run(code: str, scrawler: Scrawler):
+	def run(code: str, scrawler: Crawler):
 		try:
 			return scrawler.run(code)
 		except Exception as e:

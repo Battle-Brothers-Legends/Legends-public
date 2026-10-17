@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from . import Scrawler
+from . import Crawler
 from .def_helpers import DefsHelpers
 from ..ast.AstUtils import AstUtils
 from ..ast.SquirrelAstVisitor import SquirrelAstVisitor
@@ -14,7 +14,7 @@ class BackgroundDef:
 	icon: str = ""
 	const: str = ""
 
-class BackgroundDefsScrawler(Scrawler[list[BackgroundDef]]):
+class BackgroundDefsCrawler(Crawler[list[BackgroundDef]]):
 	@staticmethod
 	def filter_tables(table: TableConstruction):
 		""" Filters all tables in file to find correct for the case"""
