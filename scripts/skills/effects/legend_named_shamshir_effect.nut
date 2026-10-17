@@ -5,10 +5,7 @@ this.legend_named_shamshir_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedShamshir);
-		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Item;
-		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsWeaponSkill = true;
 		this.m.IsHidden = true;

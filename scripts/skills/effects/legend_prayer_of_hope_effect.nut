@@ -7,22 +7,28 @@ this.legend_prayer_of_hope_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrayerOfHope);
-		this.m.Description = "This character has had their vitality restored by a holy chant";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsHidden = false;
+		this.m.Description = "Blessed and infused with hope.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character has been blessed by a prayer of hope and will heal [color=%positive%]" + this.m.Heal + "[/color] hitpoints over [color=%positive%]" + this.m.TurnsLeft + "[/color] more turn(s).";
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/health.png",
+				text = "This character will be healed [color=%positive%]" + this.m.Heal + "[/color] HP at the end of their turn"
+			}
+		]);
+		return tooltip;
 	}
 
 	function setHeal(_v) {
 		this.m.Heal = _v;
 	}
 
-	function applyHealing() {
+	function applyEffect() {
 		if (this.m.LastRoundApplied != ::Time.getRound()) {
 			local actor = this.getContainer().getActor();
 			this.m.LastRoundApplied = ::Time.getRound();
@@ -43,16 +49,18 @@ this.legend_prayer_of_hope_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded() {
 		this.m.TurnsLeft = ::Math.ceil(this.m.Heal / 10);
-		this.applyHealing();
+		this.applyEffect();
 	}
 
-	function onUpdate(_properties) {}
-
 	function onTurnEnd() {
-		this.applyHealing();
+		this.applyEffect();
 	}
 
 	function onWaitTurn() {
-		this.applyHealing();
+		this.applyEffect();
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]" + this.m.Heal + "[/color] " + ::Legends.S.inlineIcon("health") + " healed at the end of the turn";
 	}
 });

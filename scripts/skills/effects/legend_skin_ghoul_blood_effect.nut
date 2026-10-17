@@ -5,63 +5,47 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSkinGhoulBlood);
+		this.m.Description = "Having consumed the blood of a skin ghoul, %their% flesh is knitting together internally.";
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character has consumed the blood of a skin ghoul, and their flesh is knitting together internally. The effect will heal [color=%positive%]10%[/color] of their life each turn, and persist for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
-	}
-
 	function getTooltip() {
-		local actor = this.getContainer().getActor();
-		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-		local healthAdded = ::Math.min(healthMissing, ::Math.floor(actor.getHitpointsMax() * 0.10));
-
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/days_wounded.png",
-				text = "[color=%positive%]+ " + healthAdded + "[/color] this turn"
+				icon = "ui/icons/health.png",
+				text = "Heal up to [color=%positive%]" + this.getBonus() + "[/color] every turn"
 			}
-		];
-		return ret;
+		]);
+		return tooltip;
+	}
+
+	function getBonus() {
+		return ::Math.floor(this.getContainer().getActor().getHitpointsMax() * 0.1);
 	}
 
 	function onTurnStart() {
 		local actor = this.getContainer().getActor();
-		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-		local healthAdded = ::Math.min(healthMissing, ::Math.floor(actor.getHitpointsMax() * 0.10));
+		local healthAdded = ::Math.min((actor.getHitpointsMax() - actor.getHitpoints()), this.getBonus());
 
 		if (healthAdded <= 0) {
 			return;
 		}
-		if (!actor.getSkills().hasEffect(::Legends.Effect.SpiderPoison)) {
-			actor.setHitpoints(actor.getHitpoints() + healthAdded);
-			actor.setDirty(true);
 
-			if (!actor.isHiddenToPlayer()) {
-				this.spawnIcon("status_effect_79", actor.getTile());
+		actor.setHitpoints(actor.getHitpoints() + healthAdded);
+		actor.setDirty(true);
 
-				if (this.m.SoundOnUse.len() != 0) {
-					::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
-				}
+		if (!actor.isHiddenToPlayer()) {
+			this.spawnIcon("status_effect_79", actor.getTile());
 
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
+			if (this.m.SoundOnUse.len() != 0) {
+				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
 			}
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + "'s' Skin Ghoul blood circulates, healing " + healthAdded + " hitpoints");
 		}
 	}
 
@@ -73,5 +57,9 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+			return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon("health_recovery") + " every turn";
 	}
 });

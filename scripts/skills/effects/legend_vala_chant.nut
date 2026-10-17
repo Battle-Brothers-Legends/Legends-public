@@ -14,11 +14,7 @@ this.legend_vala_chant <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "";
 		this.m.IconMini = "";
 		this.m.Overlay = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()

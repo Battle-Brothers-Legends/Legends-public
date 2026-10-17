@@ -3,15 +3,8 @@ this.legend_redback_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRedbackPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "This character\'s body has mutated and propagates poisons and other hazardous substances through the bloodstream much more slowly, allowing them to be disposed of without serious health effects. Curiously, this doesn\'t seem to affect their ability to get drunk.";
 	}
 
 	function getTooltip() {
@@ -47,15 +40,7 @@ this.legend_redback_potion_effect <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints <= ::Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0) {
-			return;
-		}
-
-		if (!_targetEntity.isAlive()) {
-			return;
-		}
-
-		if (_targetEntity.getFlags().has("undead")) {
+		if (!_targetEntity.isAlive() || _targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < ::Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0 || _targetEntity.getFlags().has("undead")) {
 			return;
 		}
 
@@ -68,10 +53,14 @@ this.legend_redback_potion_effect <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
-		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_redback_spider_poison");
-
+		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison);
 		if (poison == null) {
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_redback_spider_poison_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison, function (_effect) {
+				local actor = this.getContainer().getActor();
+				if (actor.getFaction() == ::Const.Faction.Player) {
+					_effect.setActor(actor);
+				}
+			}.bindenv(this));
 		} else {
 			poison.resetTime();
 		}
@@ -85,5 +74,9 @@ this.legend_redback_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isRedbackPotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "Attacks apply Redback Poison";
 	}
 });

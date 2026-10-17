@@ -1,3 +1,4 @@
+//unused
 this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 5
@@ -8,8 +9,6 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Name = "Hidden";
 		this.m.Description = "This character is hidden in terrain and can not be seen by opponents. Removed upon attacking opponents or directly adjacent to them.";
 		this.m.Type = ::Const.SkillType.Terrain | ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsHidden = false;
 		this.m.IsSerialized = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

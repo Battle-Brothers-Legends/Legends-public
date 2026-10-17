@@ -5,10 +5,7 @@ this.legend_patient_hunter_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPatientHunter);
-		this.m.Description = "This character has carefully weighed their options and gathered their strength for maximum effectiveness.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsHidden = false;
+		this.m.Description = "Has gathered %their% strength after carefully weighing %their% options.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
@@ -43,5 +40,9 @@ this.legend_patient_hunter_effect <- this.inherit("scripts/skills/skill", {
 		if (this.m.ApBonus == 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + ::Math.min(3, this.getContainer().getActor().getActionPoints()) + "[/color] " + ::Legends.S.inlineIcon("action_points");
 	}
 });

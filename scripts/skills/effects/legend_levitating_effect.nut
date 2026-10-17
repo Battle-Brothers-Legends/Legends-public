@@ -1,13 +1,14 @@
 this.legend_levitating_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		TurnsLeft = 1
+		TurnsLeft = 1,
+		OriginalActionPointCosts = ::Const.DefaultMovementAPCost,
+		OriginalFatigueCosts = clone ::Const.DefaultMovementFatigueCost,
+		OriginalLevelActionPointCosts = ::Const.Movement.LevelDifferenceActionPointCost
 	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLevitating);
 		this.m.Description = "This character is hovering just above the ground, able to move freely across all terrain until the end of the turn.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
@@ -30,6 +31,13 @@ this.legend_levitating_effect <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function onAdded() {
+		local actor = this.getContainer().getActor();
+		this.m.OriginalActionPointCosts = actor.m.ActionPointCosts;
+		this.m.OriginalFatigueCosts = clone actor.m.FatigueCosts;
+		this.m.OriginalLevelActionPointCosts = actor.m.LevelActionPointCost;
+	}
+
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		actor.m.ActionPointCosts = ::Const.LegendFlightMovementAPCost;
@@ -39,9 +47,9 @@ this.legend_levitating_effect <- this.inherit("scripts/skills/skill", {
 
 	function removeEffect() {
 		local actor = this.getContainer().getActor();
-		actor.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
-		actor.m.FatigueCosts = clone ::Const.DefaultMovementFatigueCost;
-		actor.m.LevelActionPointCost = ::Const.Movement.LevelDifferenceActionPointCost;
+		actor.m.ActionPointCosts = this.m.OriginalActionPointCosts;
+		actor.m.FatigueCosts = clone this.m.OriginalFatigueCosts;
+		actor.m.LevelActionPointCost = this.m.OriginalLevelActionPointCosts;
 		this.removeSelf();
 	}
 
@@ -51,5 +59,9 @@ this.legend_levitating_effect <- this.inherit("scripts/skills/skill", {
 
 	function onCombatFinished() {
 		this.removeEffect();
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "Base movement costs set to [color=%positive%]1[/color] " + ::Legends.S.inlineIcon("action_points") + " and [color=%positive%]2[/color] " + ::Legends.S.inlineIcon("fatigue") + " per tile traveled";
 	}
 });

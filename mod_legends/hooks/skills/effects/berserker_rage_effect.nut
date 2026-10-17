@@ -49,7 +49,7 @@
 		}
 	}
 
-	o.getActorHoverTooltip <- function (_activeEntity) {
-		return "Receiving and dealing damage increases Resolve, Damage and Initiative";
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "Receiving and dealing damage increases Resolve, Damage and Initiative"; //tbd
 	}
 });

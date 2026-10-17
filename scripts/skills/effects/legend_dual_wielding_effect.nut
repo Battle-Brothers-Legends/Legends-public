@@ -9,10 +9,6 @@ this.legend_dual_wielding_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDualWielding);
 		this.m.Name = "Dual Wielding";
 		this.m.Description = "This character is wielding two weapons at once. The weight of the other weapon increases fatigue costs and reduces accuracy.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsRemovedAfterBattle = false;
 		this.m.ExcludedSkills = [
 			::Legends.Actives.getID(::Legends.Active.LegendDoubleSwing),
 			// Follow up attack is handled in Lunge's onTeleportDone

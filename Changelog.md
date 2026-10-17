@@ -684,6 +684,7 @@
 - Baffled effect is now correctly stopped by daze immunity
 - fixed levitating effect conflicts
 - Second Wind now procs at falling below 50% hp as intended rather than after taking a hit while being under 50% hp
+- Infected no longer mistakenly gives an extra AP point to the ailing on first turn
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

@@ -10,12 +10,8 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaSpiritualBond);
-		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsRemovedAfterBattle = true;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsHidden = true;
 	}
 

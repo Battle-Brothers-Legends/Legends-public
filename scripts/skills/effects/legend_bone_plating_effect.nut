@@ -3,8 +3,7 @@ this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBonePlating);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
+		this.m.Description = "Completely absorbs the first hit which doesn\'t ignore armor.";
 		this.m.IsRemovedAfterBattle = true;
 		this.m.Sound = [
 			"sounds/enemies/skeleton_hurt_01.wav",
@@ -15,10 +14,6 @@ this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function getDescription() {
-		return "Completely absorbs the first hit which doesn\'t ignore armor.";
-	}
-
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
 		if (_hitInfo.BodyPart == ::Const.BodyPart.Body && _hitInfo.DamageDirect < 1.0) {
 			_properties.DamageReceivedTotalMult = 0.0;
@@ -26,8 +21,11 @@ this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 
 			this.playSound();
 			this.spawnIcon(this.m.Overlay, this.getContainer().getActor().getTile());
-
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "Completely absorbs the next hit";
 	}
 });

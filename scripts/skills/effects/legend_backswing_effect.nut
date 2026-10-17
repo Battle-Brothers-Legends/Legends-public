@@ -2,21 +2,14 @@ this.legend_backswing_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TimeAdded = 0
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBackswing);
 		this.m.Description = "Another swing will remove the rest of the reeds.";
-		this.m.Icon = "ui/perks/backswing.png";
-		this.m.IconMini = "backswing_mini";
-		this.m.Overlay = "backswing_mini";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -56,37 +49,38 @@ this.legend_backswing_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.m.TimeAdded = ::Time.getVirtualTimeF();
 	}
 
-	function onAfterUpdate(_properties)
-	{
-		if (!this.isBackswing())
+	function onAfterUpdate(_properties) {
+		if (!this.isBackswing()) {
 			return;
+		}
 		local skills = this.getContainer().getAllSkillsOfType(::Const.SkillType.Active);
-		foreach (skill in skills)
-		{
-			if (this.m.Skills.find(skill.getID()) != null)
-			{
+		foreach (skill in skills) {
+			if (this.m.Skills.find(skill.getID()) != null) {
 				skill.m.FatigueCostMult *= 0.5;
-				skill.m.ActionPointCost /= 2;
+				skill.m.ActionPointCost *= 0.5;
 			}
 		}
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_targetEntity == null || !_targetEntity.isAttackable())
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_targetEntity == null || !_targetEntity.isAttackable()) {
 			return;
+		}
 
-		if (!this.m.IsGarbage && this.m.TimeAdded + 0.1 < ::Time.getVirtualTimeF() && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
+		if (!this.m.IsGarbage && this.m.TimeAdded + 0.1 < ::Time.getVirtualTimeF() && !_targetEntity.isAlliedWith(this.getContainer().getActor())) {
 			this.removeSelf();
+		}
 	}
 
-	function onTargetMissed( _skill, _targetEntity )
-	{
+	function onTargetMissed(_skill, _targetEntity) {
 		this.removeSelf();
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("action_points") + ::Legends.S.inlineIcon("fatigue") + ::Legends.S.inlineIcon("damage_dealt") + " of the next AoE swing lowered";
 	}
 });

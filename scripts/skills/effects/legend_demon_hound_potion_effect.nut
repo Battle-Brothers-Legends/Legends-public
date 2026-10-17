@@ -3,15 +3,11 @@ this.legend_demon_hound_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
 	}
 
 	function getDescription() {
-		return "This character is able to secrete a substance that vibrates rapidly when stimulated. When applied to weapons, this creates a strong kinetic force that aids in armor penetration.";
+		return "tbd";
 	}
 
 	function getTooltip() {
@@ -29,8 +25,8 @@ this.legend_demon_hound_potion_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+3[/color] Fatigue Recovery per turn"
+				icon = "ui/icons/fatigue_recovery_up.png",
+				text = "[color=%positive%]+3[/color] Fatigue Recovery per turn"
 			},
 			{
 				id = 12,
@@ -56,4 +52,7 @@ this.legend_demon_hound_potion_effect <- this.inherit("scripts/skills/skill", {
 		::World.Statistics.getFlags().set("isDemonHoundPotionAcquired", false);
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+3[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_up");
+	}
 });

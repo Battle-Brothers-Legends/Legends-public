@@ -5,14 +5,21 @@ this.legend_heartwood_focus_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHeartwoodFocus);
-		this.m.Description = "This character has imbibed Greenwood Sap, achieving perfect focus, as if time itself has stood still. They can use all skills at half their normal Action Point cost.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
+		this.m.Description = "Imbibed Greenwood Sap, achieving perfect focus, as if time itself has stood still.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getIconDisabled() {
-		return "TODO";
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = "Action Point costs halved"
+			}
+		]);
+		return tooltip;
 	}
 
 	function onUpdate(_properties) {
@@ -25,5 +32,9 @@ this.legend_heartwood_focus_effect <- this.inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("action_points") + " costs halved";
 	}
 });

@@ -3,20 +3,15 @@ this.legend_named_estoc_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Bonus = 0
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedEstoc);
-		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Item;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-        this.m.IsWeaponSkill = true;
-        this.m.IsHidden = true;
+		this.m.IsWeaponSkill = true;
+		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -31,14 +26,11 @@ this.legend_named_estoc_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-    function setBonus( _bonus )
-    {
-        this.m.Bonus = _bonus;
-    }
-
-	function onUpdate( _properties )
-	{
-		_properties.MeleeDefense += this.m.Bonus;
+	function setBonus(_bonus) {
+		this.m.Bonus = _bonus;
 	}
 
+	function onUpdate(_properties) {
+		_properties.MeleeDefense += this.m.Bonus;
+	}
 });

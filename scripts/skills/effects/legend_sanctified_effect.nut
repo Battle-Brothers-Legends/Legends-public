@@ -3,24 +3,19 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 		TurnsLeft = 0,
 	},
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSanctified);
 		this.m.Description = "This character is being cleansed by holy light.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.skill.getTooltip();
-		local turnsText = this.m.TurnsLeft > 0 ? (" Lasts [color=%negative%]" + this.m.TurnsLeft + "[/color] more turns.") : "";
 		ret.push({
 			id = 12,
 			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Immune to injuries, bleeding, poison and morale checks from taking damage." + turnsText,
+			icon = "ui/icons/immunity.png",
+			text = "Immune to Bleeding, Injuries, Poison and Morale checks from taking Damage.",
 		});
 		return ret;
 	}
@@ -35,63 +30,14 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAdded()
-	{
-		this.m.TurnsLeft = 2;
-	}
-
-	function onRefresh()
-	{
-		this.m.TurnsLeft = 2;
-	}
-
-	function onNewRound()
-	{
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
-		{
-			this.removeSelf();
-			return;
-		}
-		if (!::Tactical.State.isBattleEnded() && actor.isPlacedOnMap())
-		{
-			if (!this.isActorOnTileWithHolyFlame() && this.m.TurnsLeft <= 0)
-			{
+		if (::Tactical.isActive() && actor.isPlacedOnMap()) {
+			if (!this.isActorOnTileWithHolyFlame()) {
 				this.removeSelf();
-			}
-		}
-	}
-
-	function onTurnEnd()
-	{
-		this.m.TurnsLeft -= 1;
-		if (this.m.TurnsLeft == 0)
-			this.removeSelf();
-	}
-
-	function onCombatFinished()
-	{
-		this.removeSelf();
-	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
-		{
-			this.removeSelf();
-			return;
-		}
-		if (!::Tactical.State.isBattleEnded() && actor.isPlacedOnMap())
-		{
-			if (!this.isActorOnTileWithHolyFlame() || this.m.TurnsLeft <= 0)
-			{
-				this.removeSelf();
-			}
-			else
-			{
+			} else {
 				_properties.IsAffectedByLosingHitpoints = false;
-				if (!::Legends.Traits.has(this.getContainer().getActor(), ::Legends.Trait.RacialGhost)) {
+				if (!::Legends.Traits.has(actor, ::Legends.Trait.RacialGhost)) {
 					_properties.IsAffectedByInjuries = false;
 					_properties.IsAffectedByFreshInjuries = false;
 					_properties.IsImmuneToBleeding = true;
@@ -101,5 +47,13 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onNewRound() {
+		if (!this.isActorOnTileWithHolyFlame()) {
+			this.removeSelf();
+		}
+	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("immunity") + " to Bleeding, Injuries, Poison and Morale checks on " + ::Legends.S.inlineIcon("damage_received");
+	}
 });

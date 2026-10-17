@@ -3,15 +3,8 @@ this.legend_hexe_leader_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHexeLeaderPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "There\'s something different about this character. Physically they seem unchanged, yet somehow a sense of dread precedes them. Any harm that they endure, on or off the battlefield, seems to affect another nearby. Useful in a fight, annoying in camp, and surely isolating in every day society.";
 	}
 
 	function getTooltip() {
@@ -54,5 +47,9 @@ this.legend_hexe_leader_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isHexeLeaderPotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "Reroll failed morale checks once";
 	}
 });

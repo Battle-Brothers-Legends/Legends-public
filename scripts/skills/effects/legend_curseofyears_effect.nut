@@ -1,32 +1,28 @@
+//tbd
 this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsCurseofyears = 0
 	},
-	function getTurnsCurseofyears()
-	{
+
+	function getTurnsCurseofyears() {
 		return this.m.TurnsCurseofyears;
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCurseofyears);
 		this.m.KilledString = "Died over time";
 		this.m.Icon = "skills/status_effect_81.png";
 		this.m.IconMini = "status_effect_81_mini";
 		this.m.Overlay = "status_effect_81";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/nightmare", 8);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is consumed by unnatural nightmares and is unable to act. As horror eats away their sanity, they\'ll take [color=%positive%]" + this.getDamage() + "[/color] damage based on their resolve each turn. The character can be forcibly awoken from these nightmares by a nearby ally, but won\'t wake up on their own.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -47,19 +43,15 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function getDamage()
-	{
+	function getDamage() {
 		local actor = this.getContainer().getActor();
 		return ::Math.max(10, actor.getHitpointsMax());
 	}
 
-	function applyDamage()
-	{
+	function applyDamage() {
 		local actor = this.getContainer().getActor();
-		for ( local i = 0; i < 99; i = ++i )
-		{
-			if (actor.isAlive() && ::Math.rand(1, 6) >= ::Math.max(2, 7 - this.getTurnsCurseofyears()))
-			{
+		for (local i = 0; i < 99; i = ++i) {
+			if (actor.isAlive() && ::Math.rand(1, 6) >= ::Math.max(2, 7 - this.getTurnsCurseofyears())) {
 				this.spawnIcon("status_effect_81", this.getContainer().getActor().getTile());
 				local hitInfo = clone ::Const.Tactical.HitInfo;
 				hitInfo.DamageRegular = this.getDamage();
@@ -68,37 +60,30 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 				hitInfo.BodyDamageMult = 0.02 + this.getTurnsCurseofyears();
 				hitInfo.FatalityChanceMult = 0.0;
 				this.getContainer().getActor().onDamageReceived(this.getContainer().getActor(), this, hitInfo);
-			}
-			else
-			{
+			} else {
 				break;
 			}
 		}
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor();
 		actor.getFlags().set("Curseofyears", true);
-		if (this.m.SoundOnUse.len() != 0)
-		{
+		if (this.m.SoundOnUse.len() != 0) {
 			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
 		}
 
 	}
 
-	function onBeforeActivation()
-	{
+	function onBeforeActivation() {
 		local BreakChance = 6;
 		//local everyoneCurseofyears = true;
-		if (::Math.rand(1, 9) > BreakChance)
-		{
+		if (::Math.rand(1, 9) > BreakChance) {
 			this.removeSelf();
 		}
 
 		++this.m.TurnsCurseofyears;
 	}
-
 
 	function onTurnStart() {
 		if (this.m.SoundOnUse.len() != 0) {
@@ -106,33 +91,27 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onResumeTurn()
-	{
+	function onResumeTurn() {
 		this.onTurnStart();
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		this.applyDamage();
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		local actor = this.getContainer().getActor();
 
-		if (actor.hasSprite("status_stunned"))
-		{
+		if (actor.hasSprite("status_stunned")) {
 			actor.getSprite("status_stunned").Visible = false;
 		}
 		actor.getFlags().set("curseofyears", false);
 		actor.setDirty(true);
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		if (actor.hasSprite("status_stunned"))
-		{
+		if (actor.hasSprite("status_stunned")) {
 			actor.getSprite("status_stunned").setBrush("bust_nightmare");
 			actor.getSprite("status_stunned").Visible = true;
 		}

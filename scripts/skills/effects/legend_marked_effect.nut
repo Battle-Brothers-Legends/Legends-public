@@ -5,24 +5,13 @@ this.legend_marked_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMarked);
-		this.m.Description = "This character has been marked by a skilled opponent, melee and ranged attacks are more likely to hit";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
+		this.m.Description = "Marked for death by a skilled opponent.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 10,
 				type = "text",
@@ -41,7 +30,8 @@ this.legend_marked_effect <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/warning.png",
 				text = "[color=%positive%]" + getBonus() * 100 + "%[/color] Damage Received from all sources"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function getBonus() {
@@ -51,12 +41,16 @@ this.legend_marked_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		_properties.RangedDefense -= 10;
 		_properties.MeleeDefense -= 10;
-		_properties.DamageReceivedTotalMult *= getBonus();
+		_properties.DamageReceivedTotalMult *= this.getBonus();
 	}
 
 	function onTurnEnd() {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%positive%]+" + ((this.getBonus() - 1) * 100) + "%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

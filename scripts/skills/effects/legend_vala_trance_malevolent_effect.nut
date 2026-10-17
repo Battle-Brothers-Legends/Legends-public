@@ -10,11 +10,7 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaTranceMalevolent);
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden() {

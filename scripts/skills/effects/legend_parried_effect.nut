@@ -1,27 +1,18 @@
 this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		TurnsLeft = 1
+	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendParried);
-		this.m.Description = "This character has overextended and is now vulnerable to attack.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "Overextended and vulnerable to attack.";
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 10,
 				type = "text",
@@ -34,7 +25,8 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/ranged_defense.png",
 				text = "[color=%negative%]-10[/color] Ranged Defense"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function onUpdate(_properties) {
@@ -44,5 +36,9 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTurnStart() {
 		this.removeSelf();
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense");
 	}
 });

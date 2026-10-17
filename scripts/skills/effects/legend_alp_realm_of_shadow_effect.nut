@@ -3,30 +3,13 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendAlpRealmOfShadow);
+		this.m.Description = "This character is consumed by unnatural black mist and is experiencing supernatural terror. The horrors eat away at their sanity and they will soon be broken.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/nightmare", 8);
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsRemovedAfterBattle = true;
-		this.m.IsStacking = false;
-		this.m.IsActive = false;
-	}
-
-	function getDescription() {
-		return "This character is consumed by unnatural black mist and is experiencing supernatural terror. The horrors eat away at their sanity and they will soon be broken.";
 	}
 
 	function getTooltip() {
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-		];
+		local ret = this.skill.getTooltip();
 
 		if (this.getContainer().getActor().getFlags().has("alp")) {
 			ret.extend([
@@ -127,5 +110,11 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 		}
 
 		_properties.DamageReceivedTotalMult *= 1.33;
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return (this.getContainer().getActor().getFlags().has("alp")
+			? "[color=%positive%]+33%[/color] " + ::Legends.S.inlineIcon("bravery") + ", [color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%positive%]+100%[/color] " + ::Legends.S.inlineIcon("ranged_defense") + ", Not affected by Zones of Control"
+			: "[color=%negative%]-33%[/color] " + ::Legends.S.inlineIcon("bravery") + ", [color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-1[/color] " + ::Legends.S.inlineIcon("vision") + ", +33% " + ::Legends.S.inlineIcon("damage_received") + " from Nightmare");
 	}
 });

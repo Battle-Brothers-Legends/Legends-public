@@ -3,15 +3,8 @@ this.legend_skin_ghoul_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSkinGhoulPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "This character\'s body has mutated to regrow skin and muscle tissue much more quickly than normal. Deep injuries heal much faster than normal as a result. They also seem to have developed a strong taste for red meat, but that\'s probably unrelated.";
 	}
 
 	function getTooltip() {
@@ -30,7 +23,7 @@ this.legend_skin_ghoul_potion_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "Lowers the threshold to inflict injuries by [color=" + ::Const.UI.Color.NegativeValue + "]40%[/color] for both melee and ranged attacks"
+				text = "Lowers the threshold to inflict injuries by [color=%negative%]40%[/color] for both melee and ranged attacks"
 			},
 			{
 				id = 12,
@@ -54,5 +47,9 @@ this.legend_skin_ghoul_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isSkinghoulPotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-40%[/color] threshold to inflict Injuries";
 	}
 });

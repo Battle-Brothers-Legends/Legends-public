@@ -5,9 +5,7 @@ this.legend_curse_of_the_mummy_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCurseOfTheMummy);
-		this.m.Description = "This character has been cursed by the death of a mummy.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
+		this.m.Description = "Cursed by the death of a mummy.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
@@ -22,8 +20,8 @@ this.legend_curse_of_the_mummy_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 6,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Receive [color=%negative%]+" + this.getBonus() + "[/color] damage from any source"
+				icon = "ui/icons/damage_received.png",
+				text = "[color=%negative%]+" + this.getBonus() + "%[/color] Damage Received from any source"
 			},
 			{
 				id = 6,
@@ -49,5 +47,9 @@ this.legend_curse_of_the_mummy_effect <- this.inherit("scripts/skills/skill", {
 	function onRefresh() {
 		this.m.Stacks++;
 		this.spawnIcon("mummy_curse", this.getContainer().getActor().getTile());
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + (25 * this.m.Stacks) + "%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

@@ -5,44 +5,27 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGrappled);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "Grappled to the ground and exhausted in the clinch.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character has been grappled to the ground and exhausted in the clinch. They will catch their breath in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
-	}
-
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/fatigue.png",
-				// Changed from fatigue to MD. Surprisingly the original didn't mention MD even though it had a whopping 50% MD debuff.
+				icon = "ui/icons/melee_defense.png",
 				text = "[color=%negative%]-12[/color] melee defense"
 			},
 			{
 				id = 12,
 				type = "text",
-				icon = "ui/icons/fatigue.png",
-				// Changed from fatigue to init
+				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-30%[/color] Initiative"
-				//text = "[color=%negative%]-50%[/color] Maximum Fatigue"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function onAdded() {
@@ -66,13 +49,8 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		// Very different in design document. Flat MD debuff and 30% initiative debuff.
 		_properties.MeleeDefense -= 12;
 		_properties.Initiative *= 0.7;
-
-		// _properties.StaminaMult *= 0.5;
-		// _properties.MeleeDefense *= 0.5;
-		// _properties.FatigueRecoveryRate -= 20;
 
 		if (!actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
 			actor.getSprite("status_stunned").setBrush("bust_dazed");
@@ -85,5 +63,9 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-12[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%negative%]-30%[/color] " + ::Legends.S.inlineIcon("initiative");
 	}
 });

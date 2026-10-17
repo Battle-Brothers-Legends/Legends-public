@@ -1,62 +1,32 @@
 this.legend_song_of_life_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		Effect = 0,
-		AffectedActors = [],
-		Caster = null
+		TurnsLeft = 1
 	},
-
-	function setEffect(_e) {
-		this.m.Effect = _e;
-	}
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSongOfLife);
-		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsHidden = true;
+		this.m.Description = "Has been rejuvenated.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function onAdded() {
-		local actor = this.getContainer().getActor();
-		if (actor.getHitpoints() < actor.getHitpointsMax()) {
-			actor.setHitpoints(::Math.max(0, ::Math.min(actor.getHitpointsMax(), actor.getHitpoints() + this.m.Effect)));
-			if (actor.isPlacedOnMap()) {
-				this.spawnIcon(this.m.Overlay, actor.getTile());
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/health.png",
+				text = "Unaffected by Song of Life"
 			}
-		}
+		]);
+		return tooltip;
 	}
 
 	function onTurnStart() {
-		if (::Legends.S.isNull(this.m.Caster)) {
-			return;
-		}
-		this.removeEffectFromAffected();
-	}
-
-	function onDeath(_fatalityType) {
-		if (::Legends.S.isNull(this.m.Caster)) {
-			return;
-		}
-		this.removeEffectFromAffected();
-	}
-
-	function onCombatFinished() {
-		this.m.Caster = null;
-		this.m.AffectedActors = [];
 		this.removeSelf();
 	}
 
-	function removeEffectFromAffected() {
-		foreach (actor in this.m.AffectedActors) {
-			if (::Legends.S.isEntityNullOrDead(actor)) {
-				continue;
-			}
-			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendSongOfLife);
-		}
-		this.m.AffectedActors = [];
-		this.m.Caster = null;
-		this.removeSelf();
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "Unaffected by Song of Life";
 	}
 });

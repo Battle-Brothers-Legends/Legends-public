@@ -4,10 +4,6 @@ this.legend_coordinating_volleys_effect <- this.inherit("scripts/skills/legend_c
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCoordinatingVolleys);
 		this.m.Description = "Fire on my mark! An inspirational leader is guiding this character\'s shots.";
-		this.m.Icon = "ui/perks/coordinated_volleys_circle.png";
-		this.m.IconMini = "mini_coordinated_volleys_circle";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
@@ -23,7 +19,7 @@ this.legend_coordinating_volleys_effect <- this.inherit("scripts/skills/legend_c
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/regular_damage.png",
+				icon = "ui/icons/damage_dealt.png",
 				text = "[color=%positive%]+5%[/color] Ranged Damage"
 			}
 		]);
@@ -34,5 +30,9 @@ this.legend_coordinating_volleys_effect <- this.inherit("scripts/skills/legend_c
 	function onUpdate(_properties) {
 		_properties.RangedSkill += 10;
 		_properties.RangedDamageMult *= 1.05;
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%positive%]+5%[/color] Ranged " + ::Legends.S.inlineIcon("damage_dealt");
 	}
 });

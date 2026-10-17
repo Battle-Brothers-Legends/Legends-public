@@ -1,22 +1,13 @@
 this.legend_demon_alp_potion_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonAlpPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
 	}
 
-	function getDescription()
-	{
-		return "This character\'s eyes have mutated to respond faster and more drastically to low light environments. As a result, they have night vision nearly on par with their sight during the day.";
-	}
-
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -31,7 +22,7 @@ this.legend_demon_alp_potion_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/special.png",
+				icon = "ui/icons/immunity.png",
 				text = "Surrounding enemies no longer reduce this character's Defenses"
 			},
 			{
@@ -44,23 +35,21 @@ this.legend_demon_alp_potion_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.IsImmuneToSurrounding = true;
 	}
 
-	function onDeath( _fatalityType )
-	{
-		if (_fatalityType != ::Const.FatalityType.Unconscious)
-		{
+	function onDeath(_fatalityType) {
+		if (_fatalityType != ::Const.FatalityType.Unconscious) {
 			::World.Statistics.getFlags().set("isDemonAlpPotionAcquired", false);
 		}
 	}
 
-	function onDismiss()
-	{
+	function onDismiss() {
 		::World.Statistics.getFlags().set("isDemonAlpPotionAcquired", false);
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("immunity") + " to Surrounding";
+	}
 });
-

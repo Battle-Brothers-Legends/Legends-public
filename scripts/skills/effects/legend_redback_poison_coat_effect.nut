@@ -5,29 +5,33 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRedbackPoisonCoat);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "This character is using a weapon coated with concentrated redback poison.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character is using a weapon coated with concentrated redback poison. The next few hits doing at least [color=%negative%]" + ::Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints will apply it. Targets affected will lose hitpoints per turn equal to the poison's duration until the effect has faded.";
-	}
-
 	function getTooltip() {
-		return [
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
-				id = 1,
-				type = "title",
-				text = this.getName()
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Next [color=%positive%]" + this.m.AttacksLeft + "[/color] apply Redback Poison"
 			},
 			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
+				id = 12,
+				type = "text",
+				icon = "ui/icons/health.png",
+				text = "Attacks need to deal at least " + ::Const.Combat.PoisonEffectMinDamage + " to Health"
 			}
-		];
+			/*{ redback psn effect here after its changed
+				id = 13,
+				type = "text",
+				icon = "ui/icons/damage_dealt.png",
+				text = ""
+			}*/
+		]);
+		return tooltip;
 	}
 
 	function resetTime() {
@@ -78,5 +82,9 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 		if (this.m.AttacksLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.m.AttacksLeft + "[/color] " + " next attacks apply Redback Poison";
 	}
 });

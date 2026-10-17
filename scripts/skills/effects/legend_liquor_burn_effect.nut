@@ -1,3 +1,4 @@
+//tbd
 this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 2
@@ -7,7 +8,6 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLiquorBurn);
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

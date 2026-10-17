@@ -1,18 +1,16 @@
 this.legend_lurking_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
-	function create()
-	{
+	m = {
+		IsAlone = true
+	},
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLurking);
 		this.m.Description = ::Const.Strings.PerkDescription.LegendLurker;
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsSerialized = false;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -45,68 +43,26 @@ this.legend_lurking_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onUpdate( _properties )
-	{
-		this.skill.onUpdate(_properties);
+	function isHidden() {
+		return !::Tactical.isActive() || !this.getContainer().getActor().isPlacedOnMap() || !this.m.IsAlone;
+	}
 
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-
-		if (!this.getContainer().getActor().isPlacedOnMap())
-		{
-			this.m.IsHidden = true;
+		if (!actor.isPlacedOnMap()) {
 			return;
 		}
-
 		local myTile = actor.getTile();
-		local allies = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
-		local entites = ::Tactical.Entities.getAllHostilesAsArray();
-		local isAlone = true;
+		this.m.IsAlone = (::Tactical.Entities.getInstancesOfFaction(actor.getFaction()).filter(@(_, _ally)(_ally.getID() != actor.getID() && _ally.isPlacedOnMap() && _ally.getTile().getDistanceTo(myTile) <= 2)).len() == 0) && (::Tactical.Entities.getAllHostilesAsArray().filter(@(_, _enemy)(_enemy.getTile().getDistanceTo(myTile) <= 2)).len() == 0);
 
-		foreach( ally in allies )
-		{
-			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap())
-			{
-				continue;
-			}
-			if (ally.getTile().getDistanceTo(myTile) <= 2)
-			{
-				isAlone = false;
-				break;
-			}
-		}
-
-
-		foreach( unit in entites )
-		{
-            if (unit.getID() == actor.getID())
-            {
-                continue;
-            }
-			if (unit.getTile().getDistanceTo(myTile) <= 2)
-			{
-				isAlone = false;
-				break;
-			}
-		}
-
-		if (isAlone)
-		{
-			this.m.IsHidden = false;
+		if (this.m.IsAlone) {
 			_properties.ActionPoints += 3;
-			_properties.RangedDefense *= 1.30;
+			_properties.RangedDefense *= 1.3;
 			_properties.Initiative += 20;
-
-		}
-		else
-		{
-			this.m.IsHidden = true;
 		}
 	}
 
-	function onCombatFinished()
-	{
-		this.m.IsHidden = true;
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+3[/color] " + ::Legends.S.inlineIcon("action_points") + ", [color=%positive%]+30%[/color] " + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%positive%]+20[/color] " + ::Legends.S.inlineIcon("initiative");
 	}
-
 });
-

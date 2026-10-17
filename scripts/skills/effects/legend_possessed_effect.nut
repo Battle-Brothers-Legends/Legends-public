@@ -1,13 +1,12 @@
+//tbd, can inherit off possess undead perhaps
 this.legend_possessed_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		IsAlive = true
+		IsAlive = true,
 	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPossessed);
 		this.m.SoundOnUse = [];
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

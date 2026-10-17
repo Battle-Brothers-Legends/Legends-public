@@ -3,10 +3,7 @@ this.legend_demon_hound_aura_source_effect <- this.inherit("scripts/skills/skill
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundAuraSource);
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsHidden = true;
 	}
 

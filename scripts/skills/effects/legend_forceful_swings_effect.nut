@@ -3,10 +3,6 @@ this.legend_forceful_swings_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendForcefulSwings);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.Description = "Use the power of your hips and core to imbue more force into your swings.";
 	}
 
@@ -27,7 +23,7 @@ this.legend_forceful_swings_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function getActorHoverTooltip(_activeEntity) {
-		return "[color=%positive%]+10%[/color] Area of Effect Damage";
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+10%[/color] Area of Effect " + ::Legends.S.inlineIcon("damage_dealt");
 	}
 });

@@ -5,28 +5,13 @@ this.legend_knocked_over_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendKnockedOver);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "Tackled and knocked over.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character has been tackled and knocked over. They will get back on their feet in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
-	}
-
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
@@ -45,7 +30,8 @@ this.legend_knocked_over_effect <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/fatigue.png",
 				text = "[color=%negative%]+25%[/color] damage taken"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function onAdded() {
@@ -86,4 +72,7 @@ this.legend_knocked_over_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%negative%]-70%[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%positive%]+25%[/color] " + ::Legends.S.inlineIcon("damage_received");
+	}
 });

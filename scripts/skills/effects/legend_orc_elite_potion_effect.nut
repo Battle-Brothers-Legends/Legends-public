@@ -3,15 +3,8 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendOrcElitePotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "This character\'s limbic system has been altered with an additional substance that allows them to sustain particularly strenuous anaerobic activity for longer. Their skin seems vaguely greener than you remember, too, but you\'re sure that\'s a coincidence.";
 	}
 
 	function getTooltip() {
@@ -30,7 +23,7 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "The penalty to Maximum Fatigue and Initiative from equipped items in your head, body, mainhand and offhand slots is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]20%[/color]"
+				text = "The penalty to Maximum Fatigue and Initiative from equipped items in your head, body, mainhand and offhand slots is reduced by [color=%positive%]20%[/color]"
 			},
 			{
 				id = 12,
@@ -56,8 +49,8 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 			fat += offhand.getStaminaModifier();
 		}
 
-		_properties.Stamina -= fat * 20 * 0.01;
-		_properties.Initiative -= fat * 20 * 0.01;
+		_properties.Stamina -= fat * 0.2;
+		_properties.Initiative -= fat * 0.2; // should this be in actor's getInitiative like brawny?
 	}
 
 	function onDeath(_fatalityType) {
@@ -68,5 +61,9 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isOrcElitePotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "Reduces " + ::Legends.S.inlineIcon("fatigue") + ::Legends.S.inlineIcon("initiative") + " of your equipped head, armor and weapons by [color=%positive%]20%[/color]";
 	}
 });

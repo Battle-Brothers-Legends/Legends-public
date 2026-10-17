@@ -232,6 +232,14 @@ local function pushSection(_tooltip, _entity, _shownPerks, _items, _title, _star
 			text += (" [color=%negative%]" + "x" + stacks[name] + "[/color]");
 		}
 
+		if ("Stacks" in item.m) {
+			text += (" [color=%negative%]" + "x" + item.m.Stacks + "[/color]");
+		}
+
+		if ("TurnsLeft" in item.m) {
+			text += " " + ::Legends.S.inlineIcon("turns_left") + item.m.TurnsLeft;
+		}
+
 		local itemRow = {
 			id = _startID + i,
 			type = "text",
@@ -240,13 +248,13 @@ local function pushSection(_tooltip, _entity, _shownPerks, _items, _title, _star
 		};
 
 		if (_title == "Ammo") {
-			itemRow.text += " Ammo: " + (::isKindOf(_entity, "player") ? (item.getAmmo() + " / " + item.getAmmoMax() + " [leg_img](gfx/ui/icons/ammo.png,height=16px,width=16px)[/leg_img]") : "infinite");
+			itemRow.text += " Ammo: " + (::isKindOf(_entity, "player") ? (item.getAmmo() + " / " + item.getAmmoMax() + " " + ::Legends.S.inlineIcon("ammo")) : "infinite");
 		}
 
 		_tooltip.push(itemRow);
 
 		if (::Tactical.Entities.getFlags().get("JimmysTooltips_ShowExpandedDescriptions") && ::MSU.isKindOf(item, "skill")) {
-			local extraDesc = item.getActorHoverTooltip(::Tactical.TurnSequenceBar.getActiveEntity());
+			local extraDesc = item.getActorHoverTooltip(::Tactical.TurnSequenceBar.getActiveEntity(), (_stackInOneLine ? stacks[name] : 1));
 			if (extraDesc != null) {
 				_tooltip.push({
 					id = _startID + i,
@@ -364,8 +372,8 @@ local function addStatusEffects(_tooltip, _entity, _shownPerks) {
 
 local function addImmunities(_tooltip, _entity) {
 	local immunities = "";
-	foreach (effectName, property in ::Legends.Effects.Immunities) {
-		if (property in _entity.getCurrentProperties()) {
+	foreach (property, effectName in ::Legends.Effects.Immunities) {
+		if (property in _entity.getCurrentProperties() && _entity.getCurrentProperties()[property]) {
 			immunities += (immunities.len() ? ", " : "") + ("[color=%negative%]" + effectName.slice(0, 1) + "[/color]" + effectName.slice(1));
 		}
 	}
@@ -420,7 +428,7 @@ local function addItems(_tooltip, _entity, _shownPerks, _targetedWithSkill) {
 	local getItemTooltip = function (_id, _item) {
 		local text = _item.makeName() + " ";
 		if (_item.isItemType(::Const.Items.ItemType.Ammo) || ("getAmmoMax" in _item && _item.getAmmoMax() > 0)) {
-			text += _item.getAmmo() + " / " + _item.getAmmoMax() + " [leg_img](gfx/ui/icons/ammo.png,height=16px,width=16px)[/leg_img]" + " ";
+			text += _item.getAmmo() + " / " + _item.getAmmoMax() + " " + ::Legends.S.inlineIcon("ammo") + " ";
 		}
 		if (_entity.isPlayerControlled()) {
 			if (_item.getConditionMax() > 1) {

@@ -1,36 +1,23 @@
 this.legend_hexe_ichor_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		TurnsLeft = 8
+		TurnsLeft = 4
 	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHexeIchor);
+		this.m.Description = "Having imbibed a concoction of dubious ingredients, this character feels a second wind.";
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "Thanks to taking a concoction of dubious ingredients, this character feels a second wind for another [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
-	}
-
 	function getTooltip() {
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/fatigue.png",
+				icon = "ui/icons/fatigue_recovery_up.png",
 				text = "[color=%positive%]+20[/color] Fatigue Recovery per turn"
 			},
 			{
@@ -39,8 +26,8 @@ this.legend_hexe_ichor_effect <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/days_wounded.png",
 				text = "[color=%positive%]+20[/color] Health Recovery per turn"
 			}
-		];
-		return ret;
+		]);
+		return tooltip;
 	}
 
 	function onUpdate(_properties) {
@@ -56,5 +43,9 @@ this.legend_hexe_ichor_effect <- this.inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("action_points") + " costs halved";
 	}
 });

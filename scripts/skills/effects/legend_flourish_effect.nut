@@ -1,21 +1,15 @@
 this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		IsRemoved = true,
 		LastFrameApplied = 0,
 		LastEnemyAppliedTo = 0,
-		SkillCount = 0
+		SkillCount = 0,
+		TurnsLeft = 1
 	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFlourish);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "This character is prepared to do exhausting and flashy moves which will both scare the opponent and penetrate their defenses in a display of remarkable swordsmanship.";
 		this.m.IsRemovedAfterBattle = true;
-	}
-
-	function getDescription() {
-		return "This character is prepared to do exhausting and flashy moves which will both scare the opponent and penetrate their defenses in a display of remarkable swordsmanship.";
 	}
 
 	function getTooltip() {
@@ -115,30 +109,20 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getIniDifference(_attacker, _defender) {
-		local bonus = 0;
-		if (::MSU.isNull(_attacker) || ::MSU.isNull(_defender)) {
-			return bonus;
+		if (::Legends.S.isEntityNullOrDead(_attacker, _defender)) {
+			return 0;
 		}
 
-		local defenderCurrentInitiative = _defender.getInitiative();
-		local attackerCurrentInitiative = _attacker.getInitiative();
-
-		if (attackerCurrentInitiative > defenderCurrentInitiative) {
-			bonus = attackerCurrentInitiative - defenderCurrentInitiative;
-		}
-
-		return bonus;
+		return ::Math.max(0, _attacker.getInitiative() - _defender.getInitiative());
 	}
 
 	function onUpdate(_properties) {
-		foreach (skill in this.getContainer().queryActives()) {
-			if (skill.isAttack()) {
-				_properties.SkillCostAdjustments.push({
-					ID = skill.m.ID,
-					APAdjust = 1,
-					FatigueMultAdjust = 1.75
-				});
-			}
+		foreach (skill in this.getContainer().queryActives().filter(@(_, _skill)(_skill.isAttack()))) {
+			_properties.SkillCostAdjustments.push({
+				ID = skill.m.ID,
+				APAdjust = 1,
+				FatigueMultAdjust = 1.75
+			});
 		}
 	}
 
@@ -148,17 +132,11 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		m.LastFrameApplied = 0;
 	}
 
-	function onCombatFinished() {
-		this.skill.onCombatFinished();
-
-		m.SkillCount = 0;
-		m.LastEnemyAppliedTo = 0;
-		m.LastFrameApplied = 0;
+	function onTurnStart() {
+		this.removeSelf();
 	}
 
-	function onTurnStart() {
-		if (this.m.IsRemoved) {
-			this.removeSelf();
-		}
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+75%[/color] " + ::Legends.S.inlineIcon("fatigue") + " cost, [color=%positive%]+1[/color] " + ::Legends.S.inlineIcon("action_points") + " cost, chance to deal " + ::Legends.S.inlineIcon("direct_damage");
 	}
 });

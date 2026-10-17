@@ -3,43 +3,33 @@ this.legend_rock_unhold_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRockUnholdPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "This character\'s body has mutated to grow at an unnatural pace. In battle, this causes their wounds to close and heal within moments. Outside of battle, it causes unseemly growths, an unquenchable thirst, and disgustingly long finger nails. You once saw them lacerate both arms with a meat cleaver, screeching maniacally that it was \'the only way to keep it in check\'. Odd.";
 	}
 
 	function getTooltip() {
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/armor_body.png",
-				text = "Head and Body armor is increased by [color=" + ::Const.UI.Color.PositiveValue + "]15%[/color]"
+				text = "[color=%positive%]+15%[/color] total Body armor"
 			},
 			{
 				id = 12,
+				type = "text",
+				icon = "ui/icons/armor_head.png",
+				text = "[color=%positive%]+15%[/color] total Head armor"
+			},
+			{
+				id = 13,
 				type = "hint",
 				icon = "ui/tooltips/warning.png",
 				text = "Further mutations will cause a longer period of sickness"
 			}
-		];
-		return ret;
+		]);
+		return tooltip;
 	}
 
 	function onUpdate(_properties) {
@@ -55,5 +45,9 @@ this.legend_rock_unhold_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isRockUnholdPotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+15%[/color] total " + ::Legends.S.inlineIcon("armor_body") + ::Legends.S.inlineIcon("armor_head");
 	}
 });

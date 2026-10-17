@@ -6,32 +6,21 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundAura);
 		this.m.Description = "The Höllenhund's presence has sapped the strength from this character\'s limbs, slowing them down.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-" + this.m.Penalty * 100 + "%[/color] Initiative"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function isHidden() {
@@ -57,5 +46,9 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		this.m.Penalty = this.calculatePenalty(_properties);
 		_properties.InitiativeMult *= 1.0 - this.m.Penalty;
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-" + (this.m.Penalty * 100) + "%[/color] " + ::Legends.S.inlineIcon("initiative");
 	}
 });

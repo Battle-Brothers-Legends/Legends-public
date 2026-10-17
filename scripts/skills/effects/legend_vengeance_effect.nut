@@ -5,14 +5,19 @@ this.legend_vengeance_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendVengeance);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "Having just received a blow, this character is determined to fight even harder!";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "Having just received a blow, this character is determined to fight even harder! The next [color=%positive%]" + this.m.Stacks + "[/color] attacks will inflict [color=%positive%]20%[/color] more damage.";
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/damage_dealt.png",
+			text = "[color=%positive%]20%[/color] increased Damage Dealt"
+		});
+		return tooltip;
 	}
 
 	function onUpdate(_properties) {
@@ -26,5 +31,9 @@ this.legend_vengeance_effect <- this.inherit("scripts/skills/skill", {
 		if (this.m.Stacks <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+20%[/color] " + ::Legends.S.inlineIcon("damage_dealt");
 	}
 });

@@ -6,29 +6,26 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 		Actor = null
 	},
 
-	function getDamage() {
-		return this.m.Damage;
-	}
-
-	function setDamage(_d) {
-		this.m.Damage = _d;
-	}
-
-	function setActor(_a) {
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
-	}
-
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDisintegrating);
+		this.m.Description = "This character is being disintegrated!";
 		this.m.KilledString = "Disintegrated";
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
-		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character is being disintegrated! They will lose [color=%negative%]" + this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/damage_received.png",
+				text = "[color=%negative%]" + this.m.Damage + "[/color] Hitpoints Damage Received every turn"
+			}
+		]);
+		return tooltip;
 	}
 
 	function applyDamage() {
@@ -68,4 +65,7 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 		this.applyDamage();
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]" + this.m.Damage + "[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
+	}
 });

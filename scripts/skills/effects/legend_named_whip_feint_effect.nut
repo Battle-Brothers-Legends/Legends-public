@@ -5,28 +5,10 @@ this.legend_named_whip_feint_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWhipFeint);
-		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Item;
-		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsWeaponSkill = true;
 		this.m.IsHidden = true;
-	}
-
-	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
-		];
 	}
 
 	function setBonus(_bonus) {
@@ -34,19 +16,7 @@ this.legend_named_whip_feint_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		if (_skill == null || _skill.m.IsWeaponSkill == false) {
-			return;
-		}
-
-		if (!_skill.isAttack()) {
-			return;
-		}
-
-		if (_skill.getItem() == null || this.getItem() == null) {
-			return;
-		}
-
-		if (_skill.getItem().getInstanceID() != this.getItem().getInstanceID()) {
+		if (_skill == null || _skill.m.IsWeaponSkill == false || !_skill.isAttack() || _skill.getItem() == null || this.getItem() == null || _skill.getItem().getInstanceID() != this.getItem().getInstanceID()) {
 			return;
 		}
 

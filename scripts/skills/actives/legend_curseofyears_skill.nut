@@ -1,3 +1,4 @@
+//tbd
 this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Cooldown = 0

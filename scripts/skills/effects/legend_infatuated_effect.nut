@@ -8,24 +8,32 @@ this.legend_infatuated_effect <- this.inherit("scripts/skills/skill", {
 		Master = null
 	},
 
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendInfatuated);
+		this.m.Description = "Charmed and no longer in any control over %their% actions, a puppet with no choice but to obey %their% master.";
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_chimes", 4);
+		this.m.IsRemovedAfterBattle = true;
+	}
+
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "This character is under the control of a master"
+			},
+		]);
+		return tooltip;
+	}
+
 	function setMasterFaction(_f) {
 		this.m.MasterFaction = _f;
 	}
 
 	function setMaster(_f) {
 		this.m.Master = _f;
-	}
-
-	function create() {
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendInfatuated);
-		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_chimes", 4);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = true;
-	}
-
-	function getDescription() {
-		return "This character has been charmed. They no longer have any control over their actions and are a puppet with no choice but to obey their master. Wears off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).\n\nThe higher a character\'s resolve, the higher the chance to resist being charmed.";
 	}
 
 	function addTurns(_t) {
@@ -149,5 +157,9 @@ this.legend_infatuated_effect <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.skill.onCombatFinished();
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "Under the control of a master";
 	}
 });

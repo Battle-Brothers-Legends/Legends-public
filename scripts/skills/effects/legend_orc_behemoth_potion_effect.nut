@@ -3,15 +3,8 @@ this.legend_orc_behemoth_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendOrcBehemothPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "This character\'s limbic system has been altered with an additional substance that allows them to sustain particularly strenuous anaerobic activity for longer. Their skin seems vaguely greener than you remember, too, but you\'re sure that\'s a coincidence.";
 	}
 
 	function getTooltip() {
@@ -30,7 +23,7 @@ this.legend_orc_behemoth_potion_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "The Fatigue cost of the Adrenaline skill is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]60%[/color]"
+				text = "The Fatigue cost of the Adrenaline skill is reduced by [color=%positive%]60%[/color]"
 			},
 			{
 				id = 12,
@@ -50,5 +43,9 @@ this.legend_orc_behemoth_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isOrcBehemothPotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("fatigue") + " cost of Adrenaline reduced by [color=%positive%]60%[/color]";
 	}
 });

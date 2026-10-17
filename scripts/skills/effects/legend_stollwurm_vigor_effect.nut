@@ -5,46 +5,39 @@ this.legend_stollwurm_vigor_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendStollwurmVigor);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
+		this.m.Description = "Drinking the essence of a Stollwurm has made this character indomitable.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character has gathered all their physical strength and willpower to become indomitable.";
-	}
-
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 6,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Only receive [color=%positive%]50%[/color] of any damage"
+				icon = "ui/icons/damage_received.png",
+				text = "[color=%negative%]-50%[/color] Damage Received"
 			},
 			{
-				id = 6,
+				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Immune to being stunned"
 			},
 			{
-				id = 6,
+				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Immune to being knocked back or grabbed"
+			},
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Makes enemies less likely to attack you instead of an ally."
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function onUpdate(_properties) {
@@ -60,4 +53,7 @@ this.legend_stollwurm_vigor_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("immunity") + " to Stun, Knockback and Grab, [color=%negative%]-50%[/color]" + ::Legends.S.inlineIcon("damage_received") + ", less likely to be targeted";
+	}
 });

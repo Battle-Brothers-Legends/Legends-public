@@ -1,23 +1,13 @@
 this.legend_conqueror_potion_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConquerorPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = true;		
 	}
 
-	function getDescription()
-	{
-		return "This character\'s skin and subdermal tissue has mutated and will rapidly stitch itself back together. The effect is most pronounced on small puncture wounds, where the flesh can seal the wound from all directions evenly.";
-	}
-
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -32,7 +22,7 @@ this.legend_conqueror_potion_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/special.png",
+				icon = "ui/icons/immunity.png",
 				text = "Is immune to bleeding"
 			},
 			{
@@ -45,8 +35,7 @@ this.legend_conqueror_potion_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		local body = actor.getSprite("body");
 		body.setBrush("bust_skeleton_body_0" + ::Math.rand(1, 2));
@@ -54,39 +43,33 @@ this.legend_conqueror_potion_effect <- this.inherit("scripts/skills/skill", {
 		body.varySaturation(0.2);
 		body.varyColor(0.025, 0.025, 0.025);
 
-		if (actor.getFlags().has("human"))
-		{
+		if (actor.getFlags().has("human")) {
 			actor.getSprite("injury_body").setBrush("bust_skeleton_body_injured");
 		}
 
-		if (this.isKindOf(actor, "player"))
-		{
-			actor.improveMood = function ( _change, _text = "" )
-			{
-			};
-			actor.worsenMood = function ( _change, _text = "" )
-			{
-			};
+		if (this.isKindOf(actor, "player")) {
+			actor.improveMood = function (_change, _text = "") {};
+			actor.worsenMood = function (_change, _text = "") {};
 		}
 
 		local head = actor.getSprite("head");
 		head.setBrush("bust_skeleton_head");
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
-	}	
-	
-	function onDeath( _fatalityType )
-	{
-		if (_fatalityType != ::Const.FatalityType.Unconscious)
-		{
+		_properties.IsImmuneToBleeding = true;
+	}
+
+	function onDeath(_fatalityType) {
+		if (_fatalityType != ::Const.FatalityType.Unconscious) {
 			::World.Statistics.getFlags().set("isConquerorPotionAcquired", false);
 		}
 	}
 
-	function onDismiss()
-	{
+	function onDismiss() {
 		::World.Statistics.getFlags().set("isConquerorPotionAcquired", false);
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("immunity") + " to Bleeding";
+	}
 });
-

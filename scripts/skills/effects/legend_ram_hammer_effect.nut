@@ -5,14 +5,8 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRamHammer);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = true;
+		this.m.Description = "This character is being bolstered by the Ram Hammer upon successful consecutive hits.";
 		this.m.IsRemovedAfterBattle = true;
-	}
-
-	function getDescription() {
-		return "This character is being bolstered by the Ram Hammer upon successful hits. If an attack misses, the benefits are lost.";
 	}
 
 	function getTooltip() {
@@ -30,46 +24,33 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "Grants[color=%positive%]+50%[/color] damage for each successful attack made this turn."
+				icon = "ui/icons/damage_dealt.png",
+				text = "Grants[color=%positive%]+" + (50 * this.m.Stacks) + "%[/color] Damage."
 			},
-			{
+			// hiding this part as regularly weapon effects are hidden, instead the effect will show the stacking part only
+			/*{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Grants[color=%positive%]Hammer Specialisation[/color] when equipped."
+				text = "Grants[color=%positive%]Hammer Specialization[/color] when equipped."
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Grants[color=%positive%]Disarm immunity[/color] when equipped."
-			}
+			}*/
 		];
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		_properties.DamageTotalMult *= 1.5;
+		if (_skill.IsWeaponSkill) {
+			_properties.DamageTotalMult *= 1.0 + (0.5 * this.m.Stacks);
+		}
 	}
 
-	// function onAnySkillUsed( _skill, _targetEntity, _properties )
-	// {
-	//     if (_skill.getItem() != null && _skill.getItem().getID() == "your hammer" && this.m.Stacks > 0)
-	//     {
-	//         _properties.DamageTotalMult *= (1 + this.m.Stacks * 0.1);
-	//     }
-	// }
-
 	function onTargetMissed(_skill, _targetEntity) {
-		if (_targetEntity == null) {
-			return;
-		}
-
-		if (!_targetEntity.isAttackable()) {
-			return;
-		}
-
-		if (!_skill.isAttack()) {
+		if (_targetEntity == null || !_targetEntity.isAttackable() || !_skill.isAttack()) {
 			return;
 		}
 
@@ -77,7 +58,8 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		if (_skill.isAttack()) {
+		if (_skill.isAttack() && _skill.IsWeaponSkill) {
+			// still needs to check for instance? or is it supposed to stack faster on AoE?
 			this.m.Stacks += 1;
 		}
 	}
@@ -90,8 +72,16 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Stacks = 0;
 	}
 
+	function onTurnEnd() {
+		this.m.Stacks = 0;
+	}
+
 	function onUpdate(_properties) {
 		_properties.IsSpecializedInHammers = true;
 		_properties.IsImmuneToDisarm = true;
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + 50 * this.m.Stacks + "%[/color] " + ::Legends.S.inlineIcon("damage_dealt");
 	}
 });

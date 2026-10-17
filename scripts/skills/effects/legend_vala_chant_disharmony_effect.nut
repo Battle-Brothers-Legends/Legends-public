@@ -43,7 +43,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
 			return;
 		}
-		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
+
 		if (!this.checkEntities()) {
 			this.updateEffect(false);
 			return;
@@ -54,6 +54,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 			return;
 		}
 
+		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
 		local bonus = calculateBonus(distance);
 		_properties.InitiativeMult *= 1.0 - 0.01 * ::Math.round(bonus);
 

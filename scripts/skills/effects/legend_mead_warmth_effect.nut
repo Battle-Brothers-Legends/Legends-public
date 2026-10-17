@@ -1,3 +1,4 @@
+//tbd
 this.legend_mead_warmth_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 3
@@ -7,7 +8,6 @@ this.legend_mead_warmth_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMeadWarmth);
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

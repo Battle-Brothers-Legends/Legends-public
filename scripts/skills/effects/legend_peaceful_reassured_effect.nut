@@ -3,20 +3,13 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPeacefulReassured);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "The presence of nearby peaceful people is increasing this characters Resolve and experience gain.";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "The presence of nearby peaceful people is increasing this characters Resolve and experience gain.";
-	}
-
 	function getTooltip() {
-		local peacefuls = this.getPeacefuls();
-		local peaceBravery = peacefuls * 3;
+		local peaceful = this.countPeaceful();
 		local ret = [
 			{
 				id = 1,
@@ -32,39 +25,30 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=%positive%]+" + peaceBravery + "[/color] Resolve"
+				text = "[color=%positive%]+" + (peaceful * 3) + "[/color] Resolve"
 			},
 			{
 				id = 7,
 				type = "hint",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=%positive%]+" + peacefuls + "%[/color] Experience Gain"
+				text = "[color=%positive%]+" + peaceful + "%[/color] Experience Gain"
 			}
 		];
 		return ret;
 	}
 
-	function getPeacefuls() {
-		if (!("Entities" in ::Tactical) || ::Tactical.Entities == null || !::Tactical.isActive()) {
-			return 0;
-		}
-
-		local hippies = 0;
-		local actors = ::Tactical.Entities.getAllInstancesAsArray();
-
-		foreach (a in actors) {
-			if (a.getFaction() == ::Const.Faction.Player && a.getSkills().hasPerk(::Legends.Perk.LegendPeaceful)) {
-				hippies += 1;
-			}
-		}
-		return hippies;
+	function countPeaceful() {
+		return (::Tactical.isActive() ? ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _entity)(_entity.getFaction() == ::Const.Faction.Player && ::Legends.Perks.has(_entity, ::Legends.Perk.LegendPeaceful))) : 0);
 	}
 
 	function onUpdate(_properties) {
-		local peacefuls = this.getPeacefuls();
-		local peaceBravery = peacefuls * 3;
-		local peaceXP = (100 + peacefuls) * 0.01;
-		_properties.Bravery += peaceBravery;
-		_properties.XPGainMult *= peaceXP;
+		local peaceful = this.countPeaceful();
+		_properties.Bravery += (peaceful * 3);
+		_properties.XPGainMult *= 1.0 + (peaceful * 0.01);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		local peaceful = this.countPeaceful();
+		return "[color=%positive%]+" + (peaceful * 3) + "[/color] " + ::Legends.S.inlineIcon("bravery") + ", [color=%positive%]+" + peaceful + "%[/color] " + ::Legends.S.inlineIcon("xp_received");
 	}
 });

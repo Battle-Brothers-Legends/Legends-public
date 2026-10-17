@@ -17,6 +17,32 @@
 		_info.TargetEntity.m.Skills.onShieldHitSkills(this, _info.TargetEntity, _info.Shield);
 	}
 
+	o.getTooltip = function () {
+		local tooltip = [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			}
+		];
+		if ("TurnsLeft" in this.m) {
+			tooltip.extend([
+				{
+					id = 3,
+					type = "text",
+					icon = "ui/icons/turns_left.png",
+					text = "Duration: " + this.m.TurnsLeft + " turns"
+				}
+			]);
+		}
+		return tooltip;
+	}
+
 	o.getDescription = function () {
 		local vars = [];
 		local container = this.getContainer();
@@ -319,7 +345,7 @@
 		return ret;
 	}
 
-	o.getActorHoverTooltip <- function (_activeEntity) {
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
 		return null;
 	}
 

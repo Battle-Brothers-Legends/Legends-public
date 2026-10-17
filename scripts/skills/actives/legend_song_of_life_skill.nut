@@ -1,9 +1,9 @@
 this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSongOfLife);
-		this.m.Description = "Heal allies on with your music, restoring the health of all allies within 8 tiles. Must be holding a musical instrument to use. Songs apply once per turn.";
+		this.m.Description = "Sing a Song of Life, restoring the health of all allies within 8 tiles.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = ::Const.SkillType.Active;
@@ -20,8 +20,7 @@ this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -42,89 +41,47 @@ this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Restores [color=%positive%]" + this.getBonus() + "[/color] hitpoints to all allied units"
+				text = "Restores [color=%positive%]" + this.getBonus() + "[/color] Hitpoints to allies within 8 tiles"
 			}
 		];
-
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		local actor = this.getContainer().getActor();
+		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
 			ret.push({
-				id = 5,
+				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Cannot be used because this character is engaged in melee[/color]"
 			});
 		}
-
+		local weapon = actor.getMainhandItem();
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Musical)) {
+			ret.push({
+				id = 9,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]Can only be used while holding a Musical Instrument[/color]"
+			});
+		}
 		return ret;
 	}
 
-	function getBonus()
-	{
-		local effect = 1;
-
-		// +3 from Music Mastery
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInMusic)
-			effect += 3;
-
-		// +3 from Entrancing Song
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistMusician))
-			effect += 3;
-
-		// +3 from Legend Minnesanger
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendMinnesanger))
-			effect += 3;
-
-		return effect;
+	function getBonus() {
+		local actor = this.getContainer().getActor();
+		return 1 + 3 * ([actor.getCurrentProperties().IsSpecializedInMusic, ::Legends.Perks.has(actor, ::Legends.Perk.LegendSpecialistMusician), ::Legends.Perks.has(actor, ::Legends.Perk.LegendMinnesanger)].filter(@(_, _source) (_source == true)).len());
 	}
 
-	function isUsable()
-	{
-		if (!this.skill.isUsable())
-			return false;
-
-		local mainhand = this.getContainer().getActor().getMainhandItem();
-		if (mainhand == null)
-			return false;
-
-		if (!::Tactical.isActive())
-			return false;
-
-		local tile = this.getContainer().getActor().getTile();
-
-		return mainhand.isWeaponType(::Const.Items.WeaponType.Musical) &&
-			!tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	function isUsable() {
+		local actor = this.getContainer().getActor();
+		local mainhand = actor.getMainhandItem();
+		return this.skill.isUsable() && ::Tactical.isActive() && mainhand != null && mainhand.isWeaponType(::Const.Items.WeaponType.Musical) && !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions());
 	}
 
-	function onUse( _user, _targetTile ) {
+	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
-		local actors = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction());
-
-		local affectedActors = [];
-		foreach( a in actors )
-		{
-			if (_user.getID() == a.getID())
-				continue;
-
-			if (a.getSkills().hasEffect(::Legends.Effect.LegendSongOfLife))
-				continue;
-
-			if (a.getTile().getDistanceTo(myTile) > 8)
-				continue;
-
-			::Legends.Effects.grant(a, ::Legends.Effect.LegendSongOfLife, function(_effect) {
-				_effect.setEffect(this.getBonus());
-			}.bindenv(this));
-
-			affectedActors.push(a.weakref());
+		foreach (ally in ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendSongOfLife) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
+			ally.setHitpoints(::Math.min(ally.getHitpointsMax(), ally.getHitpoints() + this.getBonus()));
+			::Legends.Effects.grant(ally, ::Legends.Effect.LegendSongOfLife);
 		}
-
-		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSongOfLife, function(_effect) {
-			_effect.setEffect(this.getBonus());
-			_effect.m.Caster = _user.weakref();
-			_effect.m.AffectedActors = affectedActors;
-		}.bindenv(this));
 		return true;
 	}
 });
-

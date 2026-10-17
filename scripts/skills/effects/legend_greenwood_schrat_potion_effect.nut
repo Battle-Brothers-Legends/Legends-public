@@ -3,15 +3,8 @@ this.legend_greenwood_schrat_potion_effect <- this.inherit("scripts/skills/skill
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGreenwoodSchratPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "This character\'s legs have mutated to respond much more rapidly and powerfully to external force. As a practical matter, they can maintain their center of balance and respond to nearly any attempt to push them back or uproot them.";
 	}
 
 	function getTooltip() {
@@ -29,8 +22,8 @@ this.legend_greenwood_schrat_potion_effect <- this.inherit("scripts/skills/skill
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Is not affected by fresh injuries"
+				icon = "ui/icons/immunity.png",
+				text = "Is not affected by fresh Injuries"
 			},
 			{
 				id = 12,
@@ -54,5 +47,9 @@ this.legend_greenwood_schrat_potion_effect <- this.inherit("scripts/skills/skill
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isGreenwoodSchratPotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("immunity") + " to fresh Injuries";
 	}
 });

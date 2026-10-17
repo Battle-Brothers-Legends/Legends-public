@@ -3,15 +3,8 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFallenBetrayerPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "This character\'s body reacts to physical trauma, secreting a calciferous substance that causes their muscles to reflexively sieze and contract at points of impact to minimize muscle damage.";
 	}
 
 	function getTooltip() {
@@ -30,7 +23,7 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue damage inflicted from successful hits is increased by [color=" + ::Const.UI.Color.PositiveValue + "]50%[/color]"
+				text = "Fatigue inflicted from successful hits is increased by [color=%positive%]50%[/color]"
 			},
 			{
 				id = 12,
@@ -54,5 +47,9 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isFallenBetrayerPotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+50%[/color] " + ::Legends.S.inlineIcon("fatigue") + " inflicted per successful hit";
 	}
 });

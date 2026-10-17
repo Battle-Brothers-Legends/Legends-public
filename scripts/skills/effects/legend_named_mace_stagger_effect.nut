@@ -5,11 +5,7 @@ this.legend_named_mace_stagger_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedMaceStagger);
-		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Item;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsWeaponSkill = true;
 		this.m.IsHidden = true;
 	}
@@ -34,30 +30,16 @@ this.legend_named_mace_stagger_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		if (_skill == null || _skill.m.IsWeaponSkill == false) {
+		if (_skill == null || _skill.m.IsWeaponSkill == false || !_skill.isAttack() || _skill.getItem() == null || _skill.getItem().getID() != this.getItem().getID()) {
 			return;
 		}
 
-		if (!_skill.isAttack()) {
-			return;
+		local actor = this.getContainer().getActor();
+		if (!::Legends.S.isEntityNullOrDead(actor, _targetEntity) && ::Math.rand(0, 100) <= this.m.Bonus) {
+			local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
+			if (!_targetEntity.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail")) {
+				::Tactical.EventLog.log(stagger.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
+			}
 		}
-
-		if (_skill.getItem() == null) {
-			return;
-		}
-
-		if (_skill.getItem().getID() != this.getItem().getID()) {
-			return;
-		}
-
-		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity)) {
-			return;
-		}
-
-		if (::Math.rand(0, 100) > this.m.Bonus) {
-			return;
-		}
-
-		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
 	}
 });

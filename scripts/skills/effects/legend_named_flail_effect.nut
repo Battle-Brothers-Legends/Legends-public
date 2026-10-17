@@ -1,20 +1,14 @@
 this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
-	m = {
-	},
-	function create()
-	{
+	m = {},
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedFlail);
-		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Item;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-        this.m.IsWeaponSkill = true;
-        this.m.IsHidden = true;
+		this.m.IsWeaponSkill = true;
+		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -29,38 +23,23 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-    function setBonus( _bonus )
-    {
-    }
+	function setBonus(_bonus) {}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if ( _skill == null || _skill.m.IsWeaponSkill == false )
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (_skill == null || _skill.m.IsWeaponSkill == false || !_skill.isAttack() || _skill.getItem() == null || _skill.getItem().getID() != this.getItem().getID()) {
 			return;
+		}
 
-		if (!_skill.isAttack())
+		local actor = this.getContainer().getActor();
+		if (::Legends.S.isEntityNullOrDead(actor, _targetEntity)) {
 			return;
+		}
 
-		if (_skill.getItem() == null)
-			return;
-
-		if (_skill.getItem().getID() != this.getItem().getID())
-			return;
-
-		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
-			return;
-
-		local user = this.getContainer().getActor();
-
-		if (_bodyPart == ::Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
-		{
+		if (_bodyPart == ::Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
-
-			if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.isHiddenToPlayer())
-			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
+			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.isHiddenToPlayer()) {
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
 	}
-
 });

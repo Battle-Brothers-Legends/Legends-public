@@ -38,6 +38,10 @@
 	return ((!pattern || !text) ? false : this.regexp(pattern).search(text));
 };
 
+::Legends.S.inlineIcon <- function (_icon, _height = 16, _width = 16, _path = "gfx/ui/icons/", _extension = ".png") {
+	return "[leg_img](" + _path + _icon + ".png,height=" + _height + "px,width=" + _width + "px)[/leg_img]";
+}
+
 ::Legends.S.pluralize <- function (_value, _text, _irregular = "") {
 	if (_value != 1) {
 		if (_irregular.len() > 0) {

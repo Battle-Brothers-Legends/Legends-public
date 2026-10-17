@@ -1,34 +1,25 @@
 this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		TurnsLeft = 1
+	},
 
 	function create() {
-		this.m.ID = "effects.legend_safeguarding";
-		this.m.Name = "Safeguarding";
-		this.m.Description = "This character neglects their own defense while safeguarding someone else";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSafeguarding);
+		this.m.Description = "This character neglects their own defense while safeguarding an ally.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/block.png",
 				text = "Block is reduced to [color=%negative%]0[/color]"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function onUpdate(_properties) {
@@ -53,5 +44,9 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 		if (item != null && item.isItemType(::Const.Items.ItemType.Shield)) {
 			item.onShieldDown();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]0[/color] " + ::Legends.S.inlineIcon("block");
 	}
 });

@@ -1,20 +1,11 @@
-// left as is to credit sato properly
-// actually renamed to disrespect sato
 this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		AttackBonus = 0,
-		DefenseBonus = 0,
-		ResolveBonus = 0,
-		AttackMagnitude = 1,
-		DefenseMagnitude = 1,
-		ResolveMagnitude = 1
+		Stacks = 0
 	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBrothersInChains);
 		this.m.Description = "Fighting with other escaped slaves drives this character to succeed.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
@@ -34,31 +25,31 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=%positive%]+" + this.m.ResolveBonus + "[/color] Resolve"
+				text = "[color=%positive%]+" + this.m.Stacks + "[/color] Resolve"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=%positive%]+" + this.m.AttackBonus + "[/color] Melee Skill"
+				text = "[color=%positive%]+" + this.m.Stacks + "[/color] Melee Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=%positive%]+" + this.m.AttackBonus + "[/color] Ranged Skill"
+				text = "[color=%positive%]+" + this.m.Stacks + "[/color] Ranged Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=%positive%]+" + this.m.DefenseBonus + "[/color] Melee Defense"
+				text = "[color=%positive%]+" + this.m.Stacks + "[/color] Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=%positive%]+" + this.m.DefenseBonus + "[/color] Ranged Defense"
+				text = "[color=%positive%]+" + this.m.Stacks + "[/color] Ranged Defense"
 			}
 		];
 	}
@@ -71,36 +62,23 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		local myTile = actor.getTile();
 		local allies = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
-		local numSlaves = 0;
+		local numSlaves = allies.filter(@(_, _ally)(_ally.getID() != actor.getID() && _ally.isPlacedOnMap() && ::Legends.Backgrounds.has(_ally, ::Legends.Background.Slave))).len();
 
-		foreach (ally in allies) {
-			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap()) {
-				continue;
-			}
-
-			if (::Legends.Backgrounds.has(ally, ::Legends.Background.Slave)) {
-				numSlaves += 1;
-			}
-		}
-
-		if (numSlaves < 1) {
-			this.m.IsHidden = true;
-		} else {
+		if (numSlaves > 0) {
 			this.m.IsHidden = false;
-
-			local numSlavesForBonus = numSlaves;
-			this.m.AttackBonus = numSlavesForBonus * this.m.AttackMagnitude;
-			this.m.DefenseBonus = numSlavesForBonus * this.m.DefenseMagnitude;
-			this.m.ResolveBonus = numSlavesForBonus * this.m.ResolveMagnitude;
-
-			_properties.MeleeSkill += this.m.AttackBonus;
-			_properties.RangedSkill += this.m.AttackBonus;
-			_properties.MeleeDefense += this.m.DefenseBonus;
-			_properties.RangedDefense += this.m.DefenseBonus;
-			_properties.Bravery += this.m.ResolveBonus;
+			this.m.Stacks = numSlaves;
+			_properties.MeleeSkill += this.m.Stacks;
+			_properties.RangedSkill += this.m.Stacks;
+			_properties.MeleeDefense += this.m.Stacks;
+			_properties.RangedDefense += this.m.Stacks;
+			_properties.Bravery += this.m.Stacks;
+		} else {
+			this.m.IsHidden = true;
 		}
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("ranged_skill") + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ::Legends.S.inlineIcon("bravery");
+	}
 });

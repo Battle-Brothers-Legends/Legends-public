@@ -1,37 +1,21 @@
 this.legend_stupefied_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 2
-		// , IsForced = false
 	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendStupefied);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "Stupefied, left confused and gasping for air.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character has been stupefied, left confused and gasping for air. The effect will wear off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
-	}
-
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/regular_damage.png",
+				icon = "ui/icons/damage_dealt.png",
 				text = "[color=%negative%]-50%[/color] Damage"
 			},
 			{
@@ -46,23 +30,12 @@ this.legend_stupefied_effect <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-50%[/color] Initiative"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function onAdded() {
 		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
-		// if (!this.m.Container.getActor().getCurrentProperties().IsImmuneToStun || this.m.IsForced)
-		// {
-		// 	this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
-		// }
-		// else
-		// {
-		//  ::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.m.Container.getActor().getName()) + " became baffled instead of dazed, due to being stun immune.");
-		// 	local forceBaffle = this.new("scripts/skills/effects/legend_baffled_effect");
-		// 	forceBaffle.m.IsForced = true;
-		// 	this.m.Container.add(forceBaffle);
-		//  this.m.IsGarbage = true;
-		// }
 	}
 
 	function onRefresh() {
@@ -72,11 +45,9 @@ this.legend_stupefied_effect <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved() {
 		local actor = this.getContainer().getActor();
-
 		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
 			actor.getSprite("status_stunned").Visible = false;
 		}
-
 		actor.setDirty(true);
 	}
 
@@ -97,5 +68,9 @@ this.legend_stupefied_effect <- this.inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ::Legends.S.inlineIcon("fatigue") + ::Legends.S.inlineIcon("initiative");
 	}
 });

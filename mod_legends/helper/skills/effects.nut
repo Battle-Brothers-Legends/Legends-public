@@ -95,6 +95,7 @@ if (!("Effects" in ::Legends)) {
 	_target.m.Icon = defs.Icon;
 	_target.m.IconMini = defs.IconMini;
 	_target.m.Overlay = defs.Overlay;
+	_target.m.Type = ::Const.SkillType.StatusEffect;
 }
 
 ::Legends.Effects.Immunities <- {

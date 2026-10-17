@@ -3,34 +3,18 @@ this.legend_white_direwolf_potion_effect <- this.inherit("scripts/skills/skill",
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConquerorPotion);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = false;
-		this.m.IsStacking = false;
-	}
-
-	function getDescription() {
-		return "This character\'s muscles have mutated and respond differently to movement impulses. It is much less fatiguing to interrupt or stop mid-motion as a consequence, making it much easier to recover from errant or blocked attacks.";
 	}
 
 	function getTooltip() {
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Is immune to Overwhelmed"
+				icon = "ui/icons/immunity.png",
+				text = "Immune to Overwhelm"
 			},
 			{
 				id = 12,
@@ -38,8 +22,8 @@ this.legend_white_direwolf_potion_effect <- this.inherit("scripts/skills/skill",
 				icon = "ui/tooltips/warning.png",
 				text = "Further mutations will cause a longer period of sickness"
 			}
-		];
-		return ret;
+		]);
+		return tooltip;
 	}
 
 	function onUpdate(_properties) {
@@ -54,5 +38,9 @@ this.legend_white_direwolf_potion_effect <- this.inherit("scripts/skills/skill",
 
 	function onDismiss() {
 		::World.Statistics.getFlags().set("isWhiteDirewolfPotionAcquired", false);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("immunity") + " to Overwhelm";
 	}
 });

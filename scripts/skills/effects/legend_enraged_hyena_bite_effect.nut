@@ -7,10 +7,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendEnragedHyenaBite);
 		this.m.Description = "This character is held immobilized in the jaws of an enraged hyena. Their defenses are severely compromised and they cannot move until freed by attacking the hyena or by disengaging.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
-		this.m.IsStacking = false;
 	}
 
 	function getTooltip() {
@@ -153,5 +150,9 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 
 	function setHyena(_hyena) {
 		this.m.Hyena = _hyena;
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-45%[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense_defense") + ::Legends.S.inlineIcon("initiative");
 	}
 });

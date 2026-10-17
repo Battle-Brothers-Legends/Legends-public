@@ -6,20 +6,17 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBucklerDefense);
 		this.m.Description = "Fighting with a buckler, this character depends on quick reactions to keep themselves safe of harm.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
 		this.m.IsSerialized = false;
-		this.m.IsStacking = false;
 	}
 
 	function isHidden() {
 		return this.getBonus() == 0;
 	}
 
-	function getBonus() { // this needs to be moved to the shield itself but not rn
+	function getBonus() {
+		// this needs to be moved to the shield itself but not rn
 		local actor = this.getContainer().getActor();
-
 		if (actor == null || !actor.isPlacedOnMap() || !::Tactical.isActive()) {
 			return 0;
 		}
@@ -41,29 +38,34 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 			},
 		];
 
-		local paramBonus = [["_bonus", this.getBonus()], ["_rangedBonus", ::Math.round(this.getBonus() / 2)]];
+		local paramBonus = [
+			["_bonus", this.getBonus()],
+			["_rangedBonus", ::Math.round(this.getBonus() / 2)]
+		];
 		if (::Tactical.isActive()) {
-			tooltip.extend([{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				text = "[color=%positive%]+%_bonus%[/color] Melee Defense",
-				param = paramBonus
-			},
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/ranged_defense.png",
-				text = "[color=%positive%]+%_rangedBonus%[/color] Ranged Defense",
-				param = paramBonus
-			},
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/block.png",
-				text = "[color=%positive%]+%_bonus%[/color] Block",
-				param = paramBonus
-			}]);
+			tooltip.extend([
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/melee_defense.png",
+					text = "[color=%positive%]+%_bonus%[/color] Melee Defense",
+					param = paramBonus
+				},
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/ranged_defense.png",
+					text = "[color=%positive%]+%_rangedBonus%[/color] Ranged Defense",
+					param = paramBonus
+				},
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/block.png",
+					text = "[color=%positive%]+%_bonus%[/color] Block",
+					param = paramBonus
+				}
+			]);
 		}
 		return tooltip;
 	}
@@ -72,5 +74,9 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus();
 		_properties.MeleeDefense += bonus;
 		_properties.RangedDefense += ::Math.round(this.getBonus() / 2);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("block") + ", [color=%positive%]+" + ::Math.round(this.getBonus() / 2) + "[/color] " + ::Legends.S.inlineIcon("ranged_defense");
 	}
 });

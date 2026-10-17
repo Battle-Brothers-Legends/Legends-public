@@ -1,10 +1,37 @@
 this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		TurnsLeft = 7,
+		TurnsLeft = 10,
 		Damage = 1,
 		LastRoundApplied = 0,
 		Actor = null
 	},
+
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRedbackSpiderPoison);
+		this.m.Description = "A vicious poison is running through %their% veins";
+		this.m.KilledString = "Died from redback poison";
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_poison", 2);
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
+		this.m.IsStacking = true;
+		this.m.IsRemovedAfterBattle = true;
+	}
+
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		local timeDamage = (this.m.Damage * this.m.TurnsLeft);
+		if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
+			timeDamage *= 2;
+		}
+		tooltip.extend([ // fix this after rework, currently lies
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/damage_received.png",
+				text = "[color=%negative%]" + timeDamage + "[/color] Hitpoints Damage Received every turn"
+			}
+		]);
+		return tooltip;
+	}
 
 	function getDamage() {
 		return this.m.Damage;
@@ -16,24 +43,6 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 	function setActor(_a) {
 		this.m.Actor = ::MSU.asWeakTableRef(_a);
-	}
-
-	function create() {
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRedbackSpiderPoison);
-		this.m.KilledString = "Died from redback poison";
-		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_poison", 2);
-		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
-		this.m.IsActive = false;
-		this.m.IsStacking = true;
-		this.m.IsRemovedAfterBattle = true;
-	}
-
-	function getDescription() {
-		local timeDamage = (this.m.Damage * this.m.TurnsLeft);
-		if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
-			timeDamage *= 2;
-		}
-		return "This character has a vicious poison running through their veins and will lose [color=%negative%]" + timeDamage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function resetTime() {
@@ -92,5 +101,14 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 	function onWaitTurn() {
 		this.applyDamage();
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		// fix this after rework, currently lies
+		local timeDamage = (this.m.Damage * this.m.TurnsLeft);
+		if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
+			timeDamage *= 2;
+		}
+		return "[color=%negative%]" + timeDamage * _stacks + "[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
 	}
 });

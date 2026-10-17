@@ -60,7 +60,7 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if ((a.getFlags().has("undead") && !a.getFlags().has("ghoul")) || a.getFlags().has("cultist")) {
+			if (((a.getFlags().has("undead") && !a.getFlags().has("ghoul")) || a.getFlags().has("cultist")) && !a.getCurrentProperties().IsImmuneToDaze) {
 				::Legends.Effects.grant(a, ::Legends.Effect.LegendBaffled);
 			} else if (a.getFaction() == _user.getFaction()) {
 				::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfFaith, function (_effect) {

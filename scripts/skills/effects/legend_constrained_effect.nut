@@ -5,41 +5,26 @@ this.legend_constrained_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConstrained);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "This character is constrained and has trouble moving!";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character is Constrained and has trouble moving! Will wear off in [color=" + ::Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s), unless refreshed.";
-	}
-
 	function getTooltip() {
-		local tooltip = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 3,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Builds up [color=" + ::Const.UI.Color.NegativeValue + "]5[/color] more Fatigue for each tile travelled"
+				text = "Use [color=%negative%]5[/color] more Fatigue per tile traveled"
 			},
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]2[/color] Additional Action Point per tile moved"
+				text = "Use [color=%negative%]2[/color] more Action Points per tile traveled"
 			}
-		];
+		]);
 		return tooltip;
 	}
 
@@ -52,5 +37,9 @@ this.legend_constrained_effect <- this.inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+2[/color] " + ::Legends.S.inlineIcon("action_points") + " and [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("fatigue") + " per tile traveled";
 	}
 });

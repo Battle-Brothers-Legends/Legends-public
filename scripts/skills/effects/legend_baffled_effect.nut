@@ -1,37 +1,21 @@
 this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 1
-		//IsForced = false
 	},
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBaffled);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "This character is confused after receiving a blow.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription() {
-		return "This character is confused. Will wear off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
-	}
-
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/regular_damage.png",
+				icon = "ui/icons/damage_dealt.png",
 				text = "[color=%negative%]-15%[/color] Damage"
 			},
 			{
@@ -46,7 +30,8 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-15%[/color] Initiative"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function onAdded() {
@@ -101,5 +86,9 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-15%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ::Legends.S.inlineIcon("fatigue") + ::Legends.S.inlineIcon("initiative");
 	}
 });

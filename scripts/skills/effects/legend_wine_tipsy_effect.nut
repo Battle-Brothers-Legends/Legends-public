@@ -1,3 +1,4 @@
+//tbd
 this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 6
@@ -7,7 +8,6 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWineTipsy);
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

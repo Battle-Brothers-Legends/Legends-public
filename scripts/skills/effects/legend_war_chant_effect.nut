@@ -1,60 +1,32 @@
 this.legend_war_chant_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		Effect = 0,
-		AffectedActors = [],
-		Caster = null
+		TurnsLeft = 1
 	},
-
-	function setEffect(_e) {
-		this.m.Effect = _e;
-	}
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWarChant);
-		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsHidden = true;
+		this.m.Description = "Has been warmed up to fight.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function onAdded() {
-		local actor = this.getContainer().getActor();
-		actor.setFatigue(::Math.max(0, actor.getFatigue() - this.m.Effect));
-		if (actor.isPlacedOnMap()) {
-			this.spawnIcon(this.m.Overlay, actor.getTile());
-		}
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/health.png",
+				text = "Unaffected by War Chant"
+			}
+		]);
+		return tooltip;
 	}
 
 	function onTurnStart() {
-		if (::Legends.S.isNull(this.m.Caster)) {
-			return;
-		}
-		this.removeEffectFromAffected();
-	}
-
-	function onDeath(_fatalityType) {
-		if (::Legends.S.isNull(this.m.Caster)) {
-			return;
-		}
-		this.removeEffectFromAffected();
-	}
-
-	function onCombatFinished() {
-		this.m.Caster = null;
-		this.m.AffectedActors = [];
 		this.removeSelf();
 	}
 
-	function removeEffectFromAffected() {
-		foreach (actor in this.m.AffectedActors) {
-			if (::Legends.S.isEntityNullOrDead(actor)) {
-				continue;
-			}
-			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendWarChant);
-		}
-		this.m.AffectedActors = [];
-		this.m.Caster = null;
-		this.removeSelf();
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "Unaffected by War Chant";
 	}
 });

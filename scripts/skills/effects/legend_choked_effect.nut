@@ -5,35 +5,21 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendChoked);
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.Description = "Choked out and exhausted.";
 		this.m.IsRemovedAfterBattle = true;
-	}
-	function getDescription() {
-		// changed the  description slightly
-		return "This character has recently been choked out and is exhausted. They will catch their breath in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip() {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				text = "[color=%negative%]-15[/color] Fatigue recovered per turn"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	function onAdded() {
@@ -73,5 +59,9 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-15[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_down");
 	}
 });
