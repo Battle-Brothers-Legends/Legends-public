@@ -25,15 +25,12 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isActorOnTileWithHolyFlame()
-	{
-		local tile = this.getContainer().getActor().getTile();
-		if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "legend_holyflame")
-		{
-			return true;
-		}
-		else
-		{
+	function isActorOnTileWithHolyFlame() {
+		local actor = this.getContainer().getActor();
+		if (::Tactical.isActive() && actor.isPlacedOnMap()) {
+			local actorTileEffect = actor.getTile().Properties.Effect;
+			return actorTileEffect != null && actorTileEffect.Type == "legend_holy_flame";
+		} else {
 			return false;
 		}
 	}

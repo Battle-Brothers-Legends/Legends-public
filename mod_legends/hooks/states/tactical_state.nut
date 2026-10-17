@@ -827,7 +827,7 @@
 
 	o.spawnHolyFlameOnTile <- function (_tile, _user = null, _applyImmediately = true, _timeout = ::Const.Combat.LegendHolyFlameTimeout) {
 		local effect = {
-			Type = "legend_holyflame",
+			Type = "legend_holy_flame",
 			Tooltip = "This is hallowed ground.\n\nAllies gain the Sanctified effect, becoming immune to injuries, bleeding, poison, and morale checks when taking damage.\n\nUndead and Cultists gain the Consecrated effect, dealing damage to them each turn and removing any immunity to injuries, bleeding, and being poisoned.\n\nAdditionally, Undead are unable to resurrect in the area while the flame is active.",
 			IsPositive = false,
 			IsAppliedAtRoundStart = false,

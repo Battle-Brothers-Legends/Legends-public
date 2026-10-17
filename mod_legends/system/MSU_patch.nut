@@ -6,7 +6,7 @@ this.MSU.Tile.canResurrectOnTile = function( _tile, _force = false )
 		return false;
 	}
 
-	if (_tile.Properties.Effect != null && _tile.Properties.Effect.Type == "legend_holyflame") 
+	if (_tile.Properties.Effect != null && _tile.Properties.Effect.Type == "legend_holy_flame") 
 	{
 		return false;
 	}

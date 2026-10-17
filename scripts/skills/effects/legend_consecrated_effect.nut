@@ -33,15 +33,11 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isActorOnTileWithHolyFlame()
-	{
+	function isActorOnTileWithHolyFlame() {
 		local tile = this.getContainer().getActor().getTile();
-		if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "legend_holyflame")
-		{
+		if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "legend_holy_flame") {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
