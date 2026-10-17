@@ -11,8 +11,7 @@ statements
     :   statement*;
 
 statement
-    :   statementBody? SEMICOLON+
-    |   statementBody
+    :   statementBody SEMICOLON*
     ;
 
 statementBody
@@ -61,13 +60,13 @@ defaultCase
     ;
 
 forStatement
-    :   FOR L_PAREN statement? SEMICOLON statement? SEMICOLON statement? R_PAREN statement;
+    :   FOR L_PAREN forInit=statement? SEMICOLON forCondition=statement? SEMICOLON forUpdate=statement? R_PAREN forStat=statement;
 
 foreachStatement
     :   FOREACH L_PAREN foreachVar IN expression R_PAREN statement;
 
 foreachVar
-    :   Identifier #keyOnlyVar
+    :   Identifier                  #keyOnlyVar
     |   Identifier COMMA Identifier #keyValVar;
 
 breakStatement
@@ -101,10 +100,13 @@ throwStatement
 constStatement
     :   CONST Identifier ASSIGN constValue;
 
+stringLiteral // for easier parsing the strings
+    : StringLiteral;
+
 constValue
     :   (PLUS | MINUS)? IntegerLiteral
     |   FloatLiteral
-    |   StringLiteral;
+    |   stringLiteral;
 
 indexAssign
     :   expression L_BRACKET expression R_BRACKET ASSIGN expression;
@@ -144,20 +146,20 @@ literal
     :   IntegerLiteral
     |   FloatLiteral
     |   BooleanLiteral
-    |   StringLiteral
+    |   stringLiteral
     |   NULL
     |   THIS;
 
 expression
     // 1 Primary expressions
-    :   literal                                     #literalExpression
-    |   Identifier                                  #identifier
-    |   L_PAREN expression R_PAREN                  #parenExpression
-    |   L_CURLY_BRACKET tableSlot* R_CURLY_BRACKET  #tableConstruction
-    |   L_BRACKET expressionList? (COMMA)? R_BRACKET #arrayConstruction
-    |   FUNCTION funcname functionDeclareEnd        #functionDeclare
-    |   FUNCTION functionDeclareEnd                 #anonymousFunction
-    |   AT L_PAREN args? R_PAREN expression         #lambda
+    :   literal                                         #literalExpression
+    |   Identifier                                      #identifier
+    |   L_PAREN expression R_PAREN                      #parenExpression
+    |   tableConstruction                               #tableConstructionExpr
+    |   L_BRACKET expressionList? (COMMA)? R_BRACKET    #arrayConstruction
+    |   FUNCTION funcname functionDeclareEnd            #functionDeclare
+    |   FUNCTION functionDeclareEnd                     #anonymousFunction
+    |   AT L_PAREN args? R_PAREN expression             #lambda
     |   BASE DOT Identifier L_PAREN expressionList? R_PAREN #baseExpression
 
     // 2 Scope access
@@ -223,26 +225,14 @@ expression
     |   expression ASSIGN_SUB expression            #subEqualOp
     ;
 
-functionDeclareEnd
-    :   L_PAREN args? R_PAREN statement
-    ;
+functionDeclareEnd: L_PAREN args? R_PAREN statement;
 
-tableSlot
-    :   (basicTableSlot | arrayTableSlot | jsonTableSlot | (FUNCTION funcname functionDeclareEnd)) COMMA?
-    ;
+tableConstruction: L_CURLY_BRACKET tableSlot* R_CURLY_BRACKET;
 
-basicTableSlot
-    :   Identifier (ASSIGN | COLON) expression
-    ;
+tableSlot: (basicTableSlot | arrayTableSlot | jsonTableSlot | (FUNCTION funcname functionDeclareEnd)) COMMA?;
 
-arrayTableSlot
-    :   L_BRACKET expression R_BRACKET ASSIGN expression
-    ;
+basicTableSlot: Identifier (ASSIGN | COLON) expression;
+arrayTableSlot: L_BRACKET expression R_BRACKET ASSIGN expression;
+jsonTableSlot:  stringLiteral COLON expression;
 
-jsonTableSlot
-    :   DOUBLE_QUOTE Identifier DOUBLE_QUOTE COLON expression
-    ;
-
-expressionList
-    :   expression (COMMA expression)* COMMA?
-    ;
+expressionList: expression (COMMA expression)* COMMA?;

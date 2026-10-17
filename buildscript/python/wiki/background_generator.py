@@ -1,14 +1,15 @@
 import os
 import re
+from dataclasses import asdict
 from typing import assert_never
 
 from antlr import Antlr4Runner
-from antlr.listener.background_base_attr_listener import BackgroundBaseAttrListener, BackgroundBaseAttrAST
-from antlr.listener.background_defs_listener import BackgroundDefsListener, BackgroundDefAST
-from antlr.listener.background_perk_trees_listener import BackgroundPerkTreesListener, PerkTreesAST
-from antlr.listener.background_stats_listener import Concrete, Clone, StatType, StatRange
-from antlr.listener.background_stats_listener import BackgroundStatsListener, BackgroundStatAST
-from antlr.listener.perk_tree_listener import PerkTreeDefAST, PerkTreeListener
+from antlr.scrawlers.background_base_attr_scrawler import BackgroundBaseAttrScrawler, BackgroundBaseAttr
+from antlr.scrawlers.background_defs_scrawler import BackgroundDef, BackgroundDefsScrawler
+from antlr.scrawlers.background_perk_trees_scrawler import PerkTrees, BackgroundPerkTreesScrawler
+from antlr.scrawlers.background_stats_scrawler import BackgroundStatsScrawler, StatType, StatRange, BackgroundStat, \
+	Concrete, Clone
+from antlr.scrawlers.perk_tree_scrawler import PerkTreeDef, PerkTreeScrawler
 from wiki.generator import Generator
 from wiki.perk_tree_generator import PerkTreeGenerator
 
@@ -75,7 +76,7 @@ class BackgroundGenerator(Generator):
 		self.output_path = output_path
 
 	def process(self):
-		all_trees: dict[str, PerkTreeDefAST] = {
+		all_trees: dict[str, PerkTreeDef] = {
 			tree.target.split('.')[-1]: tree
 			for f in PerkTreeGenerator.PERK_FILES
 			for tree in self._get_all_trees(f)
@@ -89,11 +90,12 @@ class BackgroundGenerator(Generator):
 			"# WIP",
 			f"## Base stats"
 		]
-		for const in  sorted(base.keys()):
+		for const in sorted(base.keys()):
 			output.append(f"### {self._convert_const(const)}")
 			output.append(self.TABLE_START)
 			output.append(self.TEMPLATE_STAT_ROW)
-			output.append(self._format(self.TEMPLATE_ATTR_RANGE, self._mock_bg_def(const), base[const].stats, title="Attribute Range"))
+			output.append(self._format(self.TEMPLATE_ATTR_RANGE, self._mock_bg_def(const), base[const].stats,
+									   title="Attribute Range"))
 			output.append(self.TABLE_END)
 
 		output.append(f"## Backgrounds")
@@ -110,8 +112,9 @@ class BackgroundGenerator(Generator):
 			output.append(self.DETAILS_START.format(title="Click to expand for more details"))
 			output.append(self.TABLE_START)
 			output.append(self.TEMPLATE_STAT_ROW)
-			output.append(self._format(self.TEMPLATE_ATTR_RANGE, entry, bstat.add_stats(stat), title="Full Attribute Range"))
-			output.append(self._render_perk_tree(perk_trees.get(const, PerkTreesAST()), all_trees))
+			output.append(
+				self._format(self.TEMPLATE_ATTR_RANGE, entry, bstat.add_stats(stat), title="Full Attribute Range"))
+			output.append(self._render_perk_tree(perk_trees.get(const, PerkTrees()), all_trees))
 			output.append(self.TABLE_END)
 			output.append(self.DETAILS_END)
 			output.append(self.TABLE_END)
@@ -152,15 +155,13 @@ class BackgroundGenerator(Generator):
 		)
 
 	def _mock_bg_def(self, name):
-		return BackgroundDefAST("", "", name, name, "", "", "")
+		return BackgroundDef("", "", name, name, "", "")
 
 	def _get_stats(self) -> dict[str, dict[StatType, StatRange]] | None:
 		code = self.get_content((self.root / "mod_legends/!!config/background_stats.nut").resolve())
 		try:
 			result: dict[str, dict[StatType, StatRange]] = {}
-			entries: list[BackgroundStatAST] = Antlr4Runner.run(
-				code, BackgroundStatsListener()
-			).entries
+			entries: list[BackgroundStat] = Antlr4Runner.run(code, BackgroundStatsScrawler())
 
 			for entry in entries:
 				match entry:
@@ -176,65 +177,43 @@ class BackgroundGenerator(Generator):
 			print(f"Error parsing background stats: {str(e)}")
 			return None
 
-
-	def _get_defs(self) -> dict[str, BackgroundDefAST] | None:
-		result: dict[str, BackgroundDefAST] = {}
+	def _get_defs(self) -> dict[str, BackgroundDef] | None:
 		code = self.get_content((self.root / "mod_legends/!!config/backgrounds_defs.nut").resolve())
 		try:
-			entries: list[BackgroundDefAST] = Antlr4Runner.run(
-				code, BackgroundDefsListener()
-			).entries
-
-			for entry in entries:
-				result[entry.const] = entry
-			return result
+			return {entry.const: entry for entry in
+					Antlr4Runner.run(code, BackgroundDefsScrawler())}
 		except Exception as e:
 			print(f"Error parsing background defs: {str(e)}")
 			return None
 
-
-	def _get_base(self) -> dict[str, BackgroundBaseAttrAST] | None:
-		result: dict[str, BackgroundBaseAttrAST] = {}
+	def _get_base(self) -> dict[str, BackgroundBaseAttr] | None:
 		code = self.get_content((self.root / "mod_legends/!!config/character_backgrounds.nut").resolve())
 		try:
-			entries: list[BackgroundBaseAttrAST] = Antlr4Runner.run(
-				code, BackgroundBaseAttrListener()
-			).entries
-
-			for entry in entries:
-				result[entry.target] = entry
-
-			return result
+			return {entry.target: entry for entry in
+					Antlr4Runner.run(code, BackgroundBaseAttrScrawler())}
 		except Exception as e:
-			print(f"Error parsing background defs: {str(e)}")
+			print(f"Error parsing char base stats: {str(e)}")
 			return None
 
-	def _get_all_trees(self, file) -> list[PerkTreeDefAST]:
-		return Antlr4Runner.run(
-			self.get_content((self.root / f"mod_legends/config/{file}").resolve()), PerkTreeListener()
-		).entries
+	def _get_all_trees(self, file) -> list[PerkTreeDef]:
+		return Antlr4Runner.run(self.get_content((self.root / f"mod_legends/config/{file}").resolve()),
+								PerkTreeScrawler())
 
-	def _get_perk_trees(self) -> dict[str, PerkTreesAST] | None:
-		result: dict[str, PerkTreesAST] = {}
+	def _get_perk_trees(self) -> dict[str, PerkTrees] | None:
 		code = self.get_content((self.root / "mod_legends/config/zz_background_perk_trees.nut").resolve())
 		try:
-			entries: list[PerkTreesAST] = Antlr4Runner.run(
-				code, BackgroundPerkTreesListener()
-			).entries
-
-			for entry in entries:
-				result[str(entry.target.split('.')[-1])] = entry
-
-			return result
+			return {str(entry.target.split('.')[-1]): entry for entry in
+					Antlr4Runner.run(code, BackgroundPerkTreesScrawler())}
 		except Exception as e:
-			print(f"Error parsing background defs: {str(e)}")
+			print(f"Error parsing background perk trees: {str(e)}")
 			return None
 
-	def _render_perk_tree(self, tree: PerkTreesAST, all_trees: dict[str, PerkTreeDefAST],  target_file: str = "Perk%20Trees") -> str:
+	def _render_perk_tree(self, tree: PerkTrees, all_trees: dict[str, PerkTreeDef],
+						  target_file: str = "Perk%20Trees") -> str:
 		links = []
 		for perk in tree.trees:
 			name = self._convert_const(perk.split('.')[-1])
-			anchor = str(all_trees.get(perk, PerkTreeDefAST()).name).lower().replace(" ", "-")
+			anchor = str(all_trees.get(perk, PerkTreeDef()).name).lower().replace(" ", "-")
 			links.append(f'<a href="{target_file}#{anchor}">{name}</a>')
 
 		return self.TEMPLATE_PERK_TREES.format(perks="<br>".join(links))

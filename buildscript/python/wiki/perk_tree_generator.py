@@ -3,7 +3,7 @@ import re
 from typing import assert_never
 
 from antlr import Antlr4Runner
-from antlr.listener.perk_tree_listener import PerkTreeListener, PerkTreeDefAST
+from antlr.scrawlers.perk_tree_scrawler import PerkTreeScrawler, PerkTreeDef
 from wiki.generator import Generator
 
 
@@ -15,7 +15,7 @@ class PerkTreeGenerator(Generator):
 		"z_perks_tree_enemy_armor.nut",
 		"z_perks_tree_enemy_traits.nut",
 		"z_perks_tree_magic.nut",
-		"z_perks_tree_profession.nut",
+		# "z_perks_tree_profession.nut", # todo, what happened to it?
 		"z_perks_tree_traits.nut",
 		"z_perks_tree_weapons.nut",
 	)
@@ -44,26 +44,27 @@ class PerkTreeGenerator(Generator):
 		self.output_path = output_path
 
 	def process(self):
-		trees: list[PerkTreeDefAST] = [tree for f in self.PERK_FILES for tree in self._get_trees(f)]
+		trees: list[PerkTreeDef] = [tree for f in self.PERK_FILES for tree in self._get_trees(f)]
 
 		output = [
 			"# WIP",
 			f"## Perk trees"
 		]
+
 		for tree in  sorted(trees, key=lambda tree: tree.name):
 			output.append(f"### {tree.name}\n")
 			output.append(self.TABLE_START)
 			output.append(self.TEMPLATE_TITLE_ROW.format(icon=tree.icon, text=tree.name))
 			output.append(self.TEMPLATE_HEADER_ROW)
 			for perk in tree.tree:
-				output.append(self.TEMPLATE_PERK_ROW.format(perk=perk.name, tier=perk.tier))
+				output.append(self.TEMPLATE_PERK_ROW.format(perk=perk.name, tier=perk.tier + 1))
 			output.append(self.TABLE_END)
 
 		os.makedirs(self.root / self.output_path, exist_ok=True)
 		with open((self.root / self.output_path / "Perk Trees.md").resolve(), "w", encoding="utf-8") as f:
 			f.write("\n".join(output))
 
-	def _get_trees(self, file) -> list[PerkTreeDefAST]:
+	def _get_trees(self, file) -> list[PerkTreeDef]:
 		return Antlr4Runner.run(
-			self.get_content((self.root / f"mod_legends/config/{file}").resolve()), PerkTreeListener()
-		).entries
+			self.get_content((self.root / f"mod_legends/config/{file}").resolve()), PerkTreeScrawler()
+		)

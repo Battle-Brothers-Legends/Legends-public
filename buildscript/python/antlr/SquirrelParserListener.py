@@ -1,4 +1,4 @@
-# Generated from SquirrelParser.g4 by ANTLR 4.13.2
+# Generated from grammars/SquirrelParser.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .SquirrelParser import SquirrelParser
@@ -233,6 +233,15 @@ class SquirrelParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SquirrelParser#stringLiteral.
+    def enterStringLiteral(self, ctx:SquirrelParser.StringLiteralContext):
+        pass
+
+    # Exit a parse tree produced by SquirrelParser#stringLiteral.
+    def exitStringLiteral(self, ctx:SquirrelParser.StringLiteralContext):
+        pass
+
+
     # Enter a parse tree produced by SquirrelParser#constValue.
     def enterConstValue(self, ctx:SquirrelParser.ConstValueContext):
         pass
@@ -356,6 +365,15 @@ class SquirrelParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SquirrelParser#literal.
     def exitLiteral(self, ctx:SquirrelParser.LiteralContext):
+        pass
+
+
+    # Enter a parse tree produced by SquirrelParser#tableConstructionExpr.
+    def enterTableConstructionExpr(self, ctx:SquirrelParser.TableConstructionExprContext):
+        pass
+
+    # Exit a parse tree produced by SquirrelParser#tableConstructionExpr.
+    def exitTableConstructionExpr(self, ctx:SquirrelParser.TableConstructionExprContext):
         pass
 
 
@@ -782,15 +800,6 @@ class SquirrelParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by SquirrelParser#tableConstruction.
-    def enterTableConstruction(self, ctx:SquirrelParser.TableConstructionContext):
-        pass
-
-    # Exit a parse tree produced by SquirrelParser#tableConstruction.
-    def exitTableConstruction(self, ctx:SquirrelParser.TableConstructionContext):
-        pass
-
-
     # Enter a parse tree produced by SquirrelParser#compareOp.
     def enterCompareOp(self, ctx:SquirrelParser.CompareOpContext):
         pass
@@ -851,6 +860,15 @@ class SquirrelParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SquirrelParser#functionDeclareEnd.
     def exitFunctionDeclareEnd(self, ctx:SquirrelParser.FunctionDeclareEndContext):
+        pass
+
+
+    # Enter a parse tree produced by SquirrelParser#tableConstruction.
+    def enterTableConstruction(self, ctx:SquirrelParser.TableConstructionContext):
+        pass
+
+    # Exit a parse tree produced by SquirrelParser#tableConstruction.
+    def exitTableConstruction(self, ctx:SquirrelParser.TableConstructionContext):
         pass
 
 

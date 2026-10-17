@@ -1,10 +1,5 @@
 lexer grammar SquirrelLexer;
 
-channels {
-    COMMENT,
-    EOL
-}
-
 SCOPE : '::';
 VARARGS : '...';
 NEWSLOT : '<-';
@@ -152,10 +147,10 @@ fragment EscapeSequence
     :   '\\' ([tabnrvf\\"'0] | 'x' HexDigit+);
 
 Comment
-    :   ('//' | '#') ~('\r' | '\n')* -> channel(COMMENT);
+    :   ('//' | '#') ~('\r' | '\n')* -> channel(HIDDEN);
 
 MultilineComment
-    :   '/*' .*? '*/' -> channel(COMMENT);
+    :   '/*' .*? '*/' -> channel(HIDDEN);
 
 BooleanLiteral
     :   TrueLiteral
@@ -170,5 +165,5 @@ fragment FalseLiteral
 Identifier
     :   [a-zA-Z_] [a-zA-Z_0-9]*;
 
-NEWLINE: '\n' -> channel(EOL);
-WS: (' ' | '\t' | '\r') -> skip;
+WS
+    :   [ \t\r\n]+ -> skip;
