@@ -1,4 +1,62 @@
 ::mods_hookExactClass("skills/effects/shellshocked_effect", function (o) {
+	o.getDescription = function () {
+		return "Shellshocked from being near a mortar explosion. Ears ringing, vision blurred, slightly disoriented.";
+	}
+
+	o.getTooltip = function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/regular_damage.png",
+				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Damage"
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Initiative"
+			},
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/bravery.png",
+				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Resolve"
+			},
+			{
+				id = 14,
+				type = "text",
+				icon = "ui/icons/melee_skill.png",
+				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Melee Skill"
+			},
+			{
+				id = 15,
+				type = "text",
+				icon = "ui/icons/ranged_skill.png",
+				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Ranged Skill"
+			},
+			{
+				id = 16,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Melee Defense"
+			},
+			{
+				id = 17,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Ranged Defense"
+			},
+			{
+				id = 18,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "The effect lessens every turn"
+			}
+		]);
+		return tooltip;
+	}
 
 	o.onAdded = function () {
 		local actor = this.getContainer().getActor();
@@ -21,5 +79,9 @@
 
 			actor.checkMorale(-1, 0);
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-" + (this.m.Stacks * 5) + "%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("ranged_skill") + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ::Legends.S.inlineIcon("bravery") + ::Legends.S.inlineIcon("initiative");
 	}
 });

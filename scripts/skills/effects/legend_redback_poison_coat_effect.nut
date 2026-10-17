@@ -16,14 +16,8 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Next [color=%positive%]" + this.m.AttacksLeft + "[/color] apply Redback Poison"
+				text = "Next [color=%positive%]" + this.m.AttacksLeft + "[/color] dealing at least " + ::Const.Combat.PoisonEffectMinDamage + " to Health apply Redback Poison"
 			},
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/health.png",
-				text = "Attacks need to deal at least " + ::Const.Combat.PoisonEffectMinDamage + " to Health"
-			}
 			/*{ redback psn effect here after its changed
 				id = 13,
 				type = "text",

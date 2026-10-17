@@ -28,6 +28,18 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function getDamage() {
+		return this.m.Damage;
+	}
+
+	function setDamage(_d) {
+		this.m.Damage = _d;
+	}
+
+	function setActor(_a) {
+		this.m.Actor = ::MSU.asWeakTableRef(_a);
+	}
+
 	function applyDamage() {
 		if (this.m.LastRoundApplied != ::Time.getRound()) {
 			this.m.LastRoundApplied = ::Time.getRound();

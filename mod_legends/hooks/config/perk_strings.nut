@@ -354,7 +354,7 @@ Bring it on!
 [color=%passive%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Taunt[/color] skill which forces a targeted opponent take offensive actions instead of defensive ones.
 
-• Will also apply the [color=%status%]Taunt effect[/color] which will make all enemies more likely to target you until the start of your next turn. Enemies will be more likely to target you by [color=%positive%]15%[/color] for every 10 points of resolve with a maximum bonus of 150%.
+• Will also apply the [color=%status%]Taunt effect[/color] which makes all enemies more likely to target you until the start of your next turn. Enemies will be more likely to target you by [color=%positive%]15%[/color] for every 10 points of resolve with a maximum bonus of 150%.
 
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]15[/color] Fatigue.
 ";
@@ -519,7 +519,7 @@ Like a beast of prey, you hunt the weak.
 Mother always said you had a hard head.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Regular hits to the head no longer cause critical damage and their damage will be reduced to normal, significantly lowering the risk of recieving debilitating head [color=%status%]Injuries[/color].
+• Regular hits to the head no longer cause critical damage and their damage will be reduced to normal, significantly lowering the risk of receiving debilitating head [color=%status%]Injuries[/color].
 
 • Any effects or traits that adds to the damage done to head multiplier will be reduced to [color=%negative%]2/3[/color] of the original value.
 

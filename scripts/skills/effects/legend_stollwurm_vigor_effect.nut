@@ -54,6 +54,6 @@ this.legend_stollwurm_vigor_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("immunity") + " to Stun, Knockback and Grab, [color=%negative%]-50%[/color]" + ::Legends.S.inlineIcon("damage_received") + ", less likely to be targeted";
+		return ::Legends.S.inlineIcon("immunity") + " to Stun, Knockback and Grab, [color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon("damage_received") + ", less likely to be targeted";
 	}
 });

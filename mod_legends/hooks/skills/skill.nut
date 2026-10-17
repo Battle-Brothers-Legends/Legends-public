@@ -1,8 +1,6 @@
 ::mods_hookBaseClass("skills/skill", function (o) {
 	while (!("m" in o && "ID" in o.m)) o = o[o.SuperName];
 
-	o.m.IsForPerkTooltip <- false; // Indicate whether the Perk is a dummy that is being used only to generate unactivated perk tooltip hints
-	o.m.IsForProfessionTooltip <- false;
 	o.m.Sound <- [];
 	o.m.AdditionalTooltip <- [];
 	o.m.MinRangeForPerTile <- 2; // to fix HitChanceAdditionalWithEachTile in cases where the min range is higher than 2

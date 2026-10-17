@@ -23,4 +23,8 @@
 			this.removeSelf();
 		}
 	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon("bravery");
+	}
 });

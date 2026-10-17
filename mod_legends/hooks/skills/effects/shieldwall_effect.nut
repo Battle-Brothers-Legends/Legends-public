@@ -7,42 +7,8 @@
 		this.m.Description = "Having raised the shield to a protective stance, this character gains increased block.";
 	}
 
-	o.onUpdate = function (_properties) {
-		if (this.m.Stacks <= 0) {
-			this.removeSelf();
-		}
-		local actor = this.getContainer().getActor();
-		local shield = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield) && shield.getCondition() > 0) {
-			// pointless but you never know
-			local mult = 1.0;
-			local proficiencyBonus = 0;
-
-			if (actor.getCurrentProperties().IsSpecializedInShields) {
-				mult *= 1.25;
-			}
-
-			if (actor.getCurrentProperties().IsProficientWithShieldSkills) {
-				proficiencyBonus = 5;
-			}
-			_properties.Block += ::Math.floor(actor.getBlock() * mult) + proficiencyBonus;
-		}
-	}
-
 	o.getTooltip = function () {
 		local bonus = this.getBonus();
-		local actor = this.getContainer().getActor();
-		local mult = 1.0;
-		local proficiencyBonus = 0;
-
-		if (actor.getCurrentProperties().IsSpecializedInShields) {
-			mult *= 1.25;
-		}
-
-		if (actor.getCurrentProperties().IsProficientWithShieldSkills) {
-			proficiencyBonus = 5;
-		}
-
 		return [
 			{
 				id = 1,
@@ -60,7 +26,7 @@
 				icon = "ui/icons/block.png",
 				text = "Grants an additional [color=%positive%]+%_block%[/color] Block against attacks",
 				param = [
-					["_block", ::Math.floor(actor.getBlock() * mult + bonus + proficiencyBonus)]
+					["_block", this.calculateBlock(bonus)]
 				]
 			},
 			{
@@ -75,6 +41,23 @@
 		];
 	}
 
+	o.onUpdate = function (_properties) {
+		if (this.m.Stacks <= 0) {
+			this.removeSelf();
+		}
+		local shield = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield) && shield.getCondition() > 0) {
+			_properties.Block += this.calculateBlock(); // no bonus in real calc since its added onBeingAttacked
+		}
+	}
+
+	o.calculateBlock <- function (_bonus = 0) {
+		local actor = this.getContainer().getActor();
+		local mult = actor.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0;
+		local proficiencyBonus = actor.getCurrentProperties().IsProficientWithShieldSkills ? 5 : 0;
+		return ::Math.floor(actor.getBlock() * mult + _bonus + proficiencyBonus);
+	}
+
 	o.onDamageReceived <- function (_attacker, _skill, _hitInfo) {
 		this.m.Stacks -= 1;
 	}
@@ -85,5 +68,13 @@
 
 	o.onMissed <- function (_attacker, _skill) {
 		this.m.Stacks -= 1;
+	}
+
+	o.onBeingAttacked = function (_attacker, _skill, _properties) {
+		_properties.Block += this.getBonus();
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.calculateBlock(this.getBonus()) + "[/color] " + ::Legends.S.inlineIcon("block");
 	}
 });

@@ -5,17 +5,18 @@
 		}
 	}
 
-	function getTooltip() {
-		return [
+	o.getDescription = function () {
+		return "Stunned and unable to act.";
+	}
+
+	o.getTooltip <- function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
+				id = 10,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = "[color=%negative%]Unable to act[/color]"
 			},
 			{
 				id = 11,
@@ -35,7 +36,8 @@
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-25%[/color] Initiative"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	o.onAdded = function () {
@@ -75,9 +77,17 @@
 		}
 	}
 
-	function onUpdate(_properties) {
-		_properties.MeleeDefenseMult *= 0.75;
-		_properties.RangedDefenseMult *= 0.75;
-		_properties.InitiativeMult *= 0.75;
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function (_properties) {
+		onUpdate(_properties);
+		if (!_properties.IsImmuneToStun) {
+			_properties.MeleeDefenseMult *= 0.75;
+			_properties.RangedDefenseMult *= 0.75;
+			_properties.InitiativeMult *= 0.75;
+		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-25%[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ::Legends.S.inlineIcon("initiative") + ", unable to act";
 	}
 });

@@ -1,19 +1,13 @@
 ::mods_hookExactClass("skills/effects/whipped_effect", function (o) {
-
 	o.m.TurnsLeft = 3;
 
-	o.getTooltip = function () {
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+	o.getDescription = function () {
+		return "This character just received a hurtful reminder of what they need to do for %their% masters.";
+	}
+
+	o.getTooltip <- function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 10,
 				type = "text",
@@ -21,36 +15,37 @@
 				text = "[color=%positive%]+" + (12 + this.m.Level) + "[/color] Melee Skill"
 			},
 			{
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
 				text = "[color=%positive%]+" + (14 + this.m.Level) + "[/color] Ranged Skill"
 			},
 			{
-				id = 10,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
 				text = "[color=%negative%]-" + (5 + this.m.Level) + "[/color] Resolve"
 			},
 			{
-				id = 10,
+				id = 13,
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%positive%]+" + (9 + this.m.Level) + "[/color] Initiative"
 			},
 			{
-				id = 10,
+				id = 14,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
 				text = "[color=%positive%]+" + (5 + this.m.Level) + "[/color] Melee Defense"
 			},
 			{
-				id = 10,
+				id = 15,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
 				text = "[color=%positive%]+" + (5 + this.m.Level) + "[/color] Ranged Defense"
 			}
-		];
+		]);
+		return tooltip;
 	}
 
 	o.onAdded = function () {
@@ -74,5 +69,9 @@
 		local actor = this.getContainer().getActor();
 		actor.getSprite("status_sweat").setBrush(this.m.TurnsLeft > 1 ? "bust_slave_whipped" : "bust_slave_whipped_expiring");
 		actor.setDirty(true);
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + (12 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("melee_skill") + ", [color=%positive%]+" + (14 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%positive%]+" + (5 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%positive%]+" + (5 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%positive%]+" + (9 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + (5 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("bravery");
 	}
 });

@@ -1,9 +1,25 @@
 ::mods_hookExactClass("skills/effects/staggered_effect", function (o) {
-
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
 		::Legends.Effects.onCreate(this, ::Legends.Effect.Staggered);
+	}
+
+	o.getDescription = function () {
+		return "Received a heavy blow, off-balance, scrambling and late to act.";
+	}
+
+	o.getTooltip = function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = "[color=%negative%]-50%[/color] Initiative"
+			}
+		]);
+		return tooltip;
 	}
 
 	local onUpdate = o.onUpdate;
@@ -31,5 +47,9 @@
 		if (tile != null) {
 			this.spawnIcon("status_effect_65", this.getContainer().getActor().getTile());
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon("initiative");
 	}
 });

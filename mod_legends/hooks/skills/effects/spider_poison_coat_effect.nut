@@ -1,4 +1,21 @@
 ::mods_hookExactClass("skills/effects/spider_poison_coat_effect", function (o) {
+	o.getDescription = function () {
+		return "This character's weapon is coated with concentrated webknecht poison.";
+	}
+
+	o.getTooltip = function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Next [color=%positive%]" + this.m.AttacksLeft + "[/color] dealing at least " + ::Const.Combat.PoisonEffectMinDamage + " to Health apply webknecht Poison"
+			},
+		]);
+		return tooltip;
+	}
+
 	o.onAdded <- function () {
 		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPoisoner)) {
 			this.m.AttacksLeft += 2;
@@ -6,9 +23,7 @@
 	}
 
 	o.onTargetHit = function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		--this.m.AttacksLeft;
-
-		if (this.m.AttacksLeft <= 0) {
+		if (--this.m.AttacksLeft <= 0) {
 			this.removeSelf();
 		}
 
@@ -31,5 +46,9 @@
 			}
 			_effect.setDamage(10);
 		}.bindenv(this));
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.m.AttacksLeft + "[/color] " + " next attacks apply webknecht Poison";
 	}
 });

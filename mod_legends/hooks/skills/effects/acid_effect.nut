@@ -1,4 +1,30 @@
 ::mods_hookExactClass("skills/effects/acid_effect", function (o) {
+	o.getDescription = function () {
+		return "This character's armor is slowly being eaten away by acid.";
+	}
+
+	o.getTooltip = function () {
+		local tooltip = this.skill.getTooltip();
+		local flags = this.getContainer().getActor().getFlags();
+		if (!flags.has("head_immune_to_acid")) {
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/armor_head.png",
+				text = "[color=%negative%]20%[/color] of head armor is lost each turn"
+			});
+		}
+		if (!flags.has("body_immune_to_acid")) {
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/armor_body.png",
+				text = "[color=%negative%]20%[/color] of body armor is lost each turn"
+			});
+		}
+		return tooltip;
+	}
+
 	o.applyDamage = function () {
 		if (this.m.LastRoundApplied != ::Time.getRound()) {
 			this.m.LastRoundApplied = ::Time.getRound();
@@ -34,7 +60,7 @@
 				local damage = actor.getArmor(::Const.BodyPart.Body) * 0.2;
 
 				if (this.isKindOf(actor.get(), "kraken")) {
-					damage = damage * 0.5;
+					damage *= 0.5;
 				}
 
 				local hitInfo = clone ::Const.Tactical.HitInfo;
@@ -57,7 +83,7 @@
 					::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.2, actor.getPos());
 				}
 
-				for (local i = 0; i < ::Const.Tactical.AcidParticles.len(); i = ++i) {
+				for (local i = 0; i < ::Const.Tactical.AcidParticles.len(); i++) {
 					::Tactical.spawnParticleEffect(true, ::Const.Tactical.AcidParticles[i].Brushes, this.getContainer().getActor().getTile(), ::Const.Tactical.AcidParticles[i].Delay, ::Const.Tactical.AcidParticles[i].Quantity, ::Const.Tactical.AcidParticles[i].LifeTimeQuantity, ::Const.Tactical.AcidParticles[i].SpawnRate, ::Const.Tactical.AcidParticles[i].Stages);
 				}
 			}
@@ -66,5 +92,12 @@
 				this.removeSelf();
 			}
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		local damage = this.isKindOf(this.getContainer().getActor().get(), "kraken") ? 10 : 20;
+		local flags = this.getContainer().getActor().getFlags();
+		local icons = "" + (!flags.has("body_immune_to_acid") ? ::Legends.S.inlineIcon("armor_body") : "") + (!flags.has("head_immune_to_acid") ? ::Legends.S.inlineIcon("armor_head") : "");
+		return "[color=%negative%]-" + (damage * _stacks) + "%[/color] " + icons + " every turn";
 	}
 });

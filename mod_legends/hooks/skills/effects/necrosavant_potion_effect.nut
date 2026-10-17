@@ -11,4 +11,8 @@
 
 		onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "Heal [color=%positive%]25%[/color] of health " + ::Legends.S.inlineIcon("damage_dealt") + " to adjacent enemies that have blood";
+	}
 });

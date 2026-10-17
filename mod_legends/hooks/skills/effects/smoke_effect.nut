@@ -1,4 +1,8 @@
 ::mods_hookExactClass("skills/effects/smoke_effect", function (o) {
+	o.getDescription = function () {
+		return "Covered by dense layers of smoke, slipping in and out of visibility, moving freely and ignoring any zones of control.";
+	}
+
 	o.getTooltip = function () {
 		return [
 			{
@@ -14,7 +18,7 @@
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/ranged_defense.png",
+				icon = "ui/icons/sturdiness.png",
 				text = "[color=%negative%]50%[/color] less Ranged Damage received"
 			},
 			{
@@ -65,5 +69,9 @@
 		} else {
 			this.removeSelf();
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("vision") + ", [color=%negative%]-50%[/color] ranged " + ::Legends.S.inlineIcon("damage_received") + ", unaffected by Zones of Control";
 	}
 });

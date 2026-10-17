@@ -7,19 +7,7 @@
 
 		local actor = this.getContainer().getActor();
 		local myTile = actor.getTile();
-		local allies = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
-		local isAlone = true;
-
-		foreach (ally in allies) {
-			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap()) {
-				continue;
-			}
-
-			if (ally.getTile().getDistanceTo(myTile) <= 2) {
-				isAlone = false;
-				break;
-			}
-		}
+		local isAlone = (::Tactical.Entities.getInstancesOfFaction(actor.getFaction()).filter(@(_, _ally)(_ally.getID() != actor.getID() && _ally.isPlacedOnMap() && _ally.getTile().getDistanceTo(myTile) <= 2)).len() == 0);
 
 		if (isAlone) {
 			this.m.IsHidden = false;
@@ -32,5 +20,9 @@
 		} else {
 			this.m.IsHidden = true;
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		"[color=%positive%]+15%[/color] " + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("ranged_skill") + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ::Legends.S.inlineIcon("bravery");
 	}
 });

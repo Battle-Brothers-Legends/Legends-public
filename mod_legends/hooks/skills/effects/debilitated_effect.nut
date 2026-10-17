@@ -1,30 +1,31 @@
 ::mods_hookExactClass("skills/effects/debilitated_effect", function (o) {
 	o.m.TurnsLeft <- 3;
 
-	local create = o.create;
-	o.create = function () {
-		create();
-		this.m.Description = "This character has been debilitated";
-	}
-
 	o.getDescription <- function () {
-		return "This character is debilitated and will only do [color=%negative%] 75% [/color] damage and take [color=%negative%] 115% [/color] damage for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "Severely weakened after having sustained a debilitating blow.";
 	}
 
-	o.getEffectDurationString <- function () {
-		local ret = "";
-
-		if (this.m.TurnsLeft == 2) {
-			ret = "two turns";
-		} else {
-			ret = "one turn";
-		}
-
-		return ret;
+	o.getTooltip <- function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/damage_dealt.png",
+				text = "[color=%negative%]-25%[/color] Damage"
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/damage_received.png",
+				text = "[color=%negative%]+15%[/color] Damage received"
+			}
+		]);
+		return tooltip;
 	}
 
 	o.getLogEntryOnAdded <- function (_user, _victim) {
-		return _user + " has debilitated " + _victim + " for " + this.getEffectDurationString();
+		return _user + " has debilitated " + _victim;
 	}
 
 	o.onAdded <- function () {
@@ -44,5 +45,9 @@
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-25%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%negative%]-15%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

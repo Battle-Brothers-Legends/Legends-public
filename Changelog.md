@@ -613,6 +613,7 @@
 - fatality chances can now be hidden if they are clogging your skill tooltips
 - reworked on actor hover tooltips to allow dynamic combat descriptions
 - changed the way immunities are displayed on enemy tooltip, expanded the list of displayed immunities
+- enemy tooltips reworked to include turns left, non-stacking effect stacks
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -685,6 +686,8 @@
 - fixed levitating effect conflicts
 - Second Wind now procs at falling below 50% hp as intended rather than after taking a hit while being under 50% hp
 - Infected no longer mistakenly gives an extra AP point to the ailing on first turn
+- fixed Stun effect not reducing defensive stats
+- fixed Taunt skill not increasing the aggro factor of the caster
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/double_strike_effect", function (o) {
-	
 	o.m.DamageBonus <- 25;
+	o.m.TurnsLeft <- 1;
 
 	local create = o.create;
 	o.create = function () {
@@ -9,36 +9,26 @@
 	}
 
 	o.getDescription = function () {
-		return "Having just landed a hit, this character is motivated to do even more harm! Missing or ending your turn will remove this effect.";
+		return "Having just landed a hit, this character is motivated to do even more harm!";
 	}
 
-	o.getTooltip <- function ()
-	{
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+	o.getTooltip <- function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 			{
 				id = 3,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "Deal [color=%positive%]" + this.m.DamageBonus + "%[/color] more damage"
+				text = "Deal [color=%positive%]" + this.m.DamageBonus + "%[/color] more Damage"
 			},
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Recover [color=%positive%]1-2[/color] fatigue with each hit"
+				text = "Recover [color=%positive%]1-2[/color] Fatigue per hit"
 			}
-		];
-		return ret;
+		]);
+		return tooltip;
 	}
 
 	o.onAdded = function () {}
@@ -48,8 +38,9 @@
 	o.onUpdate <- function (_properties) {
 		local actor = this.getContainer().getActor();
 		this.m.DamageBonus = 25;
-		if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Dagger))
+		if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Dagger)) {
 			this.m.DamageBonus = 35;
+		}
 		_properties.DamageTotalMult *= 1.0 + this.m.DamageBonus * 0.01;
 	}
 
@@ -60,7 +51,7 @@
 	o.onTargetHit <- function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		local actor = this.getContainer().getActor();
 		if (!::Legends.S.isEntityNullOrDead(actor)) {
-			actor.setFatigue(::Math.max(0, actor.getFatigue() - ::Math.rand(1,2)));
+			actor.setFatigue(::Math.max(0, actor.getFatigue() - ::Math.rand(1, 2)));
 			actor.setDirty(true);
 		}
 	}
@@ -71,5 +62,9 @@
 		if (!::Legends.S.isEntityNullOrDead(actor)) {
 			actor.setDirty(true);
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]" + this.m.DamageBonus + "[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%positive%]1-2[/color] " + ::Legends.S.inlineIcon("fatigue") + " per hit";
 	}
 });

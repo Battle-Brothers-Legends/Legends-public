@@ -13,7 +13,14 @@ local function colorizeLootChance(_value) {
 
 local function checkForIcon(toAdd, _item) {
 	if (_item.getIcon() == "" || _item == "ui/items/" && ItemImagePaths.find(toAdd + _item.getIcon()) == null) {
-		return "ui/items/supplies/legend_placeholder.png";
+		local slot = _item.getSlotType();
+		if (slot == ::Const.ItemSlot.Body) {
+			return "ui/icons/armor_body.png";
+		} else if (slot == ::Const.ItemSlot.Head) {
+			return "ui/icons/armor_head.png";
+		} else {
+			return "ui/items/supplies/legend_placeholder.png";
+		}
 	} else {
 		return toAdd + _item.getIcon();
 	}

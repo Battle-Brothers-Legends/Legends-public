@@ -1,23 +1,29 @@
 ::mods_hookExactClass("skills/effects/spider_poison_effect", function (o) {
 	o.m.Actor <- null;
 
-	o.getDamage <- function () {
-		return this.m.Damage;
+	o.getDescription = function () {
+		return "Has a vicious poison running through %their% veins.";
 	}
 
-	o.setDamage <- function (_d) {
-		this.m.Damage = _d;
+	o.getDamage = function () {
+		return this.m.Damage * (::Legends.isLegendaryDifficulty() ? 2 : 1);
+	}
+
+	o.getTooltip <- function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/damage_received.png",
+				text = "[color=%negative%]" + this.getDamage() + "[/color] Hitpoints Damage Received every turn"
+			}
+		]);
+		return tooltip;
 	}
 
 	o.setActor <- function (_a) {
 		this.m.Actor = ::MSU.asWeakTableRef(_a);
-	}
-
-	o.getDescription = function () {
-		if (::Legends.isLegendaryDifficulty()) {
-			return "This character has a vicious poison running through his veins and will lose [color=%negative%]" + 2 * this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
-		}
-		return "This character has a vicious poison running through his veins and will lose [color=%negative%]" + this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	o.applyDamage = function () {
@@ -35,11 +41,7 @@
 			}
 
 			local hitInfo = clone ::Const.Tactical.HitInfo;
-			hitInfo.DamageRegular = this.m.Damage;
-			if (::Legends.isLegendaryDifficulty()) {
-				hitInfo.DamageRegular = 2 * this.m.Damage;
-			}
-
+			hitInfo.DamageRegular = this.getDamage();
 			hitInfo.DamageDirect = 1.0;
 			hitInfo.BodyPart = ::Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
@@ -48,4 +50,7 @@
 		}
 	}
 
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]" + this.getDamage() + "[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
+	}
 });

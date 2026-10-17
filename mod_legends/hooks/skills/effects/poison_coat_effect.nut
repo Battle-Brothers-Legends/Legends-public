@@ -1,4 +1,21 @@
 ::mods_hookExactClass("skills/effects/poison_coat_effect", function (o) {
+	o.getDescription = function () {
+		return "This character's weapon is coated with poison.";
+	}
+
+	o.getTooltip = function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Next [color=%positive%]" + this.m.AttacksLeft + "[/color] dealing at least " + ::Const.Combat.PoisonEffectMinDamage + " to Health apply Poison"
+			},
+		]);
+		return tooltip;
+	}
+
 	o.onAdded <- function () {
 		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPoisoner)) {
 			this.m.AttacksLeft += 2;
@@ -34,5 +51,9 @@
 		} else if (runePoison == null && gobboPoison != null) {
 			gobboPoison.resetTime();
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.m.AttacksLeft + "[/color] " + " next attacks apply Poison";
 	}
 });

@@ -11,7 +11,47 @@
 	local create = o.create;
 	o.create = function () {
 		create();
+		this.m.Description = "Thick vines of unnatural growth hold %them% in place, hampering %their% ability to defend %themselves%. To break free, the vines will have to be cut down.";
 		this.m.KilledString = "Crushed by vines";
+	}
+
+	o.getTooltip = function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 9,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = "[color=%negative%]Unable to move[/color]"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=%negative%]-35%[/color] Melee Defense"
+			},
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=%negative%]-35%[/color] Ranged Defense"
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = "[color=%negative%]-35%[/color] Initiative"
+			},
+		]);
+		if (this.m.DamageMin > 0) {
+			tooltip.push({
+				id = 13,
+				type = "text",
+				icon = "ui/icons/damage_received.png",
+				text = "[color=%negative%]10-20[/color] Hitpoints Damage Received every turn"
+			});
+		}
+		return tooltip;
 	}
 
 	o.applyDamage <- function () {
@@ -73,5 +113,13 @@
 
 	o.onTurnEnd <- function () {
 		this.applyDamage();
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		local tooltip = "[color=%negative%]-35%[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ::Legends.S.inlineIcon("initiative") + ", unable to move";
+		if (this.m.DamageMin > 0) {
+			tooltip += ", [color=%negative%]10-20[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
+		}
+		return tooltip;
 	}
 });

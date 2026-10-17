@@ -5,7 +5,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBaffled);
-		this.m.Description = "This character is confused after receiving a blow.";
+		this.m.Description = "Confused after receiving a blow.";
 		this.m.IsRemovedAfterBattle = true;
 	}
 
