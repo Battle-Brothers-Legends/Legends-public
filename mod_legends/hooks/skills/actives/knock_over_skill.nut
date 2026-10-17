@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/actives/knock_over_skill", function(o)
-{
-	o.getTooltip = function ()
-	{
+::mods_hookExactClass("skills/actives/knock_over_skill", function (o) {
+	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 2) * ::Const.Combat.FatigueReceivedPerHit;
 		ret.push({
@@ -17,17 +15,14 @@
 			text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 		});
 
-		if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
-		{
+		if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Has a [color=%positive%]100%[/color] chance to stun on a hit"
 			});
-		}
-		else
-		{
+		} else {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -36,8 +31,7 @@
 			});
 		}
 
-		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
-		{
+		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -48,7 +42,7 @@
 		return ret;
 	}
 
-	o.onUse = function ( _user, _targetTile ) {
+	o.onUse = function (_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local success = this.attackEntity(_user, target);
@@ -61,14 +55,11 @@
 			return success;
 		}
 
-		if (success)
-		{
-			if ((::Legends.S.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem()) || ::Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned))
-			{
+		if (success) {
+			if ((::Legends.S.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem()) || ::Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned)) {
 				local stun = ::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
-				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-				{
+				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
 					::Tactical.EventLog.log(stun.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(_user), ::Const.UI.getColorizedEntityName(target)));
 				}
 			}
@@ -77,14 +68,14 @@
 		return success;
 	}
 
-	o.onAfterUpdate = function ( _properties ) {
+	o.onAfterUpdate = function (_properties) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties ) {
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.5;
 			_properties.FatigueDealtPerHitMult += 2.0;

@@ -54,10 +54,6 @@
 		return [];
 	}
 
-	o.getUnactivatedProfessionTooltipHints <- function () {
-		return [];
-	}
-
 	local getDefaultUtilityTooltip = o.getDefaultUtilityTooltip;
 	o.getDefaultUtilityTooltip = function () {
 		local ret = getDefaultUtilityTooltip();

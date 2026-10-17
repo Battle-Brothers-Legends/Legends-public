@@ -1105,4 +1105,4 @@ Refactors/deletions:
 - `scripts/skills/effects/legend_realm_of_nightmares_effect` -> deleted
 - `scripts/skills/effects/legend_web_at_start_effect` -> deleted, functionality changed to use Web active's onUse
 - `scripts/skills/effects/legend_freedom_of_movement_effect` -> `scripts/skills/effects/legend_lightning_reflexes_effect`
-- Jimmy's tooltips have been integrated directly into Legends codebase
+- `legend_holyflame` -> `legend_holy_flame`

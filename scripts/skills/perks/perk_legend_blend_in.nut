@@ -1,33 +1,22 @@
 this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
-	m = {
-		MeekStacks = 1,
-		MeekCounter = 0
-	},
-	function create()
-	{
+	m = {},
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBlendIn);
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "Hold yourself in a way that makes you seem more trouble than its worth, lean into trees, place objects between you and an enemy, and hide behind allies.";
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.TargetAttractionMult *= 0.50;
 		_properties.MeleeDefense += 3;
 		_properties.RangedDefense += 5;
 	}
 
-	function checkEntities()
-	{
-
-	}
-
-	function getTooltip()
-	{
+	function getTooltip() {
 		local tooltip = [
 			{
 				id = 1,
@@ -58,7 +47,6 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 				text = "Makes enemies less likely to attack you instead of an ally."
 			}
 		];
-
 		return tooltip;
 	}
 });

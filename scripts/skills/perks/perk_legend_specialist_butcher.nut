@@ -14,41 +14,34 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 		BonusMelee = 12,
 		BonusDamage = 10
 	}
-	function create()
-	{
+	function create() {
 		this.legend_specialist_abstract.create();
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistButcher);
-		this.m.IconMini = "perk_spec_butcher_mini";
 	}
 
-	function specialistWeaponTooltip (_item, _isRanged)
-	{
-		return [{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=%positive%]2[/color] graze bleeding damage per turn, for 5 turns"
-		}];
+	function specialistWeaponTooltip(_item, _isRanged) {
+		return [
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Inflicts additional stacking [color=%positive%]2[/color] graze bleeding damage per turn, for 5 turns"
+			}
+		];
 	}
 
-	function onTargetHit ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-
-		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (::Legends.S.isEntityNullOrDead(_targetEntity) || _targetEntity.isNonCombatant() || _targetEntity.getCurrentProperties().IsImmuneToBleeding) {
 			return;
-
-		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding)
-			return false;
-
-		if (_targetEntity.isNonCombatant())
-			return false;
+		}
 
 		local user = _skill.getContainer().getActor();
 		local item = user.getMainhandItem();
-		if (item == null || item.isWeaponType(::Const.Items.WeaponType.Whip) || !item.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		if (item == null || item.isWeaponType(::Const.Items.WeaponType.Whip) || !item.isWeaponType(::Const.Items.WeaponType.Cleaver)) {
 			return;
+		}
 
-		_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_grazed_effect"));
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazed);
 
 		if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " filleted " + ::Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
@@ -56,5 +49,4 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 
 		return true;
 	}
-
 });
