@@ -1272,10 +1272,7 @@ Some folks take joy in the simple pleasures like destroying shields.
 [color=%passive%][u]Passive:[/u][/color]
 • Grants an additional [color=%positive%]+50%[/color] damage to shields when using [color=%skill%]Split Shield[/color] or a Throwing Spear.
 
-• If the shield is destroyed, gain [color=%positive%]4[/color] additional AP and any damage above the max durability of the target's shield will hit the target.
-
-• When [color=%status%]Dual Wielding[/color] axes, [color=%skill%]Split Shield[/color] uses the combined shield damage from both weapons.
-";
+• If the shield is destroyed, gain [color=%positive%]4[/color] additional AP and any damage above the max durability of the target's shield will hit the target.";
 
 ::Const.Strings.PerkDescription.LegendSmackdown <- @"
 There's no need to overthink things when they can be smashed instead.

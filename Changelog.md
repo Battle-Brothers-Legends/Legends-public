@@ -155,6 +155,7 @@
 - `Hammer the Gap` - Grants a stacking +5% to hit as long as you attack the same tile. The bonus is capped at 10%.
 
 ### Perk Changes
+- `Headhunter` - Hitting the head of a target will give you a guaranteed hit to the head with your next attack. Killing an enemy with a hit to the head will increase chance to hit the head and Damage on a hit to the head by +10% for each kill until the end of combat
 - `Pugilist` - additionally each successful attack reduces the ap cost of `Kick` by 1 until the end of your turn. 
 - `Reach Advantage` - stacks will now decay by 2 at the start of your turn instead of losing all of them
 - `Promised Potential` - the bonus per star in attribute is now 3

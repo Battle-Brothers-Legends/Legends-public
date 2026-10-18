@@ -34,25 +34,19 @@
 		}
 
 		local ret = this.skill.getDefaultTooltip();
-
+		local param = [
+			["_fatigue", 2 * ::Const.Combat.FatigueReceivedPerHit],
+			["_stunChance", this.m.StunChance],
+			["_effect", (properties.IsSpecializedInStaffStun ? "daze, stagger and stun" : "daze")]
+		];
 		if (this.m.IsRangedKnockOut) {
 			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflicts [color=%damage%]" + 2 * ::Const.Combat.FatigueReceivedPerHit + "[/color] extra fatigue"
+				text = "Inflicts [color=%damage%]%_fatigue%[/color] extra fatigue",
+				param = param
 			});
-		} else {
-			ret.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=%positive%]2[/color] tiles"
-			});
-		}
-
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		if (this.m.IsRangedKnockOut) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -64,7 +58,8 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to " + (properties.IsSpecializedInStaffStun ? "daze, stagger and stun" : "daze") + " on a hit"
+				text = "Has a [color=%positive%]%_stunChance%%[/color] chance to %_effect% on a hit",
+				param = param
 			});
 		}
 
