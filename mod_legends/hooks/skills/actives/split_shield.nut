@@ -18,8 +18,7 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function () {
 		local ret = getTooltip();
-		local actor = this.getContainer().getActor();
-		if (actor.canDoubleGrip()) {
+		if (::Legends.Effects.has(this, ::Legends.Effect.DoubleGrip) && ::Legends.Effects.get(this, ::Legends.Effect.DoubleGrip).canDoubleGrip()) {
 			ret.push({
 				id = 8,
 				type = "text",
@@ -32,7 +31,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/damage_dealt.png",
-			text = "Any positive damage difference between the skill\'s shield damage and the target\'s shield condition will be dealt as damage to the body"
+			text = "Upon destroying the shield, any damage exceeding the shield condition will be used for a follow up attack against the target"
 		});
 
 		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendSmashingShields)) {
@@ -42,17 +41,18 @@
 				icon = "ui/icons/special.png",
 				text = "Destroying the shield will refund [color=%positive%]4[/color] Action Points"
 			});
-
-			if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Axe)) {
-				local oh = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-				if (oh != null) {
-					ret.push({
-						id = 11,
-						type = "text",
-						icon = "ui/icons/shield_damage.png",
-						text = "[color=%positive%]+" + oh.getShieldDamage() + "[/color] shield damage from dual wielding axes"
-					});
-				}
+		}
+		local actor = this.getContainer().getActor();
+		if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Axe)) {
+			local oh = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+			if (oh != null) {
+				ret.push({
+					id = 12,
+					type = "text",
+					icon = "ui/icons/shield_damage.png",
+					text = "[color=%positive%]+%_damage%[/color] shield damage from dual wielding axes",
+					param = [["_damage", oh.getShieldDamage()]]
+				});
 			}
 		}
 		return ret;
@@ -64,7 +64,7 @@
 		local damage = this.getItem().getShieldDamage();
 		local shield = _target.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendSmashingShields) && ::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Axe)) {
+		if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Axe)) {
 			local oh = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (oh != null) {
 				damage += oh.getShieldDamage();
@@ -73,10 +73,6 @@
 
 		if (mastery) {
 			damage += ::Math.max(1, damage / 2);
-		}
-
-		if (shield.getID() == "shield.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger") {
-			damage *= 0.20;
 		}
 
 		return ::Math.floor(damage);
@@ -120,7 +116,9 @@
 						::Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
 						if (overflowDamage > 0) {
 							this.m.OverflowDamage = overflowDamage;
+							this.m.IsUsingHitchance = true;
 							this.attackEntity(_user, target);
+							this.m.IsUsingHitchance = false;
 							this.m.OverflowDamage = 0;
 						}
 					} else {
@@ -163,11 +161,10 @@
 			return;
 		}
 
-		if (this.m.MaxRange > 1) {
-			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
-				_properties.MeleeSkill += -15;
-				this.m.HitChanceBonus -= 15;
-			}
+		local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1;
+		if (this.m.MaxRange > 1 && _targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && distance) {
+			_properties.MeleeSkill += -15;
+			this.m.HitChanceBonus -= 15;
 		}
 		_properties.DamageRegularMin = this.m.OverflowDamage;
 		_properties.DamageRegularMax = this.m.OverflowDamage;
