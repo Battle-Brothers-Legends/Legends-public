@@ -263,6 +263,9 @@
 - with the new Block mechanic flail skills have an innate 25% ignore of shield Block except for `Thresh`
 > increased to a total of 50% with the mastery
 
+**Crossbows**
+- `Improvised Strike` - now has a 25(50 with mastery) chance to daze OR stagger on body shot and will always stun on headshot, down from just slapping all 3 debuffs on a headshot
+
 **War Bow, Named War Bow, Hunting Bow**
 - gain `Full Draw` and `Mark Target`
 > Full draw has a base 50% armor penetration, 9 max range and 3 min range, an extra 30% damage but costs 9 ap without mastery and 8 with mastery
