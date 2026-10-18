@@ -1301,6 +1301,11 @@ if (!("Actives" in ::Legends)) {
 	},
 	LegendHoldTheLine = {},
 	LegendHolyFlame = {},
+	LegendImprovisedStrike = {
+		Icon = "skills/active_32.png",
+		IconDisabled = "skills/active_32_sw.png",
+		Overlay = "active_32"
+	},
 	LegendIncoming = {
 		Name = "Incoming!"
 	},
