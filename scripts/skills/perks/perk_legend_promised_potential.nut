@@ -21,6 +21,7 @@ this.perk_legend_promised_potential <- this.inherit("scripts/skills/skill", {
 		foreach (key, attribute in ::Const.Attributes) {
 			if (attribute == ::Const.Attributes.Fatigue) {
 				_properties.Stamina += this.getBonus(::Const.Attributes.Fatigue);
+				_properties.InitiativeFatigueOffset += this.getBonus(::Const.Attributes.Fatigue);
 			} else if (attribute != ::Const.Attributes.COUNT) {
 				_properties[key] += this.getBonus(::Const.Attributes[key]);
 			}

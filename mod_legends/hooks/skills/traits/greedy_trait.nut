@@ -44,5 +44,6 @@
 		_properties.RangedSkill += this.m.Bonus;
 		_properties.MeleeDefense += this.m.Bonus;
 		_properties.RangedDefense += this.m.Bonus;
+		_properties.InitiativeFatigueOffset += this.m.Bonus;
 	}
 });

@@ -202,6 +202,7 @@
 ::Const.CharacterProperties.IsSpecializedInStaffStun <- false;
 ::Const.CharacterProperties.IsSpecializedInSummons <- false;
 ::Const.CharacterProperties.Block <- 0;
+::Const.CharacterProperties.InitiativeFatigueOffset <- 0;
 ::Const.CharacterProperties.BlockMult <- 1.0;
 ::Const.CharacterProperties.RerollAttackChance <- 0;
 ::Const.CharacterProperties.DamageInitiativeMin <- 0;

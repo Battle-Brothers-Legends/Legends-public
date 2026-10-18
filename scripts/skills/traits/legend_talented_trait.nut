@@ -60,5 +60,6 @@ this.legend_talented_trait <- this.inherit("scripts/skills/traits/character_trai
 		_properties.RangedSkill += 2;
 		_properties.MeleeDefense += 2;
 		_properties.RangedDefense += 2;
+		_properties.InitiativeFatigueOffset += 2;
 	}
 });
