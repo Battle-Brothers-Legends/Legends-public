@@ -13,24 +13,6 @@
 	}
 
 	o.getTooltip <- function () {
-<<<<<<< HEAD
-		local tooltip = this.skill.getTooltip();
-		tooltip.extend([
-			{
-				id = 3,
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "Deal [color=%positive%]" + this.m.DamageBonus + "%[/color] more Damage"
-			},
-			{
-				id = 4,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Recover [color=%positive%]1-2[/color] Fatigue per hit"
-			}
-		]);
-		return tooltip;
-=======
 		local ret = [{
 			id = 1,
 			type = "title",
@@ -55,7 +37,6 @@
 			text = "Recover [color=%positive%]1-2[/color] fatigue with each hit"
 		}];
 		return ret;
->>>>>>> 5a5eb40fb7 (rework headhunter and various tt improvements)
 	}
 
 	o.onAdded = function () {}
