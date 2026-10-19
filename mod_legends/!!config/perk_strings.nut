@@ -1889,10 +1889,17 @@ Every fight is like a dance, and you have just the right moves.
 ";
 
 ::Const.Strings.PerkDescription.LegendTerrifyingVisage <- @"
-The mere sight of this character sends enemies fleeing.
+The mere sight is enough to send them fleeing.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Reduces Resolve of adjacent enemies by [color=%negative%]-15[/color].
+
+[color=%active%][u]Active:[/u][/color]
+• Unlocks the [color=%skill%]Horror[/color] skill which forces the target and the adjacent enemies to take a morale check with a chance to Horrify on hit.
+
+• Horrified enemies are unable to act next turn.
+
+• Costs [color=%negative%]6[/color] AP and [color=%negative%]15[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendThrowSand <- @"

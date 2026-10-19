@@ -10,8 +10,8 @@ this.perk_legend_terrifying_visage <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAdded() {
-		if (!this.m.Container.hasActive(::Legends.Active.HorrificScream)) {
-			::Legends.Actives.grant(this, ::Legends.Active.HorrificScream, function (_skill) {
+		if (!this.m.Container.hasActive(::Legends.Active.Horror)) {
+			::Legends.Actives.grant(this, ::Legends.Active.Horror, function (_skill) {
 				_skill.m.ActionPointCost = 6;
 				_skill.m.FatigueCost = 30;
 				_skill.m.MaxRange = 4;
@@ -23,7 +23,7 @@ this.perk_legend_terrifying_visage <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved() {
 		if (!this.m.Container.hasPerk(::Legends.Perk.LegendTerrifyingVisage)) {
-			::Legends.Actives.remove(this, ::Legends.Active.HorrificScream);
+			::Legends.Actives.remove(this, ::Legends.Active.Horror);
 		}
 	}
 });
