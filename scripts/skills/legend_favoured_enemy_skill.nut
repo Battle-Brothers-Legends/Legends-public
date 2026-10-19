@@ -91,6 +91,12 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
 				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Maximum Damage"
+			},
+			{
+				id = 12,
+				type = "hint",
+				icon = "ui/icons/special.png",
+				text = format((stats.Kills > 0 ? format("This character has already made %s favored enemy kills", ::Legends.S.highlightForLightBackground(stats.Kills)) : "This character has not made any favored enemy kills yet"))
 			}
 		];
 		if (this.m.BraveryMult > 1) {
@@ -101,15 +107,6 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				text = "[color=%positive%]+" + ::Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve"
 			});
 		}
-
-		tooltip.push([
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = format((stats.Kills > 0 ? format("This character has already made %s favored enemy kills", ::Legends.S.highlightForLightBackground(stats.Kills)) : "This character has not made any favored enemy kills yet"))
-			}
-		]);
 		return tooltip;
 	}
 
