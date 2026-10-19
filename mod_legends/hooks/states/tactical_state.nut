@@ -1,5 +1,15 @@
 ::mods_hookExactClass("states/tactical_state", function (o) {
 	o.m.TilesReservedForTeleport <- {};
+	o.m.FreeMoveSkills <- [
+		{
+			Table = ::Legends.Effects,
+			Def = ::Legends.Effect.LoneWolf
+		},
+		{
+			Table = ::Legends.Traits,
+			Def = ::Legends.Trait.Athletic
+		}
+	];
 
 	local setPause = o.setPause;
 	o.setPause = function (_f) {
@@ -73,6 +83,29 @@
 		}
 	};
 
+	o.getFreeMoveSkills <- function (_activeEntity) {
+		local hasFreeMoveSource = false;
+		foreach (skill in this.m.FreeMoveSkills) {
+			if (skill.Table.has(_activeEntity, skill.Def) && !skill.Table.get(_activeEntity, skill.Def).m.HasMoved) {
+				hasFreeMoveSource = true;
+			}
+		}
+		return {
+			IsActive = hasFreeMoveSource
+			BonusAP = 0,
+			BonusFat = 0,
+			BuffApplied = false
+		};
+	}
+
+	o.disableAllFreeMoveSkills <- function (_activeEntity) {
+		foreach (skill in this.m.FreeMoveSkills) {
+			if (skill.Table.has(_activeEntity, skill.Def)) {
+				skill.Table.get(_activeEntity, skill.Def).m.HasMoved = true;
+			}
+		}
+	};
+
 	o.computeEntityPath = function (_activeEntity, _mouseEvent) {
 		if (this.m.IsGameFinishable && this.isBattleEnded() || this.wasInCameraMovementMode()) {
 			return;
@@ -112,25 +145,21 @@
 		settings.AllowZoneOfControlPassing = true;
 		settings.IsPlayer = true;
 
-		local athletic = {
-			skill = _activeEntity.getSkills().getSkillByID(::Legends.Traits.getID(::Legends.Trait.Athletic)),
-			bonusAP = 0,
-			bonusFat = 0
-		};
+		local freeMove = this.getFreeMoveSkills(_activeEntity);
 
 		local targetTileType = _activeEntity.getTile().Type;
 		if (::Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, settings, 0)) {
 			targetTileType = ::Tactical.getNavigator().getCostForPath(_activeEntity, settings, 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
 		}
 
-		if (athletic.skill != null && !athletic.skill.m.HasMoved) {
-			athletic.bonusAP = ::Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
-			athletic.bonusFat = ::Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
-			if (_activeEntity.getFatigue() - athletic.bonusFat < 0) {
-				athletic.bonusFat += _activeEntity.getFatigue() - athletic.bonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
+		if (freeMove.IsActive) {
+			freeMove.BonusAP = ::Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
+			freeMove.BonusFat = ::Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
+			if (_activeEntity.getFatigue() - freeMove.BonusFat < 0) {
+				freeMove.BonusFat += _activeEntity.getFatigue() - freeMove.BonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
 			}
-			_activeEntity.setActionPoints(_activeEntity.getActionPoints() + athletic.bonusAP); //add temporary stats to fool the prediction
-			_activeEntity.setFatigue(::Math.max(0, _activeEntity.getFatigue() - athletic.bonusFat));
+			_activeEntity.setActionPoints(_activeEntity.getActionPoints() + freeMove.BonusAP); //add temporary stats to fool the prediction
+			_activeEntity.setFatigue(::Math.max(0, _activeEntity.getFatigue() - freeMove.BonusFat));
 		}
 
 		if (::Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, settings, 0)) {
@@ -154,9 +183,9 @@
 			this.m.CurrentActionState = null;
 		}
 		settings.FatigueCosts = _activeEntity.getFatigueCosts(); // reset preview fat costs for executeEntityTravel below to use so its not applied twice
-		if (athletic.skill != null && !athletic.skill.m.HasMoved) {
-			_activeEntity.setActionPoints(_activeEntity.getActionPoints() - athletic.bonusAP); // reset temporary stats after engine's prediction
-			_activeEntity.setFatigue(_activeEntity.getFatigue() + athletic.bonusFat);
+		if (freeMove.IsActive) {
+			_activeEntity.setActionPoints(_activeEntity.getActionPoints() - freeMove.BonusAP); // reset temporary stats after engine's prediction
+			_activeEntity.setFatigue(_activeEntity.getFatigue() + freeMove.BonusFat);
 		}
 	}
 
@@ -168,29 +197,24 @@
 		local tile = ::Tactical.getTile(::Tactical.screenToTile(_mouseEvent.getX(), _mouseEvent.getY()));
 
 		if (::Tactical.getNavigator().HasValidPath && this.m.LastTileSelected.X == tile.X && this.m.LastTileSelected.Y == tile.Y) {
-			local athletic = {
-				skill = _activeEntity.getSkills().getSkillByID(::Legends.Traits.getID(::Legends.Trait.Athletic)),
-				bonusAP = 0,
-				bonusFat = 0,
-				buffApplied = false
-			};
+			local freeMove = this.getFreeMoveSkills(_activeEntity);
+			local lastSettings = ::Tactical.getNavigator().getLastSettings();
 
-			if (athletic.skill != null && !athletic.skill.m.HasMoved) {
-				local targetTileType = _activeEntity.getTile().Type;
-				targetTileType = ::Tactical.getNavigator().getCostForPath(_activeEntity, ::Tactical.getNavigator().getLastSettings(), 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
+			if (freeMove.IsActive) {
+				local targetTileType = ::Tactical.getNavigator().getCostForPath(_activeEntity, lastSettings, 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
 
 				local properties = _activeEntity.getCurrentProperties();
-				athletic.bonusAP = ::Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
-				athletic.bonusFat = ::Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
-				if (_activeEntity.getFatigue() - athletic.bonusFat < 0) {
-					athletic.bonusFat += _activeEntity.getFatigue() - athletic.bonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
+				freeMove.BonusAP = ::Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
+				freeMove.BonusFat = ::Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
+				if (_activeEntity.getFatigue() - freeMove.BonusFat < 0) {
+					freeMove.BonusFat += _activeEntity.getFatigue() - freeMove.BonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
 				}
-				_activeEntity.setActionPoints(_activeEntity.getActionPoints() + athletic.bonusAP);
-				_activeEntity.setFatigue(::Math.max(0, _activeEntity.getFatigue() - athletic.bonusFat));
-				athletic.buffApplied = true;
+				_activeEntity.setActionPoints(_activeEntity.getActionPoints() + freeMove.BonusAP);
+				_activeEntity.setFatigue(::Math.max(0, _activeEntity.getFatigue() - freeMove.BonusFat));
+				freeMove.BuffApplied = true;
 			}
 
-			local movementCosts = ::Tactical.getNavigator().getCostForPath(_activeEntity, ::Tactical.getNavigator().getLastSettings(), _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
+			local movementCosts = ::Tactical.getNavigator().getCostForPath(_activeEntity, lastSettings, _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
 
 			if (movementCosts.Tiles != 0) {
 				this.Cursor.setCursor(::Const.UI.Cursor.Hourglass);
@@ -204,12 +228,12 @@
 					::Tactical.getCamera().Level = tile.Level;
 				}
 
-				if (athletic.buffApplied) {
+				if (freeMove.BuffApplied) {
 					if (this.m.CurrentActionState == ::Const.Tactical.ActionState.TravelPath) {
-						athletic.skill.m.HasMoved = true;
+						this.disableAllFreeMoveSkills(_activeEntity);
 					} else {
-						_activeEntity.setActionPoints(_activeEntity.getActionPoints() - athletic.bonusAP); // most likely unnecessary, but just in case the move didn't happen
-						_activeEntity.setFatigue(_activeEntity.getFatigue() + athletic.bonusFat);
+						_activeEntity.setActionPoints(_activeEntity.getActionPoints() - freeMove.BonusAP); // most likely unnecessary, but just in case the move didn't happen
+						_activeEntity.setFatigue(_activeEntity.getFatigue() + freeMove.BonusFat);
 					}
 				}
 			}
@@ -881,7 +905,7 @@
 			IsByPlayer = _user != null ? _user.isPlayerControlled(): false,
 			Timeout = ::Time.getRound() + _timeout,
 			Callback = @(_tile, _entity) ::Const.Tactical.Common.onApplyMiasma(_tile, _entity, _user),
-			Applicable = @(_a) !_a.getFlags().has("undead")
+			Applicable = @(_a) ! _a.getFlags().has("undead")
 		};
 
 		::Tactical.State.spawnEffectOnTile(_tile, effect.Type, effect, this.createEffectParticles(_tile, ::Const.Tactical.MiasmaParticles));

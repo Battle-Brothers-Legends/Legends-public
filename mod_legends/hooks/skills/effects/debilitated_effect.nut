@@ -18,7 +18,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/damage_received.png",
-				text = "[color=%negative%]+15%[/color] Damage received"
+				text = "[color=%positive%]+15%[/color] Damage received"
 			}
 		]);
 		return tooltip;
@@ -48,6 +48,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-25%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%negative%]-15%[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%negative%]-25%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%positive%]+15%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

@@ -1,4 +1,6 @@
 ::mods_hookExactClass("skills/effects/lone_wolf_effect", function (o) {
+	o.m.HasMoved <- true;
+
 	o.onUpdate = function (_properties) {
 		if (!this.getContainer().getActor().isPlacedOnMap()) {
 			this.m.IsHidden = true;
@@ -16,10 +18,15 @@
 			_properties.MeleeDefenseMult *= 1.15;
 			_properties.RangedDefenseMult *= 1.15;
 			_properties.BraveryMult *= 1.15;
-			_properties.MovementAPCostAdditional -= 1;
 		} else {
 			this.m.IsHidden = true;
 		}
+	}
+
+	o.onTurnStart <- function () {
+		local actor = this.getContainer().getActor();
+		local myTile = actor.getTile();
+		this.m.HasMoved = !myTile.hasZoneOfControlOtherThan(actor.getAlliedFactions());
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
