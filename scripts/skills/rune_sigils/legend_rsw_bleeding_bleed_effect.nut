@@ -5,17 +5,6 @@ this.legend_rsw_bleeding_bleed_effect <- this.inherit("scripts/skills/skill", {
 		LastRoundApplied = 0,
 		Actor = null
 	},
-	function setStats(_s1, _s2) {
-		this.m.Damage = _s1;
-		this.m.TurnsLeft = _s2;
-	}
-	function getDamage() {
-		return this.m.Damage;
-	}
-
-	function setActor( _a ) {
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
-	}
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswBleedingBleed);
@@ -25,8 +14,33 @@ this.legend_rsw_bleeding_bleed_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = true;
 	}
 
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/damage_received.png",
+				text = "[color=%negative%]" + this.getDamage() + "[/color] Hitpoints Damage Received every turn"
+			}
+		]);
+		return tooltip;
+	}
+
+	function setStats(_s1, _s2) {
+		this.m.Damage = _s1;
+		this.m.TurnsLeft = _s2;
+	}
+	function getDamage() {
+		return this.m.Damage;
+	}
+
+	function setActor(_a) {
+		this.m.Actor = ::MSU.asWeakTableRef(_a);
+	}
+
 	function getDescription() {
-		return "This character is bleeding profusely from a recently received wound and will lose [color=%negative%]" + this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character is bleeding profusely from a recently received wound.";
 	}
 
 	function applyDamage() {
@@ -40,7 +54,6 @@ this.legend_rsw_bleeding_bleed_effect <- this.inherit("scripts/skills/skill", {
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 0.0;
 			this.getContainer().getActor().onDamageReceived(this.getEffectOwner(), this, hitInfo);
-
 
 			if (--this.m.TurnsLeft <= 0) {
 				this.removeSelf();
@@ -56,8 +69,7 @@ this.legend_rsw_bleeding_bleed_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onUpdate( _properties ) {
-	}
+	function onUpdate(_properties) {}
 
 	function onTurnEnd() {
 		this.applyDamage();
@@ -69,5 +81,9 @@ this.legend_rsw_bleeding_bleed_effect <- this.inherit("scripts/skills/skill", {
 
 	function onCombatFinished() {
 		this.removeSelf();
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]" + (this.getDamage() * _stacks) + "[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
 	}
 });

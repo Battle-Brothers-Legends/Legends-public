@@ -4,6 +4,7 @@ this.legend_rsw_poison_poison_effect <- this.inherit("scripts/skills/skill", {
 		TurnsLeftMax = 3,
 		Strength = 10
 	},
+
 	function setStats(_s1, _s2) {
 		this.m.TurnsLeft = _s1;
 		this.m.TurnsLeftMax = _s1;
@@ -72,7 +73,7 @@ this.legend_rsw_poison_poison_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onUpdate( _properties ) {
+	function onUpdate(_properties) {
 		_properties.ActionPoints -= ::Math.round(1.0 * this.m.TurnsLeft);
 		_properties.Initiative -= ::Math.round(10.0 * (this.m.Strength / 8.0) * this.m.TurnsLeft);
 	}
@@ -85,5 +86,9 @@ this.legend_rsw_poison_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function onCombatFinished() {
 		this.removeSelf();
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-" + (this.m.TurnsLeft) + "[/color] " + ::Legends.S.inlineIcon(["action_points", "vision"]) + ", [color=%negative%]-" + (10 * this.m.TurnsLeft) + "[/color] " + ::Legends.S.inlineIcon("initiative");
 	}
 });

@@ -1,23 +1,24 @@
 this.perk_legend_last_stand <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendLastStand);
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		return this.getContainer().getActor().getHitpointsPct() >= 0.66;
 	}
 
-	function getTooltip()
-	{
+	function getBonus() {
+		return ::Math.floor(100 * (0.66 - this.getContainer().getActor().getHitpointsPct()) / 2.0);
+	}
+
+	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
 		local currentPercent = this.getContainer().getActor().getHitpointsPct();
-		if (currentPercent < 0.66)
-		{
-			local bonus = ::Math.floor(100 * (0.66 - currentPercent) / 2.0);
+		if (currentPercent < 0.66) {
+			local bonus = this.getBonus();
 
 			tooltip.push({
 				id = 6,
@@ -26,8 +27,7 @@ this.perk_legend_last_stand <- this.inherit("scripts/skills/skill", {
 				text = "Your melee and ranged defense are increased by [color=%positive%]" + bonus + "[/color]."
 			});
 
-			if (currentPercent < 0.33)
-			{
+			if (currentPercent < 0.33) {
 				tooltip.push({
 					id = 6,
 					type = "text",
@@ -40,21 +40,29 @@ this.perk_legend_last_stand <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local currentPercent = this.getContainer().getActor().getHitpointsPct();
-		if (currentPercent < 0.66)
-		{
-			local bonus = ::Math.floor(100 * (0.66 - currentPercent) / 2.0);
+		if (currentPercent < 0.66) {
+			local bonus = this.getBonus();
 			_properties.MeleeDefense += bonus;
 			_properties.RangedDefense += bonus;
 
-			if (currentPercent < 0.33)
-			{
+			if (currentPercent < 0.33) {
 				_properties.IsAffectedByFreshInjuries = false;
 				_properties.IsAffectedByLosingHitpoints = false;
 			}
 		}
 	}
-});
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		local result = null;
+		local currentPercent = this.getContainer().getActor().getHitpointsPct();
+		if (currentPercent < 0.66) {
+			result = "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]);
+		}
+		if (currentPercent < 0.33) {
+			result += ", " + ::Legends.S.inlineIcon("immunity") + " to fresh Injuries and morale checks on " + ::Legends.S.inlineIcon("damage_received");
+		}
+		return result;
+	}
+});

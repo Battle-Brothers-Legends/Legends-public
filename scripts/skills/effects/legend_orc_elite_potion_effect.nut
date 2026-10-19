@@ -50,7 +50,7 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 		}
 
 		_properties.Stamina -= fat * 0.2;
-		_properties.Initiative -= fat * 0.2; // should this be in actor's getInitiative like brawny?
+		_properties.Initiative -= fat * 0.2;
 	}
 
 	function onDeath(_fatalityType) {
@@ -64,6 +64,6 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "Reduces " + ::Legends.S.inlineIcon("fatigue") + ::Legends.S.inlineIcon("initiative") + " of your equipped head, armor and weapons by [color=%positive%]20%[/color]";
+		return "Reduces " + ::Legends.S.inlineIcon(["fatigue", "initiative"]) + " of your equipped head, armor and weapons by [color=%positive%]20%[/color]";
 	}
 });

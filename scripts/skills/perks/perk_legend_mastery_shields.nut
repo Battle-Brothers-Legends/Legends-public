@@ -30,7 +30,7 @@ this.perk_legend_mastery_shields <- this.inherit("scripts/skills/skill", {
 		ret.push({
 			id = 4,
 			type = "text",
-			icon = "ui/icons/special.png",
+			icon = "ui/icons/sturdiness.png",
 			text = "[color=%positive%]+10%[/color] damage reduction while using a shield"
 		});
 		return ret;
@@ -64,5 +64,9 @@ this.perk_legend_mastery_shields <- this.inherit("scripts/skills/skill", {
 		if (item != null && item.isItemType(::Const.Items.ItemType.Shield)) {
 			_properties.DamageReceivedRegularMult *= 0.90;
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

@@ -39,6 +39,6 @@ this.legend_bracing_for_impact_effect <- this.inherit("scripts/skills/legend_com
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ::Legends.S.inlineIcon("bravery") + ", [color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("ranged_defense");
+		return "[color=%positive%]+5[/color] " + ::Legends.S.inlineIcon(["ranged_skill", "bravery"]) + ", [color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("ranged_defense");
 	}
 });

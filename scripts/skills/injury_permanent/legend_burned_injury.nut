@@ -1,7 +1,7 @@
 this.legend_burned_injury <- this.inherit("scripts/skills/injury_permanent/permanent_injury", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.permanent_injury.create();
 		this.m.ID = "injury.legend_burned_injury";
 		this.m.Name = "Burned";
@@ -9,8 +9,7 @@ this.legend_burned_injury <- this.inherit("scripts/skills/injury_permanent/perma
 		this.m.Icon = "ui/injury/injury_burned.png";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -63,8 +62,7 @@ this.legend_burned_injury <- this.inherit("scripts/skills/injury_permanent/perma
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 
 		_properties.MeleeSkillMult *= 0.90;
 		_properties.RangedSkillMult *= 0.90;
@@ -74,24 +72,20 @@ this.legend_burned_injury <- this.inherit("scripts/skills/injury_permanent/perma
 		_properties.Threat += 10;
 	}
 
-	function onApplyAppearance()
-	{
+	function onApplyAppearance() {
 		local sprite = this.getContainer().getActor().getSprite("permanent_injury_burned");
-		if (this.getContainer().getActor().getEthnicity() == 1)
-		{
+		if (this.getContainer().getActor().getEthnicity() == 1) {
 			sprite.setBrush("permanent_injury_burned_southern");
-		}
-		else if (this.getContainer().getActor().getEthnicity() == 2)
-		{
+		} else if (this.getContainer().getActor().getEthnicity() == 2) {
 			sprite.setBrush("permanent_injury_burned_african");
-		}
-		else
-		{
+		} else {
 			sprite.setBrush("permanent_injury_burned");
 		}
 
 		sprite.Visible = true;
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense"]) + ", [color=%negative%]-1[/color] " + ::Legends.S.inlineIcon("vision") + ", [color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("bravery") + " of surrounding enemies";
+	}
 });
-

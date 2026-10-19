@@ -94,6 +94,6 @@ this.legend_band_of_brothers_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + (this.m.Stacks * 2) + "[/color] " + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%positive%]+" + (this.m.Stacks * 3) + "[/color] " + ::Legends.S.inlineIcon("ranged_skill");
+		return "[color=%positive%]+" + (this.m.Stacks * 2) + "[/color] " + ::Legends.S.inlineIcon(["melee_skill", "melee_defense", "ranged_defense"]) + ", [color=%positive%]+" + (this.m.Stacks * 3) + "[/color] " + ::Legends.S.inlineIcon("ranged_skill");
 	}
 });

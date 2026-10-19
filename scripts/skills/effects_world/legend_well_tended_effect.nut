@@ -1,7 +1,7 @@
 this.legend_well_tended_effect <- this.inherit("scripts/skills/injury/injury", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.injury.create();
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWellTended);
 		this.m.Description = "This mercenary has been tended at a temple, and is feeling much more capable thanks to well treated wounds and some rest.";
@@ -13,8 +13,7 @@ this.legend_well_tended_effect <- this.inherit("scripts/skills/injury/injury", {
 		this.m.HealingTimeMax = 7;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -61,8 +60,7 @@ this.legend_well_tended_effect <- this.inherit("scripts/skills/injury/injury", {
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		this.injury.onUpdate(_properties);
 		_properties.HitpointsMult *= 1.05;
 		_properties.Bravery += 5;
@@ -71,5 +69,7 @@ this.legend_well_tended_effect <- this.inherit("scripts/skills/injury/injury", {
 		_properties.RangedSkillMult *= 1.05;
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+5%[/color] " + ::Legends.S.inlineIcon(["health", "melee_skill", "ranged_skill"]) + ", [color=%positive%]+3%[/color] " + ::Legends.S.inlineIcon("fatigue") + ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("bravery");
+	}
 });
-

@@ -1,15 +1,16 @@
 this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	m = {},
+
 	function getHandToHandSkill() {
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack);
-    	if (skill != null) { 
-    		return skill;
-    	}
-    	skill = ::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack);
-    	if (skill != null) {
-    		return skill;
-    	}
-    	return ::Legends.Actives.get(this, ::Legends.Active.HandToHand);
+		if (skill != null) {
+			return skill;
+		}
+		skill = ::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack);
+		if (skill != null) {
+			return skill;
+		}
+		return ::Legends.Actives.get(this, ::Legends.Active.HandToHand);
 	}
 
 	function create() {
@@ -35,32 +36,41 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-		local ret = [{
-			id = 1,
-			type = "title",
-			text = "Fluid" // Since the passive should have a different name than the perk in this case
-		},
-		{
-			id = 2,
-			type = "description",
-			text = "Fluid like water!\n\nThis character will follow up any attack with a punch from their off hand!"
-		}];
+		local ret = [
+			{
+				id = 1,
+				type = "title",
+				text = "Fluid" // Since the passive should have a different name than the perk in this case
+			},
+			{
+				id = 2,
+				type = "description",
+				text = "Fluid like water!\n\nThis character will follow up any attack with a punch from their off hand!"
+			},
+			{
+				id = 3,
+				type = "special",
+				text = "Will follow up any attack with a punch from their off hand"
+			}
+		];
 
 		local blockedOffhand = items.hasBlockedSlot(::Const.ItemSlot.Offhand);
 		// Unarmed bonuses
 		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && off == null && !blockedOffhand) {
-			ret.extend([{
-				id = 4,
-				type = "text",
-				icon = "ui/icons/melee_skill.png",
-				text = "[color=%positive%]+5[/color] Melee Skill"
-			},
-			{
-				id = 5,
-				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				text = "[color=%positive%]+10[/color] Melee Defense"
-			}]);
+			ret.extend([
+				{
+					id = 4,
+					type = "text",
+					icon = "ui/icons/melee_skill.png",
+					text = "[color=%positive%]+5[/color] Melee Skill"
+				},
+				{
+					id = 5,
+					type = "text",
+					icon = "ui/icons/melee_defense.png",
+					text = "[color=%positive%]+10[/color] Melee Defense"
+				}
+			]);
 		}
 
 		return ret;
@@ -127,7 +137,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			::logWarning("legend_ambidextrous: offhand skill is null, cannot execute follow-up attack");
 			return;
 		}
-		
+
 		_info.Skill.m.IsExecutingOffhand = true;
 		_info.Skill.useForFree(_info.TargetTile);
 	}
@@ -142,5 +152,14 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			_properties.MeleeDefense += 10;
 			_properties.MeleeSkill += 5;
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		local result = "Follows up attacks with off-hand";
+		local main = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed))) {
+			result += ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("melee_skill") + "[color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_defense");
+		}
+		return result;
 	}
 });

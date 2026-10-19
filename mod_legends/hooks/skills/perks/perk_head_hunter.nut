@@ -1,22 +1,15 @@
-::mods_hookExactClass("skills/perks/perk_head_hunter", function(o) {
+::mods_hookExactClass("skills/perks/perk_head_hunter", function (o) {
 	o.m.HeadHitChance <- 0;
-	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_bodyPart == ::Const.BodyPart.Head)
-		{
-			if (this.m.Stacks == 0 && this.m.SkillCount != ::Const.SkillCounter)
-			{
+	o.onTargetHit = function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (_bodyPart == ::Const.BodyPart.Head) {
+			if (this.m.Stacks == 0 && this.m.SkillCount != ::Const.SkillCounter) {
 				this.m.Stacks = 1;
 				this.m.SkillCount = ::Const.SkillCounter;
-			}
-			else if (this.m.Stacks == 1 && this.m.HeadHitChance > 50 && ::Math.rand(1, 100) <= (this.m.HeadHitChance - 50))
-			{
-				::Tactical.EventLog.logEx("Head Hunter is refreshed");
+			} else if (this.m.Stacks == 1 && this.m.HeadHitChance > 50 && ::Math.rand(1, 100) <= (this.m.HeadHitChance - 50)) {
+				::Tactical.EventLog.logEx("Head Hunter is refreshed!");
 				this.m.Stacks = 1;
 				this.m.SkillCount = ::Const.SkillCounter;
-			}
-			else
-			{
+			} else {
 				this.m.Stacks = 0;
 			}
 
@@ -24,8 +17,11 @@
 		}
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		this.m.HeadHitChance = _properties.HitChance[::Const.BodyPart.Head];
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "Guaranteed to hit the head if possible";
 	}
 });

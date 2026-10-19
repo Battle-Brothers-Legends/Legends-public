@@ -22,7 +22,7 @@ this.perk_legend_penance <- this.inherit("scripts/skills/skill", {
 			ret.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/damage_dealt.png",
+				icon = "ui/icons/damage_regular.png",
 				text = "[color=%positive%]" + (damageBonus * 100) + "%[/color] of equipped weapon's Maximum Damage as additional Maximum Damage"
 			});
 		}
@@ -77,5 +77,9 @@ this.perk_legend_penance <- this.inherit("scripts/skills/skill", {
 				_properties.DamageRegularMax += item.m.RegularDamageMax * damageBonus;
 			}
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.getDamageBonus() + "[/color] Maximum " + ::Legends.S.inlineIcon("damage_regular") + ", [color=%positive%]+" + this.getResolveBonus() + "[/color] " + ::Legends.S.inlineIcon("bravery");
 	}
 });

@@ -81,6 +81,6 @@ this.legend_backswing_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("action_points") + ::Legends.S.inlineIcon("fatigue") + ::Legends.S.inlineIcon("damage_dealt") + " of the next AoE swing lowered";
+		return ::Legends.S.inlineIcon(["action_points", "fatigue", "damage_dealt"]) + " of the next AoE swing lowered";
 	}
 });

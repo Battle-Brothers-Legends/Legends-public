@@ -79,6 +79,6 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon("initiative") + ::Legends.S.inlineIcon("bravery") + ::Legends.S.inlineIcon("regular_damage");
+		return "[color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon(["regular_damage", "initiative", "bravery"]);
 	}
 });

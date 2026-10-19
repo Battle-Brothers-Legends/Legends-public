@@ -53,6 +53,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("action_points") + " set to [color=%positive%]12[/color], [color=%positive%]+50[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%positive%]+15[/color] " + ::Legends.S.inlineIcon("melee_skill") + ", [color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%negative%]-25[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return ::Legends.S.inlineIcon("action_points") + " set to [color=%positive%]12[/color], [color=%positive%]+50[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%positive%]+15[/color] " + ::Legends.S.inlineIcon("melee_skill") + ", [color=%positive%]+10[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]) + ", [color=%negative%]-25[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

@@ -1,9 +1,8 @@
-this.mods_hookExactClass("skills/injury_permanent/traumatized_injury", function(o)
-{
-	o.getTooltip = function ()
-	{
-		local resolveMalus = this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.Drunkard) ? 20 : 40;
-		local iniMalus = this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.Drunkard) ? 10 : 30;
+::mods_hookExactClass("skills/injury_permanent/traumatized_injury", function (o) {
+	o.getTooltip = function () {
+		local isDrunkard = ::Legends.Traits.has(this, ::Legends.Trait.Drunkard);
+		local resolveMalus = isDrunkard ? 20 : 40;
+		local iniMalus = isDrunkard ? 10 : 30;
 		local ret = [
 			{
 				id = 1,
@@ -16,17 +15,14 @@ this.mods_hookExactClass("skills/injury_permanent/traumatized_injury", function(
 				text = this.getDescription()
 			}
 		];
-		if (::Legends.Effects.has(this, ::Legends.Effect.Drunk))
-		{
+		if (::Legends.Effects.has(this, ::Legends.Effect.Drunk)) {
 			ret.push({
 				id = 16,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "This character is intoxicated and is temporarily not affected by this injury."
 			});
-		}
-		else
-		{
+		} else {
 			ret.extend([
 				{
 					id = 7,
@@ -54,19 +50,27 @@ this.mods_hookExactClass("skills/injury_permanent/traumatized_injury", function(
 	}
 
 	local onUpdate = o.onUpdate;
-	o.onUpdate = function ( _properties )
-	{
-		if (::Legends.Effects.has(this, ::Legends.Effect.Drunk))
+	o.onUpdate = function (_properties) {
+		if (::Legends.Effects.has(this, ::Legends.Effect.Drunk)) {
 			return;
-		if (this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.Drunkard))
-		{
+		}
+		if (this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.Drunkard)) {
 			_properties.BraveryMult *= 0.8;
 			_properties.InitiativeMult *= 0.9;
 			_properties.IsContentWithBeingInReserve = true;
+		} else {
+			onUpdate(_properties);
 		}
-		else
-		{
-			onUpdate( _properties );
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		if (::Legends.Effects.has(this, ::Legends.Effect.Drunk)) {
+			return null;
+		} else {
+			local isDrunkard = ::Legends.Traits.has(this, ::Legends.Trait.Drunkard);
+			local resolveMalus = isDrunkard ? 20 : 40;
+			local iniMalus = isDrunkard ? 10 : 30;
+			return "[color=%negative%]-" + iniMalus + "[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + resolveMalus + "[/color] " + ::Legends.S.inlineIcon("bravery");
 		}
 	}
 });

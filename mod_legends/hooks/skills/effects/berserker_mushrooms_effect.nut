@@ -52,7 +52,7 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		local tooltip = "[color=%positive%]+25%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%negative%]-15[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ",  no morale check on " + ::Legends.S.inlineIcon("damage_received");
+		local tooltip = "[color=%positive%]+25%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%negative%]-15[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]) + ",  no morale check on " + ::Legends.S.inlineIcon("damage_received");
 		if (::Legends.Effects.has(this, ::Legends.Effect.LegendBerserkerRage)) {
 			tooltip += ", [color=%negative%]+5[/color] Rage stacks every turn";
 		}

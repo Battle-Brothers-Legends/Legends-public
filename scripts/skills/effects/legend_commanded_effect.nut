@@ -106,6 +106,6 @@ this.legend_commanded_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+4[/color] " + ::Legends.S.inlineIcon("action_points") + ", [color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_skill") + ", [color=%positive%]+15[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%positive%]+50[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%positive%]+4[/color] " + ::Legends.S.inlineIcon("action_points") + ", [color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_skill") + ", [color=%positive%]+15[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]) + ", [color=%positive%]+50[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

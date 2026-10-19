@@ -105,6 +105,7 @@
 	<sprite id="legend_heartwood_focus_effect" ic="724543FF" img="skills\legend_heartwood_focus_effect.png" />
 	<sprite id="legend_hexe_ichor_effect" ic="724543FF" img="skills\legend_hexe_ichor_effect.png" />
 	<sprite id="legend_knocked_over_effect" ic="3E2929FF" img="skills\legend_knocked_over_effect.png" />
+	<sprite id="legend_immobilized_effect" ic="3E2929FF" img="skills\legend_immobilized_effect.png" />
 	<sprite id="legend_levitating_effect" ic="3E2929FF" img="skills\legend_levitating_effect.png" />
 	<sprite id="legend_martial_march_effect" ic="FF23165B" img="skills\legend_martial_march_effect.png" />
 	<sprite id="legend_parried_effect" offsetY="35" ic="FF344955" img="skills\legend_parried_effect.png" />
@@ -153,6 +154,7 @@
 	<sprite id="legend_holding_the_line_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_holding_the_line_effect.png" />
 	<sprite id="legend_knockback_prepared_effect_mini" ic="2E343FFF" img="skills\mini\legend_knockback_prepared_effect.png" />
 	<sprite id="legend_knocked_over_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_knocked_over_effect.png" />
+	<sprite id="legend_immobilized_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_immobilized_effect.png" />
 	<sprite id="legend_levitating_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_levitating_effect.png" />
 	<sprite id="legend_lightning_reflexes_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_lightning_reflexes_effect.png" />
 	<sprite id="legend_lurking_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_lurking_effect.png" />

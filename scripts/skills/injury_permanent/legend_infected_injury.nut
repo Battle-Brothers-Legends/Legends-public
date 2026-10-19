@@ -1,10 +1,11 @@
+//unused
 this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/permanent_injury", {
 	m = {
 		Effect = "",
 		Chance = 100
 	},
-	function create()
-	{
+
+	function create() {
 		this.permanent_injury.create();
 		this.m.ID = "injury.legend_vermesthropy";
 		this.m.Name = "Vermesthrope";
@@ -12,9 +13,8 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 		this.m.Icon = "ui/injury/injury_vermesthropy.png";
 	}
 
-	function getTooltip()
-	{
-	 	local day = ::World.getTime().Days;
+	function getTooltip() {
+		local day = ::World.getTime().Days;
 		local month = day / 28;
 		local monthfloor = ::Math.floor(month);
 		local ret = [
@@ -37,8 +37,7 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 		];
 		this.addTooltipHint(ret);
 
-		if (::World.getTime().IsDaytime && month != monthfloor)
-		{
+		if (::World.getTime().IsDaytime && month != monthfloor) {
 			ret.push({
 				id = 20,
 				type = "text",
@@ -47,8 +46,7 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 			});
 		}
 
-		if (!::World.getTime().IsDaytime && month != monthfloor)
-		{
+		if (!::World.getTime().IsDaytime && month != monthfloor) {
 			ret.push({
 				id = 20,
 				type = "text",
@@ -57,8 +55,7 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 			});
 		}
 
-		if (month == monthfloor)
-		{
+		if (month == monthfloor) {
 			ret.push({
 				id = 20,
 				type = "text",
@@ -70,24 +67,17 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
-	}
+	function onUpdate(_properties) {}
 
-	function onApplyAppearance()
-	{
-	}
+	function onApplyAppearance() {}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendWolfsbane))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendWolfsbane)) {
 			return;
 		}
 
-		if (actor.getSkills().hasPerk(::Legends.Perk.LegendMasterAnger))
-		{
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendMasterAnger)) {
 			return;
 		}
 
@@ -98,10 +88,8 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 			"effect.legend_transformed_rat"
 		];
 
-		foreach (s in validSkills)
-		{
-			if (actor.getSkills().hasSkill(s))
-			{
+		foreach (s in validSkills) {
+			if (actor.getSkills().hasSkill(s)) {
 				return;
 			}
 		}
@@ -114,27 +102,20 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 		// return
 
 		//Always turn on full moon
-		if (day % 28 == 0)
-		{
+		if (day % 28 == 0) {
 			actor.getSkills().add(this.new(this.m.Effect));
 			return;
 		}
 
 		//50% chance to turn at night
-		if (!::World.getTime().IsDaytime)
-		{
-			if (r <= 0.5 * this.m.Chance)
-			{
+		if (!::World.getTime().IsDaytime) {
+			if (r <= 0.5 * this.m.Chance) {
 				actor.getSkills().add(this.new(this.m.Effect));
 			}
 		}
 		//10% chance to turn during daytime
-		else if (r <= (0.1 * this.m.Chance))
-		{
+		else if (r <= (0.1 * this.m.Chance)) {
 			actor.getSkills().add(this.new(this.m.Effect));
 		}
-
 	}
-
 });
-

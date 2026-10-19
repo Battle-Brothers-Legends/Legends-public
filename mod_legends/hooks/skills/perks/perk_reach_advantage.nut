@@ -6,11 +6,11 @@
 		if (actor.getMainhandItem() == null || !actor.getMainhandItem().isWeaponType(::Const.Items.WeaponType.Staff)) {
 			return;
 		}
-		if (_properties.IsImmuneToSurrounding == true || actor.getSkills().hasPerk(::Legends.Perk.Underdog)) {
+		if (_properties.IsImmuneToSurrounding == true || ::Legends.Perks.has(actor, ::Legends.Perk.Underdog)) {
 			_properties.MeleeDefense += 5;
 			_properties.RangedDefense += 5;
 		} else {
-			_properties.SurroundedDefense += 5;
+			_properties.SurroundedDefense += 5; //tbd, doesn't agree with the perk tooltip, needs fixing her and below
 		}
 	}
 
@@ -19,5 +19,9 @@
 		if (this.m.Stacks == 0) {
 			this.m.IsHidden = true;
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.m.Stacks * 5 + "[/color] Melee " + ::Legends.S.inlineIcon(["melee_defense"]);
 	}
 });

@@ -1,5 +1,4 @@
 ::mods_hookExactClass("skills/effects_world/afraid_effect", function (o) {
-
 	o.m.HealChance <- 25;
 	o.setHealChance <- function (_i) {
 		this.m.HealChance = _i;

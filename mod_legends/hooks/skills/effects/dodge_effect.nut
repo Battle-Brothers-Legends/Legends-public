@@ -3,6 +3,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
+		this.m.Description = "Quick reflexes allow this character to add part of %their% current Initiative to melee and ranged defense.";
 		this.m.IsRemovedAfterBattle = false;
 		this.m.IsSerialized = false;
 	}
@@ -43,6 +44,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense");
+		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]);
 	}
 });

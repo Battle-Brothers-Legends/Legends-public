@@ -83,6 +83,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ::Legends.S.inlineIcon("bravery") + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + ((::Math.minf(0.7, 0.02 * this.m.Stacks)) * 100) + "%[/color]" + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%positive%]" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon(["damage_dealt", "bravery", "initiative"]) + ", [color=%negative%]-" + ((::Math.minf(0.7, 0.02 * this.m.Stacks)) * 100) + "%[/color]" + ::Legends.S.inlineIcon("damage_received");
 	}
 });

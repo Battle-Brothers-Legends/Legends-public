@@ -808,6 +808,7 @@ if (!("Effects" in ::Legends)) {
 		IconMini = "status_effect_92_mini",
 		Overlay = "status_effect_92"
 	},
+	LegendImmobilized = {},
 	LegendLurking = {
 		Overlay = ""
 	},

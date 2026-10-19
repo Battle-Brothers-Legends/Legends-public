@@ -29,6 +29,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (this.m.TurnsLeft * _stacks) + "[/color] " + ::Legends.S.inlineIcon("action_points") + ::Legends.S.inlineIcon("vision") + ", [color=%negative%]-" + (10 * this.m.TurnsLeft * _stacks) + "[/color] " + ::Legends.S.inlineIcon("initiative");
+		return "[color=%negative%]-" + (this.m.TurnsLeft * _stacks) + "[/color] " + ::Legends.S.inlineIcon(["action_points", "vision"]) + ", [color=%negative%]-" + (10 * this.m.TurnsLeft * _stacks) + "[/color] " + ::Legends.S.inlineIcon("initiative");
 	}
 });

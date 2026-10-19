@@ -72,6 +72,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + (12 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("melee_skill") + ", [color=%positive%]+" + (14 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%positive%]+" + (5 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%positive%]+" + (5 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%positive%]+" + (9 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + (5 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("bravery");
+		return "[color=%positive%]+" + (12 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("melee_skill") + ", [color=%positive%]+" + (14 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%positive%]+" + (5 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]) + ", [color=%positive%]+" + (9 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + (5 + this.m.Level) + "[/color] " + ::Legends.S.inlineIcon("bravery");
 	}
 });

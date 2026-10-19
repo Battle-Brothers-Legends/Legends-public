@@ -36,17 +36,23 @@ this.perk_legend_unburdened <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
-		local items = this.getContainer().getActor();
-
+	function getBonus() {
+		local items = this.getContainer().getActor().getItems();
 		if (items.getItemAtSlot(::Const.ItemSlot.Body) != null || items.getItemAtSlot(::Const.ItemSlot.Head) != null) {
-			return;
+			return 1;
 		}
 
+		return this.m.DamageMult;
+	}
+
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
 		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack() || !_skill.isUsingHitchance()) {
 			return;
 		}
+		_properties.DamageReceivedRegularMult *= this.getBonus();
+	}
 
-		_properties.DamageReceivedRegularMult *= this.m.DamageMult;
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + (this.getBonus() * 100) + "%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

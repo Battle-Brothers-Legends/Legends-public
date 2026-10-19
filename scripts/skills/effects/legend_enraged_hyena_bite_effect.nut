@@ -153,6 +153,6 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-45%[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense_defense") + ::Legends.S.inlineIcon("initiative");
+		return "[color=%negative%]-45%[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense", "initiative"]);
 	}
 });

@@ -107,6 +107,6 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon("bravery") + ::Legends.S.inlineIcon("initiative") + ", [color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%negative%]-" + ::Math.minf(70, 2 * this.m.Stacks) + "[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon(["bravery", "initiative"]) + ", [color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%negative%]-" + ::Math.minf(70, 2 * this.m.Stacks) + "[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

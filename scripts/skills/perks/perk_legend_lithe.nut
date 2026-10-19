@@ -3,20 +3,18 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 		BonusMin = 0,
 		BonusMax = 30
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendLithe);
 		this.m.Description = "Lithe like a lizard! %name% is able to partially deflect attacks at the last moment, turning them into glancing hits.";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		return !(this.getBonus() > 0);
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local bonus = this.getBonus(true);
 		local bonusWithoutDura = this.getBonus(false);
 		local tooltip = this.skill.getTooltip();
@@ -49,8 +47,7 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getArmorFatPenMult(_totalArmorStaminaModifier)
-	{
+	function getArmorFatPenMult(_totalArmorStaminaModifier) {
 		_totalArmorStaminaModifier *= -1;
 
 		local steepnessFactor = 2.6;
@@ -59,12 +56,9 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 
 		local mult = 1;
 
-		if (_totalArmorStaminaModifier < armorIdealMin)
-		{
+		if (_totalArmorStaminaModifier < armorIdealMin) {
 			mult = ::Math.maxf(0, 1 - 0.01 * ::Math.pow(armorIdealMin - _totalArmorStaminaModifier, steepnessFactor));
-		}
-		else if (_totalArmorStaminaModifier > armorIdealMax)
-		{
+		} else if (_totalArmorStaminaModifier > armorIdealMax) {
 			mult = ::Math.maxf(0, 1 - 0.01 * ::Math.pow(_totalArmorStaminaModifier - armorIdealMax, steepnessFactor));
 		}
 
@@ -92,14 +86,18 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 		return ::Math.floor(bonus);
 	}
 
-	function onBeforeDamageReceived ( _attacker, _skill, _hitInfo, _properties )
-	{
-		if (_attacker == null || _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack())
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
+		if (_attacker == null || _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack()) {
 			return;
+		}
 
 		local bonus = this.getBonus(true);
 		local bonusWithoutDura = this.getBonus(false);
 		_properties.DamageReceivedArmorMult *= 1.0 - bonus * 0.01;
 		_properties.DamageReceivedRegularMult *= 1.0 - bonusWithoutDura * 0.01;
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-" + this.getBonus(true) + "%[/color] " + ::Legends.S.inlineIcon("armor_damage_received") + ", [color=%negative%]-" + this.getBonus(false) + "%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

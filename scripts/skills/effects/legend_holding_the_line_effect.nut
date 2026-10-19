@@ -40,6 +40,6 @@ this.legend_holding_the_line_effect <- this.inherit("scripts/skills/legend_comma
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%positive%]+10[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]) + ", [color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

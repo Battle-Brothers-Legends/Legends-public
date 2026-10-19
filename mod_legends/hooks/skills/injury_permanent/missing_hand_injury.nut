@@ -1,19 +1,15 @@
-this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function(o)
-{
+::mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function (o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "Uh-oh! Unless something is done about this, missing a hand will prevent this character from using shields, two-handed weapons, throwing nets and from double gripping one-handed weapons.";
 	}
 
-	o.onRemoved <- function ()
-	{
+	o.onRemoved <- function () {
 		this.getContainer().getActor().getItems().getData()[::Const.ItemSlot.Offhand][0] = null;
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function () {
 		local items = this.getContainer().getActor().getItems();
 
 		if (!this.m.IsNew) {
@@ -26,30 +22,21 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 		local mh = actor.getMainhandItem();
 		if (oh != null) { // unequip offhand
 			itemToUnequip = oh;
-		}
-		else if (mh != null && mh.getBlockedSlotType() == ::Const.ItemSlot.Offhand) { // unequip 2handers
+		} else if (mh != null && mh.getBlockedSlotType() == ::Const.ItemSlot.Offhand) { // unequip 2handers
 			itemToUnequip = mh;
 		}
 
-		if (itemToUnequip != null && (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded()))
-		{   // in case outside battle
+		if (itemToUnequip != null && (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())) { // in case outside battle
 			items.unequip(itemToUnequip);
-			if (items.hasEmptySlot(::Const.ItemSlot.Bag))
-			{
+			if (items.hasEmptySlot(::Const.ItemSlot.Bag)) {
 				items.addToBag(itemToUnequip);
-			}
-			else if (::World.Assets.getStash().hasEmptySlot())
-			{
+			} else if (::World.Assets.getStash().hasEmptySlot()) {
 				::World.Assets.getStash().add(itemToUnequip);
-			}
-			else
-			{
+			} else {
 				::World.Assets.getStash().makeEmptySlots(1);
 				::World.Assets.getStash().add(itemToUnequip);
 			}
-		}
-		else if (itemToUnequip)
-		{   // during battle
+		} else if (itemToUnequip) { // during battle
 			items.unequip(itemToUnequip);
 			itemToUnequip.drop(actor.getTile());
 		}
@@ -60,4 +47,7 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 		this.m.IsNew = false;
 	}
 
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "Has only one hand";
+	}
 });

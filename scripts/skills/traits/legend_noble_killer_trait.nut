@@ -75,4 +75,7 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 		}
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+10[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill"]);
+	}
 });

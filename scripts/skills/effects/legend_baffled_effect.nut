@@ -89,6 +89,6 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-15%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ::Legends.S.inlineIcon("fatigue") + ::Legends.S.inlineIcon("initiative");
+		return "[color=%negative%]-15%[/color] " + ::Legends.S.inlineIcon(["damage_dealt", "fatigue", "initiative"]);
 	}
 });

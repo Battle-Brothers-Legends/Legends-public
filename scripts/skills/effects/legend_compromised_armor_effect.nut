@@ -25,13 +25,13 @@ this.legend_compromised_armor_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/direct_damage.png",
+				icon = "ui/icons/damage_received.png",
 				text = "[color=%positive%]+20%[/color] Direct Damage Received"
 			},
 			{
 				id = 12,
 				type = "text",
-				icon = "ui/icons/armor_damage.png",
+				icon = "ui/icons/armor_damage_received.png",
 				text = "[color=%positive%]+20%[/color] Armor Damage Received"
 			}
 		]);
@@ -56,6 +56,6 @@ this.legend_compromised_armor_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+20%[/color] " + ::Legends.S.inlineIcon("direct_damage") + ::Legends.S.inlineIcon("armor_damage");
+		return "[color=%positive%]+20%[/color] " + ::Legends.S.inlineIcon(["damage_received", "armor_damage_received"]);
 	}
 });

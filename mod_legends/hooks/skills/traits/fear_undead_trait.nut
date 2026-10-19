@@ -66,4 +66,8 @@
 			this.m.Type = ::Const.SkillType.Trait;
 		}
 	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-5%[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill"]) + ", [color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("bravery");
+	}
 });

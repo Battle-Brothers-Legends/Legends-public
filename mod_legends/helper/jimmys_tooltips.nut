@@ -261,7 +261,7 @@ local function pushSection(_tooltip, _entity, _shownPerks, _items, _title, _star
 		_tooltip.push(itemRow);
 
 		if (::Tactical.Entities.getFlags().get("JimmysTooltips_ShowExpandedDescriptions") && ::MSU.isKindOf(item, "skill")) {
-			local extraDesc = item.getActorHoverTooltip(::Tactical.TurnSequenceBar.getActiveEntity(), (_stackInOneLine ? stacks[name] : 1));
+			local extraDesc = (!item.isType(::Const.SkillType.TemporaryInjury) || (_entity.getCurrentProperties().IsAffectedByInjuries && (!item.m.IsFresh || _entity.getCurrentProperties().IsAffectedByFreshInjuries))) ? (item.getActorHoverTooltip(::Tactical.TurnSequenceBar.getActiveEntity(), (_stackInOneLine ? stacks[name] : 1))) : null;
 			if (extraDesc != null) {
 				_tooltip.push({
 					id = _startID + i,
@@ -318,52 +318,10 @@ local function addStatusEffects(_tooltip, _entity, _shownPerks) {
 		if (_tooltip[count].text == statusEffects[0].getName()) {
 			_tooltip.resize(count);
 			pushRemainingAP();
-			local isInjury = @(_, _skill) _skill.isType(::Const.SkillType.TemporaryInjury);
-			local isTextRow = @(_, row)("type" in row) && row.type == "text";
-			statusEffects = removeDuplicates(_shownPerks, statusEffects.filter(@(_, item)(!isInjury(_, item))));
+			statusEffects = removeDuplicates(_shownPerks, statusEffects);
+			statusEffects.sort(@(a, b)((a.isType(::Const.SkillType.TemporaryInjury) ? 1 : 0) <=> (b.isType(::Const.SkillType.TemporaryInjury) ? 1 : 0)));
 			pushSection(_tooltip, _entity, _shownPerks, statusEffects, "Status effects", 100, 2, "", true);
 
-			local injuries = _entity.getSkills().query(::Const.SkillType.TemporaryInjury, false, true);
-			foreach (i, injury in injuries) {
-				local children = injury.getTooltip().filter(@(_, row)(isTextRow(_, row)));
-				local addedTooltipHints = [];
-				injury.addTooltipHint(addedTooltipHints);
-				addedTooltipHints = addedTooltipHints.filter(@(_, row)(isTextRow(_, row)));
-				local added_count = addedTooltipHints.len();
-
-				if (added_count) {
-					children.resize(children.len() - added_count);
-				}
-
-				local isUnderIronWill = (function () {
-					local pattern = this.regexp("Iron Will");
-
-					foreach (_, row in addedTooltipHints) {
-						if (("text" in row) && pattern.search(row.text)) {
-							return true;
-						}
-					}
-
-					return false;
-				})();
-
-				local injuryRow = {
-					id = 133 + i,
-					type = "text",
-					icon = injury.getIcon(),
-					text = injury.getName()
-				};
-
-				if (!isUnderIronWill) {
-					injuryRow.children <- children;
-				} else {
-					injuryRow.text += "[color=%positive%]" + " (Iron Will)[/color]";
-				}
-
-				_tooltip.push(injuryRow);
-			}
-
-			statusEffects = removeDuplicates(_shownPerks, statusEffects);
 			pushSection(_tooltip, _entity, _shownPerks, statusEffects, null, 150, 1);
 		} else {
 			foreach (_, row in _tooltip) {

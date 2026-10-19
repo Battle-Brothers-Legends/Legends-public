@@ -1,5 +1,4 @@
-::mods_hookExactClass("skills/traits/teamplayer_trait", function(o)
-{
+::mods_hookExactClass("skills/traits/teamplayer_trait", function (o) {
 	o.m.IsBonusActive <- false;
 
 	local create = o.create;
@@ -37,8 +36,7 @@
 					text = "[color=%positive%]+5%[/color] Ranged Skill"
 				}
 			]);
-		}
-		else {
+		} else {
 			ret.extend([
 				{
 					id = 11,
@@ -52,7 +50,7 @@
 		return ret;
 	}
 
-	o.onUpdate <- function ( _properties ) {
+	o.onUpdate <- function (_properties) {
 		if (!this.getContainer().getActor().isPlacedOnMap()) {
 			this.m.IsBonusActive = false;
 			this.m.Type = ::Const.SkillType.Trait;
@@ -64,7 +62,7 @@
 		local allies = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
 		local isSupported = false;
 
-		foreach( ally in allies ) {
+		foreach (ally in allies) {
 			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap()) {
 				continue;
 			}
@@ -84,5 +82,9 @@
 			this.m.IsBonusActive = false;
 			this.m.Type = ::Const.SkillType.Trait;
 		}
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+5%[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill"]);
 	}
 });

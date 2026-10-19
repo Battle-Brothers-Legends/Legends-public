@@ -71,4 +71,7 @@ this.legend_natural_order_trait <- this.inherit("scripts/skills/traits/character
 		}
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+10%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("bravery");
+	}
 });

@@ -1,7 +1,7 @@
 this.legend_scarred_injury <- this.inherit("scripts/skills/injury_permanent/permanent_injury", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.permanent_injury.create();
 		this.m.ID = "injury.legend_scarred_injury";
 		this.m.Name = "Scarred";
@@ -9,8 +9,7 @@ this.legend_scarred_injury <- this.inherit("scripts/skills/injury_permanent/perm
 		this.m.Icon = "ui/injury/injury_scarred.png";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -45,31 +44,26 @@ this.legend_scarred_injury <- this.inherit("scripts/skills/injury_permanent/perm
 		return ret;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.SurviveWithInjuryChanceMult *= 2.27;
 		_properties.HitpointsMult *= 0.90;
 		_properties.StaminaMult *= 0.90;
 	}
 
-	function onApplyAppearance()
-	{
+	function onApplyAppearance() {
 		local sprite = this.getContainer().getActor().getSprite("permanent_injury_scarred");
-		if (this.getContainer().getActor().getEthnicity() == 1)
-		{
+		if (this.getContainer().getActor().getEthnicity() == 1) {
 			sprite.setBrush("permanent_injury_scarred_southern");
-		}
-		else if (this.getContainer().getActor().getEthnicity() == 2)
-		{
+		} else if (this.getContainer().getActor().getEthnicity() == 2) {
 			sprite.setBrush("permanent_injury_scarred_african");
-		}
-		else
-		{
+		} else {
 			sprite.setBrush("permanent_injury_scarred");
 		}
 
 		sprite.Visible = true;
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon(["health", "fatigue"]);
+	}
 });
-

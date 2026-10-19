@@ -3,22 +3,20 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		BonusMin = 0,
 		BonusMax = 30
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPerfectFit);
 		this.m.Description = "Leveraging the superior fit of %their% armor, %name% is gaining increased speed and endurance.";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
 	}
 
-	function getBonus(_actor = null)
-	{
+	function getBonus(_actor = null) {
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
 
 		local bodyitem = actor.getBodyItem();
 
-		if (bodyitem == null)
-		{
+		if (bodyitem == null) {
 			return 0;
 		}
 
@@ -26,35 +24,28 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		local maxFat = actor.getFatigueMax();
 		local armorFatPenMult = 0;
 
-		if (armorFatPen * 2 <= maxFat)
-		{
+		if (armorFatPen * 2 <= maxFat) {
 			armorFatPenMult = 1;
-		}
-		else
-		{
+		} else {
 			armorFatPenMult = ::Math.maxf(0, 1 - 0.01 * ::Math.pow(armorFatPen - maxFat / 2.0, 2.44));
 		}
 
 		return this.m.BonusMax * armorFatPenMult;
 	}
 
-	function getInitiativeBonus(_bonus)
-	{
+	function getInitiativeBonus(_bonus) {
 		return ::Math.floor(_bonus);
 	}
 
-	function getFatCostReductionBonus(_bonus)
-	{
+	function getFatCostReductionBonus(_bonus) {
 		return ::Math.floor(_bonus / 2);
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local bonus = this.getBonus();
 		local tooltip = this.skill.getTooltip();
 
-		if (bonus > this.m.BonusMin)
-		{
+		if (bonus > this.m.BonusMin) {
 			tooltip.extend([
 				{
 					id = 6,
@@ -71,8 +62,7 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 			]);
 		}
 
-		if (this.getContainer().getActor().getBodyItem() == null)
-		{
+		if (this.getContainer().getActor().getBodyItem() == null) {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -84,13 +74,11 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getUnactivatedPerkTooltipHints(_actor = null)
-	{
+	function getUnactivatedPerkTooltipHints(_actor = null) {
 		local bonus = this.getBonus(_actor);
 		local tooltip = [];
 
-		if (bonus > this.m.BonusMin)
-		{
+		if (bonus > this.m.BonusMin) {
 			tooltip.extend([
 				{
 					id = 6,
@@ -109,8 +97,7 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
 
-		if (actor.getBodyItem() == null)
-		{
+		if (actor.getBodyItem() == null) {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -122,10 +109,14 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local bonus = this.getBonus();
 		_properties.InitiativeMult *= 1.0 + 0.01 * this.getInitiativeBonus(bonus);
 		_properties.FatigueEffectMult *= 1.0 - 0.01 * this.getFatCostReductionBonus(bonus);
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		local bonus = this.getBonus();
+		return (bonus > 0 ? ("[color=%positive%]+" + this.getInitiativeBonus(bonus) + "[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + this.getFatCostReductionBonus(bonus) + "%[/color] " + ::Legends.S.inlineIcon("fatigue") + " cost of skills") : null);
 	}
 });

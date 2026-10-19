@@ -145,6 +145,6 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (10 * this.m.Stacks) + "%[/color] Melee " + ::Legends.S.inlineIcon("damage_dealt") + ", " + "[color=%positive%]+" + (10 * this.m.Stacks) + "[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ", no morale check upon losing HP";
+		return "[color=%negative%]-" + (10 * this.m.Stacks) + "%[/color] Melee " + ::Legends.S.inlineIcon("damage_dealt") + ", " + "[color=%positive%]+" + (10 * this.m.Stacks) + "[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]) + ", no morale check upon losing HP";
 	}
 });

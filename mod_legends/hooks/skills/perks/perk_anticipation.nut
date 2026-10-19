@@ -9,8 +9,11 @@
 	}
 
 	o.getDescription <- function () {
-		local reduction = ::Math.min(100, ::Math.max(0, this.getContainer().getActor().getCurrentProperties().RangedDefense));
-		return "Reduce damage taken by [color=%negative%]" + reduction + "%[/color] for the next [color=%positive%]" + this.m.Stacks + "[/color] hits you take in combat.";
+		return "Reduce damage taken by [color=%negative%]" + this.getReduction() + "%[/color] for the next [color=%positive%]" + this.m.Stacks + "[/color] hits you take in combat.";
+	}
+
+	o.getReduction <- function() {
+		return ::Math.min(100, ::Math.max(0, this.getContainer().getActor().getCurrentProperties().RangedDefense));
 	}
 
 	o.onAdded <- function () {
@@ -30,7 +33,7 @@
 			return;
 		}
 		this.m.IsHidden = false;
-		_properties.DamageReceivedTotalMult *= ::Math.minf(1.0, 1.0 - ::Math.max(0, _properties.RangedDefense) * 0.01);
+		_properties.DamageReceivedTotalMult *= ::Math.minf(1.0, 1.0 - this.getReduction() * 0.01);
 	}
 
 	o.onAfterDamageReceived <- function () {
@@ -45,5 +48,9 @@
 
 	o.onCombatFinished <- function () {
 		this.m.Stacks = 0;
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-" +  this.getReduction() + "%[/color] Ranged " + ::Legends.S.inlineIcon("damage_received");
 	}
 });

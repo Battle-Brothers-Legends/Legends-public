@@ -79,6 +79,6 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("ranged_skill") + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense") + ::Legends.S.inlineIcon("bravery");
+		return "[color=%positive%]+" + this.m.Stacks + "[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "bravery"]);
 	}
 });

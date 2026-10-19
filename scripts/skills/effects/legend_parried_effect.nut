@@ -39,6 +39,6 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("melee_defense") + ::Legends.S.inlineIcon("ranged_defense");
+		return "[color=%negative%]-10[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]);
 	}
 });

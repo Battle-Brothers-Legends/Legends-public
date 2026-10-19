@@ -25,6 +25,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+25[/color] " + ::Legends.S.inlineIcon("armor_body") + ::Legends.S.inlineIcon("armor_head");
+		return "[color=%positive%]+25[/color] " + ::Legends.S.inlineIcon(["armor_body", "armor_head"]);
 	}
 });

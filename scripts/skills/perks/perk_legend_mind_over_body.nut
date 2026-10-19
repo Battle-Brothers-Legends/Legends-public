@@ -1,23 +1,21 @@
 this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMindOverBody);
+		this.m.Description = "Push your body beyond what is humanly possible through your sheer force of will.";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 	}
 
-	function getBonus( _actor = null )
-	{
-		if (_actor == null && this.getContainer() == null)
-		{
+	function getBonus(_actor = null) {
+		if (_actor == null && this.getContainer() == null) {
 			return 0;
 		}
 
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
 
-		if (actor == null)
-		{
+		if (actor == null) {
 			return 0;
 		}
 
@@ -29,27 +27,22 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		return bonus;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local bonus = this.getBonus();
-		if (bonus > 1)
-		{
+		if (bonus > 1) {
 			bonus = ::Math.pow(bonus, 0.5);
 		}
 		local reduction = ::Math.round((1 - 1 / bonus) * 100);
 		local tooltip = this.skill.getTooltip();
 
-		if (bonus > 1)
-		{
+		if (bonus > 1) {
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "All your fatigue costs are reduced by [color=%positive%]" + reduction + "%[/color]"
 			});
-		}
-		else
-		{
+		} else {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -61,26 +54,21 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getUnactivatedPerkTooltipHints(_actor = null)
-	{
+	function getUnactivatedPerkTooltipHints(_actor = null) {
 		local bonus = this.getBonus(_actor);
-		if (bonus > 1)
-		{
+		if (bonus > 1) {
 			bonus = ::Math.pow(bonus, 0.5);
 		}
 		local reduction = ::Math.round((1 - 1 / bonus) * 100);
 		local tooltip = [];
-		if (bonus > 1)
-		{
+		if (bonus > 1) {
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "All your fatigue costs are reduced by [color=%positive%]" + reduction + "%[/color]"
 			});
-		}
-		else
-		{
+		} else {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -92,15 +80,16 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local bonus = this.getBonus();
-		if (bonus > 1)
-		{
+		if (bonus > 1) {
 			bonus = ::Math.pow(bonus, 0.5);
 			_properties.FatigueEffectMult *= 1.0 / bonus;
 		}
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		local bonus = this.getBonus();
+		return (bonus > 1 ? "[color=%negative%]-" + ::Math.round((1 - 1 / ::Math.pow(bonus, 0.5)) * 100) + "%[/color] " + ::Legends.S.inlineIcon("fatigue") + " costs" : null);
+	}
 });
-

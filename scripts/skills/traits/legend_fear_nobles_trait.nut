@@ -81,4 +81,7 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 		}
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-5%[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill"]) + ", [color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("bravery");
+	}
 });

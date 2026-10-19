@@ -6,4 +6,8 @@
 		}
 		this.injury.onUpdate(_properties);
 	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + (this.m.XPGainMult * 100 - 100) + "%[/color] " + ::Legends.S.inlineIcon("xp_received");
+	}
 });

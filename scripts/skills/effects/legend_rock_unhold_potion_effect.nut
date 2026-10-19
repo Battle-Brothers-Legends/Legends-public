@@ -48,6 +48,6 @@ this.legend_rock_unhold_potion_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+15%[/color] total " + ::Legends.S.inlineIcon("armor_body") + ::Legends.S.inlineIcon("armor_head");
+		return "[color=%positive%]+15%[/color] total " + ::Legends.S.inlineIcon(["armor_body", "armor_head"]);
 	}
 });

@@ -66,4 +66,8 @@ this.perk_legend_near_death_experience <- this.inherit("scripts/skills/skill", {
 		actor.addXP(xp);
 		actor.updateLevel();
 	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-" + (this.m.Bonus * 5) + "%[/color] " + ::Legends.S.inlineIcon("damage_received");
+	}
 });

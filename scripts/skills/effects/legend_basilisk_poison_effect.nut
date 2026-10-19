@@ -70,6 +70,6 @@ this.legend_basilisk_poison_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (this.m.Stacks * 20) + "[/color] " + ::Legends.S.inlineIcon("bravery") + ", " + "[color=%negative%]-" + (this.m.Stacks * 20) + "%[/color] " + ::Legends.S.inlineIcon("fatigue") + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + (this.m.Stacks * 3) + "[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_down");
+		return "[color=%negative%]-" + (this.m.Stacks * 20) + "[/color] " + ::Legends.S.inlineIcon("bravery") + ", " + "[color=%negative%]-" + (this.m.Stacks * 20) + "%[/color] " + ::Legends.S.inlineIcon(["fatigue", "initiative"]) + ", [color=%negative%]-" + (this.m.Stacks * 3) + "[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_down");
 	}
 });

@@ -2,8 +2,8 @@
 this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 	m = {
 		ThreatModifier = 10,
-		MeleeSkillMult = 1.10,
-		RangedSkillMult = 1.10
+		MeleeSkillMult = 1.1,
+		RangedSkillMult = 1.1
 	},
 
 	function create() {
@@ -90,5 +90,9 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 		if (this.m.Container.hasTrait(::Legends.Trait.NightBlind)) {
 			::Legends.Traits.remove(this, ::Legends.Trait.NightBlind);
 		}
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + (this.m.MeleeSkillMult * 100 - 100) + "%[/color] " + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%negative%]-" + this.m.ThreatModifier + "[/color] " + ::Legends.S.inlineIcon("bravery") + " of adjacent enemies";
 	}
 });

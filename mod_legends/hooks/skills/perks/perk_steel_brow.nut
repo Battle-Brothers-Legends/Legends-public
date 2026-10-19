@@ -28,4 +28,8 @@
 			_hitInfo.BodyDamageMult = _hitInfo.BodyDamageMultBeforeSteelBrow * 0.67;
 		}
 	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return ::Legends.S.inlineIcon("immunity") + " to Stun, instead get Dazed";
+	}
 });

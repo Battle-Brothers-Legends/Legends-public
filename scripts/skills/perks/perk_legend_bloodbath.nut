@@ -30,6 +30,12 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 				{
 					id = 8,
 					type = "text",
+					icon = "ui/icons/bravery.png",
+					text = "Gain an additional [color=%positive%]+" + count + "[/color] Resolve"
+				},
+				{
+					id = 9,
+					type = "text",
 					icon = "ui/icons/fatigue.png",
 					text = "[color=%positive%]+" + ::Math.min(count, 5) + "[/color] Fatigue Recovery per turn"
 				}
@@ -93,4 +99,8 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 		_properties.RangedSkill += count;
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		local bonus = this.getBleeders();
+		return "[color=%positive%]+" + bonus + "[/color] " + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("ranged_skill") + ::Legends.S.inlineIcon("bravery") + ", [color=%positive%]+" + ::Math.min(5, bonus) + "[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_up");
+	}
 });

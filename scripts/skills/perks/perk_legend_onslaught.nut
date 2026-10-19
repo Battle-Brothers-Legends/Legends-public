@@ -13,14 +13,14 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 		tooltip.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/regular_damage.png",
-			text = "Current melee damage bonus is [color=%positive%]+" + getBonus() + "%" + "[/color]"
+			icon = "ui/icons/damage_dealt.png",
+			text = "Current melee damage bonus is [color=%positive%]+" + this.getBonus() + "%" + "[/color]"
 		});
 		return tooltip;
 	}
 
 	function isHidden() {
-		this.getBonus() == 0;
+		return this.getBonus() == 0;
 	}
 
 	function getBonus() {
@@ -51,5 +51,9 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 		}
 
 		return true;
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.getBonus() + "%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%positive%]50%[/color] to Baffle enemies on hit";
 	}
 });

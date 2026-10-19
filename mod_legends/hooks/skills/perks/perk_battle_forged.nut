@@ -29,13 +29,14 @@
 	}
 
 	o.onBeforeDamageReceived = function (_attacker, _skill, _hitInfo, _properties) {
-		if (_attacker != null
-			&& _attacker.getID() == this.getContainer().getActor().getID()
-			|| _skill != null
-			&& !_skill.isAttack()) {
+		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID() || _skill != null && !_skill.isAttack()) {
 			return;
 		}
 
 		_properties.DamageReceivedArmorMult *= 1.0 - this.getReductionPercentage() * 0.01;
+	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-" + this.getReductionPercentage() + "%[/color] " + ::Legends.S.inlineIcon("armor_damage_received");
 	}
 });

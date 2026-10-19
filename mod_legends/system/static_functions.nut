@@ -38,8 +38,16 @@
 	return ((!pattern || !text) ? false : this.regexp(pattern).search(text));
 };
 
-::Legends.S.inlineIcon <- function (_icon, _height = 16, _width = 16, _path = "gfx/ui/icons/", _extension = ".png") {
-	return "[leg_img](" + _path + _icon + ".png,height=" + _height + "px,width=" + _width + "px)[/leg_img]";
+::Legends.S.inlineIcon <- function (_icons, _height = 16, _width = 16, _path = "gfx/ui/icons/", _extension = ".png") {
+	local result = "";
+	if (typeof(_icons) == "array") {
+		foreach (icon in _icons) {
+			result += "[leg_img](" + _path + icon + ".png,height=" + _height + "px,width=" + _width + "px)[/leg_img]";
+		}
+	} else {
+		result = "[leg_img](" + _path + _icons + ".png,height=" + _height + "px,width=" + _width + "px)[/leg_img]";
+	}
+	return result;
 }
 
 ::Legends.S.pluralize <- function (_value, _text, _irregular = "") {
