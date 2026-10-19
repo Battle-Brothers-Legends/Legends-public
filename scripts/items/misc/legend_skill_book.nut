@@ -89,7 +89,8 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 				result.push({
 					id = 10,
 					type = "text",
-					text = ::Legends.S.inlineIcon(perk.Icon, 20, 20, "") + " [color=%perk%]" + perk.Name + "[/color]"
+					icon = perk.Icon
+					text = "[color=%perk%]" + perk.Name + "[/color]"
 				});
 			}
 		} else {

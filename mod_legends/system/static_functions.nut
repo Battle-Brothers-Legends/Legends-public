@@ -42,10 +42,10 @@
 	local result = "";
 	if (typeof(_icons) == "array") {
 		foreach (icon in _icons) {
-			result += "[leg_img](" + _path + icon + ".png,height=" + _height + "px,width=" + _width + "px)[/leg_img]";
+			result += "[leg_img](" + _path + icon + _extension + ",height=" + _height + "px,width=" + _width + "px)[/leg_img]";
 		}
 	} else {
-		result = "[leg_img](" + _path + _icons + ".png,height=" + _height + "px,width=" + _width + "px)[/leg_img]";
+		result = "[leg_img](" + _path + _icons + _extension + ",height=" + _height + "px,width=" + _width + "px)[/leg_img]";
 	}
 	return result;
 }
