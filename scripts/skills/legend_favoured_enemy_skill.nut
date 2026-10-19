@@ -3,8 +3,8 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		ValidTypes = [],
 		BraveryMult = 1.0
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Icon = "skills/status_effect_57.png";
 		this.m.Order = ::Const.SkillOrder.Perk;
@@ -13,50 +13,41 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		return this.inBattleHiddenCheck();
 	}
 
-	function inBattleHiddenCheck()
-	{
+	function inBattleHiddenCheck() {
 		if (!("State" in ::Tactical) || ::Tactical.State == null) //don't bother hiding the skill when it's not in combat
 		{
 			return false;
 		}
 
-		if (!("Entities" in ::Tactical))
-		{
+		if (!("Entities" in ::Tactical)) {
 			return false;
 		}
 
-		if (::Tactical.Entities == null)
-		{
+		if (::Tactical.Entities == null) {
 			return false;
 		}
 
 		local instances = ::Tactical.Entities.getAllInstancesAsArray();
 		local myFaction = this.getContainer().getActor().getFaction();
 
-		foreach( idx in instances )
-		{
-			if (idx == null)
-			{
+		foreach (idx in instances) {
+			if (idx == null) {
 				continue;
 			}
 
-			if (idx.getFaction() == myFaction)
-			{
+			if (idx.getFaction() == myFaction) {
 				continue;
 			}
 
-			if (idx.getTile() == null)
-			{
+			if (idx.getTile() == null) {
 				continue;
 			}
 
-			if (this.m.ValidTypes.find(idx.getType()) != null)
-			{
+			if (this.m.ValidTypes.find(idx.getType()) != null) {
 				return false;
 			}
 		}
@@ -65,22 +56,17 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function getTooltip()
-	{
-		local stats = this.getTotalKillStats();
-		local resp =  [
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend(this.getDynamicTooltip());
+		return tooltip;
+	}
+
+	function getDynamicTooltip(_actor = null) {
+		local stats = this.getTotalKillStats(_actor);
+		local tooltip = [
 			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-			{
-				id = 16,
+				id = 7,
 				type = "progressbar",
 				icon = "ui/tooltips/positive.png",
 				value = stats.HitChance,
@@ -89,89 +75,47 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				style = "fatigue-slim"
 			},
 			{
-				id = 10,
+				id = 8,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
 				text = "[color=%positive%]+" + stats.HitChance + "[/color] Melee Skill"
 			},
 			{
-				id = 11,
+				id = 9,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
 				text = "[color=%positive%]+" + stats.HitChance + "[/color] Ranged Skill"
 			},
 			{
-				id = 11,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=%positive%]" + stats.HitChance + "%[/color] more Max Damage"
+				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Maximum Damage"
 			}
 		];
-		if (this.m.BraveryMult > 1)
-		{
-			resp.push({
-				id = 15,
+		if (this.m.BraveryMult > 1) {
+			tooltip.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=%positive%]" + ::Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] more Resolve"
+				text = "[color=%positive%]+" + ::Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve"
 			});
 		}
-		resp.push({
-			id = 16,
-			type = "hint",
-			icon = "ui/icons/special.png",
-			text = ::Legends.S.highlightForLightBackground(stats.Kills) + " favored enemy kills"
-		});
 
-		return resp;
-	}
-
-	// When the Perk is yet to be activated, show in the Tooltip what the current bonus is
-	function getUnactivatedPerkTooltipHints(_actor = null)
-	{
-		local stats = this.getTotalKillStats(_actor);
-		local killsText = "";
-		if (stats.Kills > 0)
-		{
-			killsText = format("This character has already made %s favored enemy kills", ::Legends.S.highlightForLightBackground(stats.Kills));
-		}
-		else
-		{
-			killsText = format("This character has not made any favored enemy kills yet");
-		}
-		local ret = [
+		tooltip.push([
 			{
-				id = 3,
-				type = "hint",
+				id = 12,
+				type = "text",
 				icon = "ui/icons/special.png",
-				text = killsText
-			},
-			{
-				id = 3,
-				type = "hint",
-				icon = "ui/tooltips/positive.png",
-				text = format("Activating this perk will grant a %s bonus to the relevant stats", ::Const.UI.getColorized("+" + stats.HitChance + "%", ::Const.UI.Color.PositiveValue))
-			},
-			{
-				id = 4,
-				type = "progressbar",
-				icon = "ui/tooltips/positive.png",
-				value = stats.HitChance,
-				valueMax = 25,
-				text = stats.HitChance + "% / " + "25%",
-				style = "fatigue-slim"
+				text = format((stats.Kills > 0 ? format("This character has already made %s favored enemy kills", ::Legends.S.highlightForLightBackground(stats.Kills)) : "This character has not made any favored enemy kills yet"))
 			}
-		];
-
-		return ret;
+		]);
+		return tooltip;
 	}
 
-	function validTarget( _targetID)
-	{
-		foreach (t in this.m.ValidTypes)
-		{
-			if (_targetID == t)
-			{
+	function validTarget(_targetID) {
+		foreach (t in this.m.ValidTypes) {
+			if (_targetID == t) {
 				return true;
 			}
 		}
@@ -183,51 +127,40 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		return ::Const.LegendMod.GetFavoriteEnemyStats(actor, this.m.ValidTypes);
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_targetEntity == null)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_targetEntity == null) {
 			return;
 		}
 
-		if (this.validTarget(_targetEntity.getType()))
-		{
+		if (this.validTarget(_targetEntity.getType())) {
 			local stats = this.getTotalKillStats();
 			_properties.MeleeSkill += stats.HitChance;
 			_properties.RangedSkill += stats.HitChance;
 			_properties.DamageRegularMax *= stats.HitMult;
 		}
 
-		else
-		{
-		 return;
+		else {
+			return;
 		}
 	}
 
-	function onUpdate( _properties )
-	{
-		if (this.m.BraveryMult == 1.0)
-		{
+	function onUpdate(_properties) {
+		if (this.m.BraveryMult == 1.0) {
 			return;
 		}
 
-		if (!("Entities" in ::Tactical))
-		{
+		if (!("Entities" in ::Tactical)) {
 			return;
 		}
 
-		if (::Tactical.Entities == null)
-		{
+		if (::Tactical.Entities == null) {
 			return;
 		}
 
 		local actors = ::Tactical.Entities.getAllInstancesAsArray();
-		foreach( a in actors )
-		{
-			foreach (vt in this.m.ValidTypes)
-			{
-				if (a.getType() == vt && !a.isAlliedWithPlayer())
-				{
+		foreach (a in actors) {
+			foreach (vt in this.m.ValidTypes) {
+				if (a.getType() == vt && !a.isAlliedWithPlayer()) {
 					_properties.BraveryMult *= this.m.BraveryMult;
 					return;
 				}
@@ -235,25 +168,22 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		::Const.LegendMod.FavEnemyPerkMap.addEnemies(this.m.ValidTypes, this.m.ID);
 	}
 
 	// Requires MSU; this will add tooltips to display bonuses when targeting an enemy
-	function onGetHitFactors( _skill, _targetTile, _tooltip )
-	{
-		if (this.validTarget( _targetTile.getEntity().getType())) {
+	function onGetHitFactors(_skill, _targetTile, _tooltip) {
+		if (this.validTarget(_targetTile.getEntity().getType())) {
 
 			local bonuses = this.getTotalKillStats();
 
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = format("[color=%s]%s%%[/color] Favoured Enemy (also grants [color=%s]+%s%%[/color] max damage)",::Const.UI.Color.PositiveValue,bonuses.HitChance.tostring(),::Const.UI.Color.PositiveValue,bonuses.HitChance.tostring())
+				text = format("[color=%s]%s%%[/color] Favoured Enemy (also grants [color=%s]+%s%%[/color] max damage)", ::Const.UI.Color.PositiveValue, bonuses.HitChance.tostring(), ::Const.UI.Color.PositiveValue, bonuses.HitChance.tostring())
 			});
 
 		}
 	}
 
 });
-

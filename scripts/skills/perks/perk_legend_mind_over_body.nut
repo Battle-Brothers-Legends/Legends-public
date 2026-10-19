@@ -28,33 +28,12 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local bonus = this.getBonus();
-		if (bonus > 1) {
-			bonus = ::Math.pow(bonus, 0.5);
-		}
-		local reduction = ::Math.round((1 - 1 / bonus) * 100);
 		local tooltip = this.skill.getTooltip();
-
-		if (bonus > 1) {
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "All your fatigue costs are reduced by [color=%positive%]" + reduction + "%[/color]"
-			});
-		} else {
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/tooltips/warning.png",
-				text = "This character does not have enough resolve to benefit from Mind Over Body."
-			});
-		}
-
+		tooltip.extend(this.getDynamicTooltip());
 		return tooltip;
 	}
 
-	function getUnactivatedPerkTooltipHints(_actor = null) {
+	function getDynamicTooltip(_actor = null) {
 		local bonus = this.getBonus(_actor);
 		if (bonus > 1) {
 			bonus = ::Math.pow(bonus, 0.5);

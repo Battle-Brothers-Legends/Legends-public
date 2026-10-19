@@ -8,5 +8,8 @@ this.perk_legend_favoured_enemy_swordmaster <- this.inherit("scripts/skills/lege
 		this.m.ValidTypes = ::Const.LegendMod.FavoriteSwordmaster;
 	}
 
+	function getDynamicTooltip (_actor = null) {
+		return this.legend_favoured_enemy_skill.getDynamicTooltip(_actor);
+	}
 });
 

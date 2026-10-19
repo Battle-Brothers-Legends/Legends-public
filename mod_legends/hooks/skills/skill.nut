@@ -73,11 +73,6 @@
 		return ::Math.floor(getActionPointCost());
 	}
 
-	// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
-	o.getUnactivatedPerkTooltipHints <- function (_actor = null) {
-		return [];
-	}
-
 	local getDefaultUtilityTooltip = o.getDefaultUtilityTooltip;
 	o.getDefaultUtilityTooltip = function () {
 		local ret = getDefaultUtilityTooltip();

@@ -8,6 +8,8 @@ this.perk_legend_favoured_enemy_civilization <- this.inherit("scripts/skills/leg
 		this.m.ValidTypes = ::Const.LegendMod.FavoriteCivilization;
 	}
 
-	// this perk is handled in starting scenario
+	function getDynamicTooltip (_actor = null) {
+		return this.legend_favoured_enemy_skill.getDynamicTooltip(_actor);
+	}
 });
 

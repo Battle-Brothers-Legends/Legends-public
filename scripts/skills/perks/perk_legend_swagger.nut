@@ -10,47 +10,12 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
-		];
-		local bonus = this.getBonus();
-		if (bonus > 0) {
-			ret.extend([
-				{
-					id = 10,
-					type = "text",
-					icon = "ui/icons/armor_body.png",
-					text = "[color=%positive%]+" + ::Math.floor(bonus) + "[/color] armor condition added at start of combat"
-				},
-				{
-					id = 11,
-					type = "text",
-					icon = "ui/icons/armor_head.png",
-					text = "[color=%positive%]+" + ::Math.floor(bonus / 2) + "[/color] helmet condition added at start of combat"
-				}
-			]);
-		} else {
-			ret.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = "This character is not wearing armor or their armor is too cheap to gain a bonus"
-			});
-		}
-
-		return ret;
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend(this.getDynamicTooltip());
+		return tooltip;
 	}
 
-	function getUnactivatedPerkTooltipHints(_actor = null) {
+	function getDynamicTooltip(_actor = null) {
 		local bonus = this.getBonus(_actor);
 		local ret = [];
 		if (::Math.floor(bonus) > 0) {

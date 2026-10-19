@@ -1456,7 +1456,7 @@ Even the fiercest battles can't keep you down.
 [color=%passive%][u]Passive:[/u][/color]
 • When falling below [color=%negative%]50%[/color] Hitpoints for the first time in each combat, fully refresh your Fatigue, and grant [color=%positive%]+5[/color] Fatigue Recovery for 3 turns.
 
-• Additionally, remove any [color=%status%]Stun[/color], [color=%status%]Daze[/color], [color=%status%]Stagger[/color], [color=%status%]Baffle[/color], [color=%status%]Charmed[/color] or [color=%status%]Sleeping[/color] status.
+• Additionally, remove any [color=%status%]Baffled[/color], [color=%status%]Charmed[/color], [color=%status%]Dazed[/color], [color=%status%]Sleeping[/color], [color=%status%]Staggered[/color] or [color=%status%]Stunned[/color] status.
 
 • Only occurs once per combat.
 

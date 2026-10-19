@@ -8,5 +8,8 @@ this.perk_legend_favoured_enemy_greenskin <- this.inherit("scripts/skills/legend
 		this.m.ValidTypes = ::Const.LegendMod.FavoriteGreenSkins;
 	}
 
+	function getDynamicTooltip (_actor = null) {
+		return this.legend_favoured_enemy_skill.getDynamicTooltip(_actor);
+	}
 });
 

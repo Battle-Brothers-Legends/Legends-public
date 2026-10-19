@@ -7,5 +7,8 @@ this.perk_legend_favoured_enemy_outlaw <- this.inherit("scripts/skills/legend_fa
 		this.m.ValidTypes = ::Const.LegendMod.FavoriteOutlaw;
 	}
 
+	function getDynamicTooltip (_actor = null) {
+		return this.legend_favoured_enemy_skill.getDynamicTooltip(_actor);
+	}
 });
 

@@ -9,5 +9,8 @@ this.perk_legend_favoured_enemy_beast <- this.inherit("scripts/skills/legend_fav
 		this.m.BraveryMult = 1.0;
 	}
 
+	function getDynamicTooltip (_actor = null) {
+		return this.legend_favoured_enemy_skill.getDynamicTooltip(_actor);
+	}
 });
 

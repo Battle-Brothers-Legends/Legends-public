@@ -29,7 +29,6 @@ if (!("Perks" in ::Const)) {
 		Tooltip = ::Const.Strings.PerkDescription[_def.Const],
 		Icon = ::format("ui/perks/%s.png", snakeCase)
 		IconDisabled = ::format("ui/perks/%s_bw.png", snakeCase),
-		HasUnactivatedPerkTooltipHints = false
 	}
 }
 
@@ -404,31 +403,24 @@ if (!("Perks" in ::Const)) {
 	LegendEvasion = {},
 	LegendFavouredEnemyBeast = {
 		Name = "Favoured Enemy - Beasts",
-		HasUnactivatedPerkTooltipHints = true
 	},
 	LegendFavouredEnemyCivilization = {
 		Name = "Favoured Enemy - Civilization",
-		HasUnactivatedPerkTooltipHints = true
 	},
 	LegendFavouredEnemyGreenskin = {
 		Name = "Favoured Enemy - Greenskin",
-		HasUnactivatedPerkTooltipHints = true
 	},
 	LegendFavouredEnemyOccult = {
 		Name = "Favoured Enemy - Occult",
-		HasUnactivatedPerkTooltipHints = true
 	},
 	LegendFavouredEnemyOutlaw = {
 		Name = "Favoured Enemy - Outlaw",
-		HasUnactivatedPerkTooltipHints = true
 	},
 	LegendFavouredEnemySwordmaster = {
 		Name = "Favoured Enemy - Sword Master",
-		HasUnactivatedPerkTooltipHints = true
 	},
 	LegendFavouredEnemyUndead = {
 		Name = "Favoured Enemy - Undead",
-		HasUnactivatedPerkTooltipHints = true
 	},
 	LegendFashionable = {},
 	LegendFashionBody = {},
@@ -489,16 +481,12 @@ if (!("Perks" in ::Const)) {
 	LegendMeistersanger = {
 		Name = "Meistersänger"
 	},
-	LegendMindOverBody = {
-		HasUnactivatedPerkTooltipHints = true
-	},
+	LegendMindOverBody = {},
 	LegendMinnesanger = {
 		Name = "Minnesänger"
 	},
 	LegendMoldCarrion = {},
-	LegendMuscularity = {
-		HasUnactivatedPerkTooltipHints = true
-	},
+	LegendMuscularity = {},
 	LegendNearDeathExperience = {},
 	LegendNetCasting = {},
 	LegendNightvision = {},
@@ -510,9 +498,7 @@ if (!("Perks" in ::Const)) {
 	LegendPatientHunter = {},
 	LegendPeaceful = {},
 	LegendPenance = {},
-	LegendPerfectFit = {
-		HasUnactivatedPerkTooltipHints = true
-	},
+	LegendPerfectFit = {},
 	LegendPerfectFocus = {},
 	LegendPointBlank = {},
 	LegendPoisoner = {},
@@ -618,9 +604,7 @@ if (!("Perks" in ::Const)) {
 	LegendSummonHound = {},
 	LegendSummonStorm = {},
 	LegendSummonWolf = {},
-	LegendSwagger = {
-		HasUnactivatedPerkTooltipHints = true
-	},
+	LegendSwagger = {},
 	LegendTacticalManeuvers = {
 		Icon = "ui/perks/perk_11.png",
 		IconDisabled = "ui/perks/perk_11_sw.png"

@@ -763,18 +763,9 @@
 		local perk = player.getBackground().getPerk(_perkId);
 
 		local vars = [
-			[
-				"name",
-				player.getNameOnly()
-			],
-			[
-				"fullname",
-				player.getName()
-			],
-			[
-				"title",
-				player.getTitle()
-			]
+			["name", player.getNameOnly()],
+			["fullname", player.getName()],
+			["title", player.getTitle()]
 		];
 		::Const.LegendMod.extendVarsWithPronouns(vars, player);
 		local tooltip = this.buildTextFromTemplate(perk.Tooltip, vars);
@@ -793,18 +784,12 @@
 				}
 			];
 
+			local perkScript = ::new(perk.Script);
+			if ("getDynamicTooltip" in perkScript) {
+				ret.extend(perkScript.getDynamicTooltip(player));
+			}
+
 			if (!player.hasPerk(_perkId)) {
-				if ((::World.State.isInCharacterScreen() || (::Tactical.isActive() && ::Tactical.State.isInCharacterScreen())) && perk.HasUnactivatedPerkTooltipHints) {
-					// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
-					local tempPerk = this.new(perk.Script); // Need to instantiate a dummy perk because the player character's perk tree doesn't hold actual perks
-					tempPerk.m.IsForPerkTooltip = true; // onAdded() can check for this so it doesn't do anything when the dummy perk is added to the dummy skill container
-					local perkHints = tempPerk.getUnactivatedPerkTooltipHints(clone player); // get the additional hints (these will be capable of using the character's data)
-					if (perkHints != null && perkHints.len() > 0) {
-						ret.extend(perkHints);
-					}
-					// Clean up
-					tempPerk = null;
-				}
 
 				if (player.getPerkPointsSpent() >= perk.Unlocks) {
 					if (player.getPerkPoints() == 0) {
@@ -831,7 +816,6 @@
 					});
 				}
 			}
-
 			return ret;
 		}
 
