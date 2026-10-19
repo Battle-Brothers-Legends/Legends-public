@@ -186,6 +186,9 @@
 - `Fashion Body` - moved to tier 3 (zombie summoning)
 - `Bloodbath` - moved to tier 6 (vampire)
 - `Night Raider` - no longer grants +1 vision at night (the perk still nullifies the night penalty to vision). Taking the perk will now remove the Nyctophobia and Night Blindness traits if present
+- `Terrifying Visage`  - had Horrify's active moved to it, now properly uses horror
+- `Lone Wolf` - bonus to movement reworked into a single free move if starting engaged (once per turn)
+- `Cacophony` - added new sounds
 
 ### Removed Perks
 - `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters
@@ -688,6 +691,7 @@
 - Infected no longer mistakenly gives an extra AP point to the ailing on first turn
 - fixed Stun effect not reducing defensive stats
 - fixed Taunt skill not increasing the aggro factor of the caster
+- split man should no longer behave erratically
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
@@ -722,6 +726,7 @@
 - slight change to `::Legends.Backgrounds.BackgroundDefObjects`,`::Legends.Effects.EffectDefObjects`, `::Legends.Actives.ActiveDefObjects` and `::Const.Perks.PerkDefObjects`. They're a table now, if you just access them, nothing is changing for you, if you iterate over them, you need to add key to your loops too.
 - Jimmy's tooltips have been integrated directly into Legends codebase
 - demon hound aura is no longer applied to all human's in every fight indiscriminately, but instead uses `LegendDemonHoundAuraSource` directly on hollenhunds which adds the effect in fights featuring them
+- UnactivatedPerkTooltips have been turned into DynamicTooltips and support both active and inactive perks in the tree
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`
