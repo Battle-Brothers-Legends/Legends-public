@@ -1,13 +1,13 @@
-::mods_hookExactClass("skills/traits/mad_trait", function(o)
-{
+::mods_hookExactClass("skills/traits/mad_trait", function (o) {
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "This character has gazed into the abyss, and the abyss has gazed right back at them, turning them quite mad. This character often rambles unintelligibly, and their cryptic mind has become inaccessible both to peers and to the enemy."
+		this.m.Description = "This character has gazed into the abyss, and the abyss has gazed right back at them, turning them quite mad. This character often rambles unintelligibly, and their cryptic mind has become inaccessible both to peers and to the enemy.";
 	}
 
 	o.getTooltip = function () {
-		return [{
+		return [
+			{
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -40,7 +40,8 @@
 				type = "text",
 				icon = "ui/icons/bravery.png",
 				text = "Immune against fear and mind control abilities"
-		}];
+			}
+		];
 	}
 
 	o.onTurnStart <- function () {
@@ -50,20 +51,18 @@
 		local rand = ::Math.rand(1, 2) == 1 ? -1 : 1;
 		if (morale == ::Const.MoraleState.Fleeing || morale == ::Const.MoraleState.Breaking) {
 			actor.checkMorale(1, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
-		}
-		else if (morale == ::Const.MoraleState.Confident) {
+		} else if (morale == ::Const.MoraleState.Confident) {
 			actor.checkMorale(-1, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
-		}
-		else {
+		} else {
 			actor.checkMorale(rand, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
 		}
 		local newMorale = actor.getMoraleState();
-		if (morale != ::Const.MoraleState.Fleeing && morale != newMorale) { // it'll say he rallied so no point spamming the log
+		if (morale != ::Const.MoraleState.Fleeing && morale != newMorale) {
+			// it'll say he rallied so no point spamming the log
 			if (newMorale - morale > 0) {
-				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + " experienced a wild mood swing for the better");
-			}
-			else {
-				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + " experienced a wild mood swing for the worse");
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " experienced a wild mood swing for the better");
+			} else {
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " experienced a wild mood swing for the worse");
 			}
 		}
 	}
