@@ -12,7 +12,8 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		SoundOnTeleport = [
 			"sounds/enemies/ghost_death_01.wav",
 			"sounds/enemies/ghost_death_02.wav"
-		]
+		],
+		RestoreSpritesAfterTeleport = false
 	},
 
 	function create() {
@@ -184,7 +185,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			_tag.SpawnFogEffect(_entity.getTile());
 			::Time.scheduleEvent(::TimeUnit.Virtual, 400, _tag.OnFadeIn, _tag);
 		} else {
-			_tag.OnFadeIn(_tag);
+			_tag.User.m.RestoreSpritesAfterTeleport = true;
 		}
 	}
 
@@ -342,6 +343,12 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onRender() {
 		this.actor.onRender();
+
+		if (this.m.RestoreSpritesAfterTeleport && !this.isHiddenToPlayer()) {
+			this.m.RestoreSpritesAfterTeleport = false;
+			this.fadeToStoredColors(300);
+			::Time.scheduleEvent(::TimeUnit.Virtual, 300, this, this.onFadeDone);
+		}
 
 		if (this.m.DistortTargetA == null) {
 			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
