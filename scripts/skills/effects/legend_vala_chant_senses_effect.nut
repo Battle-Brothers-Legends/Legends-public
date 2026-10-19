@@ -68,17 +68,7 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 		this.updateEffect(true);
 	}
 
-	function onUpdate(_properties) {
-		if (!this.checkEntities()) {
-			this.updateEffect(false);
-			return;
-		}
-
-		if (!this.isInRange()) {
-			this.updateEffect(false);
-			return;
-		}
-
+	function getBonus() {
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
 		local bonus = (this.m.Vala.getBravery() / 15.0) + ((this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue()) / 15.0);
 
@@ -91,11 +81,28 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 		} else if (distance == 3) {
 			bonus *= 0.5;
 		}
+		return bonus;
+	}
 
+	function onUpdate(_properties) {
+		if (!this.checkEntities()) {
+			this.updateEffect(false);
+			return;
+		}
+
+		if (!this.isInRange()) {
+			this.updateEffect(false);
+			return;
+		}
+
+		local bonus = this.getBonus();
 		_properties.MeleeDefense += ::Math.round(bonus);
 		_properties.RangedDefense += ::Math.round(bonus);
 
 		this.updateEffect(true);
 	}
 
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]);
+	}
 });
