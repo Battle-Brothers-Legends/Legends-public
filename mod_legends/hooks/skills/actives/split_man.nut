@@ -1,20 +1,17 @@
-::mods_hookExactClass("skills/actives/split_man", function(o)
-{
+::mods_hookExactClass("skills/actives/split_man", function (o) {
 	o.m.IsOrcWeapon <- false;
 
-	o.setApplyOrcWeapon <- function ( _f )
-	{
+	o.setApplyOrcWeapon <- function (_f) {
 		this.m.IsOrcWeapon = _f;
 	}
 
-	o.isHidden <- function() {
+	o.isHidden <- function () {
 		local dg = this.getContainer().getActor().getSkills().getSkillByID("special.double_grip");
 		local canDoubleGrip = dg != null && ("canDoubleGrip" in dg) && dg.canDoubleGrip();
 		return this.m.IsOrcWeapon && !canDoubleGrip;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local tooltip = this.getDefaultTooltip();
 		tooltip.push({
 			id = 6,
@@ -26,11 +23,11 @@
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties )
-	{
-		onAfterUpdate( _properties );
-		if (this.m.IsOrcWeapon)
+	o.onAfterUpdate = function (_properties) {
+		onAfterUpdate(_properties);
+		if (this.m.IsOrcWeapon) {
 			this.m.ActionPointCost = 5;
+		}
 	}
 
 	o.onUse = function (_user, _targetTile) {
@@ -43,8 +40,19 @@
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local success = this.attackEntity(_user, targetEntity);
 
-		if (success	&& this.m.ApplyBonusToBodyPart != -1 && !_targetTile.IsEmpty && !::Legends.S.isEntityNullOrDead(_user, targetEntity) && this.getContainer() != null) {
-			local p = this.getContainer().buildPropertiesForUse(this, targetEntity);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 10, this.followUpAttack.bindenv(this), {
+			User = _user,
+			TargetTile = _targetTile,
+			TargetEntity = targetEntity,
+			Success = success
+		});
+
+		return success;
+	}
+
+	o.followUpAttack <- function (_tag) {
+		if (_tag.Success && this.m.ApplyBonusToBodyPart != -1 && !_tag.TargetTile.IsEmpty && !::Legends.S.isEntityNullOrDead(_tag.User, _tag.TargetEntity) && this.getContainer() != null) {
+			local p = this.getContainer().buildPropertiesForUse(this, _tag.TargetEntity);
 			local hitInfo = clone ::Const.Tactical.HitInfo;
 			local damageMult = p.MeleeDamageMult * p.DamageTotalMult;
 			local damageRegular = ::Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageRegularMult * 0.5;
@@ -56,17 +64,14 @@
 			hitInfo.BodyPart = this.m.ApplyBonusToBodyPart;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 1.0;
-			targetEntity.onDamageReceived(_user, this, hitInfo);
+			_tag.TargetEntity.onDamageReceived(_tag.User, this, hitInfo);
 		}
 
 		this.m.ApplyBonusToBodyPart = -1;
-		return success;
 	}
 
-	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			_properties.DamageTooltipMinMult *= 1.5;
 			_properties.DamageTooltipMaxMult *= 1.5;
 		}
