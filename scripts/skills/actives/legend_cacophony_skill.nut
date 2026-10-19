@@ -5,9 +5,8 @@ this.legend_cacophony_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCacophony);
 		this.m.Description = "Assault the senses of your target with a wild clamor and noise from your instrument, leaving them distracted. Does no damage and requires an instrument.";
 		this.m.KilledString = "";
-		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stupefy", 5);
-		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
-		this.m.SoundVolume = 1.25;
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/legend_cacophony", 10);
+		this.m.SoundVolume = 3;
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
@@ -28,7 +27,7 @@ this.legend_cacophony_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Leave your opponent [color=%effect]Distracted[/color], which will reduce Damage and Initiative [color=%negative%]35%[/color]"
+			text = "Leave your opponent [color=%effect]Distracted[/color], which reducing Damage and Initiative [color=%negative%]35%[/color]"
 		});
 
 		return ret;
