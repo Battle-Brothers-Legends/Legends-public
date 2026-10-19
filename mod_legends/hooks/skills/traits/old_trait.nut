@@ -9,10 +9,4 @@
 		}
 		return ret;
 	}
-
-	local onUpdate = o.onUpdate;
-	o.onUpdate = function (_properties) {
-		onUpdate(_properties);
-		_properties.Initiative -= 10;
-	}
 });

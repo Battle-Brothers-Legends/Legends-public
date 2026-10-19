@@ -31,6 +31,5 @@
 	o.onUpdate = function (_properties) {
 		onUpdate(_properties);
 		_properties.MovementFatigueCostAdditional += 2;
-		_properties.Initiative -= 10;
 	}
 });
