@@ -18,7 +18,7 @@
 						_event.m.Bastard = null;
 						return 0;
 					}
-				}]
+				}];
 			}
 			if (s.ID == "Decline3") {
 				s.start <- function( _event ) {
