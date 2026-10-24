@@ -4,7 +4,7 @@
 		create();
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
-				s.Text = "[img]gfx/ui/events/event_05.png[/img]%bowyer% the bowyer comes to you with a bit of request: %bowyer_they% wishes to build a weapon for the ages. Apparently, the %bowyer_person% has been attempting to build a bow of legendary qualities for many years, but now that %bowyer_they% has been on the road %bowyer_they%\'s picked up a few things to fill in the gaps of knowledge. Truly, %bowyer_they% believes %bowyer_they% can get it right this time. All %bowyer_they% needs is a few resources to help procure the elements needed to construct it. A sum of 500 crowns is what %bowyer_they% humbly requests, and the quality wood you carry.";
+				s.Text = "[img]gfx/ui/events/event_05.png[/img]%bowyer% the bowyer comes to you with a bit of request: %they_bowyer% wishes to build a weapon for the ages. Apparently, the %person_bowyer% has been attempting to build a bow of legendary qualities for many years, but now that %they_bowyer% has been on the road %they_bowyer%\'s picked up a few things to fill in the gaps of knowledge. Truly, %they_bowyer% believes %they_bowyer% can get it right this time. All %they_bowyer% needs is a few resources to help procure the elements needed to construct it. A sum of 500 crowns is what %they_bowyer% humbly requests, and the quality wood you carry.";
 				s.Options[0] = {
 					Text = "Build me a bow of legends!",
 					function getResult( _event ) {
@@ -67,7 +67,7 @@
 		}
 
 		::Legends.Screens.hook(this, "C", function (_screen) {
-			_screen.Text = "[img]gfx/ui/events/event_05.png[/img]Is this thing a wild experiment? The wood cricks and cracks when bent, the string frizzes and goes wiry every time you draw it back, and you swear you saw a termite poking its head out of the shaft. Every tested arrow goes haywire, skirting this way or that, anywhere but its supposed target.\n\nYou ease the bowyer\'s pain by blaming yourself for how inaccurate the weapon is, but %otherguy1% and %otherguy2% both give it a try and come to even worse results. The bowyer eventually shuffles off, cradling %bowyer_their% construction in %bowyer_their% arms before tossing it onto the stockpile of weapons where you\'d wish it\'d look just like any other bow, but its obscene ugliness makes it stick out like a hot coal on a haystack. Surely no man will be accidentally wielding that thing!";
+			_screen.Text = "[img]gfx/ui/events/event_05.png[/img]Is this thing a wild experiment? The wood cricks and cracks when bent, the string frizzes and goes wiry every time you draw it back, and you swear you saw a termite poking its head out of the shaft. Every tested arrow goes haywire, skirting this way or that, anywhere but its supposed target.\n\nYou ease the bowyer\'s pain by blaming yourself for how inaccurate the weapon is, but %otherguy1% and %otherguy2% both give it a try and come to even worse results. The bowyer eventually shuffles off, cradling %their_bowyer% construction in %their_bowyer% arms before tossing it onto the stockpile of weapons where you\'d wish it\'d look just like any other bow, but its obscene ugliness makes it stick out like a hot coal on a haystack. Surely no man will be accidentally wielding that thing!";
 		});
 		
 
