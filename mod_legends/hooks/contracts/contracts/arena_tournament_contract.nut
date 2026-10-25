@@ -42,6 +42,7 @@
 			);
 		}
 
+		item.m.UseRandomName = false;
 		local cnh;
 		if (idx == 1)
 		{
