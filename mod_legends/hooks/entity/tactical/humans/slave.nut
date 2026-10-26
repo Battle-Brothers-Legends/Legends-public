@@ -40,7 +40,7 @@
 
 		if (::Math.rand(1, 100) <= 66)
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[2, ::Legends.Armor.Standard.sackcloth],
 				[1, ::Legends.Armor.Standard.indebted_armor_rags],
 				[2, ::Legends.Armor.Standard.tattered_sackcloth]
@@ -52,6 +52,6 @@
 			[1, ::Legends.Helmet.Southern.southern_head_wrap],
 			[2, ::Legends.Helmet.None]
 		];
-		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 	}
 });

@@ -118,7 +118,7 @@
 				[1, ::Legends.Armor.Greenskin.orc_warrior_heavy_armor],
 				[1, ::Legends.Armor.Greenskin.orc_warrior_heavy_armor]
 			];
-			local item = ::Const.World.Common.pickArmor(armor);
+			local item = ::Legends.Items.pickArmor(armor);
 			this.m.Items.equip(item);
 		}
 
@@ -129,7 +129,7 @@
 				[1, ::Legends.Helmet.Greenskin.orc_warrior_medium_helmet],
 				[1, ::Legends.Helmet.Greenskin.orc_warrior_heavy_helmet]
 			];
-			local item = ::Const.World.Common.pickHelmet(helmet);
+			local item = ::Legends.Items.pickHelmet(helmet);
 			this.m.Items.equip(item);
 		}
 	}

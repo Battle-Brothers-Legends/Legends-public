@@ -21,7 +21,7 @@
 				}
 
 				::World.Assets.getStash().makeEmptySlots(2);
-				local item = ::Const.World.Common.pickHelmet([
+				local item = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Legendary.legend_ijirok_helmet]
 				]);
 				::World.Assets.getStash().add(item);
@@ -31,7 +31,7 @@
 					text = "You gain " + item.getName()
 				});
 
-				item = ::Const.World.Common.pickArmor([
+				item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Legendary.legend_ijirok_armor]
 				]);
 

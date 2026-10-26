@@ -36,7 +36,7 @@
 					this.Contract.m.Destination = null;
 				}
 
-				local item = ::Const.World.Common.pickHelmet([
+				local item = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet]
 				]);
 				::World.Assets.getStash().add(item);

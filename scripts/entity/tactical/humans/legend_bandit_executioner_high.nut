@@ -28,18 +28,18 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 			this.getItems().equip(this.new("scripts/items/weapons/exesword"));
 		}
 		else {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[10, "weapons/exesword"],
 				[1, "weapons/military_cleaver"],
 				[1, "weapons/legend_military_warscythe"]
 			], "scripts/items/"));
 		}
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.bandit_executioner_tunic_high]
 		]));
 
-		this.getItems().equip(::Const.World.Common.pickHelmet([
+		this.getItems().equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Standard.executioner_hood],
 			[8, ::Legends.Helmet.Standard.bandit_executioner_hood]
 		]));
@@ -72,8 +72,8 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 		else
 		{
 			// TODO equip a named item
-			// this.getItems().equip(::Const.World.Common.pickArmor(
-			// 	::Const.World.Common.convNameToList(
+			// this.getItems().equip(::Legends.Items.pickArmor(
+			// 	::Legends.Items.convNameToList(
 			// 		armor
 			// 	)
 			// ));

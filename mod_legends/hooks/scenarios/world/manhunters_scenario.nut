@@ -52,7 +52,7 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap]
 		]));
 		items.equip(this.new("scripts/items/weapons/battle_whip"));
@@ -74,7 +74,7 @@
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		]));
 		bros[2].worsenMood(0.0, "Misses his books");

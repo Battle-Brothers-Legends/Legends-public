@@ -7,7 +7,7 @@
 				s.start <- 	function ( _event ) {
 					this.Characters.push(_event.m.Anatomist.getImagePath());
 
-					local item = ::Const.World.Common.pickArmor([
+					local item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 						[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]
 					]);
@@ -47,8 +47,8 @@
 					this.Characters.push(_event.m.Noble.getImagePath());
 
 					local armor_list = [
-						::Const.World.Common.pickArmor([[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]]),
-						::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail]])
+						::Legends.Items.pickArmor([[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]]),
+						::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail]])
 					];
 
 					local item = this.new(armor_list[::Math.rand(0, armor_list.len() - 1)]);
@@ -88,8 +88,8 @@
 				{
 					this.Characters.push(_event.m.Anatomist.getImagePath());
 					local armor_list = [
-						::Const.World.Common.pickArmor([[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]]),
-						::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail]])
+						::Legends.Items.pickArmor([[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]]),
+						::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail]])
 					];
 					local item = this.new(armor_list[::Math.rand(0, armor_list.len() - 1)]);
 					item.setCondition(item.getConditionMax() / 2 - 1);

@@ -99,13 +99,13 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 
 		items.equip(this.new("scripts/items/accessory/legend_wardog_item"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.nomad_robe],
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]));
 
-		local helm = ::Const.World.Common.pickHelmet([
+		local helm = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.Southern.leather_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap]

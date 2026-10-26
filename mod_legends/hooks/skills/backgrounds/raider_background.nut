@@ -132,14 +132,14 @@
 			items.equip(this.new("scripts/items/shields/wooden_shield"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.leather_lamellar],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.dented_nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_rusty_mail]

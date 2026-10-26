@@ -64,7 +64,7 @@
 			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]
 		];
-		local armor = ::Const.World.Common.pickArmor(aList);
+		local armor = ::Legends.Items.pickArmor(aList);
 
 		if (::Math.rand(1, 100) <= 33) {
 			armor.setArmor(::Math.round(armor.getArmorMax() / 2 - 1));
@@ -79,7 +79,7 @@
 				[3, ::Legends.Helmet.Standard.decayed_full_helm],
 				[3, ::Legends.Helmet.Standard.decayed_great_helm]
 			];
-			local h = ::Const.World.Common.pickHelmet(helmet);
+			local h = ::Legends.Items.pickHelmet(helmet);
 
 			if (::Math.rand(1, 100) <= 33) {
 				h.setArmor(::Math.round(h.getArmorMax() / 2 - 1));

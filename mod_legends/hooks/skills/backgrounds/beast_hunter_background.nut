@@ -48,7 +48,7 @@
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		_gender ? this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.UntidyMale}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
-		
+
 		if (_gender != 1) return;
 		this.m.GoodEnding = "%name% retired from the company and bought the deed to an abandoned castle. There she commands a troop of fellow beast slayers who journey the land protecting it from monsters. Last you spoke to her she had a raven-haired lady friend who did not take kindly to your presence, nor the presence of anyone else for that matter. You\'re sure she\'s happy.";
 		this.m.BadEnding = "After leaving the %companyname%, %name% retired from beast slaying altogether and last you heard she was mother of an albino daughter. Unfortunately, rumors spread quickly about the girl having supernatural powers and her father was executed by fire. The mother and child were never caught nor seen again.";
@@ -113,13 +113,13 @@
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			// [1, ::Legends.Helmet.Standard.hunters_hat],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.None]

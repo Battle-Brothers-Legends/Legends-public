@@ -29,7 +29,7 @@
 
 	o.onDropLootForPlayer = function( _lootTable ){
 		this.location.onDropLootForPlayer(_lootTable);
-		local helmet = ::Const.World.Common.pickHelmet([
+		local helmet = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Named.ghost_knight_helmet],
 		]);
 		local ornament = this.new("scripts/items/legend_helmets/vanity/legend_helmet_rotten_faction_helmet");

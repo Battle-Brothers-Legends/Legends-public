@@ -44,7 +44,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield_old"));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[4, ::Legends.Armor.Standard.leather_tunic],
 			[4, ::Legends.Armor.Standard.linen_tunic],
 			[3, ::Legends.Armor.Standard.sackcloth],
@@ -56,7 +56,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[67, ::Legends.Helmet.None],
 			[7, ::Legends.Helmet.Standard.hood],
 			[7, ::Legends.Helmet.Standard.straw_hat],

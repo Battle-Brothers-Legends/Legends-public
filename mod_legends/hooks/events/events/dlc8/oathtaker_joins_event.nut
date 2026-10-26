@@ -14,13 +14,13 @@
 				if (dudeItems.getItemAtSlot(::Const.ItemSlot.Head) != null && dudeItems.getItemAtSlot(::Const.ItemSlot.Head).getID() == "armor.head.adorned_full_helm")
 				{
 					dudeItems.unequip(dudeItems.getItemAtSlot(::Const.ItemSlot.Head));
-					dudeItems.equip(::Const.World.Common.pickHelmet([1, ::Legends.Helmet.Standard.adorned_closed_flat_top_with_mail]));
+					dudeItems.equip(::Legends.Items.pickHelmet([1, ::Legends.Helmet.Standard.adorned_closed_flat_top_with_mail]));
 				}
 
 				if (dudeItems.getItemAtSlot(::Const.ItemSlot.Body) != null && dudeItems.getItemAtSlot(::Const.ItemSlot.Body).getID() == "armor.body.adorned_heavy_mail_hauberk")
 				{
 					dudeItems.unequip(dudeItems.getItemAtSlot(::Const.ItemSlot.Body));
-					dudeItems.equip(::Const.World.Common.pickArmor([1, ::Legends.Armor.Standard.adorned_warriors_armor]));
+					dudeItems.equip(::Legends.Items.pickArmor([1, ::Legends.Armor.Standard.adorned_warriors_armor]));
 				}
 
 				this.Characters.push(_event.m.Dude.getImagePath());

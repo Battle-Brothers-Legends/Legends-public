@@ -25,13 +25,13 @@
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Barbarian.barbarian_ritual_armor]
 			]));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Barbarian.barbarian_ritual_helmet]
 			]));
 		}

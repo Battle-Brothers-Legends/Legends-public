@@ -26,7 +26,7 @@ this.legend_bandit_raider_low <- this.inherit("scripts/entity/tactical/enemies/l
 
 		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 25)
 		{
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],
 			], "scripts/items/"));

@@ -28,10 +28,10 @@ this.legend_conscript_ranged_background <- this.inherit("scripts/skills/backgrou
 
 		items.equip(this.new("scripts/items/weapons/oriental/handgonne"));
 		items.equip(this.new("scripts/items/ammo/powder_bag"));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
 			[1, ::Legends.Helmet.Southern.gunner_hat],
 			[1, ::Legends.Helmet.None]

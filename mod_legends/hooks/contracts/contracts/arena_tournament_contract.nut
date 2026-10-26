@@ -27,16 +27,16 @@
 		}
 		else if (idx == 2)
 		{
-			item = ::Const.World.Common.pickHelmet(
-				::Const.World.Common.convNameToList(
+			item = ::Legends.Items.pickHelmet(
+				::Legends.Items.convNameToList(
 					::Const.Items.NamedHelmets
 				)
 			);
 		}
 		else if (idx == 3)
 		{
-			item = ::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(
+			item = ::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(
 					::Const.Items.NamedArmors
 				)
 			);

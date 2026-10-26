@@ -88,11 +88,11 @@
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Named.lindwurm_armor]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[1, ::Legends.Helmet.Standard.headscarf],
 			[1, ::Legends.Helmet.Standard.mail_coif],

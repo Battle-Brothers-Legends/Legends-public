@@ -373,7 +373,7 @@ this.legends_swamp_village <- this.inherit("scripts/entity/world/settlements/leg
 		}
 
 		items = this.filterNewLocation(items);
-		local item = ::Const.World.Common.pickItem(items);
+		local item = ::Legends.Items.pickItem(items);
 		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 

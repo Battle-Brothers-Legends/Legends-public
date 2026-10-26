@@ -33,13 +33,13 @@
 			"scramasax"
 		];
 		this.m.Items.equip(this.new("scripts/items/weapons/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat],
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.witchhunter_hat],
 			[1, ::Legends.Helmet.Standard.dark_cowl],
 			[1, ::Legends.Helmet.Standard.hood, 63]
@@ -86,7 +86,7 @@
 			"weapons/named/named_dagger"
 		];
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Named.witchhunter_helm],
 		]);
 		this.m.Items.equip(item);

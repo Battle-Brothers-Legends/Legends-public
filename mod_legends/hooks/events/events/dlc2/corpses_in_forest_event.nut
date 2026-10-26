@@ -16,7 +16,7 @@
 						text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 					});
 
-					item = ::Const.World.Common.pickArmor([
+					item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.basic_mail_shirt],
 					]);
 					item.setCondition(::Math.rand(0.25 * item.getConditionMax(), 0.60 * item.getConditionMax()) * 1.0);

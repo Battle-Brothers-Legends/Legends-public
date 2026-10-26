@@ -200,7 +200,7 @@
 		];
 		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.scale_armor],
@@ -208,7 +208,7 @@
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 			[1, ::Legends.Helmet.Standard.mail_coif],

@@ -98,10 +98,10 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 				this.Flags.set("Delay", ::Math.rand(10, 30) * 1.0);
 				local envoy = ::World.getGuestRoster().create("scripts/entity/tactical/humans/firstborn");
 				local items = envoy.getItems();
-					items.equip(::Const.World.Common.pickArmor([
+					items.equip(::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.linen_tunic]
 					]));
-					items.equip(::Const.World.Common.pickHelmet([
+					items.equip(::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Standard.feathered_hat],
 						[3, ::Legends.Helmet.None]
 					]));

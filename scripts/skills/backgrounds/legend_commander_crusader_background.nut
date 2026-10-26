@@ -146,7 +146,7 @@ this.legend_commander_crusader_background <- this.inherit("scripts/skills/backgr
 
 		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.scale_armor],
@@ -154,7 +154,7 @@ this.legend_commander_crusader_background <- this.inherit("scripts/skills/backgr
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 			[1, ::Legends.Helmet.Standard.mail_coif],

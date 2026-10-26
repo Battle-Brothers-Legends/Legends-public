@@ -19,7 +19,7 @@ this.legend_alchemist_crafts_thing_event <- this.inherit("scripts/events/event",
 			function start(_event) {
 				this.Characters.push(_event.m.Alchemist.getImagePath());
 				this.List.extend(::Legends.EventList.addItems([
-					::Const.World.Common.pickItem([
+					::Legends.Items.pickItem([
 						[1, "tools/daze_bomb_item"],
 						[1, "tools/fire_bomb_item"],
 						[1, "tools/smoke_bomb_item"],

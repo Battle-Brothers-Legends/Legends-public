@@ -66,11 +66,11 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 			this.getItems().equip(this.new("scripts/items/" + w));
 		}
 
-		this.getItems().addToBag(::Const.World.Common.pickItem([
+		this.getItems().addToBag(::Legends.Items.pickItem([
 			[1, "weapons/knife"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[8, ::Legends.Armor.Standard.linen_tunic]
@@ -78,7 +78,7 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 
 		if (::Math.rand(1, 100) <= 66)
 		{
-			this.getItems().equip(::Const.World.Common.pickHelmet([
+			this.getItems().equip(::Legends.Items.pickHelmet([
 				// [1, ::Legends.Helmet.Standard.hunters_hat],
 				[3, ::Legends.Helmet.Standard.hood]
 			]));

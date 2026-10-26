@@ -11,7 +11,7 @@
 		local body = items.getItemAtSlot(::Const.ItemSlot.Body);
 		if (body != null)
 			items.unequip(body);
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash],
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));

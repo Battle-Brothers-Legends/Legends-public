@@ -15,7 +15,7 @@
 						icon = "ui/items/" + item.getIcon(),
 						text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 					});
-					item = ::Const.World.Common.pickArmor([
+					item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.basic_mail_shirt],
 					]);
 					item.setArmor(item.getArmorMax() / 2 - 1);

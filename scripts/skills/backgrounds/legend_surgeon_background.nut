@@ -111,13 +111,13 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 			items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.vizier_gear],
 			[2, ::Legends.Armor.Southern.cloth_sash],
 			[3, ::Legends.Armor.Standard.butcher_apron]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.vizier_headgear],
 			[1, ::Legends.Helmet.Southern.engineer_hat]

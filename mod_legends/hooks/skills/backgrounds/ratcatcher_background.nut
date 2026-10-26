@@ -69,7 +69,7 @@
 
 		items.equip(this.new("scripts/items/tools/throwing_net"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.sackcloth]
 		]));

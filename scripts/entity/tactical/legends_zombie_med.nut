@@ -50,7 +50,7 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 		}
 
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.leather_lamellar],
 			[1, ::Legends.Armor.Standard.leather_scale_armor],
@@ -60,7 +60,7 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 			[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[25, ::Legends.Helmet.None],
 			[11, ::Legends.Helmet.Standard.kettle_hat],
 			[11, ::Legends.Helmet.Standard.aketon_cap],

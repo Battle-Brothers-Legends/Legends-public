@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -83,7 +83,7 @@
 		}
 
 
-		local armor = ::Const.World.Common.pickArmor([
+		local armor = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
@@ -98,7 +98,7 @@
 
 		this.m.Items.equip(armor);
 
-		local helm = ::Const.World.Common.pickHelmet([
+		local helm = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.gladiator_helmet, ::Math.rand(13, 15)],
 			[1, ::Legends.Helmet.None]
 		]);
@@ -146,16 +146,16 @@
 		{
 			if (::Math.rand(0, 1) == 0)
 			{
-				this.m.Items.equip(::Const.World.Common.pickArmor(
-					::Const.World.Common.convNameToList(
+				this.m.Items.equip(::Legends.Items.pickArmor(
+					::Legends.Items.convNameToList(
 						armor
 					)
 				));
 			}
 			else
 			{
-				this.m.Items.equip(::Const.World.Common.pickHelmet(
-					::Const.World.Common.convNameToList(
+				this.m.Items.equip(::Legends.Items.pickHelmet(
+					::Legends.Items.convNameToList(
 						helmets
 					)
 				));

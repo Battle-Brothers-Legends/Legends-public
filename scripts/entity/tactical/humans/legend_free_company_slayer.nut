@@ -49,14 +49,14 @@ this.legend_free_company_slayer <- this.inherit("scripts/entity/tactical/legend_
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[32, "weapons/morning_star"],
 			[32, "weapons/flail"],
 			[32, "weapons/hand_axe"],
 			[6, "weapons/three_headed_flail"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[3, "shields/kite_shield"],
 			[3, "shields/heater_shield"],
 			[4, "tools/throwing_net"],
@@ -64,7 +64,7 @@ this.legend_free_company_slayer <- this.inherit("scripts/entity/tactical/legend_
 
 		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50)
 		{
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],
 			], "scripts/items/"));

@@ -29,12 +29,12 @@
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
-		local helm = ::Const.World.Common.pickHelmet([
+		local helm = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap, 16],
 			[3, ::Legends.Helmet.None]
 		]);

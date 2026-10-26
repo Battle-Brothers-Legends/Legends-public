@@ -50,25 +50,25 @@ this.legend_peasant_squire <- this.inherit("scripts/entity/tactical/human", {
 	function assignRandomEquipment()
 	{
 		if (::Math.rand(1, 100) <= 66) {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/shortsword"],
 			], "scripts/items/"));
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "shields/wooden_shield"],
 			], "scripts/items/"));
 		}
 		else
 		{
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/legend_ranged_wooden_flail"],
 			], "scripts/items/"));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.padded_nasal_helmet]
 		]));
 	}

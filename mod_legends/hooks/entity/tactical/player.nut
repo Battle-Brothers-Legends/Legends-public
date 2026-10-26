@@ -875,7 +875,7 @@
 
 	o.assignRandomMeleeEquipment = function () {
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.coat_of_plates],
@@ -900,7 +900,7 @@
 			[1, ::Legends.Armor.Standard.leather_lamellar],
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[6, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.mail_coif],
@@ -977,7 +977,7 @@
 	}
 
 	o.assignRandomRangedEquipment = function () {
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
@@ -990,7 +990,7 @@
 			[1, ::Legends.Armor.Standard.thick_tunic],
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
@@ -1025,7 +1025,7 @@
 	}
 
 	o.assignRandomThrowingEquipment = function () {
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
@@ -1036,7 +1036,7 @@
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.aketon_cap],

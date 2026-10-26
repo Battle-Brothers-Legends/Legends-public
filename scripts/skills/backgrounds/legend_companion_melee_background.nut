@@ -40,7 +40,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
-		else if (this.m.Ethnicity == 2) {	
+		else if (this.m.Ethnicity == 2) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
@@ -185,7 +185,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			[1, ::Legends.Outfit.mercenary_billman_outfit_00]
 		];
 
-		foreach (item in ::Const.World.Common.pickOutfit(outfits)) {
+		foreach (item in ::Legends.Items.pickOutfit(outfits)) {
 			items.equip(item);
 		}
 	}

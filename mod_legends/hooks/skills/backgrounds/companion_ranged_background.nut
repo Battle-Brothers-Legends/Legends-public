@@ -108,7 +108,7 @@
 		items.addToBag(this.new("scripts/items/weapons/knife"));
 		r = ::Math.rand(0, 1);
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic]
 		]));

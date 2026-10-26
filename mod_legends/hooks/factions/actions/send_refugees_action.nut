@@ -32,7 +32,7 @@
 			[1, "supplies/wine_item"]
 		];
 		for (local j = ::Math.rand(1, 2); j != 0; j--) {
-			party.addToInventory(::Const.World.Common.pickItem(items));
+			party.addToInventory(::Legends.Items.pickItem(items));
 		}
 		// add unload before despawn
 		foreach (i, order in party.getController().getOrders()) {

@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -63,7 +63,7 @@
 			variant = 10;
 		else
 			variant = 8;
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Southern.linothorax, variant],
 			[1, ::Legends.Armor.Southern.southern_mail_shirt]
 		]));
@@ -76,7 +76,7 @@
 		else if (banner == 14)
 			variant = 7;
 
-		local helm =::Const.World.Common.pickHelmet([
+		local helm =::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap, variant],
 			[1, ::Legends.Helmet.Southern.wrapped_southern_helmet],
 			[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]

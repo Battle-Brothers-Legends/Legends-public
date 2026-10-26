@@ -53,12 +53,12 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic, ::Math.rand(6, 7)]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[2, ::Legends.Helmet.Standard.feathered_hat],
 			[3, ::Legends.Helmet.Standard.headscarf]

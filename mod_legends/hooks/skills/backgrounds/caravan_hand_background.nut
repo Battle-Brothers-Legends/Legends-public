@@ -66,14 +66,14 @@
 			items.equip(this.new("scripts/items/weapons/shortsword"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.gambeson],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.headscarf],
 			[1, ::Legends.Helmet.Standard.open_leather_cap]
 		]));

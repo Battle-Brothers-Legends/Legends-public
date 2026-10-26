@@ -43,7 +43,7 @@
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Thick});
-		
+
 		if (_gender != 1) return;
 		this.m.Name = "Fishmonger";
 		this.m.Icon = "ui/backgrounds/legend_fishmonger.png";
@@ -84,7 +84,7 @@
 			items.equip(this.new("scripts/items/weapons/knife"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.butcher_apron]
 		]));
 	}

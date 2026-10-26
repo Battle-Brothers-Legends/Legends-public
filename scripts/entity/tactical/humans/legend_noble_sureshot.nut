@@ -38,7 +38,7 @@ this.legend_noble_sureshot <- this.inherit("scripts/entity/tactical/legend_rando
 	function assignRandomEquipment()
 	{
         this.legend_randomized_unit_noble_abstract.assignRandomEquipment();
-		this.getItems().addToBag(::Const.World.Common.pickItem([
+		this.getItems().addToBag(::Legends.Items.pickItem([
 			[1, "weapons/dagger"],
 		], "scripts/items/"));
 	}

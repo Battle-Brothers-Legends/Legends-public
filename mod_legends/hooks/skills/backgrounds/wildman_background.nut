@@ -154,7 +154,7 @@
 			items.equip(this.new("scripts/items/weapons/two_handed_wooden_flail"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.legend_rabble_fur]
 		]));

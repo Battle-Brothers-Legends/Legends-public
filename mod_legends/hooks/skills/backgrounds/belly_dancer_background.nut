@@ -68,11 +68,11 @@
 
 	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
-		local armor = ::Const.World.Common.pickArmor([
+		local armor = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]);
 		items.equip(armor);
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.legend_headband_coin],
 			[1, ::Legends.Helmet.Southern.legend_headress_coin],

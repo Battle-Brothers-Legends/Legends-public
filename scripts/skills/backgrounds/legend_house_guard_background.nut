@@ -85,13 +85,13 @@ this.legend_house_guard_background <- this.inherit("scripts/skills/backgrounds/c
 
 		items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[2, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_armet_01],
 			[10, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
 			[50, ::Legends.Helmet.Standard.greatsword_hat]

@@ -85,7 +85,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 		return ret;
 	}
 
-	
+
 
 	function onChangeAttributes()
 	{
@@ -157,13 +157,13 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 		 items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk],
 			[1, ::Legends.Armor.Standard.decayed_coat_of_plates]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.cultist_leather_hood]

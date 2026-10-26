@@ -83,7 +83,7 @@
 				[1, ::Legends.Outfit.white_nomad_leader_outfit_00]
 			];
 
-			foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) )
+			foreach( item in ::Legends.Items.pickOutfit(outfits, armor, helmet) )
 			{
 				this.m.Items.equip(item);
 			}
@@ -92,7 +92,7 @@
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[3, ::Legends.Armor.Southern.plated_nomad_mail],
 				[2, ::Legends.Armor.Southern.southern_long_mail_with_padding],
 				[1, ::Legends.Armor.Standard.theamson_nomad_leader_armor_heavy],
@@ -113,7 +113,7 @@
 			helmet.push([4, ::Legends.Helmet.Southern.kamy_southern_helmet]);
 			helmet.push([4, ::Legends.Helmet.Standard.southern_knight_helmet]);
 
-			this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+			this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 		}
 	}
 
@@ -140,16 +140,16 @@
 		}
 		else if (r == 3)
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(
+			this.m.Items.equip(::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(
 					armor
 				)
 				));
 		}
 		else
 		{
-			this.m.Items.equip(::Const.World.Common.pickHelmet(
-				::Const.World.Common.convNameToList(
+			this.m.Items.equip(::Legends.Items.pickHelmet(
+				::Legends.Items.convNameToList(
 					helmets
 				)
 			));

@@ -62,8 +62,8 @@
 		rune.updateRuneSigilToken();
 		rune.onUse(this, null, false);
 
-		local weightName = ::Const.World.Common.convNameToList(armor);
-		this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
+		local weightName = ::Legends.Items.convNameToList(armor);
+		this.m.Items.equip(::Legends.Items.pickArmor(weightName));
 		runeSelection = [
 			::Legends.Rune.LegendRshBravery,
 			::Legends.Rune.LegendRsaEndurance,
@@ -77,8 +77,8 @@
 		rune.updateRuneSigilToken();
 		rune.onUse(this, null, false);
 
-		weightName = ::Const.World.Common.convNameToList(helmets);
-		this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
+		weightName = ::Legends.Items.convNameToList(helmets);
+		this.m.Items.equip(::Legends.Items.pickHelmet(weightName));
 		runeSelection = [
 			::Legends.Rune.LegendRshClarity,
 			::Legends.Rune.LegendRshBravery,

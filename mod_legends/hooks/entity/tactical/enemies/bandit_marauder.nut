@@ -86,7 +86,7 @@
 			]);
 
 			if (::Math.rand(1, 100) <= 50) {
-				this.getItems().equip(::Const.World.Common.pickItem([
+				this.getItems().equip(::Legends.Items.pickItem([
 					[3, "shields/kite_shield"],
 					[1, "shields/legend_tower_shield"],
 				], "scripts/items/"));
@@ -118,7 +118,7 @@
 			]);
 		}
 
-		this.getItems().equip(::Const.World.Common.pickArmor(armorList));
+		this.getItems().equip(::Legends.Items.pickArmor(armorList));
 
 
 		local helmetList = [];
@@ -151,6 +151,6 @@
 			]);
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		}
-		this.getItems().equip(::Const.World.Common.pickHelmet(helmetList));
+		this.getItems().equip(::Legends.Items.pickHelmet(helmetList));
 	}
 });

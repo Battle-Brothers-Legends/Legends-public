@@ -46,7 +46,7 @@
 					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
 					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
 					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
-					local armor = ::Const.World.Common.pickArmor([
+					local armor = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.mail_hauberk, 32],
 					]);
 					armor.setArmor(0);
@@ -86,7 +86,7 @@
 					e.getAIAgent().getProperties().OverallDefensivenessMult = 0.0;
 					e.getAIAgent().addBehavior(this.new("scripts/ai/tactical/behaviors/ai_retreat_always"));
 					local items = e.getItems();
-					items.equip(::Const.World.Common.pickArmor([
+					items.equip(::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.patched_mail_shirt],
 					]));
 					items.equip(this.new("scripts/items/weapons/hunting_bow"));
@@ -116,7 +116,7 @@
 					e.getAIAgent().getProperties().BehaviorMult[::Const.AI.Behavior.ID.Retreat] = 0.0;
 					e.getFlags().add("IsFinalBoss", true);
 					local items = e.getItems();
-					items.equip(::Const.World.Common.pickArmor([
+					items.equip(::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.patched_mail_shirt],
 					]));
 					items.equip(this.new("scripts/items/weapons/falchion"));

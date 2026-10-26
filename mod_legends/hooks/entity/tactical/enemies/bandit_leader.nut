@@ -136,7 +136,7 @@
 				[1, ::Legends.Outfit.red_bandit_leader_outfit_00]
 			];
 
-			foreach (item in ::Const.World.Common.pickOutfit(outfits, armor, helmet)) {
+			foreach (item in ::Legends.Items.pickOutfit(outfits, armor, helmet)) {
 				this.m.Items.equip(item);
 			}
 			return;
@@ -153,11 +153,11 @@
 				[1, ::Legends.Armor.Standard.red_bandit_leader_armor]
 			];
 
-			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+			this.m.Items.equip(::Legends.Items.pickArmor(armor));
 		}
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.closed_mail_coif],
 				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
 				[1, ::Legends.Helmet.Standard.kettle_hat_with_closed_mail],
@@ -193,15 +193,15 @@
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_battle_whip");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
-			this.getItems().equip(::Const.World.Common.pickItem(namedWeaponArray.map(@(_it)[1, _it]), "scripts/items/"));
+			this.getItems().equip(::Legends.Items.pickItem(namedWeaponArray.map(@(_it)[1, _it]), "scripts/items/"));
 		} else if (r < 60) {
 			local named = ::Const.Items.NamedArmors;
-			local weightName = ::Const.World.Common.convNameToList(named);
-			this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
+			local weightName = ::Legends.Items.convNameToList(named);
+			this.m.Items.equip(::Legends.Items.pickArmor(weightName));
 		} else if (r < 90) {
 			local named = ::Const.Items.NamedHelmets;
-			local weightName = ::Const.World.Common.convNameToList(named);
-			this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
+			local weightName = ::Legends.Items.convNameToList(named);
+			this.m.Items.equip(::Legends.Items.pickHelmet(weightName));
 		} else {
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}

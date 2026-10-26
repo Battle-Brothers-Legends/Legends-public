@@ -26,9 +26,9 @@
 					if (r == 1)
 						item = this.new("scripts/items/weapons/arming_sword");
 					else if (r == 2)
-						item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_full_helm]]);
+						item = ::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_full_helm]]);
 					else if (r == 3)
-						item = ::Const.World.Common.pickArmor([
+						item = ::Legends.Items.pickArmor([
 							[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
 						]);
 

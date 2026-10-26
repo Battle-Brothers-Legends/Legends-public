@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -46,13 +46,13 @@
 
 		this.m.Items.equip(this.new("scripts/items/weapons/barbarians/drum_item"));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Barbarian.thick_furs_armor],
 				[1, ::Legends.Armor.Barbarian.animal_hide_armor],
 				[1, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor]
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]);

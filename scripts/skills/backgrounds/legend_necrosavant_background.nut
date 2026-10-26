@@ -59,10 +59,10 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 		talents[::Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.dark_cowl]
 		]));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		items.equip(this.new("scripts/items/weapons/ancient/khopesh"));

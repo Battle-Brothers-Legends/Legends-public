@@ -109,11 +109,11 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/");
-			this.getItems().equip(::Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
+			this.getItems().equip(::Legends.Items.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
 		}
 		else
 		{
-			this.getItems().equip(::Const.World.Common.pickItem(shields.map(@(_it) [1, _it]), "scripts/items/"));
+			this.getItems().equip(::Legends.Items.pickItem(shields.map(@(_it) [1, _it]), "scripts/items/"));
 		}
 
 		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
@@ -139,12 +139,12 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 					"weapons/legend_battle_glaive"
 				]);
 			}
-			this.getItems().equip(::Const.World.Common.pickItem(weapons.map(@(_it) [1, _it]), "scripts/items/"));
+			this.getItems().equip(::Legends.Items.pickItem(weapons.map(@(_it) [1, _it]), "scripts/items/"));
 		}
 
 		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "shields/wooden_shield"],
 				[1, "shields/heater_shield"],
 				[1, "shields/kite_shield"],
@@ -154,20 +154,20 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 		if (::Math.rand(1, 100) > 50)
 		{
 			local named = ::Const.Items.NamedArmors;
-			weightName = ::Const.World.Common.convNameToList(named);
-			this.getItems().equip(::Const.World.Common.pickArmor(weightName));
+			weightName = ::Legends.Items.convNameToList(named);
+			this.getItems().equip(::Legends.Items.pickArmor(weightName));
 
 		}
 		else
 		{
 			local named = ::Const.Items.NamedHelmets;
-			weightName = ::Const.World.Common.convNameToList(named);
-			this.getItems().equip(::Const.World.Common.pickHelmet(weightName));
+			weightName = ::Legends.Items.convNameToList(named);
+			this.getItems().equip(::Legends.Items.pickHelmet(weightName));
 		}
 
 		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
-			this.getItems().equip(::Const.World.Common.pickArmor([
+			this.getItems().equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.bandit_armor_ultraheavy],
 				[2, ::Legends.Armor.Standard.coat_of_plates],
 				[2, ::Legends.Armor.Standard.coat_of_scales],
@@ -180,7 +180,7 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Head) == null)
 		{
-			this.getItems().equip(::Const.World.Common.pickHelmet([
+			this.getItems().equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.closed_mail_coif],
 				[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_01],
 				[1, ::Legends.Helmet.Standard.padded_kettle_hat],

@@ -25,12 +25,12 @@
 		local withHelmet = true;
 
 		if (r == 1) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.noble_tunic]
 			]));
 			alwaysWithDetails = true;
 		} else if (r == 2) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.coat_of_plates]
 			]));
 			withDetails = false;
@@ -41,7 +41,7 @@
 			}
 
 			if (::Math.rand(1, 100) <= 25) {
-				local h = ::Const.World.Common.pickHelmet([
+				local h = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.greatsword_faction_helm, ::World.FactionManager.getFaction(this.getFaction()).getBanner()]
 				]);
 				this.m.Items.equip(h);
@@ -55,7 +55,7 @@
 				this.getSprite("surcoat").setBrush("bust_body_noble_" + variants[::Math.rand(0, variants.len() - 1)]);
 			}
 		} else if (r == 3) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.coat_of_scales]
 			]));
 			withDetails = false;
@@ -66,7 +66,7 @@
 			}
 
 			if (::Math.rand(1, 100) <= 25) {
-				local h = ::Const.World.Common.pickHelmet([
+				local h = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.greatsword_faction_helm, ::World.FactionManager.getFaction(this.getFaction()).getBanner()]
 				]);
 				this.m.Items.equip(h);
@@ -80,7 +80,7 @@
 				this.getSprite("surcoat").setBrush("bust_body_noble_" + variants[::Math.rand(0, variants.len() - 1)]);
 			}
 		} else {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.noble_gear]
 			]));
 		}
@@ -98,7 +98,7 @@
 		}
 
 		if (withHelmet && ::Math.rand(1, 100) <= 50) {
-			::Const.World.Common.pickHelmet([
+			::Legends.Items.pickHelmet([
 				//[1, "legend_helmet_noble_floppy_hat"],
 				//[1, "legend_helmet_noble_hat"],
 				//[1, "legend_helmet_noble_hood"],

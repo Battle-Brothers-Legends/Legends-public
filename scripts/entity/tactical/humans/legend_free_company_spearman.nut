@@ -50,12 +50,12 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[3, "weapons/militia_spear"],
 			[3, "weapons/boar_spear"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[3, "shields/kite_shield"],
 			[3, "shields/heater_shield"],
 			[3, "shields/wooden_shield"],
@@ -63,7 +63,7 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 		], "scripts/items/"));
 
 		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50) {
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],
 			], "scripts/items/"));

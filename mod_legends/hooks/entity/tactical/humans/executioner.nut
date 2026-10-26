@@ -11,7 +11,7 @@
 		]);
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
-		}	
+		}
 	}
 
 	local onInit = o.onInit;
@@ -40,7 +40,7 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.lamellar_harness],
 				[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 			]));
@@ -54,7 +54,7 @@
 				[3, ::Legends.Helmet.Southern.turban_helmet],
 				[1, ::Legends.Helmet.Southern.janissary_helmet]
 			];
-			this.m.Items.equip(::Const.World.Common.pickHelmet(helm));
+			this.m.Items.equip(::Legends.Items.pickHelmet(helm));
 		}
 	}
 
@@ -84,8 +84,8 @@
 		}
 		else
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(armor)
+			this.m.Items.equip(::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(armor)
 			));
 		}
 

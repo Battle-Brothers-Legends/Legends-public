@@ -33,7 +33,7 @@
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
-			local item = ::Const.World.Common.pickArmor([
+			local item = ::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Greenskin.goblin_skirmisher_armor]
 			]);
 			this.m.Items.equip(item);
@@ -41,7 +41,7 @@
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
 		{
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Greenskin.goblin_skirmisher_helmet]
 			]);
 			this.m.Items.equip(item);

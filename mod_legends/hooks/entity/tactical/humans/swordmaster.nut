@@ -64,7 +64,7 @@
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				// [1, ::Legends.Armor.Standard.mail_shirt],
 				// [1, ::Legends.Armor.Standard.mail_hauberk],
 				// [1, ::Legends.Armor.Standard.basic_mail_shirt],
@@ -76,7 +76,7 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) <= 90) {
 
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[3, ::Legends.Helmet.Standard.nasal_helmet],
 				[2, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 				[2, ::Legends.Helmet.Standard.mail_coif],
@@ -115,8 +115,8 @@
 				this.m.Items.updateDualWield();
 			}
 		} else {
-			this.m.Items.equip(::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(
+			this.m.Items.equip(::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(
 					armor
 				)
 			));

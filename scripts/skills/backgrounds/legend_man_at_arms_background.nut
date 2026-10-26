@@ -63,7 +63,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			"weapons/scramasax"
 		];
 
-		items.equip(::Const.World.Common.pickArmor([ //1 = least likely
+		items.equip(::Legends.Items.pickArmor([ //1 = least likely
 			[1, ::Legends.Armor.Standard.worn_mail_shirt],
 			[2, ::Legends.Armor.Standard.patched_mail_shirt],
 			[3, ::Legends.Armor.Standard.leather_lamellar],
@@ -71,7 +71,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			[4, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[4, ::Legends.Helmet.None],
 			[3, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.deep_cervelliere],

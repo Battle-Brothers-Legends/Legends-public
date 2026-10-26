@@ -60,7 +60,7 @@
 
 					itemAmount = ::Math.rand(1, 2);
 					for(local i = 0; i < itemAmount; i++) {
-						item = ::Const.World.Common.pickArmor([
+						item = ::Legends.Items.pickArmor([
 							[1, ::Legends.Armor.Standard.leather_tunic],
 							[1, ::Legends.Armor.Standard.leather_tunic],
 							[1, ::Legends.Armor.Standard.thick_tunic],

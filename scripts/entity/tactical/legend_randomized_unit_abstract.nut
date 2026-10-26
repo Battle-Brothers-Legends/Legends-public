@@ -186,7 +186,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// Picks and equips our units outfit
 	function assignOutfit()
 	{
-		foreach( item in ::Const.World.Common.pickOutfit(this.m.Outfits) )
+		foreach( item in ::Legends.Items.pickOutfit(this.m.Outfits) )
 		{
 			this.m.Items.equip(item);
 		}

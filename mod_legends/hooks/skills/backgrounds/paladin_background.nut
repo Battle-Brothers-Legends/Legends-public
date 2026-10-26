@@ -182,13 +182,13 @@
 
 		r = ::Math.rand(0, 5);
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Standard.adorned_mail_shirt],
 			[2, ::Legends.Armor.Standard.adorned_warriors_armor],
 			[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Standard.heavy_mail_coif],
 			[2, ::Legends.Helmet.Standard.adorned_closed_flat_top_with_mail],
 			[1, ::Legends.Helmet.Standard.adorned_full_helm]

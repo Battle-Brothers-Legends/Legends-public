@@ -39,7 +39,7 @@
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		];
-		local armor = ::Const.World.Common.pickArmor(aList);
+		local armor = ::Legends.Items.pickArmor(aList);
 
 		if (::Math.rand(1, 100) <= 66) {
 			armor.setArmor(::Math.round(armor.getArmorMax() / 2 - 1));
@@ -48,7 +48,7 @@
 		this.m.Items.equip(armor);
 
 		if (::Math.rand(1, 100) <= 75) {
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.full_aketon_cap],
 				[1, ::Legends.Helmet.Standard.kettle_hat],

@@ -53,7 +53,7 @@
 	}
 
 	o.onAddEquipment = function () {
-		this.getContainer().getActor().getItems().equip(::Const.World.Common.pickArmor([
+		this.getContainer().getActor().getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 	}

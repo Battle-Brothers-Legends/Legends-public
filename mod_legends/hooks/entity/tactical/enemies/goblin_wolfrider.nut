@@ -24,7 +24,7 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[3, ::Legends.Armor.Greenskin.goblin_medium_armor],
 			[1, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 		]);
@@ -32,7 +32,7 @@
 
 
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[75, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 			[25, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 		]);

@@ -45,10 +45,10 @@
 			[1, ::Legends.Armor.Ancient.ancient_plate_harness],
 			[1, ::Legends.Armor.Ancient.ancient_plated_mail_hauberk]
 		];
-		local item = ::Const.World.Common.pickArmor(armor);
+		local item = ::Legends.Items.pickArmor(armor);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_honorguard_helmet]
 		]);
 		if (item != null) {
@@ -69,11 +69,11 @@
 		];
 		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Ancient.ancient_heavy_restored_armor]
 		]));
 
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Ancient.ancient_heavy_restored_helmet]
 		]));
 

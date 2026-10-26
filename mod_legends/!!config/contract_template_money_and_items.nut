@@ -16,7 +16,7 @@
 	Options = [],
 	function start() {
 		while (this.Contract.m.Payment.Items.len() < _count) {
-			local item = ::Const.World.Common.pickItem(this.Contract.m.Payment.ItemPool, "scripts/items/");
+			local item = ::Legends.Items.pickItem(this.Contract.m.Payment.ItemPool, "scripts/items/");
 			this.Contract.m.Payment.Items.push(item);
 			this.Contract.m.Payment.Pool -= item.getValue() / 2;
 		}
@@ -37,7 +37,7 @@
 			Text = "{We need to be paid more for this.}",
 			function getResult() {
 				::Const.Contracts.Negotiation.addAskMalus(this.Contract, 10, 66);
-				
+
 				this.Contract.m.Payment.Annoyance += ::Math.maxf(1.0, ::Math.rand(::Const.Contracts.Settings.NegotiationAnnoyanceGainMin, ::Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
 
 				if (this.Contract.m.Payment.Annoyance > ::Const.Contracts.Settings.NegotiationMaxAnnoyance) {

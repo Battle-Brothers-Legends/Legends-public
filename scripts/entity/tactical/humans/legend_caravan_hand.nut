@@ -91,7 +91,7 @@ this.legend_caravan_hand <- this.inherit("scripts/entity/tactical/legend_randomi
 	// 		this.m.Items.equip(this.new("scripts/items/shields/buckler_shield"));
 	// 	}
 
-	// 	local item = ::Const.World.Common.pickArmor([
+	// 	local item = ::Legends.Items.pickArmor([
 	//		[1, ::Legends.Armor.Standard.leather_tunic, ::Math.rand(6,7)],
 	// 		[1, ::Legends.Armor.Standard.padded_leather],
 	// 		[1, ::Legends.Armor.Standard.padded_surcoat],
@@ -101,7 +101,7 @@ this.legend_caravan_hand <- this.inherit("scripts/entity/tactical/legend_randomi
 
 	// 	if (::Math.rand(1, 100) <= 33)
 	// 	{
-	// 		local item = ::Const.World.Common.pickHelmet([
+	// 		local item = ::Legends.Items.pickHelmet([
 	// 			[1, ::Legends.Helmet.Standard.hood],
 	// 			[1, ::Legends.Helmet.Standard.aketon_cap]
 	// 		])

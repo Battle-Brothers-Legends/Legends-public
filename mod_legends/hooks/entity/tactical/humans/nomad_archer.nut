@@ -55,7 +55,7 @@
 			[1, ::Legends.Outfit.dark_southern_outfit_00]
 		];
 
-		foreach (item in ::Const.World.Common.pickOutfit(outfits, armor, helmet)) {
+		foreach (item in ::Legends.Items.pickOutfit(outfits, armor, helmet)) {
 			this.m.Items.equip(item);
 		}
 	}

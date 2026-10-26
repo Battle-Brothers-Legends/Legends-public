@@ -109,12 +109,12 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 			items.equip(this.new("scripts/items/weapons/hand_axe"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Standard.hood],
 			[2, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.mail_coif],

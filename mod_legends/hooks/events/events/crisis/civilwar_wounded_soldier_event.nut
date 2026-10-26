@@ -23,11 +23,11 @@
 		r = ::Math.rand(1, 4);
 
 		if (r == 1) {
-//			item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
+//			item = ::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
 //			item.setVariant(banner); // doesn't work, no icons
-			item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]);
+			item = ::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]);
 		} else {
-			item = ::Const.World.Common.pickArmor([
+			item = ::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.heraldic_armor, null, banner],
 				[1, ::Legends.Armor.Standard.mail_shirt],
 				[1, ::Legends.Armor.Standard.mail_hauberk, 28],

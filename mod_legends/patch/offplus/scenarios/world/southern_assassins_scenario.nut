@@ -25,10 +25,10 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, "oriental/assassin_robe"]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, "oriental/assassin_head_wrap"]
 		]));
 
@@ -39,10 +39,10 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, "oriental/thick_nomad_robe"]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, "oriental/assassin_head_wrap"]
 		]));
 	});

@@ -74,7 +74,7 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/hatchet"],
 			[1, "weapons/wooden_stick"],
 			[1, "weapons/greenskins/orc_metal_club"],
@@ -85,7 +85,7 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 			[1, "weapons/two_handed_mace"],
 		], "scripts/items/"));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 	}

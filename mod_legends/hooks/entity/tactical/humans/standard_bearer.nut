@@ -43,7 +43,7 @@
 		weapon.setVariant(banner);
 		this.m.Items.equip(weapon);
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk, 28],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[2, ::Legends.Armor.Standard.basic_mail_shirt]
@@ -55,7 +55,7 @@
 
 			if (banner <= 4)
 			{
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.kettle_hat],
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat],
 					[1, ::Legends.Helmet.Standard.kettle_hat_with_mail]
@@ -63,7 +63,7 @@
 			}
 			else if (banner <= 7)
 			{
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.flat_top_with_mail]
@@ -71,7 +71,7 @@
 			}
 			else
 			{
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.nasal_helmet],
 					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail]

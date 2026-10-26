@@ -7,7 +7,7 @@
 				s.Text = "[img]gfx/ui/events/event_66.png[/img]The ever tiny %tiny% walks up to the crack in the berm and stares into it. %They_tiny% turns 'round like a top.%SPEECH_ON%Now I ain't one to assume, but I've the sense of being slighted here.%SPEECH_OFF%You assure %them_tiny% that you mean nothing at all by asking %they_tiny% make use of %their_tiny% comical size. %They_tiny% nods and gets to the task as though %they_tiny% were born for it, easily wiggling %their_tiny% way into the crack until it's just a pair of boots sticking out the earth. One of the sellswords glances over and quietly asks if it's weird that %they_tiny% feels the urge to tickle the feet. You ask what in the fark does that mean with no intention of attaining an answer. Thankfully, %tiny% yells out that %they_tiny%'s got the item and the men help yank %them_tiny% back out. %tiny% flips over with the treasure held aloft in %their_tiny% tiny hands.";
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Tiny.getImagePath());
-					local item = ::Const.World.Common.pickArmor([
+					local item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Ancient.ancient_breastplate],
 					]);
 					::World.Assets.getStash().add(item);
@@ -22,7 +22,7 @@
 						[2, "weapons/ancient/ancient_sword"],
 						[1, "weapons/ancient/legend_gladius"],
 					];
-					item = ::Const.World.Common.pickItem(weapons, "scripts/items/");
+					item = ::Legends.Items.pickItem(weapons, "scripts/items/");
 					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,

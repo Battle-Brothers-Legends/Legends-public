@@ -283,7 +283,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 			],
 			function start()
 			{
-				local item = ::Const.World.Common.pickArmor([
+				local item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.mail_hauberk],
 					[1, ::Legends.Armor.Standard.coat_of_scales]
 				]);

@@ -49,7 +49,7 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 	function setGender( _gender = -1 ) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender);
-		
+
 	}
 
 	function onBuildDescription() {
@@ -84,12 +84,12 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 		items.equip(this.new("scripts/items/weapons/militia_spear"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[2, ::Legends.Armor.Standard.basic_mail_shirt]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[10, ::Legends.Helmet.Standard.aketon_cap],
 			[10, ::Legends.Helmet.Standard.open_leather_cap],
 			[10, ::Legends.Helmet.Standard.kettle_hat],

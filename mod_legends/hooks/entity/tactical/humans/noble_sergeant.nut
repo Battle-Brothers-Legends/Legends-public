@@ -71,7 +71,7 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Standard.seedmaster_noble_armor],
 			[2, ::Legends.Armor.Standard.citreneking_noble_armor]
 		]));

@@ -32,7 +32,7 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 				_event.m.Alchemist.getSkills().update();
 
 				this.List.extend(::Legends.EventList.addItems([
-					::Const.World.Common.pickItem([
+					::Legends.Items.pickItem([
 						[1, "misc/anatomist/apotheosis_potion_item"], //leaving like this for now because I'm thinking about adding more into this list later. - Luft
 					], "scripts/items/")
 				]), ::World.Assets.getStash());

@@ -75,7 +75,7 @@
 			items.equip(this.new("scripts/items/weapons/legend_shovel"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, "linen_tunic", ::Math.rand(6, 7)]
 		]));
 

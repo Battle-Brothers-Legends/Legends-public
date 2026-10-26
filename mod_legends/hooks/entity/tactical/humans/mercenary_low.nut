@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -117,7 +117,7 @@
 			}
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[5, ::Legends.Armor.Standard.gambeson],
 			[2, ::Legends.Armor.Standard.werewolf_mail_armor],
 			[1, ::Legends.Armor.Standard.northern_mercenary_armor_00],
@@ -130,7 +130,7 @@
 
 		if (::Math.rand(1, 100) <= 90)
 		{
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 				[1, ::Legends.Helmet.Standard.rondel_helm],
 				[1, ::Legends.Helmet.Standard.scale_helm],

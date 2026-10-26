@@ -69,11 +69,11 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.apron]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.mouth_piece],
 			[1, ::Legends.Helmet.Standard.headscarf]
 		]));

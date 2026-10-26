@@ -83,7 +83,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[2, "weapons/scimitar"],
 			[2, "weapons/oriental/light_southern_mace"],
 			[1, "weapons/battle_whip"],
@@ -105,7 +105,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 			]);
 		}
 
-		this.getItems().equip(::Const.World.Common.pickArmor(armor));
+		this.getItems().equip(::Legends.Items.pickArmor(armor));
 
 		local helmet = [
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
@@ -120,6 +120,6 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 				[1, ::Legends.Helmet.Southern.southern_head_wrap]
 			]);
 		}
-		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 	}
 });

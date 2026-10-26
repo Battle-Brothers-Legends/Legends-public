@@ -24,7 +24,7 @@
 		local body = items.getItemAtSlot(::Const.ItemSlot.Body);
 		if (body != null)
 			items.unequip(body);
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.linothorax],
 			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
 			[2, ::Legends.Armor.Southern.southern_mail_shirt],
@@ -35,7 +35,7 @@
 		local head = items.getItemAtSlot(::Const.ItemSlot.Head);
 		if (head != null)
 			items.unequip(head);
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Southern.wrapped_southern_helmet],
 			[2, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail],
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap],

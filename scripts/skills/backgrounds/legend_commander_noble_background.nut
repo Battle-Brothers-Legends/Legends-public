@@ -25,7 +25,7 @@ this.legend_commander_noble_background <- this.inherit("scripts/skills/backgroun
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
-		
+
 
 		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
@@ -76,10 +76,10 @@ this.legend_commander_noble_background <- this.inherit("scripts/skills/backgroun
 		talents[::Const.Attributes.MeleeSkill] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_noble_hat],
 			[1, ::Legends.Helmet.Standard.legend_noble_crown],
 			[1, ::Legends.Helmet.Standard.legend_noble_floppy_hat],

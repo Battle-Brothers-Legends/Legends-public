@@ -33,7 +33,7 @@
 			"Silkworm"
 		];
 		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;		
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
@@ -70,10 +70,10 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));

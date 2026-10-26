@@ -18,17 +18,17 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.List.extend(::Legends.EventList.addItems([
-					::Const.World.Common.pickArmor([
+					::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Southern.cloth_sash]
 					]),
-					::Const.World.Common.pickArmor([
+					::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Southern.cloth_sash]
 					]),
-					::Const.World.Common.pickHelmet([
+					::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Southern.gunner_hat]
 					]),
 					::new("scripts/items/weapons/oriental/nomad_mace"),
-					::Const.World.Common.pickItem([
+					::Legends.Items.pickItem([
 						[1, "misc/hyena_fur_item"],
 						[1, "misc/acidic_saliva_item"]
 					], "scripts/items/")
@@ -48,17 +48,17 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.List.extend(::Legends.EventList.addItems([
-					::Const.World.Common.pickArmor([
+					::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.linen_tunic]
 					]),
-					::Const.World.Common.pickArmor([
+					::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.wizard_robe]
 					]),
-					::Const.World.Common.pickHelmet([
+					::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Standard.wizard_hat]
 					]),
 					::new("scripts/items/weapons/bludgeon"),
-					::Const.World.Common.pickItem([
+					::Legends.Items.pickItem([
 						[1, "misc/werewolf_pelt_item"],
 						[1, "misc/adrenaline_gland_item"]
 					], "scripts/items/")
@@ -78,13 +78,13 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.List.extend(::Legends.EventList.addItems([
-					::Const.World.Common.pickArmor([
+					::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.noble_tunic]
 					]),
-					::Const.World.Common.pickArmor([
+					::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 					]),
-					::Const.World.Common.pickHelmet([
+					::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Standard.wizard_hat]
 					]),
 					::new("scripts/items/weapons/barbarians/axehammer"),

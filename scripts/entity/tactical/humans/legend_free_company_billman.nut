@@ -49,7 +49,7 @@ this.legend_free_company_billman <- this.inherit("scripts/entity/tactical/legend
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[25, "weapons/billhook"],
 			[25, "weapons/longaxe"],
 			[25, "weapons/legend_halberd"],

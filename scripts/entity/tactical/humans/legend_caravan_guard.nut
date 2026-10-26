@@ -52,7 +52,7 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 	function assignRandomEquipment() {
 		this.legend_randomized_unit_abstract.assignRandomEquipment();
 		if (::Math.rand(1, 100) <= 35) {
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],
 			], "scripts/items/"));

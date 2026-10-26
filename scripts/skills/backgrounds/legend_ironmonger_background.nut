@@ -45,7 +45,7 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.apron],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic]

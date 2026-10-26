@@ -123,7 +123,7 @@ this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgr
 	}
 
 	function onAdded()
-	{	
+	{
 		if (this.m.IsNew)
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendAggressive);
 		this.character_background.onAdded();
@@ -142,12 +142,12 @@ this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgr
 		items.equip(this.new("scripts/items/weapons/dagger"));
 		items.addToBag(this.new("scripts/items/weapons/legend_slingshot"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood]
 		]));
 	}

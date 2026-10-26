@@ -43,7 +43,7 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/legend_hammer"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_blacksmith_apron]
 		]));
 	}

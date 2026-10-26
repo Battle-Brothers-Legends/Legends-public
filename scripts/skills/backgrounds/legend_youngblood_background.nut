@@ -99,7 +99,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 			items.addToBag(this.new("scripts/items/weapons/legend_wooden_stake"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Standard.ragged_surcoat],
 			[2, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.leather_tunic],
@@ -107,7 +107,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],

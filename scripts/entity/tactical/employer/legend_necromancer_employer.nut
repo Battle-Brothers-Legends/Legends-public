@@ -29,13 +29,13 @@ this.legend_necromancer_employer <- ::inherit("scripts/entity/tactical/human", {
 	}
 
 	function assignRandomEquipment() {
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, "ragged_dark_surcoat"],
 			[1, "thick_dark_tunic"]
 		]);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, "witchhunter_hat"],
 			[1, "dark_cowl"],
 			[1, "hood", 63]

@@ -62,21 +62,21 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 	{
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(::Const.World.Common.pickItem([
+		items.equip(::Legends.Items.pickItem([
 			[1, "weapons/ancient/crypt_cleaver"],
 			[1, "weapons/ancient/warscythe"],
 			[1, "weapons/ancient/legend_gladius"],
 			[1, "weapons/ancient/legend_kopis"]
 		], "scripts/items/"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Ancient.ancient_plated_scale_hauberk],
 			[1, ::Legends.Armor.Ancient.ancient_scale_coat],
 			[2, ::Legends.Armor.Ancient.ancient_plate_harness],
 			[1, ::Legends.Armor.Ancient.ancient_plated_mail_hauberk]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Ancient.ancient_honorguard_helmet],
 			[1, ::Legends.Helmet.Ancient.legend_ancient_legionary_helmet_restored]
 		]));

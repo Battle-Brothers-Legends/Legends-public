@@ -32,12 +32,12 @@
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
 
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Legendary.emperors_armor_fake] //legend_emperors_armor_fake
 		]);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_laurels]
 		]);
 		if (item != null) {

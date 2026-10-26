@@ -132,7 +132,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		 this.getContainer().getActor().fillTalentValues(2, true);
 
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor],
 			[1, ::Legends.Armor.Barbarian.rugged_scale_armor],
 			[1, ::Legends.Armor.Barbarian.scrap_metal_armor],
@@ -141,7 +141,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
 			[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.crude_faceguard_helmet],
 			[1, ::Legends.Helmet.Barbarian.crude_metal_helmet],

@@ -41,21 +41,21 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 	{
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(::Const.World.Common.pickItem([
+		items.equip(::Legends.Items.pickItem([
 			[1, "weapons/ancient/bladed_pike"],
 			[1, "weapons/ancient/legend_gladius"],
 			[1, "weapons/ancient/legend_kopis"],
 			[1, "weapons/ancient/warscythe"]
 		], "scripts/items/"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Ancient.ancient_plated_scale_hauberk],
 			[1, ::Legends.Armor.Ancient.ancient_scale_coat],
 			[2, ::Legends.Armor.Ancient.ancient_plate_harness],
 			[1, ::Legends.Armor.Ancient.ancient_plated_mail_hauberk]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None]
 		]));
 	}

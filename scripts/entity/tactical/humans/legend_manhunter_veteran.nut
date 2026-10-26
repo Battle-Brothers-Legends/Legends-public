@@ -122,7 +122,7 @@ this.legend_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand).getID() == "weapon.battle_whip") {
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/oriental/light_southern_mace"],
 			], "scripts/items/"));
 		}
@@ -155,7 +155,7 @@ this.legend_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 				]);
 			}
 
-			this.m.Items.equip(::Const.World.Common.pickArmor(armors));
+			this.m.Items.equip(::Legends.Items.pickArmor(armors));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
@@ -183,7 +183,7 @@ this.legend_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 			}
 
 
-			this.m.Items.equip(::Const.World.Common.pickHelmet(helmets));
+			this.m.Items.equip(::Legends.Items.pickHelmet(helmets));
 		}
 	}
 
@@ -217,14 +217,14 @@ this.legend_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 		}
 		else if (r == 2)
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(armors)
+			this.m.Items.equip(::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(armors)
 			));
 		}
 		else
 		{
-			this.m.Items.equip(::Const.World.Common.pickHelmet(
-				::Const.World.Common.convNameToList(helmets)
+			this.m.Items.equip(::Legends.Items.pickHelmet(
+				::Legends.Items.convNameToList(helmets)
 			));
 		}
 

@@ -44,7 +44,7 @@ this.legend_free_company_archer_low <- this.inherit("scripts/entity/tactical/hum
 
 		this.legend_free_company_abstract.assignRandomEquipment();
 
-		this.getItems().addToBag(::Const.World.Common.pickItem([
+		this.getItems().addToBag(::Legends.Items.pickItem([
 			[1, "weapons/knife"]
 		], "scripts/items/"));
 	}

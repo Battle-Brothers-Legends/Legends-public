@@ -65,6 +65,6 @@
 			"loot/goblin_rank_insignia_item",
 			"misc/legend_ancient_scroll_item"
 		], _lootTable);
-		_lootTable.push(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Legendary.legend_emperors_countenance]]));
+		_lootTable.push(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Legendary.legend_emperors_countenance]]));
 	}
 });

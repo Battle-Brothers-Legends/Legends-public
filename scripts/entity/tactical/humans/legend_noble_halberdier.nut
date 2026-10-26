@@ -77,12 +77,12 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/legend_halberd"],
 			[1, "weapons/legend_battle_glaive"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.seedmaster_noble_armor],
 			[1, ::Legends.Armor.Standard.citreneking_noble_armor],
 		]));
@@ -93,7 +93,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 
 			if (banner <= 4)
 			{
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
@@ -107,7 +107,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 			}
 			else if (banner <= 7)
 			{
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
@@ -119,7 +119,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 			}
 			else
 			{
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.nasal_helmet],
 					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
@@ -140,7 +140,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 		}
 		else
 		{
-			this.getItems().equip(::Const.World.Common.pickHelmet([
+			this.getItems().equip(::Legends.Items.pickHelmet([
 				[2, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.full_aketon_cap]
 			]))

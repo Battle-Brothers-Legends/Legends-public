@@ -69,12 +69,12 @@
 			this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		local helmet = ::Const.World.Common.pickHelmet([
+		local helmet = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.mail_coif],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],

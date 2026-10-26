@@ -105,14 +105,14 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
 			[1, ::Legends.Armor.Standard.leather_lamellar]
 		];
-		this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+		this.m.Items.equip(::Legends.Items.pickArmor(armor));
 
 		local helmet = [
 			[1, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
 			[1, ::Legends.Helmet.Southern.nomad_light_helmet]
 		];
-		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 	}
 
 });

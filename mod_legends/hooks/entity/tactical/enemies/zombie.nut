@@ -155,7 +155,7 @@
 			[1, ::Legends.Armor.Standard.butcher_apron],
 			[1, ::Legends.Armor.Standard.monk_robe]
 		];
-		local armor = ::Const.World.Common.pickArmor(aList);
+		local armor = ::Legends.Items.pickArmor(aList);
 
 		if (::Math.rand(1, 100) <= 50) {
 			armor.setArmor(::Math.round(armor.getArmorMax() / 2 - 1));
@@ -164,7 +164,7 @@
 		this.m.Items.equip(armor);
 
 		if (::Math.rand(1, 100) <= 33) {
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.full_aketon_cap],
 				[1, ::Legends.Helmet.Standard.kettle_hat],

@@ -20,11 +20,11 @@
 		];
 		this.m.Items.equip(this.new(weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.fault_finder_robes]
 		]));
 
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.fault_finder_mask_01],
 			[1, ::Legends.Helmet.Standard.fault_finder_mask_02]
 		]));

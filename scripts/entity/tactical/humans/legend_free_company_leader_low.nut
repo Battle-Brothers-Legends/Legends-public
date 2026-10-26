@@ -49,7 +49,7 @@ this.legend_free_company_leader_low <- this.inherit("scripts/entity/tactical/hum
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/warfork"],
 			[1, "weapons/legend_zweihander"],
 			[1, "weapons/legend_katar"],

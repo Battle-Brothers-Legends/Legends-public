@@ -56,7 +56,7 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_herbalist_robe]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_sickle"));

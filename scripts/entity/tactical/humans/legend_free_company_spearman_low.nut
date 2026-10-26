@@ -40,12 +40,12 @@ this.legend_free_company_spearman_low <- this.inherit("scripts/entity/tactical/h
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/militia_spear"],
 			[1, "weapons/legend_wooden_spear"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "shields/buckler_shield"],
 			[1, "shields/wooden_shield"],
 			[1, null],

@@ -31,7 +31,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[0].m.PerkPointsSpent += 1;
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.jesters_hat]
 		]));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
@@ -45,7 +45,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[1].m.PerkPointsSpent += 1;
 		local items = bros[1].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Named.jugglers_hat]
 		]));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
@@ -62,7 +62,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[2].m.PerkPointsSpent += 1;
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Named.jugglers_hat]
 		]));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
@@ -78,7 +78,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[3].m.PerkPointsSpent += 1;
 		local items = bros[3].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Named.jugglers_padded_hat]
 		]));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));

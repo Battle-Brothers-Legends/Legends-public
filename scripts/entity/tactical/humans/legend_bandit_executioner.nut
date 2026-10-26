@@ -44,18 +44,18 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 			this.getItems().equip(this.new("scripts/items/weapons/exesword"));
 		}
 		else {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[5, "weapons/butchers_cleaver"],
 				[5, "weapons/scramasax"],
 				[1, "weapons/legend_militia_glaive"]
 			], "scripts/items/"));
 		}
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.bandit_executioner_tunic]
 		]));
 
-		this.getItems().equip(::Const.World.Common.pickHelmet([
+		this.getItems().equip(::Legends.Items.pickHelmet([
 			[10, ::Legends.Helmet.Standard.executioner_hood],
 			[1, ::Legends.Helmet.Standard.bandit_executioner_hood]
 		]));
@@ -84,8 +84,8 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 		else
 		{
 			// TODO equip a named item
-			// this.getItems().equip(::Const.World.Common.pickArmor(
-			// 	::Const.World.Common.convNameToList(
+			// this.getItems().equip(::Legends.Items.pickArmor(
+			// 	::Legends.Items.convNameToList(
 			// 		armor
 			// 	)
 			// ));

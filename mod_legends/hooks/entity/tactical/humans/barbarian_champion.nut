@@ -10,7 +10,7 @@
 		]);
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
-		}	
+		}
 	}
 
 	local onInit = o.onInit;
@@ -60,10 +60,10 @@
 			[5, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor]
 		];
 
-		this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+		this.m.Items.equip(::Legends.Items.pickArmor(armor));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Barbarian.crude_faceguard_helmet],
 				[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
 				[1, ::Legends.Helmet.Barbarian.crude_metal_helmet]
@@ -92,8 +92,8 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else if (r == 2) {
-			local weightName = ::Const.World.Common.convNameToList(armor);
-			this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
+			local weightName = ::Legends.Items.convNameToList(armor);
+			this.m.Items.equip(::Legends.Items.pickArmor(weightName));
 		}
 		else if (r == 3) {
 			local weapons = [
@@ -103,8 +103,8 @@
 			this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else {
-			local weightName = ::Const.World.Common.convNameToList(helmets);
-			this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
+			local weightName = ::Legends.Items.convNameToList(helmets);
+			this.m.Items.equip(::Legends.Items.pickHelmet(weightName));
 		}
 
 		return true;

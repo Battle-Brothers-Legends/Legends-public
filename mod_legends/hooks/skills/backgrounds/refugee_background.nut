@@ -45,7 +45,7 @@
 
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-			
+
 		if (this.m.Ethnicity == 0) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 		}
@@ -54,7 +54,7 @@
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
-		else if (this.m.Ethnicity == 2) {	
+		else if (this.m.Ethnicity == 2) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleSkinny, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Untidy});
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
@@ -85,7 +85,7 @@
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.legend_rabble_tunic]

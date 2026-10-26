@@ -65,13 +65,13 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[2, ::Legends.Armor.None]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[3, ::Legends.Helmet.None]
 		]));

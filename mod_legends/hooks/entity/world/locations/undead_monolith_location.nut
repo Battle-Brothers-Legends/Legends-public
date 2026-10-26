@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/world/locations/undead_monolith_location", function(o) 
+::mods_hookExactClass("entity/world/locations/undead_monolith_location", function(o)
 {
 	o.onDropLootForPlayer = function ( _lootTable )
 	{
@@ -21,7 +21,7 @@
 			"misc/legend_masterwork_tools"
 		], _lootTable);
 
-		// _lootTable.push(::Const.World.Common.pickArmor([
+		// _lootTable.push(::Legends.Items.pickArmor([
 		// 	[1, "legendary/emperors_armor"],
 		// ]))
 	}

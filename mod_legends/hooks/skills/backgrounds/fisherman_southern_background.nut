@@ -23,7 +23,7 @@
 		if (this.m.Ethnicity == 1) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernSkinny, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
 		}
-		else if (this.m.Ethnicity == 2) {	
+		else if (this.m.Ethnicity == 2) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 90);
 		}
 	}
@@ -44,12 +44,12 @@
 		}
 
 		items.equip(this.new("scripts/items/tools/throwing_net"));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]));
 
-		local helm =::Const.World.Common.pickHelmet([
+		local helm =::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap]
 		]);
 		items.equip(helm);

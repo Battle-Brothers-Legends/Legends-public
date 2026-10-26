@@ -167,7 +167,7 @@ this.legend_lone_wolf_background <- this.inherit("scripts/skills/backgrounds/cha
 		// // 	items.equip(this.new("scripts/items/weapons/goedendag"));
 		// // }
 
-		// items.equip(::Const.World.Common.pickArmor([
+		// items.equip(::Legends.Items.pickArmor([
 		// 	// [1, ::Legends.Armor.Standard.mail_hauberk],
 		// 	// [1, ::Legends.Armor.Standard.basic_mail_shirt],
 		// 	// [1, ::Legends.Armor.Standard.scale_armor],
@@ -188,6 +188,6 @@ this.legend_lone_wolf_background <- this.inherit("scripts/skills/backgrounds/cha
 		// // 	helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet])
 		// // }
 
-		// // items.equip(::Const.World.Common.pickHelmet(helm));
+		// // items.equip(::Legends.Items.pickHelmet(helm));
 	}
 });

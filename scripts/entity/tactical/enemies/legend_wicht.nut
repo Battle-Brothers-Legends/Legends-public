@@ -385,7 +385,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 
 		local b = this.m.BaseProperties;
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
-			local armor = ::Const.World.Common.pickArmor([
+			local armor = ::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.ghost_armor]
 			]);
 			b.Armor[0] = ::Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
@@ -394,7 +394,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
-			local helmet = ::Const.World.Common.pickHelmet([
+			local helmet = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.ghost_helmet]
 			]);
 			b.Armor[1] = ::Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
@@ -424,7 +424,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 
 		local r = ::Math.rand(1, 3);
 		if (r == 1) {
-			local armor = ::Const.World.Common.pickArmor([
+			local armor = ::Legends.Items.pickArmor([
 				[2, ::Legends.Armor.Named.ghost_armor_named_01],
 				[1, ::Legends.Armor.Named.ghost_armor_named_02]
 			]);
@@ -434,7 +434,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		} else {
-			local helmet = ::Const.World.Common.pickHelmet([
+			local helmet = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Named.ghost_helmet_named]
 			]);
 			b.Armor[1] = ::Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);

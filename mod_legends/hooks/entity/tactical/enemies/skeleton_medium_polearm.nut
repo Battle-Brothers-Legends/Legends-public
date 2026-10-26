@@ -21,10 +21,10 @@
 			[1, ::Legends.Armor.Ancient.ancient_mail],
 			[1, ::Legends.Armor.Ancient.ancient_double_layer_mail]
 		];
-		local item = ::Const.World.Common.pickArmor(armor);
+		local item = ::Legends.Items.pickArmor(armor);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_legionary_helmet]
 		]);
 		if (item != null) {

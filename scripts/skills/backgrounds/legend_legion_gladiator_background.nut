@@ -38,7 +38,7 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 	{
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(::Const.World.Common.pickItem([
+		items.equip(::Legends.Items.pickItem([
 			[1, "weapons/ancient/ancient_spear"],
 			[1, "weapons/throwing_spear"],
 			[1, "weapons/ancient/legend_gladius"],
@@ -46,18 +46,18 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		], "scripts/items/"));
 
 		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
-			items.equip(::Const.World.Common.pickItem([
+			items.equip(::Legends.Items.pickItem([
 				[2, "tools/throwing_net"],
 				[1, "shields/ancient/tower_shield"]
 			], "scripts/items/"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Ancient.ancient_ripped_cloth],
 			[1, ::Legends.Armor.Standard.indebted_armor_rags],
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Ancient.ancient_gladiator_helmet]
 		]));
 	}

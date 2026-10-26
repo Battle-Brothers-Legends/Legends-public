@@ -13,7 +13,7 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 		this.m.Beards = ::Const.Beards.Raider;
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_ranged_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.randomizeEnemyGender() == 1) 
+		if (this.randomizeEnemyGender() == 1)
 		{
 			this.setGender(1);
 		}
@@ -102,14 +102,14 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	// 		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 	// 	}
 
-	// 	local item = ::Const.World.Common.pickArmor([
+	// 	local item = ::Legends.Items.pickArmor([
 	// 		[20, ::Legends.Armor.Standard.leather_wraps]
 	// 	])
 	// 	this.m.Items.equip(item);
 
 	// 	if (::Math.rand(1, 100) <= 50)
 	// 	{
-	// 		local item = ::Const.World.Common.pickHelmet([
+	// 		local item = ::Legends.Items.pickHelmet([
 	// 			[1, ::Legends.Helmet.Standard.headscarf],
 	// 			[1, ::Legends.Helmet.Standard.mouth_piece]
 	// 		])

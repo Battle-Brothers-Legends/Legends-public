@@ -44,13 +44,13 @@
 				[1, ::Legends.Armor.Standard.citrene_nomad_cutthroat_armor_01],
 			]);
 		}
-		this.m.Items.equip(::Const.World.Common.pickArmor(armors));
+		this.m.Items.equip(::Legends.Items.pickArmor(armors));
 		local helmet = [
 			[3, ::Legends.Helmet.Southern.nomad_head_wrap],
 			[1, ::Legends.Helmet.Standard.citrene_nomad_cutthroat_helmet_00],
 			[1, ::Legends.Helmet.Standard.citrene_nomad_cutthroat_helmet_01],
 			[2, ::Legends.Helmet.Southern.nomad_leather_cap]
 		];
-		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 	}
 });

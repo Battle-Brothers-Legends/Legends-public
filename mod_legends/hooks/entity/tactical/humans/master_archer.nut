@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -61,7 +61,7 @@
 				[1, ::Legends.Armor.Standard.ragged_surcoat],
 				[1, ::Legends.Armor.Standard.basic_mail_shirt]
 			];
-			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+			this.m.Items.equip(::Legends.Items.pickArmor(armor));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) <= 50)
@@ -104,8 +104,8 @@
 		}
 		else
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(armor)
+			this.m.Items.equip(::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(armor)
 			));
 		}
 

@@ -52,7 +52,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Southern.stitched_nomad_armor],
 			[1, ::Legends.Armor.Southern.plated_nomad_mail],
 			[1, ::Legends.Armor.Standard.citrene_nomad_cutthroat_armor_00],
@@ -69,6 +69,6 @@
 			[2, ::Legends.Helmet.Southern.nomad_reinforced_helmet],
 			[1, ::Legends.Helmet.Southern.leather_head_wrap]
 		];
-		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 	}
 });

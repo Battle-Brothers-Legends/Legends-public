@@ -76,13 +76,13 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 			items.addToBag(this.new("scripts/items/weapons/knife"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood]
 			// [1, ::Legends.Helmet.Standard.hunters_hat]
 		]));

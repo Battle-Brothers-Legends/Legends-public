@@ -55,13 +55,13 @@
 		items.equip(this.new("scripts/items/weapons/oriental/composite_bow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		items.addToBag(this.new("scripts/items/weapons/knife"));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.padded_vest],
 			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap, ::Math.rand(0, 1) == 1 ? 12 : 8]
 		]));
 	}

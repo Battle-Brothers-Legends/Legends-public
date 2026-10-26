@@ -24,7 +24,7 @@
 			local helmet = [
 				[1, ::Legends.Helmet.Southern.southern_head_wrap]
 			];
-			items.equip(::Const.World.Common.pickHelmet(helmet));
+			items.equip(::Legends.Items.pickHelmet(helmet));
 
 			local r = ::Math.rand(1, 3);
 			local a = this.new("scripts/items/armor/oriental/southern_gladiator_harness");

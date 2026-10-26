@@ -48,7 +48,7 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[3, "weapons/legend_staff"],
 			[1, "weapons/legend_tipstaff"],
 		], "scripts/items/"));
@@ -71,7 +71,7 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Outfit.brown_monk_outfit_00]
 		];
 
-		foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) )
+		foreach( item in ::Legends.Items.pickOutfit(outfits, armor, helmet) )
 		{
 			this.m.Items.equip(item);
 		}

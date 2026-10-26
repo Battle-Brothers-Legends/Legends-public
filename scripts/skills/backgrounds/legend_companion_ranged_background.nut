@@ -40,7 +40,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
-		else if (this.m.Ethnicity == 2) {	
+		else if (this.m.Ethnicity == 2) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
@@ -58,7 +58,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 	}
 
 	function onAdded() // enables relationships
-	{	
+	{
 		if (this.m.IsNew)
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendLoneWolfRelationship);
 		this.character_background.onAdded();
@@ -184,7 +184,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			[1, ::Legends.Outfit.mercenary_billman_outfit_00]
 		];
 
-		foreach (item in ::Const.World.Common.pickOutfit(outfits))
+		foreach (item in ::Legends.Items.pickOutfit(outfits))
 		{
 			items.equip(item);
 		}

@@ -108,12 +108,12 @@
 			items.equip(this.new("scripts/items/tools/daze_bomb_item"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.assassin_robe]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.assassin_head_wrap]
 		]));
 	}

@@ -56,13 +56,13 @@
 			}
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.mail_shirt]
 		]));
 
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 			[1, ::Legends.Helmet.Standard.mail_coif],
 			[1, ::Legends.Helmet.Standard.feathered_hat],

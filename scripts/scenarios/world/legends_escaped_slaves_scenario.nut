@@ -138,7 +138,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		local items = bros[2].getItems();
 		this.addRandomEquipment(items);
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[5, ::Legends.Helmet.Southern.gunner_hat]
 		]));
 
@@ -211,7 +211,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		local getsWeapon = ::Math.rand(1, 100) <= (50 + (getsArmor ? -17 : 17) + (getsHelmet ? -17 : 17)) ? true : false;
 
 		if (getsArmor) {
-			items.equip(::Const.World.Common.pickArmor([
+			items.equip(::Legends.Items.pickArmor([
 				[10, ::Legends.Armor.Southern.nomad_robe],
 				[10, ::Legends.Armor.Southern.thick_nomad_robe],
 				[10, ::Legends.Armor.Southern.padded_vest],
@@ -229,7 +229,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		}
 
 		if (getsHelmet) {
-			items.equip(::Const.World.Common.pickHelmet([
+			items.equip(::Legends.Items.pickHelmet([
 				[5, ::Legends.Helmet.Southern.nomad_reinforced_helmet],
 				[5, ::Legends.Helmet.Southern.wrapped_southern_helmet],
 				[5, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail],

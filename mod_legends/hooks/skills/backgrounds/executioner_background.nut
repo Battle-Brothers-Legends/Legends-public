@@ -22,7 +22,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Fearless),
 			::Legends.Traits.getID(::Legends.Trait.Optimist),
 		];
-		
+
 		this.m.ExcludedTalents = [
 			::Const.Attributes.RangedSkill
 		];
@@ -56,7 +56,7 @@
 
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Big, Hairs = ::Const.Hair.UntidyMale}, 50);	
+		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Big, Hairs = ::Const.Hair.UntidyMale}, 50);
 	}
 
 	o.onBuildDescription = function () {
@@ -112,12 +112,12 @@
 		];
 		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.executioner_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.executioner_hood]
 		]));
 	}

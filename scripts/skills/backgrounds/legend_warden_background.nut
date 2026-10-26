@@ -76,13 +76,13 @@ this.legend_warden_background <- this.inherit("scripts/skills/backgrounds/charac
 
 		items.addToBag(::new(::Math.rand(0, 1) == 0 ? "scripts/items/weapons/knife" : "scripts/items/weapons/bludgeon"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood]
 		]));
 	}

@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -56,7 +56,7 @@
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
@@ -68,7 +68,7 @@
 
 		if (::Math.rand(1, 100) <= 50)
 		{
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.open_leather_cap],

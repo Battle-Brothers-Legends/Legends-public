@@ -62,7 +62,7 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 		this.getItems().addToBag(this.new("scripts/items/ammo/quiver_of_arrows"));
 		this.getItems().addToBag(this.new("scripts/items/weapons/hatchet"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
@@ -71,7 +71,7 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 
 		if (::Math.rand(1, 100) <= 50)
 		{
-			this.getItems().equip(::Const.World.Common.pickHelmet([
+			this.getItems().equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.open_leather_cap],

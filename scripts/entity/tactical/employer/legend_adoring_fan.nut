@@ -37,7 +37,7 @@ this.legend_adoring_fan <- ::inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment() {
 		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Body) == null) {
-			this.getItems().equip(::Const.World.Common.pickArmor([
+			this.getItems().equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.leather_wraps]
 			]));
 		}

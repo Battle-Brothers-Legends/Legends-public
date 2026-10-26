@@ -119,12 +119,12 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 
 		local mainhandWeaponID = this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand).getID();
 		if (mainhandWeaponID == "weapon.handgonne" || mainhandWeaponID == "weapon.named_handgonne") {
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/oriental/qatal_dagger"],
 				[1, "weapons/legend_katar"],
 			], "scripts/items/"));
 		} else {
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/hooked_blade"],
 				[1, "weapons/warbrand"],
 				[1, "weapons/oriental/two_handed_saif"],
@@ -150,7 +150,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				]);
 			}
 
-			this.m.Items.equip(::Const.World.Common.pickArmor(armors));
+			this.m.Items.equip(::Legends.Items.pickArmor(armors));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
@@ -174,7 +174,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				}
 			}
 
-			this.m.Items.equip(::Const.World.Common.pickHelmet(helmets));
+			this.m.Items.equip(::Legends.Items.pickHelmet(helmets));
 		}
 	}
 
@@ -221,14 +221,14 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 		}
 		else if (r == 2)
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(armors)
+			this.m.Items.equip(::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(armors)
 			));
 		}
 		else
 		{
-			this.m.Items.equip(::Const.World.Common.pickHelmet(
-				::Const.World.Common.convNameToList(helmets)
+			this.m.Items.equip(::Legends.Items.pickHelmet(
+				::Legends.Items.convNameToList(helmets)
 			));
 		}
 

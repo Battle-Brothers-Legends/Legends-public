@@ -24,7 +24,7 @@ this.legends_zombie_high_xbow <- this.inherit("scripts/entity/tactical/legend_zo
 		this.m.Items.equip(this.new("scripts/items/weapons/heavy_crossbow"));
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt],
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],
@@ -32,7 +32,7 @@ this.legends_zombie_high_xbow <- this.inherit("scripts/entity/tactical/legend_zo
 		]));
 
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],

@@ -75,13 +75,13 @@
 		}
 
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.linen_tunic, ::Math.rand(6, 7)],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.headscarf],
 			[4, ::Legends.Helmet.None]
 		]));

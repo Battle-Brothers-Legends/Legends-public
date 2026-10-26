@@ -35,11 +35,11 @@
 		}
 		items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.executioner_hood]
 		]));
 	}

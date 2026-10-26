@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -160,7 +160,7 @@
 			[1, ::Legends.Outfit.traze_northern_mercenary_outfit_00],
 		];
 
-		foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helm) )
+		foreach( item in ::Legends.Items.pickOutfit(outfits, armor, helm) )
 		{
 			this.m.Items.equip(item)
 		}

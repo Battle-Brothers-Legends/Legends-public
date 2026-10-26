@@ -111,10 +111,10 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.Fatigue] = 2;
 		this.getContainer().getActor().fillTalentValues(2, true);
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_staff"));

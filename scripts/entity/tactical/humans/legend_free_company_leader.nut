@@ -50,7 +50,7 @@ this.legend_free_company_leader <- this.inherit("scripts/entity/tactical/legend_
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/bardiche"],
 			[1, "weapons/greataxe"],
 			[1, "weapons/legend_zweihander"],
@@ -61,7 +61,7 @@ this.legend_free_company_leader <- this.inherit("scripts/entity/tactical/legend_
 		], "scripts/items/"));
 
 		if (this.getIdealRange() == 1) {
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],
 			], "scripts/items/"));

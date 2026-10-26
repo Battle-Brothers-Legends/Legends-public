@@ -41,7 +41,7 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 	{
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(::Const.World.Common.pickItem([
+		items.equip(::Legends.Items.pickItem([
 			[1, "weapons/ancient/broken_ancient_sword"],
 			[1, "weapons/ancient/falx"],
 			[1, "weapons/ancient/ancient_spear"],
@@ -53,7 +53,7 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 				items.equip(this.new("scripts/items/shields/ancient/auxiliary_shield"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[2, ::Legends.Armor.Standard.leather_wraps],
 			[3, ::Legends.Armor.Standard.indebted_armor_rags],
@@ -61,7 +61,7 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 			[3, ::Legends.Armor.None]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Ancient.ancient_household_helmet],
 			[2, ::Legends.Helmet.None]
 		]));

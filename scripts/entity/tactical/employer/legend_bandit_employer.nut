@@ -58,7 +58,7 @@ this.legend_bandit_employer <- ::inherit("scripts/entity/tactical/human", {
 			local outfits = [
 				[1, "red_bandit_leader_outfit_00"]
 			];
-			foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) ) {
+			foreach( item in ::Legends.Items.pickOutfit(outfits, armor, helmet) ) {
 				this.m.Items.equip(item);
 			}
 			return;
@@ -74,11 +74,11 @@ this.legend_bandit_employer <- ::inherit("scripts/entity/tactical/human", {
 				[1, "light_scale_armor"],
 				[1, "red_bandit_leader_armor"]
 			];
-			this.m.Items.equip(::Const.World.Common.pickArmor(armor))
+			this.m.Items.equip(::Legends.Items.pickArmor(armor))
 		}
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[1, "closed_mail_coif"],
 				[1, "padded_kettle_hat"],
 				[1, "kettle_hat_with_closed_mail"],

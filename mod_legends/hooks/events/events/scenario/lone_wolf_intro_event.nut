@@ -97,7 +97,7 @@
 					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = ::Const.World.Common.pickArmor([
+				item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]);
 
@@ -108,7 +108,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = ::Const.World.Common.pickHelmet([
+				item = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 
@@ -124,10 +124,10 @@
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 
 				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/longsword"));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]));
 			}
@@ -165,7 +165,7 @@
 					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = ::Const.World.Common.pickArmor([
+				item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]);
 
@@ -176,7 +176,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = ::Const.World.Common.pickHelmet([
+				item = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 
@@ -193,10 +193,10 @@
 
 				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/military_pick"));
 				_event.m.Dude.getItems().equip(::new("scripts/items/shields/heater_shield"));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]));
 			}
@@ -236,7 +236,7 @@
 					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = ::Const.World.Common.pickArmor([
+				item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]);
 
@@ -247,7 +247,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = ::Const.World.Common.pickHelmet([
+				item = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 
@@ -264,10 +264,10 @@
 
 				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/fighting_axe"));
 				_event.m.Dude.getItems().equip(::new("scripts/items/shields/buckler_shield"));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]));
 			}
@@ -312,7 +312,7 @@
 					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = ::Const.World.Common.pickArmor([
+				item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.padded_leather]
 				]);
 
@@ -323,7 +323,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = ::Const.World.Common.pickHelmet([
+				item = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]);
 
@@ -343,10 +343,10 @@
 				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/crossbow"));
 				_event.m.Dude.getItems().equip(::new("scripts/items/ammo/quiver_of_bolts"));
 				_event.m.Dude.getItems().addToBag(::new("scripts/items/weapons/arming_sword"));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.padded_leather]
 				]));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]));
 			}
@@ -392,7 +392,7 @@
 					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = ::Const.World.Common.pickArmor([
+				item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]);
 
@@ -403,7 +403,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = ::Const.World.Common.pickHelmet([
+				item = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]);
 
@@ -423,10 +423,10 @@
 				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/hunting_bow"));
 				_event.m.Dude.getItems().equip(::new("scripts/items/ammo/quiver_of_arrows"));
 				_event.m.Dude.getItems().addToBag(::new("scripts/items/weapons/rondel_dagger"));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]));
 			}
@@ -456,7 +456,7 @@
 					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = ::Const.World.Common.pickArmor([
+				item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.reinforced_mail_hauberk]
 				]);
 
@@ -467,7 +467,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = ::Const.World.Common.pickHelmet([
+				item = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
 				]);
 
@@ -482,10 +482,10 @@
 				_event.m.Dude.getBaseProperties().MeleeDefense += 2;
 
 				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/pike"));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.reinforced_mail_hauberk]
 				]));
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
 				]));
 			}

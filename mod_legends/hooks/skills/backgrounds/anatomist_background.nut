@@ -112,13 +112,13 @@
 			items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Standard.undertaker_apron],
 			[2, ::Legends.Armor.Standard.wanderers_coat],
 			[1, ::Legends.Armor.Standard.reinforced_leather_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Standard.undertaker_hat],
 			[2, ::Legends.Helmet.Standard.physician_mask],
 			[1, ::Legends.Helmet.Standard.masked_kettle_helmet]

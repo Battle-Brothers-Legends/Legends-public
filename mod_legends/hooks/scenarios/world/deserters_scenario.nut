@@ -39,7 +39,7 @@
 		}
 
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
-		local armor = ::Const.World.Common.pickArmor([
+		local armor = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk, 28],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.gambeson],

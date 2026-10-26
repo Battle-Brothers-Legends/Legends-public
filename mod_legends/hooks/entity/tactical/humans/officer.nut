@@ -52,7 +52,7 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Southern.padded_mail_and_lamellar_hauberk],
 				[1, ::Legends.Armor.Southern.southern_long_mail_with_padding],
 				[1, ::Legends.Armor.Southern.mail_and_lamellar_plating]
@@ -66,7 +66,7 @@
 				[1, ::Legends.Helmet.Southern.heavy_lamellar_helmet],
 				[1, ::Legends.Helmet.Southern.southern_helmet_with_coif]
 			];
-			this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+			this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 		}
 	}
 
@@ -102,16 +102,16 @@
 		}
 		else if (r == 3)
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(
+			this.m.Items.equip(::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(
 					armor
 				)
 			));
 		}
 		else
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(
+			this.m.Items.equip(::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(
 					helmets
 				)
 			));

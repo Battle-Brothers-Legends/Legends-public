@@ -57,13 +57,13 @@
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk]
 			]));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[2, ::Legends.Helmet.Standard.adorned_closed_flat_top_with_mail],
 				[2, ::Legends.Helmet.Standard.adorned_full_helm],
 				[1, ::Legends.Helmet.Standard.full_helm]
@@ -124,7 +124,7 @@
 		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		} else if (r == 3) {
-			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+			this.m.Items.equip(::Legends.Items.pickArmor(armor));
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		return true;

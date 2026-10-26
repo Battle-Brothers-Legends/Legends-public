@@ -22,7 +22,7 @@
 						icon = "ui/items/" + item.getIcon(),
 						text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 					});
-					item = ::Const.World.Common.pickArmor([
+					item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
@@ -33,7 +33,7 @@
 						imageOverlayPath = item.getIconOverlay(),
 						text = "You gain " + item.makeName()
 					});
-					item = ::Const.World.Common.pickHelmet([
+					item = ::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Standard.adorned_full_helm],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
@@ -92,12 +92,12 @@
 					local item = this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					dudeItems.equip(item);
-					item = ::Const.World.Common.pickHelmet([
+					item = ::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Standard.adorned_full_helm],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					dudeItems.equip(item);
-					item = ::Const.World.Common.pickArmor([
+					item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk],
 					]);
 					item.setCondition(item.getConditionMax() / 3 - 1);

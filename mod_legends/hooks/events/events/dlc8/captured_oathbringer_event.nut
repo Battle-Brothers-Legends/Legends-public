@@ -7,11 +7,11 @@
 			_screen.start <- function (_event) {
 				local item = null;
 				if (::Math.rand(0, 2) == 0) {
-					item = ::Const.World.Common.pickArmor([
+					item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.adorned_mail_shirt]
 					]);
 				} else {
-					item = ::Const.World.Common.pickHelmet([
+					item = ::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Standard.heavy_mail_coif]
 					]);
 				}
@@ -44,18 +44,18 @@
 			_screen.start <- function (_event) {
 				local item = null;
 				if (::Math.rand(0, 2) == 0) {
-					item = ::Const.World.Common.pickArmor([
+					item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.adorned_warriors_armor]
 					]);
 				} else {
-					item = ::Const.World.Common.pickHelmet([
+					item = ::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Standard.adorned_closed_flat_top_with_mail]
 					]);
 				}
 				item.setCondition(::Math.max(1, item.getConditionMax() * ::Math.rand(10, 30) * 0.01));
 				this.List.push(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 
-				local weapon = ::Const.World.Common.pickItem([
+				local weapon = ::Legends.Items.pickItem([
 					[1, "weapons/arming_sword"],
 					[1, "weapons/fighting_axe"],
 					[1, "weapons/military_cleaver"],

@@ -19,13 +19,13 @@
 			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_heavy_shield"));
 		}
 
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Greenskin.orc_warrior_light_armor],
 			[1, ::Legends.Armor.Greenskin.orc_warrior_medium_armor]
 		]);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Greenskin.orc_warrior_light_helmet],
 			[1, ::Legends.Helmet.Greenskin.orc_warrior_medium_helmet]

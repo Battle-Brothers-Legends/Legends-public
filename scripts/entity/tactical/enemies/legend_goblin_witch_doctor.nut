@@ -55,11 +55,11 @@ this.legend_goblin_witch_doctor <- this.inherit("scripts/entity/tactical/goblin"
 	{
 		local r;
 		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_staff"));
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Greenskin.goblin_shaman_armor]
 		]);
 		this.m.Items.equip(item);
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.goblin_shaman_helmet]
 		]);
 		this.m.Items.equip(item);

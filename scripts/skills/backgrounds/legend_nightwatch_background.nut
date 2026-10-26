@@ -73,12 +73,12 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 			items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.linen_tunic, ::Math.rand(6, 7)]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood],
 			[2, ::Legends.Helmet.Standard.aketon_cap]
 		]));

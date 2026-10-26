@@ -83,12 +83,12 @@
 		}
 
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.apron]
 		]));
 
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.feathered_hat],
 				[2, ::Legends.Helmet.None]
 		]);

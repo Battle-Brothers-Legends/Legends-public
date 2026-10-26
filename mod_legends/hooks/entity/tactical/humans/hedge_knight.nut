@@ -60,7 +60,7 @@
 				[1, ::Legends.Armor.Standard.heavy_lamellar_armor],
 				[1, ::Legends.Armor.Standard.brown_hedgeknight_armor]
 			];
-			this.m.Items.equip(::Const.World.Common.pickArmor(
+			this.m.Items.equip(::Legends.Items.pickArmor(
 				armor
 			));
 		}
@@ -91,7 +91,7 @@
 				//[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_03],
 				//[2, ::Legends.Helmet.Standard.brown_hedgeknight_helmet]
 			];
-			this.m.Items.equip(::Const.World.Common.pickHelmet(
+			this.m.Items.equip(::Legends.Items.pickHelmet(
 				helmet
 			));
 		}
@@ -116,13 +116,13 @@
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		local r = ::Math.rand(1, 2);
 		if (r == 1) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Named.brown_coat_of_plates_armor],
 				[1, ::Legends.Armor.Named.golden_scale_armor],
 				[1, ::Legends.Armor.Named.green_coat_of_plates_armor]
 			]));
 		} else {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[3, ::Legends.Helmet.Named.bascinet_named],
 				[3, ::Legends.Helmet.Named.kettle_helm_named],
 				[3, ::Legends.Helmet.Named.deep_cervelliere_named],

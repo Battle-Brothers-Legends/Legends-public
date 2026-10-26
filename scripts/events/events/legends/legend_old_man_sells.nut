@@ -39,7 +39,7 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				if (_event.m.Bought == 1) {
 					this.List.extend(::Legends.EventList.addItems([
-						::Const.World.Common.pickItem([
+						::Legends.Items.pickItem([
 							[1, "accessory/special/legend_oms_rib_item"],
 							[1, "accessory/special/legend_oms_amphora_item"],
 							[1, "accessory/special/legend_oms_ledger_item"],

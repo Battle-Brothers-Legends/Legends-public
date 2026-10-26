@@ -16,7 +16,7 @@
 	function start() {
 		if (!this.Contract.m.Payment.IsSingleItem && this.Contract.m.Payment.ItemPool.len() > 0) {
 			while (this.Contract.m.Payment.Pool > 0) {
-				local item = ::Const.World.Common.pickItem(this.Contract.m.Payment.ItemPool, "scripts/items/");
+				local item = ::Legends.Items.pickItem(this.Contract.m.Payment.ItemPool, "scripts/items/");
 				this.Contract.m.Payment.Items.push(item);
 				this.Contract.m.Payment.Pool -= item.getValue();
 			}

@@ -9,12 +9,12 @@ this.legend_legion_employer <- ::inherit("scripts/entity/tactical/skeleton", {
 
 	function assignRandomEquipment()
 	{
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Legendary.emperors_armor_fake]
 		]);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Ancient.ancient_laurels]
 		]);
 		this.m.Items.equip(item);

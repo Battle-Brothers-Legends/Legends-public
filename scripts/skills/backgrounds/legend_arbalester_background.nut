@@ -81,7 +81,7 @@ this.legend_arbalester_background <- this.inherit("scripts/skills/backgrounds/ch
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			// [3, ::Legends.Helmet.Standard.hunters_hat],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap]
@@ -91,7 +91,7 @@ this.legend_arbalester_background <- this.inherit("scripts/skills/backgrounds/ch
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		items.addToBag(this.new("scripts/items/weapons/knife"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		]));

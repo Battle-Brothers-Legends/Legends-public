@@ -13,7 +13,7 @@
 				this.List.push(::Legends.EventList.changeMoralReputation(-2, false));
 				this.List.push(::Legends.EventList.changeMoney(::Math.rand(50, 200)));
 				this.List.extend(::Legends.EventList.addItems([
-					::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]),
+					::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]),
 					::new("scripts/items/weapons/lute")
 				], ::World.Assets.getStash()));
 

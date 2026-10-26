@@ -30,18 +30,18 @@ this.legend_mummy_medium <- this.inherit("scripts/entity/tactical/legend_mummy",
 
 	function assignRandomEquipment() {
 		if (!this.m.IsRanged) {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/ancient/broken_ancient_sword"],
 				[1, "weapons/ancient/ancient_spear"],
 				[1, "weapons/ancient/ancient_sword"],
 				[1, "weapons/ancient/khopesh"]
 			], "scripts/items/"));
 		} else {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/legend_dilapidated_sling"]
 			], "scripts/items/"));
 
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/ancient/broken_ancient_sword"],
 				[1, "weapons/ancient/ancient_spear"],
 				[1, "weapons/ancient/ancient_sword"],
@@ -49,17 +49,17 @@ this.legend_mummy_medium <- this.inherit("scripts/entity/tactical/legend_mummy",
 			], "scripts/items/"));
 		}
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[33, "shields/ancient/legend_mummy_shield"],
 			[66, "shields/ancient/legend_mummy_tower_shield"]
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Ancient.legend_mummy_bandages],
 			[1, ::Legends.Armor.Ancient.legend_mummy_plate]
 		]));
 
-		this.getItems().equip(::Const.World.Common.pickHelmet([
+		this.getItems().equip(::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.Ancient.legend_mummy_bandages],
 			[1, ::Legends.Helmet.None]
 		]));

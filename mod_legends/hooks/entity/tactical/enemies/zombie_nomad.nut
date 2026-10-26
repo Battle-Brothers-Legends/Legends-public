@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_nomad", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/zombie_nomad", function(o)
 {
 	o.assignRandomEquipment = function()
 	{
@@ -38,7 +38,7 @@
 			[1, ::Legends.Armor.Southern.nomad_robe],
 			[1, ::Legends.Armor.Southern.thick_nomad_robe]
 		];
-		local armor = ::Const.World.Common.pickArmor(aList);
+		local armor = ::Legends.Items.pickArmor(aList);
 		if (::Math.rand(1, 100) <= 66)
 		{
 			armor.setArmor(::Math.round(armor.getArmorMax() / 2 - 1));
@@ -53,7 +53,7 @@
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		];
-		local helm = ::Const.World.Common.pickHelmet(helmet);
+		local helm = ::Legends.Items.pickHelmet(helmet);
 
 		if (::Math.rand(1, 100) <= 66)
 		{

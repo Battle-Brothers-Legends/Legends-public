@@ -45,13 +45,13 @@
 		bros[0].getTalents()[::Const.Attributes.Fatigue] = 2;
 		bros[0].getTalents()[::Const.Attributes.MeleeSkill] = 3;
 		bros[0].fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
-		local a = ::Const.World.Common.pickArmor([
+		local a = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 
 		bros[0].getItems().equip(a);
-		a = ::Const.World.Common.pickHelmet([
+		a = ::Legends.Items.pickHelmet([
 			[1, "oriental/gladiator_helmet", 13]
 		]);
 		bros[0].getItems().equip(a);
@@ -66,12 +66,12 @@
 		bros[1].getTalents()[::Const.Attributes.Fatigue] = 2;
 		bros[1].getTalents()[::Const.Attributes.Bravery] = 2;
 		bros[1].fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
-		a = ::Const.World.Common.pickArmor([
+		a = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
 		bros[1].getItems().equip(a);
-		a = ::Const.World.Common.pickHelmet([
+		a = ::Legends.Items.pickHelmet([
 			[1, "oriental/gladiator_helmet", 15]
 		]);
 		bros[1].getItems().equip(a);
@@ -86,12 +86,12 @@
 		bros[2].getTalents()[::Const.Attributes.Initiative] = 3;
 		bros[2].getTalents()[::Const.Attributes.MeleeSkill] = 2;
 		bros[2].fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
-		a = ::Const.World.Common.pickArmor([
+		a = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 		bros[2].getItems().equip(a);
-		a = ::Const.World.Common.pickHelmet([
+		a = ::Legends.Items.pickHelmet([
 			[1, "oriental/gladiator_helmet", 14]
 		]);
 		bros[2].getItems().equip(a);

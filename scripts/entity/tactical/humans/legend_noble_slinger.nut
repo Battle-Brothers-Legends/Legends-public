@@ -67,16 +67,16 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 
 		this.m.Items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
 
-		this.getItems().addToBag(::Const.World.Common.pickItem([
+		this.getItems().addToBag(::Legends.Items.pickItem([
 			[1, "weapons/dagger"],
 			[1, "weapons/knife"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
-		local helmet = ::Const.World.Common.pickHelmet([
+		local helmet = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],
 			[1, ::Legends.Helmet.Standard.headscarf],

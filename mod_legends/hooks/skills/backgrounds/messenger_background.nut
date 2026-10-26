@@ -36,7 +36,7 @@
 	o.getTooltip = function () {
 		return this.character_background.getTooltip();
 	}
-	
+
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Tidy});
@@ -55,12 +55,12 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.straw_hat]

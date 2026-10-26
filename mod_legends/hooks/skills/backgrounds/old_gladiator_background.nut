@@ -22,7 +22,7 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local a = ::Const.World.Common.pickArmor([
+		local a = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 

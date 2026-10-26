@@ -133,7 +133,7 @@ this.legend_barbarian_bloodletter <- this.inherit("scripts/entity/tactical/human
 				[1, ::Legends.Outfit.barbarian_chosen_outfit_02]
 			];
 
-			foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) )
+			foreach( item in ::Legends.Items.pickOutfit(outfits, armor, helmet) )
 			{
 				this.m.Items.equip(item);
 			}
@@ -148,7 +148,7 @@ this.legend_barbarian_bloodletter <- this.inherit("scripts/entity/tactical/human
 				[1, ::Legends.Armor.Standard.barbarian_chosen_armor_00],
 				[1, ::Legends.Armor.Standard.barbarian_chosen_armor_01]
 			];
-			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+			this.m.Items.equip(::Legends.Items.pickArmor(armor));
 		}
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
@@ -158,7 +158,7 @@ this.legend_barbarian_bloodletter <- this.inherit("scripts/entity/tactical/human
 				[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_01],
 				[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_02],
 			];
-			this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+			this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 		}
 	}
 

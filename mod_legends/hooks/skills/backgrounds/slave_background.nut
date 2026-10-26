@@ -112,7 +112,7 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[3, ::Legends.Armor.Standard.tattered_sackcloth],
 			[2, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.indebted_armor_rags],

@@ -118,7 +118,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Barbarian.heavy_iron_armor],
 			[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor],
 			[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
@@ -126,7 +126,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			[1, ::Legends.Armor.Standard.barbarian_chosen_armor_01],
 		]));
 
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet],
 			[1, ::Legends.Helmet.Barbarian.barbarian_ritual_helmet],
@@ -198,8 +198,8 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 		}
 		else if (r == 2)
 		{
-			local weightName = ::Const.World.Common.convNameToList(armor);
-			this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
+			local weightName = ::Legends.Items.convNameToList(armor);
+			this.m.Items.equip(::Legends.Items.pickArmor(weightName));
 			runeSelection = [
 				::Legends.Rune.LegendRshBravery,
 				::Legends.Rune.LegendRsaEndurance,
@@ -208,8 +208,8 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 		}
 		else
 		{
-			local weightName = ::Const.World.Common.convNameToList(helmets);
-			this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
+			local weightName = ::Legends.Items.convNameToList(helmets);
+			this.m.Items.equip(::Legends.Items.pickHelmet(weightName));
 			runeSelection = [
 				::Legends.Rune.LegendRshClarity,
 				::Legends.Rune.LegendRshBravery,

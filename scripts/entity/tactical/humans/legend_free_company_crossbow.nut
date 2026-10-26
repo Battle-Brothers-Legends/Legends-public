@@ -49,7 +49,7 @@ this.legend_free_company_crossbow <- this.inherit("scripts/entity/tactical/legen
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[90, "weapons/crossbow"],
 			[9, "weapons/light_crossbow"],
 			[1, "weapons/heavy_crossbow"],
@@ -57,7 +57,7 @@ this.legend_free_company_crossbow <- this.inherit("scripts/entity/tactical/legen
 
 		this.legend_free_company_abstract.assignRandomEquipment();
 
-		this.getItems().addToBag(::Const.World.Common.pickItem([
+		this.getItems().addToBag(::Legends.Items.pickItem([
 			[1, "weapons/dagger"],
 			[3, "weapons/knife"],
 		], "scripts/items/"));

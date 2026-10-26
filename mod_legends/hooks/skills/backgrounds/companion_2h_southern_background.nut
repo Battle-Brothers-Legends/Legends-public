@@ -60,13 +60,13 @@
 			items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.padded_vest],
 			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
-		local helm =::Const.World.Common.pickHelmet([
+		local helm =::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.leather_head_wrap],
 			[1, ::Legends.Helmet.Southern.leather_head_wrap],
 			[1, ::Legends.Helmet.Southern.southern_head_wrap, ::Math.rand(0, 1) == 1 ? 12 : 8]

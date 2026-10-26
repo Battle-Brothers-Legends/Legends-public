@@ -61,10 +61,10 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/militia_spear"));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 		bros[3].setStartValuesEx([::Legends.Background.Cultist]); //edgyboy 2, armour
@@ -77,10 +77,10 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		items.equip(this.new("scripts/items/weapons/pickaxe"));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood]
 		]));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 		bros[4].setStartValuesEx([::Legends.Background.LegendLurker]); //ranged support

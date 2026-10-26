@@ -61,7 +61,7 @@
 		if (this.m.Ethnicity == 1) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Gladiator, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
 		}
-		else if (this.m.Ethnicity == 2) {	
+		else if (this.m.Ethnicity == 2) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
 		}
 	}
@@ -196,7 +196,7 @@
 		}
 
 
-		local a = ::Const.World.Common.pickArmor([
+		local a = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
@@ -212,7 +212,7 @@
 		}
 		items.equip(a);
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.gladiator_helmet, ::Math.rand(13, 15)],
 			[1, ::Legends.Helmet.None]
 		]));

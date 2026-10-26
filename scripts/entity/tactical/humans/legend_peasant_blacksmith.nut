@@ -48,7 +48,7 @@ this.legend_peasant_blacksmith <- this.inherit("scripts/entity/tactical/human", 
 
 		this.m.Items.equip(this.new("scripts/items/weapons/legend_hammer"));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.apron],
@@ -58,7 +58,7 @@ this.legend_peasant_blacksmith <- this.inherit("scripts/entity/tactical/human", 
 
 		if (::Math.rand(1, 100) <= 66)
 		{
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.headscarf],
 				[2, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.straw_hat]

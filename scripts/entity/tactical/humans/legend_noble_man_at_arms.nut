@@ -69,7 +69,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/warhammer"],
 			[1, "weapons/noble_sword"],
 			[1, "weapons/three_headed_flail"],
@@ -82,16 +82,16 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		shield.setFaction(banner);
 		this.m.Items.equip(shield);
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.man_at_arms_noble_armor]
 		]));
-		// this.m.Items.equip(::Const.World.Common.pickArmor([
+		// this.m.Items.equip(::Legends.Items.pickArmor([
 		// 	[1, "mail_hauberk", 28],
 		// 	[1, ::Legends.Armor.Standard.mail_shirt],
 		// 	[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		// ]));
 
-		local helmet = ::Const.World.Common.pickHelmet([
+		local helmet = ::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.Standard.stag_helm],
 			[3, ::Legends.Helmet.Standard.swan_helm],
 			[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]

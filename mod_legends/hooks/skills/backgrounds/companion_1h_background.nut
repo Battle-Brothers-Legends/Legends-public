@@ -104,13 +104,13 @@
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/militia_spear"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],

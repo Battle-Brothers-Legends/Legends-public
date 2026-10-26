@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -31,10 +31,10 @@
 		this.m.Items.equip(this.new("scripts/items/weapons/oriental/handgonne"));
 		this.m.Items.equip(this.new("scripts/items/ammo/powder_bag"));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));
-		local helm =::Const.World.Common.pickHelmet([
+		local helm =::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.gunner_hat]
 		]);
 		this.m.Items.equip(helm);

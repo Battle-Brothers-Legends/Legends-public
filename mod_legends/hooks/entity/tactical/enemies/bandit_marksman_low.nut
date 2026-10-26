@@ -29,7 +29,7 @@
 		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 
 
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[20, ::Legends.Armor.Standard.leather_wraps]
 		]);
 		this.m.Items.equip(item);
@@ -37,7 +37,7 @@
 
 		if (::Math.rand(0,1) == 0)
 		{
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[5, ::Legends.Helmet.Standard.headscarf],
 				[5, ::Legends.Helmet.Standard.mouth_piece]
 			]);

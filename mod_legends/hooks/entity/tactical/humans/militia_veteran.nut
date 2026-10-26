@@ -57,7 +57,7 @@
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.gambeson],
 			[1, ::Legends.Armor.Standard.padded_leather],
@@ -67,7 +67,7 @@
 		]));
 
 		if (::Math.rand(1, 100) <= 75) {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.full_leather_cap]

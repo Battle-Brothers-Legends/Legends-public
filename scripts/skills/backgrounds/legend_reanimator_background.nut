@@ -121,14 +121,14 @@ this.legend_reanimator_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		//items
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.Standard.necromancer_hat],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
 			[1, ::Legends.Helmet.None],
 			[4, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat]
 		]));

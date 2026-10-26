@@ -38,7 +38,7 @@
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young});
-		
+
 		if (_gender != 1) return;
 		this.m.Name = "Adventurous Lady";
 		this.m.Names = ::Const.Strings.LadyNames;
@@ -70,13 +70,13 @@
 			items.equip(this.new("scripts/items/shields/buckler_shield"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],

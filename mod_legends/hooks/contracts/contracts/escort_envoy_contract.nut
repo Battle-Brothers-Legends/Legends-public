@@ -31,10 +31,10 @@
 
 					local envoy = ::World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
 					local items = envoy.getItems();
-					items.equip(::Const.World.Common.pickArmor([
+					items.equip(::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.linen_tunic]
 					]));
-					items.equip(::Const.World.Common.pickHelmet([
+					items.equip(::Legends.Items.pickHelmet([
 						[1, ::Legends.Helmet.Standard.feathered_hat],
 						[2, ::Legends.Helmet.None]
 					]));

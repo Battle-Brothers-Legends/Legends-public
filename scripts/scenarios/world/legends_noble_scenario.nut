@@ -109,10 +109,10 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addScenarioPerk(bros[4].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
 		bros[4].setPlaceInFormation(12);
 		local items = bros[4].getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));
 		items.equip(this.new("scripts/items/supplies/legend_pudding_item"));
@@ -204,7 +204,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 				[0, ""],
 				[1, "tabard/legend_armor_tabard_noble"]
 			];
-			local tabard = ::Const.World.Common.pickLegendArmor(tabards);
+			local tabard = ::Legends.Items.pickLegendArmor(tabards);
 			if (tabard != null && armor != null) {
 				tabard.setVariant(banner);
 				armor.setUpgrade(tabard);

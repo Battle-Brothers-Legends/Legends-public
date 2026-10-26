@@ -116,7 +116,7 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 			[0, "chain/legend_armor_short_mail"]
 		];
 
-		local chain = ::Const.World.Common.pickLegendArmor(chains);
+		local chain = ::Legends.Items.pickLegendArmor(chains);
 		if (chain != null)
 		{
 			this.setUpgrade(chain);
@@ -154,7 +154,7 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 			[0, "plate/legend_armor_rotten_scale_coat"],
 			[0, "plate/legend_armor_scale_shirt"]
 		];
-		local plate = ::Const.World.Common.pickLegendArmor(plates);
+		local plate = ::Legends.Items.pickLegendArmor(plates);
 		if (plate != null)
 		{
 			this.setUpgrade(plate);

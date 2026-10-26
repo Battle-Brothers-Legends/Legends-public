@@ -39,7 +39,7 @@
 		];
 
 		for (local j = ::Math.rand(0, 2); j != 0; j--) {
-			party.addToInventory(::Const.World.Common.pickItem(items));
+			party.addToInventory(::Legends.Items.pickItem(items));
 		}
 		// add unload before despawn
 		foreach (i, order in party.getController().getOrders()) {

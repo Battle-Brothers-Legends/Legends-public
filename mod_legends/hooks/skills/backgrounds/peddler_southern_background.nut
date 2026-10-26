@@ -50,11 +50,11 @@
 			items.equip(this.new("scripts/items/weapons/dagger"));
 		}
 
-		local armor = ::Const.World.Common.pickArmor([
+		local armor = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]);
 		items.equip(armor);
-		local helm = ::Const.World.Common.pickHelmet([
+		local helm = ::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.Standard.legend_noble_southern_hat],
 			[3, ::Legends.Helmet.None]

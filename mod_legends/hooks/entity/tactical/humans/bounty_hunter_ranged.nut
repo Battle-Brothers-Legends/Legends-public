@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -60,7 +60,7 @@
 			this.m.Items.addToBag(this.new("scripts/items/weapons/bludgeon"));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.leather_lamellar],
@@ -71,7 +71,7 @@
 
 		if (::Math.rand(1, 100) <= 50)
 		{
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.full_aketon_cap],
 				[1, ::Legends.Helmet.Standard.headscarf],

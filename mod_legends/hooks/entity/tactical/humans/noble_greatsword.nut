@@ -47,7 +47,7 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Standard.mail_hauberk, 28],
 			[1, ::Legends.Armor.Standard.scale_armor],
 			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
@@ -56,7 +56,7 @@
 			[1, ::Legends.Armor.Standard.citreneking_noble_armor]
 		]));
 
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			//[1, ::Legends.Helmet.Standard.greatsword_hat],  Only 70 durability
 			[1, ::Legends.Helmet.Standard.rondel_helm],
 			[1, ::Legends.Helmet.Standard.scale_helm],
@@ -81,7 +81,7 @@
 		if (::Math.rand(1, 100) <= 70) {
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		} else {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[2, ::Legends.Armor.Named.black_and_gold_armor],
 				[2, ::Legends.Armor.Named.blue_studded_mail_armor],
 				[2, ::Legends.Armor.Named.golden_scale_armor],

@@ -38,7 +38,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Southern.nomad_robe],
 			[2, ::Legends.Armor.Southern.thick_nomad_robe],
 			[2, ::Legends.Armor.Southern.cloth_sash],
@@ -55,6 +55,6 @@
 			[2, ::Legends.Helmet.Southern.leather_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap]
 		];
-		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 	}
 });

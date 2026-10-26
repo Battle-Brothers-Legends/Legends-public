@@ -33,14 +33,14 @@
 			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.nomad_robe],
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
 			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
-		local helm = ::Const.World.Common.pickHelmet([
+		local helm = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
 			[1, ::Legends.Helmet.Southern.nomad_light_helmet]

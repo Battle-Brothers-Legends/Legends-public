@@ -35,11 +35,11 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
 		this.m.Items.equip(::new("scripts/items/weapons/greenskins/goblin_crossbow"));
 		this.m.Items.addToBag(::new("scripts/items/weapons/greenskins/goblin_falchion"));
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 		]);
 		this.m.Items.equip(item);
-		item = ::Const.World.Common.pickHelmet([
+		item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.goblin_leader_helmet]
 		]);
 		this.m.Items.equip(item);

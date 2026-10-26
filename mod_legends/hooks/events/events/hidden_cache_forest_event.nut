@@ -36,7 +36,7 @@
 					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = ::Const.World.Common.pickArmor([
+				item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.gambeson],
 					[1, ::Legends.Armor.Standard.leather_tunic],
 					[1, ::Legends.Armor.Standard.thick_tunic],

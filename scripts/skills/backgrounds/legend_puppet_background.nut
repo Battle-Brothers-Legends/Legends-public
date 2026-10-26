@@ -39,7 +39,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onAdded() //bite, exceptions to some injuries and zombie trait
 	{
-		if (this.m.IsNew) 
+		if (this.m.IsNew)
 		{
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
@@ -84,7 +84,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 			items.equip(this.new("scripts/items/weapons/boar_spear"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([ //1 = least likely
+		items.equip(::Legends.Items.pickArmor([ //1 = least likely
 		//	[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
 		//	[1, ::Legends.Armor.Standard.southern_knight_armor],
 			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
@@ -101,7 +101,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 			[5, ::Legends.Armor.Standard.linen_tunic, ::Math.rand(6, 7)]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 		//	[1, ::Legends.Helmet.Standard.decayed_great_helm],
 			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
 			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],

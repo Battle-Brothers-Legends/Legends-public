@@ -118,7 +118,7 @@
 			this.m.Items.addToBag(this.new("scripts/items/weapons/bludgeon"));
 		}
 
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[20, ::Legends.Armor.Standard.thick_tunic],
 			[20, ::Legends.Armor.Standard.padded_surcoat],
 			[20, ::Legends.Armor.Standard.leather_wraps],
@@ -128,7 +128,7 @@
 
 		if (::Math.rand(1, 100) <= 50)
 		{
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[20, ::Legends.Helmet.Standard.hood],
 				[20, ::Legends.Helmet.Standard.open_leather_cap],
 				[20, ::Legends.Helmet.Standard.headscarf],

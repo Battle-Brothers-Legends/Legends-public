@@ -12,7 +12,7 @@
 			}
 			if (s.ID == "F") {
 				s.start <- function (_event) {
-					local item = ::Const.World.Common.pickArmor([
+					local item = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Named.black_leather_armor],
 					]);
 

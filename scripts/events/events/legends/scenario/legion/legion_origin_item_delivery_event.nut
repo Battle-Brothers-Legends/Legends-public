@@ -16,7 +16,7 @@ this.legion_origin_item_delivery_event <- this.inherit("scripts/events/events/le
 			}],
 			function start(_event) {
 				local items = [
-					::Const.World.Common.pickItem([
+					::Legends.Items.pickItem([
 						[1, "weapons/ancient/legend_broad_warscythe"],
 						[1, "weapons/ancient/legend_broadhead_spear"],
 						[1, "weapons/ancient/legend_decorated_crypt_cleaver"],
@@ -25,7 +25,7 @@ this.legion_origin_item_delivery_event <- this.inherit("scripts/events/events/le
 						[1, "weapons/ancient/legend_honed_warscythe"],
 						[1, "weapons/ancient/legend_oxtongue_spear"]
 					], "scripts/items/"),
-					::Const.World.Common.pickItem([
+					::Legends.Items.pickItem([
 						[1, "shields/ancient/auxiliary_shield"],
 						[1, "weapons/ancient/legend_military_crypt_cleaver"],
 						[1, "weapons/ancient/legend_kopis"],
@@ -34,7 +34,7 @@ this.legion_origin_item_delivery_event <- this.inherit("scripts/events/events/le
 						[1, "weapons/ancient/legend_gladius"],
 						[1, "weapons/ancient/legend_spatha"]
 					], "scripts/items/"),
-					::Const.World.Common.pickItem([
+					::Legends.Items.pickItem([
 						[1, "weapons/ancient/ancient_sword"],
 						[1, "weapons/ancient/falx"],
 						[1, "weapons/ancient/ancient_spear"],

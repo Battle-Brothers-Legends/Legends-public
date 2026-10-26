@@ -145,7 +145,7 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/legend_orc", {
 
 		this.getSprite("miniboss").setBrush("bust_miniboss_greenskins");
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/named/legend_named_orc_axe_2h"],
 			[1, "weapons/named/legend_named_orc_flail_2h"],
 		], "scripts/items/"));
@@ -155,18 +155,18 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/legend_orc", {
 	}
 
 	function assignRandomEquipment() {
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/greenskins/legend_limb_lopper"],
 			[1, "weapons/greenskins/legend_bough"],
 			[1, "weapons/greenskins/legend_man_mangler"],
 			[1, "weapons/greenskins/legend_skullbreaker"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Greenskin.legend_orc_behemoth_armor]
 		]));
 
-		this.getItems().equip(::Const.World.Common.pickHelmet([
+		this.getItems().equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.legend_orc_behemoth_helmet]
 		]));
 	}

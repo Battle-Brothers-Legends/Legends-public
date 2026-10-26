@@ -92,12 +92,12 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 			items.equip(this.new("scripts/items/weapons/oriental/firelance"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Southern.linothorax],
 			[1, ::Legends.Armor.Southern.southern_mail_shirt]
 		]));
-		
-		items.equip(::Const.World.Common.pickHelmet([
+
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.Southern.wrapped_southern_helmet],
 			[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]

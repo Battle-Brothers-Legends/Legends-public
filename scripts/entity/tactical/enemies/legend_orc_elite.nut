@@ -145,12 +145,12 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 
 	function assignRandomEquipment() {
 		if (::Math.rand(1, 100) <= 15) {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/greenskins/orc_cleaver"],
 				[1, "weapons/greenskins/orc_axe"],
 			], "scripts/items/"));
 		} else {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/greenskins/legend_skullsmasher"],
 				[1, "weapons/greenskins/orc_axe"],
 				[1, "weapons/greenskins/orc_cleaver"],
@@ -158,16 +158,16 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 			], "scripts/items/"));
 		}
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "shields/named/named_orc_heavy_shield"],
 			[49, "shields/greenskins/orc_heavy_shield"]
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Greenskin.legend_orc_elite_heavy_armor]
 		]));
 
-		this.getItems().equip(::Const.World.Common.pickHelmet([
+		this.getItems().equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.orc_elite_heavy_helmet]
 		]));
 	}
@@ -181,13 +181,13 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 
 		if (::Math.rand(1, 100) <= 80) {
 			this.getItems().unequip(this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand));
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/named/named_orc_cleaver"],
 				[1, "weapons/named/named_orc_axe"]
 			], "scripts/items/"));
 		} else {
 			this.getItems().unequip(this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand));
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "shields/named/named_orc_heavy_shield"]
 			], "scripts/items/"));
 		}

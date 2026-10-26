@@ -11,34 +11,34 @@
 		local withHelmet = true;
 
 		if (r <= 7) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.linen_tunic]
 			]));
 
 			if (::Math.rand(1, 100) <= 33) {
-				this.m.Items.equip(::Const.World.Common.pickHelmet([
+				this.m.Items.equip(::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.feathered_hat]
 				]));
 				withHelmet = false;
 			}
 		} else if (r <= 9) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.noble_tunic]
 			]));
 		} else if (r == 10) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.monk_robe]
 			]));
 			withDetail = false;
 			withHelmet = false;
 		} else if (r == 11) {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.wizard_robe]
 			]));
 			withDetail = false;
 
 			if (::Math.rand(1, 100) <= 50) {
-				this.m.Items.equip(::Const.World.Common.pickHelmet([
+				this.m.Items.equip(::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.wizard_hat]
 				]));
 				withHelmet = false;
@@ -51,7 +51,7 @@
 		}
 
 		if (withHelmet && ::Math.rand(1, 100) <= 25) {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.feathered_hat],
 				[1, ::Legends.Helmet.Standard.noble_headgear]
 			]));

@@ -41,17 +41,17 @@
 
 				if ((index = script.find("helmets/")) != null && script.find("legend_helmets") == null) {
 					isHelm = true;
-					item = ::Const.World.Common.pickHelmet([
+					item = ::Legends.Items.pickHelmet([
 						[1, script.slice(index + "helmets/".len())]
 					]);
 				} else if ((index = script.find("armor/")) != null && script.find("legend_armor") == null) {
 					isArmor = true;
-					item = ::Const.World.Common.pickArmor([
+					item = ::Legends.Items.pickArmor([
 						[1, script.slice(index + "armor/".len())]
 					]);
 				} else if ((index = script.find("armor_upgrades/")) != null && script.find("legend_armor") == null) {
 					isUpgrade = true;
-					item = ::Const.World.Common.pickArmorUpgrade([
+					item = ::Legends.Items.pickArmorUpgrade([
 						[1, script.slice(index + "armor_upgrades/".len())]
 					]);
 				} else {
@@ -111,7 +111,7 @@
 				}
 
 				num = ++num;
-				
+
 				if (num >= 3 || (num >= (2 + ::Legends.S.randomizeFractionToInt(::World.Assets.m.ProfessionEffect.LegendFriendsInRightPlaces)) && item.isItemType(::Const.Items.ItemType.TradeGood))) {
 					break;
 				}

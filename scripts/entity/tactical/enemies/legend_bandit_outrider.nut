@@ -257,18 +257,18 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 	}
 
 	function assignRandomEquipment() {
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/legend_militia_glaive"],
 			[1, "weapons/militia_spear"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[3, ::Legends.Armor.Standard.gambeson],
 			[1, ::Legends.Armor.Standard.padded_surcoat]
 		]));
 
 		if (::Math.rand(1, 100) <= 75) {
-			this.getItems().equip(::Const.World.Common.pickHelmet([
+			this.getItems().equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.open_leather_cap],
 				[1, ::Legends.Helmet.Standard.headscarf],

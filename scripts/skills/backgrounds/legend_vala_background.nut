@@ -114,7 +114,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/legend_staff_vala"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_vala_cloak]
 		]));
 	}

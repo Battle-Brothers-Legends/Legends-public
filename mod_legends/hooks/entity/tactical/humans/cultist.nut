@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -75,14 +75,14 @@
 			}
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[3, ::Legends.Armor.Standard.cultist_leather_robe],
 			[3, ::Legends.Armor.Standard.tattered_sackcloth],
 			[2, ::Legends.Armor.Barbarian.animal_hide_armor],
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]);

@@ -44,7 +44,7 @@ this.legend_commander_peddler_background <- this.inherit("scripts/skills/backgro
 		else if (this.m.Ethnicity == 1) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMale, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
 		}
-		else if (this.m.Ethnicity == 2) {	
+		else if (this.m.Ethnicity == 2) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemale, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
 		}
 	}
@@ -103,14 +103,14 @@ this.legend_commander_peddler_background <- this.inherit("scripts/skills/backgro
 			items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[4, ::Legends.Armor.Standard.linen_tunic],
 			[2, ::Legends.Armor.Southern.cloth_sash],
 			[3, ::Legends.Armor.Standard.noble_tunic],
 			[1, ::Legends.Armor.Standard.noble_gear]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([ //higher number = more likely to spawn
+		items.equip(::Legends.Items.pickHelmet([ //higher number = more likely to spawn
 			[4, ::Legends.Helmet.None],
 			[2, ::Legends.Helmet.Standard.legend_noble_hood],
 			[1, ::Legends.Helmet.Standard.noble_headgear],

@@ -37,10 +37,10 @@ this.legend_barbarian_employer <- ::inherit("scripts/entity/tactical/human", {
 		];
 		armor.push([5, "barbarians/reinforced_heavy_iron_armor"]);
 
-		this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+		this.m.Items.equip(::Legends.Items.pickArmor(armor));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, "barbarians/crude_faceguard_helmet"],
 				[1, "barbarians/closed_scrap_metal_helmet"],
 				[1, "barbarians/crude_metal_helmet"]

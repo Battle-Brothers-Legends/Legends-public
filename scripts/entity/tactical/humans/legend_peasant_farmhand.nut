@@ -48,12 +48,12 @@ this.legend_peasant_farmhand <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/pitchfork"],
 			[5, "weapons/legend_wooden_pitchfork"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[8, ::Legends.Armor.Standard.linen_tunic]
@@ -61,7 +61,7 @@ this.legend_peasant_farmhand <- this.inherit("scripts/entity/tactical/human", {
 
 		if (::Math.rand(1, 100) <= 66)
 		{
-			this.getItems().equip(::Const.World.Common.pickHelmet([
+			this.getItems().equip(::Legends.Items.pickHelmet([
 				[3, ::Legends.Helmet.Standard.straw_hat],
 				[1, ::Legends.Helmet.Standard.hood]
 			]));

@@ -39,7 +39,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Kind;
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Druid | ::Const.BackgroundType.Female;
-		
+
 		this.m.CustomPerkTree = [
 		[
 			::Legends.Perk.LegendSpecialistShepherd,
@@ -121,14 +121,14 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		talents[::Const.Attributes.Initiative] = 1;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.Standard.necromancer_hat],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
 			[1, ::Legends.Helmet.None],
 			[4, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		local r;

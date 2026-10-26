@@ -4,7 +4,7 @@
 		local r = ::Math.rand(1, 2);
 
 		if (r == 1) {
-			item = ::Const.World.Common.pickArmor([
+			item = ::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.thick_dark_tunic],
 				[1, ::Legends.Armor.Standard.noble_tunic],
 				[1, ::Legends.Armor.Standard.ragged_surcoat],
@@ -12,7 +12,7 @@
 				[1, ::Legends.Armor.Standard.wizard_robe],
 			]);
 		} else {
-			item = ::Const.World.Common.pickHelmet([
+			item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.cultist_hood],
 				[1, ::Legends.Helmet.Standard.hood],

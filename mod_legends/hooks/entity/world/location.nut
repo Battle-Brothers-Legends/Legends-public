@@ -113,8 +113,8 @@
 							helmets.extend(this.m.NamedHelmetsList);
 							helmets.extend(this.m.NamedHelmetsList);
 						}
-						local weightName = ::Const.World.Common.convNameToList(helmets);
-						this.m.Loot.add(::Const.World.Common.pickHelmet(weightName));
+						local weightName = ::Legends.Items.convNameToList(helmets);
+						this.m.Loot.add(::Legends.Items.pickHelmet(weightName));
 					}
 					else if (type <= 100)
 					{
@@ -124,8 +124,8 @@
 							armor.extend(this.m.NamedArmorsList);
 							armor.extend(this.m.NamedArmorsList);
 						}
-						local weightName = ::Const.World.Common.convNameToList(armor);
-						this.m.Loot.add(::Const.World.Common.pickArmor(weightName));
+						local weightName = ::Legends.Items.convNameToList(armor);
+						this.m.Loot.add(::Legends.Items.pickArmor(weightName));
 					}
 				}
 				else

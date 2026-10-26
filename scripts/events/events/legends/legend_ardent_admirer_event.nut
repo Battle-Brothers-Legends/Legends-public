@@ -74,7 +74,7 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 				this.Characters.push(_event.m.Fan.getImagePath());
 				this.List.extend(::Legends.EventList.addItems([
 					::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_risen_legion") ?
-						::Const.World.Common.pickArmor([[1, ::Legends.Armor.Ancient.ancient_breastplate]]):
+						::Legends.Items.pickArmor([[1, ::Legends.Armor.Ancient.ancient_breastplate]]):
 						::new("scripts/items/legend_armor/cloth/legend_armor_tunic"),
 					::new("scripts/items/weapons/dagger")
 				], ::World.Assets.getStash()));

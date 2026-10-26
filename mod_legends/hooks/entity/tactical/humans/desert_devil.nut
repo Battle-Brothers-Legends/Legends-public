@@ -47,13 +47,13 @@
 			}
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.assassin_robe],
 			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
             // [1, ::Legends.Armor.Standard.leather_scale_armor]
 		]));
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
-			local helm = ::Const.World.Common.pickHelmet([
+			local helm = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Southern.blade_dancer_head_wrap],
 				[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
 			]);
@@ -84,7 +84,7 @@
 				this.m.Items.updateDualWield();
 			}
 		} else {
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Named.black_leather_armor]
 			]));
 		}

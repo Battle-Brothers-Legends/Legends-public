@@ -20,10 +20,10 @@
 		local armor = [
 			[1, ::Legends.Armor.Ancient.ancient_priest_attire]
 		];
-		local item = ::Const.World.Common.pickArmor(armor);
+		local item = ::Legends.Items.pickArmor(armor);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[99, ::Legends.Helmet.Ancient.ancient_priest_diadem]
 		]);
 		if (item != null) {

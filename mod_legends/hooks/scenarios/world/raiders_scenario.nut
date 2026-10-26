@@ -41,7 +41,7 @@
 		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_animal_hide_armor_reinforced");
 		armor.setUpgrade(plate);
 		items.equip(armor);
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]));
 		bros[1].setStartValuesEx([::Legends.Background.Barbarian]);
@@ -66,7 +66,7 @@
 		armor.setUpgrade(plate);
 		items.equip(armor);
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband]
 		]));
 		bros[2].setStartValuesEx([::Legends.Background.Barbarian]);
@@ -90,7 +90,7 @@
 		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_hide_and_bone_armor");
 		armor.setUpgrade(plate);
 		items.equip(armor);
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]));
 		bros[3].setStartValuesEx([::Legends.Background.Monk], true, 0);

@@ -125,9 +125,9 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			[5, ::Legends.Armor.Barbarian.legend_barbarian_southern_armor]
 		];
 
-		this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+		this.m.Items.equip(::Legends.Items.pickArmor(armor));
 
-		local helmet = ::Const.World.Common.pickHelmet([
+		local helmet = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet],

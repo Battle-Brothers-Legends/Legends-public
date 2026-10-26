@@ -43,7 +43,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null) {
-			local item = ::Const.World.Common.pickArmor([
+			local item = ::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Greenskin.goblin_medium_armor],
 				[2, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 			]);
@@ -51,7 +51,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 		}
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[25, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 				[75, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 			]);

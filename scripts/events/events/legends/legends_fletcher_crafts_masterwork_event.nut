@@ -37,7 +37,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 			function start(_event) {
 				this.Characters.push(_event.m.Bowyer.getImagePath());
 
-				local item = ::Const.World.Common.pickItem([
+				local item = ::Legends.Items.pickItem([
 					[1, "ammo/legend_huge_quiver_of_arrows"],
 					[1, "ammo/legend_huge_quiver_of_bolts"]
 				], "scripts/items/");
@@ -63,7 +63,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 			function start(_event) {
 				this.Characters.push(_event.m.Bowyer.getImagePath());
 
-				local item = ::Const.World.Common.pickItem([
+				local item = ::Legends.Items.pickItem([
 					[1, "ammo/quiver_of_arrows"],
 					[1, "ammo/quiver_of_bolts"]
 				], "scripts/items/");

@@ -124,14 +124,14 @@
 			this.m.Items.updateDualWield();
 		}
 
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Greenskin.orc_berserker_light_armor],
 			[1, ::Legends.Armor.Greenskin.orc_berserker_medium_armor],
 			[3, ::Legends.Armor.None]
 		]);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Greenskin.orc_berserker_helmet]
 		]);

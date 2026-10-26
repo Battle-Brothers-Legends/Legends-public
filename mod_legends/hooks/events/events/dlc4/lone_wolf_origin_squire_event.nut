@@ -16,7 +16,7 @@
 				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head));
 				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body));
 
-				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+				_event.m.Dude.getItems().equip(::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.linen_tunic],
 				]));
 

@@ -39,7 +39,7 @@
 		}
 
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.apron],
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
@@ -48,7 +48,7 @@
 
 		if (::Math.rand(1, 100) <= 50)
 		{
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[2, ::Legends.Helmet.Southern.southern_head_wrap],
 				[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 			]));

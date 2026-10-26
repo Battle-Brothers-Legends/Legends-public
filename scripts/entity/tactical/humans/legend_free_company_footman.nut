@@ -49,7 +49,7 @@ this.legend_free_company_footman <- this.inherit("scripts/entity/tactical/legend
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/hand_axe"],
 			[1, "weapons/falchion"],
 			[1, "weapons/morning_star"],
@@ -58,14 +58,14 @@ this.legend_free_company_footman <- this.inherit("scripts/entity/tactical/legend
 			[1, "weapons/winged_mace"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "shields/kite_shield"],
 			[1, "shields/heater_shield"],
 			[1, "shields/wooden_shield"],
 		], "scripts/items/"));
 
 		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50) {
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],
 			], "scripts/items/"));

@@ -79,7 +79,7 @@
 			this.m.Items.equip(shield);
 		}
 
-		local armor = ::Const.World.Common.pickArmor([
+		local armor = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.coat_of_plates],
 			[1, ::Legends.Armor.Standard.coat_of_scales]
 		]);
@@ -107,7 +107,7 @@
 		this.m.Items.equip(armor);
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[30, ::Legends.Helmet.Standard.full_helm],
 				[5, ::Legends.Helmet.Standard.legend_helm_breathed],
 				[5, ::Legends.Helmet.Standard.legend_helm_full],
@@ -171,8 +171,8 @@
 		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		} else {
-			local h = ::Const.World.Common.pickArmor(
-				::Const.World.Common.convNameToList(
+			local h = ::Legends.Items.pickArmor(
+				::Legends.Items.convNameToList(
 					armor
 				)
 			);
@@ -205,7 +205,7 @@
 
 			this.m.Items.equip(h);
 		}
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.Named.legend_frogmouth_helm_crested_painted],
 			[3, ::Legends.Helmet.Named.bascinet_named],
 			[3, ::Legends.Helmet.Named.kettle_helm_named],

@@ -4,7 +4,7 @@
 		create();
 		::Legends.Screens.hook(this, "A", function(_screen) {
 			_screen.start <- function(_event) {
-				local item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
+				local item = ::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
 				item.setCondition(27.0);
 				this.List.extend(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 			}

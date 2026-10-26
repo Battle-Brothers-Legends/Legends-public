@@ -36,7 +36,7 @@
 						item = this.new("scripts/items/shields/faction_kite_shield");
 						item.setFaction(banner);
 					} else {
-						item = ::Const.World.Common.pickArmor([
+						item = ::Legends.Items.pickArmor([
 							[1, ::Legends.Armor.Standard.mail_shirt],
 							[1, ::Legends.Armor.Standard.basic_mail_shirt],
 						]);

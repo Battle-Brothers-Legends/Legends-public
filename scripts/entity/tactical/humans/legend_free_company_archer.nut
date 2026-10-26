@@ -49,7 +49,7 @@ this.legend_free_company_archer <- this.inherit("scripts/entity/tactical/legend_
 
 	function assignRandomEquipment()
 	{
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[9, "weapons/short_bow"],
 			[9, "weapons/legend_sturdy_sling"],
 			[2, "weapons/hunting_bow"]
@@ -59,7 +59,7 @@ this.legend_free_company_archer <- this.inherit("scripts/entity/tactical/legend_
 
 		this.legend_free_company_abstract.assignRandomEquipment();
 
-		this.getItems().addToBag(::Const.World.Common.pickItem([
+		this.getItems().addToBag(::Legends.Items.pickItem([
 			[1, "weapons/knife"]
 		], "scripts/items/"));
 	}

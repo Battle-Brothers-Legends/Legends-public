@@ -34,7 +34,7 @@
 			items.equip(this.new("scripts/items/weapons/knife"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.butcher_apron]
 		]));
 	}

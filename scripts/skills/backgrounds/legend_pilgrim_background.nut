@@ -104,7 +104,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			"weapons/legend_tipstaff"
 		];
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.padded_surcoat],
@@ -112,7 +112,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],

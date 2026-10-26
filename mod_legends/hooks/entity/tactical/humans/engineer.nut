@@ -26,10 +26,10 @@
 				this.m.Items.equip(this.new("scripts/items/weapons/wooden_stick"));
 			}
 		}
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));
-		local helm = ::Const.World.Common.pickHelmet([
+		local helm = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.engineer_hat]
 		]);
 		this.m.Items.equip(helm);

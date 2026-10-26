@@ -47,11 +47,11 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 
 		this.getItems().equip(this.new("scripts/items/shields/ancient/tower_shield"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Ancient.ancient_ripped_cloth]
 		]));
 
-		this.getItems().equip(::Const.World.Common.pickHelmet([
+		this.getItems().equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[2, ::Legends.Helmet.Ancient.ancient_gladiator_helmet]
 		]));

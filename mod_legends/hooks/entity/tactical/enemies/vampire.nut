@@ -171,7 +171,7 @@
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/named/named_khopesh"],
 			[2, "weapons/named/named_crypt_cleaver"]
 		], "scripts/items/"));

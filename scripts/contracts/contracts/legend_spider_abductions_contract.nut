@@ -166,7 +166,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						// Chance for some of the player's units to start webbed
 						foreach (unit in _frontline)
 						{
-							if (::Math.rand(1,6) == 1) {	
+							if (::Math.rand(1,6) == 1) {
 								::Time.scheduleEvent(::TimeUnit.Real, 50, function ( _unit ) {
 									::Legends.Actives.new(::Legends.Active.Web).onUse(_unit, _unit.getTile());
 								}, unit);
@@ -182,10 +182,10 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						for (local i=0; i < abductees; i++) {
 							local villager = ::World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
 							local items = villager.getItems();
-							items.equip(::Const.World.Common.pickArmor([
+							items.equip(::Legends.Items.pickArmor([
 								[1, ::Legends.Armor.Standard.linen_tunic]
 							]));
-							items.equip(::Const.World.Common.pickHelmet([
+							items.equip(::Legends.Items.pickHelmet([
 								[1, ::Legends.Helmet.Standard.feathered_hat],
 								[2, ::Legends.Helmet.None]
 							]));

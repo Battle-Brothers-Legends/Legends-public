@@ -28,7 +28,7 @@
 		::Legends.Screens.hook(this, "OldArmor", function (_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_123.png[/img]{With the webknechts dispatched you have the company briefly search the creatures\' nest, though the mercenaries are ordered to never wander alone. You muck about as well, %randombrother% at your side. Together, you spot a tree that\'s remarkably untouched by the webs. As you circle around, you find a knight\'s corpse leaning against its trunk. His hand rests atop a broken sword\'s pommel, the other hand is missing altogether, nothing but sleeve at the wrist with the mutilated arm couched at his belly. The corpse rests in a nest of its own making, a thicket of what look like spoiled rhubarb stalks and decayed carapaces, the broken bodies caverned and smelling of poison. %randombrother% nods.%SPEECH_ON%That\'s a right shame. I\'d wager he would have made a sound addition to the %companyname%, whoever he was.%SPEECH_OFF%Indeed, it has all the look of a great fighter\'s end. You\'ve mind to bury him, but you\'ve no time. You tell %randombrother% to fetch what %they_randombrother% can from the corpse and to ready a return to %employer%.}";
 			_screen.start <- function () {
-				local item = ::Const.World.Common.pickArmor([
+				local item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk],
 					[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 				]);

@@ -171,7 +171,7 @@ this.legend_commander_berserker_background <- this.inherit("scripts/skills/backg
 		talents[::Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 

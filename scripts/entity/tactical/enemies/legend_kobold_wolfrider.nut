@@ -337,7 +337,7 @@
 // 			}
 // 		}
 
-// 		this.getItems().equip(::Const.World.Common.pickHelmet([
+// 		this.getItems().equip(::Legends.Items.pickHelmet([
 // 			[25, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 // 			[75, ::Legends.Helmet.None]
 // 		]));

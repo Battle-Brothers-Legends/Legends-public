@@ -31,7 +31,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
@@ -88,7 +88,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		local cloths = [
 			[1, "cloth/legend_armor_robes_nun"]
 		];
-		local armor = ::Const.World.Common.pickLegendArmor(cloths);
+		local armor = ::Legends.Items.pickLegendArmor(cloths);
 
 		if (armor != null) {
 			local chains = [
@@ -96,7 +96,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 				[1, "chain/legend_armor_mail_shirt_simple"],
 				[1, "chain/legend_armor_short_mail"]
 			];
-			local chain = ::Const.World.Common.pickLegendArmor(chains);
+			local chain = ::Legends.Items.pickLegendArmor(chains);
 			if (chain != null) {
 				armor.setUpgrade(chain);
 			}
@@ -105,14 +105,14 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 				[1, "plate/legend_armor_leather_jacket"],
 				[1, "plate/legend_armor_leather_jacket_simple"]
 			];
-			local plate = ::Const.World.Common.pickLegendArmor(plates);
+			local plate = ::Legends.Items.pickLegendArmor(plates);
 			if (plate != null) {
 				armor.setUpgrade(plate);
 			}
 			local tabards = [
 				[1, "tabard/legend_armor_tabard", [2, 13]]
 			];
-			local tabard = ::Const.World.Common.pickLegendArmor(tabards);
+			local tabard = ::Legends.Items.pickLegendArmor(tabards);
 			if (tabard != null && armor != null) {
 				armor.setUpgrade(tabard);
 			}
@@ -125,7 +125,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			local tabards = [
 				[1, "tabard/legend_armor_tabard", [2, 13]]
 			];
-			local tabard = ::Const.World.Common.pickLegendArmor(tabards);
+			local tabard = ::Legends.Items.pickLegendArmor(tabards);
 			if (tabard != null && armor != null) {
 				armor.setUpgrade(tabard);
 			}

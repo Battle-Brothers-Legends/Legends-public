@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -102,7 +102,7 @@
 			}
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],
@@ -125,7 +125,7 @@
 				[1, ::Legends.Helmet.Standard.barbute_helmet]
 			];
 			helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet]);
-			local item = ::Const.World.Common.pickHelmet(helm);
+			local item = ::Legends.Items.pickHelmet(helm);
 
 			if (item != null)
 			{

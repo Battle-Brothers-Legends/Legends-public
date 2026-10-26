@@ -18,7 +18,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
+		items.equip(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
 		items.equip(this.new("scripts/items/armor/mail_shirt"));
 		items.equip(this.new("scripts/items/weapons/noble_sword"));
 		items.equip(this.new("scripts/items/shields/heater_shield"));
@@ -27,7 +27,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]));
+		items.equip(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]));
 		items.equip(this.new("scripts/items/armor/mail_shirt"));
 		items.equip(this.new("scripts/items/weapons/arming_sword"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
@@ -36,7 +36,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_aketon_cap]]));
+		items.equip(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.full_aketon_cap]]));
 		items.equip(this.new("scripts/items/armor/gambeson"));
 		items.equip(this.new("scripts/items/weapons/crossbow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
@@ -46,7 +46,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
+		items.equip(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
 		items.equip(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		items.equip(this.new("scripts/items/weapons/hunting_bow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
@@ -111,10 +111,10 @@
 		::Stash.add(this.new("scripts/items/weapons/crossbow"));
 		::Stash.add(this.new("scripts/items/shields/wooden_shield"));
 		::Stash.add(this.new("scripts/items/shields/wooden_shield"));
-		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
-		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.aketon_cap]]));
-		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
-		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
+		::Stash.add(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
+		::Stash.add(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.aketon_cap]]));
+		::Stash.add(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
+		::Stash.add(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
 		::Stash.add(this.new("scripts/items/armor/leather_tunic"));
 		::Stash.add(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		::Stash.add(this.new("scripts/items/armor/padded_leather"));

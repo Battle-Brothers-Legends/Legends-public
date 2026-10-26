@@ -44,7 +44,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				local item = ::Const.World.Common.pickArmor([
+				local item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Named.named_golden_lamellar_armor]
 				]);
 				item.m.Upgrades[::Const.Items.ArmorUpgrades.Plate].m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Golden Lamellar Armor";
@@ -66,7 +66,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				local item = ::Const.World.Common.pickArmor([
+				local item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Failed Masterpiece";
@@ -87,7 +87,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				local item = ::Const.World.Common.pickArmor([
+				local item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Named.named_golden_lamellar_armor]
 				]);
 				item.m.Upgrades[::Const.Items.ArmorUpgrades.Plate].m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Golden Lamellar Armor";
@@ -110,7 +110,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				local item = ::Const.World.Common.pickArmor([
+				local item = ::Legends.Items.pickArmor([
 					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Failed Masterpiece";

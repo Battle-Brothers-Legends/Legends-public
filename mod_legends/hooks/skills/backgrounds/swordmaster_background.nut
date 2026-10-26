@@ -136,13 +136,13 @@
 				items.equip(this.new("scripts/items/weapons/arming_sword"));
 			}
 		}
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[1, ::Legends.Armor.Standard.padded_surcoat]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[67, ::Legends.Helmet.None],
 			[33, ::Legends.Helmet.Standard.greatsword_hat]
 		]));

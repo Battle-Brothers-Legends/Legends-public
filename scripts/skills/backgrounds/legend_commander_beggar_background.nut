@@ -127,12 +127,12 @@ this.legend_commander_beggar_background <- this.inherit("scripts/skills/backgrou
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood, 38]
 		]);

@@ -98,13 +98,13 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 			}
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
 			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]
 		]));
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
 			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],
 			[3, ::Legends.Helmet.Standard.decayed_full_helm],

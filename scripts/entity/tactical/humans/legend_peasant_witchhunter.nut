@@ -49,17 +49,17 @@ this.legend_peasant_witchhunter <- this.inherit("scripts/entity/tactical/human",
 		this.getItems().equip(this.new("scripts/items/weapons/light_crossbow"));
 		this.getItems().equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 
-		this.getItems().addToBag(::Const.World.Common.pickItem([
+		this.getItems().addToBag(::Legends.Items.pickItem([
 			[1, "weapons/shortsword"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_tunic]
 		]));
 
 		if (::Math.rand(1, 100) <= 66)
 		{
-			this.getItems().equip(::Const.World.Common.pickHelmet([
+			this.getItems().equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.witchhunter_hat],
 				[6, ::Legends.Helmet.Standard.hood]
 			]));

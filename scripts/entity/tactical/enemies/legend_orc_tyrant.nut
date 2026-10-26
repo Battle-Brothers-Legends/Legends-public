@@ -24,7 +24,7 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.BaseProperties.Armor[::Const.BodyPart.Head] += 100;
-			this.m.BaseProperties.ArmorMax[::Const.BodyPart.Head] += 100;		
+			this.m.BaseProperties.ArmorMax[::Const.BodyPart.Head] += 100;
 			this.m.BaseProperties.Armor[::Const.BodyPart.Body] += 350;
 			this.m.BaseProperties.ArmorMax[::Const.BodyPart.Body] += 350;
 			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
@@ -48,11 +48,11 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 		];
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Greenskin.orc_warlord_armor]
 		]));
 
-		this.getItems().equip(::Const.World.Common.pickHelmet([
+		this.getItems().equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.orc_warlord_helmet]
 		]));
 	}

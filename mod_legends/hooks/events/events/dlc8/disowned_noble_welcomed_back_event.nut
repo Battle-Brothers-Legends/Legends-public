@@ -49,7 +49,7 @@
 					local item;
 					local stash = ::World.Assets.getStash();
 
-					local armor_list = ::Const.World.Common.pickArmor([
+					local armor_list = ::Legends.Items.pickArmor([
 						[1, ::Legends.Armor.Standard.footman_armor],
 						[1, ::Legends.Armor.Standard.light_scale_armor],
 						[1, ::Legends.Armor.Standard.sellsword_armor],

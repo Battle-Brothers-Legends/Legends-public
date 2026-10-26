@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -35,11 +35,11 @@
 	{
 		this.m.Items.equip(this.new("scripts/items/weapons/barbarians/thorned_whip"));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.beastmasters_headpiece]
 		]));
 	}

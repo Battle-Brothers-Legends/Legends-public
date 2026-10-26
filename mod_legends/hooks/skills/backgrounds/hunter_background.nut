@@ -6,7 +6,7 @@
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Hunter);
 		this.m.BackgroundDescription = "Hunters are used to expertly hunt animals with bow and arrow, and traverse the woods on their own.";
 		this.m.GoodEnding = "While the %companyname% continued on with great success, %name% the hunter eventually saw fit to leave it all behind. %They% returned to the forests and fields, hunting deer and small game. %They% rarely showed the grim reality of hunting humans, but you have to imagine %they%\'d just rather stop doing it. As far as you know, %they're% doing well for %themselves% these days. %They% purchased a bit of land and helps guide nobles on pricy hunting trips.";
-		this.m.BadEnding = "With the decline of the %companyname% readily obvious, %name% the hunter departed from the company and returned to game hunting. Unfortunately, a hunting trip with a nobleman went awry when the lord was gored through both cheeks by a boar. The hunter, feeling %they%\'d be blamed, shot by the nobleman and his guard and fled through the forests on %their% own. %They% has not been seen since.";		
+		this.m.BadEnding = "With the decline of the %companyname% readily obvious, %name% the hunter departed from the company and returned to game hunting. Unfortunately, a hunting trip with a nobleman went awry when the lord was gored through both cheeks by a boar. The hunter, feeling %they%\'d be blamed, shot by the nobleman and his guard and fled through the forests on %their% own. %They% has not been seen since.";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
@@ -52,7 +52,7 @@
 	{
 		return "{Without %their% father around, %name%\'s mother taught %them% how to shoot a bow, and how to feed the rest of %their% family. | Born in the hinterlands of %randomtown%, %name% has spent much of %their% life stalking the beasts amongst the trees. | %name% once took a bet to shoot an apple off a pig\'s head. %They% missed. With a belly full of bacon, %they% became determined to never miss again - unless it meant more bacon, of course. | Early in %their% life, %name% liked to traipse about the forests. When a rabid fox attacked %them%, %they% learned to take a bow. When a devilish eagle clawed %their% face, %they% learned to shoot it.} {Once employed by local royalty, a disastrous boar hunt ended with a gored baron and all the blame - and blood - on %name%\'s hands. | The hunter hid the thought well, but for the longest time %they% wondered what it would be like to hunt the ultimate game: man. | Sadly, a bad game of peasant-roulette forced the deer hunter into seeking other means of income. | Unfortunately, %they% is not nearly as good at cooking deer as %they% is at shooting them. A dinner consisting of undercooked meats poisoned %their% entire family. %their% desperation for a new life is understandable. | After an arduous trip to town to sell meats and leathers, %they% followed the call of mercenary work. | War drove the game out of the forests, and the hunt out of %name%. Now %they% seeks another line of work. | When %their% %partner% fell ill, %they% could not heal her with hunted meat. Needing to earn crowns to pay for treatment, %they% took up the vocation of sellswords - or sellbows, as it were.} {Any outfit could use a deadeye such as this %person%. | Not entirely without faults, %name% is a professional bowman nonetheless. | A quick demonstration is offered: %name% shoots one arrow high into the sky, and with another %they% knocks it out. Impressive. | %name% looks like %they% has something to prove - just make sure %they% does it at range. When first given a sword, %they% grabbed it at the wrong end. Yes, that end. | The hunter wields %their% bow like another limb, and shoots %their% arrows like a preacher does words.}";
 	}
-	
+
 	o.onChangeAttributes = function ()
 	{
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Hunter);
@@ -69,13 +69,13 @@
 			items.addToBag(this.new("scripts/items/weapons/knife"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood]
 				// [1, ::Legends.Helmet.Standard.hunters_hat]
 		]));

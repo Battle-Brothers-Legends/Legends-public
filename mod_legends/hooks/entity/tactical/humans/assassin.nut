@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -33,10 +33,10 @@
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_katar"));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Southern.assassin_robe]
 		]));
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Southern.assassin_head_wrap],
 				[1, ::Legends.Helmet.Southern.assassin_face_mask]
 		]));
@@ -66,7 +66,7 @@
 		}
 		else
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
+			this.m.Items.equip(::Legends.Items.pickArmor(armor));
 		}
 
 		this.m.BaseProperties.DamageDirectMult *= 1.25;

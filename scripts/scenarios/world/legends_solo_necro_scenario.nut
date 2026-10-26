@@ -55,10 +55,10 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.wizard_hat]
 		]));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.wizard_robe]
 		]));
 
@@ -73,10 +73,10 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/throwing_axe"));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.jesters_hat]
 		]));
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
 

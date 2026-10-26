@@ -44,7 +44,7 @@
 			}
 		}
 
-		local armor = ::Const.World.Common.pickArmor([
+		local armor = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt],
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],
@@ -61,7 +61,7 @@
 
 		if (::Math.rand(1, 100) <= 75)
 		{
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.full_aketon_cap],
 				[1, ::Legends.Helmet.Standard.kettle_hat],

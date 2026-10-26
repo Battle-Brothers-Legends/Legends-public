@@ -56,11 +56,11 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 		talents[::Const.Attributes.RangedDefense] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_seer_robes]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_seer_hat]
 		]));
 	}

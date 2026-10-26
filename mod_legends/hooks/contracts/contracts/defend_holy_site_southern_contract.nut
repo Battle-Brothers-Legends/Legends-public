@@ -40,7 +40,7 @@
 							break;
 
 						case 5:
-							item = ::Const.World.Common.pickArmor([
+							item = ::Legends.Items.pickArmor([
 								[1, ::Legends.Armor.Ancient.ancient_mail],
 							]);
 							break;
@@ -73,7 +73,7 @@
 							local helmet = [
 								[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]
 							];
-							item = ::Const.World.Common.pickHelmet(helmet);
+							item = ::Legends.Items.pickHelmet(helmet);
 							break;
 					}
 

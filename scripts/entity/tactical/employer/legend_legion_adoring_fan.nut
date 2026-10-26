@@ -8,7 +8,7 @@ this.legend_legion_adoring_fan <- ::inherit("scripts/entity/tactical/skeleton", 
 	}
 
 	function assignRandomEquipment() {
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Ancient.ancient_breastplate]
 		]);
 		this.m.Items.equip(item);

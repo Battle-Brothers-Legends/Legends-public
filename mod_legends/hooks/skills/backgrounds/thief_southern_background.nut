@@ -60,12 +60,12 @@
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/knife"));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Southern.cloth_sash],
 			[1, ::Legends.Armor.Southern.nomad_robe]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		]));
 	}

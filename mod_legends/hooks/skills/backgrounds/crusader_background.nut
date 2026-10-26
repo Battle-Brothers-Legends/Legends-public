@@ -142,13 +142,13 @@
 			items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
 			[2, ::Legends.Armor.Standard.reinforced_mail_hauberk],
 			[1, ::Legends.Armor.Standard.scale_armor],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 			[1, ::Legends.Helmet.Standard.full_helm],
 			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]

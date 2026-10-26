@@ -6,7 +6,7 @@
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -33,13 +33,13 @@
 		];
 		this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.plated_nomad_mail]
 		]));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) <= 75)
 		{
-			local helm =::Const.World.Common.pickHelmet([
+			local helm =::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Southern.desert_stalker_head_wrap]
 			]);
 			this.m.Items.equip(helm);
@@ -68,7 +68,7 @@
 		}
 		else
 		{
-			this.m.Items.equip(::Const.World.Common.pickArmor([
+			this.m.Items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Named.black_leather_armor]
 			]));
 		}

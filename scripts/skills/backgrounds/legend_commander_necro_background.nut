@@ -176,7 +176,7 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.necromancer_hat],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
 			[2, ::Legends.Helmet.Standard.undertaker_hat],
@@ -184,7 +184,7 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 			[3, ::Legends.Helmet.Standard.physician_mask]
 		]));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat],
 			[2, ::Legends.Armor.Standard.undertaker_apron],

@@ -6,7 +6,7 @@ this.legend_free_company_abstract <- this.inherit("scripts/entity/tactical/human
 	},
 	function assignRandomEquipment()
 	{
-		foreach( item in ::Const.World.Common.pickOutfit(this.m.Outfits) )
+		foreach( item in ::Legends.Items.pickOutfit(this.m.Outfits) )
 		{
 			this.m.Items.equip(item);
 		}

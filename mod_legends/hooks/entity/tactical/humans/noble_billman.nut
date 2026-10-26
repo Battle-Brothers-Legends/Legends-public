@@ -43,7 +43,7 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.seedmaster_noble_armor],
 			[1, ::Legends.Armor.Standard.citreneking_noble_armor],
 		]));
@@ -52,7 +52,7 @@
 			local helmet;
 
 			if (banner <= 4) {
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.kettle_hat],
 					[1, ::Legends.Helmet.Standard.rondel_helm],
 					[1, ::Legends.Helmet.Standard.scale_helm],
@@ -63,7 +63,7 @@
 					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				]);
 			} else if (banner <= 7) {
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.rondel_helm],
@@ -74,7 +74,7 @@
 					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				]);
 			} else {
-				helmet = ::Const.World.Common.pickHelmet([
+				helmet = ::Legends.Items.pickHelmet([
 					[1, ::Legends.Helmet.Standard.nasal_helmet],
 					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
@@ -93,7 +93,7 @@
 				this.m.Items.equip(helmet);
 			}
 		} else {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.full_aketon_cap],
 				[2, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.None],

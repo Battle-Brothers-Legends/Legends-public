@@ -13,14 +13,14 @@
 			this.getSprite("surcoat").setBrush("bust_desert_noble_" + variants[::Math.rand(0, variants.len() - 1)]);
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.padded_mail_and_lamellar_hauberk],
 			[1, ::Legends.Armor.Southern.mail_and_lamellar_plating],
 			[1, ::Legends.Armor.Southern.vizier_gear]
 		]));
 
 		if (::Math.rand(1, 100) <= 80) {
-			this.m.Items.equip(::Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[5, ::Legends.Helmet.Southern.vizier_headgear],
 				[1, ::Legends.Helmet.Standard.legend_noble_southern_crown],
 				[1, ::Legends.Helmet.Standard.legend_noble_southern_hat]

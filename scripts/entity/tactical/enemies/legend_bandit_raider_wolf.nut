@@ -14,7 +14,7 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 	function assignRandomEquipment()
 	{
 		if (::Math.rand(0, 8) <= 1) {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/woodcutters_axe"],
 				[1, "weapons/billhook"],
 				[1, "weapons/pike"],
@@ -22,7 +22,7 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 				[1, "weapons/legend_militia_glaive"],
 			], "scripts/items/"));
 		} else {
-			this.getItems().equip(::Const.World.Common.pickItem([
+			this.getItems().equip(::Legends.Items.pickItem([
 				[1, "weapons/shortsword"],
 				[1, "weapons/hand_axe"],
 				[1, "weapons/boar_spear"],
@@ -33,7 +33,7 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 			], "scripts/items/"));
 
 			if (::Math.rand(1, 100) <= 75) {
-				this.getItems().equip(::Const.World.Common.pickItem([
+				this.getItems().equip(::Legends.Items.pickItem([
 					[3, "shields/wooden_shield"],
 					[1, "shields/kite_shield"],
 				], "scripts/items/"));
@@ -41,13 +41,13 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 		}
 
 		if (::Math.rand(1, 100) <= 33) {
-			this.getItems().addToBag(::Const.World.Common.pickItem([
+			this.getItems().addToBag(::Legends.Items.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],
 			], "scripts/items/"));
 		}
 
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[20, ::Legends.Armor.Standard.ragged_surcoat],
 			[20, ::Legends.Armor.Standard.padded_leather],
 			[20, ::Legends.Armor.Standard.worn_mail_shirt],
@@ -59,7 +59,7 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 		this.getItems().equip(item);
 
 		if (::Math.rand(1, 100) <= 75) {
-			local item = ::Const.World.Common.pickHelmet([
+			local item = ::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.nasal_helmet],
 				[1, ::Legends.Helmet.Standard.dented_nasal_helmet],
 				[1, ::Legends.Helmet.Standard.rusty_mail_coif],

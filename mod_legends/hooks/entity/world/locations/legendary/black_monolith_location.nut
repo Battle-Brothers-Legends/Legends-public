@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/world/locations/legendary/black_monolith_location", function(o) 
+::mods_hookExactClass("entity/world/locations/legendary/black_monolith_location", function(o)
 {
 	o.onSpawned = function ()
 	{
@@ -95,7 +95,7 @@
 			"misc/legend_masterwork_tools"
 		], _lootTable);
 
-		// _lootTable.push(::Const.World.Common.pickArmor([
+		// _lootTable.push(::Legends.Items.pickArmor([
 		// 	[1, ::Legends.Armor.Legendary.legend_emperors_armor]
 		// ]))
 	}

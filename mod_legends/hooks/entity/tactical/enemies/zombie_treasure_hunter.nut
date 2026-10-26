@@ -29,11 +29,11 @@
 			[1, ::Legends.Armor.Southern.nomad_robe],
 			[1, ::Legends.Armor.Southern.thick_nomad_robe]
 		];
-		local armor = ::Const.World.Common.pickArmor(aList);
+		local armor = ::Legends.Items.pickArmor(aList);
 		this.m.Items.equip(armor);
 		local helmet = [
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		];
-		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 	}
 });

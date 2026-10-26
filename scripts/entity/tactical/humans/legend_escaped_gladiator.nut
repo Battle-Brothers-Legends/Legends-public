@@ -68,13 +68,13 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 			this.m.Items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
 		}
 
-		this.m.Items.equip(::Const.World.Common.pickArmor([
+		this.m.Items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.nomad_gladiator_armor_00],
 			[1, ::Legends.Armor.Southern.nomad_gladiator_armor_01],
 			[1, ::Legends.Armor.Southern.nomad_gladiator_armor_02]
 		]));
 
-		this.m.Items.equip(::Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_gladiator_helmet_00]
 		]));
 	}

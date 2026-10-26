@@ -28,7 +28,7 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 	}
 
 	function assignRandomEquipment() {
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/ancient/legend_fan_axe"],
 			[1, "weapons/ancient/crypt_cleaver"],
 			[1, "weapons/ancient/bladed_pike"],
@@ -37,12 +37,12 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 			[1, "weapons/ancient/legend_royal_lance"],
 		], "scripts/items/"));
 
-		this.getItems().equip(::Const.World.Common.pickArmor([
+		this.getItems().equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Ancient.legend_mummy_bandages],
 			[4, ::Legends.Armor.Ancient.legend_mummy_royal_plate]
 		]));
 
-		this.getItems().equip(::Const.World.Common.pickHelmet([
+		this.getItems().equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Ancient.ancient_wig],
 			[5, ::Legends.Helmet.Ancient.legend_mummy_headband],
 			[1, ::Legends.Helmet.Ancient.legend_mummy_crown_king]
@@ -54,7 +54,7 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 			return false;
 		}
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/named/legend_named_gladius"],
 			[1, "weapons/named/named_crypt_cleaver"],
 			[1, "weapons/named/named_khopesh"],

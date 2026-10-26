@@ -114,10 +114,10 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 		talents[::Const.Attributes.Fatigue] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_seer_robes]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_seer_hat]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));

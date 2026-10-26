@@ -21,10 +21,10 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, "barbarians/reinforced_heavy_iron_armor"]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, "barbarians/closed_scrap_metal_helmet"]
 		]));
 
@@ -35,10 +35,10 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, "barbarians/rugged_scale_armor"]
 		]));
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, "barbarians/bear_headpiece"]
 		]));
 	});

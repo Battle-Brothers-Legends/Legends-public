@@ -119,7 +119,7 @@ this.legend_guild_master_background <- this.inherit("scripts/skills/backgrounds/
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic],
@@ -127,7 +127,7 @@ this.legend_guild_master_background <- this.inherit("scripts/skills/backgrounds/
 			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[1, ::Legends.Helmet.Standard.dark_cowl],

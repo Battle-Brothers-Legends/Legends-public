@@ -45,11 +45,11 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[3, ::Legends.Armor.Southern.vizier_gear]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.vizier_headgear],
 			[1, ::Legends.Helmet.Southern.engineer_hat]

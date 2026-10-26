@@ -117,14 +117,14 @@
 			items.equip(this.new("scripts/items/weapons/barbarians/blunt_cleaver"));
 		}
 
-		items.equip(::Const.World.Common.pickArmor([
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Barbarian.thick_furs_armor],
 			[1, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor],
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor],
 			[1, ::Legends.Armor.Barbarian.scrap_metal_armor]
 		]));
 
-		items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]

@@ -87,11 +87,11 @@
 		{
 			local items = this.getContainer().getActor().getItems();
 
-			items.equip(::Const.World.Common.pickHelmet([
+			items.equip(::Legends.Items.pickHelmet([
 				[1, ::Legends.Helmet.Standard.legend_nun_habit]
 			]));
 
-			items.equip(::Const.World.Common.pickArmor([
+			items.equip(::Legends.Items.pickArmor([
 				[2, ::Legends.Armor.Standard.legend_nun_robe_dark],
 				[1, ::Legends.Armor.Standard.legend_nun_robe_light]
 			]));
@@ -99,7 +99,7 @@
 		else
 		{
 			local items = this.getContainer().getActor().getItems();
-			items.equip(::Const.World.Common.pickArmor([
+			items.equip(::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Standard.monk_robe]
 			]));
 		}

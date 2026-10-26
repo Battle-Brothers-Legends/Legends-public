@@ -20,7 +20,7 @@
 
 	o.onSpawned = function ()
 	{
-		// 3 melee champs, 3 ranged champs, 3 rider champs and 4 special champs 
+		// 3 melee champs, 3 ranged champs, 3 rider champs and 4 special champs
 		this.m.Name = "Rul\'gazhix";
 		this.location.onSpawned();
 		for( local i = 0; i < 10; i++ )
@@ -137,6 +137,6 @@
 			"misc/legend_masterwork_fabric",
 			"misc/legend_masterwork_tools"
 		], _lootTable);
-		// _lootTable.push(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Legendary.legend_emperors_countenance]]));
+		// _lootTable.push(::Legends.Items.pickHelmet([[1, ::Legends.Helmet.Legendary.legend_emperors_countenance]]));
 	}
 });

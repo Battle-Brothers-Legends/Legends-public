@@ -144,13 +144,13 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 			this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
-		local item = ::Const.World.Common.pickArmor([
+		local item = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Greenskin.goblin_medium_armor],
 			[1, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 		]);
 		this.m.Items.equip(item);
 
-		local item = ::Const.World.Common.pickHelmet([
+		local item = ::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 			[1, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 		]);

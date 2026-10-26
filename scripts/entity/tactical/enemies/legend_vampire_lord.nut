@@ -247,15 +247,15 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function assignRandomEquipment() {
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/ancient/crypt_cleaver"],
 			[1, "weapons/ancient/legend_great_khopesh"]
 		], "scripts/items/"));
 
-		// this.getItems().equip(::Const.World.Common.pickArmor([
+		// this.getItems().equip(::Legends.Items.pickArmor([
 		// 	[1, ::Legends.Armor.Standard.legend_vampire_lord_armor]
 		// ]));
-		// this.getItems().equip(::Const.World.Common.pickHelmet([
+		// this.getItems().equip(::Legends.Items.pickHelmet([
 		// 	[1, ::Legends.Helmet.Standard.legend_vampire_lord_helmet]
 		// ]));
 	}
@@ -267,7 +267,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 
-		this.getItems().equip(::Const.World.Common.pickItem([
+		this.getItems().equip(::Legends.Items.pickItem([
 			[1, "weapons/named/named_khopesh"],
 			[2, "weapons/named/named_crypt_cleaver"]
 		], "scripts/items/"));
