@@ -391,26 +391,6 @@ Enforce your position at the top of the food chain.
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting Beasts. This bonus increases with every Beast kill made by this character.
 
-• Increase per kill:
-  - Nachzehrers | [color=%positive%]+0.16%[/color]
-  - Skin Ghoul | [color=%positive%]+0.5%[/color]
-  - Unhold (all types) | [color=%positive%]+0.5%[/color]
-  - Rock Unhold | [color=%positive%]+2%[/color]
-  - Lindwurm | [color=%positive%]+1%[/color]
-  - Serpent | [color=%positive%]+0.5%[/color]
-  - Stollwurm | [color=%positive%]+2.5%[/color]
-  - Direwolf | [color=%positive%]+0.2%[/color]
-  - White Direwolf | [color=%positive%]+0.5%[/color]
-  - Hyena | [color=%positive%]+0.2%[/color]
-  - Enraged Hyena | [color=%positive%]+0.5%[/color]
-  - Webknecht | [color=%positive%]+0.125%[/color]
-  - Webknecht Cluster | [color=%positive%]+0.125%[/color]
-  - Spider Eggs | [color=%positive%]+0.5%[/color]
-  - Redback Spider | [color=%positive%]+1%[/color]
-  - Bear | [color=%positive%]+0.5%[/color]
-  - Basilisk Drone | [color=%positive%]+0.2%[/color]
-  - Basilisk Sentry | [color=%positive%]+0.25%[/color]
-
 • At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to hunt the following legendary Beasts: Redback Spiders, Rock Unholds, Skin Ghouls, Stollwurms and White Direwolfs.
 ";
 
@@ -419,41 +399,6 @@ We live in a society.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting law-abiding citizens. This bonus increases with every Lawful kill made by this character.
-
-• Increase per kill:
-  - All Peasants | [color=%positive%]+0.04%[/color]
-  - Caravan Hand | [color=%positive%]+0.1%[/color]
-  - Caravan Polearm | [color=%positive%]+0.1%[/color]
-  - Caravan Guard  | [color=%positive%]+0.125%[/color]
-  - Footman | [color=%positive%]+0.125%[/color]
-  - Militia | [color=%positive%]+0.05%[/color]
-  - Militia Veteran | [color=%positive%]+0.20%[/color]
-  - Militia Captain | [color=%positive%]+0.25%[/color]
-  - Militia Marksman | [color=%positive%]+0.05%[/color]
-  - Wardog | [color=%positive%]+0.0625%[/color]
-  - Footman | [color=%positive%]+0.125%[/color]
-  - Elite Footman | [color=%positive%]+0.125%[/color]
-  - Royal Guard | [color=%positive%]+0.125%[/color]
-  - Veteran Knight | [color=%positive%]+0.125%[/color]
-  - Billman | [color=%positive%]+0.125%[/color]
-  - Pollaxe | [color=%positive%]+0.125%[/color]
-  - Slinger | [color=%positive%]+0.125%[/color]
-  - Sureshot | [color=%positive%]+0.125%[/color]
-  - Arbalester | [color=%positive%]+0.125%[/color]
-  - Zweihander | [color=%positive%]+0.25%[/color]
-  - Fencer | [color=%positive%]+0.25%[/color]
-  - Halberdier | [color=%positive%]+0.25%[/color]
-  - Standard Bearer | [color=%positive%]+0.5%[/color]
-  - Sergeant | [color=%positive%]+0.5%[/color]
-  - Knight | [color=%positive%]+1%[/color]
-  - Conscript | [color=%positive%]+0.125%[/color]
-  - Gunner | [color=%positive%]+0.25%[/color]
-  - Manhunter | [color=%positive%]+0.25%[/color]
-  - Manhunter Veteran | [color=%positive%]+0.5%[/color]
-  - Officer | [color=%positive%]+0.5%[/color]
-  - Assassin | [color=%positive%]+0.5%[/color]
-  - Engineer | [color=%positive%]+1%[/color]
-  
 
 • Increases the likelihood of encountering Lawful champions.
 
@@ -466,27 +411,6 @@ Big or small, greenskins lack the strength of will.
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill, maximum damage while fighting Greenskins. This bonus increases with every Greenskin kill made by this character.
 
-• Increase per kill:
-  - Orc Young | [color=%positive%]+0.125%[/color]
-  - Orc Berserker | [color=%positive%]+0.2%[/color]
-  - Orc Warrior | [color=%positive%]+0.2%[/color]
-  - Orc Elite | [color=%positive%]+0.25%[/color]
-  - Orc Behemoth | [color=%positive%]+0.5%[/color]
-  - Orc Warlord | [color=%positive%]+1%[/color]
-  - Orc Mad Berserker| [color=%positive%]+1%[/color]
-  - Orc Tyrant | [color=%positive%]+1%[/color]
-  - Goblin Ambusher | [color=%positive%]+0.125%[/color]
-  - Goblin Skirmisher | [color=%positive%]+0.125%[/color]
-  - Goblin Harrier | [color=%positive%]+0.125%[/color]
-  - Goblin Wolfrider | [color=%positive%]+0.2%[/color]
-  - Goblin Direwolf Rider | [color=%positive%]+0.2%[/color]
-  - Goblin White Direwolf Rider | [color=%positive%]+0.5%[/color]
-  - Goblin Shaman | [color=%positive%]+0.25%[/color]
-  - Goblin Overseer | [color=%positive%]+0.25%[/color]
-  - Goblin Fiend | [color=%positive%]+0.25%[/color]
-  - Goblin Tribe Defender | [color=%positive%]+0.25%[/color]
-  - Goblin Witchdoctor | [color=%positive%]+0.5%[/color]
-
 • Increases the likelihood of encountering Greenskin champions.
 ";
 
@@ -495,25 +419,6 @@ A skeptical mindset cuts through the tricks of the occult, leaving only brittle 
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill, maximum damage and Resolve while fighting the Occult. This bonus increases with every Occult kill made by this character.
-
-• Increase per kill:
-  - Alp | [color=%positive%]+0.25%[/color]
-  - Nightmare | [color=%positive%]+0.05%[/color]
-  - Demon Alp | [color=%positive%]+1%[/color]
-  - Hexe | [color=%positive%]+0.5%[/color]
-  - Coven Leader | [color=%positive%]+2%[/color]
-  - Geist | [color=%positive%]+0.125%[/color]
-  - Höllenhound | [color=%positive%]+0.125%[/color]
-  - Winselmutter | [color=%positive%]+0.25%[/color]
-  - Ifrit | [color=%positive%]+0.125%[/color]
-  - Schrat | [color=%positive%]+1%[/color]
-  - Sapling | [color=%positive%]+0.2%[/color]
-  - Greenwood Schrat | [color=%positive%]+1%[/color]
-  - Greenwood Sapling | [color=%positive%]+0.4%[/color]
-  - Wicht | [color=%positive%]+0.25%[/color]
-  - Necromancer | [color=%positive%]+0.25%[/color]
-  - Goblin Shaman | [color=%positive%]+0.25%[/color]
-  - Goblin Witchdoctor | [color=%positive%]+0.5%[/color]
 
 • At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to hunt the following Occult leaders: Demon Alps, Greenwood Schrats and Hexe Coven Leaders.
 ";
@@ -525,35 +430,6 @@ The uncivilized are a plague to be uprooted.
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting outlaws and criminals. This bonus increases with every Outlaw kill made by this character.
 
-• Increase per kill:
-  - Warhound | [color=%positive%]+0.0625%[/color]
-  - Bandit Rabble | [color=%positive%]+0.025%[/color]
-  - Brigand Thug | [color=%positive%]+0.0625%[/color]
-  - Brigand Poacher | [color=%positive%]+0.0625%[/color]
-  - Brigand Marksman | [color=%positive%]+0.125%[/color]
-  - Brigand Raider | [color=%positive%]+0.125%[/color]
-  - Brigand Marauder | [color=%positive%]+0.25%[/color]
-  - Bandit Leader | [color=%positive%]+0.25%[/color]
-  - Robber Baron | [color=%positive%]+1%[/color]
-  - Barbarian Thrall | [color=%positive%]+0.1%[/color]
-  - Barbarian Reaver | [color=%positive%]+0.25%[/color]
-  - Barbarian Chosen | [color=%positive%]+0.25%[/color]
-  - Barbarian Drummer | [color=%positive%]+0.25%[/color]
-  - Barbarian Beastmaster | [color=%positive%]+0.125%[/color]
-  - Barbarian Bloodletter | [color=%positive%]+0.5%[/color]
-  - Barbarian Pillager | [color=%positive%]+0.5%[/color]
-  - Barbarian Runechosen | [color=%positive%]+1%[/color]
-  - Barbarian King | [color=%positive%]+1%[/color]
-  - Indebted | [color=%positive%]+0.04%[/color]
-  - Sighthound | [color=%positive%]+0.0625%[/color]
-  - Nomad Cutthroat | [color=%positive%]+0.0625%[/color]
-  - Nomad Outlaw | [color=%positive%]+0.125%[/color]
-  - Nomad Slinger | [color=%positive%]+0.1%[/color]
-  - Nomad Archer | [color=%positive%]+0.0625%[/color]
-  - Nomad Leader | [color=%positive%]+0.25%[/color]
-  - Mercenary | [color=%positive%]+0.5%[/color]
-  - Bounty Hunter | [color=%positive%]+0.25%[/color]
-
 • Increases the likelihood of encountering Outlaw champions.
 
 • At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to stop a brigand army from taking over a settlement and to escort an important barbarian prisoner.
@@ -564,26 +440,6 @@ The path to martial prowess is beset by the fake and the weak. Only one can stan
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting elite melee combatants. This bonus increases with every Swordmaster kill made by this character.
-
-• Increase per kill:
-  - Sergeant | [color=%positive%]+0.0125%[/color]
-  - Officer | [color=%positive%]+0.5%[/color]
-  - Zweihander | [color=%positive%]+0.25%[/color]
-  - Fencer | [color=%positive%]+0.25%[/color]
-  - Hedge Knight | [color=%positive%]+0.25%[/color]
-  - Knight | [color=%positive%]+1%[/color]
-  - Swordmaster | [color=%positive%]+0.5%[/color]
-  - Executioner | [color=%positive%]+0.5%[/color]
-  - Bandit Leader | [color=%positive%]+0.25%[/color]
-  - Robber Baron | [color=%positive%]+1%[/color]
-  - Barbarian Chosen | [color=%positive%]+0.5%[/color]
-  - Barbarian Runechosen | [color=%positive%]+1%[/color]
-  - Barbarian King | [color=%positive%]+1%[/color]
-  - Nomad Leader | [color=%positive%]+0.25%[/color]
-  - Gladiator | [color=%positive%]+0.5%[/color]
-  - Assassin | [color=%positive%]+0.5%[/color]
-  - Desert Devil | [color=%positive%]+0.5%[/color]
-  - Desert Stalker | [color=%positive%]+0.5%[/color]
 
 • Increases the likelihood of encountering Swordmaster champions.
 
@@ -598,28 +454,6 @@ Shambling corpses come wave on wave, rising sleepless from their graves.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill, maximum damage and Resolve while fighting the Undead. This bonus increases with every Undead kill made by this character.
-
-• Increase per kill:
-  - Wiederganger | [color=%positive%]+0.01%[/color]
-  - Wiederganger Yeoman | [color=%positive%]+0.1%[/color]
-  - Fallen Betrayer | [color=%positive%]+0.2%[/color]
-  - Fallen Hero | [color=%positive%]+0.2%[/color]
-  - Necromancer | [color=%positive%]+0.25%[/color]
-  - Lost Treasure Hunter | [color=%positive%]+0.2%[/color]
-  - Ancient Auxiliary | [color=%positive%]+0.01%[/color]
-  - Ancient Legionary | [color=%positive%]+0.2%[/color]
-  - Ancient Honor Guard | [color=%positive%]+0.5%[/color]
-  - Ancient Priest | [color=%positive%]+0.5%[/color]
-  - Phylactery | [color=%positive%]+1%[/color]
-  - Ancient Gladiator | [color=%positive%]+0.5%[/color]
-  - Flying Skull | [color=%positive%]+0.04%[/color]
-  - Necrosavant | [color=%positive%]+0.25%[/color]
-  - Necrosavant Lord | [color=%positive%]+0.5%[/color]
-  - Embalmed Slave | [color=%positive%]+0.25%[/color]
-  - Embalmed Soldier | [color=%positive%]+0.5%[/color]
-  - Embalmed Noble | [color=%positive%]+1%[/color]
-  - Embalmed Priest | [color=%positive%]+1.25%[/color]
-  - Embalmed Queen | [color=%positive%]+2%[/color]
 
 • Increases the likelihood of encountering Undead champions.
 ";
