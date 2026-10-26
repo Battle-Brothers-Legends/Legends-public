@@ -85,6 +85,26 @@
 		return items;
 	}
 
+	local onActorKilled = o.onActorKilled;
+	o.onActorKilled = function (_actor, _tile, _skill) {
+		onActorKilled(_actor, _tile, _skill);
+		if (this.getFaction() == ::Const.Faction.Player || this.getFaction() == ::Const.Faction.PlayerAnimals) {
+			local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
+			local xp = _actor.getXPValue();
+			local groupXPPerBro = 1;
+			if (this.getFaction() == ::Const.Faction.Player) {
+				groupXPPerBro = xp * (1.0 - ::Const.XP.XPForKillerPct) / brothers.len();
+				local killerXP = ::Math.floor(xp * ::Const.XP.XPForKillerPct);
+				::Legends.FavoriteEnemy.recordKill(this, _actor.getType(), ::Legends.Player.calculateExperienceOnKill(this, killerXP));
+			} else {
+				groupXPPerBro = xp / brothers.len();
+			}
+			foreach (bro in brothers.filter(@(_, _bro)(!_bro.getCurrentProperties().IsAllyXPBlocked))) {
+				::Legends.FavoriteEnemy.recordXP(bro, _actor.getType(), ::Math.max(1, ::Math.floor(::Legends.Player.calculateExperienceOnKill(bro, groupXPPerBro))));
+			}
+		}
+	}
+
 	local onOtherActorDeath = o.onOtherActorDeath;
 	o.onOtherActorDeath = function (_killer, _victim, _skill) {
 		if (::Legends.S.isEntityNullOrDead(this)) {

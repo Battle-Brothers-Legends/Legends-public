@@ -12,7 +12,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		BribeMoney = 1000,
 		Perk = ::Legends.Perk.LegendFavouredEnemyOutlaw,
-		ValidTypes = ::Const.LegendMod.FavoriteOutlaw,
+		Category = ::Legends.FavoriteEnemy.Types.Outlaw,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},
@@ -758,7 +758,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 				continue;
 			}
 
-			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
+			local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
 			if (stats.Strength >= this.m.MinStrength) {
 				return true;
 			}

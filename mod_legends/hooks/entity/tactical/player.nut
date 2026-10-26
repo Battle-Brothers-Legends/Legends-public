@@ -556,11 +556,11 @@
 		::Const.Injury.Permanent = original;
 
 		if (this.getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
-			&& !this.isStabled() // isn't donkey
-			&& !this.getFlags().has("undead") // isn't undead already
-			&& !::Tactical.State.isScenarioMode() // not real run
-			&& !::Tactical.State.isAutoRetreat() // left behind
-			&& !this.isGuest() // not player
+		 && !this.isStabled() // isn't donkey
+		 && !this.getFlags().has("undead") // isn't undead already
+		 && !::Tactical.State.isScenarioMode() // not real run
+		 && !::Tactical.State.isAutoRetreat() // left behind
+		 && !this.isGuest() // not player
 		) {
 			this.getFlags().add("undead");
 			this.getFlags().add("zombie_minion");
@@ -570,8 +570,9 @@
 
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
-				if (!this.getBackground().addPerk(::Legends.Perk.LegendZombieBite, 0, false))
+				if (!this.getBackground().addPerk(::Legends.Perk.LegendZombieBite, 0, false)) {
 					this.getBackground().m.PerkTreeMap[perk.getID()].IsRefundable = false;
+				}
 			}.bindenv(this));
 
 			local has9L = this.getSkills().hasPerk(::Legends.Perk.NineLives);
@@ -581,8 +582,9 @@
 					this.m.PerkPointsSpent -= 1;
 				}
 
-				if (!this.getBackground().addPerk(::Legends.Perk.NineLives, 0, false))
+				if (!this.getBackground().addPerk(::Legends.Perk.NineLives, 0, false)) {
 					this.getBackground().m.PerkTreeMap[perk.getID()].IsRefundable = false;
+				}
 			}.bindenv(this));
 
 			if (result) {
@@ -701,47 +703,20 @@
 		if (this.m.Level >= ::Const.LevelXP.len() || this.isGuest() || !isScenarioMode && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.Level >= 7 && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave)) {
 			return;
 		}
+		_xp = ::Legends.Player.calculateExperienceOnKill(this, _xp, _scale);
 
-		if (_scale) {
-			_xp = _xp * ::Const.Combat.GlobalXPMult;
-		}
-
-		if (_scale && !isScenarioMode) {
-			_xp = _xp * ::Const.Difficulty.XPMult[::World.Assets.getDifficulty()];
-		}
-
-		if (this.m.Level >= 12) {
-			_xp = _xp * ::Const.Combat.GlobalXPVeteranLevelMult;
-		}
-
-		if (!isScenarioMode) {
-			if (_scale) {
-				_xp = _xp * ::World.Assets.m.XPMult;
-
-				if (this.m.Level < 12) {
-					_xp = _xp * (1 + ::World.Assets.m.ProfessionEffect.LegendDrillSergeant);
-				}
-			}
-
-			// a lil experiment to see if this would make avatar starts more viable
-			// if (::World.getPlayerRoster().getSize() < 3)
-			// {
-			// 	_xp = _xp * (1.0 - (3 - ::World.getPlayerRoster().getSize()) * 0.15);
-			// }
-		}
-
-		if (this.m.XP + _xp * this.m.CurrentProperties.XPGainMult >= ::Const.LevelXP[::Const.LevelXP.len() - 1]) {
+		if (this.m.XP + _xp >= ::Const.LevelXP[::Const.LevelXP.len() - 1]) {
 			this.m.CombatStats.XPGained += ::Const.LevelXP[::Const.LevelXP.len() - 1] - this.m.XP;
 			this.m.XP = ::Const.LevelXP[::Const.LevelXP.len() - 1];
 			return;
-		} else if (!isScenarioMode && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.XP + _xp * this.m.CurrentProperties.XPGainMult >= ::Const.LevelXP[6] && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave)) {
+		} else if (!isScenarioMode && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.XP + _xp >= ::Const.LevelXP[6] && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave)) {
 			this.m.CombatStats.XPGained += ::Const.LevelXP[6] - this.m.XP;
 			this.m.XP = ::Const.LevelXP[6];
 			return;
 		}
 
-		this.m.XP += ::Math.floor(_xp * this.m.CurrentProperties.XPGainMult);
-		this.m.CombatStats.XPGained += ::Math.floor(_xp * this.m.CurrentProperties.XPGainMult);
+		this.m.XP += ::Math.floor(_xp);
+		this.m.CombatStats.XPGained += ::Math.floor(_xp);
 	}
 
 	o.unlockPerk = function (_id) {

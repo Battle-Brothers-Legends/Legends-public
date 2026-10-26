@@ -22,7 +22,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		},
 		Flags = null,
 		Perk = ::Legends.Perks.getID(::Legends.Perk.LegendFavouredEnemySwordmaster),
-		ValidTypes = ::Const.LegendMod.FavoriteSwordmaster,
+		Category = ::Legends.FavoriteEnemy.Types.Swordmaster,
 		WasInReserves = [],
 		isValidForEncounter = false
 	},

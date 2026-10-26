@@ -1,15 +1,12 @@
 this.perk_legend_favoured_enemy_greenskin <- this.inherit("scripts/skills/legend_favoured_enemy_skill", {
 	m = {},
-	function create()
-	{
-		this.legend_favoured_enemy_skill.create();
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendFavouredEnemyGreenskin);
-		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.ValidTypes = ::Const.LegendMod.FavoriteGreenSkins;
+		this.legend_favoured_enemy_skill.create();
 	}
 
-	function getDynamicTooltip (_actor = null) {
+	function getDynamicTooltip(_actor = null) {
 		return this.legend_favoured_enemy_skill.getDynamicTooltip(_actor);
 	}
 });
-

@@ -9,7 +9,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		IsEscortUpdated = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk = ::Legends.Perk.LegendFavouredEnemyOutlaw,
-		ValidTypes = ::Const.LegendMod.FavoriteOutlaw,
+		Category = ::Legends.FavoriteEnemy.Types.Outlaw,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},
@@ -743,7 +743,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			if (!bro.getSkills().hasPerk(this.m.Perk))
 				continue;
 
-			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
+			local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
 			if (stats.Strength >= this.m.MinStrength)
 				return true;
 		}

@@ -186,7 +186,7 @@
 			local key = "Enemy" + t.Type.ID;
 			if (!(key in troopMbMap))
 			{
-				troopMbMap[key] <- ::Const.LegendMod.GetFavEnemyBossChance(t.Type.ID);
+				troopMbMap[key] <- ::Legends.FavoriteEnemy.getFavEnemyBossChance(t.Type.ID);
 			}
 
 			local mb = troopMbMap[key];
