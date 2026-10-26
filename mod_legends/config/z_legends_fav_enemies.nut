@@ -57,7 +57,15 @@
 	]
 }
 
-::Legends.FavoriteEnemy.getCategory <- function (_entityType) {
+::Legends.FavoriteEnemy.getCategory <- function (_entity, _entityType = null) {
+	if (_entityType == null) {
+		_entityType = _entity.getType();
+	}
+
+	if (_entity != null && _entity.m.IsMiniboss && ::MSU.isKindOf(_entity, "human")) {
+		return ::Legends.FavoriteEnemy.Types.Swordmaster;
+	}
+
 	foreach (categoryName, types in ::Legends.FavoriteEnemy.TypeOverride) {
 		foreach (t in types) {
 			if (t == _entityType) {
@@ -68,33 +76,33 @@
 
 	local faction = ::Const.EntityType.getDefaultFaction(_entityType);
 	switch (faction) {
-		case ::Const.FactionType.Orcs:
-		case ::Const.FactionType.Goblins:
-			return "Greenskin";
-
 		case ::Const.FactionType.Beasts:
-			return "Beast";
-
-		case ::Const.FactionType.Undead:
-		case ::Const.FactionType.Zombies:
-			return "Undead";
+			return ::Legends.FavoriteEnemy.Types.Beast;
 
 		case ::Const.FactionType.Settlement:
 		case ::Const.FactionType.NobleHouse:
 		case ::Const.FactionType.OrientalCityState:
-			return "Civilization";
+			return ::Legends.FavoriteEnemy.Types.Civilization;
+
+		case ::Const.FactionType.Orcs:
+		case ::Const.FactionType.Goblins:
+			return ::Legends.FavoriteEnemy.Types.Greenskin;
 
 		case ::Const.FactionType.Bandits:
 		case ::Const.FactionType.Barbarians:
 		case ::Const.FactionType.OrientalBandits:
-			return "Outlaw";
+			return ::Legends.FavoriteEnemy.Types.Outlaw;
+
+		case ::Const.FactionType.Undead:
+		case ::Const.FactionType.Zombies:
+			return ::Legends.FavoriteEnemy.Types.Undead;
 	}
 
 	return null;
 }
 
-::Legends.FavoriteEnemy.recordKill <- function (_actor, _entityType, _xp) {
-	local category = ::Legends.FavoriteEnemy.getCategory(_entityType);
+::Legends.FavoriteEnemy.recordKill <- function (_actor, _entity, _xp) {
+	local category = ::Legends.FavoriteEnemy.getCategory(_entity);
 	if (category != null) {
 		local stats = _actor.getLifetimeStats();
 		stats.Tags.increment("Enemy_Kills_" + category, 1);
@@ -102,8 +110,8 @@
 	}
 }
 
-::Legends.FavoriteEnemy.recordXP <- function (_actor, _entityType, _xp) {
-	local category = ::Legends.FavoriteEnemy.getCategory(_entityType);
+::Legends.FavoriteEnemy.recordXP <- function (_actor, _entity, _xp) {
+	local category = ::Legends.FavoriteEnemy.getCategory(_entity);
 	if (category != null) {
 		_actor.getLifetimeStats().Tags.increment("Enemy_XP_" + category, ::Math.floor(_xp));
 	}
@@ -137,13 +145,13 @@
 }
 
 ::Legends.FavoriteEnemy.getFavEnemyBossChance <- function (_type) {
-	local category = ::Legends.FavoriteEnemy.getCategory(_type);
+	local category = ::Legends.FavoriteEnemy.getCategory(null, _type);
 	if (category == null) {
 		return 0;
 	}
 
 	local bonus = 0;
-	foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (::Legends.Perks.has(_bro, ::Legends.Perk["LegendFavouredEnemy" + category])))) {
+	foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(::Legends.Perks.has(_bro, ::Legends.Perk["LegendFavouredEnemy" + category])))) {
 		bonus += ::Math.floor((::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, category).Kills * 1.0) / 10.0);
 	}
 	return bonus;

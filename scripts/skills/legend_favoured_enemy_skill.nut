@@ -74,7 +74,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isFavoriteEnemy(_actor) {
-		return !::Legends.S.isEntityNullOrDead(_actor) && _actor.isPlacedOnMap() && !_actor.isAlliedWithPlayer() && this.m.Category == ::Legends.FavoriteEnemy.getCategory(_actor.getType());
+		return !::Legends.S.isEntityNullOrDead(_actor) && _actor.isPlacedOnMap() && !_actor.isAlliedWithPlayer() && this.m.Category == ::Legends.FavoriteEnemy.getCategory(_actor);
 	}
 
 	function getTotalKillStats(_actor = null) {

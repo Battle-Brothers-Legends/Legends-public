@@ -95,12 +95,12 @@
 			if (this.getFaction() == ::Const.Faction.Player) {
 				groupXPPerBro = xp * (1.0 - ::Const.XP.XPForKillerPct) / brothers.len();
 				local killerXP = ::Math.floor(xp * ::Const.XP.XPForKillerPct);
-				::Legends.FavoriteEnemy.recordKill(this, _actor.getType(), ::Legends.Player.calculateExperienceOnKill(this, killerXP));
+				::Legends.FavoriteEnemy.recordKill(this, _actor, ::Legends.Player.calculateExperienceOnKill(this, killerXP));
 			} else {
 				groupXPPerBro = xp / brothers.len();
 			}
 			foreach (bro in brothers.filter(@(_, _bro)(!_bro.getCurrentProperties().IsAllyXPBlocked))) {
-				::Legends.FavoriteEnemy.recordXP(bro, _actor.getType(), ::Math.max(1, ::Math.floor(::Legends.Player.calculateExperienceOnKill(bro, groupXPPerBro))));
+				::Legends.FavoriteEnemy.recordXP(bro, _actor, ::Math.max(1, ::Math.floor(::Legends.Player.calculateExperienceOnKill(bro, groupXPPerBro))));
 			}
 		}
 	}
