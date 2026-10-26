@@ -671,7 +671,7 @@
 - fixed Jester's Hat removing the Battlefield Control granted Taunt skill in a specific case
 - fixed Thresh sometimes crashing while trying to apply an effect to a dead target
 - fixed missing Wither skill icon
-- fixed tavern rumours showing the base item's name only on layered composites
+- fixed tavern rumors showing the base item's name only on layered composites
 - fixed a rare Lorekeeper Lightning Storm AI loop bug
 - attempted fix of entities sometimes attacking through the Fleeing state after getting put into it by a Riposte
 - fixed blade dancer background using bounty hunter stats instead of their own
@@ -727,6 +727,14 @@
 - Jimmy's tooltips have been integrated directly into Legends codebase
 - demon hound aura is no longer applied to all human's in every fight indiscriminately, but instead uses `LegendDemonHoundAuraSource` directly on hollenhunds which adds the effect in fights featuring them
 - UnactivatedPerkTooltips have been turned into DynamicTooltips and support both active and inactive perks in the tree
+- `::Const.World.Common.pickLegendArmor` becomes `::Legends.Items.pickLegendArmor`
+- `::Const.World.Common.pickLegendHelmet` becomes `::Legends.Items.pickLegendHelmet`
+- `::Const.World.Common.pickItem` becomes `::Legends.Items.pickItem`
+- `::Const.World.Common.pickHelmet` becomes `::Legends.Items.pickHelmet`
+- `::Const.World.Common.pickArmor` becomes `::Legends.Items.pickArmor`
+- `::Const.World.Common.pickArmorUpgrade` becomes `::Legends.Items.pickArmorUpgrade`
+- `::Const.World.Common.pickOutfit` becomes `::Legends.Items.pickOutfit`
+- `::Const.World.Common.convNameToList` becomes `::Legends.Items.convNameToList`
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`
