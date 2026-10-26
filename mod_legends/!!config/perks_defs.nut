@@ -13,13 +13,15 @@
  *  	bro.getSkills().hasPerk(::Legends.Perk.LegendBallistics)
  */
 
-if (!("Perks" in ::Const)) {
+if (!("Perks" in ::Const))
 	::Const.Perks <- {};
-}
+if (!("Perks" in ::Legends))
+	::Legends.Perks <- {};
+
 ::Const.Perks.PerkDefObjects <- {};
 ::Const.Perks.PerkDefs <- {};
 
-::Const.Perks.defaultDef <- function (_def) {
+::Legends.Perks.defaultDef <- function (_def) {
 	local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);
 	return {
 		Const = _def.Const,
@@ -36,8 +38,8 @@ if (!("Perks" in ::Const)) {
 * Overwrites default def with non-standard fields defined here
 * @param _def table with field overwrites
 */
-::Const.Perks.transformDef <- function (_def) {
-	local defaultDef = ::Const.Perks.defaultDef(_def);
+::Legends.Perks.transformDef <- function (_def) {
+	local defaultDef = ::Legends.Perks.defaultDef(_def);
 	foreach (key, value in _def) {
 		if (key in defaultDef) {
 			defaultDef[key] = value; // overwrite
@@ -54,14 +56,14 @@ if (!("Perks" in ::Const)) {
  * @param _perkDefObjects is an array of perk definitions
  * @param _container is namespace where ids will reside, you can use your own in submods, default is ::Legends.Perk
  */
-::Const.Perks.addPerkDefObjects <- function (_perkDefObjects, _container = null) {
+::Legends.Perks.addPerkDefObjects <- function (_perkDefObjects, _container = null) {
 	if (_container == null) {
 		_container = ::Legends.Perk;
 	}
 
 	foreach (constName, def in _perkDefObjects) {
 		def.Const <- constName;
-		def = ::Const.Perks.transformDef(def);
+		def = ::Legends.Perks.transformDef(def);
 		local hash = ::IO.scriptHashByFilename(def.Script);
 		if (hash == null) {
 			::logError(::format("%s: hash is null for '%s'", def.Const, def.Script));
@@ -77,7 +79,7 @@ if (!("Perks" in ::Const)) {
 	}
 }
 
-::Const.Perks.validate <- function (_defs) {
+::Legends.Perks.validate <- function (_defs) {
 	local scripts = ::IO.enumerateFiles("scripts/skills/perks/");
 	local icons = ::IO.enumerateFiles("gfx/").map(@(_f) _f + ".png");
 
@@ -759,6 +761,22 @@ if (!("Perks" in ::Const)) {
 	}
 };
 
-::Const.Perks.addPerkDefObjects(clone ::Legends.Perk);
+::Legends.Perks.addPerkDefObjects(clone ::Legends.Perk);
+::Legends.Perks.validate(::Legends.Perk);
 
-::Const.Perks.validate(::Legends.Perk);
+
+::Const.Perks.addPerkDefObjects <- function (_perkDefObjects, _container = ::Legends.Perk) {
+	// TODO remove with 19.6
+	::logWarning("::Const.Perks.addPerkDefObjects deprecated, will be removed in 19.6, use ::Legends.Perks.addPerkDefObjects instead, it uses tables instead of arrays, check the impl before changing");
+	local size = ::Const.Perks.PerkDefObjects.len();
+	::Const.Perks.PerkDefObjects.extend(_perkDefObjects);
+	foreach (i, perkDefObject in _perkDefObjects) {
+		if (perkDefObject.Const in _container) {
+			_container[perkDefObject.Const] = size + i;
+		} else {
+			_container[perkDefObject.Const] <- size + i;
+		}
+		::Const.Perks.PerkDefs[perkDefObject.Const] <- size + i;
+		::Const.Perks.LookupMap[perkDefObject.ID] <- perkDefObject;
+	}
+}
