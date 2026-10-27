@@ -692,6 +692,8 @@
 - fixed Stun effect not reducing defensive stats
 - fixed Taunt skill not increasing the aggro factor of the caster
 - split man should no longer behave erratically
+- stollwurms contracts can now properly appear in steppe villages
+- white wolves can now properly appear in snow villages and with 1.5 the chance
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

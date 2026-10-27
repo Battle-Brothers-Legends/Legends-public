@@ -40,18 +40,18 @@ this.legend_hunting_white_direwolf_action <- this.inherit("scripts/factions/fact
 			return;
 		}
 
-		local village = _faction.getSettlements()[0];
-		if (::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
-			return;
-		}
-
 		local minResources = ::Const.World.LegendaryContract.WhiteWolf * ::Const.World.ContractCost.WhiteWolf + ::Const.World.ContractCost.WhiteWolf;
 		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * ::Const.World.ContractCost.WhiteWolf;
 		if (currentResources >= minResources) {
 			::Const.World.LegendaryContract.WhiteWolf += 1;
 		}
 
-		this.m.Score = 1;
+		local village = _faction.getSettlements()[0];
+		if (::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement)) && ::Math.rand(1,100) <= 50) {
+			this.m.Score = 2;
+		} else {
+			this.m.Score = 1;
+		}
 	}
 
 	function onClear() {}
