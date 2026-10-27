@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/peddler_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/peddler_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Peddler);
 		this.m.BackgroundDescription = "Peddlers are not used to hard physical labor or warfare, but they do excel at haggling for good prices.";
@@ -32,56 +31,52 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Kind;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleThick, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Thick, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Old, Beards = ::Const.Beards.Tidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleThick,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Thick,
+			Hairs = ::Const.Hair.TidyMale,
+			HairColors = ::Const.HairColors.Old,
+			Beards = ::Const.Beards.Tidy
+		});
 	}
 
-	o.onBuildDescription <- function ()	{
+	o.onBuildDescription <- function() {
 		return "{House to house, | Once a proud merchant, now | An annoyance to most, | In tough times, everyone has to scrape by somehow, hence why | Not a %person% of the trades, but instead of trade itself,} %name% is a mere peddler. {%They%\'ll dance, %they%\'ll sing, %they%\'ll boast and %they%\'ll act a king, anything to make that sale. | Pushy and unrelenting, %their% tenacity is admirable. | %They%\'ll try to sell off a rusty bucket for a helm once worn by kings. This %person% will sell anything. | This %person% will make you crave things you never knew you wanted. No refunds, though. | %They% used to make a decent living selling {used carts | pots, pans and jars}, until fierce competition drove %them% out of business - by breaking %their% arm.} {Marketing %themselves% is what this frail %person% does best, though few believe %their% pitch about having \'Great swordsmanship and resolute bravery\'. | %They% supposedly handed out \'coupons\' for %their% services, whatever those are. %They're% chippy, though, and any outfit these days could use a warm body no matter its real value. | If hired, %they% promises, you\'ll get a special discount on a virility enhancing potion. | The %person% lowers his voice and tells you %they're% got a great deal on rusted arrow tips, just for you. %They% looks disappointed at your lack of interest. | This %person% knows a %person% who knows a %person% who knows a %person%. All three strangers potentially better at fighting than %them%. | A shame a %person% can\'t fight with %their% words these days. %name% would be unstoppable.}";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Peddler);
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 
 		local actor = this.getContainer().getActor();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			actor.setTitle(::Const.Strings.PeddlerTitles[::Math.rand(0, ::Const.Strings.PeddlerTitles.len() - 1)]);
 		}
 
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 2);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/dagger"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/light_crossbow"));
-			items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/knife"],
+			[1, "weapons/dagger"],
+			[1, "weapons/light_crossbow"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]

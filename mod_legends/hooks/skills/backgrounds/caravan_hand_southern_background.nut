@@ -19,7 +19,7 @@
 
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleSkinny, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernSkinny, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
+		this.setBodyCharacteristics(_gender, _gender ? {Bodies = ::Const.Bodies.SouthernFemaleSkinny, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young} : {Bodies = ::Const.Bodies.SouthernSkinny, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
 
 		if (_gender != 1) return;
 		this.m.GoodEnding = "%name% the once-caravan hand retired from fighting. She used her mercenary money to start a trade-guarding business that specializes in transporting goods through dangerous lands.";
@@ -33,25 +33,13 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 3);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/bludgeon"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/oriental/saif"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/knife"],
+			[1, "weapons/bludgeon"],
+			[1, "weapons/oriental/light_southern_mace"],
+			[1, "weapons/oriental/saif"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash],

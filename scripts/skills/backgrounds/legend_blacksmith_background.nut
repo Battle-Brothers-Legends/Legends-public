@@ -28,7 +28,12 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleMuscular
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.CommonMale
+		});
 	}
 
 	function onBuildDescription() {
@@ -41,7 +46,10 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.new("scripts/items/weapons/legend_hammer"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_hammer"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_blacksmith_apron]

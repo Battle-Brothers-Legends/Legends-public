@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/regent_in_absentia_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/regent_in_absentia_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.RegentInAbsentia);
 		this.m.BackgroundDescription = "%name% is a Regent in Absentia, choosing to spend their time with a mercenary company as opposed to in court.";
@@ -30,60 +29,44 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Noble | ::Const.BackgroundType.Crusader;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Thick});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleMuscular
+		} : {
+			Bodies = ::Const.Bodies.Thick
+		});
 
 		if (_gender) {
 			this.m.Icon = "ui/backgrounds/background_06.png";
 		}
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "{%name% is no longer disowned by %their% royal family, yet %their% allegiance is now with the %companyname%. Despite not returning home to %their% lineage, you know that deep down %they% is emboldened by the fact that %they% is back in %their% natural bloodline.}";
 	}
 
-	o.onChangeAttributes <- function ()
-	{
+	o.onChangeAttributes <- function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.RegentInAbsentia);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 3);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/arming_sword"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/hand_axe"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/morning_star"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/arming_sword"],
+			[1, "weapons/hand_axe"],
+			[1, "weapons/boar_spear"],
+			[1, "weapons/morning_star"],
+		], "scripts/items/"));
 
-		r = ::Math.rand(0, 0);
-
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/shields/wooden_shield"));
-		}
-
+		items.equip(::Legends.Items.pickItem([
+			[1, "shields/wooden_shield"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_shirt],

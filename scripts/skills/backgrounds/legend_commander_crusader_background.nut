@@ -85,10 +85,10 @@ this.legend_commander_crusader_background <- this.inherit("scripts/skills/backgr
 		if (_gender == -1) {
 			_gender = this.randomizeHumanGender();
 		}
-		_gender ? this.setBodyCharacteristics(_gender, {
+		this.setBodyCharacteristics(_gender, _gender ? {
 			Faces = ::Const.Faces.PrettyFemale,
 			HairColors = ::Const.HairColors.Young
-		}) : this.setBodyCharacteristics(_gender, {
+		} : {
 			Faces = ::Const.Faces.SmartMale,
 			Hairs = ::Const.Hair.TidyMale,
 			Beards = ::Const.Beards.Tidy
@@ -144,7 +144,9 @@ this.legend_commander_crusader_background <- this.inherit("scripts/skills/backgr
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_zweihander"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
@@ -161,9 +163,7 @@ this.legend_commander_crusader_background <- this.inherit("scripts/skills/backgr
 			[1, ::Legends.Helmet.Standard.bascinet_with_mail],
 			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]
 		]);
-		if (item != null) {
-			item.onPaint(::Const.Items.Paint.None);
-			items.equip(item);
-		}
+		item.onPaint(::Const.Items.Paint.None);
+		items.equip(item);
 	}
 });

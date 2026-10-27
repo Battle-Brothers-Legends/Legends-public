@@ -102,8 +102,15 @@
 		talents[::Const.Attributes.Fatigue] = 1;
 		talents[::Const.Attributes.Bravery] = 1;
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.new("scripts/items/weapons/militia_spear"));
-		items.equip(this.new("scripts/items/shields/wooden_shield"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/militia_spear"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "shields/wooden_shield"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.padded_surcoat],

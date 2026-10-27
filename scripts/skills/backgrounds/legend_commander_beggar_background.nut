@@ -1,7 +1,6 @@
 this.legend_commander_beggar_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderBeggar);
 		this.m.BackgroundDescription = "Beggars aren\'t the most determined persons, and living on the street tends to be detrimental to their health.";
@@ -88,55 +87,49 @@ this.legend_commander_beggar_background <- this.inherit("scripts/skills/backgrou
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.UntidyMale}) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
-		if(_gender) {
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Hairs = ::Const.Hair.UntidyMale
+		} : {
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
+		if (_gender) {
 			this.m.Name = "Framed Widow";
 		}
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{Having stolen gold from a dead noble, and being framed for the murder, this beggar is on the run!}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderBeggar);
 	}
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		::World.Assets.addMoney(-208);
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 4);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/knife"],
+			[1, "weapons/wooden_stick"],
+			[2, null]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
-		local item = ::Legends.Items.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood, 38]
-		]);
-		items.equip(item);
-
+		]));
 	}
 });

@@ -43,7 +43,14 @@ this.legend_warden_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Hairs =  ::Const.Hair.UntidyMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Faces = ::Const.Faces.PrettyFemale,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Hairs = ::Const.Hair.UntidyMale,
+			HairColors = ::Const.HairColors.Young,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
 	function onBuildDescription() {
@@ -51,7 +58,6 @@ this.legend_warden_background <- this.inherit("scripts/skills/backgrounds/charac
 	}
 
 	function onChangeAttributes() {
-
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendWarden);
 	}
 
@@ -60,7 +66,6 @@ this.legend_warden_background <- this.inherit("scripts/skills/backgrounds/charac
 			::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 		}
 		this.character_background.onAdded();
-
 	}
 
 	function onAddEquipment() {
@@ -71,10 +76,16 @@ this.legend_warden_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(this.new("scripts/items/weapons/hunting_bow"));
-		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/hunting_bow"]
+		], "scripts/items/"));
 
-		items.addToBag(::new(::Math.rand(0, 1) == 0 ? "scripts/items/weapons/knife" : "scripts/items/weapons/bludgeon"));
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
+
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/knife"],
+			[1, "weapons/bludgeon"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],

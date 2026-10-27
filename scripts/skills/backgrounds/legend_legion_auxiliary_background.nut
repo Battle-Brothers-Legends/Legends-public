@@ -1,7 +1,6 @@
 this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionAuxiliary);
 		this.m.BackgroundDescription = "Pressed onto service by some means or another, the Auxiliary serves their masters in exchange for a promise of a better life.";
@@ -23,7 +22,12 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.Muscular
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.CommonMale
+		});
 		this.m.Names = _gender ? ::Const.Strings.AncientDeadNamesFemale : ::Const.Strings.AncientDeadNames;
 	}
 
@@ -33,13 +37,12 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		return "{Having been recruited by the Legion after falling to a plague, %name% believed their fighting days were soundly finished. Now, new battles await, and this call to violence cannot be refused. | %name% is no stranger to battle considering the myriad cuts, crushes, and fractures that dot their husked frame. While death may grant reprieve for some, in the Legion, it merely ensures your everlasting service. | Death in battle is no excuse to rest, and %name% knows this all too well. Being pressed into the Legion\'s auxiliary ranks, a violent destruction is all but assured unless their knowledge of wars past guides them through another day. | Brought in under the illusion of imperial citizenship and the promise of steady work, %name% know finds themselves an agent of the Legion\'s restless war machine, the completion of their service always one more campaign away | Dragged from their restful death, %name% fills the unenviable role of a front line skirmisher in the resurgent legion. Now a new lifetime of war and carnage await, with them tossed into the maelstrom at the Emperor\'s command.} {Skilled in various forms of combat, this auxiliary is pressed to bolster the legion\'s ranks through skirmishes and mixed support. Whether they \'survive\' to fight another day is frankly, optional. | Primed to fill gaps in the front lines, the role of an auxiliary is often short-lived and underappreciated, if they make it out intact, a new battle is always on the horizon. | Scouting, mapping, trapping, and killing- the work of an imperial auxiliary is one of constant peril and exertion. Should one survive an ordeal, a fresh danger always lingers behind every tree and over every hill, for the empire\'s enemies are plentiful and relentless. | Often sent in waves of bone and bronze to buy opportunities for more valuable troops, auxiliaries can depend on receiving the most dangerous orders, with little interest as to their success or destruction. If they kill a foe or two, even better, if not, there are always more bodies. | The first to fight and often to fall, auxiliaries are routinely used to probe enemy formations to find weaknesses for more important soldiers, often boasting strong skirmishing skills. While some find success on the front lines, most are expected to soften the enemy before their inevitable destruction.} {Though they have heard little of this legion or the emperor it serves, %name% now serves through a confused mix of fear and admiration for their work, and hopes to carve out a better status within it. The horrors of their doomed station have not yet dawned on them, or perhaps they are simply wilfully blind to them. | Seemingly undisturbed by their station or the perils it entails, %name% wields a drive and thoroughness that would undoubtedly secure advancement anywhere else in the legion. At the front however, they might be lucky to last half a campaign... | If %name% still had flesh to plaster their cracked skull, it would undoubtedly paint a face of terror for all to see. The prospect of death in battle or at the hands of disappointed superiors disturbs this auxiliary on the regular, driving them to more reckless fights in hopes of escaping this cycle of horror. | An ardent believer in the empire and legion\'s mission, %name% hopes that their brief stint in the auxiliary troop will ensure their recognition and swift promotion to a station that befits their loyalty. Whether they make it that far remains to be seen... | Nervous and ever paranoid that they are being judged by their peers, %name% makes up for a lifetime of indecision through reckless abandon for their new unlife, seeking to prove %themselves% and make the best of their peculiar new position within the legion.}";
 	}
 
-	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
-	{
+	function onChangeAttributes() {
+		//uses Character_background.nut template (Skeleton)
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLegionAuxiliary);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(::Legends.Items.pickItem([
@@ -51,9 +54,10 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		], "scripts/items/"));
 
 		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
-			if (::Math.rand(1, 100) <= 50) {
-				items.equip(this.new("scripts/items/shields/ancient/auxiliary_shield"));
-			}
+			items.equip(::Legends.Items.pickItem([
+				[1, "shields/ancient/auxiliary_shield"],
+				[1, null]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([
@@ -64,7 +68,6 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 			[3, ::Legends.Armor.None]
 		]));
 
-		local items = this.getContainer().getActor().getItems();
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Ancient.ancient_household_helmet],
 			[2, ::Legends.Helmet.None]

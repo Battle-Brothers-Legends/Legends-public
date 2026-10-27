@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/manhunter_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/manhunter_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Manhunter);
 		this.m.BackgroundDescription = "Manhunters are used to hunting down people in the rough environment of the south.";
@@ -45,48 +43,48 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernThick, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.SouthernFemale,
+			Faces = ::Const.Faces.SouthernFemale,
+			Hairs = ::Const.Hair.SouthernFemale,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.SouthernThick,
+			Faces = ::Const.Faces.SouthernMale,
+			Hairs = ::Const.Hair.SouthernMale,
+			HairColors = ::Const.HairColors.Southern,
+			Beards = ::Const.Beards.Southern
+		}, 90);
 	}
 
-	o.onBuildDescription <- function ()	{
+	o.onBuildDescription <- function() {
 		return "{The large population of slaves, prisoners, criminals, and indebted servants in the south has produced an economy of sellers, buyers, and, given the flighty nature of the product, hunters. | Southern city states must have enormous reserves of labor to fuel their desert-borne economies. While many are born into working tirelessly for Viziers, some must be coerced into a life of servitude. | The deserts so sparse in natural resources, it is often an ample supply of captured criminals and indebted souls which bolsters the southern economy. And the business of hunting down these eventual servants is a prosperous one. | Southern Viziers are so fearful of rebellions that an entire market of Manhunters has emerged to nip them in the bud.} {%name% entered manhunting with a vengeful attitude: their entire family was massacred in a slave uprising. | %name% was once an ordinary caravan guard but turned to manhunting nomads who kept trying to ambush their convoys. Finding more profit in the human trade, %name%\'s stuck with it ever since. | %name% is a manhunter with a good nose for tracking criminals, deserters, prisoners of war, and more. You sometimes wonder if %name%\'s got a keen sense of smell for fearful sweat. | Once a big game hunter, %name% grew fond of chasing the greatest game of all: man. %name% is an expert tracker with a nose for sniffing out desperation.} {For %name%, the opportunity of working for a mercenary band simply brings in more consistent work than waiting around for some pressed criminal to get antsy about his chains. | %name% is a rugged, shady individual and it is quite possibly just as flighty as those being hunted. | Hunters like %name% carry traits and skills that would be useful in a mercenary band, but to some their past may be an ever present slight. Not all manhunters are seen in good light. | Capturing humans for the purpose of labor is frowned upon by many and catching those seeking their freedom equally so. Manhunters like %name% certainly have useful skills, but may rub some the wrong way. | To no surprise, many see slavers like %name% as opportunistic slugs. If %name% can make it with the company, it may take time to change the minds of some about the past.}";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Manhunter);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 3);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/battle_whip"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/bludgeon"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/oriental/saif"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/battle_whip"],
+			[1, "weapons/bludgeon"],
+			[1, "weapons/oriental/light_southern_mace"],
+			[1, "weapons/oriental/saif"],
+		], "scripts/items/"));
 
-		items.equip(this.new("scripts/items/tools/throwing_net"));
+		items.equip(::Legends.Items.pickItem([
+			[1, "tools/throwing_net"],
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.nomad_robe],
 			[1, ::Legends.Armor.Southern.thick_nomad_robe]

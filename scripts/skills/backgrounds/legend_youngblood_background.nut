@@ -1,7 +1,6 @@
 this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendYoungblood);
 		this.m.BackgroundDescription = "Youngbloods are students who have yet to prove themselves as capable witchhunters.";
@@ -41,63 +40,54 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, { Bodies = ::Const.Bodies.FemaleMuscular, HairColors = ::Const.HairColors.Young }) : this.setBodyCharacteristics(_gender, { Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.YoungMale, HairColors = ::Const.HairColors.Young});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleMuscular,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.YoungMale,
+			HairColors = ::Const.HairColors.Young
+		});
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 14,
-				type = "text",
-				icon = "ui/icons/bravery.png",
-				text = "[color=%positive%]+10[/color] Resolve at morale checks against fear, panic or mind control effects and can craft wooden stakes for use against vampires"
-			}
-		);
-		ret.push(
-			{
-				id = 14,
-				type = "text",
-				icon = "ui/icons/xp_received.png",
-				text = "[color=%positive%]+5%[/color] Experience Gain"
-			}
-		);
+		ret.push({
+			id = 14,
+			type = "text",
+			icon = "ui/icons/bravery.png",
+			text = "[color=%positive%]+10[/color] Resolve at morale checks against fear, panic or mind control effects and can craft wooden stakes for use against vampires"
+		});
+		ret.push({
+			id = 14,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = "[color=%positive%]+5%[/color] Experience Gain"
+		});
 		return ret;
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{%name% has always been a strange child, | %name% has had an odd upbringing, | %name% is a curious sort,} {so young but equally unswayed by the advances of either sex. | quiet and calculating, %they% often reacts indifferently to the pulls of glory and gold. | often forgoing the basic needs of most mercenaries almost as a form of penance.} {A few years ago, %they% shadowed two older witchhunters who taught %them% how to hunt a variety of horrors. | Picked up from %townname% at a young age, %they% had a different childhood to most. While other children heard about the horrors that would come for them while they slept, %name% was told how to kill them. | When %randomtown% was sacked by the undead, %name% stood proud and using a sling managed to kill a dozen of the dead, sitting out of their reach on a rooftop for several nights. | Led into the woods by %their% parents to die, %name% stumbled into an altercation involving a beasthunter and a witch, which started %their% reputation as a hag slayer. | At a young age, %they% left home in the middle of the night to live in the woods, shortly after %they% was picked up by a hunting party of witchhunters who used %them% as bait for a witch. %name% never felt so alive.} {Unfortunately, %their% tutorship was cut short when an unknown force destroyed the order %they% had been training under. While not a fully fledged witchhunter, %they% can still become one of the best - given time. | Being suddenly awoken from a hard day of study and training by a raging fire, %name% fled the order\'s stronghold with a few other students - who were gradually picked off in the wilderness. | %name% was almost killed during the siege on the order\'s stronghold, narrowly escaping from the burning fire and crumbling towers.'}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendYoungblood);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 1);
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/light_crossbow"],
+			[1, "weapons/crossbow"]
+		], "scripts/items/"));
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/light_crossbow"));
-		}
-		else
-		{
-			items.equip(this.new("scripts/items/weapons/crossbow"));
-		}
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
 
-		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		r = ::Math.rand(0, 2);
-
-		if (r == 0)
-		{
-			items.addToBag(this.new("scripts/items/weapons/legend_wooden_stake"));
-		}
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/legend_wooden_stake"],
+			[2, null]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Standard.ragged_surcoat],
@@ -115,8 +105,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 		]));
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.XPGainMult *= 1.05;
 		_properties.MoraleCheckBravery[1] += 10;

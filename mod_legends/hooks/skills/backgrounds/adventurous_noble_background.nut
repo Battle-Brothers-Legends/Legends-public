@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/adventurous_noble_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/adventurous_noble_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.AdventurousNoble);
 		this.m.BackgroundDescription = "Adventurous Nobles tend to have high resolve and are martially trained, but tend to not be particularly aware of dangers.";
@@ -31,43 +29,48 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Educated | ::Const.BackgroundType.Noble;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleMuscular,
+			Faces = ::Const.Faces.PrettyFemale,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.TidyMale,
+			HairColors = ::Const.HairColors.Young
+		});
 
 		if (_gender != 1) return;
 		this.m.Name = "Adventurous Lady";
 		this.m.Names = ::Const.Strings.LadyNames;
 	}
 
-	o.onBuildDescription <- function () {
+	o.onBuildDescription <- function() {
 		return "{A minor noble | As the third in the line of succession | A young and brash %noble% | A skilled swords%person%}, %name%\'s life at court {had grown stale for %them% | was not exciting enough for %them% with endless studying of court etiquette and family lineage | felt like wasting the best time of %their% life | was not half as exciting to %them% as the tales of adventures, battles, fearsome beasts to vanquish and fair maidens to conquer}. {Wearing the family crest proudly | At the encouragement of %their% brother | To the frustration of %their% mother | Finally making a decision to change things}, %name% rode out to {prove %themselves% | make a name for themselves | earn glory on the battlefield | test %their% skills in battle} and {live life to its fullest as %they% imagined it from behind the castle walls | see all the wonders and exotic places of the world | earn %their% place in the world | be knighted for %their% valor | become famous and loved in all the known world | become infamous and feared in all the known world}.";
 	}
 
-	o.onChangeAttributes = function () {
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.AdventurousNoble);
 	}
 
-	o.onAddEquipment = function () {
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 2);
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/fencing_sword"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/pike"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/rondel_dagger"));
-			items.equip(this.new("scripts/items/shields/buckler_shield"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/fencing_sword"],
+			[1, "weapons/pike"],
+			[1, "weapons/rondel_dagger"]
+		], "scripts/items/"));
+
+		if (items.getItemAtSlot(::Const.ItemSlot.Mainhand).getID() == "weapon.rondel_dagger") {
+			items.equip(::Legends.Items.pickItem([
+				[1, "shields/buckler_shield"]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([

@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/retired_soldier_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/retired_soldier_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.RetiredSoldier);
 		this.m.BackgroundDescription = "Retired soldiers tend to have decent experience in warfare, and their resolve is not easily broken. However, their age may have taken a toll on their physical attributes.";
@@ -43,55 +42,44 @@
 		this.m.PerkTreeDynamicMins.Enemy = 2;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale, HairColors = ::Const.HairColors.Old});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleMuscular,
+			Faces = ::Const.Faces.OldFemale,
+			HairColors = ::Const.HairColors.Old
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.CommonMale,
+			HairColors = ::Const.HairColors.Old
+		});
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "Once {a sergeant | a royal guards%person% | a dedicated soldier | a respected arms%person% | a frontliner | a soldier | a foot%person%} in the army of a local lord, %fullname% {retired from service after taking an arrow to the knee | was replaced by an aspiring youngster | was expelled after falling asleep on guard duty | retired after a long and exemplary service | was wounded in combat and forced to retire | grew weary of the battles and bloodbaths, formally ending %their% service before it ruined %their% mind | battled the ferocious orc hordes, the campaigns eventually forcing %them% into retirement}. {He locked %their% equipment in a chest along with the memories of %their% duty, intending to never pick up either one again | %They% shelved both sword and shield in %their% study as merely relics of a military past | %They% hung %their% weapons above the chimney as a silent reminder of the %person% %they% used to be | But a new chapter in %their% life was awaiting %them%, one where %they% would not need a sword to get on with %their% day | With many years of service behind %them%, %they% could finally get some peace and quiet | Absent of a military drill\'s barking, %their% life never felt so quiet}. {For many years %they% lived a happy life with %their% beloved wife, until she died of old age. With nothing else to turn to | Only when finding out that %their% former comrades were brutally slain in an ambush | Only when hearing rumors of a large invasion about to destroy %their% homeland, | %They% tried to live as a farmer for a while, but every day %they% missed having a good sword in hand and standing in the shieldwall. Finally, | But life outside the army, as it turned out, was not for %them%, for %they% felt idle and useless. Finally, | For a time, %they% felt at ease. But as the land was consumed by warfare, | Time spent away from war was short-lived, as the war soon came to %them%. It wasn\'t long until | Living out on a farm, boredom crept at %name%\'s wits until, finally,} %they% picked up arms once more. Although {%their% best days are long over | not as physically fit as %they% once was | %their% constitution is not that of a young %person% anymore | %they% is not the brash young fighter %they% once was | time away from the service has dampened %their% abilities}, {%their% swordfighting skills are still enough to beat any young braggart | %they% still knows how fighting is done on the battlefield | %their% experience is second to few | %they% can rely on the combat experience of a lifetime | %they% is eager to stand amongst brothers | %they% is eager to find battle again | %their% itch to find battle is mirrored by %their% capabilities to actually fight | %they% still knows a thing or two about holding a shieldwall}.";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.RetiredSoldier);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 3);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/shortsword"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/hand_axe"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/falchion"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/shortsword"],
+			[1, "weapons/hand_axe"],
+			[1, "weapons/boar_spear"],
+			[1, "weapons/falchion"],
+		], "scripts/items/"));
 
-		r = ::Math.rand(0, 0);
-
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/shields/wooden_shield"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "shields/wooden_shield"],
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],

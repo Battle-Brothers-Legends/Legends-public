@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/crucified_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/crucified_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Crucified);
 		this.m.Excluded = [
@@ -35,13 +33,11 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
@@ -52,25 +48,17 @@
 		tattoo_head.Visible = true;
 	}
 
-	o.updateAppearance = function ()
-	{
+	o.updateAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Crucified);
 	}
-
-	o.onAddEquipment = function ()
-	{
-	}
-
 });

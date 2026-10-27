@@ -45,10 +45,10 @@ this.legend_guild_master_background <- this.inherit("scripts/skills/backgrounds/
 		if (_gender == -1) {
 			_gender = this.randomizeHumanGender();
 		}
-		_gender ? this.setBodyCharacteristics(_gender, {
+		this.setBodyCharacteristics(_gender, _gender ? {
 			Hairs = ::Const.Hair.UntidyMale,
 			HairColors = ::Const.HairColors.Old
-		}) : this.setBodyCharacteristics(_gender, {
+		} : {
 			Bodies = ::Const.Bodies.Muscular,
 			Hairs = ::Const.Hair.UntidyMale,
 			HairColors = ::Const.HairColors.Old,
@@ -100,23 +100,26 @@ this.legend_guild_master_background <- this.inherit("scripts/skills/backgrounds/
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(1, 4);
 
-		if (r == 1) {
-			items.equip(this.new("scripts/items/weapons/light_crossbow"));
-			items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-			items.addToBag(this.new("scripts/items/weapons/dagger"));
-		} else if (r == 2) {
-			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		} else if (r == 3) {
-			items.equip(this.new("scripts/items/weapons/spetum"));
-		} else if (r == 4) {
-			items.equip(this.new("scripts/items/weapons/javelin"));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/light_crossbow"],
+			[1, "weapons/boar_spear"],
+			[1, "weapons/spetum"],
+			[1, "weapons/javelin"]
+		], "scripts/items/"));
+
+
+		if (items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)))) {
+			items.addToBag(::Legends.Items.pickItem([
+				[1, "weapons/dagger"]
+			], "scripts/items/"));
 		}
 
-		if (::Math.rand(1, 100) <= 50 && items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
-			items.equip(this.new("scripts/items/tools/throwing_net"));
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
+			items.equip(::Legends.Items.pickItem([
+				[1, "tools/throwing_net"],
+				[1, null]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([

@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/companion_ranged_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/companion_ranged_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Companion);
 		this.m.DailyCostMult = 1.0;
@@ -51,18 +49,15 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "%name% is one of the more talented marksman you\'ve encountered in your travels. {After he saved your life with an arrow into the heart of a would-be assassin, you hired the man on the spot. | Learning of the man was easy - you just had to find the winner of a local shooting competition. | He once won an archery contest that had over a hundred participants from all the lands. | It is said that he can split an arrow - mid-flight. | You found the man on a farm where, obviously, you thought his shooting talents were going to waste. | A poacher, a bowyer, an archer, the man\'s skills have gotten plenty of use. You suspect he readily accepted your offer for mercenary work just to say \'he\'s done it all\'. | You once saw him shoot the moon, but that may have been some sort of trick. | A clever bowman, he once loosed two arrows simultaneously to kill a charging set of brigands.} While he has a fondness for killing from afar, %name%\'s no slouch in close-quarters combat.";
 	}
 
-	o.onPrepareVariables = function ( _vars )
-	{
+	o.onPrepareVariables = function(_vars) {
 		local brothers = ::World.getPlayerRoster().getAll();
 		_vars.push([
 			"1h",
@@ -78,35 +73,36 @@
 		]);
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.CompanionRanged);
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			local actor = this.getContainer().getActor();
 			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.RangedSkill] = 2;
 		talents[::Const.Attributes.RangedDefense] = 1;
 		talents[::Const.Attributes.Initiative] = 1;
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		items.equip(this.new("scripts/items/weapons/light_crossbow"));
-		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		items.addToBag(this.new("scripts/items/weapons/knife"));
-		r = ::Math.rand(0, 1);
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/light_crossbow"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
+
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/knife"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],

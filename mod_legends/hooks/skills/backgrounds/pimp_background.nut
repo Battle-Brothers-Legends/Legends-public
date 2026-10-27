@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/pimp_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/pimp_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Pimp);
 		this.m.Excluded = [
@@ -38,23 +37,19 @@
 		this.m.Bodies = ::Const.Bodies.Thick;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Pimp);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic]

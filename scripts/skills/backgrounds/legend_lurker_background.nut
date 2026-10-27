@@ -1,7 +1,6 @@
 this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLurker);
 		this.m.BackgroundDescription = "This one is unsettling, even for a cultist. Ever quiet and brooding, but with eyes as keen as that of a vengeful god.";
@@ -59,7 +58,14 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Faces = ::Const.Faces.OldFemale,
+			HairColors = ::Const.HairColors.Old
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
 	function onBuildDescription() {
@@ -70,97 +76,57 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 		return true;
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLurker);
 	}
 
-	function onSetAppearance()
-	{
-		if (!this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	function onSetAppearance() {
+		if (!this.isBackgroundType(::Const.BackgroundType.Female)) {
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 			local tattoo_head = actor.getSprite("tattoo_head");
 
-			if (::Math.rand(1, 100) <= 50)
-			{
+			if (::Math.rand(1, 100) <= 50) {
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 				tattoo_body.Visible = true;
 			}
 
-			if (::Math.rand(1, 100) <= 50)
-			{
+			if (::Math.rand(1, 100) <= 50) {
 				tattoo_head.setBrush("tattoo_01_head");
 				tattoo_head.Visible = true;
 			}
 		}
 	}
 
-	function updateAppearance()
-	{
-		if (!this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	function updateAppearance() {
+		if (!this.isBackgroundType(::Const.BackgroundType.Female)) {
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 
-			if (tattoo_body.HasBrush)
-			{
+			if (tattoo_body.HasBrush) {
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 			}
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
 
-		if (::Const.DLC.Wildmen)
-		{
-			r = ::Math.rand(1, 100);
+		items.equip(::Legends.Items.pickItem([
+			[5, "weapons/short_bow"],
+			[3, "weapons/legend_dilapidated_sling"],
+			[2, "weapons/wonky_bow"]
+		], "scripts/items/"));
 
-			if (r <= 50)
-			{
-				items.equip(this.new("scripts/items/weapons/short_bow"));
-				items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-			}
-			else if (r <= 80)
-			{
-				items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
-			}
-			else
-			{
-				items.equip(this.new("scripts/items/weapons/wonky_bow"));
-				items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-			}
-		}
-		else
-		{
-			if (::Math.rand(1, 100) <= 75)
-			{
-				items.equip(this.new("scripts/items/weapons/short_bow"));
-			}
-			else
-			{
-				items.equip(this.new("scripts/items/weapons/wonky_bow"));
-			}
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
 
-			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-		}
-
-		r = ::Math.rand(0, 4);
-
-		if (r == 0)
-		{
-			items.addToBag(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 1)
-		{
-			items.addToBag(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
-		}
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/knife"],
+			[1, "weapons/legend_cat_o_nine_tails"],
+			[2, null]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
@@ -168,6 +134,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			[1, ::Legends.Armor.Standard.monk_robe],
 			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.hood],
@@ -175,8 +142,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 		]));
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		this.getContainer().getActor().getFlags().add("cultist");
 	}

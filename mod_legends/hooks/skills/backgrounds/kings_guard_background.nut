@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/kings_guard_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/kings_guard_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.KingsGuard);
 		this.m.BackgroundDescription = "";
@@ -12,13 +10,11 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle("the Kingsguard");

@@ -12,19 +12,19 @@ this.legend_disowned_noble_ranged_background <- this.inherit("scripts/skills/bac
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 2);
-		if (r == 0) {
-			items.equip(this.new("scripts/items/weapons/hunting_bow"));
-			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-		}
-		else if (r == 1) {
-			items.equip(this.new("scripts/items/weapons/light_crossbow"));
-			items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		}
-		else if (r == 2) {
-			items.equip(this.new("scripts/items/weapons/arming_sword"));
-			items.equip(this.new("scripts/items/shields/wooden_shield"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/hunting_bow"],
+			[1, "weapons/light_crossbow"],
+			[1, "weapons/arming_sword"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
+
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
+			items.equip(::Legends.Items.pickItem([
+				[1, "shields/wooden_shield"]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([

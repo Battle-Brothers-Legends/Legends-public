@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/companion_ranged_southern_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/companion_ranged_southern_background", function(o) {
+	o.create = function() {
 		this.companion_ranged_background.create();
 		this.m.Bodies = ::Const.Bodies.Gladiator;
 		this.m.Faces = ::Const.Faces.SouthernMale;
@@ -44,17 +42,24 @@
 		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.RangedSkill] = 2;
 		talents[::Const.Attributes.RangedDefense] = 1;
 		talents[::Const.Attributes.Initiative] = 1;
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.new("scripts/items/weapons/oriental/composite_bow"));
-		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-		items.addToBag(this.new("scripts/items/weapons/knife"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/oriental/composite_bow"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
+
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/knife"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.padded_vest],

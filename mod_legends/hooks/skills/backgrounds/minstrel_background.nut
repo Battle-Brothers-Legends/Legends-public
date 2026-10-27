@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/minstrel_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/minstrel_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Minstrel);
 		this.m.BackgroundDescription = "A good minstrel will sing a saga to inspire the men, play the flute to calm them, or entertain them with poetry around the camp fire. A lute is not a weapon, however, and minstrels are often not used to physical labor or bloodshed.";
@@ -43,14 +41,21 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Performing;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Faces = ::Const.Faces.SmartMale, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Tidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Faces = ::Const.Faces.SmartMale,
+			Hairs = ::Const.Hair.TidyMale,
+			HairColors = ::Const.HairColors.Young,
+			Beards = ::Const.Beards.Tidy
+		});
 
 		if (_gender != 1) return;
 		this.m.Name = "Troubadour";
@@ -58,45 +63,35 @@
 		this.m.BackgroundDescription = "A good troubadour will give a speech to inspire the company, act out a scene to calm them, or entertain them with dancing around the camp fire. The actors tumbles and moves may be repurposed for the real battle, if their nerve holds steady";
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		if (this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	o.onBuildDescription <- function() {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 			return "\'{I can swing a sword and cleave an axe, | One might ask of me a task, | Right with god, but in the left a flask,} {and I say, \'You question a woman who wears no mask?\'. | and so I have to move quick, but not quite fast.} {Stare down the stuffed bears I did, | Into my frayed pantaloons I bid, | Along the muddy roads my boots skid,} {and so of many things I am rid. | truth! My shameful talent is to - ferociously! - knit.} {So take me along your adventure, | Bring me with your men who clatter and clamber, | Hand me your shield and that thing shaped like a member,} {and let us go and bid fear a farewell to remember! | and let\'s - oh, ow! I have a splinter! | and may we come, one and all, to a healthy next-winter!}\'. {The woman speaks gibberish. | It rhymes!}";
-		}
-		else
-		{
+		} else {
 			return "{I can swing a sword and cleave an axe, | One might ask of me a task, | Right with god, but in the left a flask,} {and I say, \'You question a man who wears no mask?\'. | and so I have to move quick, but not quite fast.} {Stare down the stuffed bears I did, | Into my frayed pantaloons I bid, | Along the muddy roads my boots skid,} {and so of many things I am rid. | truth! My shameful talent is to - ferociously! - knit.} {So take me along your adventure, | Bring me with your men who clatter and clamber, | Hand me your shield and that thing shaped like my member,} {and let us go and bid fear a farewell to remember! | and let\'s - oh, ow! I have a splinter! | and may we come, one and all, to a healthy next-winter!}. {The man speaks gibberish. | It rhymes!}";
 		}
 
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Minstrel);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/lute"],
+			[1, "weapons/legend_drum"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
-			[1, "linen_tunic", ::Math.rand(3,4)]
+			[1, "linen_tunic", ::Math.rand(3, 4)]
 		]));
-		local r;
 
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));
 
-		local r = ::Math.rand(0, 1);
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/lute"));
-		}
-		if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_drum"));
-		}
 	}
 
 });

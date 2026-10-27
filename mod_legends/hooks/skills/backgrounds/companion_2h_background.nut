@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/companion_2h_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/companion_2h_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Companion2h);
 		this.m.DailyCostMult = 1.0;
@@ -50,18 +48,15 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "Brooding and at times suicidal, it\'s no surprise that %name% is frequently found diving into battle with nothing more than a large two-hander. {Clothed in murderous intent, you once saw him cleave a man in two - top to bottom. | It is said that he once cleaved a warrior orc in two, leaving the trunk of its legs still standing. | The man is known to ignore the fragility of his own mortality just to end the life of another. | He thrives being in the thick of battle where he can swing his weapons with little regard for safety or accuracy. | Supposedly, he once won a jousting tournament, but had to flee after bedding a watching nobleman\'s wife. | The man is not a murderer, but he would have made a fine one. | Seemingly unstoppable at times, you are glad to have the man on your side. | In a fit of bloodthirsty rage he once impaled two goblins on one pike. | A strong brute, you once saw %name% kill someone just on his backswing.} He\'ll use any weapon you give him, but %name% has a proclivity towards those that can make calamitous ruin out of a man\'s body.";
 	}
 
-	o.onPrepareVariables <- function ( _vars )
-	{
+	o.onPrepareVariables <- function(_vars) {
 		local brothers = ::World.getPlayerRoster().getAll();
 		_vars.push([
 			"1h",
@@ -77,24 +72,20 @@
 		]);
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Companion2h);
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			local actor = this.getContainer().getActor();
 			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.MeleeSkill] = 2;
@@ -102,13 +93,15 @@
 		talents[::Const.Attributes.Bravery] = 1;
 		local items = this.getContainer().getActor().getItems();
 
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/woodcutters_axe"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
-
-		items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
 
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood],

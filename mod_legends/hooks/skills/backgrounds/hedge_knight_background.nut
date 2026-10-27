@@ -1,8 +1,8 @@
-::mods_hookExactClass("skills/backgrounds/hedge_knight_background", function (o) {
+::mods_hookExactClass("skills/backgrounds/hedge_knight_background", function(o) {
 	o.m.AlreadyUsed <- false;
 	o.m.ExecutingAttack <- false;
 
-	o.create = function () {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.HedgeKnight);
 		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting man against man with brute strength and heavy armor, but less so in cooperating with others or in swiftness. Hedge Knights strike with such strength that they might cleave a secondary enemy.";
@@ -57,7 +57,7 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Crusader;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
 		ret.push({
 			id = 13,
@@ -68,12 +68,17 @@
 		return ret;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, HairColors = ::Const.HairColors.Young});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			HairColors = ::Const.HairColors.Young
+		});
 	}
 
-	o.onTargetKilled <- function (_targetEntity, _skill) {
+	o.onTargetKilled <- function(_targetEntity, _skill) {
 		if (this.m.AlreadyUsed || _skill.isRanged()) {
 			return;
 		}
@@ -81,7 +86,7 @@
 		this.m.AlreadyUsed = true;
 
 		local executeFollowup;
-		executeFollowup = (function( _retries ) {
+		executeFollowup = (function(_retries) {
 			local actor = this.getContainer().getActor();
 			if (::Legends.S.isEntityNullOrDead(actor) || actor.m.MoraleState == ::Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned || !::Tactical.TurnSequenceBar.isActiveEntity(actor)) {
 				this.m.AlreadyUsed = false;
@@ -107,8 +112,8 @@
 						local entity = next.getEntity();
 						if (entity.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
 							if (_retries > 20) {
-                    			entity.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
-               				} else {
+								entity.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
+							} else {
 								targetsAreMovingInvoluntarily = true;
 								break;
 							}
@@ -122,9 +127,9 @@
 			}
 
 			if (targetsAreMovingInvoluntarily) {
-            	::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _retries + 1);
-            	return;
-        	}
+				::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _retries + 1);
+				return;
+			}
 
 			if (targetTiles.len() == 0) {
 				this.m.AlreadyUsed = false;
@@ -138,22 +143,22 @@
 		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, 0);
 	}
 
-	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
+	o.onAnySkillUsed <- function(_skill, _targetEntity, _properties) {
 		if (this.m.ExecutingAttack) {
 			_properties.DamageTotalMult *= 0.5;
 		}
 	}
 
-	o.onTurnStart <- function () {
+	o.onTurnStart <- function() {
 		this.m.AlreadyUsed = false;
 	}
 
-	o.onBuildDescription <- function () {
+	o.onBuildDescription <- function() {
 		return "{Some people are born to be feared. Well over six feet tall, %name%\'s stature alone is a threatening one. | %name%\'s shadow casts over smaller men - and they seem to only further shrink when %they% walks by. | Standing amongst men like a bear in a suit of armor, %name% earns plenty of double-takes. | Years of brutal combat with %their% equally huge brothers left %name% a scarred and scary figure.} {The hedge knight has spent many seasons taking %their% prized horse to jousting tournaments. Unfortunately, a polearm crowned %their% mount, leaving %them% without a ride. | A mercenary in the company of %themselves%, the hedge knight wandered for years, doing battle for those who offered the most crowns. | When %they% cleaved five men with one swing, three of which were on %their% side, the hedge knight was banned from service in every army in the land. | Ordered to kill a lord\'s enemies, the hedge knight kicked in the door of a family and slaughtered them all with %their% bare hands. When the lord refused to pay, %name% killed him, too. | The hedge knight has spent many nights sleeping peacefully beneath a pale moon - and just as many days killing ruthlessly beneath a shining sun.} {Always on the hunt for more crowns, the company of sellswords seemed like a good fit. | Too terrifying to be employed for long, %name% seeks the company of men who will not piss themselves when %they% grabs a weapon. | Tired of killing jousters and lords, as well as women and children, %name% sees mercenary work as something of a vacation. | War has apparently gotten in the way of %name%\'s jousting career. %They% seeks to amend that problem.}";
 
 	}
 
-	o.onSetAppearance = function () {
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
@@ -170,7 +175,7 @@
 		}
 	}
 
-	o.updateAppearance = function () {
+	o.updateAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
@@ -180,25 +185,24 @@
 		}
 	}
 
-	o.onChangeAttributes = function () {
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.HedgeKnight);
 	}
 
-	o.onAddEquipment = function () {
+	o.onAddEquipment = function() {
 		local actor = this.getContainer().getActor();
 		actor.setVeteranPerks(3);
 		local items = actor.getItems();
 
-		local weapons = [
-			"weapons/greataxe",
-			"weapons/longsword",
-			"weapons/legend_zweihander",
-			"weapons/greatsword",
-			"weapons/two_handed_hammer",
-			"weapons/two_handed_flail",
-			"weapons/two_handed_flanged_mace"
-		];
-		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/greataxe"],
+			[1, "weapons/longsword"],
+			[1, "weapons/legend_zweihander"],
+			[1, "weapons/greatsword"],
+			[1, "weapons/two_handed_hammer"],
+			[1, "weapons/two_handed_flail"],
+			[1, "weapons/two_handed_flanged_mace"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],

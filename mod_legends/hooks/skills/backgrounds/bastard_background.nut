@@ -1,5 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/bastard_background", function (o) {
-	o.create = function () {
+::mods_hookExactClass("skills/backgrounds/bastard_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Bastard);
 		this.m.BackgroundDescription = "Bastards often have profited from some training in melee fighting and know the weaknesses of noble armies.";
@@ -26,24 +26,31 @@
 		this.m.PerkTreeDynamicMins.Defense = 3;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Tidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.TidyMale,
+			HairColors = ::Const.HairColors.Young,
+			Beards = ::Const.Beards.Tidy
+		});
 	}
 
-	o.onBuildDescription <- function () {
+	o.onBuildDescription <- function() {
 		return "{%name% was born during a fiery military campaign far away from %their% father\'s home. | %name%\'s mother hailed from a pub in %randomtown%. Which is strange, because %their% father is a married royal in %townname%. | With a wife cursed by a witch, %name%\'s father gave himself to another woman to \'continue\' the bloodline. | With the king away so long, %name%\'s queen of a mother could hardly resist the temptations of a local servant. | %name% was born nine months after raiders pillaged %their% parents\' castle.} {The life of a bastard was not an easy one: the %person% was constantly hounded by jealous half-%sibling%s. | Like some kind of royal leper, the bastard was kept far away from the public eye. | Thankfully, for much of %their% life %name% knew not that %they% was a bastard child. | A controversy at birth, %name% was only spared abandonment by the omens of a local oracle. | Being a royal bastard gave the %person% a good life, so long as %they% kept his head low, and %their% unwanted status even lower. | Hatred by both strangers and family steeled the bastard for the eventual difficulties outside %their% royal upbringing.} {Angered by %their% role in life, %name% did attempt a coup to take the throne. It did not go far. %They% is now banished from every court in the land. | When a half-%sibling% pelted %them% with stones, %name% felt little remorse running the sibling through with a sword. %They% blamed it on a servant, but quickly left %their% royal housing thereafter. | %name%\'s father tried to pass %them% off as legitimate, but when a royal marriage fell through the ensuing scandal of impropriety proved too much. The bastard now roams the land, free of the shackles of controversy. | Being the oldest %offspring% in line made %name% a target for %their% younger, legitimate brothers. It was an easy choice to leave that life of politics and backstabbing. | Found in bed with a sibling, the scandals in %name%\'s life grew far too heavy to stay in the royal courts. | Tired of the trivialities of royal processions, %name% only wishes to join a group of men that care not for bloodlines and legitimacy. | When an assassin poisoned %their% father\'s wine, %name% was quickly blamed for the murder. Escaping an angry mob was only the beginning of an exciting, new life. | While %they% came to love %them% dearly, %name%\'s father knew the royal court was not safe. %They% sent the %person% away to forge a life on %their% own terms.}";
 	}
 
-	o.onChangeAttributes = function () {
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Bastard);
 	}
 
-	o.onAdded <- function () {
+	o.onAdded <- function() {
 		if (this.m.IsNew) {
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendHateNobles);
 		}
@@ -54,23 +61,18 @@
 		}
 	}
 
-	o.onAddEquipment = function () {
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r = ::Math.rand(0, 2);
 
-		if (r == 0) {
-			items.equip(this.new("scripts/items/weapons/falchion"));
-		} else if (r == 1) {
-			items.equip(this.new("scripts/items/weapons/shortsword"));
-		} else if (r == 2) {
-			items.equip(this.new("scripts/items/weapons/hand_axe"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/falchion"],
+			[1, "weapons/shortsword"],
+			[1, "weapons/hand_axe"]
+		], "scripts/items/"));
 
-		r = ::Math.rand(0, 1);
-
-		if (r == 0) {
-			items.equip(this.new("scripts/items/shields/heater_shield"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "shields/heater_shield"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],

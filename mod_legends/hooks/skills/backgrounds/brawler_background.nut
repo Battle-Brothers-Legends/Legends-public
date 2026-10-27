@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/brawler_background", function(o)
-{
-	o.create = function()
-	{
+::mods_hookExactClass("skills/backgrounds/brawler_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Brawler);
 		this.m.BackgroundDescription = "Brawlers are unmatched in unarmed combat, and physical exercise tends to leave them in good shape.";
@@ -35,23 +33,26 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Lowborn;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleMuscular
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
-	o.onBuildDescription <- function()
-	{
+	o.onBuildDescription <- function() {
 		return "{Burly and with churchbells for fists, %name% has spent much of the past year sharpening %their% boxing skills on the grindstone that is %their% fellow man. | With a face contorted to the shapes of others\' knuckles, it\'s not hard to realize that %name% is a career fighter. | %name% loves the drink as much as %they% does a good fight, a potent combination. | A hard upbringing by %their% father and brothers honed %name% into being a temperamental fighter. | Bullies in %name%\'s spriteful youth forged %them% into a %person% that prefers to seek out a fight rather than wait for it to come to %them%.  | %name% only ever had one real talent: using %their% fists to bloody the noses of men and not going down no matter what. | Growing up, %name% wrestled bulls on the family farm. Unfortunately for men, %they% found time to venture into the cities.} {For the past year %they% has been employed by a local lord, paraded around to fistfight the champions of royalty. | A lover of the bar brawl, the %person% has apparently been banned from too many taverns to count. | Gaining notoriety as a fighter in %randomtown% meant %they% had to fight every single proud, boasting, and drunk man who came %their% way. | Although %they% became an undefeated prizefighter, %they% was hardly earning enough to get by. | Fiery in spirit, %they're% always willing to take up fisticuffs. Local fighting rings say %they're% got a mean left hook.} {Hearing of greater fights to be had, %name% has put down %their% mitts to take up the more lucrative vocation of being a sellsword. | Only one person has bested %name%: %their% %partner%. After being chided for being an embarrassment with no ambition, %they% decided to take up the more \'prestigious\' field of mercenary work. | Years of martial combat practically destroyed %their% memory. Some think %they% mistook a mercenary camp as an item on %their% shopping list. | Very low on crowns and barely able to open %their% broken hands to hug %their% own son much less throw a punch, %name% seeks a new career. | After years of hardship, the promise of regular pay for mercenary work is a tempting offer for %them%, even though %they% has little idea of actual warfare. | This %person% could murder a rock and injure a stone - a good addition to any outfit.}";
 	}
 
-	o.onChangeAttributes = function()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Brawler);
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
 		ret.push({
 			id = 12,
@@ -62,32 +63,31 @@
 		return ret;
 	}
 
-	o.onAdded <- function()
-	{
+	o.onAdded <- function() {
 		this.character_background.onAdded();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			local actor = this.getContainer().getActor();
 			actor.setTitle(::Const.Strings.BrawlerTitles[::Math.rand(0, ::Const.Strings.BrawlerTitles.len() - 1)]);
 		}
 	}
 
-	o.onAddEquipment = function()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "accessory/gloves/legend_hand_wraps_item"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
-		items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
-	{
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
-		{
+	o.onAnySkillUsed = function(_skill, _targetEntity, _properties) {
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand)) {
 			_properties.DamageTotalMult *= 1.05;
 		}
 	}

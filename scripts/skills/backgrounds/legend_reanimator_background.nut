@@ -120,7 +120,11 @@ this.legend_reanimator_background <- this.inherit("scripts/skills/backgrounds/ch
 		talents[::Const.Attributes.RangedDefense] = 1;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
-		//items
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_staff"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.Standard.necromancer_hat],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
@@ -132,7 +136,5 @@ this.legend_reanimator_background <- this.inherit("scripts/skills/backgrounds/ch
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat]
 		]));
-
-		items.equip(this.new("scripts/items/weapons/legend_staff"));
 	}
 });

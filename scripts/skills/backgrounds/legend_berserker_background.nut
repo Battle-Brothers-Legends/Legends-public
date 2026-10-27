@@ -2,8 +2,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 	m = {
 		Tattoo = 0
 	},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBerserker);
 		this.m.BackgroundDescription = "Hailing from the north, berserkers are often feared even among the wildmen and the barbarians. Incredibly hardy and often maddened from the overuse of mushrooms, they almost rival orcs in raw strength.";
@@ -59,8 +58,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
-	function getTooltip ()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
 		ret.push({
 			id = 12,
@@ -71,34 +69,36 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		return ret;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand)) {
 			_properties.DamageTotalMult *= 1.05;
 		}
 	}
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.LegendTattoos, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Wild}, 100);
-		if(_gender){
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.LegendTattoos,
+			Hairs = ::Const.Hair.WildMale,
+			HairColors = ::Const.HairColors.Young,
+			Beards = ::Const.Beards.Wild
+		}, 100);
+		if (_gender) {
 			this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local prince took a shine to %name% the wildwoman. She was \'purchased\' for a large sum of gold and given to the nobleman. You went and visited the woman recently. For dinner, she sat at a kingly table, grinning goofily and mimicking the nobles around her as best she could. Her new and inexplicable husband adored her, and her him. When you said your goodbyes, she offered you a heavy golden crown off the top of her head. It weighed heavy with traditions and ancient histories. You said it\'d be best if she kept it. The wildwoman shrugged and walked off, spinning the circlet around a finger.";
 		}
 	}
 
-	function onBuildDescription ()
-	{
+	function onBuildDescription() {
 		return "{For some, the wild is a refuge. | It is said that %person% is born with the wilderness in %them%, and that %they% does wrong by turning %their% back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where %they% hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the wildman, but for some reason %they% seems very willing to fight. Let\'s hope %their% newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about %their% body. When asked why %they% wishes to join a band of mercenaries, %they% hoots and, with a crooked finger, replicates one of %their% fleshen arts across the sky. | Wounds, old and fresh, dot %their% already mottled body. And they are not superficial - this %person% had been fighting something fierce in the wild. | One has to wonder if the calamities which chased %them% into the forests have come to chase %them% back out. | Judging by %their% wild grunting, it\'s doubtful %they%\'s here to rejoin civilization. | Years as a recluse haven\'t made the %person% forget what a few crowns can get you. The question is, why did %they% come back? | He has the strength to wrestle a boar - and %their% many scars makes you wonder if perhaps %they% did.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBerserker);
 	}
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
@@ -106,32 +106,37 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 		local body = actor.getSprite("body");
-		tattoo_body.setBrush((this.m.Tattoo == 0 ? "warpaint_01_" : "scar_02_") +  body.getBrush().Name);
+		tattoo_body.setBrush((this.m.Tattoo == 0 ? "warpaint_01_" : "scar_02_") + body.getBrush().Name);
 		tattoo_body.Visible = true;
 		tattoo_head.setBrush(this.m.Tattoo == 0 ? "warpaint_01_head" : "scar_02_head");
 		tattoo_head.Visible = true;
 	}
 
-	function updateAppearance()
-	{
+	function updateAppearance() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush((this.m.Tattoo == 0 ? "warpaint_01_" : "scar_02_") + body.getBrush().Name);
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.Hitpoints] = 3;
-		 this.getContainer().getActor().fillTalentValues(2, true);
+		this.getContainer().getActor().fillTalentValues(2, true);
 
 		local items = this.getContainer().getActor().getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/barbarians/skull_hammer"],
+			[1, "weapons/barbarians/two_handed_spiked_mace"],
+			[1, "weapons/barbarians/rusty_warblade"],
+			[1, "weapons/barbarians/heavy_rusty_axe"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor],
 			[1, ::Legends.Armor.Barbarian.rugged_scale_armor],
@@ -141,30 +146,21 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
 			[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.crude_faceguard_helmet],
 			[1, ::Legends.Helmet.Barbarian.crude_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]));
-		local weapons = [
-			"weapons/barbarians/skull_hammer",
-			"weapons/barbarians/two_handed_spiked_mace",
-			"weapons/barbarians/rusty_warblade",
-			"weapons/barbarians/heavy_rusty_axe"
-		];
-
-		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.character_background.onSerialize(_out);
 		_out.writeU8(this.m.Tattoo);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.character_background.onDeserialize(_in);
 		this.m.Tattoo = _in.readU8();
 	}

@@ -1,7 +1,6 @@
 this.legend_commander_peddler_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderPeddler);
 		//gender neutral description
@@ -39,13 +38,36 @@ this.legend_commander_peddler_background <- this.inherit("scripts/skills/backgro
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
 		if (this.m.Ethnicity == 0) {
-			_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale}, 60);
-		}
-		else if (this.m.Ethnicity == 1) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMale, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
-		}
-		else if (this.m.Ethnicity == 2) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemale, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
+			this.setBodyCharacteristics(_gender, _gender ? {} : {
+				Bodies = ::Const.Bodies.Skinny,
+				Hairs = ::Const.Hair.CommonMale
+			}, 60);
+		} else if (this.m.Ethnicity == 1) {
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.SouthernFemale,
+				Faces = ::Const.Faces.SouthernFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.Young
+			} : {
+				Bodies = ::Const.Bodies.SouthernMale,
+				Faces = ::Const.Faces.SouthernMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.Southern,
+				Beards = ::Const.Beards.Southern
+			}, 60);
+		} else if (this.m.Ethnicity == 2) {
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.AfricanFemale,
+				Faces = ::Const.Faces.AfricanFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.African
+			} : {
+				Bodies = ::Const.Bodies.AfricanMale,
+				Faces = ::Const.Faces.AfricanMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.African,
+				Beards = ::Const.Beards.Southern
+			}, 60);
 		}
 	}
 
@@ -54,54 +76,33 @@ this.legend_commander_peddler_background <- this.inherit("scripts/skills/backgro
 		return "{After an exchange gone bad, | Once a proud noble, now | Well read and learned, | In tough times, humanity has a habit of falling to pieces when they need to be together most, hence} %name% now roams the land buying and selling what they can. {More honest than most of their kind | Persistent but kind | Trying to hide from their past | A purveyor of exotic goods | After getting into the business selling {used weapons | wine | trinkets}} {, they prefer to be known as a merchant - not a desperate peddler. Even if an unhealthy lifestyle has caught up with them in the meantime. | , they prefer to be known as someone who is trying their best to get by in an uncaring world | , %name% moves from place to place, possibly for good reasons they\'d rather not discuss in the open. Or at all.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderPeddler);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 
 		local actor = this.getContainer().getActor();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			actor.setTitle(::Const.Strings.PeddlerTitles[::Math.rand(0, ::Const.Strings.PeddlerTitles.len() - 1)]);
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 5);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/light_crossbow"));
-			items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/bludgeon"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/rondel_dagger"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_dilapidated_sling"],
+			[1, "weapons/legend_staff"],
+			[1, "weapons/light_crossbow"],
+			[1, "weapons/bludgeon"],
+			[1, "weapons/rondel_dagger"],
+			[1, "weapons/oriental/light_southern_mace"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
 
 		items.equip(::Legends.Items.pickArmor([
 			[4, ::Legends.Armor.Standard.linen_tunic],
@@ -110,7 +111,7 @@ this.legend_commander_peddler_background <- this.inherit("scripts/skills/backgro
 			[1, ::Legends.Armor.Standard.noble_gear]
 		]));
 
-		items.equip(::Legends.Items.pickHelmet([ //higher number = more likely to spawn
+		items.equip(::Legends.Items.pickHelmet([//higher number = more likely to spawn
 			[4, ::Legends.Helmet.None],
 			[2, ::Legends.Helmet.Standard.legend_noble_hood],
 			[1, ::Legends.Helmet.Standard.noble_headgear],

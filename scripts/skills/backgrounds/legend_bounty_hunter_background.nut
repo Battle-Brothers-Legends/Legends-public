@@ -51,7 +51,18 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernThick, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.SouthernFemale,
+			Faces = ::Const.Faces.SouthernFemale,
+			Hairs = ::Const.Hair.SouthernFemale,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.SouthernThick,
+			Faces = ::Const.Faces.SouthernMale,
+			Hairs = ::Const.Hair.SouthernMale,
+			HairColors = ::Const.HairColors.Southern,
+			Beards = ::Const.Beards.Southern
+		}, 90);
 	}
 
 	function getTooltip() {
@@ -65,8 +76,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		return ret;
 	}
 
-	function onBuildDescription() //—
-	{
+	function onBuildDescription() {
 		return "{The growing number of thieves, outlaws and miscreants creates steady work for those who wish to put their lives on the line. | From the noble houses to the gilded southern states, everyone wants someone else dead or missing at the end of the day. | A profession attempted by many but mastered by few — bounty hunters have made a living on catching dangerous people. | The steady growth of cities always makes way for new work, and the work involved in catching those who do not wish to be found has been perfected into an art form by %name%.} {Their profession transcends that of the manhunters, who have become weak catching those who cannot fight back. | Ever curious, %name% is more of a walking toolkit than a person — %their% knives, vials, ropes and other assorted implements mark that of a character who veers between paranoid and well prepared. | %They% bears scars of past contracts but assures you that nobody has escaped %them% yet. | Surprisingly educated, %name% is adept at identifying what direction the wind is blowing, when the next rain will fall and how many steps it would take before an average man collapses from exhaustion.} {Mercenary work for %them% is what %they% do normally, but perhaps with more distractions and shorter marches. | While tough, %name% is calm and reserved enough to make anyone feel uneasy. | While %their% past is a mystery, %their% skill set is impossible to ignore. Having %them% on the payroll is a small price to pay to avoid meeting %them% as an adversary down the line. | %name% treads a fine line between upholding a contract at all costs and hunting down even the lowliest nomad or beggar for coin. | Many see bounty hunters as no better than manhunters. The difference being that nobody would admit it openly to a bounty hunter.}";
 	}
 
@@ -86,37 +96,39 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 4);
 
-		if (r == 0) {
-			items.equip(this.new("scripts/items/weapons/battle_whip"));
-			items.equip(this.new("scripts/items/shields/buckler_shield"));
-		} else if (r == 1) {
-			items.equip(this.new("scripts/items/weapons/oriental/heavy_southern_mace"));
-			items.equip(this.new("scripts/items/tools/throwing_net"));
-		} else if (r == 2) {
-			items.equip(this.new("scripts/items/weapons/oriental/saif"));
-			items.equip(this.new("scripts/items/tools/daze_bomb_item"));
-		} else if (r == 3) {
-			items.equip(this.new("scripts/items/weapons/oriental/swordlance"));
-		} else if (r == 4) {
-			items.equip(this.new("scripts/items/weapons/oriental/two_handed_saif"));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/battle_whip"],
+			[1, "weapons/oriental/heavy_southern_mace"],
+			[1, "weapons/oriental/saif"],
+			[1, "weapons/oriental/swordlance"],
+			[1, "weapons/oriental/two_handed_saif"]
+		], "scripts/items/"));
+
+		if (items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
+			items.equip(::Legends.Items.pickItem([
+				[1, "shields/buckler_shield"],
+				[1, "tools/throwing_net"],
+				[1, "tools/daze_bomb_item"],
+				[2, null]
+			], "scripts/items/"));
 		}
 
-		items.equip(this.new("scripts/items/tools/throwing_net"));
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "tools/throwing_net"],
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.assassin_robe],
 			[1, ::Legends.Armor.Southern.cloth_sash],
 			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
 		]));
 
-		local helm = ::Legends.Items.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.assassin_face_mask],
 			[1, ::Legends.Helmet.Standard.theamson_barbute_helmet],
 			[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
-		]);
-		items.equip(helm);
+		]));
 	}
 
 	function onUpdate(_properties) {

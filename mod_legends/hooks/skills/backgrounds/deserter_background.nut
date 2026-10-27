@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/deserter_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/deserter_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Deserter);
 		this.m.BackgroundDescription = "Deserters have received some martial training, but usually aren\'t eager to put it to use.";
@@ -42,75 +40,57 @@
 		this.m.PerkTreeDynamicMins.Defense = 3;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale});
+		_gender ? this.setBodyCharacteristics(_gender, {
+			HairColors = ::Const.HairColors.Young
+		}) : this.setBodyCharacteristics(_gender, {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.CommonMale
+		});
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 16,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Is always content with being in reserve"
-			}
-		);
+		ret.push({
+			id = 16,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Is always content with being in reserve"
+		});
 		return ret;
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		if(this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	o.onBuildDescription <- function() {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 			return "{%name% used to be a common soldier in a lord\'s army, but suffering loss after loss, | Once a watchwoman on the outskirts of %randomtown%, %name% watched all her friends die to the beasts that lurk there. After so many losses | When two lords quarreled over a petty matter of who owned a local pond, %name% was conscripted to help settle the matter. Being a nobody, it was clear her life was of little value. One slaughter later, | While employed in a lord\'s professional army, a horrible disease fell upon %name% and her comrades. Fearing its wrath, | While on a lengthy military campaign, %name% felt that there was too much marching and too little spoils to be had. So} she {stuck her weapons in the ground and walked off. | waited until night to desert her outfit. | and several others disbanded in protest. | volunteered for a patrol and, at the first opening, abandoned her soldiering career.} {It is no secret that deserters are widely despised - and %name% keeps her head hung low to stay out of others\' eyes. | Most deserters spend the rest of their days avoiding the noose, and %name% is no different. | Donning the garb of the common folk, %name% has, for a time, avoided the deserter\'s punishment. | By total luck, %name% has, thus far, gotten away with her crime.} {But now broke and penniless, she seeks a return to his former field. | Perhaps compelled by lawmen closing in, she now finds herself joining another fighting force. | Unfortunately, she is not a smart woman. Lacking the imagination to pursue a safer career, %name% once again returns to fighting. | Feeling guilty about deserting her comrades in the field, she now seeks redemption in fighting for another outfit. But who is to say she won\'t flee again? | With an empty coin purse from drinking her memories away, she now considers any opportunity to make a living.}";
-		}
-		else
-		{
+		} else {
 			return "{%name% used to be a common soldier in a lord\'s army, but suffering loss after loss, | Once a watchman on the outskirts of %randomtown%, %name% watched all his friends die to the beasts that lurk there. After so many losses | When two lords quarreled over a petty matter of who owned a local pond, %name% was conscripted to help settle the matter. Being a nobody, it was clear his life was of little value. One slaughter later, | While employed in a lord\'s professional army, a horrible disease fell upon %name% and his comrades. Fearing its wrath, | While on a lengthy military campaign, %name% felt that there was too much marching and too little spoils to be had. So} he {stuck his weapons in the ground and walked off. | waited until night to desert his outfit. | and several others disbanded in protest. | volunteered for a patrol and, at the first opening, abandoned his soldiering career.} {It is no secret that deserters are widely despised - and %name% keeps his head hung low to stay out of others\' eyes. | Most deserters spend the rest of their days avoiding the noose, and %name% is no different. | Donning the garb of the everyman, %name% has, for a time, avoided the deserter\'s punishment. | By total luck, %name% has, thus far, gotten away with his crime.} {But now broke and penniless, he seeks a return to his former field. | Perhaps compelled by lawmen closing in, he now finds himself joining another fighting force. | Unfortunately, he is not a smart man. Lacking the imagination to pursue a safer career, %name% once again returns to fighting. | Feeling guilty about deserting his brothers in the field, he now seeks redemption in fighting for another outfit. But who is to say he won\'t flee again? | With an empty coin purse from drinking his memories away, he now considers any opportunity to make a living.}";
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Deserter);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(1, 5);
 
-		if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/bludgeon"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/militia_spear"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/hatchet"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/short_bow"));
-			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-		}
-		else
-		{
-			items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/bludgeon"],
+			[1, "weapons/militia_spear"],
+			[1, "weapons/hatchet"],
+			[1, "weapons/short_bow"],
+			[1, "weapons/legend_sturdy_sling"]
+		], "scripts/items/"));
 
-		r = ::Math.rand(0, 3);
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/shields/wooden_shield"));
+		if (items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
+			items.equip(::Legends.Items.pickItem([
+				[1, "shields/wooden_shield"],
+				[3, null]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([
@@ -118,6 +98,7 @@
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],
@@ -127,8 +108,7 @@
 		]));
 	}
 
-	o.onUpdate = function ( _properties )
-	{
+	o.onUpdate = function(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.IsContentWithBeingInReserve = true;
 	}

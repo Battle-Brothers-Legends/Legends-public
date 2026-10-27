@@ -1,7 +1,6 @@
 this.legend_arbalester_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendArbalester);
 		this.m.DailyCostMult = 1.0;
@@ -49,47 +48,50 @@ this.legend_arbalester_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender);
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {});
 	}
 
 	function onBuildDescription() {
 		return "%name% is one of the more talented marksmen you\'ve encountered in your travels. {After %they% saved your life with an arrow shot straight into the heart of a would-be assassin, you hired the %person% on the spot. | Learning of the %person% was easy - you just had to find the winner of a local shooting competition. | %They% once won an archery contest that had over a hundred participants from all the lands. | It is said that %they% can split an arrow - mid-flight. | You found the %person% on a farm where, obviously, you thought %their% shooting talents were going to waste. | A poacher, a bowyer, an archer, the %person%\'s skills have gotten plenty of use. You suspect %they% readily accepted your offer for mercenary work just to say \'%they're% done it all\'. | You once saw %them% shoot the moon, but that may have been some sort of trick. | A clever bowman, %they% once loosed two arrows simultaneously to kill a charging set of brigands.} While %they% has a fondness for killing from afar, %name%\'s no slouch in close-quarters combat.";
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.extend(::World.Assets.getFounderNames());
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendArbalester);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/light_crossbow"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
+
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/knife"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickHelmet([
 			// [3, ::Legends.Helmet.Standard.hunters_hat],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap]
 		]));
-
-		items.equip(this.new("scripts/items/weapons/light_crossbow"));
-		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		items.addToBag(this.new("scripts/items/weapons/knife"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Standard.padded_surcoat],

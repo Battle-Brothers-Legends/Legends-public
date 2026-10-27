@@ -57,10 +57,11 @@ this.legend_belly_dancer_background <- this.inherit("scripts/skills/backgrounds/
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local armor = ::Legends.Items.pickArmor([
+
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
-		]);
-		items.equip(armor);
+		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.legend_headband_coin],

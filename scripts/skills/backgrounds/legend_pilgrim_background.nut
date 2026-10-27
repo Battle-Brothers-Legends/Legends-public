@@ -1,7 +1,6 @@
 this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPilgrim);
 		this.m.BackgroundDescription = "Dirty and tired, these disciples of the old gods look for clarity and power in their teachings.";
@@ -43,18 +42,17 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
-	function getTooltip() //nobody loves pilgrims
-	{
+	function getTooltip() {
+		//nobody loves pilgrims
 		local ret = this.character_background.getTooltip();
 
-		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin().getID() == "scenario.legends_crusader")
-		{
-		ret.push({
-			id = 19,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "No morale check triggered for non-pilgrim allies upon dying"
-		});
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin().getID() == "scenario.legends_crusader") {
+			ret.push({
+				id = 19,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "No morale check triggered for non-pilgrim allies upon dying"
+			});
 		}
 
 		return ret;
@@ -62,7 +60,13 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
 	function onBuildDescription() {
@@ -74,19 +78,16 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		}
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPilgrim);
 	}
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
 
-		if (::Math.rand(1, 100) <= 66)
-		{
+		if (::Math.rand(1, 100) <= 66) {
 			local body = actor.getSprite("body");
 			local tattoo_body = actor.getSprite("tattoo_body");
 			tattoo_body.setBrush("scar_01_" + body.getBrush().Name);
@@ -96,13 +97,13 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local weapons = [
-			"weapons/legend_staff",
-			"weapons/legend_tipstaff"
-		];
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_staff"],
+			[1, "weapons/legend_tipstaff"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
@@ -120,10 +121,5 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			[1, ::Legends.Helmet.Standard.straw_hat]
 		]));
 	}
-
-	function onUpdate( _properties )
-	{
-	}
-
 });
 

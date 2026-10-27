@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/militia_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/militia_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Militia);
 		this.m.BackgroundDescription = "Anyone that\'s been in the militia will have received at least some basic training in matters of combat.";
@@ -22,55 +20,52 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale, HairColors = ::Const.HairColors.Young});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.CommonMale,
+			HairColors = ::Const.HairColors.Young
+		});
 	}
 
-	o.onBuildDescription <- function ()	{
+	o.onBuildDescription <- function() {
 		return "{A militiaman like %name% is only raised in times of need. | Broke and without work, %name% joined %their% local militia. | Caught stealing an apple, %name% was pressed into the militia as a form of punishment. | Although a member of the peasantry, %name% was always willing to join the militia and protect %their% homestead. | War is a hungry beast - militia conscripts like %name% are what feed it.} {While %they% got proper training, there was rarely enough food to go around for the \'second-rate soldiers\'. | Even though %they% fought just as hard as the professionals, %they% found %themselves% unable to garner any sort of respect for %their% work. | Being the bottom rung of soldiering, %they% quickly realized that it meant %their% life was expendable. | %Their% weapons were rusted and the armor nonexistent. Unfortunately, enemies were not so kindly under-equipped.} {After a year of traipsing around with shoddy gear, %they% decided to look for something a bit more to %their% liking: sellswords. | When a lord sent %their% entire militia to almost certain doom, %name% realized %they% had better seek something better if %they% wanted to live. %They% took %their% modest skill set to the field of mercenaries. | Years in an outfit where %they% couldn\'t depend on the man next to %them% drove %name% to find something better. %They're% not the best soldier you\'ve ever seen, but %they% is earnest. | When %their% militia was disbanded, %they% returned home to find %their% town had been burned to the ground. One foot already in the door, it only made sense to join one of the numerous mercenary bands roaming the land. | %name%\'s modest military garb belies a %person% who has seen %their% fair share of training and combat.}";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Militia);
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 
 		local actor = this.getContainer().getActor();
-		if (::Math.rand(0, 4) == 4)
-		{
+		if (::Math.rand(0, 4) == 4) {
 			actor.setTitle(::Const.Strings.MilitiaTitles[::Math.rand(0, ::Const.Strings.MilitiaTitles.len() - 1)]);
 		}
 
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local weapons = [
-			"weapons/hooked_blade",
-			"weapons/bludgeon",
-			"weapons/hand_axe",
-			"weapons/militia_spear",
-			"weapons/shortsword"
-		];
 
-		if (::Const.DLC.Wildmen)
-		{
-			weapons.extend([
-				"weapons/warfork"
-			]);
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/hooked_blade"],
+			[1, "weapons/bludgeon"],
+			[1, "weapons/hand_axe"],
+			[1, "weapons/militia_spear"],
+			[1, "weapons/shortsword"],
+			[1, "weapons/warfork"]
+		], "scripts/items/"));
 
-		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-
-		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null && ::Math.rand(1, 100) <= 50)
-		{
-			items.equip(this.new("scripts/items/shields/buckler_shield"));
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
+			items.equip(::Legends.Items.pickItem([
+				[1, "shields/buckler_shield"],
+				[1, null]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([

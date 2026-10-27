@@ -1,5 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/servant_southern_background", function (o) {
-	o.create = function () {
+::mods_hookExactClass("skills/backgrounds/servant_southern_background", function(o) {
+	o.create = function() {
 		this.servant_background.create();
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
@@ -30,16 +30,27 @@
 		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
-	o.setGender <- function (_gender = -1)	{
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleThick, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors = ::Const.HairColors.Southern}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernThick, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.SouthernFemaleThick,
+			Faces = ::Const.Faces.SouthernFemale,
+			Hairs = ::Const.Hair.SouthernFemale,
+			HairColors = ::Const.HairColors.Southern
+		} : {
+			Bodies = ::Const.Bodies.SouthernThick,
+			Faces = ::Const.Faces.SouthernMale,
+			Hairs = ::Const.Hair.SouthernMale,
+			HairColors = ::Const.HairColors.Southern,
+			Beards = ::Const.Beards.Southern
+		});
 	}
 
-	o.onBuildDescription <- function () {
-			return "{Life is difficult. Moreso for some than others. | Some %people% can fall from grace. Other %people% have nowhere to fall to, having been born already on the ground. | If life is a throw of dice, maybe some are fools to be %people% rather than mice.} %name% {was a servant to a decadent vizier. | served an abusive family where the kids played with fire. | was kidnapped by nomads and forced to serve their every. Last. Need. | worked feverishly for mad men who looked far too long at the stars.}  %They% rarely made a mistake about %their% place in the world. One day, though, %their% masters {beat %their% unconscious. When %they% awoke, %they% did so in the bed of a benevolent doctor who refused to return %their% to %their% \'employers\'. Instead, %name% was free to go and %their% masters were told %they% had died. | set %them% free, no questions asked. Not one to dally on ceremony, %name% left in earnest. | invited %them% to a party. Believing %they% was a guest, %they% showed up in %their% finest attire - a shirt with hemmed sleeves and a billowy dress that hid her skeletal frame well. Unfortunately, %they% was but a show for the party - they gave %them% a wooden shield and sword, threw %them% into an arena with a wild hyena, and took bets as they watched the horrific spectacle. %They% barely escaped the \'festivities\'.} {%name% has since sworn to never \'serve\' someone again. | The %person%, though now free of %their% duties, still bears a great deal of humiliation and pain from her long, hard life.}";
+	o.onBuildDescription <- function() {
+		return "{Life is difficult. Moreso for some than others. | Some %people% can fall from grace. Other %people% have nowhere to fall to, having been born already on the ground. | If life is a throw of dice, maybe some are fools to be %people% rather than mice.} %name% {was a servant to a decadent vizier. | served an abusive family where the kids played with fire. | was kidnapped by nomads and forced to serve their every. Last. Need. | worked feverishly for mad men who looked far too long at the stars.}  %They% rarely made a mistake about %their% place in the world. One day, though, %their% masters {beat %their% unconscious. When %they% awoke, %they% did so in the bed of a benevolent doctor who refused to return %their% to %their% \'employers\'. Instead, %name% was free to go and %their% masters were told %they% had died. | set %them% free, no questions asked. Not one to dally on ceremony, %name% left in earnest. | invited %them% to a party. Believing %they% was a guest, %they% showed up in %their% finest attire - a shirt with hemmed sleeves and a billowy dress that hid her skeletal frame well. Unfortunately, %they% was but a show for the party - they gave %them% a wooden shield and sword, threw %them% into an arena with a wild hyena, and took bets as they watched the horrific spectacle. %They% barely escaped the \'festivities\'.} {%name% has since sworn to never \'serve\' someone again. | The %person%, though now free of %their% duties, still bears a great deal of humiliation and pain from her long, hard life.}";
 	}
 
-	o.onAddEquipment = function () {
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],

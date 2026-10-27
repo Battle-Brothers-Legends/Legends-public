@@ -20,20 +20,16 @@
 
 	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
-		local weapons = [
-			"weapons/hatchet",
-			"weapons/hand_axe",
-			"weapons/exesword",
-			"weapons/woodcutters_axe",
-			"weapons/oriental/two_handed_scimitar",
-			"weapons/oriental/two_handed_saif"
-		];
-		if (::Const.DLC.Wildmen) {
-			weapons.extend([
-				"weapons/bardiche"
-			]);
-		}
-		items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/hatchet"],
+			[1, "weapons/hand_axe"],
+			[1, "weapons/exesword"],
+			[1, "weapons/bardiche"],
+			[1, "weapons/woodcutters_axe"],
+			[1, "weapons/oriental/two_handed_scimitar"],
+			[1, "weapons/oriental/two_handed_saif"],
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]

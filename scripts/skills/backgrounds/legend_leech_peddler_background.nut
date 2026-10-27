@@ -32,7 +32,7 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.Monk, Beards = ::Const.Beards.Monk});
+		this.setBodyCharacteristics(_gender, _gender ? {HairColors = ::Const.HairColors.Young} : {Hairs = ::Const.Hair.Monk, Beards = ::Const.Beards.Monk});
 	}
 
 	function onBuildDescription() {
@@ -46,12 +46,10 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 1);
 
-		if (r == 1) {
-			items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/wooden_stick"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],

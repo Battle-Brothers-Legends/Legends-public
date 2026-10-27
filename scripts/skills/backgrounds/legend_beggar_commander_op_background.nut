@@ -1,7 +1,6 @@
 this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderBeggarScaling);
 		this.m.BackgroundDescription = "Beggars aren\'t the most determined persons, and living on the street tends to be detrimental to their health.";
@@ -113,13 +112,17 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 		];
 	}
 
-	function setGender( _gender = -1 ) {
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.UntidyMale}) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Hairs = ::Const.Hair.UntidyMale
+		} : {
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
 		ret.push({
 			id = 12,
@@ -130,111 +133,89 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 		return ret;
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{Having stolen gold from a dead noble, and being framed for the murder, this beggar is on the run!}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderBeggarScaling);
 	}
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
 	}
 
-	function onTargetKilled( _targetEntity, _skill )
-	{
+	function onTargetKilled(_targetEntity, _skill) {
 		local actor = this.getContainer().getActor();
 
-		if (actor.isAlliedWith(_targetEntity))
-		{
+		if (actor.isAlliedWith(_targetEntity)) {
 			return;
 		}
 
-		if(actor.getBaseProperties().Hitpoints < _targetEntity.getBaseProperties().Hitpoints)
-		{
+		if (actor.getBaseProperties().Hitpoints < _targetEntity.getBaseProperties().Hitpoints) {
 			actor.getBaseProperties().Hitpoints += 1;
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Hitpoint from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Bravery < _targetEntity.getBaseProperties().Bravery)
-		{
+		if (actor.getBaseProperties().Bravery < _targetEntity.getBaseProperties().Bravery) {
 			actor.getBaseProperties().Bravery += 1;
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Resolve from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Stamina < _targetEntity.getBaseProperties().Stamina)
-		{
+		if (actor.getBaseProperties().Stamina < _targetEntity.getBaseProperties().Stamina) {
 			actor.getBaseProperties().Stamina += 1;
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Stamina from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().MeleeSkill < _targetEntity.getBaseProperties().MeleeSkill)
-		{
+		if (actor.getBaseProperties().MeleeSkill < _targetEntity.getBaseProperties().MeleeSkill) {
 			actor.getBaseProperties().MeleeSkill += 1;
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Melee Attack from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().RangedSkill < _targetEntity.getBaseProperties().RangedSkill)
-		{
+		if (actor.getBaseProperties().RangedSkill < _targetEntity.getBaseProperties().RangedSkill) {
 			actor.getBaseProperties().RangedSkill += 1;
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Ranged Attack from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().MeleeDefense < _targetEntity.getBaseProperties().MeleeDefense)
-		{
+		if (actor.getBaseProperties().MeleeDefense < _targetEntity.getBaseProperties().MeleeDefense) {
 			actor.getBaseProperties().MeleeDefense += 1;
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Melee Defense from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().RangedDefense < _targetEntity.getBaseProperties().RangedDefense)
-		{
+		if (actor.getBaseProperties().RangedDefense < _targetEntity.getBaseProperties().RangedDefense) {
 			actor.getBaseProperties().RangedDefense += 1;
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Ranged Defense from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Initiative < _targetEntity.getBaseProperties().Initiative)
-		{
+		if (actor.getBaseProperties().Initiative < _targetEntity.getBaseProperties().Initiative) {
 			actor.getBaseProperties().Initiative += 1;
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Initiative from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
 
-		local target_skills = _targetEntity.getSkills().getSkillsByFunction(function ( skill )
-		{
+		local target_skills = _targetEntity.getSkills().getSkillsByFunction(function(skill) {
 			return skill.isType(::Const.SkillType.Perk);
 		});
 		local allperks = [];
 
-		for( local i = 0; i != target_skills.len(); i = i )
-		{
+		for (local i = 0; i != target_skills.len(); i++) {
 			local perk = target_skills[i];
-
-			if (!actor.getSkills().hasSkill(perk.getID()) && perk.getID() != ::Legends.Perks.getID(::Legends.Perk.LegendPacifist)) // ensure the whiners don't get pacifist
-			{
+			// ensure the whiners don't get pacifist
+			if (!actor.getSkills().hasSkill(perk.getID()) && perk.getID() != ::Legends.Perks.getID(::Legends.Perk.LegendPacifist)) {
 				allperks.push(perk);
 			}
-
-			i = ++i;
 		}
 
-		if (allperks.len() == 0)
-		{
+		if (allperks.len() == 0) {
 			return;
 		}
 
 		local perk = allperks[::Math.rand(0, allperks.len() - 1)];
 		local name = "";
 
-		foreach( i, v in this.getroottable().Const.Perks.PerkDefObjects )
-		{
-			if (perk.getID() == v.ID)
-			{
+		foreach (i, v in this.getroottable().Const.Perks.PerkDefObjects) {
+			if (perk.getID() == v.ID) {
 				name = v.Script;
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " learned " + perk.getName() + " from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
-				if (name == "")
-				{
+				if (name == "") {
 					return;
 				}
 				local r = ::Math.rand(0, 6);
-				actor.getBackground().addPerk(i,r);
+				actor.getBackground().addPerk(i, r);
 				actor.getSkills().add(this.new(name));
 				break;
 			}

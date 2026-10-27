@@ -1,8 +1,6 @@
-::mods_hookExactClass("skills/backgrounds/assassin_background", function(o)
-{
+::mods_hookExactClass("skills/backgrounds/assassin_background", function(o) {
 	o.m.Tattoo <- 0;
-	o.create = function ()
-	{
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Assassin);
 		this.m.BackgroundDescription = "The same as any other mercenary, a skilled assassin can be hired for a good sum of crowns.";
@@ -48,37 +46,38 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale, HairColors = ::Const.HairColors.Young});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleSkinny,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.CommonMale,
+			HairColors = ::Const.HairColors.Young
+		});
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=%positive%]+10%[/color] Chance To Hit Head"
-			}
-		);
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/chance_to_hit_head.png",
+			text = "[color=%positive%]+10%[/color] Chance To Hit Head"
+		});
 		return ret;
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "{%name% likes %their% hoods and loose robes, as %they% walks you can make out a barely audible jingle under %their% coat. | %name% occasionally ducks into alleyways, bushes and dark doorways to exchange items with another figure in a flurry of hands as a predator would stash a fresh kill.} {Although shockingly average, %they% is much quieter than the other recruits you have had the displeasure of meeting. | %name% naturally gravitates to dark corners as rats would to grain and insists that %they% is very famous in certain circles, however %they% quickly changes the subject when you ask %them% for details.} {%They% is often lost in the maddening throng of the towns and hamlets dotted around the countryside - never have you met such an average looking mercenary who also doesn\'t hesitate to slit the throat of the nearest man if it would so benefit %them%, even if %they% does grumble when travelling during daylight.}";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Assassin);
 	}
 
-	o.onSetAppearance <- function ()
-	{
+	o.onSetAppearance <- function() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
@@ -92,27 +91,22 @@
 		tattoo_head.Visible = true;
 	}
 
-	o.updateAppearance <- function ()
-	{
+	o.updateAppearance <- function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush((this.m.Tattoo == 0 ? "warpaint_01_" : "scar_02_") + body.getBrush().Name);
 		}
 	}
 
-	o.onAdded <- function ()
-	{
-		if (this.m.IsNew)
-			::Legends.Traits.grant(this, ::Legends.Trait.Quick);
+	o.onAdded <- function() {
+		if (this.m.IsNew) ::Legends.Traits.grant(this, ::Legends.Trait.Quick);
 		this.character_background.onAdded();
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.MeleeSkill] = 2;
@@ -128,22 +122,18 @@
 		]));
 	}
 
-	o.onSerialize <- function ( _out )
-	{
+	o.onSerialize <- function(_out) {
 		this.character_background.onSerialize(_out);
 		_out.writeU8(this.m.Tattoo);
 	}
 
-	o.onDeserialize <- function ( _in )
-	{
+	o.onDeserialize <- function(_in) {
 		this.character_background.onDeserialize(_in);
 		this.m.Tattoo = _in.readU8();
 	}
 
-	o.onUpdate <- function ( _properties )
-	{
+	o.onUpdate <- function(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.HitChance[::Const.BodyPart.Head] += 10;
 	}
-
 });

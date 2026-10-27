@@ -1,7 +1,6 @@
 this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNightwatch);
 		this.m.BackgroundDescription = "The night watch are an unlucky few chosen to break up fights and keep towns lawful at the worst time of the day.";
@@ -23,55 +22,40 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
+		this.setBodyCharacteristics(_gender, _gender ? {} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.CommonMale
+		});
 	}
 
 	function onBuildDescription() {
-		if (this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 			return "{Never one to fear the night, %name%'s path in life lead them to the mantle of watchman. | With pale skin and bloodshot eyes, %name% carries the 'look' of a night watchman. | %name% carries an old lantern attached to a stick over their shoulder. An eerie smile on their face as they stare you down. | With their bellowing voice and keen eyes, it's no wonder %name% was selected as %townname%\'s watchwoman. | %name% was assigned to watchman duty as punishment for falling asleep during the day. Cursed to a dark, and lonely service in the local militia. | %name% was forced into the duty of night watchman as a punishment after being accused for a string of night robberies within %townname%.} {Living a quiet life in the night became quite a lonely and soul crushing experience for %name%. They sought something more, hanging up their lantern and looking to join a band of wandering mercenaries. | After falling asleep at an inopportune time, which ended up with two children being kidnapped right out of their homes. %name% sought to escape persecution for the failure in any way they could. | After a string of haunting visions in the night, %name% found themselves unable to cope with such. Resigning immediately and looking for a new avenue of employment.} {Night watchman has molded them into a pale and wiry figure. But still a somewhat capable fighter. | With all the horrors that stalk the night, %name% seems like a fitting member to keep around. | %name% looks like they haven't slept in days. But they assure you they get plenty of rest, and their odd sleep patterns will not be an issue. | %name%'s keen eyes will be /very/ useful in the coming days. Having someone to watch you while you sleep is a blessing considering what roams in the dark.}";
-		}
-		else
-		{
+		} else {
 			return "{Never one to fear the night, %name%'s path in life lead them to the mantle of watchman. | With pale skin and bloodshot eyes, %name% carries the 'look' of a night watchman. | %name% carries an old lantern attached to a stick over their shoulder. An eerie smile on their face as they stare you down. | With their bellowing voice and keen eyes, it's no wonder %name% was selected as %townname%\'s watchman. | %name% was assigned to watchman duty as punishment for falling asleep during the day. Cursed to a dark, and lonely service in the local militia. | %name% was forced into the duty of night watchman as a punishment after being accused for a string of night robberies within %townname%.} {Living a quiet life in the night became quite a lonely and soul crushing experience for %name%. They sought something more, hanging up their lantern and looking to join a band of wandering mercenaries. | After falling asleep at an inopportune time, which ended up with two children being kidnapped right out of their homes. %name% sought to escape persecution for the failure in any way they could. | After a string of haunting visions in the night, %name% found themselves unable to cope with such. Resigning immediately and looking for a new avenue of employment.} {Night watchman has molded them into a pale and wiry figure. But still a somewhat capable fighter. | With all the horrors that stalk the night, %name% seems like a fitting member to keep around. | %name% looks like they haven't slept in days. But they assure you they get plenty of rest, and their odd sleep patterns will not be an issue. | %name%'s keen eyes will be /very/ useful in the coming days. Having someone to watch you while you sleep is a blessing considering what roams in the dark.}";
 		}
 
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendNightwatch);
 	}
 
-	function onAdded() // always has night owl
-	{
-		if (this.m.IsNew)
+	function onAdded() {
+		if (this.m.IsNew) // always has night owl
 			::Legends.Traits.grant(this, ::Legends.Trait.NightOwl);
 		this.character_background.onAdded();
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 3);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/hatchet"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/wooden_stick"],
+			[1, "weapons/hatchet"],
+			[1, "weapons/legend_staff"],
+			[1, "weapons/legend_dilapidated_sling"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],

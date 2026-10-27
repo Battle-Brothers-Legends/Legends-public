@@ -20,18 +20,13 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 1);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/oriental/nomad_sling"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/oriental/composite_bow"));
-			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/oriental/nomad_sling"],
+			[1, "weapons/oriental/composite_bow"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.nomad_robe],
@@ -40,11 +35,10 @@
 			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
-		local helm = ::Legends.Items.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
 			[1, ::Legends.Helmet.Southern.nomad_light_helmet]
-		]);
-		items.equip(helm);
+		]));
 	}
 });

@@ -1,14 +1,11 @@
-::mods_hookExactClass("skills/backgrounds/old_paladin_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/old_paladin_background", function(o) {
+	o.create = function() {
 		this.paladin_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.PaladinOld);
 		this.m.HairColors = ::Const.HairColors.Old;
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
@@ -18,5 +15,4 @@
 		tattoo_head.setBrush("scar_02_head");
 		tattoo_head.Visible = true;
 	}
-
 });

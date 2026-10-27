@@ -129,7 +129,11 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 		talents[::Const.Attributes.RangedSkill] = 2;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
-		//items
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/oriental/light_southern_mace"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.Standard.dark_southern_helmet_00],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
@@ -141,7 +145,5 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat],
 			[1, ::Legends.Armor.Standard.dark_southern_armor_00]
 		]));
-
-		items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
 	}
 });

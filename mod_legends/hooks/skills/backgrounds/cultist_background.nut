@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/cultist_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/cultist_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Cultist);
 		this.m.BackgroundDescription = "Cultists have a resolve to spread further their cult that is second to few.";
@@ -52,104 +50,75 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		_gender ? this.setBodyCharacteristics(_gender, {
+			Faces = ::Const.Faces.OldFemale,
+			HairColors = ::Const.HairColors.Old
+		}) : this.setBodyCharacteristics(_gender, {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
-	o.isCultist <- function () {
+	o.isCultist <- function() {
 		return true;
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "{The cultist stands with a placard hanging from their neck. | Their face is wreathed in garish tattoos. They carry a note. | The face is hidden inside a deep cowl, an islanded tip of a nose all that you see in the darkness. They carry a placard around their neck. | Clothed in rags, it is strange they neither sweat nor shake in heat or cold. Clutching a scroll as if it protects from the very elements. | Scripture is written across their arm in scars, the coda of madness. | The stranger writes in the dirt as quick as someone who has done it a thousand times. The message is clear to see. | They stand with a tome nestled behind a crooked arm. They hand it to you. Opening it, the leather feels like none you\'ve ever touched before. There is only one passage inside, written over and over.} It reads: \"Ph\'nglui mglw\'nafh Davkul R\'lyeh wgah\'nagl fhtagn. Nn\'nilgh\'ri, nn\'nglui. Sgn\'wahl sll\'ha ep\'shogg.\" Hmm... quaint.";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Cultist);
 	}
 
-	o.onSetAppearance = function ()
-	{
-		if (!this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	o.onSetAppearance = function() {
+		if (!this.isBackgroundType(::Const.BackgroundType.Female)) {
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 			local tattoo_head = actor.getSprite("tattoo_head");
 
-			if (::Math.rand(1, 100) <= 50)
-			{
+			if (::Math.rand(1, 100) <= 50) {
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 				tattoo_body.Visible = true;
 			}
 
-			if (::Math.rand(1, 100) <= 50)
-			{
+			if (::Math.rand(1, 100) <= 50) {
 				tattoo_head.setBrush("tattoo_01_head");
 				tattoo_head.Visible = true;
 			}
 		}
 	}
 
-	o.updateAppearance = function ()
-	{
-		if (!this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	o.updateAppearance = function() {
+		if (!this.isBackgroundType(::Const.BackgroundType.Female)) {
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 
-			if (tattoo_body.HasBrush)
-			{
+			if (tattoo_body.HasBrush) {
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 			}
 		}
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 8);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_scythe"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/wooden_flail"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_chain"));
-		}
-		else if (r == 4)
-		{
-			if (::Const.DLC.Wildmen)
-			{
-				items.equip(this.new("scripts/items/weapons/battle_whip"));
-			}
-			else if (!::Const.DLC.Wildmen)
-			{
-				items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
-			}
-		}
-		else if (r >= 5)
-		{
-		 items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_scythe"],
+			[1, "weapons/wooden_flail"],
+			[1, "weapons/legend_chain"],
+			[1, "weapons/battle_whip"],
+			[4, "weapons/legend_cat_o_nine_tails"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
@@ -157,6 +126,7 @@
 			[1, ::Legends.Armor.Standard.monk_robe],
 			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.hood],
@@ -164,8 +134,7 @@
 		]));
 	}
 
-	o.onAdded <- function ()
-	{
+	o.onAdded <- function() {
 		this.character_background.onAdded();
 		this.getContainer().getActor().getFlags().add("cultist");
 	}

@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/slave_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/slave_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Slave);
 		this.m.BackgroundDescription = "The indebted are a caste of de-facto slaves in the city states, and as such are not hired, but bought, and receive no daily wage.";
@@ -50,24 +49,19 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
-
-		ret.extend([
-		{
+		ret.extend([{
 			id = 19,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "No morale check triggered for non-indebted allies upon dying"
-		},
-		{
+		}, {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Is always content with being in reserve"
-		},
-		{
+		}, {
 			id = 21,
 			type = "text",
 			icon = "ui/icons/warning.png",
@@ -76,30 +70,31 @@
 		return ret;
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "{You can tell %name% is a northerner simply by appearance. And %their% servitude in the south has come by way of being indebted to the Gilder whom %they% has transgressed with %their% faith in the heretical old gods. | %name% bears the features of a northerner, easily capturing the eye of passing men or women. It also happened to catch the attention of a priest who claimed the northerner was indebted to the Gilder and promptly sold the interloper into servitude. | A northerner, %name% was once a soldier sent south on patrol. Lost in the desert, %their% troop slowly dwindled until %they% was the last survivor. Manhunters caught %them% and brought %them% back from the brink, and of course sold %them% into servitude once %their% healed body was worth something. | Despite being a northerner and thus easily spotted, %name% unwisely sought the criminal life and was caught thieving pomegranates from a Vizier\'s garden. %they%\'s lucky to have %their% head, but now serves as a commodity of labor on the slave markets.}";
 	}
 
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Slave);
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
 
-		if (::Math.rand(1, 100) <= 66)
-		{
+		if (::Math.rand(1, 100) <= 66) {
 			local body = actor.getSprite("body");
 			local tattoo_body = actor.getSprite("tattoo_body");
 			tattoo_body.setBrush("scar_01_" + body.getBrush().Name);
@@ -109,8 +104,7 @@
 		}
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
 		items.equip(::Legends.Items.pickArmor([
 			[3, ::Legends.Armor.Standard.tattered_sackcloth],
@@ -120,13 +114,11 @@
 		]));
 	}
 
-	o.onUpdate = function ( _properties )
-	{
+	o.onUpdate = function(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.IsContentWithBeingInReserve = true;
 
-		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters")
-		{
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters") {
 			_properties.XPGainMult *= 1.1;
 			_properties.SurviveWithInjuryChanceMult = 0.0;
 		}

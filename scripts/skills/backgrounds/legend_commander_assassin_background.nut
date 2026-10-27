@@ -2,8 +2,7 @@ this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgr
 	m = {
 		Tattoo = 0
 	},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderAssassin);
 		this.m.BackgroundDescription = "This character\'s history is a secret";
@@ -67,36 +66,35 @@ this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgr
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.PrettyFemale}) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.TidyMale, Beards = ::Const.Beards.Tidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Faces = ::Const.Faces.PrettyFemale
+		} : {
+			Hairs = ::Const.Hair.TidyMale,
+			Beards = ::Const.Beards.Tidy
+		});
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=%positive%]+15%[/color] Chance To Hit Head"
-			}
-		);
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/chance_to_hit_head.png",
+			text = "[color=%positive%]+15%[/color] Chance To Hit Head"
+		});
 		return ret;
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{As far as everyone is concerned, you have no history — any attempt to force discussion on it will only result in silence or lies.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderAssassin);
 	}
 
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
@@ -110,27 +108,22 @@ this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgr
 		tattoo_head.Visible = true;
 	}
 
-	function updateAppearance()
-	{
+	function updateAppearance() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush((this.m.Tattoo == 0 ? "warpaint_01_" : "scar_02_") + body.getBrush().Name);
 		}
 	}
 
-	function onAdded()
-	{
-		if (this.m.IsNew)
-			::Legends.Traits.grant(this, ::Legends.Trait.LegendAggressive);
+	function onAdded() {
+		if (this.m.IsNew) ::Legends.Traits.grant(this, ::Legends.Trait.LegendAggressive);
 		this.character_background.onAdded();
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.MeleeSkill] = 2;
@@ -139,8 +132,14 @@ this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgr
 		this.getContainer().getActor().fillTalentValues(2, true);
 
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.new("scripts/items/weapons/dagger"));
-		items.addToBag(this.new("scripts/items/weapons/legend_slingshot"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/dagger"]
+		], "scripts/items/"));
+
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/legend_slingshot"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
@@ -152,20 +151,17 @@ this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgr
 		]));
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.character_background.onSerialize(_out);
 		_out.writeU8(this.m.Tattoo);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.character_background.onDeserialize(_in);
 		this.m.Tattoo = _in.readU8();
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.HitChance[::Const.BodyPart.Head] += 15; //normal buff is +10
 	}

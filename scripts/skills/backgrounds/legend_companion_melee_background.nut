@@ -1,7 +1,6 @@
 this.legend_companion_melee_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCompanionMelee);
 		this.m.BackgroundDescription = "This one has lost all interest in glory and gold. With nothing else to prove but to %themselves%.";
@@ -33,59 +32,75 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		if (this.m.Ethnicity == 0) {
-			_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale}, 60);
-		}
-		else if (this.m.Ethnicity == 1) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Gladiator, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
+			this.setBodyCharacteristics(_gender, _gender ? {} : {
+				Bodies = ::Const.Bodies.Muscular,
+				Hairs = ::Const.Hair.CommonMale
+			}, 60);
+		} else if (this.m.Ethnicity == 1) {
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.SouthernFemaleMuscular,
+				Faces = ::Const.Faces.SouthernFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.Young
+			} : {
+				Bodies = ::Const.Bodies.Gladiator,
+				Faces = ::Const.Faces.SouthernMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.Southern,
+				Beards = ::Const.Beards.Southern
+			}, 60);
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
-		}
-		else if (this.m.Ethnicity == 2) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
+		} else if (this.m.Ethnicity == 2) {
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.AfricanFemaleMuscular,
+				Faces = ::Const.Faces.AfricanFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.African
+			} : {
+				Bodies = ::Const.Bodies.AfricanGladiator,
+				Faces = ::Const.Faces.AfricanMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.African,
+				Beards = ::Const.Beards.Southern
+			}, 60);
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{Unnaturally skilled, | Born almost a master already, | Skilled enough to be considered supernatural,} {%name% has worked hard to refine their natural talent. | %name% has managed to stay above ground by honing their natural skill. | %name% claims their skill is as natural as yours.} {Eitherway, %they% demonstrates a honed mind and body to match. | They twirl a blade with an ease that would take years for you to learn yourself. | Hailing from %randomtown%, they have gone far and wide to test their skills. | Urged by %their% parents to stay away from knights and mercenaries, they took time to travel and see the world. | One thing has led to another, %they% can barely recall what led them here in the first place.} {With no interest in work for crowns, %name% has found it fitting to join you on your journey. | Likely to be used as fodder, bait or a shield made of flesh by any mercenary company, %name% decided to stick with you instead. | %name% has much more to learn still, and your journey through the lands is the best way to test their skills.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCompanionMelee);
 	}
 
-	function onAdded() // enables relationships
-	{
-		if (this.m.IsNew)
+	function onAdded() {
+		if (this.m.IsNew) // enables relationships
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendLoneWolfRelationship);
 		this.character_background.onAdded();
 	}
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (::Math.rand(1, 100) <= 75)
-		{
+		if (::Math.rand(1, 100) <= 75) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (::Math.rand(1, 100) <= 75)
-		{
+		if (::Math.rand(1, 100) <= 75) {
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		//---
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
@@ -94,79 +109,44 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 		this.getContainer().getActor().fillTalentValues(2, true);
 		//---
 		local items = this.getContainer().getActor().getItems();
-		local r;
+		local r = ::Math.rand(0, 16);
 
-		r = ::Math.rand(0, 16);
-
-		if (r == 0)
-		{
+		if (r == 0) {
 			items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
-		}
-		else if (r == 1)
-		{
+		} else if (r == 1) {
 			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			items.equip(this.new("scripts/items/weapons/legend_zweihander"));
-		}
-		else if (r == 3)
-		{
+		} else if (r == 3) {
 			items.equip(this.new("scripts/items/weapons/oriental/polemace"));
-		}
-		else if (r == 4)
-		{
+		} else if (r == 4) {
 			items.equip(this.new("scripts/items/weapons/oriental/saif"));
-		}
-		else if (r == 5)
-		{
+		} else if (r == 5) {
 			items.equip(this.new("scripts/items/weapons/bardiche"));
-		}
-		else if (r == 6)
-		{
+		} else if (r == 6) {
 			items.equip(this.new("scripts/items/weapons/falchion"));
 			items.equip(this.new("scripts/items/shields/heater_shield"));
-		}
-		else if (r == 7)
-		{
+		} else if (r == 7) {
 			items.equip(this.new("scripts/items/weapons/hand_axe"));
 			items.equip(this.new("scripts/items/tools/throwing_net"));
-		}
-		else if (r == 8)
-		{
+		} else if (r == 8) {
 			items.equip(this.new("scripts/items/weapons/bardiche"));
-		}
-		else if (r == 9)
-		{
+		} else if (r == 9) {
 			items.equip(this.new("scripts/items/weapons/legend_ranged_flail"));
-		}
-		else if (r == 10)
-		{
+		} else if (r == 10) {
 			items.equip(this.new("scripts/items/weapons/legend_swordstaff"));
-		}
-		else if (r == 11)
-		{
+		} else if (r == 11) {
 			items.equip(this.new("scripts/items/weapons/longaxe"));
-		}
-		else if (r == 12)
-		{
+		} else if (r == 12) {
 			items.equip(this.new("scripts/items/weapons/morning_star"));
 			items.equip(this.new("scripts/items/shields/kite_shield"));
-		}
-		else if (r == 13)
-		{
+		} else if (r == 13) {
 			items.equip(this.new("scripts/items/weapons/scramasax"));
-		}
-		else if (r == 14)
-		{
+		} else if (r == 14) {
 			items.equip(this.new("scripts/items/weapons/pike"));
-		}
-		else if (r == 15)
-		{
+		} else if (r == 15) {
 			items.equip(this.new("scripts/items/weapons/warfork"));
-		}
-		else if (r == 16)
-		{
+		} else if (r == 16) {
 			items.equip(this.new("scripts/items/weapons/shortsword"));
 			items.equip(this.new("scripts/items/shields/legend_tower_shield"));
 		}

@@ -1,7 +1,6 @@
 this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendVala);
 		this.m.BackgroundDescription = "A Vala is a travelling seer, shaman and sorceress.";
@@ -54,32 +53,27 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
 		if (this.getContainer() == null)
 			return ret; // this is for crafting because the preview in crafting screen creates the background but it has no actor attached
-		ret.extend([
-		{
+		ret.extend([{
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Most of the Vala\'s skills require her staff and scale in one way or another with the strength of her Resolve. Chants are sorcerous incantations delivered by song. These affect an area around the Vala and last until the start of her next turn. Trances are altered states entered into by the Vala. She will remain in these until her task is either completed or interrupted. Receiving damage of any kind, or becoming too fatigued to continue, will drop the Vala out of an active trance."
-		},
-		{
+		}, {
 			id = 14,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Can inscribe weapons, shields, helmets and armor provided the company has Uncut Gems."
-		},
-		{
+		}, {
 			id = 14,
 			type = "text",
 			icon = "ui/icons/xp_received.png",
 			text = "[color=%positive%]+15%[/color] Experience Gain"
 		}]);
-		if (this.getContainer().getActor().getLevel() >= 12)
-		{
+		if (this.getContainer().getActor().getLevel() >= 12) {
 			ret.push({
 				id = 13,
 				type = "text",
@@ -91,36 +85,34 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		return ret;
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{%name% is a travelling seer, shaman and sorceress. Besides the ability to inscribe objects with magical rune sigils she also knows sorcerous incantations in the form of chants, and can induce trance states through which she may perceive and interact with the spirit world and the spirits therein.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendVala);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local actor = this.getContainer().getActor();
 		actor.setVeteranPerks(3);
-		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.Bravery] = ::Math.rand(2, 3);
 		this.getContainer().getActor().fillTalentValues(2, true);
 
-		local items = this.getContainer().getActor().getItems();
-		items.equip(this.new("scripts/items/weapons/legend_staff_vala"));
+		local items = actor.getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_staff_vala"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_vala_cloak]
 		]));
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.XPGainMult *= 1.15;
 	}

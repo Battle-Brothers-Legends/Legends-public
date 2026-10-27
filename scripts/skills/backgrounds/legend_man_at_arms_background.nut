@@ -1,7 +1,6 @@
 this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendManAtArms);
 		this.m.Name = "Man-At-Arms";
@@ -33,8 +32,16 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny, Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale, HairColors = ::Const.HairColors.Old});
-		if (_gender){
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleSkinny,
+			Faces = ::Const.Faces.OldFemale,
+			HairColors = ::Const.HairColors.Old
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.CommonMale,
+			HairColors = ::Const.HairColors.Old
+		});
+		if (_gender) {
 			this.m.Name = "Woman-At-Arms";
 		}
 	}
@@ -44,26 +51,24 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 		return "{Years ago, %name% decided to join the local militia. The pay was good and the job was easy. At first. | %name% had no talents in %their% youth, but quickly found %their% calling when defending %their% home from bandits. | When the living dead swarmed into town one cold night years ago, %name% was one of the few who took up arms to protect %their% home - which bought precious time for others to flee. | %name% was never destined for greatness - %they% quickly found %themselves% content in protecting an otherwise sleepy village outside of %randomtown% with a handful of others. | Bored of farming, %name% used %their% talents of stabbing and hammering to protect the village %they% grew up in.} {%name% is largely self taught, practising %their% combat skills on the occasional lost undead or meek bandit raid. Although %their% current injuries suggest that at one time %they% still had a lot to learn. | %name% has fought alongside farmers, mercenaries and even nobles. However %their% inability to gain fame led %them% to age past %their% prime - and pick up an injury along the way. | The injury %name% carries is quite evident, however %they% assure you that %they% can fight just as well as any mercenary could. Only time will tell how much of a lie this might be. | %name%\'s injury was unrelated to %their% duties protecting %their% home. Instead %they% recite the tale of 'The cat, the witchling and the cupboard'. Which you find works well as a way to fall asleep on your feet.} {With the writing on the wall that %name% may have a long and painful death ahead of %them%, %they% decided to do what %they% always dreamed of - fighting in a real battle. | Years have not been kind to %name%, however %their% longer than usual time spent training has gifted %them% with a much broader skillset than your average militia. | %name% has outlived enemies and allies alike, and now finds %themselves% completely alone in a world full of strangers. | %name%\'s experience and determination in the face of danger is a skill that is rare, even among more hardened professions.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendManAtArms);
 	}
 
-	function onAddEquipment() // NO TWO HANDED WEAPONS OR OFFHANDS HERE - 'missing hand' will unequip the item and cause errors if you add them.
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local weapons = [
-			"weapons/arming_sword",
-			"weapons/bludgeon",
-			"weapons/boar_spear",
-			"weapons/hand_axe",
-			"weapons/military_pick",
-			"weapons/hand_axe",
-			"weapons/javelin",
-			"weapons/scramasax"
-		];
+		// NO TWO HANDED WEAPONS OR OFFHANDS HERE - 'missing hand' will unequip the item and cause errors if you add them.
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/arming_sword"],
+			[1, "weapons/bludgeon"],
+			[1, "weapons/boar_spear"],
+			[2, "weapons/hand_axe"],
+			[1, "weapons/military_pick"],
+			[1, "weapons/javelin"],
+			[1, "weapons/scramasax"]
+		], "scripts/items/"));
 
-		items.equip(::Legends.Items.pickArmor([ //1 = least likely
+		items.equip(::Legends.Items.pickArmor([//1 = least likely
 			[1, ::Legends.Armor.Standard.worn_mail_shirt],
 			[2, ::Legends.Armor.Standard.patched_mail_shirt],
 			[3, ::Legends.Armor.Standard.leather_lamellar],
@@ -79,8 +84,10 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			[2, ::Legends.Helmet.Standard.open_leather_cap],
 			[3, ::Legends.Helmet.Standard.full_leather_cap]
 		]));
-		local rng = ::Math.rand(0, ::Const.Injury.Permanent.len()-1);
-		this.m.Container.add(this.new("scripts/skills/" + ::Const.Injury.Permanent[rng].Script)); //adds random injury
+
+		//adds random injury
+		local rng = ::Math.rand(0, ::Const.Injury.Permanent.len() - 1);
+		this.m.Container.add(::new("scripts/skills/" + ::Const.Injury.Permanent[rng].Script));
 	}
 });
 

@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/lindwurm_slayer_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/lindwurm_slayer_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LindwurmSlayer);
 		this.m.BackgroundDescription = "This mercenary is a one of a kind Lindwurm hunter, descendant of Dirk the Dragonslayer.";
@@ -42,50 +40,45 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.ExpertHunter;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. %They% says %they% is the %offspring% of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LindwurmSlayer);
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local actor = this.getContainer().getActor();
 		actor.setVeteranPerks(3);
 		local items = actor.getItems();
-		local r;
 
-		r = ::Math.rand(0, 1);
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/fighting_spear"],
+			[1, "weapons/noble_sword"],
+		], "scripts/items/"));
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/fighting_spear"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/noble_sword"));
-		}
-		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
-			items.equip(this.new("scripts/items/tools/throwing_net"));
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
+			items.equip(::Legends.Items.pickItem([
+				[1, "tools/throwing_net"]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([

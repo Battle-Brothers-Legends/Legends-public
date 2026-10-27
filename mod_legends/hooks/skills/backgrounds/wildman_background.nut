@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/wildman_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/wildman_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Wildman);
 		this.m.BackgroundDescription = "Wildmen are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
@@ -51,23 +50,29 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 15,
-				type = "text",
-				icon = "ui/icons/xp_received.png",
-				text = "[color=%negative%]-15%[/color] Experience Gain"
-			}
-		);
+		ret.push({
+			id = 15,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = "[color=%negative%]-15%[/color] Experience Gain"
+		});
 		return ret;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Wild}, 100);
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleMuscular,
+			Hairs = ::Const.Hair.WildMale,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.WildMale,
+			HairColors = ::Const.HairColors.Young,
+			Beards = ::Const.Beards.Wild
+		}, 100);
 
 		if (_gender) {
 			this.m.Name = "Wildwoman";
@@ -77,18 +82,15 @@
 		}
 	}
 
-	o.onBuildDescription = function ()
-	{
+	o.onBuildDescription = function() {
 		return "{For some, the wild is a refuge. | It is said that %person% is born with the wilderness in %them%, and that %they% does wrong by turning %their% back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where %they% hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the wildman, but for some reason %they% seems very willing to fight. Let\'s hope %their% newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about %their% body. When asked why %they% wishes to join a band of mercenaries, %they% hoots and, with a crooked finger, replicates one of %their% fleshen arts across the sky. | Wounds, old and fresh, dot %their% already mottled body. And they are not superficial - this %person% had been fighting something fierce in the wild. | One has to wonder if the calamities which chased %them% into the forests have come to chase %them% back out. | Judging by %their% wild grunting, it\'s doubtful %they%\'s here to rejoin civilization. | Years as a recluse haven\'t made the %person% forget what a few crowns can get you. The question is, why did %they% come back? | He has the strength to wrestle a boar - and %their% many scars makes you wonder if perhaps %they% did.}";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Wildman);
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
@@ -102,57 +104,29 @@
 		tattoo_head.Visible = true;
 	}
 
-	o.updateAppearance = function ()
-	{
+	o.updateAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush((this.m.Tattoo == 0 ? "warpaint_01_" : "scar_02_") + body.getBrush().Name);
 		}
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
 
-		r = ::Math.rand(0, 7);
-
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/hatchet"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/greenskins/orc_metal_club"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/greenskins/orc_wooden_club"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-		}
-		else if (r == 6)
-		{
-			items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
-		}
-		else if (r == 7)
-		{
-			items.equip(this.new("scripts/items/weapons/two_handed_wooden_flail"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/hatchet"],
+			[1, "weapons/wooden_stick"],
+			[1, "weapons/greenskins/orc_metal_club"],
+			[1, "weapons/greenskins/orc_wooden_club"],
+			[1, "weapons/boar_spear"],
+			[1, "weapons/woodcutters_axe"],
+			[1, "weapons/two_handed_wooden_hammer"],
+			[1, "weapons/two_handed_wooden_flail"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps],

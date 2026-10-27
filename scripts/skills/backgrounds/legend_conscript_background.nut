@@ -53,8 +53,8 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.BackgroundType = ::Const.BackgroundType.Combat;
 	}
 
-	function onBuildDescription() //Male only // —
-	{
+	function onBuildDescription() {
+		//Male only // —
 		return "{Like many southerners, %name% is someone who grew up in the desert, however they were destined to not stray far from the city walls. | Born into a military family, %name% took up the tradiation of service to the Vizier from an early age. | %name% family has had a foothold in this area for some time — begging, trading and eventually carving out a life for their children on the backs of their own toil. | Nomads often wander, while conscripts like %name% wanted the adventure without the walking. | %name% rarely speaks of their time under the banner, but you get the impression that they find much of the work required of them below their expectations.} {Politics are differant here in the south, and you find %name% always treats you with respect and reverence — even if you suspect it is not sincere. | %name% had a recent falling out with their commanding officer — something about a mortar, a goat and a half dozen buckets of rice. | %name% narrowly avoided execution when they were found with several bottles of wine in their tent. The life of a conscript has not appealed to them since. | %name% always carries a set of \'lucky\' dice around — which have not been working correctly so far, based on how many questions they asked you about their pay. | After a greenskin ambush, %name% managed to survive by hiding in the barrel of a mortar, gently cooking themselves in the desert heat until they were found and warned for their cowardice.} {Mounting debts has caused them to seek a new path — either to escape their debtors or to earn enough coin to buy their way out of trouble. | While better trained and drilled than other militia, %name% does have some rough edges that could be rounded off — assuming you can get them away from the bottle. | A life of steel, gunpowder and searing heat is enough for anyone to want a change, and %name% intends to do just that. | %name% thought about running with some nomads for a while, but given the strength of the Vizier\'s army in which they saw first hand has made them reconsider and seek more legitimate employment. | While not as experienced as a professional soldier, %name% can stand alone and tall against almost any threat.}";
 	}
 
@@ -77,20 +77,19 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r = ::Math.rand(0, 4);
 
-		if (r == 0) {
-			items.equip(this.new("scripts/items/weapons/oriental/polemace"));
-		} else if (r == 1) {
-			items.equip(this.new("scripts/items/weapons/oriental/swordlance"));
-		} else if (r == 2) {
-			items.equip(this.new("scripts/items/weapons/oriental/nomad_mace"));
-		} else if (r == 3) {
-			items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
-			items.equip(this.new("scripts/items/shields/oriental/southern_light_shield"));
-		} else if (r == 4) {
-			items.equip(this.new("scripts/items/weapons/oriental/firelance"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/oriental/polemace"],
+			[1, "weapons/oriental/swordlance"],
+			[1, "weapons/oriental/nomad_mace"],
+			[1, "weapons/oriental/light_southern_mace"],
+			[1, "weapons/oriental/firelance"]
+		], "scripts/items/"));
+
+		if (items.getItemAtSlot(::Const.ItemSlot.Mainhand).getID() == "weapon.light_southern_mace")
+			items.equip(::Legends.Items.pickItem([
+				[1, "shields/oriental/southern_light_shield"]
+			], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[2, ::Legends.Armor.Southern.linothorax],

@@ -46,9 +46,11 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 		this.m.PerkTreeDynamicMins.Defense = 3;
 	}
 
-	function setGender( _gender = -1 ) {
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender);
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {});
 
 	}
 
@@ -56,33 +58,33 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 		return "%name% is not known to be a big talker, but %they% has every right to be. {%They're% saved the lives of many of the company. | %They% once spared you from an orc\'s wicked chain. | An assassin would have killed the local noble in a pub were it not for this %person%. | A misfired crossbow nearly took out your eye - hadn\'t %name%\'s shield been there to stop it. | %They% once pushed two men off a cliff using only %their% shield and two strong legs. | %They% learned how to fight from %their% father, a vanguard at the Battle of Many Names. | Sacrificing %their% family\'s heirloom - an old shield of wood and studded iron - %they% saved the local noble\'s life. | A %person% of rather consistent heroism, %they% pulled a drunken captain from a pub fire. | Faced with a horde of goblins, %they% used %their% shield and strength to push a hole in their lines, opening the way for the rest of %their% company to kill them all.} With quick whirls and whips of %their% shield, the %person%\'s deflected all manner of mortal danger. Although rather quiet, you\'ve found %name%\'s place in a shield-wall to be rather indispensable.";
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.extend(::World.Assets.getFounderNames());
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendFootSoldier);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(this.new("scripts/items/weapons/militia_spear"));
-		items.equip(this.new("scripts/items/shields/wooden_shield"));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/militia_spear"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "shields/wooden_shield"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],

@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/daytaler_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/daytaler_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Daytaler);
 		this.m.BackgroundDescription = "Daytalers are used to all kinds of physical work, but don\'t excel in any.";
@@ -19,9 +17,15 @@
 		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleSkinny
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 
 		if (_gender != 1) return;
 		this.m.Name = "Washerwoman";
@@ -29,51 +33,28 @@
 		this.m.BackgroundDescription = "Washerwomen are used to all kinds of physical work, scrubbing isn\'t easy work.";
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		if (this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	o.onBuildDescription <- function() {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 			return "{Working here and there | With no steady work | Working on and off | Doing this and that | Having learned no craft}, %name% is known as a washerwoman, someone to ask whenever the linens need their rinse. {Work had been sparse for a while now, so | There was little work to be a had these past weeks, so | %name% wanted to do something she had not done before, so | Despite having no experience in battle, staring too deep into the bottle made her believe that | %name% considered the fighting profession one that doesn\'t run out of work these days, so | %name% lost her loved one to sickness, as befalls so many these days, and broke down. After weeks blurred by drinking her sorrows away,} a travelling mercenary company seemed a good opportunity {to seek redemption | to earn some coin | to see a bit of the world | to clear her head | to get her to the next village while filling her pockets}.";
-		}
-		else
-		{
+		} else {
 			return "{Working here and there | With no steady work | Working on and off | Doing this and that | Having learned no craft}, %name% is known as a daytaler, someone to ask whenever an extra hand is needed. {Work had been sparse for a while now, so | There was little work to be a had these past weeks, so | %name% wanted to do something he had not done before, so | Despite having no experience in battle, staring too deep into the bottle made him believe that | %name% considered the fighting profession one that doesn\'t run out of work these days, so | %name% lost his loved one to sickness, as befalls so many these days, and broke down. After weeks blurred by drinking his sorrows away,} a travelling mercenary company seemed a good opportunity {to stay with for a while | to earn some coin | to see a bit of the world | to clear his head | to get him to the next village while filling his pockets}.";
 		}
-
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Daytaler);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 4);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_hammer"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_hoe"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_shovel"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_scythe"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_saw"));
-		}
-
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_hammer"],
+			[1, "weapons/legend_hoe"],
+			[1, "weapons/legend_shovel"],
+			[1, "weapons/legend_scythe"],
+			[1, "weapons/legend_saw"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],

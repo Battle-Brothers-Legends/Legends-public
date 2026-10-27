@@ -1,8 +1,6 @@
-::mods_hookExactClass("skills/backgrounds/barbarian_background", function(o)
-{
+::mods_hookExactClass("skills/backgrounds/barbarian_background", function(o) {
 	o.m.Tattoo <- 0;
-	o.create = function ()
-	{
+	o.create = function() {
 		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.NeutralMin;
 		this.character_background.create();
@@ -40,32 +38,32 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Druid | ::Const.BackgroundType.ExpertHunter;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.WildMale}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Faces = ::Const.Faces.WildMale, Hairs = ::Const.Hair.WildMale, Beards = ::Const.Beards.WildExtended});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Hairs = ::Const.Hair.WildMale
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Faces = ::Const.Faces.WildMale,
+			Hairs = ::Const.Hair.WildMale,
+			Beards = ::Const.Beards.WildExtended
+		});
 	}
 
 
-	o.onBuildDescription <- function ()	{
-			return "{%name% survived the battle between yourself and %their% own tribe of warriors. %They% offered %themselves% to your company or to your sword. Impressed by %their% bravery, you chose to take %them% in. A foreign brute, %they% hardly speaks your native tongue and %they% is not well liked by the rest of the company. But if anything can bond two people it is fighting beside one another, killing when it counts, and drinking the night away at the tavern.}";
+	o.onBuildDescription <- function() {
+		return "{%name% survived the battle between yourself and %their% own tribe of warriors. %They% offered %themselves% to your company or to your sword. Impressed by %their% bravery, you chose to take %them% in. A foreign brute, %they% hardly speaks your native tongue and %they% is not well liked by the rest of the company. But if anything can bond two people it is fighting beside one another, killing when it counts, and drinking the night away at the tavern.}";
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
-		local tattoos = [
-			3,
-			4,
-			5,
-			6
-		];
+		local tattoos = [3, 4, 5, 6];
 
-		if (::Math.rand(1, 100) <= 66)
-		{
+		if (::Math.rand(1, 100) <= 66) {
 			this.m.Tattoo = tattoos[::Math.rand(0, tattoos.len() - 1)];
 			local tattoo_body = actor.getSprite("tattoo_body");
 			local body = actor.getSprite("body");
@@ -73,49 +71,35 @@
 			tattoo_body.Visible = true;
 		}
 
-		if (::Math.rand(1, 100) <= 66)
-		{
+		if (::Math.rand(1, 100) <= 66) {
 			local tattoo_head = actor.getSprite("tattoo_head");
 			tattoo_head.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_head");
 			tattoo_head.Visible = true;
 		}
 	}
 
-	o.updateAppearance = function ()
-	{
+	o.updateAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("tattoo_0" + this.m.Tattoo + "_" + body.getBrush().Name);
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Barbarian);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(1, 3);
 
-		if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/barbarians/axehammer"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/barbarians/crude_axe"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/barbarians/blunt_cleaver"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/barbarians/axehammer"],
+			[1, "weapons/barbarians/crude_axe"],
+			[1, "weapons/barbarians/blunt_cleaver"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Barbarian.thick_furs_armor],
@@ -131,14 +115,12 @@
 		]));
 	}
 
-	o.onSerialize = function ( _out )
-	{
+	o.onSerialize = function(_out) {
 		this.character_background.onSerialize(_out);
 		_out.writeU8(this.m.Tattoo);
 	}
 
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function(_in) {
 		this.character_background.onDeserialize(_in);
 		this.m.Tattoo = _in.readU8();
 	}

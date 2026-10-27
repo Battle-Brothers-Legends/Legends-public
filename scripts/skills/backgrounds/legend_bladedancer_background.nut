@@ -1,7 +1,6 @@
 this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBladedancer);
 		this.m.BackgroundDescription = "A skilled nomadic fighter of the south who prefers speed and reach over raw power.";
@@ -45,55 +44,56 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		if (this.m.Ethnicity == 1) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMuscular, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
-		}
-		else if (this.m.Ethnicity == 2) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 90);
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.SouthernFemaleMuscular,
+				Faces = ::Const.Faces.SouthernFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.Young
+			} : {
+				Bodies = ::Const.Bodies.SouthernMuscular,
+				Faces = ::Const.Faces.SouthernMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.Southern,
+				Beards = ::Const.Beards.Southern
+			}, 90);
+		} else if (this.m.Ethnicity == 2) {
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.AfricanFemaleMuscular,
+				Faces = ::Const.Faces.AfricanFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.African
+			} : {
+				Bodies = ::Const.Bodies.AfricanMale,
+				Faces = ::Const.Faces.AfricanMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.African,
+				Beards = ::Const.Beards.Southern
+			}, 90);
 		}
 	}
 
-	function onBuildDescription()
-	{
-
-		if(this.isBackgroundType(::Const.BackgroundType.Female)) //holdover text, need to expand this.
-		{
-
-		return "{The South is brimming with slaves, and those not among their ranks should be considered lucky. Outside of the walls of southern society %name% was born into a nameless nomadic tribe and made a living off the land. Every year the natural bounty of nature becomes slimmer and the walls of the city states expand further into their homeland.}";
+	function onBuildDescription() {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
+			//holdover text, need to expand this.
+			return "{The South is brimming with slaves, and those not among their ranks should be considered lucky. Outside of the walls of southern society %name% was born into a nameless nomadic tribe and made a living off the land. Every year the natural bounty of nature becomes slimmer and the walls of the city states expand further into their homeland.}";
+		} else {
+			return "{The South is brimming with slaves, and those not among their ranks should be considered lucky. Outside of the walls of southern society %name% was born into a nameless nomadic tribe and made a living off the land. Every year the natural bounty of nature becomes slimmer and the walls of the city states expand further into their homeland.}";
 		}
-		else
-		{
-
-		return "{The South is brimming with slaves, and those not among their ranks should be considered lucky. Outside of the walls of southern society %name% was born into a nameless nomadic tribe and made a living off the land. Every year the natural bounty of nature becomes slimmer and the walls of the city states expand further into their homeland.}";
-		}
-
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBladedancer);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
 
-		if (items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
-			r = ::Math.rand(0, 2);
-
-			if (r == 0)
-			{
-				items.equip(this.new("scripts/items/weapons/oriental/swordlance"));
-			}
-			else if (r == 1)
-			{
-				items.equip(this.new("scripts/items/weapons/shamshir"));
-			}
-			else if (r == 2)
-			{
-				items.equip(this.new("scripts/items/weapons/oriental/polemace"));
-			}
+		if (items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
+			items.equip(::Legends.Items.pickItem([
+				[1, "weapons/oriental/swordlance"],
+				[1, "weapons/shamshir"],
+				[1, "weapons/oriental/polemace"]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([

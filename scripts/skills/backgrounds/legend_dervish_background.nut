@@ -1,7 +1,6 @@
 this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendDervish);
 		this.m.BackgroundDescription = "The dervish is a religious background that enters an almost trance-like state in combat.";
@@ -27,36 +26,32 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BackgroundType = ::Const.BackgroundType.Combat;
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendDervish);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle("the Dervish");
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{%name% is a mixed character - you have never seen someone so violent yet so calm at the same time. | %name% says it is down to years of training and prayer that steadies the commitment of a person - however you suspect that the reason is more animalistic and simple than %they% let on.} {The dedication and aggression from %name% dwarfs that of the monks in the north. | %name% sleeps under the overhang of a market stall and walks the city during the daytime, often in bare feet and dressed in little more than rags. | This spartan martial lifestyle has left %name% with a strong body and a stronger mind. | %Their% sanity is still up for debate however. } {When you first heard of %name% %they% sounded like your typical mercenary - loud, strong and with an unhealthy interest in all things that could kill a man. | Upon closer inspection %they% seem more alike a zealous beggar than anything else - dressed in shabby clothing and preaching wherever they go. } {%name% speaks, acts, eats, sleeps and a manner of other things as any religious southerner would do. | However %their% demeanour changes significantly whenever you put a weapon in %their% hand, showing a combination of ornate flourishes that seem more like a dance than a practical combat style. | While it would take the eye out of any man or creature close enough, %their% resolve is above and beyond %their% peers.}";
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local armor = ::Legends.Items.pickArmor([
+
+		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
-		]);
-		items.equip(armor);
-		local helm = ::Legends.Items.pickHelmet([
+		]));
+
+		items.equip(::Legends.Items.pickHelmet([
 			[2, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.Standard.legend_noble_southern_hat],
 			[3, ::Legends.Helmet.None]
-		]);
-		items.equip(helm);
+		]));
 	}
 });
 

@@ -1,7 +1,6 @@
 this.legend_commander_ranger_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderRanger);
 		this.m.BackgroundDescription = "Rangers are expert trackers and archers, used to hunting prey of any kind";
@@ -62,28 +61,29 @@ this.legend_commander_ranger_background <- this.inherit("scripts/skills/backgrou
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.TidyMale, Beards = ::Const.Beards.Tidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Faces = ::Const.Faces.PrettyFemale,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Hairs = ::Const.Hair.TidyMale,
+			Beards = ::Const.Beards.Tidy
+		});
 	}
 
 	function onBuildDescription() {
 		return "This is your commander, when %they% dies the company ends. {Without %their% father around, %name%\'s mother taught %them% how to shoot a bow, and how to feed the rest of %their% family. | Born in the hinterlands of %randomtown%, %name% has spent much of %their% life stalking the beasts amongst the trees. | %name% once took a bet to shoot an apple off a pig\'s head. %They% missed. With a belly full of bacon, %they% became determined to never miss again - unless it meant more bacon, of course. | Early in %their% life, %name% liked to traipse about the forests. When a rabid fox attacked %them%, %they% learned to take a bow. When a devilish eagle clawed %their% face, %they% learned to shoot it.} {Once employed by local royalty, a disastrous boar hunt ended with a gored baron and all the blame - and blood - on %name%\'s hands. | The hunter hid the thought well, but for the longest time %they% wondered what it would be like to hunt the ultimate game: man. | Sadly, a bad game of peasant-roulette forced the deer hunter into seeking other means of income. | Unfortunately, %they% is not nearly as good at cooking deer as %they% is at shooting them. A dinner consisting of undercooked meats poisoned %their% entire family. %their% desperation for a new life is understandable. | After an arduous trip to town to sell meats and leathers, %they% followed the call of mercenary work. | War drove the game out of the forests, and the hunt out of %name%. Now %they% seeks another line of work. | When %their% %partner% fell ill, %they% could not heal her with hunted meat. Needing to earn crowns to pay for treatment, %they% took up the vocation of sellswords - or sellbows, as it were.} {Any outfit could use a deadeye such as this %person%. | Not entirely without faults, %name% is a professional bowman nonetheless. | A quick demonstration is offered: %name% shoots one arrow high into the sky, and with another %they% knocks it out. Impressive. | %name% looks like %they% has something to prove - just make sure %they% does it at range. When first given a sword, %they% grabbed it at the wrong end. Yes, that end. | The hunter wields %their% bow like another limb, and shoots %their% arrows like a preacher does words.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderRanger);
 	}
 
-	function onAdded()
-	{
-		if (this.m.IsNew)
-			::Legends.Traits.grant(this, ::Legends.Trait.Athletic);
+	function onAdded() {
+		if (this.m.IsNew) ::Legends.Traits.grant(this, ::Legends.Trait.Athletic);
 		this.character_background.onAdded();
 	}
 
-
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.RangedSkill] = 3;
@@ -91,22 +91,16 @@ this.legend_commander_ranger_background <- this.inherit("scripts/skills/backgrou
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/short_bow"]
+		], "scripts/items/"));
 
-		local r;
-		items.equip(this.new("scripts/items/weapons/short_bow"));
-		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
 
-
-		r = ::Math.rand(0, 1);
-
-		if (r == 0)
-		{
-			items.addToBag(this.new("scripts/items/weapons/dagger"));
-		}
-		if (r == 1)
-		{
-			items.addToBag(this.new("scripts/items/weapons/bludgeon"));
-		}
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/dagger"],
+			[1, "weapons/bludgeon"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],

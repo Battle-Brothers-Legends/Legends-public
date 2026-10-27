@@ -1,7 +1,6 @@
 this.legend_commander_noble_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderNoble);
 		this.m.BackgroundDescription = "A noble with a birthright claim to authority";
@@ -35,7 +34,12 @@ this.legend_commander_noble_background <- this.inherit("scripts/skills/backgroun
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Hairs = ::Const.Hair.TidyMale,
+			HairColors = ::Const.HairColors.Young
+		});
 	}
 
 	function onBuildDescription() {
@@ -46,45 +50,44 @@ this.legend_commander_noble_background <- this.inherit("scripts/skills/backgroun
 		}
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderNoble);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_fortified_mind"));
 
-		if (this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 			actor.setName(::Const.Strings.LadyNames[::Math.rand(0, ::Const.Strings.LadyNames.len() - 1)]);
-		}
-		else
-		{
+		} else {
 			actor.setName(::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]);
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.Bravery] = 3;
 		talents[::Const.Attributes.MeleeSkill] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/ancient/broken_bladed_pike"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_noble_hat],
 			[1, ::Legends.Helmet.Standard.legend_noble_crown],
 			[1, ::Legends.Helmet.Standard.legend_noble_floppy_hat],
 			[1, ::Legends.Helmet.Standard.legend_noble_hood]
 		]));
-		items.equip(this.new("scripts/items/weapons/ancient/broken_bladed_pike"));
 	}
 });

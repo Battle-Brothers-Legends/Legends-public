@@ -1,7 +1,6 @@
 this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHusk);
 		this.m.BackgroundDescription = "Once imbued with the will of a dead god, the departing of said god left this one...unpredictable.";
@@ -60,7 +59,14 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Faces = ::Const.Faces.OldFemale,
+			HairColors = ::Const.HairColors.Old
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
 	function onBuildDescription() {
@@ -71,91 +77,63 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 		return true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Will never be sacrificed to Davkul"
-			}
-		);
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Will never be sacrificed to Davkul"
+		});
 		return ret;
 	}
 
 
-
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHusk);
 	}
 
-	function onSetAppearance()
-	{
-		if (!this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	function onSetAppearance() {
+		if (!this.isBackgroundType(::Const.BackgroundType.Female)) {
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 			local tattoo_head = actor.getSprite("tattoo_head");
 
-			if (::Math.rand(1, 100) <= 50)
-			{
+			if (::Math.rand(1, 100) <= 50) {
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 				tattoo_body.Visible = true;
 			}
 
-			if (::Math.rand(1, 100) <= 50)
-			{
+			if (::Math.rand(1, 100) <= 50) {
 				tattoo_head.setBrush("tattoo_01_head");
 				tattoo_head.Visible = true;
 			}
 		}
 	}
 
-	function updateAppearance()
-	{
-		if (!this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	function updateAppearance() {
+		if (!this.isBackgroundType(::Const.BackgroundType.Female)) {
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 
-			if (tattoo_body.HasBrush)
-			{
+			if (tattoo_body.HasBrush) {
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 			}
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 4);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/greenskins/legend_bone_carver"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/wooden_flail"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_reinforced_flail"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-		}
-		else if (r == 4)
-		{
-		 items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/greenskins/legend_bone_carver"],
+			[1, "weapons/wooden_flail"],
+			[1, "weapons/legend_reinforced_flail"],
+			[1, "weapons/woodcutters_axe"],
+			[1, "weapons/legend_infantry_axe"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
@@ -163,6 +141,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk],
 			[1, ::Legends.Armor.Standard.decayed_coat_of_plates]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.hood],
@@ -170,8 +149,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 		]));
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		this.getContainer().getActor().getFlags().add("cultist");
 	}

@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/slave_barbarian_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/slave_barbarian_background", function(o) {
+	o.create = function() {
 		this.slave_background.create();
 		this.m.GoodEnding = null;
 		this.m.BadEnding = null;
@@ -30,8 +29,7 @@
 		];
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.SlaveBarbarian);
 	}
 });

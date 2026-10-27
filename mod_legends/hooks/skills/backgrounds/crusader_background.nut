@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/crusader_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/crusader_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Crusader);
 		this.m.Titles = [
@@ -60,86 +58,74 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "%name% joined your party during the undead scourge. Little is known about him and he almost never talks save for the occasional grunt while swinging his sword. His language seems to be codified into one simple structure: killing creatures of evil.";
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (::Math.rand(1, 100) <= 25)
-		{
+		if (::Math.rand(1, 100) <= 25) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (::Math.rand(1, 100) <= 25)
-		{
+		if (::Math.rand(1, 100) <= 25) {
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
 		}
 	}
 
-	o.updateAppearance = function ()
-	{
+	o.updateAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Crusader);
 	}
 
-	o.onAdded = function ()	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local actor = this.getContainer().getActor();
 		actor.setVeteranPerks(3);
 		local items = actor.getItems();
 
-		local weapons = [
-			"weapons/longsword",
-			"weapons/legend_zweihander",
-			"weapons/greatsword",
-			"weapons/two_handed_hammer",
-			"weapons/two_handed_flail",
-			"weapons/two_handed_flanged_mace",
-			"weapons/arming_sword",
-			"weapons/winged_mace",
-			"weapons/warhammer",
-			"weapons/flail",
-			"weapons/three_headed_flail"
-		];
-		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/longsword"],
+			[1, "weapons/legend_zweihander"],
+			[1, "weapons/greatsword"],
+			[1, "weapons/two_handed_hammer"],
+			[1, "weapons/two_handed_flail"],
+			[1, "weapons/two_handed_flanged_mace"],
+			[1, "weapons/arming_sword"],
+			[1, "weapons/winged_mace"],
+			[1, "weapons/warhammer"],
+			[1, "weapons/flail"],
+			[1, "weapons/three_headed_flail"]
+		], "scripts/items/"));
 
-		if (items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
-			local offhand = [
-				"shields/kite_shield",
-				"shields/heater_shield",
-				"shields/legend_tower_shield",
-			];
-			items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
+		if (items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
+			items.equip(::Legends.Items.pickItem([
+				[1, "shields/kite_shield"],
+				[1, "shields/heater_shield"],
+				[1, "shields/legend_tower_shield"]
+			], "scripts/items/"));
 		}
 
 		items.equip(::Legends.Items.pickArmor([

@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/pacified_flagellant_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/pacified_flagellant_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.PacifiedFlagellant);
 		this.m.Excluded = [
@@ -26,12 +25,8 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "After a long talk with a monk, %name% was converted to a more peaceful means of expressing his faith. Now when he picks up a weapon you can be assured it will only be pointed at someone other than himself.";
 	}
 
-	o.onAddEquipment = function ()
-	{
-	}
 });

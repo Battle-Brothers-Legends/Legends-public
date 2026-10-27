@@ -1,7 +1,6 @@
 this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBattleSister);
 		this.m.BackgroundDescription = "Battle Sisters are warrior women trained by the inquisition to fight and destroy evil.";
@@ -39,14 +38,11 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 	}
 
 
-
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{The gods pity men, spurring many, not unlike %name%, to seek their favor. | Illiterate and born to poverty, %name% found refuge in tales of the gods. | Always one to devour books, it wasn\'t long until %name% discovered texts of the gods. | Some say the gods speak to us and, if true, they definitely spoke to %name%. | With new cults springing up in the wilds, %name% returned to the familiarity of the gods. | Raised by their firebrand father, %name% spent much of their early years nursing wounds from good floggings. The gods would approve.} {When war came to the land, the gods told them to take part for greater justice. | As cultists spread their vile word like disease on a rat, %name% saw fit to take up arms and battle the heresy. | Straying from their faith, they committed a horrific crime in %randomtown% - finding company with a man. While flagellating himself nightly, he seeks redemption. | Hearing but a mere rumor of a holy place, the pilgrim took up staff and supplies to seek it out. | Now that war has returned to the land, the gods devotee wished to find out why, through prayer and corporeal means. | A night spent in a cave revealed to the believer that the gods demanded blood. %name% was not one to refuse their beckoning. | After raiders looted the coffers of their church, %name%\'s quest was to refill the pure purses.} {As the laws of the universe bend to a world-consuming war, a thaumaturge like %name% might be useful to have around. | They carry a whip with glass-barbed leather. This is not for your enemies, they state, but for purity. Interesting. | They profess to hate evil, but for a few crowns %name% can be persuaded to make anything \'evil\'. | This chosen one seeks the difficult road, no doubt why they saw fit to join a mercenary band. | If %name% had the power, you believe they\'d purge the entire world. | Talks of the gods might be a tad irksome, but %name%\'s fiery passion lends itself well to the battlefield. | So enamored with the world of the gods, it\'s not much of a surprise that the pilgrim sees the real one filled with enemies.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBattleSister);
 	}
 
@@ -54,8 +50,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		this.updateAppearance();
 	}
 
-	function updateAppearance()
-	{
+	function updateAppearance() {
 		local actor = this.getContainer().getActor();
 		local body = actor.getSprite("body");
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -65,49 +60,29 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		tattoo_body.Visible = true;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			local actor = this.getContainer().getActor();
 			actor.setTitle(::Const.Strings.PilgrimTitles[::Math.rand(0, ::Const.Strings.PilgrimTitles.len() - 1)]);
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
 
-		r = ::Math.rand(0, 3);
-		if (r <= 2)
-		{
-			items.equip(this.new("scripts/items/shields/wooden_shield"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/shields/kite_shield"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[3, "shields/wooden_shield"],
+			[1, "shields/kite_shield"]
+		], "scripts/items/"));
 
-		r = ::Math.rand(0, 5);
-		if (r <= 2)
-		{
-			items.equip(this.new("scripts/items/weapons/falchion"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/flail"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/military_pick"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/hand_axe"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[3, "weapons/falchion"],
+			[1, "weapons/flail"],
+			[1, "weapons/military_pick"],
+			[1, "weapons/hand_axe"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],

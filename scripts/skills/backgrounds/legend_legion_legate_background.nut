@@ -1,7 +1,6 @@
 this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionLegate);
 		this.m.BackgroundDescription = "A military figure of great experience and prowess, the legate has risen through the ranks with bloody blade in hand.";
@@ -22,8 +21,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
-	function getTooltip ()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
 		ret.push({
 			id = 12,
@@ -36,17 +34,22 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.Muscular
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.CommonMale
+		});
 		this.m.Names = _gender ? ::Const.Strings.AncientDeadNamesFemale : ::Const.Strings.AncientDeadNames;
 	}
 
-	function onBuildDescription() //— \n { TODO | TODO }
-	{
+	function onBuildDescription() {
+		//— \n { TODO | TODO }
 		return "{%name% was destined for leadership since they were a child — their family marking them out for something greater. | Initially struggling in life, %name% went through several prestigious military schools. | %name% never wished to be in command. A simple legionary in the beginning, they killed their commanding officer and was awarded with their rank after investigations found them to be a traitor. | In the heat of a losing battle, %name% rose to the occasion to become the man of the hour — turning the tide from a crushing defeat into a pyrrhic victory.} {Feeling underwhelmed by their rank, they took to taking a more active role in the field. | Tired with battle reports, meetings and strategy — they frequently absconded from their duties. | Taking the rank in their stride, %name% did what they could to serve the Empire.}";
 	}
 
-	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
-	{
+	function onChangeAttributes() {
+		//uses Character_background.nut template (Skeleton)
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLegionLegate);
 	}
 
@@ -58,8 +61,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(::Legends.Items.pickItem([

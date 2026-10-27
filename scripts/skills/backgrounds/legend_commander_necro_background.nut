@@ -1,7 +1,6 @@
 this.legend_commander_necro_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderNecro);
 		this.m.BackgroundDescription = "Years of practical training and close calls have shaped %name% into a cold, dark figure capable of calling colder and darker followers to serve %them%.";
@@ -54,113 +53,116 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 			::Const.Attributes.Fatigue,
 			::Const.Attributes.Bravery
 		];
-
-
-			this.m.CustomPerkTree = [
-				[
-					::Legends.Perk.NineLives,
-					::Legends.Perk.LegendAlert,
-					::Legends.Perk.CripplingStrikes,
-					::Legends.Perk.Recover,
-					::Legends.Perk.LegendWither,
-					::Legends.Perk.LegendSpecialistCultist,
-					::Legends.Perk.LegendSpecialistReaper,
-					::Legends.Perk.LegendMoldCarrion,
-					::Legends.Perk.LegendPossession
-				],
-				[
-					::Legends.Perk.LegendReclamation,
-					::Legends.Perk.LegendDedication,
-					::Legends.Perk.FortifiedMind,
-					::Legends.Perk.Overwhelm,
-					::Legends.Perk.LegendTrueBeliever,
-					::Legends.Perk.LegendRust,
-					::Legends.Perk.LegendDeathTouch,
-					::Legends.Perk.RallyTheTroops
-				],
-				[
-					::Legends.Perk.LegendMiasma,
-					::Legends.Perk.LegendFavouredEnemyCivilization,
-					::Legends.Perk.LegendFashionBody,
-					::Legends.Perk.LegendChanneledPower,
-					::Legends.Perk.LegendDeflection,
-					::Legends.Perk.LegendBloodbath
-				],
-				[
-					::Legends.Perk.SpecDagger,
-					::Legends.Perk.SpecMace,
-					::Legends.Perk.SpecSword,
-					::Legends.Perk.SpecCleaver,
-					::Legends.Perk.LegendMasteryMagicStaff,
-					::Legends.Perk.SpecPolearm,
-					::Legends.Perk.LegendPoisoner,
-					::Legends.Perk.LegendExtendedAura
-				],
-				[
-					::Legends.Perk.LegendLacerate,
-					::Legends.Perk.LegendLithe,
-					::Legends.Perk.LegendStaffSpins,
-					::Legends.Perk.LegendFavouredEnemyBeast,
-					::Legends.Perk.LegendViolentDecomposition,
-					::Legends.Perk.LegendConservation,
-					::Legends.Perk.LegendCarnage,
-					::Legends.Perk.LegendRemakeMan
-				],
-				[
-					::Legends.Perk.LegendFavouredEnemyOccult,
-					::Legends.Perk.LegendGruesomeFeast,
-					::Legends.Perk.LegendRebound,
-					::Legends.Perk.LegendPenance,
-					::Legends.Perk.Backstabber,
-					::Legends.Perk.CoupDeGrace
-				],
-				[
-					::Legends.Perk.Fearsome,
-					::Legends.Perk.LegendTacticalManeuvers,
-					::Legends.Perk.Nimble,
-					::Legends.Perk.LegendPerfectFocus,
-					::Legends.Perk.LegendFreedomOfMovement,
-					::Legends.Perk.LegendBalance,
-					::Legends.Perk.LegendClarity,
-					::Legends.Perk.ReachAdvantage
-				],
-				[],
-				[],
-				[],
-				[]
-			];
+		this.m.CustomPerkTree = [
+			[
+				::Legends.Perk.NineLives,
+				::Legends.Perk.LegendAlert,
+				::Legends.Perk.CripplingStrikes,
+				::Legends.Perk.Recover,
+				::Legends.Perk.LegendWither,
+				::Legends.Perk.LegendSpecialistCultist,
+				::Legends.Perk.LegendSpecialistReaper,
+				::Legends.Perk.LegendMoldCarrion,
+				::Legends.Perk.LegendPossession
+			],
+			[
+				::Legends.Perk.LegendReclamation,
+				::Legends.Perk.LegendDedication,
+				::Legends.Perk.FortifiedMind,
+				::Legends.Perk.Overwhelm,
+				::Legends.Perk.LegendTrueBeliever,
+				::Legends.Perk.LegendRust,
+				::Legends.Perk.LegendDeathTouch,
+				::Legends.Perk.RallyTheTroops
+			],
+			[
+				::Legends.Perk.LegendMiasma,
+				::Legends.Perk.LegendFavouredEnemyCivilization,
+				::Legends.Perk.LegendFashionBody,
+				::Legends.Perk.LegendChanneledPower,
+				::Legends.Perk.LegendDeflection,
+				::Legends.Perk.LegendBloodbath
+			],
+			[
+				::Legends.Perk.SpecDagger,
+				::Legends.Perk.SpecMace,
+				::Legends.Perk.SpecSword,
+				::Legends.Perk.SpecCleaver,
+				::Legends.Perk.LegendMasteryMagicStaff,
+				::Legends.Perk.SpecPolearm,
+				::Legends.Perk.LegendPoisoner,
+				::Legends.Perk.LegendExtendedAura
+			],
+			[
+				::Legends.Perk.LegendLacerate,
+				::Legends.Perk.LegendLithe,
+				::Legends.Perk.LegendStaffSpins,
+				::Legends.Perk.LegendFavouredEnemyBeast,
+				::Legends.Perk.LegendViolentDecomposition,
+				::Legends.Perk.LegendConservation,
+				::Legends.Perk.LegendCarnage,
+				::Legends.Perk.LegendRemakeMan
+			],
+			[
+				::Legends.Perk.LegendFavouredEnemyOccult,
+				::Legends.Perk.LegendGruesomeFeast,
+				::Legends.Perk.LegendRebound,
+				::Legends.Perk.LegendPenance,
+				::Legends.Perk.Backstabber,
+				::Legends.Perk.CoupDeGrace
+			],
+			[
+				::Legends.Perk.Fearsome,
+				::Legends.Perk.LegendTacticalManeuvers,
+				::Legends.Perk.Nimble,
+				::Legends.Perk.LegendPerfectFocus,
+				::Legends.Perk.LegendFreedomOfMovement,
+				::Legends.Perk.LegendBalance,
+				::Legends.Perk.LegendClarity,
+				::Legends.Perk.ReachAdvantage
+			],
+			[],
+			[],
+			[],
+			[]
+		];
 	}
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.NecromancerFemale, HairColors = ::Const.HairColors.Zombie}) : this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.NecromancerMale, Hairs = ::Const.Hair.Necromancer, HairColors = ::Const.HairColors.Zombie, Beards = ::Const.Beards.Raider});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Faces = ::Const.Faces.NecromancerFemale,
+			HairColors = ::Const.HairColors.Zombie
+		} : {
+			Faces = ::Const.Faces.NecromancerMale,
+			Hairs = ::Const.Hair.Necromancer,
+			HairColors = ::Const.HairColors.Zombie,
+			Beards = ::Const.Beards.Raider
+		});
 	}
 
 	function onBuildDescription() {
 		return "Clothed in the un-reality of your life\'s work, manipulating the undead is a second nature. With nothing to fear, manipulating people was not much more difficult. Despite the pacts you have made and the enemies bested along the way, you feel age catching up to you. How long has it been — how much longer is there to go?";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
 		ret.push(
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/xp_received.png",
-				text = "[color=%positive%]+15%[/color] Experience Gain"
-			}
+		{
+			id = 13,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = "[color=%positive%]+15%[/color] Experience Gain"
+		}
 		);
 		return ret;
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderNecro);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		if (this.m.IsNew) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendDrainingTouch);
 			::Legends.Traits.grant(this, ::Legends.Trait.Old);
@@ -168,13 +170,20 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 		this.character_background.onAdded();
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_scythe"],
+			[1, "weapons/legend_staff"],
+			[1, "weapons/legend_sickle"],
+			[1, "weapons/battle_whip"],
+			[1, "weapons/butchers_cleaver"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.necromancer_hat],
@@ -190,34 +199,9 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 			[2, ::Legends.Armor.Standard.undertaker_apron],
 			[2, ::Legends.Armor.Standard.wanderers_coat]
 		]));
-
-		local r;
-		r = ::Math.rand(0, 4);
-
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_scythe"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_sickle"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/battle_whip"));
-		}
-		else if (r == 4)
-		{
-		 items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
-		}
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.XPGainMult *= 1.15;
 	}

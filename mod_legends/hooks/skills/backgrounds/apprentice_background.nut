@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/apprentice_background", function(o)
-{
-	o.create = function()
-	{
+::mods_hookExactClass("skills/backgrounds/apprentice_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Apprentice);
 		this.m.BackgroundDescription = "Apprentices tend to be eager for knowledge and learn faster than others.";
@@ -34,38 +32,41 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Educated;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.YoungMale, HairColors = ::Const.HairColors.Young});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleMuscular,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.YoungMale,
+			HairColors = ::Const.HairColors.Young
+		});
 	}
 
 	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/xp_received.png",
-				text = "[color=%positive%]+10%[/color] Experience Gain"
-			}
-		);
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = "[color=%positive%]+10%[/color] Experience Gain"
+		});
 		return ret;
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "{One enters the world always looking to be the best they can be, | Mastery of an art is prestigious, | Everybody looks up to the best,} {but no one gets there in an instant. | so what better way to be the best than to learn underneath one? | and it\'s no secret most look toward the masters for help.} {%name% thought the same, taking the role of an apprentice in %townname%. | Believing this to be true, %name% took up an apprenticeship in %townname%. | When %randomtown%\'s college asked for apprentices, %name% was the first to sign up. | Urged by %their% parents to better %their% craft, %name% looked to start %their% career as an apprentice. | Not to be outdone by %their% overachieving brother, %name% began looking for an apprenticeship.} {Unfortunately, %their% master was poorly chosen: an insane carpenter with a penchant for chopping the neckline instead of the treeline. Fleeing the impending doom by association, %name% has ended up in the company of sellswords. | Learning all %they% could, %name% built the greatest work of art possibly ever seen in the field of underwater basket-weaving. %Their% master, though, was a jealous one. Not to be outdone by a pupil, they burned the project to ash and eye-watering fumes. It was clear to %name%: %they% could learn fast, but perhaps there were better masters to study beneath. | %They% had soaked up all there was to learn: masonry, carpentry, blacksmithing, lovemaking. Now %they% turns %their% eyes on the martial arts. While %they% isn\'t exactly a warrior yet, %name% is a fast learner.}";
 	}
 
-	o.onChangeAttributes = function()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Apprentice);
 	}
 
 
-	o.onAddEquipment = function()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
@@ -73,10 +74,8 @@
 		]));
 	}
 
-	o.onUpdate <- function ( _properties )
-	{
+	o.onUpdate <- function(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.XPGainMult *= 1.1;
 	}
-
 });

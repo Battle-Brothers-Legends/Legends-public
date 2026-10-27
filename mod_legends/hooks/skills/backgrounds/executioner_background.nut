@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/executioner_background", function(o)
-{
-	o.create = function () {
+::mods_hookExactClass("skills/backgrounds/executioner_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Executioner);
 		this.m.BackgroundDescription = "Executioners are dour and used to violence, although they have little experience in true warfare.";
@@ -41,76 +40,70 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Performing;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=%positive%]+10%[/color] Chance To Hit Head"
-			}
-		);
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/chance_to_hit_head.png",
+			text = "[color=%positive%]+10%[/color] Chance To Hit Head"
+		});
 		return ret;
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Big, Hairs = ::Const.Hair.UntidyMale}, 50);
+		this.setBodyCharacteristics(_gender, _gender ?  {} : {
+			Bodies = ::Const.Bodies.Big,
+			Hairs = ::Const.Hair.UntidyMale
+		}, 50);
 	}
 
-	o.onBuildDescription = function () {
+	o.onBuildDescription = function() {
 		return "{As with many men, %name%\'s direction in life was dictated by the family business: executing criminals for the burgomeister of %randomtown%. | As a %child%, %name% dreamed of becoming a knight clad in shining armor. As a %person%, %they% became an executioner clad in a dark hood. | %name%\'s whole family was slain in a bandit raid. Unable to join the manhunt himself, %they% became an apprentice to the local executioner in the hopes of one day meting out revenge in %their% own way. | Once a brigand %themselves%, %name% had a change of heart and turned %themselves% in. The local guard offered %them% a pardon if %they% agreed to execute any criminals they captured, and %they're% been in the trade ever since. | With the distant stare of one who has seen much death, and the worn blade of one who has dealt it, it\'s obvious that %name% is an executioner. | An executioner, %name% is about as cheerful as the gallows %they% operates.} {Though content with %their% profession, it made %them% unpopular. After carrying out the beheading of {a local youth sentenced for stealing from a noble | a beloved whore who slept with the wrong lord | a respected craftsman accused of embezzling}, %they% was ostracized by the townsfolk. | %They% always viewed %themselves% as a necessary, if grisly, part of law for the common folk. But when %they% learned {%their% employer was making backroom deals with brigands | the local lord was ordering the deaths of the innocent | a man %they% executed was innocent | of the horrible things the local lord did with the heads of the condemned}, %they% resigned %their% post in disgust. | One day %they% was tasked with killing a strange cultist from distant lands. After %they% broke a third blade halfway through the strangely cheerful man\'s neck, %they% decided it was time to find a new profession. | But one day %they% woke up and found %they% could no longer stomach the idea of slaying a man who couldn\'t fight back. | But eventually %they% grew unhappy with %their% role, finding little satisfaction in slaying men after they\'d already performed their evil works.} {With few other careers available to %them%, %name% decided mercenary work seemed the best fit for %their% talents. | While not a warrior, %name% knows how to handle a blade, and so sellswording was the obvious career change. | With a skillset predominantly based around necklines, %name% decided %they% could either become a mercenary or a tailor. The former seemed like it paid better, and now here %they% is. | In need of a new career but with few other skills, %name% decided that mercenary work was sort of like executing with more steps.} {The %person% stands silently before you, staring wide-eyed and expectant but not saying a word. Ok then. | Less confident in conversation than in killing, %they% mumbles out a nervous greeting to you and asks about pay. | Not much for words, %they% grunts expectantly at you. As long as %they% can kill, you suppose you don\'t mind the quiet. | %They% approaches and barks something at you that %their% heavy hood muffles beyond comprehension. After a few moments of silence %they% follows up with \'...please?\' and you realize %they're% asking to join the company. Oh.}";
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (::Math.rand(1, 100) <= 25)
-		{
+		if (::Math.rand(1, 100) <= 25) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (::Math.rand(1, 100) <= 25)
-		{
+		if (::Math.rand(1, 100) <= 25) {
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
 		}
 	}
 
-	o.updateAppearance = function ()
-	{
+	o.updateAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Executioner);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local weapons = [
-			"weapons/hatchet",
-			"weapons/hand_axe",
-			"weapons/exesword",
-			"weapons/woodcutters_axe",
-			"weapons/bardiche"
-		];
-		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/hatchet"],
+			[1, "weapons/hand_axe"],
+			[1, "weapons/exesword"],
+			[1, "weapons/woodcutters_axe"],
+			[1, "weapons/bardiche"],
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps],
@@ -122,7 +115,7 @@
 		]));
 	}
 
-	o.onUpdate = function ( _properties ) {
+	o.onUpdate = function(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.HitChance[::Const.BodyPart.Head] += 10;
 	}

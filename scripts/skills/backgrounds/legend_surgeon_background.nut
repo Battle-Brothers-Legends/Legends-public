@@ -1,7 +1,6 @@
 this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendSurgeon);
 		this.m.BackgroundDescription = "A learned surgeon from the south, their knowledge of medicine outstrips those of the oldest monks and witches.";
@@ -54,62 +53,67 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		if (this.m.Ethnicity == 1) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMale, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
-		}
-		else {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemale, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.SouthernFemale,
+				Faces = ::Const.Faces.SouthernFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.Young
+			} : {
+				Bodies = ::Const.Bodies.SouthernMale,
+				Faces = ::Const.Faces.SouthernMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.Southern,
+				Beards = ::Const.Beards.Southern
+			}, 60);
+		} else {
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.AfricanFemale,
+				Faces = ::Const.Faces.AfricanFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.African
+			} : {
+				Bodies = ::Const.Bodies.AfricanMale,
+				Faces = ::Const.Faces.AfricanMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.African,
+				Beards = ::Const.Beards.Southern
+			}, 60);
 		}
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/xp_received.png",
-				text = "[color=%positive%]+10%[/color] Experience Gain"
-			}
-		);
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = "[color=%positive%]+10%[/color] Experience Gain"
+		});
 		return ret;
 	}
 
-	function onBuildDescription()
-	{
-		if (this.isBackgroundType(::Const.BackgroundType.Female))
-		{ //Female
+	function onBuildDescription() {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
+			//Female
 			return "{Some women are born to be feared. %name% is not one of them. | Relatively normal in stature, %name% garners little attention from passers by. | Years of study and \'practical\' research has left %them% with a good understanding on how to make or unmake a man.} {The surgeon spent many a day tending to the Vizier\'s men, until the camp as overrun by northern armies. | Never intending to be a crownling, %name% finds themselves with little choice after wandering in the desert looking for help. | While %they% have never been in a serious fight in %their% life, %name% knows their way around cutting tools and isn\'t afraid of a little gore. | When ordered to kill the wounded who could not walk, %name% refused and found themselves thrown out of the camp. | After being captured by and tending to wounded nomads, %name% found some hospitality and provisions before they left %them% on the road.} {The war has made the worst come out from both sides, with her stuck in the middle.}";
-		}
-		else
-		{ //Male
+		} else {
+			//Male
 			return "{Some men are born to be feared. %name% is not one of them. | Relatively normal in stature, %name% garners little attention from passers by. | Years of study and \'practical\' research has left %them% with a good understanding on how to make or unmake a man.} {The surgeon spent many a day tending to the Vizier\'s men, until the camp as overrun by northern armies. | Never intending to be a crownling, %name% finds themselves with little choice after wandering in the desert looking for help. | While %they% have never been in a serious fight in %their% life, %name% knows their way around cutting tools and isn\'t afraid of a little gore. | When ordered to kill the wounded who could not walk, %name% refused and found themselves thrown out of the camp. | After being captured by and tending to wounded nomads, %name% found some hospitality and provisions before they left %them% on the road.} {The war has made the worst come out from both sides, with him stuck in the middle.}";
 		}
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendSurgeon);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 2);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_saw"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/knife"],
+			[1, "weapons/legend_saw"],
+			[1, "weapons/butchers_cleaver"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.vizier_gear],
@@ -124,8 +128,7 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 		]));
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		this.character_background.onUpdate(_properties);
 		_properties.XPGainMult *= 1.1;
 	}

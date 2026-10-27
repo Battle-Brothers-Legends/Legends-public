@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/companion_2h_southern_background", function(o)
-{
-	o.create = function()
-	{
+::mods_hookExactClass("skills/backgrounds/companion_2h_southern_background", function(o) {
+	o.create = function() {
 		this.companion_2h_background.create();
 		this.m.Bodies = ::Const.Bodies.Gladiator;
 		this.m.Faces = ::Const.Faces.SouthernMale;
@@ -44,21 +42,17 @@
 		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
-	o.onAddEquipment = function()
-	{
+	o.onAddEquipment = function() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.MeleeSkill] = 2;
 		talents[::Const.Attributes.MeleeDefense] = 1;
 		talents[::Const.Attributes.Bravery] = 1;
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 0);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/two_handed_wooden_hammer"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
@@ -66,11 +60,10 @@
 			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
-		local helm =::Legends.Items.pickHelmet([
+		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.leather_head_wrap],
 			[1, ::Legends.Helmet.Southern.leather_head_wrap],
 			[1, ::Legends.Helmet.Southern.southern_head_wrap, ::Math.rand(0, 1) == 1 ? 12 : 8]
-		]);
-		items.equip(helm);
+		]));
 	}
 });

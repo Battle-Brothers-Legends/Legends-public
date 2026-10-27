@@ -36,30 +36,35 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale});
+		this.setBodyCharacteristics(_gender, _gender ? {} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.CommonMale
+		});
 	}
 
 	function onBuildDescription() {
-			return "{ %name% is an expert in deception. |  %name% has an alluring gaze, as if knowing more than is apparent. | %name%\'s eyes glint in any light.  | Not much is known about %name%, not for sure. Everything is an indiscernible mix of truths and untruths. | Where ever the greatest story is told, %name% makes an appearance. | The brooches on %name%\'s cloak seem to swirl and dance like midnight in a jug. | %name%\'s true feelings are rarely known, everything is an act, designed to create an appearance of truth | %name%\'s way with words is beguiling, you find yourself being drawn into conversation even when you have better things to be doing.} {Little is known of %their% history. | %Their% past is a mystery to most. | Some say %they% peered deep into the cup of stars and emerged with the ability to shape reality, others just say its all darned lies. | Who can say what is true in the past of one so good at spinning tales? | History of %name% is subjective, each person you ask tells a different tale with complete honesty in their eyes, but none of them align. | One rumor says she traveled the land as a spell weaver. | Rumors of magic surround the %person%, though some incredulous cynics are hardly impressed. | One rumor is that %they% was a conman, and another is that %they're% a sorcerer. You\'re not sure which you prefer. | With rumors of old magics stirring, the %person%\'s magical proclamation just might be true. | Some say %they% sees the scenes of fate and weaves new futures.} {You ask %name% a lot of questions, hearing an enthralling set of answers that seem to be very convincing. But when you think longer on the matter: have you even asked the questions at all? | %name% produces a dove from %their% sleeve. An old trick that no one fancies - until it turns in the air, returning to %them% as a crow. | %name% has shown the ability to shoot smoke from %their% mouth. It\'s not fire, but it\'s close, and has people talking in hushed tones. | %name% floats a gold coin into the air. An amazing display that leaves the %person% too tired to attempt it again. | Predictions of the weather are common, but %name% seems to be able to control it. | %name% asks to read your palms. You decline. %Their% presence alone is as close as you\'re willing to go. | %name% suggests that the stars are a roadmap to another world. %They% seems to know a lot about the heavens above. | %name% suggests that the heavens above are in fact just endless streams of giant hungry eternal beings, continuing on for eons. What a jest! | %name% points to one star in the sky and seems to suggest that is where %they% came from. You don\'t ask for a clarification on the matter.}";
+		return "{ %name% is an expert in deception. |  %name% has an alluring gaze, as if knowing more than is apparent. | %name%\'s eyes glint in any light.  | Not much is known about %name%, not for sure. Everything is an indiscernible mix of truths and untruths. | Where ever the greatest story is told, %name% makes an appearance. | The brooches on %name%\'s cloak seem to swirl and dance like midnight in a jug. | %name%\'s true feelings are rarely known, everything is an act, designed to create an appearance of truth | %name%\'s way with words is beguiling, you find yourself being drawn into conversation even when you have better things to be doing.} {Little is known of %their% history. | %Their% past is a mystery to most. | Some say %they% peered deep into the cup of stars and emerged with the ability to shape reality, others just say its all darned lies. | Who can say what is true in the past of one so good at spinning tales? | History of %name% is subjective, each person you ask tells a different tale with complete honesty in their eyes, but none of them align. | One rumor says she traveled the land as a spell weaver. | Rumors of magic surround the %person%, though some incredulous cynics are hardly impressed. | One rumor is that %they% was a conman, and another is that %they're% a sorcerer. You\'re not sure which you prefer. | With rumors of old magics stirring, the %person%\'s magical proclamation just might be true. | Some say %they% sees the scenes of fate and weaves new futures.} {You ask %name% a lot of questions, hearing an enthralling set of answers that seem to be very convincing. But when you think longer on the matter: have you even asked the questions at all? | %name% produces a dove from %their% sleeve. An old trick that no one fancies - until it turns in the air, returning to %them% as a crow. | %name% has shown the ability to shoot smoke from %their% mouth. It\'s not fire, but it\'s close, and has people talking in hushed tones. | %name% floats a gold coin into the air. An amazing display that leaves the %person% too tired to attempt it again. | Predictions of the weather are common, but %name% seems to be able to control it. | %name% asks to read your palms. You decline. %Their% presence alone is as close as you\'re willing to go. | %name% suggests that the stars are a roadmap to another world. %They% seems to know a lot about the heavens above. | %name% suggests that the heavens above are in fact just endless streams of giant hungry eternal beings, continuing on for eons. What a jest! | %name% points to one star in the sky and seems to suggest that is where %they% came from. You don\'t ask for a clarification on the matter.}";
 	}
 
-
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendIllusionist);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.RangedDefense] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_mystic_staff"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_seer_robes]
 		]));
-		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_seer_hat]
 		]));

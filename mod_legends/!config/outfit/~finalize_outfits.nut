@@ -278,6 +278,20 @@ if (!("Items" in ::Legends)) {
 	return ::Legends.Items.pickOutfit(_outfitArr, _armorArr, _helmetArr, _chance);
 }
 
+
+::Legends.Items.pickBasicAmmo <- function(_item) {
+	if (_item == null || _item.getAmmoID() == "")
+		return null;
+	if (_item.getAmmoID() == "ammo.arrows")
+		return ::new("scripts/items/ammo/quiver_of_arrows");
+	if (_item.getAmmoID() == "ammo.bolts")
+		return ::new("scripts/items/ammo/quiver_of_bolts");
+	if (_item.getAmmoID() == "ammo.powder")
+		return ::new("scripts/items/ammo/powder_bag");
+	::logWarning(::format("trying to pick unknown ammo type `%s`", _item.getAmmoID()));
+	return null;
+}
+
 /**
 * Automatic conversion of vanilla and legends names to outfits
 */

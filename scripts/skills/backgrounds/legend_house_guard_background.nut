@@ -49,41 +49,40 @@ this.legend_house_guard_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Beards = ::Const.Beards.Raider});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Beards = ::Const.Beards.Raider
+		});
 	}
-
-
 
 	function onBuildDescription() {
 		return "Brooding and at times suicidal, it\'s no surprise that %name% is frequently found diving into battle with nothing more than a large two-hander. {Clothed in murderous intent, you once saw %them% cleave a man in two - top to bottom. | It is said that %they% once cleaved a warrior orc in two, leaving the trunk of its legs still standing. | The %person% is known to ignore the fragility of %their% own mortality just to end the life of another. | %They% thrives being in the thick of battle where %they% can swing %their% weapons with little regard for safety or accuracy. | Supposedly, %they% once won a jousting tournament, but had to flee after bedding a watching nobleman\'s wife. | The %person% is not a murderer, but %they% would have made a fine one. | Seemingly unstoppable at times, you are glad to have the %person% on your side. | In a fit of bloodthirsty rage %they% once impaled two goblins on one pike. | A strong brute, you once saw %name% kill someone just on %their% backswing.} %They%\'ll use any weapon you give %them%, but %name% has a proclivity towards those that can make calamitous ruin out of a man\'s body.";
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.extend(::World.Assets.getFounderNames());
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHouseGuard);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_infantry_axe"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],

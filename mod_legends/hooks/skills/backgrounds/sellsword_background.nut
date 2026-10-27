@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/sellsword_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/sellsword_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Sellsword);
 		this.m.BackgroundDescription = "Sellswords are expensive, but a life of warfare has forged them into skilled fighters.";
@@ -31,116 +30,81 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Kind;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Muscular
+		});
 	}
 
-	o.onBuildDescription <- function ()	{
+	o.onBuildDescription <- function() {
 		return "{%fullname%\'s worked as a sellsword since %their% father handed down %their% equipment. | %fullname% can\'t remember a time when %they% wasn\'t a sword for hire. | As a mercenary, %fullname% has never had to look long for work. | The literate talk about letting loose the dogs of war. %fullname% is one such hound. | In war, there is death and profit. %fullname% causes the former to earn the latter. | There has never been a better time for mercenaries like %name% to earn a crown or two. | After %their% %partner% ran off with %their% children, an angry %name% made a steady career as a nasty sellsword. | A decade ago %name% lost everything in a fire. %They're% been working as a sellsword ever since. | %name% always had the mind for violence and has pursued a long career as a sellsword. | Once dirt poor, %name% has earned a very tidy sum over the years as a sellsword. | %fullname% prefers to keep for %themselves% whence she came, but %their% reputation as a sword for hire speaks for itself.} {Well experienced, %they% has traveled in the company of many outfits in %their% time. | Military campaigns are but notches in %their% belt. | From work as a lord\'s bodyguard to being an enforcer for a skeevy merchant, %name% has seen it all. | %They% once made a living off slaying the wild beasts that encroach on human settlements. | With a grim grin, %they% boasts %they% has slain all manner of living creatures. | Through plenty of use, the mercenary has learned a thing or two about weapons you didn\'t even know existed. | The sellsword is counting how many %they% has slain to this day and %they% appears to not be stopping any time soon. | With a sword and shield in hand, the mercenary appears to do what %they% does best for a living.} {The %person% is no stranger to the fields of battle. | The %person% is no stranger to the cruelties of war. | %They% is used to the harsh realities of mercenary life. | %They% is said to be a reliable cog in any shield wall. | Some say %they% can hold a battle line as well as an oak tree. | Rumors abound that the %person% enjoys the sight of blood. | Without shame, %they% takes an uneasy pleasure in the misery of others on the battlefield. | Strangely, %they% seldom joins others around the campfire, instead keeping to %themselves%. | The %person% loves to tell a good tale about how %they% killed this thing or that. | Given a chance, the %person% is quick to showcase a wide variety of fighting styles.} {As long as you have the coin, %name% is yours to command. | A true mercenary, %name% will fight anyone for the right price. | Displaying some fine sword skills, %name% says %they% can run any man through. | With but a hint of a nod, %name% agrees to join you if you have the crowns. | Excited for an opportunity to earn coin, %name% knocks %their% mug on the table.}";
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (::Math.rand(1, 100) <= 25)
-		{
+		if (::Math.rand(1, 100) <= 25) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (::Math.rand(1, 100) <= 30)
-		{
+		if (::Math.rand(1, 100) <= 30) {
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
 		}
 	}
 
-	o.updateAppearance = function ()
-	{
+	o.updateAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Sellsword);
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 9);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/falchion"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/flail"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/hand_axe"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/greataxe"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/longsword"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/billhook"));
-		}
-		else if (r == 6)
-		{
-			items.equip(this.new("scripts/items/weapons/winged_mace"));
-		}
-		else if (r == 7)
-		{
-			items.equip(this.new("scripts/items/weapons/warhammer"));
-		}
-		else if (r == 8)
-		{
-			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
-		else if (r == 9)
-		{
-			items.equip(this.new("scripts/items/weapons/crossbow"));
-			items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/falchion"],
+			[1, "weapons/flail"],
+			[1, "weapons/hand_axe"],
+			[1, "weapons/greataxe"],
+			[1, "weapons/longsword"],
+			[1, "weapons/winged_mace"],
+			[1, "weapons/billhook"],
+			[1, "weapons/warhammer"],
+			[1, "weapons/boar_spear"],
+			[1, "weapons/crossbow"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],

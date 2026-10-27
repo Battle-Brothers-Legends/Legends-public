@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/butcher_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/butcher_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Butcher);
 		this.m.BackgroundDescription = "Butchers are used to bloodshed.";
@@ -36,13 +34,17 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Thick});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.Thick
+		});
 
 		if (_gender != 1) return;
 		this.m.Name = "Fishmonger";
@@ -52,37 +54,25 @@
 		this.m.BadEnding = "%name% the fishmonger eventually left the declining company. She joined up with another outfit, but was caught slaughtering one of their war dogs. Apparently, she had been feeding the mercenaries dogmeat from all their mongrels that had gone \'missing\'. They did not take this news kindly, stripped the butcher, and fed her to the beasts.";
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		if (this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	o.onBuildDescription <- function() {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 			return "{After her father\'s death, %name% took over the family butcher shop in %randomtown%. | Growing up poor, %name% quickly learned to kill and strip animals, eventually founding a butcher\'s shop. | With droughts ruining the farmlands, %name%\'s butcher shop took off in %randomtown%. | Always a strange girl, %name% took to butchering not only for profit, but for pleasure. | Grinning ear to ear, %name% never looked so happy as when her shop opened and she got her first order of live pigs in stock. | As a butcher, %name% has spent years squishing guts out of dead rabbits and lopping heads off sometimes-dead fish.} {But rumors of animal torture eventually drove the cleaver-swinger from her business. | Given the terrible rumors of dark arts already going around, it wasn\'t long until people began questioning the source of her meats and drove her out of business. | But killing animals, for one reason or another, didn\'t quite excite her anymore. She sought something new. | After a human finger was found in one of her deer wrappings, the woman was driven from his business. | Some say she most enjoyed butchering for soldiers during the orc invasions and wishes to return to that experience once more. | Unfortunately, the war drove through her shop, leaving behind a number of carcasses she wouldn\'t dare butcher. | Living in a city under siege, she provided meat for the hungry. When it was found out where that meat came from, she was handed over to the besiegers who, unwittingly, let her live. | The woman\'s friendliness with poachers caught up with her, ultimately leaving her on the road with a retinue of the local lords\'s men on her tail. | Butchering a tiny fish became a scandal when it turned out to be a nobleman\'s pet. She fled to save her own scales.} {Something about blood and guts sits just right with %name%. In that case, welcome to the battlefield. | %name% looks at everything as a potential meat sale with breathing, moving packaging. | Many are disturbed by %name%\'s mere presence and all-too-wide eyes. | %name% is known to bite her tongue and savor the blood. | %name%\'s ears perk whenever a pig squeals. The same thing happens when a man screams. Interesting. | %name%\'s a butcher, but apparently has little interest in actually feeding the outfit.}";
-		}
-		else
-		{
+		} else {
 			return "{After his father\'s death, %name% took over the family butcher shop in %randomtown%. | Growing up poor, %name% quickly learned to kill and strip animals, eventually founding a butcher\'s shop. | With droughts ruining the farmlands, %name%\'s butcher shop took off in %randomtown%. | Always a strange boy, %name% took to butchering not only for profit, but for pleasure. | Grinning ear to ear, %name% never looked so happy as when his shop opened and he got his first order of live pigs in stock. | As a butcher, %name% has spent years squishing guts out of dead rabbits and lopping heads off sometimes-dead fish.} {But rumors of animal torture eventually drove the cleaver-swinger from his business. | Given the terrible rumors of dark arts already going around, it wasn\'t long until people began questioning the source of his meats and drove him out of business. | But killing animals, for one reason or another, didn\'t quite excite him anymore. He sought something new. | After a human finger was found in one of his deer wrappings, the man was driven from his business. | Some say he most enjoyed butchering for soldiers during the orc invasions and wishes to return to that experience once more. | Unfortunately, the war drove through his shop, leaving behind a number of carcasses he wouldn\'t dare butcher. | Living in a city under siege, he provided meat for the hungry. When it was found out where that meat came from, he was handed over to the besiegers who, unwittingly, let him live. | The man\'s friendliness with poachers caught up with him, ultimately leaving him on the road with a retinue of the local lords\'s men on his tail. | Butchering a tiny pig became a scandal when it turned out to be a nobleman\'s pet. He fled to save his own bacon.} {Something about blood and guts sits just right with %name%. In that case, welcome to the battlefield. | %name% looks at everything as a potential meat sale with breathing, moving packaging. | Many are disturbed by %name%\'s mere presence and all-too-wide eyes. | %name% is known to bite his tongue and savor the blood. | %name%\'s ears perk whenever a pig squeals. The same thing happens when a man screams. Interesting. | %name%\'s a butcher, but apparently has little interest in actually feeding the outfit.}";
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Butcher);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 2);
 
-		if (r <= 1)
-		{
-			items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/knife"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[2, "weapons/butchers_cleaver"],
+			[1, "weapons/knife"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.butcher_apron]

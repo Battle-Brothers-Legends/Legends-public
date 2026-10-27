@@ -1,7 +1,6 @@
 this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendTaxidermist);
 		this.m.BackgroundDescription = "Taxidermists are good at gutting beasts, but not fighting them.";
@@ -34,28 +33,26 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
 		return ret;
 	}
-	function onBuildDescription()
-	{
+
+	function onBuildDescription() {
 		return "{%name% was always curious about trinkets, seeing more science in the remains of beasts than {a diviner would in the sands of the desert. | a tailor would in a sheet of cloth. | an alchemist would in a mortar and pestle.} | %name% was always an odd boy growing up, cutting up toads and snails. | Son to a {tailor | squire | knight | miller}, %name%\'s turn toward fashioning trinkets was a surprise to all. | While %name%\'s sisters fancied being warriors and heroes, %name% thought of himself as a future trophy hunter. | %name% spent much of his youth chasing down rare creatures, but not for the reasons one might think. | %name% always fancied animals, particularly how they would look as a good coat or scarf. | As trophies and trinkets grew popular, %name% turned to taxidermy to make a crown or two. | With a surge in potion popularity, %name% went from being a tanner to a taxidermist to make more money. | %name% hails from a faraway land where what a man takes down is more important than how he fights. | Taxidermy is the science of components and entrails, by which standards %name% is renowned. | Good with measuring and calculating, %name% turned his mathematical prowess to taxidermy to earn as much as he could. | %name%\'s career in taxidermy started when his mother pushed him into the vocation to dodge a passing noble\'s conscription. | %name% took up taxidermy to honor his father, a taxidermist who was killed by an unhappy customer. | Widowed by war, %name%\'s mother taught him how to put his hands to better use in taxidermy instead of killing.} {When raiders attacked his home, %name% dressed everyone up as stuffed animals. The town was destroyed, but not a soul was lost. | He spent many years preparing trophies for royalty until a fashion faux pas led his being exiled. | Unfortunately, a man collecting parts of dead animals, as %name% is wont to do, left the taxidermist ostracized from many a village. | He tried to make his break in the big cities, but sadly he just could not compete with the other taxidermists. | When a lord organized an army, %name% handled the trinkets, giving the soldiers wards and potions. | But a fierce competition between taxidermists led to a preserved and stuffed deadman and %name% coincidentally leaving his shop behind. | Sadly, robbers ransacked his shop and, with the wars going on, it would be impossible to restock. | But when he sheared a sheep that did not belong to him, %name% was kicked out of town. | He once choked out a would-be thief with a cord of measuring wire. So he says, anyway. | But working for unlikeable and unfriendly nobility eventually {bored him. | wore on him.} | Once tasked with stuffing a particularly impressive beast, %name% wondered what the outside world was really like. | Designing a trophy adorned with teh results of {epic quests | epic feats}, %name% wondered if maybe he should be the one they wove stories about.} Now the taxidermist looks for a new life, no matter where it takes him. {Maybe he can create trophies to protect the unit, or something. | He\'s particular and peculiar, peppering everyone with questions about their trophies. | He\'s no natural soldier, but he appraises each kill as if assessing it to hang on a wall. | The way he measures and calculates for trophies, it\'s too bad %name% wasn\'t a siege engineer. | While hardly a soldier, %name%\'s familiarity with gutting beasts should come in handy. | %name%\'s knowledge of beasts is seriously impressive. | A bit on the nimbly-pimbly side, %name% has the gut cutting skills of swordfighter, but the swordfighting of a soft breeze. | %name% would seem very out of place in a suit of armor, but boy is he going to need one. | As it turns out, %name% can in fact make a silk purse out of a sow\'s ear. | Don\'t let his vocation fool you, %name% is more deft with his hands than some {cardsharks | jugglers | pickpockets}. | Taxidermists don\'t seem fit for combat, but then again neither do most of the men you run across these days. | A taxidermist seems ill-fit for combat, but cutting up beasts is an uncommon skill. | With an eye {for beast innards | for trophies}, %name% is a lot smarter than he lets on at first glance.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendTaxidermist);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_blacksmith_apron]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.feathered_hat]

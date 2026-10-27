@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/graverobber_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/graverobber_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Graverobber);
 		this.m.BackgroundDescription = "Graverobbers are not faint of heart.";
@@ -32,43 +30,26 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Outlaw;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "{What compels a man to disturb those who have passed away? | With rumors of the dead rising again, perhaps it is but forward thinking to go around digging up graves. | An enemy to moral standards and sensibilities, men who take spades to fresh graves find few allies. | A coward attacks a man when he\'s down, a graverobber attacks a man when he\'s really down. | It is trivial how easily a man abrogated by death can be acquired by mere graverobbing. | When it comes to death, worms take the flesh, and time the bones, but graverobbers get the jewels.} {Raised by an abusive mother, %name% found happier coordinance with the dead than the living. | After many lonely nights in hermitry, %name% is said to have taken up dancing with the dead. | %name% romanced beneath the stars, but pale and cold describes more than just the night sky. | For entertainment in a boring life, %name% is known to visit the murky gastines of graveyards. | Swindled by a salesman, %name% found himself digging up graves for loot. So the story goes, anyway. | Once a fine jeweler, dementia drove %name% into crafting a very different style of attire. A toothy necklace chatters at you as he explains.} {The deviancies of such a man may know no bounds, but his for-now warm body could be of use. | He\'s not right in the head, but maybe he\'s right with a sword in hand. Maybe. | Disturbing as he might be, desperate times call for desperate recruits. | He wears a plain necklace with a subtle offwhite color best described as \'bone\'. | Driven away by an especially mad mob, %name% is one of many outcasts to venture into the world of mercenaries. | The man is quiet, but you can\'t shut him up around a graveyard. | Hopefully he likes putting cold bodies into graves as much as he likes digging them up.}";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Graverobber);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 3);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_shovel"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_shovel"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/broken_ancient_sword"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/knife"],
+			[2, "weapons/legend_shovel"],
+			[1, "weapons/ancient/broken_ancient_sword"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],

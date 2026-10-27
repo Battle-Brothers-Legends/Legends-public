@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/converted_cultist_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/converted_cultist_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.ConvertedCultist);
 		this.m.Excluded = [
@@ -36,18 +34,15 @@
 		this.m.Bodies = ::Const.Bodies.Skinny;
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "Who this figure was no longer matters. They now bear the mark of Davkul on their forehead and while their lips do not yet know the words of his newfound religion, they speak of the cult\'s fascination in a familiar tongue. Darkness, they say, is coming.";
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (!tattoo_body.HasBrush && ::Math.rand(1, 100) <= 50)
-		{
+		if (!tattoo_body.HasBrush && ::Math.rand(1, 100) <= 50) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
@@ -56,8 +51,7 @@
 		actor.setDirty(true);
 	}
 
-	o.onAdded <- function ()
-	{
+	o.onAdded <- function() {
 		this.character_background.onAdded();
 		this.getContainer().getActor().getFlags().add("cultist");
 	}

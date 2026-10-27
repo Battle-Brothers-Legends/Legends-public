@@ -1,7 +1,6 @@
 this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPreserver); //always female
 		this.m.BackgroundDescription = "Preservers practice the art of anatomy over resurrection - taking a more scientific approach to how dead things work.";
@@ -41,86 +40,92 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Druid | ::Const.BackgroundType.Female;
 
 		this.m.CustomPerkTree = [
-		[
-			::Legends.Perk.LegendSpecialistShepherd,
-			::Legends.Perk.NineLives,
-			::Legends.Perk.CripplingStrikes,
-			::Legends.Perk.LegendSpecialistReaper,
-			::Legends.Perk.LegendSpecialistHerbalist,
-			::Legends.Perk.Student,
-			::Legends.Perk.Recover,
-			::Legends.Perk.LegendAlert
-		],
-		[
-			::Legends.Perk.Dodge,
-			::Legends.Perk.HoldOut,
-			::Legends.Perk.FortifiedMind,
-			::Legends.Perk.Gifted,
-			::Legends.Perk.Bullseye
-		],
-		[
-			::Legends.Perk.Backstabber,
-			::Legends.Perk.LegendFavouredEnemyCivilization,
-			::Legends.Perk.RallyTheTroops,
-			::Legends.Perk.InspiringPresence,
-			::Legends.Perk.LegendTrueBeliever,
-			::Legends.Perk.LegendDeflection,
-			::Legends.Perk.LegendBloodbath
-		],
-		[
-			::Legends.Perk.SpecSword,
-			::Legends.Perk.SpecCleaver,
-			::Legends.Perk.LegendMasteryMagicStaff,
-			::Legends.Perk.SpecPolearm,
-			::Legends.Perk.LegendMasterySlings
-		],
-		[
-			::Legends.Perk.Nimble,
-			::Legends.Perk.LegendStaffSpins,
-			::Legends.Perk.LegendFavouredEnemyBeast,
-			::Legends.Perk.LegendBlendIn,
-			::Legends.Perk.LegendMindOverBody,
-			::Legends.Perk.LegendConservation,
-			::Legends.Perk.LegendCarnage
-		],
-		[
-			::Legends.Perk.LegendClarity,
-			::Legends.Perk.LegendReclamation,
-			::Legends.Perk.LegendFavouredEnemyOccult,
-			::Legends.Perk.LegendRebound
-		],
-		[
-			::Legends.Perk.Fearsome,
-			::Legends.Perk.LegendPerfectFocus,
-			::Legends.Perk.LegendFreedomOfMovement,
-			::Legends.Perk.LegendBalance,
-			::Legends.Perk.LegendInspire
-		],
-		[],
-		[],
-		[],
-		[]
-	];
+			[
+				::Legends.Perk.LegendSpecialistShepherd,
+				::Legends.Perk.NineLives,
+				::Legends.Perk.CripplingStrikes,
+				::Legends.Perk.LegendSpecialistReaper,
+				::Legends.Perk.LegendSpecialistHerbalist,
+				::Legends.Perk.Student,
+				::Legends.Perk.Recover,
+				::Legends.Perk.LegendAlert
+			],
+			[
+				::Legends.Perk.Dodge,
+				::Legends.Perk.HoldOut,
+				::Legends.Perk.FortifiedMind,
+				::Legends.Perk.Gifted,
+				::Legends.Perk.Bullseye
+			],
+			[
+				::Legends.Perk.Backstabber,
+				::Legends.Perk.LegendFavouredEnemyCivilization,
+				::Legends.Perk.RallyTheTroops,
+				::Legends.Perk.InspiringPresence,
+				::Legends.Perk.LegendTrueBeliever,
+				::Legends.Perk.LegendDeflection,
+				::Legends.Perk.LegendBloodbath
+			],
+			[
+				::Legends.Perk.SpecSword,
+				::Legends.Perk.SpecCleaver,
+				::Legends.Perk.LegendMasteryMagicStaff,
+				::Legends.Perk.SpecPolearm,
+				::Legends.Perk.LegendMasterySlings
+			],
+			[
+				::Legends.Perk.Nimble,
+				::Legends.Perk.LegendStaffSpins,
+				::Legends.Perk.LegendFavouredEnemyBeast,
+				::Legends.Perk.LegendBlendIn,
+				::Legends.Perk.LegendMindOverBody,
+				::Legends.Perk.LegendConservation,
+				::Legends.Perk.LegendCarnage
+			],
+			[
+				::Legends.Perk.LegendClarity,
+				::Legends.Perk.LegendReclamation,
+				::Legends.Perk.LegendFavouredEnemyOccult,
+				::Legends.Perk.LegendRebound
+			],
+			[
+				::Legends.Perk.Fearsome,
+				::Legends.Perk.LegendPerfectFocus,
+				::Legends.Perk.LegendFreedomOfMovement,
+				::Legends.Perk.LegendBalance,
+				::Legends.Perk.LegendInspire
+			],
+			[],
+			[],
+			[],
+			[]
+		];
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{After being raised as a peasant girl in a backwater town, %name% took a shine to gathering herbs with their mother. | %name% did not get far in later life, often failing to gather what was asked of her by local herbalists. | %name% became more interested in how to kill rather than heal, which lead to them being run out of the village as a young girl after exhuming a fresh grave. | %name% wandered far and wide, often around %randomtown% until they had an outbreak of living dead from the nearby graveyard. | After being led into the forest and left to die by her parents, %name% found a local Hexe hiding amonst the ruins of an old hut. The tale goes that %name% slew the hag by pushing her into her own boiling pot. Like anyone would believe that.} {Regardless of their path, all roads led to %name% discovering a lone necromancer on the road. Who offered to take her in and teach her how to reach her full potential.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPreserver);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.Bravery] = 1;
 		talents[::Const.Attributes.Initiative] = 1;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_scythe"],
+			[1, "weapons/legend_staff"],
+			[1, "weapons/legend_sickle"],
+			[1, "weapons/battle_whip"],
+			[5, "weapons/legend_cat_o_nine_tails"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[3, ::Legends.Helmet.Standard.necromancer_hat],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
@@ -131,28 +136,5 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
-		local r;
-		r = ::Math.rand(0, 8);
-
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_scythe"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_sickle"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/battle_whip"));
-		}
-		else if (r >= 4)
-		{
-		 items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
-		}
 	}
 });

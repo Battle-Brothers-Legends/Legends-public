@@ -1,7 +1,6 @@
 this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendShieldmaiden);
 		this.m.BackgroundDescription = "Shieldmaidens are fierce female warriors from the northern settlements.";
@@ -37,20 +36,27 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 		// this.m.PerkTreeDynamicMins.Defense = 3;
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{%name% was born to a family with a long history of female warriors. | %name% hails from the distant north, where ideas about the fairer sex tend to be far rougher. | %name% claims to have once been the personal protector of a great jarl, but was exiled from her home for reasons that she seems hesitant to speak of. | %name% caught your eye by flexing her scarred bicep, and she claims that every cut is another man killed. | %name% talks of distant climes and frozen lands that, from her description, you can hardly imagine man could be cursed to walk. | You met %name% in a local tavern, drinking enough to kill most men and challenging anyone who passed to a fight. | %name% has the farthest thing you can imagine from a pretty face, but she makes up for that with a spear and shield that have both clearly seen their share of war.} {Despite whatever hangups many have about women warriors, %name% speaks of a thousand battles you\'ve never heard of yet sound plenty dangerous to you, and she bears enough scars to confirm their veracity. | She proudly displays an old shield that seems more crack than wood, and claims that it was gifted to her from a great warrior that she had killed herself. | When a local bruiser challenged her he decided to spend the first moments of the fight gloating to his friends, only to receive a swift punch leading to a broken jaw. | She doesn\'t say much, but those few words she does say speak thousands about the strange places she\'s seen and the stranger things she\'s killed there.} {%name% spits on the ground as she sees a merchant claiming to be selling the hides of Unhold, and says she\'s killed baby ones at twice the size. | You have no idea how many of her stories are fabricated, but %name% seems to know how to swing a sword well enough. | When one of your men made a pass on her it took two others to drag her off of the nearly unconscious mercenary. | When you ask her to demonstrate her skill, she grabs one of your men and pulls him to the ground in a headlock before you can stop her. She\'s brave, at least. | You\'re not sure if the woman\'s entirely all there, but she seems like she knows a shieldwall well enough. | You met her in the tavern after a brawl. It was a bad one, but %name% was the only one—besides you—left standing. | You can tell by the look in her eyes that this woman has seen her fair share of war.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendShieldmaiden);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
+
+		items.equip(::Legends.Items.pickItem([
+			[3, "weapons/militia_spear"],
+			[1, "weapons/boar_spear"],
+			[1, "weapons/ancient/ancient_spear"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickItem([
+			[3, "shields/heater_shield"],
+			[1, "shields/legend_tower_shield"],
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
@@ -65,29 +71,5 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 			[1, ::Legends.Helmet.Standard.full_leather_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap]
 		]));
-
-		r = ::Math.rand(0, 3);
-		if (r <= 2)
-		{
-			items.equip(this.new("scripts/items/shields/heater_shield"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/shields/legend_tower_shield"));
-		}
-
-		r = ::Math.rand(0, 4);
-		if (r <= 2)
-		{
-			items.equip(this.new("scripts/items/weapons/militia_spear"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
-		}
 	}
 });

@@ -1,5 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/gravedigger_background", function (o) {
-	o.create = function () {
+::mods_hookExactClass("skills/backgrounds/gravedigger_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Gravedigger);
 		this.m.BackgroundDescription = "Gravediggers are used to physical labor and handling the dead.";
@@ -24,32 +24,35 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.FemaleSkinny
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.CommonMale
+		});
 	}
 
-	o.onBuildDescription <- function () {
+	o.onBuildDescription <- function() {
 		return "{%name% got %their% start as a gravedigger by burying %their% baby brother. | Putting a sword to %their% drunken father\'s neck, %name%\'s start in gravedigging was a nasty one. First %they% buried the crime, and then %they% buried the lawmen who came around asking questions. | After disease swept through %townname%, %name% was the last %person% standing. %They% had to abandon %their% trade to take up the only thing left: gravedigging.} There\'s a look in the dead, they say. But there\'s also a look in those who have seen the dead. %name% has now spent a life and a half {staring at corpses | putting bodies in the ground | digging graves, big ones and small}. To the gravedigger, {death is now but a science | the dead have been better company than the living | earning gold for burying the dead is no new task}. {Employed by a wagon-train, %name% traveled the land and dug it up, too. But one day %their% burial was suddenly undone. Not by the buzzards or rats, but by the dead itself. Seeing such a sight, and having to bury the same man twice, no doubt compels a swift career change. | Every gravedigger is eyed with suspicion. It wasn\'t long until %their% patrons became accusers and the notion of a horrific crime of undead passion drove %them% from %their% work. The claims are absurd, but you can\'t get a read on %their% pale face. It\'s like playing cards with the moon. | By now, the %person% looks as if %they% could use a change of scenery. Just don\'t ask %them% to bury the casualties.}";
 	}
 
-	o.onChangeAttributes = function () {
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Gravedigger);
 	}
 
-	o.onAddEquipment = function () {
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r = ::Math.rand(0, 2);
 
-		if (r == 0) {
-			items.equip(this.new("scripts/items/weapons/legend_hoe"));
-		} else if (r == 1) {
-			items.equip(this.new("scripts/items/weapons/legend_shovel"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_hoe"],
+			[1, "weapons/legend_shovel"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],

@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/refugee_background", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/refugee_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Refugee);
 		this.m.BackgroundDescription = "Refugees lack the conviction to fight for their homes, but they are used to long and exhausting travel by now.";
@@ -39,51 +38,70 @@
 		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 
 		if (this.m.Ethnicity == 0) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
-		}
-		else if (this.m.Ethnicity == 1) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleSkinny, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Southern}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMale, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Untidy});
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.FemaleSkinny
+			} : {
+				Bodies = ::Const.Bodies.Skinny,
+				Hairs = ::Const.Hair.UntidyMale,
+				Beards = ::Const.Beards.Untidy
+			});
+		} else if (this.m.Ethnicity == 1) {
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.SouthernFemaleSkinny,
+				Faces = ::Const.Faces.SouthernFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.Southern
+			} : {
+				Bodies = ::Const.Bodies.SouthernMale,
+				Faces = ::Const.Faces.SouthernMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.Southern,
+				Beards = ::Const.Beards.Untidy
+			});
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
-		}
-		else if (this.m.Ethnicity == 2) {
-			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleSkinny, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Untidy});
+		} else if (this.m.Ethnicity == 2) {
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.AfricanFemaleSkinny,
+				Faces = ::Const.Faces.AfricanFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.African
+			} : {
+				Bodies = ::Const.Bodies.AfricanMale,
+				Faces = ::Const.Faces.AfricanMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.African,
+				Beards = ::Const.Beards.Untidy
+			});
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
 	}
 
-	o.onBuildDescription <- function ()	{
+	o.onBuildDescription <- function() {
 		return "{Catastrophes are cheap. | Disease, the ultimate invisible hand. | Win or lose a war, everything is as it has been.} %name% hails from a tiny village that {is now only remembered by spoken word, a generation away from being forgotten. | was destroyed, to put it succinctly. | now stands as a mere footnote, wasting little of the historian\'s ink. | suffered the world\'s wrath.} But %name% is a survivor. {%They% fled the disaster with just the clothes on %their% back. | %Their% home ablaze, %they% saved what %they% could and fled. | After stumbling upon %their% dead family, %they% gathered what %they% could and ran. | War, famine, disease. It\'s all a blur to %them% now.} {%name% is merely a %person% anxious to look ahead rather than behind. | %name% carries little more than a sense of steeled determination, but that is something worth having. | A horrific history scars %their% body and glazes %their% eyes, but the %person% is easily motivated to never experience that past again. | Whatever befell the %person%\'s town didn\'t get %them% and, judging by the rumors you hear, that\'s saying something. | The %person% isn\'t skilled in martial arts, but %they% is for damn sure determined to survive. | Whatever vocation %they% had in the past is now lost. Like many others, %they% seeks mercenary work to get by in this increasingly bloody world. | One of many refugees you\'ve seen, this %person% has decided to stop running and start fighting.}";
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Ratcatcher);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 4);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_staff"],
+			[1, "weapons/wooden_stick"],
+			[3, null]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],

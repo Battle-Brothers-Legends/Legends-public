@@ -1,7 +1,6 @@
 this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendMagister);
 		this.m.BackgroundDescription = "Magisters are a unique breed of insane. While among the ranks of the insane they preside over, their quiet madness eclipses all and causes the rest to fall in line.";
@@ -54,7 +53,14 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Faces = ::Const.Faces.OldFemale,
+			HairColors = ::Const.HairColors.Old
+		} : {
+			Bodies = ::Const.Bodies.Skinny,
+			Hairs = ::Const.Hair.UntidyMale,
+			Beards = ::Const.Beards.Untidy
+		});
 	}
 
 	function onBuildDescription() {
@@ -65,100 +71,63 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		return true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Will never be sacrificed to Davkul"
-			}
-		);
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Will never be sacrificed to Davkul"
+		});
 		return ret;
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendMagister);
 	}
 
-	function onSetAppearance()
-	{
-		if (!this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	function onSetAppearance() {
+		if (!this.isBackgroundType(::Const.BackgroundType.Female)) {
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 			local tattoo_head = actor.getSprite("tattoo_head");
 
-			if (::Math.rand(1, 100) <= 50)
-			{
+			if (::Math.rand(1, 100) <= 50) {
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 				tattoo_body.Visible = true;
 			}
 
-			if (::Math.rand(1, 100) <= 50)
-			{
+			if (::Math.rand(1, 100) <= 50) {
 				tattoo_head.setBrush("tattoo_01_head");
 				tattoo_head.Visible = true;
 			}
 		}
 	}
 
-	function updateAppearance()
-	{
-		if (!this.isBackgroundType(::Const.BackgroundType.Female))
-		{
+	function updateAppearance() {
+		if (!this.isBackgroundType(::Const.BackgroundType.Female)) {
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 
-			if (tattoo_body.HasBrush)
-			{
+			if (tattoo_body.HasBrush) {
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 			}
 		}
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 8);
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_tipstaff"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_reinforced_flail"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_chain"));
-		}
-		else if (r == 4)
-		{
-			if (::Const.DLC.Wildmen)
-			{
-				items.equip(this.new("scripts/items/weapons/battle_whip"));
-			}
-			else if (!::Const.DLC.Wildmen)
-			{
-				items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
-			}
-		}
-		else if (r >= 5)
-		{
-		 items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/legend_tipstaff"],
+			[1, "weapons/legend_staff"],
+			[1, "weapons/legend_reinforced_flail"],
+			[1, "weapons/legend_chain"],
+			[1, "weapons/battle_whip"],
+			[4, "weapons/legend_cat_o_nine_tails"]
+		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
@@ -166,6 +135,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 			[1, ::Legends.Armor.Standard.monk_robe],
 			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.hood],
@@ -173,8 +143,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		]));
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		this.getContainer().getActor().getFlags().add("cultist");
 	}

@@ -2,8 +2,7 @@ this.legend_commander_berserker_background <- this.inherit("scripts/skills/backg
 	m = {
 		Tattoo = 0
 	},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderBerserker);
 		// this.m.BackgroundDescription = "Berserkers are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
@@ -90,21 +89,27 @@ this.legend_commander_berserker_background <- this.inherit("scripts/skills/backg
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.LegendTattoos, Faces = ::Const.Faces.Berserker, Hairs = ::Const.Hair.Berserker, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Berserker}, 100);
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Faces = ::Const.Faces.PrettyFemale,
+			HairColors = ::Const.HairColors.Young
+		} : {
+			Bodies = ::Const.Bodies.LegendTattoos,
+			Faces = ::Const.Faces.Berserker,
+			Hairs = ::Const.Hair.Berserker,
+			HairColors = ::Const.HairColors.Young,
+			Beards = ::Const.Beards.Berserker
+		}, 100);
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{For some, the wild is a refuge. | It is said that %person% is born with the wilderness in %them%, and that %they% does wrong by turning %their% back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where %they% hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the wildman, but for some reason %they% seems very willing to fight. Let\'s hope %their% newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about %their% body. When asked why %they% wishes to join a band of mercenaries, %they% hoots and, with a crooked finger, replicates one of %their% fleshen arts across the sky. | Wounds, old and fresh, dot %their% already mottled body. And they are not superficial - this %person% had been fighting something fierce in the wild. | One has to wonder if the calamities which chased %them% into the forests have come to chase %them% back out. | Judging by %their% wild grunting, it\'s doubtful %they%\'s here to rejoin civilization. | Years as a recluse haven\'t made the %person% forget what a few crowns can get you. The question is, why did %they% come back? | He has the strength to wrestle a boar - and %their% many scars makes you wonder if perhaps %they% did.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderBerserker);
 	}
 
-	function getTooltip ()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
 		ret.push({
 			id = 12,
@@ -115,17 +120,14 @@ this.legend_commander_berserker_background <- this.inherit("scripts/skills/backg
 		return ret;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand)) {
 			_properties.DamageTotalMult *= 1.05;
 		}
 	}
 
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
@@ -139,20 +141,17 @@ this.legend_commander_berserker_background <- this.inherit("scripts/skills/backg
 		tattoo_head.Visible = true;
 	}
 
-	function updateAppearance()
-	{
+	function updateAppearance() {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush((this.m.Tattoo == 0 ? "warpaint_01_" : "scar_02_") + body.getBrush().Name);
 		}
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
@@ -163,41 +162,43 @@ this.legend_commander_berserker_background <- this.inherit("scripts/skills/backg
 	}
 
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.MeleeSkill] = 3;
 		talents[::Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/barbarians/crude_axe"],
+			[1, "weapons/barbarians/blunt_cleaver"],
+			[1, "weapons/barbarians/antler_cleaver"],
+			[1, "weapons/barbarians/claw_club"],
+			[1, "weapons/barbarians/axehammer"],
+			[1, "weapons/woodcutters_axe"],
+			[1, "weapons/hatchet"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickItem([
+			[1, "accessory/gloves/legend_hand_wraps_item"]
+		], "scripts/items/"));
+
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/throwing_axe"]
+		], "scripts/items/"));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
-
-		local weapons = [
-			"weapons/barbarians/crude_axe",
-			"weapons/barbarians/blunt_cleaver",
-			"weapons/barbarians/antler_cleaver",
-			"weapons/barbarians/claw_club",
-			"weapons/barbarians/axehammer",
-			"weapons/woodcutters_axe",
-			"weapons/hatchet"
-		];
-
-		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
-		items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.character_background.onSerialize(_out);
 		_out.writeU8(this.m.Tattoo);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.character_background.onDeserialize(_in);
 		this.m.Tattoo = _in.readU8();
 	}

@@ -1,7 +1,6 @@
 this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPuppet);
 		this.m.BackgroundDescription = "A corpse in varying forms of decay. While slow on the uptake, it makes for a frightening opponent to most. You can also pick any name you like!";
@@ -25,22 +24,26 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale, Beards = ::Const.Beards.Tidy});
+		this.setBodyCharacteristics(_gender, _gender ? {
+			Bodies = ::Const.Bodies.Muscular
+		} : {
+			Bodies = ::Const.Bodies.Muscular,
+			Hairs = ::Const.Hair.CommonMale,
+			Beards = ::Const.Beards.Tidy
+		});
 	}
 
 	function onBuildDescription() {
 		return "{Where %name% comes from is a mystery - %their% original name has been lost to time or washed away on an ancient gravestone far, far away. | Who this creature one was matters little. %They% serve and obey. That is all that matters. | This one is marked with cuts and nail marks, and still surprisingly fresh. | Come rain, snow or sandstorm %name% happily goes where %they% please. A truely free soul in a world of toil and dispair. If the world had more people like %name%, it would be a much better place. | This one is marked with stab wounds and cuts across %their% whole body. Many of which seem ancient in origin. | %name% is marked with wounds, many of which are fatal but have been carefully stitched shut or cauterized - suggesting that at some point, someone cared for this poor fark after death. Who the caretaker was will forever be a mystery however. | This one seems a little older than most, with barely any forms of battle damage across its carcass. Maybe this one died in a peaceful manner? Such things are rare in this world. | This one bares little evidence of a violent death, save for the noose marks around its throat. | With the rampant war and famile across the land, corpses like %name% turn up in droves these days. Mass graves remain uncovered, graveyards barely watched over. Perfect marketplaces to hone the dark arts. | The war of many names created a treaure trove of unliving recruits for necromancers. %name% is one such product of the conflict, seeminly a little more astute and reactive to orders than the average corpse - not that expectations are set very high or anything... | This one was bound and thrown into a river, however the main cause of death seems to be the dozens of arrows pocked across its body. The work of poachers, bored brigands or a vengeful feud come to an end.}{ Don\'t let the exterior fool you, when fresh game is involved %name% acts with sudden alacrity unbecoming %their% form. | The presence of anything living will drive this animal into a frenzy, no matter the size. | This corpse also comes with a small satchel of rusted coins, which are going to waste in %their% current state. You are sure it won\'t miss %them% anyway... | %name% lazily swings a rusted shortsword around as %they% plod aimlessly. | %name% is a fitting name, don\'t you think? It captures the struggle of this creature well. | While undead, these creatures are more like wild animals than brutal killers. | You poke %name% on what remains of its arm. It turns to look at you, then moves past you to chase a stray dog. You like this one. | %name% is still covered in clods of earth, sand and what else. This also gives you an idea... | The lifeless stare still takes some getting used to. The harder you look the more it feels like something is still in there. Something still human...} {You wonder how long it would take to teach this corpse to best a knight in battle. On second thoughts you aren\'t sure if you have that much time. | A victim of violence, %name% seems eager to continue the cycle of suffering. Perfect. | While clumsy, this create will make a fine addition to any collector looking to bulk out %their% macabre hobby. | You get the impression %name% would\'ve been an interesting person to know when %they% were alive. Oh well. | A victim of murder, lyncing or witchcraft, maybe %name% was just in the wrong place at the wrong time? | %name% almost seems to enjoy %their% new existance in unlife. | After all, who needs tiring muscles, decent pay and moments of sheer panic? Not this one. | Weathered and beaten, this one will make a fine addition to the collection. | Sometimes you feel guilty to treat these creatures as personal servants.} {Despite everything, the body is willing and the flesh is weak. But you get the impression this won\'t be a problem. | You jokingly hand the corpse a contract, and it looks at the parchment with some familiarity... | While cheap labour, you really hope you don\'t need to scrub out any armour it might end up wearing. | You push %name% and it manages to stay standing, which is more impressive than it sounds by walking corpse standards. | But with sharp teeth like that, who needs weapons? | %name% drops to %their% knees and attempts to eat the critters crawling in the dirt. This will be a long and fruitful relationship. | If anything, %name% will make a decent pack mule for all the things you don\'t want to carry. | The poor thing looks hungry. | On second thought, maybe %name% isn\'t memorable enough. Surely you can do better...}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPuppet);
 	}
 
-	function onAdded() //bite, exceptions to some injuries and zombie trait
-	{
-		if (this.m.IsNew)
-		{
+	function onAdded() {
+		//bite, exceptions to some injuries and zombie trait
+		if (this.m.IsNew) {
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
 		}
@@ -50,43 +53,28 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 		actor.m.ExcludedInjuries = ::Legends.Necromancer.ExcludedInjures;
 	}
 
-	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on zombies to zero for recruiting purposes.
-	{
+	function adjustHiringCostBasedOnEquipment() {
+		//reduces cost for equipment worn on zombies to zero for recruiting purposes.
 		local actor = this.getContainer().getActor();
 		actor.m.HiringCost = ::Math.floor(this.m.HiringCost + 500 * ::Math.pow(this.m.Level - 1, 1.5));
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = ::Math.rand(0, 7);
 
-		if (r == 0) {
-			items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		}
-		else if (r == 1) {
-			items.equip(this.new("scripts/items/weapons/wooden_flail"));
-		} // 2 is nothing
-		else if (r == 3) {
-			items.equip(this.new("scripts/items/weapons/shortsword"));
-		}
-		else if (r == 4) {
-			items.equip(this.new("scripts/items/weapons/hatchet"));
-		}
-		else if (r == 5) {
-			items.equip(this.new("scripts/items/shields/worn_heater_shield"));
-		}
-		else if (r == 6) {
-			items.equip(this.new("scripts/items/shields/worn_kite_shield"));
-		}
-		else if (r == 7) {
-			items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/wooden_stick"],
+			[1, "weapons/wooden_flail"],
+			[1, "weapons/shortsword"],
+			[1, "weapons/hatchet"],
+			[1, "shields/worn_heater_shield"],
+			[1, "shields/worn_kite_shield"],
+			[1, "weapons/boar_spear"]
+		], "scripts/items/"));
 
-		items.equip(::Legends.Items.pickArmor([ //1 = least likely
-		//	[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
-		//	[1, ::Legends.Armor.Standard.southern_knight_armor],
+		items.equip(::Legends.Items.pickArmor([//1 = least likely
+			//	[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
+			//	[1, ::Legends.Armor.Standard.southern_knight_armor],
 			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 			[1, ::Legends.Armor.Standard.dark_southern_armor_00],
 			[2, ::Legends.Armor.None],
@@ -102,14 +90,14 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 		]));
 
 		items.equip(::Legends.Items.pickHelmet([
-		//	[1, ::Legends.Helmet.Standard.decayed_great_helm],
+			//	[1, ::Legends.Helmet.Standard.decayed_great_helm],
 			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
 			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],
-		//	[1, ::Legends.Helmet.Standard.decayed_full_helm],
-		//	[2, ::Legends.Helmet.Standard.legend_noble_southern_hat],
+			//	[1, ::Legends.Helmet.Standard.decayed_full_helm],
+			//	[2, ::Legends.Helmet.Standard.legend_noble_southern_hat],
 			[2, ::Legends.Helmet.Standard.full_aketon_cap],
 			[2, ::Legends.Helmet.Standard.kettle_hat],
-		//	[2, ::Legends.Helmet.Standard.dark_southern_helmet_00],
+			//	[2, ::Legends.Helmet.Standard.dark_southern_helmet_00],
 			[3, ::Legends.Helmet.Standard.open_leather_cap],
 			[3, ::Legends.Helmet.Standard.full_leather_cap],
 			[4, ::Legends.Helmet.None]

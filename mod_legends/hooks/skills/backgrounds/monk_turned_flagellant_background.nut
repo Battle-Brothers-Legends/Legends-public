@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/monk_turned_flagellant_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/monk_turned_flagellant_background", function(o) {
+	o.create = function() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.MonkTurnedFlagellant);
 		this.m.Excluded = [
@@ -27,27 +25,20 @@
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function() {
 		return "The world was too dark for %name% to continue his ways. A talk with a flagellant showed him that the old gods are not happy with man\'s pursuits of justice through reasonable means. Now the once-monk can be found whipping himself, bleeding righteousness into the world one strike at a time.";
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function() {
 		this.character_background.onAdded();
 
-		if (::Math.rand(0, 3) == 3)
-		{
+		if (::Math.rand(0, 3) == 3) {
 			local actor = this.getContainer().getActor();
 
-			if (actor.getTitle() == "")
-			{
+			if (actor.getTitle() == "") {
 				actor.setTitle(::Const.Strings.PilgrimTitles[::Math.rand(0, ::Const.Strings.PilgrimTitles.len() - 1)]);
 			}
 		}
 	}
 
-	o.onAddEquipment = function ()
-	{
-	}
 });

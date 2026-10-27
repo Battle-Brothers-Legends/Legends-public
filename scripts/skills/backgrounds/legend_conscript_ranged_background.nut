@@ -18,19 +18,22 @@ this.legend_conscript_ranged_background <- this.inherit("scripts/skills/backgrou
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local r = ::Math.rand(0, 1);
 
-		if (r == 0) {
-			items.addToBag(this.new("scripts/items/weapons/oriental/light_southern_mace"));
-		} else if (r == 1) {
-			items.addToBag(this.new("scripts/items/weapons/oriental/saif"));
-		}
+		items.addToBag(::Legends.Items.pickItem([
+			[1, "weapons/oriental/light_southern_mace"],
+			[1, "weapons/oriental/saif"]
+		], "scripts/items/"));
 
-		items.equip(this.new("scripts/items/weapons/oriental/handgonne"));
-		items.equip(this.new("scripts/items/ammo/powder_bag"));
+		items.equip(::Legends.Items.pickItem([
+			[1, "weapons/oriental/handgonne"]
+		], "scripts/items/"));
+
+		items.equip(::Legends.Items.pickBasicAmmo(items.getItemAtSlot(::Const.ItemSlot.Mainhand)));
+
 		items.equip(::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));
+
 		items.equip(::Legends.Items.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
 			[1, ::Legends.Helmet.Southern.gunner_hat],

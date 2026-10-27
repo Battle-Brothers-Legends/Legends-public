@@ -31,7 +31,7 @@ this.legend_lone_wolf_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		];
-		this.m.Titles = [ //More
+		this.m.Titles = [//More
 			"the Lone Wolf",
 			"the Wolf",
 			"the Hyena",
@@ -55,7 +55,7 @@ this.legend_lone_wolf_background <- this.inherit("scripts/skills/backgrounds/cha
 			_gender = this.setCommanderGender();
 		}
 		if (this.m.Ethnicity == 0) {
-			_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {
+			this.setBodyCharacteristics(_gender, _gender ? {} : {
 				Bodies = ::Const.Bodies.Muscular,
 				Hairs = ::Const.Hair.CommonMale
 			}, 60);
@@ -63,37 +63,33 @@ this.legend_lone_wolf_background <- this.inherit("scripts/skills/backgrounds/cha
 				this.m.Names = ::Const.Strings.CharacterNamesFemale;
 			}
 		} else if (this.m.Ethnicity == 1) {
-			_gender
-				? this.setBodyCharacteristics(_gender, {
-					Bodies = ::Const.Bodies.SouthernFemaleMuscular,
-					Faces = ::Const.Faces.SouthernFemale,
-					Hairs = ::Const.Hair.SouthernFemale,
-					HairColors = ::Const.HairColors.Young
-				})
-				: this.setBodyCharacteristics(_gender, {
-					Bodies = ::Const.Bodies.Gladiator,
-					Faces = ::Const.Faces.SouthernMale,
-					Hairs = ::Const.Hair.SouthernMale,
-					HairColors = ::Const.HairColors.Southern,
-					Beards = ::Const.Beards.Southern
-				}, 60);
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.SouthernFemaleMuscular,
+				Faces = ::Const.Faces.SouthernFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.Young
+			} : {
+				Bodies = ::Const.Bodies.Gladiator,
+				Faces = ::Const.Faces.SouthernMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.Southern,
+				Beards = ::Const.Beards.Southern
+			}, 60);
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		} else if (this.m.Ethnicity == 2) {
-			_gender
-				? this.setBodyCharacteristics(_gender, {
-					Bodies = ::Const.Bodies.AfricanFemaleMuscular,
-					Faces = ::Const.Faces.AfricanFemale,
-					Hairs = ::Const.Hair.SouthernFemale,
-					HairColors = ::Const.HairColors.African
-				})
-				: this.setBodyCharacteristics(_gender, {
-					Bodies = ::Const.Bodies.AfricanGladiator,
-					Faces = ::Const.Faces.AfricanMale,
-					Hairs = ::Const.Hair.SouthernMale,
-					HairColors = ::Const.HairColors.African,
-					Beards = ::Const.Beards.Southern
-				}, 60);
+			this.setBodyCharacteristics(_gender, _gender ? {
+				Bodies = ::Const.Bodies.AfricanFemaleMuscular,
+				Faces = ::Const.Faces.AfricanFemale,
+				Hairs = ::Const.Hair.SouthernFemale,
+				HairColors = ::Const.HairColors.African
+			} : {
+				Bodies = ::Const.Bodies.AfricanGladiator,
+				Faces = ::Const.Faces.AfricanMale,
+				Hairs = ::Const.Hair.SouthernMale,
+				HairColors = ::Const.HairColors.African,
+				Beards = ::Const.Beards.Southern
+			}, 60);
 			this.m.Names = ::Const.Strings.SouthernNames;
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
@@ -134,60 +130,7 @@ this.legend_lone_wolf_background <- this.inherit("scripts/skills/backgrounds/cha
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLoneWolf);
 	}
 
-	function onAddEquipment() //chooses a weapon through starting event
-	{
-		// local items = this.getContainer().getActor().getItems();
-		// local helm = this.getContainer().getActor().getItems();
-		// // local r;
-
-		// // r = ::Math.rand(0, 5);
-
-		// // if (r == 0)
-		// // {
-		// // 	items.equip(this.new("scripts/items/weapons/legend_zweihander"));
-		// // }
-		// // else if (r == 1)
-		// // {
-		// // 	items.equip(this.new("scripts/items/weapons/longsword"));
-		// // }
-		// // else if (r == 2)
-		// // {
-		// // 	items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
-		// // }
-		// // else if (r == 3)
-		// // {
-		// // 	items.equip(this.new("scripts/items/weapons/pike"));
-		// // }
-		// // else if (r == 4)
-		// // {
-		// // 	items.equip(this.new("scripts/items/weapons/warbrand"));
-		// // }
-		// // else if (r == 5)
-		// // {
-		// // 	items.equip(this.new("scripts/items/weapons/goedendag"));
-		// // }
-
-		// items.equip(::Legends.Items.pickArmor([
-		// 	// [1, ::Legends.Armor.Standard.mail_hauberk],
-		// 	// [1, ::Legends.Armor.Standard.basic_mail_shirt],
-		// 	// [1, ::Legends.Armor.Standard.scale_armor],
-		// 	// [1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
-		// 	[1, ""]
-		// ]));
-
-		// local helm = [
-		// 	// [1, ::Legends.Helmet.Standard.nasal_helmet],
-		// 	// [1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
-		// 	// [1, ::Legends.Helmet.Standard.mail_coif],
-		// 	// [1, ::Legends.Helmet.Standard.bascinet_with_mail],
-		// 	[1, ""]
-		// ];
-
-		// // if (!::Legends.Mod.ModSettings.getSetting("UnlayeredArmor").getValue())
-		// // {
-		// // 	helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet])
-		// // }
-
-		// // items.equip(::Legends.Items.pickHelmet(helm));
+	function onAddEquipment() {
+		//chooses a weapon through starting event
 	}
 });
