@@ -1,5 +1,16 @@
 this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_action", {
-	m = {},
+	m = {
+		ValidSettlements = [
+			"small_farming_village",
+			"medium_farming_village",
+			"large_farming_village",
+			"legends_farming_village",
+			"small_steppe_village",
+			"medium_steppe_village",
+			"large_steppe_village",
+			"legends_steppe_village"
+		]
+	},
 
 	function create() {
 		this.m.ID = "legend_hunting_stollwurms_action";
@@ -11,11 +22,6 @@ this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_
 	}
 
 	function onUpdate(_faction) {
-
-		if (!::Const.DLC.Unhold || !::Const.DLC.Lindwurm) {
-			return;
-		}
-
 		// For settlement faction
 		if (_faction.getType() == ::Const.FactionType.Settlement && !_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.legend_hunting_stollwurms_contract)) {
 			return;
@@ -26,35 +32,22 @@ this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_
 			return;
 		}
 
-		if (::World.Assets.getBusinessReputation() < 1500) {
-			return;
-		}
-
 		if (_faction.getSettlements()[0].isIsolated()) {
 			return;
 		}
 
-		local village = _faction.getSettlements()[0];
+		if (::World.Assets.getBusinessReputation() < 1500) {
+			return;
+		}
 
-		if (!this.isKindOf(village, "legends_steppe_village")
-			&& !this.isKindOf(village, "legends_farming_village")
-			&& !this.isKindOf(village, "small_steppe_village")
-			&& !this.isKindOf(village, "medium_steppe_village")
-			&& !this.isKindOf(village, "large_steppe_village")
-			&& !this.isKindOf(village, "small_farming_village")
-			&& !this.isKindOf(village, "medium_farming_village")
-			&& !this.isKindOf(village, "large_farming_village"))
-		{
+		local village = _faction.getSettlements()[0];
+		if (!::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
 			return;
 		}
 
 		local minResources = ::Const.World.LegendaryContract.Stollwurm * ::Const.World.ContractCost.StollWurm + ::Const.World.ContractCost.StollWurm;
-
 		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * ::Const.World.ContractCost.StollWurm;
-
-		if (currentResources < minResources) {
-			return;
-		} else {
+		if (currentResources >= minResources) {
 			::Const.World.LegendaryContract.Stollwurm += 1;
 		}
 
