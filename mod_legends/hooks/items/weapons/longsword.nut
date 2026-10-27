@@ -1,9 +1,9 @@
-::mods_hookExactClass("items/weapons/longsword", function(o) {
+::mods_hookExactClass("items/weapons/longsword", function (o) {
 
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
-		this.m.Description = "A long two-handed blade that makes for a versatile weapon, this longsword is the smaller and lighter of it\'s town cousins but is much more versatile.";
+		this.m.Description = "A long, versatile two-handed blade that is both smaller and lighter than its cousins, but can be just as effective in skilled hands.";
 		this.m.IsAgainstShields = false;
 		this.m.IsAoE = false;
 		this.m.Value = 1700;
@@ -16,11 +16,11 @@
 		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 5;
-		this.m.Variants = [1,2,3];
+		this.m.Variants = [1, 2, 3];
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
-	o.updateVariant <- function() {
+	o.updateVariant <- function () {
 		this.m.Icon = "weapons/melee/longsword_0" + this.m.Variant + "_70x70.png";
 		this.m.IconLarge = "weapons/melee/longsword_0" + this.m.Variant + ".png";
 		this.m.ArmamentIcon = "icon_longsword_0" + this.m.Variant;
@@ -37,5 +37,4 @@
 			_skill.m.IsMordhau = true;
 		}.bindenv(this));
 	}
-
 });
