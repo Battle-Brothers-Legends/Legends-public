@@ -1787,17 +1787,6 @@ Practice in physical movement with a partner has given the ability to take the l
 • [color=%skill%]Rotation[/color] can now target enemies.
 ";
 
-::Const.Strings.PerkDescription.LegendUnarmedLunge <- @"
-In one motion take a step forward and land a blow on your enemy.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Unarmed Lunge[/color] skill which lets you move a tile and attack in a single action while unarmed.
-
-• Does [color=%positive%]10-20[/color] damage without Unarmed Training.
-
-• Costs [color=%negative%]6[/color] AP and [color=%negative%]30[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendUnburdened <- @"
 True berserkers prefer fighting without the burden of armor, relying purely on their sharp instincts.
 
