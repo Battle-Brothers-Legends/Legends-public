@@ -1,12 +1,12 @@
 ::Const.Strings.PerkDescription.LegendAlert <- @"
-Pay close attention at all times, surveying the surroundings and assessing every clue for an insight.
+Don't get distracted, pay close attention at all times, survey the surroundings and assess every clue.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+20%[/color] Initiative.
 ";
 
 ::Const.Strings.PerkDescription.LegendAmbidextrous <- @"
-You're as capable with one hand as the other!
+There are always two sides to every story.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When your offhand is free, follow up attacks with [color=%skill%]Hand to Hand[/color]. Gain [color=%positive%]+5[/color] Melee Skill and [color=%positive%]+10[/color] Melee Defense if both hands are free.
@@ -17,7 +17,7 @@ You're as capable with one hand as the other!
 ";
 
 ::Const.Strings.PerkDescription.LegendAnchor <- @"
-Hold your ground!
+Don't let life toss you around.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain a stacking Melee Skill, Ranged Skill and Melee Defense as long as you have not moved during your turn. You will start combat with 1 stack.
@@ -28,7 +28,7 @@ Hold your ground!
 ";
 
 ::Const.Strings.PerkDescription.LegendAssassinate <- @"
- Striking from the shadows allows you to bypass enemy defenses and strike for their undefended weak points.
+Never take a man face to face if you can kill him from behind.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants [color=%positive%]+20%[/color] damage while [color=%status%]Hidden[/color] within a bush or smoke.
@@ -39,7 +39,7 @@ Hold your ground!
 ";
 
 ::Const.Strings.PerkDescription.LegendAssuredConquest <- @"
-Your confidence affects your performance.
+Hesitation is defeat.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+10%[/color] Melee Skill, Ranged Skill, Melee Defense, and Ranged Defense when at [color=%status%]Confident[/color] morale.
@@ -48,21 +48,21 @@ Your confidence affects your performance.
 ";
 
 ::Const.Strings.PerkDescription.LegendAthlete <- @"
-You're a well-rounded athlete!
+A training a day keeps the exhaustion away.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Reduce the Fatigue cost of all your skills and movement by a percentage equal to [color=%negative%]20%[/color] of your maximum usable Fatigue after gear weight is accounted for.
 ";
 
 ::Const.Strings.PerkDescription.LegendBackflip <- @"
-Extensive training in circus maneuvers allows you to move out of harm's way with astonishing speed.
+Those trained in circus maneuvers can move out of harm's way with astonishing speed.
 
 [color=%passive%][u]Passive:[/u][/color]
 • If you have taken the [color=%perk%]Footwork[/color] or [color=%perk%]Leap[/color] perk, they gain [color=%positive%]1[/color] range.
 ";
 
 ::Const.Strings.PerkDescription.LegendBackToBasics <- @"
-Years of practice lead this character to fall back to their instincts and basic training under extreme stress.
+When there is doubt or uncertainty, trust your instincts and your training.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When this character takes damage, they will gain a stacking [color=%positive%]+5[/color] Melee Defense until the start of their next turn.
@@ -73,14 +73,14 @@ Years of practice lead this character to fall back to their instincts and basic 
 ";
 
 ::Const.Strings.PerkDescription.LegendBalance <- @"
-Balancing your armor can allow protect against different threats.
+Balance in all things, especially armor.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+15[/color] Ranged Defense. For every 5 points of armor and helmet weight decrease this bonus by [color=%negative%]1[/color], but gain [color=%positive%]1[/color] Melee Defense up to a maximum of 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendBallistics <- @"
-Through familiarity and training with your weapon, you know just how your projectiles will fly.
+Be it wind, a moving target or rain - a practiced archer knows just how the projectiles will fly.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Crossbows gain a scaling bonus to armor penetration depending on the distance to the target with the highest bonus in melee and the lowest at maximum range for the relevant skill. [color=%skill%]Shoot Bolt[/color] gains up to 20%, while [color=%skill%]Shoot Heavy Bolt[/color] and [color=%skill%]Shoot Stake[/color] gain up to [color=%positive%]+30%[/color] instead.
@@ -91,7 +91,7 @@ Through familiarity and training with your weapon, you know just how your projec
 ";
 
 ::Const.Strings.PerkDescription.LegendBackswing <- @"
-Use your built up inertia to wreak havoc on the second swing.
+What goes up has to eventually come down.
 
 [color=%passive%][u]Passive:[/u][/color]
 • After performing [color=%skill%]Round Swing[/color], [color=%skill%]Swing[/color], [color=%skill%]Thresh[/color], [color=%skill%]Reap[/color], [color=%skill%]Castigate[/color], [color=%skill%]Shatter[/color], [color=%skill%]Harvest[/color] and [color=%skill%]Double Swing[/color] you can perform a followup for [color=%negative%]-50%[/color] Fatigue and Action Points. [color=%skill%]Swing[/color] Damage is reduced by [color=%negative%]-25%[/color] and for the rest of the skills by [color=%negative%]-50%[/color].
@@ -100,7 +100,7 @@ Use your built up inertia to wreak havoc on the second swing.
 ";
 
 ::Const.Strings.PerkDescription.LegendBarrage <- @"
-Lets hope your enemies like fighting in the shade.
+Make them fight in the shade.
 
 [color=%passive%][u]Passive:[/u][/color]
 • [color=%skill%]Sling Stone[/color] will now [color=%status%]Debilitate[/color] on headshots, [color=%status%]Baffle[/color] on body shots and ignore shield bonuses.
@@ -115,16 +115,14 @@ Lets hope your enemies like fighting in the shade.
 ";
 
 ::Const.Strings.PerkDescription.LegendBattleheart <- @"
-Wade into the thick of battle, dodging blades from behind and above, aware of all around you at the heart of the battle.
+Steel your heart and dodge blades from the front, behind and above in the thick of battle.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Being surrounded no longer affects this character's defences at all.
-
-• Upgraded version of [color=%perk%]Underdog[/color], immune to [color=%perk%]Strength In Numbers[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendBlendIn <- @"
-Hold yourself in a way that makes you seem more trouble than its worth, lean into trees, place objects between you and an enemy, and hide behind allies.
+Do not look much, do not say much and do not seem much - and they will underestimate you.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Makes enemies [color=%positive%]50%[/color] less likely to attack you instead of an ally.
@@ -142,7 +140,7 @@ Take joy in the suffering of others.
 ";
 
 ::Const.Strings.PerkDescription.LegendBerserkerRage <- @"
-Gain rage stacks over the course of a battle.
+He raged at the world, at his family, at his life. But mostly - he just raged.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Each stack increases Damage by [color=%positive%]1%[/color], Initiative by [color=%positive%]1[/color], Resolve by [color=%positive%]1[/color] and reduces damage received by [color=%positive%]2%[/color].
@@ -155,7 +153,7 @@ Gain rage stacks over the course of a battle.
 ";
 
 ::Const.Strings.PerkDescription.LegendBigGameHunter <- @"
-The bigger they are...
+The bigger the beast, the greater the folly.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When fighting beasts, gain an additional modifier that deals bonus damage based on the percentage of the target's missing Hitpoints. The more Hitpoints the target has lost, the more bonus damage is dealt, up to the total damage of the attack.
@@ -166,21 +164,21 @@ The bigger they are...
 ";
 
 ::Const.Strings.PerkDescription.LegendBloodyHarvest <- @"
-There's wolves, bears, nachzehrers, and you. All beings of vicious slaughter.
+Direwolves, nachzehrers and you. Carnivores alike.
 
 [color=%passive%][u]Passive:[/u][/color]
 • [color=%positive%]50%[/color] of the skill's fatigue cost is translated to an additive multiplier increase to Damage and Hitchance. This accounts for any fatigue reduction or increase.
 ";
 
 ::Const.Strings.PerkDescription.LegendBoneBreaker <- @"
-Even if your strikes don't penetrate the opponent's armor, you'll make sure they feel it.
+Armored or not, they're going to feel it.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases hitpoint damage and always inflict a minimum amount of damage to hitpoints equal to [color=%positive%]10%[/color] of the armor damage done to the target. Attacks that don't deal armor damage or fully penetrate the target's armor will not receive any bonuses, and the bonus damage is subject to damage reductions from the target.
 ";
 
 ::Const.Strings.PerkDescription.LegendCacophony <- @"
-Assault the senses of your target with a wild clamor and noise from your instrument leave them distracted.
+It is impossible to focus in all that wild clamor and noise.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Cacophony[/color] skill which applies the [color=%status%]Distracted[/color] effect on hit.
@@ -195,7 +193,7 @@ Assault the senses of your target with a wild clamor and noise from your instrum
 ";
 
 ::Const.Strings.PerkDescription.LegendCarnage <- @"
-If it bleeds, we can kill it.
+If it bleeds, it can die.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]20%[/color] damage when attacking a [color=%status%]Bleeding[/color] enemy.
@@ -214,7 +212,7 @@ If it bleeds, we can kill it.
 ";
 
 ::Const.Strings.PerkDescription.LegendChainLightning <- @"
-Unleash an arcing barrage of lightning!
+Maybe lightning strikes thrice.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks [color=%skill%]Chain Lightning[/color] skill which inflicts damage to up to 3 enemies, dealing [color=%damage%]15-40[/color] damage which ignores armor.
@@ -232,7 +230,7 @@ Learn to better focus your art so it is less draining on your body.
 ";
 
 ::Const.Strings.PerkDescription.LegendCheerOn <- @"
-Use your way with song to cheer on an ally.
+A good word at the right moment can make all the difference.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Cheer On[/color] skill which Grants [color=%positive%]+2[/color] Action Points to an ally adjacent to you.
@@ -243,7 +241,7 @@ Use your way with song to cheer on an ally.
 ";
 
 ::Const.Strings.PerkDescription.LegendClarity <- @"
-A well honed mind can perceive more in each instant, making time appear slower in key instants of need.
+A well honed mind can perceive more in each moment, making time appear slower in key instants of need.
 
 [color=%passive%][u]Passive:[/u][/color]
 • An additional [color=%positive%]+10%[/color] of any damage ignores armor.
@@ -270,7 +268,7 @@ Conduct profane rituals meant to stave off the passage of time, further preservi
 ";
 
 ::Const.Strings.PerkDescription.LegendDarkflight <- @"
-Disapparate from your current location and reappear on the other side of the battlefield
+The ancients learned to bend even the space itself in their pursuit of power.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Darkflight[/color] skill which lets you teleport up to six tiles away.
@@ -290,7 +288,7 @@ Your fingers turn ghostly and pass through steel and flesh, tearing at the soul 
 ";
 
 ::Const.Strings.PerkDescription.LegendDebilitate <- @"
-Ankles, hands, elbows and knees, you've learned how to fight dirty to secure victory.
+Death solves all problems, but maiming is the next best thing.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Debilitate[/color] skill which can prime your next attack to [color=%status%]Cripple[/color] a target for three turns, reducing their ability to inflict damage by [color=%negative%]-25%[/color] and increasing the damage they take by [color=%positive%]+15%[/color].
@@ -299,7 +297,7 @@ Ankles, hands, elbows and knees, you've learned how to fight dirty to secure vic
 ";
 
 ::Const.Strings.PerkDescription.LegendDedication <- @"
-In pain we find the truth of ourselves. We have no identity beyond servitude, our glory is agony.
+In pain we find the truth about ourselves. We have no identity beyond servitude, our glory is agony.
 
 [color=%passive%][u]Passive:[/u][/color]
 • While your face is obscured by a cultist hood, gain [color=%positive%]+15%[/color] of your total Resolve as a bonus to melee and Ranged Defense.
@@ -310,7 +308,7 @@ In pain we find the truth of ourselves. We have no identity beyond servitude, ou
 ";
 
 ::Const.Strings.PerkDescription.LegendDeflection <- @"
-Twist and thrust with your staff to deflect blows and intercept strikes.
+For some - a staff is something to lean on, for others - something to trust their lives with.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+16[/color] Melee Skill and [color=%positive%]+16[/color] Defense while wielding a staff or a magic staff.
@@ -319,7 +317,7 @@ Twist and thrust with your staff to deflect blows and intercept strikes.
 ";
 
 ::Const.Strings.PerkDescription.LegendDogHandling <- @"
-You have mastered the art of training dogs.
+A well trained animal can feel the master's needs instinctively.
 
 [color=%active%][u]Active:[/u][/color]
 • In the heat of battle your hounds will respond and react to your commands, order them to attack or defend allies.
@@ -328,7 +326,7 @@ You have mastered the art of training dogs.
 ";
 
 ::Const.Strings.PerkDescription.LegendDogWhisperer <- @"
-You have a way with dogs, the bond you form with them imbues each dog with more confidence and strength, knowing that you are there gives them strength.
+It's not about what it is, it's about what it can become.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants each dog you unleash the perks: [color=%perk%]Colossus[/color], [color=%perk%]Fortified Mind[/color], and [color=%perk%]Underdog[/color].
@@ -395,10 +393,10 @@ Enforce your position at the top of the food chain.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemyCivilization <- @"
-We live in a society.
+And you call that 'civilization'? Farkin', stinkin' people.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting law-abiding citizens. This bonus increases with every Lawful kill made by this character.
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting law-abiding citizens. This bonus increases with every Lawful kill made by this character.  
 
 • Increases the likelihood of encountering Lawful champions.
 
@@ -406,7 +404,7 @@ We live in a society.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemyGreenskin <- @"
-Big or small, greenskins lack the strength of will.
+Lumbering orcs and crafty goblins - a tide that could drown humanity if not for their constant feuds.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill, maximum damage while fighting Greenskins. This bonus increases with every Greenskin kill made by this character.
@@ -415,7 +413,7 @@ Big or small, greenskins lack the strength of will.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemyOccult <- @"
-A skeptical mindset cuts through the tricks of the occult, leaving only brittle shapes to steel.
+A skeptical mind sees through the tricks of the occult, exposing what can be slashed with steel.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill, maximum damage and Resolve while fighting the Occult. This bonus increases with every Occult kill made by this character.
@@ -436,7 +434,7 @@ The uncivilized are a plague to be uprooted.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemySwordmaster <- @"
-The path to martial prowess is beset by the fake and the weak. Only one can stand to be the greatest.
+For every famous swordmaster there is a throng of those who have fallen adding to that fame.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting elite melee combatants. This bonus increases with every Swordmaster kill made by this character.
@@ -450,7 +448,7 @@ The path to martial prowess is beset by the fake and the weak. Only one can stan
 //Lich and Emperor not included
 //Treasure hunters and betrayers included as knights
 ::Const.Strings.PerkDescription.LegendFavouredEnemyUndead <- @"
-Shambling corpses come wave on wave, rising sleepless from their graves.
+Among there ruins of the old world, horrors lay sleepless in their graves.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants bonuses to Melee Skill, Ranged Skill, maximum damage and Resolve while fighting the Undead. This bonus increases with every Undead kill made by this character.
@@ -466,7 +464,7 @@ Style over substance.
 ";
 
 ::Const.Strings.PerkDescription.LegendFeint <- @"
-A well placed feint can leave your enemy Vulnerable!
+It takes patience to win the grand prize.
 
 [color=%passive%][u]Passive:[/u][/color]
 • If an attack misses, it costs [color=%negative%]-20%[/color] less Fatigue than normal.
@@ -475,7 +473,7 @@ A well placed feint can leave your enemy Vulnerable!
 ";
 
 ::Const.Strings.PerkDescription.LegendFirefield <- @"
-Unleash a raging inferno at the target location that explodes and then sets the ground alight.
+Burn them out.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Firefield[/color] skill which inflicts [color=%damage%]10[/color] - [color=%damage%]20[/color] damage twice and set the area ablaze.
@@ -486,7 +484,7 @@ Unleash a raging inferno at the target location that explodes and then sets the 
 ";
 
 ::Const.Strings.PerkDescription.LegendFirstBlood <- @"
-Early bird gets the worm!
+The early bird gets the worm!
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]20%[/color] Damage and Lowers the threshold to inflict [color=%status%]Injuries[/color] by [color=%negative%]50%[/color] for both melee and ranged attacks on enemies with full hitpoints.
@@ -504,7 +502,7 @@ Master chaining your attacks for a devastating effect.
 ";
 
 ::Const.Strings.PerkDescription.LegendFreedomOfMovement <- @"
-A skilled mercenary has unimpeded movement regardless of armor.
+Stand your ground, but be ready to leave if necessary. 
 
 [color=%passive%][u]Passive:[/u][/color]
 • Reduces Fatigue cost of [color=%skill%]Climb[/color], [color=%skill%]Lunge[/color], [color=%skill%]Footwork[/color], [color=%skill%]Rotation[/color], [color=%skill%]Leap[/color], [color=%skill%]Quick Step[/color], [color=%skill%]Evasion[/color] by [color=%negative%]50%[/color].
@@ -515,7 +513,7 @@ A skilled mercenary has unimpeded movement regardless of armor.
 ";
 
 ::Const.Strings.PerkDescription.LegendGrappler <- @"
-A time tested tradition of getting your opponent to the ground, disarmed and reeling!
+A time tested practice of grabbing your opponent close and personal and toppling them to the ground.
 
 [color=%passive%][u]Passive:[/u][/color]
 • [color=%skill%]Grapple[/color] will no longer have a chance to hit malus. Any hit with [color=%skill%]Hand to Hand[/color] has a [color=%positive%]25%[/color] to apply [color=%status%]Grapple[/color].
@@ -535,7 +533,7 @@ A time tested tradition of getting your opponent to the ground, disarmed and ree
 ";
 
 ::Const.Strings.PerkDescription.LegendGruesomeFeast <- @"
-Taste of the forbidden flesh.
+A forbidden taste is always sweet.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks [color=%skill%]Gruesome Feast[/color] skill which allows you to devour a recently departed corpse to gain strength and restore your own Hitpoints by [color=%positive%]50[/color].
@@ -544,7 +542,7 @@ Taste of the forbidden flesh.
 ";
 
 ::Const.Strings.PerkDescription.LegendHairSplitter <- @"
-Years of practice throwing things at apples above heads have granted a magnetic attraction to the cranium.
+Who would have thought that hitting the head would feel better than hitting the damn apple?
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants [color=%positive%]+30%[/color] chance to hit the head.
@@ -560,7 +558,7 @@ Onward unto death die like a nail hammered into a coffin.
 ";
 
 ::Const.Strings.PerkDescription.LegendHeightenedReflexes <- @"
-Your heightened senses leads your strikes to vitals.
+Everyone makes mistakes if you are quick enough.
 
 [color=%passive%][u]Passive:[/u][/color]
 • [color=%positive%]15%[/color] of your current Initiative will be translated into damage done. The bonus is an additive multiplier.
@@ -585,7 +583,7 @@ Your heightened senses leads your strikes to vitals.
 ";
 
 ::Const.Strings.PerkDescription.LegendHolyFlame <- @"
-The old gods have allowed you to wield their light.
+'We are the flame and the darkness fears us!'
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Holy Flame[/color] skill.
@@ -605,7 +603,7 @@ ed[/color], and [color=%status%]Morale checks[/color] when taking damage.
 ";
 
 ::Const.Strings.PerkDescription.LegendImmovableObject <- @"
-Heavy armor, a trusty shield and your heels dug into the ground and you can weather any storm.
+A trusty shield and a set of heavy armor can help weather any storm.
 
 [color=%passive%][u]Passive:[/u][/color]
 • For every 10 points of gear weight from all slots gain [color=%positive%]1[/color] Resolve and [color=%negative%]1%[/color] less damage ignoring armor.
@@ -625,7 +623,7 @@ Direct allies to attack at once, granting enhanced skills and defense.
 ";
 
 ::Const.Strings.PerkDescription.LegendInsectSwarm <- @"
-Unleash a horde of insects on your enemy!
+Bring enough of your friends and no meal will be too big to chew on.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Insect Swarm[/color] skill which reduces the targets Melee Skill, Melee Defense, Ranged Skill, Ranged Defense and Initiative by [color=%negative%]50%[/color] for three turns.
@@ -636,7 +634,7 @@ Unleash a horde of insects on your enemy!
 ";
 
 ::Const.Strings.PerkDescription.LegendInspire <- @"
-Push your allies beyond their limits!
+'Fight like your pay depends on it!'
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Inspire[/color] skill which allows you to target any ally within four tiles, and grant them [color=%positive%]4[/color] Action Points.
@@ -645,7 +643,7 @@ Push your allies beyond their limits!
 ";
 
 ::Const.Strings.PerkDescription.LegendInTheZone <- @"
-Use your armor's blend of protection and mobility to punish your foes' mistakes!
+Absolute focus tolerates no distractions.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain a stacking buff that boosts your Melee Skill and Melee Damage by [color=%positive%]0.5%[/color] up to a maximum of [color=%positive%]12.5%[/color].
@@ -667,7 +665,7 @@ All damage received is reduced.
 ";
 
 ::Const.Strings.PerkDescription.LegendKeenEyesight <- @"
-Learn how to use your superb eyesight to notice the smallest movements and predict your opponent's next attack, to hit distant targets and to avoid incoming projectiles.
+The more you see, the more you know.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain a [color=%positive%]+3/+5[/color] bonus to Melee/Ranged Skill for each point of vision above 7.
@@ -680,7 +678,7 @@ Learn how to use your superb eyesight to notice the smallest movements and predi
 ";
 
 ::Const.Strings.PerkDescription.LegendLacerate <- @"
-Lust for blood courses through your veins, each stroke rips and tears with a ferocity unmatched.
+Rip and tear, bite and scratch, with ferocity unmatched.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Cause minor but long-lasting [color=%status%]Bleeding[/color] on any target you deal direct Hitpoints damage to with any weapon.
@@ -691,7 +689,7 @@ Lust for blood courses through your veins, each stroke rips and tears with a fer
 ";
 
 ::Const.Strings.PerkDescription.LegendLastStand <- @"
-When pushed to the brink, unleash unmatched resilience and determination.
+'It's not gonna be me!'
 
 [color=%passive%][u]Passive:[/u][/color]
 • For every [color=%negative%]2%[/color] of missing Hitpoints below [color=%negative%]66%[/color] total Hitpoints, gain [color=%positive%]1[/color] additional Melee and Ranged Defense.
@@ -700,7 +698,7 @@ When pushed to the brink, unleash unmatched resilience and determination.
 ";
 
 ::Const.Strings.PerkDescription.LegendLeap <- @"
-Use your athletic skill to leap high and far.
+A small leap for me... is a number of steps for you.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Leap[/color] skill which allows you to quickly cover two tiles distance.
@@ -711,7 +709,7 @@ Use your athletic skill to leap high and far.
 ";
 
 ::Const.Strings.PerkDescription.LegendLevitate <- @"
-Levitate a person above the ground, making movement across any terrain cost less.
+It's a bird!.. it's a plane!.. it's me!
 
 [color=%active%][u]Active:[/u][/color]
 • Movement across any terrain cost [color=%negative%]1[/color] AP and [color=%negative%]2[/color] Fatigue per tile.
@@ -720,7 +718,7 @@ Levitate a person above the ground, making movement across any terrain cost less
 ";
 
 ::Const.Strings.PerkDescription.LegendLithe <- @"
-Medium armor provides a sweet spot between movement and protection.
+Never put all your eggs in one basket.
 
 [color=%passive%][u]Passive:[/u][/color]
 • All incoming damage to your Armor and Hitpoints is reduced by [color=%negative%]30%[/color], when the combined weight of head and body armor is between 25 and 35.
@@ -731,7 +729,7 @@ Medium armor provides a sweet spot between movement and protection.
 ";
 
 ::Const.Strings.PerkDescription.LegendLionheart <- @"
-A lion's heart beats with unyielding strength, facing every challenge with with fearless resolve!
+Better to face your fears head on than to keep looking over your shoulder.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases your resolve by [color=%positive%]10%[/color].
@@ -740,7 +738,7 @@ A lion's heart beats with unyielding strength, facing every challenge with with 
 ";
 
 ::Const.Strings.PerkDescription.LegendLurker <- @"
-'I work better alone.'
+Darkness shields as much as it threatens.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When neither ally nor enemy is within 2 tiles, gain [color=%positive%]+30%[/color] Ranged Defense, [color=%positive%]+20[/color] Initiative, and [color=%positive%]+3[/color] Action Points.
@@ -751,17 +749,24 @@ A lion's heart beats with unyielding strength, facing every challenge with with 
 ";
 
 ::Const.Strings.PerkDescription.LegendMagicMissile <- @"
-
+The mind is a weapon. Make sure you are armed.
 
 [color=%active%][u]Active:[/u][/color]
-• Release a controlled forceful bolt, leaping towards a foe. Damage based on current Initiative, accuracy based on ranged attack skill.
+• Release a controlled forceful bolt, leaping towards a foe.
+
+• Damage based on current Initiative. Chance to hit based on Ranged Skill.
+
+• Costs [color=%negative%]6[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendMagicMissileFocus <- @"
+Hone your mind the same way you'd sharpen a trusted weapon.
+
 [color=%passive%][u]Passive:[/u][/color]
 • Reduce AP cost of Magic Missile by 1.
 ";
 
+//tbd should be consistent with skills or the other way around
 ::Const.Strings.PerkDescription.LegendManipulative <- @"
 Show an ankle, flash some teeth to entice your enemies or show something so repulsive that your enemy cannot help, but be revolted.
 
@@ -781,12 +786,14 @@ Show an ankle, flash some teeth to entice your enemies or show something so repu
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryMagicMissile <- @"
+Playing one note enough times is what makes one a master.
+
 [color=%passive%][u]Passive:[/u][/color]
 • Reduce AP and cost of Magic Missile by 1. Reduce the base Fatigue cost of Magic Missile by 6.
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryMagicStaff <- @"
-Learn to channel your energy through staves and deliver powerful spells.
+It's good to have something to lean on while focusing. Especially when that thing is a catalyst.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Build up [color=%negative%]25%[/color] less Fatigue when using [color=%skill%]Chain Lightning[/color], [color=%skill%]Firefield[/color], [color=%skill%]Magic Missile[/color] or [color=%skill%]Root[/color].
@@ -797,7 +804,7 @@ Learn to channel your energy through staves and deliver powerful spells.
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryMusic <- @"
-Properly tuned with the endurance to play it.
+Life seems to go on without effort when you're filled with music.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Build up [color=%negative%]25%[/color] less Fatigue when using songs and reduce their AP cost by [color=%negative%]1[/color].
@@ -808,7 +815,7 @@ Properly tuned with the endurance to play it.
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryNets <- @"
-Master the ability to ensnare others and to disentangle yourself.
+It's always good to have a safety net.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When throwing nets reduce Fatigue cost by [color=%negative%]25%[/color] and AP cost to [color=%negative%]3[/color].
@@ -821,7 +828,7 @@ Master the ability to ensnare others and to disentangle yourself.
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryShields <- @"
-Learn to keep your shield up.
+A shield is only as strong as the man behind it.
 
 [color=%passive%][u]Passive:[/u][/color]
 • The first two times you end a turn without [color=%skill%]Shieldwall[/color] activated, gain [color=%skill%]Shieldwall[/color].
@@ -830,7 +837,7 @@ Learn to keep your shield up.
 ";
 
 ::Const.Strings.PerkDescription.LegendMasterySlings <- @"
-Master the difficult angles and timings of slinging rocks from afar.
+Let him who is skilled cast the first stone.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Fatigue cost for Sling skills is reduced by [color=%negative%]25%[/color].
@@ -843,7 +850,7 @@ Master the difficult angles and timings of slinging rocks from afar.
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryUnarmed <- @"
-Master the martial arts of unarmed combat.
+Some train with a weapon, others become one themselves.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Reduces the Fatigue costs of [color=%skill%]Hand to Hand[/color], [color=%skill%]Kick[/color], [color=%skill%]Grapple[/color], [color=%skill%]Choke[/color], and [color=%skill%]Tackle[/color] by [color=%negative%]25%[/color].
@@ -867,7 +874,7 @@ Master the martial arts of unarmed combat.
 ";
 
 ::Const.Strings.PerkDescription.LegendMeistersanger <- @"
-You have stepped up above playing shameful songs, ridiculing nobles and are a musician of some renown, whos fine melodies can whip any company into a battle frenzy.
+You have stepped up above playing shameful songs, ridiculing nobles and are a musician of some renown, whose fine melodies can whip any company into a battle frenzy.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Martial March[/color] skill which increases AP by [color=%negative%]1[/color] for one turn to all allies within an 8 tile range.
@@ -889,7 +896,7 @@ Release a cloud of noxious gasses that are harmful to any living being.
 ";
 
 ::Const.Strings.PerkDescription.LegendMindOverBody <- @"
-Push your body beyond what is humanly possible through your sheer force of will.
+Push your body beyond what is humanly possible through the sheer force of will.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain scaling Fatigue reduction on skills and Fatigue cost of getting hit for each point of Resolve over 60.
@@ -904,7 +911,7 @@ Push your body beyond what is humanly possible through your sheer force of will.
 ";
 
 ::Const.Strings.PerkDescription.LegendMinnesanger <- @"
-'Step outside mine walls, wearing an expensive tunic. Thee sayeth thou art highborn, but I heareth thou art eunich.'
+'Step outside mine walls, wearing an expensive tunic. Thee sayeth thou art highborn, but I heareth thou art eunuch.'
 
 [color=%passive%][u]Passive:[/u][/color]
 • Fatigue cost for Song skills is reduced by [color=%negative%]25%[/color] and AP cost by [color=%negative%]1[/color].
@@ -924,7 +931,7 @@ Raise a half-formed thrall from a pile of mismatched dead flesh. Though lacking 
 ";
 
 ::Const.Strings.PerkDescription.LegendMuscularity <- @"
-Put your full weight into every blow!
+Hit hard, hit fast or don't hit at all.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When using Melee Weapons, Unarmed, Throwing and Bows inflict additional damage, scaling based on [color=%positive%]10%[/color] of your current Hitpoints and [color=%positive%]10%[/color] of your currently available Fatigue (Maximum Fatigue - currently accumulated Fatigue).
@@ -933,7 +940,7 @@ Put your full weight into every blow!
 ";
 
 ::Const.Strings.PerkDescription.LegendNearDeathExperience <- @"
-Your often and close experience with near death has left you robust and resilient.
+Once you experience near-death you simply know what to expect.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Confers an experience point bonus based on Hitpoints lost and [color=%status%]Injuries[/color] gained during combat. Gain [color=%positive%]1[/color] XP per Hitpoint and [color=%positive%]10[/color] per [color=%status%]Injuries[/color]. Experience gain is reduced by [color=%negative%]90%[/color] at level 12 and above.
@@ -942,7 +949,7 @@ Your often and close experience with near death has left you robust and resilien
 ";
 
 ::Const.Strings.PerkDescription.LegendNetCasting <- @"
-Perfect the art of casting nets.
+If wishes were fishes then the catch would be great.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases the throwing range of nets and reinforced nets by [color=%positive%]2[/color] and the throwing range of bombs by [color=%positive%]1[/color].
@@ -951,7 +958,7 @@ Perfect the art of casting nets.
 ";
 
 ::Const.Strings.PerkDescription.LegendNetRepair <- @"
-Many years spent repairing and packing nets allows you to create nets and wield them more effectively.
+Better be ready for the time when they just won't kindly come along.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Reduces the refill cost of nets to 10.
@@ -962,7 +969,7 @@ Many years spent repairing and packing nets allows you to create nets and wield 
 ";
 
 ::Const.Strings.PerkDescription.LegendNightRaider <- @"
-Gain tactical advantages at night.
+Life begins at night.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Become unaffected by night time penalties.
@@ -975,7 +982,7 @@ Gain tactical advantages at night.
 ";
 
 ::Const.Strings.PerkDescription.LegendNightvision <- @"
-Use your superior vision and training to spot targets in the gloom, and grant that vision to your allies.
+The crow wished everything was black. The owl - that everything was white.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Night Vision[/color] skill which removes nighttime penalties to vision for all allies within four tiles.
@@ -984,7 +991,7 @@ Use your superior vision and training to spot targets in the gloom, and grant th
 ";
 
 ::Const.Strings.PerkDescription.LegendOnslaught <- @"
-Don't slow down!
+The only real power comes behind a heavy blade.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants a [color=%positive%]50%[/color] chance to apply [color=%status%]Baffled[/color] on every hit with any weapon, when your Initiative is higher than that of your opponent.
@@ -995,7 +1002,7 @@ Don't slow down!
 ";
 
 ::Const.Strings.PerkDescription.LegendOpportunist <- @"
-Make the most of the opportunity's presented to you in battle.
+A turned back deserves a knife.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When successfully landing a hit on an enemy who is [color=%status%]Bleeding[/color] or [color=%status%]Poisoned[/color], apply [color=%status%]Dazed[/color] to them.
@@ -1017,7 +1024,7 @@ Not every lesson learned from battle has to be applied to the lethal side of the
 ";
 
 ::Const.Strings.PerkDescription.LegendPackLeader <- @"
-Dogs can instinctively identify a pack leader, knowledge of their habits allows you to become the leader of their pack.
+Dogs can instinctively identify a leader, a similarity they share with the humans.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Unlocks the ability to store additional dog items in your bags and use them in battle.
@@ -1033,7 +1040,7 @@ Sometimes all it takes is a little pause. Or better yet, a full stop.
 ";
 
 ::Const.Strings.PerkDescription.LegendPatientHunter <- @"
-Carefully evaluate your enemies and bide your time.
+Evaluate the enemy carefully and bide your time before a strike.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When ending your turn, excess Action Points will be transferred to your next turn with a maximum of 3.
@@ -1062,7 +1069,7 @@ Only in suffering can we know the truth.
 ";
 
 ::Const.Strings.PerkDescription.LegendPerfectFit <- @"
-Well fitting armor lets you strike faster and fight longer.
+Not quite too much and just enough. A farkin' good balance.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Reduce the Fatigue cost of all your skills and movement by [color=%negative%]15%[/color], and gain [color=%positive%]30%[/color] Initiative.
@@ -1093,7 +1100,7 @@ Don't fire until you see the whites of their eyes!
 ";
 
 ::Const.Strings.PerkDescription.LegendPoisoner <- @"
- Intimate familiarity with poisonous substances allows this one to apply just the right amount to the unwitting victims.
+Intimate familiarity with poisonous substances allows applying just the right amount to the unwitting victims.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Renders the character immune to poison.
@@ -1111,7 +1118,7 @@ Enter the mind of a thrall and lend it your power for one turn.
 ";
 
 ::Const.Strings.PerkDescription.LegendPrayerOfFaith <- @"
-A prayer of devotion grants strength to your allies and baffles the undead.
+Nothing gets the blood going like a stern declaration of faith.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Prayer of Faith[/color] skill.
@@ -1126,7 +1133,7 @@ A prayer of devotion grants strength to your allies and baffles the undead.
 ";
 
 ::Const.Strings.PerkDescription.LegendPrayerOfHope <- @"
-A prayer of hope and love restores wellbeing to your allies and tears at the undead.
+Pray for hope, pray for love, pray for gifts from gods above.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Prayer of Hope[/color] skill.
@@ -1141,7 +1148,7 @@ A prayer of hope and love restores wellbeing to your allies and tears at the und
 ";
 
 ::Const.Strings.PerkDescription.LegendPrepared <- @"
-Preparation can make or break a battle and you won't be caught with your pants down.
+Don't be caught with your pants down.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Crossbows or Firearms in your bags will be loaded at the start of combat.
@@ -1188,7 +1195,7 @@ Strike while they're down!
 ";
 
 ::Const.Strings.PerkDescription.LegendPushTheAdvantage <- @"
-Carpe juggular!
+The question isn't who is going to let me - it's who is going to stop me.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain an additional [color=%positive%]20%[/color] damage on hits to the head and chance to hit the head against targets that are [color=%status%]Debilitated[/color], [color=%status%]Knocked Over[/color] or have sustained any injury effects, like a broken arm.
@@ -1197,7 +1204,7 @@ Carpe juggular!
 ";
 
 ::Const.Strings.PerkDescription.LegendQuickStep <- @"
-Exert yourself to move one tile at an unusually quick speed.
+If only walking the walk was the entirety of the job.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlock the [color=%skill%]Quick Step[/color] skill which allows you to move one tile for only [color=%negative%]1[/color] AP and [color=%negative%]7[/color] Fatigue.
@@ -1215,7 +1222,7 @@ Working with fresh corpses takes much less work than carefully preparing carrion
 ";
 
 ::Const.Strings.PerkDescription.LegendRebound <- @"
-Surpass your limits!
+The Gods' work does not stop for exertion.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Fatigue regeneration is increased by [color=%positive%]10%[/color] of your currently accumulated Fatigue rounded up.
@@ -1229,7 +1236,7 @@ Weave a bit of your magic through the waste of a corpse so more means may be sal
 ";
 
 ::Const.Strings.PerkDescription.LegendRecuperation <- @"
-Heal more effectively over time.
+Every day is a new beginning.
 
 [color=%passive%][u]Passive:[/u][/color]
 • At the end of combat recover [color=%positive%]30%[/color] of your missing health and injuries recover [color=%positive%]1[/color] day faster.
@@ -1252,7 +1259,7 @@ Strike back with interest!
 ";
 
 ::Const.Strings.PerkDescription.LegendRoots <- @"
-Summon roots and vines to entangle your enemies.
+You can drive out nature with a pitchfork, but it always comes roaring back again.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Root[/color] skill which allows you to [color=%status%]Root[/color] any enemy within eight tiles.
@@ -1276,7 +1283,7 @@ Corrode enemy armor with arcane rust, weakening their defenses.
 ";
 
 ::Const.Strings.PerkDescription.LegendScry <- @"
-Use your extraordinary senses to notice things no one else can.
+A raven's eye view.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Scry[/color] skill which reveals everything within twelve tiles.
@@ -1285,7 +1292,7 @@ Use your extraordinary senses to notice things no one else can.
 ";
 
 ::Const.Strings.PerkDescription.LegendSecondWind <- @"
-Even the fiercest battles can't keep you down.
+Victory is reserved for those who are willing to pay its price.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When falling below [color=%negative%]50%[/color] Hitpoints for the first time in each combat, fully refresh your Fatigue, and grant [color=%positive%]+5[/color] Fatigue Recovery for 3 turns.
@@ -1301,7 +1308,7 @@ Even the fiercest battles can't keep you down.
 ";
 
 ::Const.Strings.PerkDescription.LegendShieldsUp <- @"
-Drilling your troops in a shieldwall prepares their reaction time to avoid early deaths on the battlefield.
+A warrior carries his shield for the sake of the entire line.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Taking this perk ensures every mercenary with a shield will use [color=%skill%]shieldwall[/color] before the start of each battle.
@@ -1326,12 +1333,14 @@ An ace up your sleeve.
 ";
 
 ::Const.Strings.PerkDescription.LegendSlumber <- @"
+Close your eyes. Sleep.
+
 [color=%active%][u]Active:[/u][/color]
 • Use soothing vapours to lull an enemy to sleep. The chance of success is determined by the Resolves of the user and target.
 ";
 
 ::Const.Strings.PerkDescription.LegendSmashingShields <- @"
-Some folks take joy in the simple pleasures of destroying shields.
+Some folks take joy in the simple pleasures like destroying shields.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants an additional [color=%positive%]+50%[/color] damage to shields when using [color=%skill%]Split Shield[/color] or a Throwing Spear.
@@ -1341,7 +1350,7 @@ Some folks take joy in the simple pleasures of destroying shields.
 ";
 
 ::Const.Strings.PerkDescription.LegendSmackdown <- @"
-Use your size and strength to dominate the battlefield, combining the best of both worlds in offense and defense.
+There's no need to overthink things when they can be smashed instead.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Effectiveness vs Armor is increased by [color=%positive%]30%[/color] for any weapon used.
@@ -1354,7 +1363,7 @@ Use your size and strength to dominate the battlefield, combining the best of bo
 ";
 
 ::Const.Strings.PerkDescription.LegendSpearwaller <- @"
-Endless training in holding the line in a spear wall has made it a second nature.
+Hold the line in a spear wall endlessly and it becomes a second nature.
 
 [color=%passive%][u]Passive:[/u][/color]
 • [color=%skill%]Spearwall[/color] costs [color=%negative%]-50%[/color] less Fatigue.
@@ -1624,7 +1633,7 @@ Timber!
 ";
 
 ::Const.Strings.PerkDescription.LegendStaffSpins <- @"
-Master the movements required to spin your staff in a great flourish that lands with additional force.
+Spin to win.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Any strike with a staff that would normally [color=%status%]Daze[/color], also [color=%status%]Stuns[/color] and [color=%status%]Staggers[/color].
@@ -1656,7 +1665,7 @@ Years spent feeding and caring for falcons has made them your friends.
 ";
 
 ::Const.Strings.PerkDescription.LegendSummonFamiliar <- @"
-Summon a feline familiar to your side. Don't worry, this particular cat has nine times a million lives.
+Don't worry, this particular cat has nine times a million lives.
 
 [color=%active%][u]Active:[/u][/color]
 • Summons a feline familiar to your side in battle.
@@ -1674,7 +1683,7 @@ Forming close bonds with hounds grants the ability to call to them.
 ";
 
 ::Const.Strings.PerkDescription.LegendSummonStorm <- @"
-Control the elements, calling down the rain.
+I'm bringing home the rain.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Summon Storm[/color] skill.
@@ -1696,6 +1705,8 @@ Cultivating a relationship with the wolves allows you to call them to your side.
 ";
 
 ::Const.Strings.PerkDescription.LegendStupefy <- @"
+Distracted. Drooling. Still, an improvement for some.
+
 [color=%active%][u]Active:[/u][/color]
 • Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too [color=%status%]Bewildered[/color] to fight effectively.
 
@@ -1703,7 +1714,7 @@ Cultivating a relationship with the wolves allows you to call them to your side.
 ";
 
 ::Const.Strings.PerkDescription.LegendSwagger <- @"
-Having an expensive, well polished armor seems to deflect blows and turn away arrows. Or at least that's what most mercenaries think.
+Having an expensive, well-polished armor seems to deflect blows and turn away arrows. Or at least that's what most nobles think.
 
 [color=%passive%][u]Passive:[/u][/color]
 • At the start of combat gain [color=%positive%]0.2%[/color] of your helmet and armor's value as armor condition and half that to the helmet. Will be removed at the end of combat.
@@ -1712,7 +1723,7 @@ Having an expensive, well polished armor seems to deflect blows and turn away ar
 ";
 
 ::Const.Strings.PerkDescription.LegendTacticalManeuvers <- @"
-Every fight is like a dance, and you have just the right moves.
+Every fight is like a dance, provided you have the right moves.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Unlocks the [color=%skill%]Rotation[/color] skill which allows two characters to switch places while ignoring Zone of Control, as long as neither character is [color=%status%]Stunned[/color], [color=%status%]Rooted[/color] or otherwise disabled.
@@ -1737,7 +1748,7 @@ The mere sight is enough to send them fleeing.
 ";
 
 ::Const.Strings.PerkDescription.LegendThrowSand <- @"
-Its hard to fight with sand in your eyes.
+It's hard to fight with a storm of sand in your eyes.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Throw Dirt[/color] skill which allows you to throw dirt in the eyes of an enemy to distract them.
@@ -1759,7 +1770,7 @@ Poking things where they don't belong is just a natural inclination for some.
 ";
 
 ::Const.Strings.PerkDescription.LegendTrueBeliever <- @"
-Lesser men may cower and flee, but you are unassuageable in your commitment.
+Dangerous is the man who puts an absolute trust in something he can't see.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Allies [color=%status%]Fleeing[/color] or dying no longer lowers this character's morale.
@@ -1770,7 +1781,7 @@ Lesser men may cower and flee, but you are unassuageable in your commitment.
 ";
 
 ::Const.Strings.PerkDescription.LegendTumble <- @"
-Make use of your acrobatic skill to dodge attacks and move out of trouble.
+Some problems are better dodged than confronted.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When there's space, attempt to dodge to an adjacent tile.
@@ -1781,7 +1792,7 @@ Make use of your acrobatic skill to dodge attacks and move out of trouble.
 ";
 
 ::Const.Strings.PerkDescription.LegendTwirl <- @"
-Practice in physical movement with a partner has given the ability to take the lead and move someone's body in a twirling movement.
+A professional knows how to dance even with the most obstinate of partners.
 
 [color=%passive%][u]Passive:[/u][/color]
 • [color=%skill%]Rotation[/color] can now target enemies.
@@ -1795,7 +1806,7 @@ True berserkers prefer fighting without the burden of armor, relying purely on t
 ";
 
 ::Const.Strings.PerkDescription.LegendValaChantDisharmony <- @"
-A very disagreeable and cacophonous chant can makes it almost impossible for enemies to focus and concentrate properly.
+A very disagreeable and cacophonous chant can make it almost impossible for enemies to focus and concentrate properly.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Disharmony[/color] chant which afflicts enemies within 4 tiles of the Vala will be afflicted by a malus to Initiative.
@@ -1915,7 +1926,7 @@ Each individual has a Warden spirit that follows their soul from birth to death.
 ";
 
 ::Const.Strings.PerkDescription.LegendVengeance <- @"
-'You've done it now!'
+An eye for an eye... and then some.
 
 [color=%passive%][u]Passive:[/u][/color]
 • After receiving a hit, or a death of a party member or a pet, gain a stack of [color=%effect]Vengeance[/color], which allows you to deal [color=%positive%]20%[/color] extra Damage.
@@ -1948,14 +1959,14 @@ Corrupt the force sustaining one of your fashioned thralls
 ";
 
 ::Const.Strings.PerkDescription.LegendWideSwings <- @"
-Broad attacks are hard to avoid and you're using this to your advantage.
+Be broad enough and it will stick eventually.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain a [color=%positive%]50%[/color] chance upon missing an attack execute the skill again on the target you missed. The follow up will deal [color=%negative%]50%[/color] less damage and gain [color=%positive%]30%[/color] hitchance.
 ";
 
 ::Const.Strings.PerkDescription.LegendWindReader <- @"
-You have learned to read the wind, estimating the path of arrows in uncertain conditions.
+Complain about the wind, hope for it to change, but most importantly - adjust to it.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When being attacked with ranged weapons, gain [color=%positive%]1 + 10% [/color] of your base Ranged Defense as additional Ranged Defense per tile of distance between you and your target.
@@ -1966,7 +1977,7 @@ You have learned to read the wind, estimating the path of arrows in uncertain co
 ";
 
 ::Const.Strings.PerkDescription.LegendWither <- @"
-Unleash a spell that ages with a touch, causing withering decay upon your target
+A revelation of what is yet to come.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Wither[/color] skill which ages a target for three turns, reducing their Damage, Initiative and Fatigue by [color=%negative%]-30%[/color].
@@ -1977,8 +1988,16 @@ Unleash a spell that ages with a touch, causing withering decay upon your target
 ";
 
 ::Const.Strings.PerkDescription.LegendZombieBite <- @"
+Braaaains!
+
 [color=%active%][u]Active:[/u][/color]
-• braaaains
+• Unlocks the [color=%skill%]Zombie Bite[/color] skill.
+
+• Bites the target dealing moderate damage.
+
+• Slain enemies will be revived as Wiedergangers.
+
+• Costs [color=%negative%]4[/color] AP and [color=%negative%]10[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendHorseCharge <- @"
