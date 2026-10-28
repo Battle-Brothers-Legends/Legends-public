@@ -296,14 +296,14 @@
 		_target.moraleLabel <- ::Const.MoraleStateName[_entity.getMoraleState()];
 		if(::Legends.Mod.ModSettings.getSetting("ShowPotentialOnBars").getValue()){
 			_target.potentials <- {
-                hitpoints = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Hitpoints),
-                fatigue = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Fatigue),
-                bravery = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Bravery),
-                initiative = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Initiative),
-                meleeSkill = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.MeleeSkill),
-                rangeSkill = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.RangedSkill),
-                meleeDefense = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.MeleeDefense),
-                rangeDefense = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.RangedDefense)
+                hitpoints = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Hitpoints).avg,
+                fatigue = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Fatigue).avg,
+                bravery = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Bravery).avg,
+                initiative = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Initiative).avg,
+                meleeSkill = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.MeleeSkill).avg,
+                rangeSkill = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.RangedSkill).avg,
+                meleeDefense = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.MeleeDefense).avg,
+                rangeDefense = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.RangedDefense).avg
             };
 		}
 

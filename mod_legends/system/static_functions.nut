@@ -356,8 +356,14 @@
 		attributeMax += 1;
 	}
 	local levelUps = ::Math.max(12 - bro.getLevel() + bro.getLevelUps(), 0);
+	local min = baseProp + attributeMin * levelUps;
+	local max = baseProp + attributeMax * levelUps;
 
-	return (baseProp + attributeMin * levelUps) + "-" + (baseProp + attributeMax * levelUps);
+	return {
+		min = min,
+		max = max,
+		avg = (min + max) / 2
+	};
 }
 
 ::Legends.S.isWarhoundAllowedIntoBags <- function (_item, _entity) {

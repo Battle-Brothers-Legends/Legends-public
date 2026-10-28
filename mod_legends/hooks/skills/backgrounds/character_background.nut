@@ -543,7 +543,8 @@
 		}
 
 		local getStat = function (_attribute, _addDistance = true) {
-			local text = ::String.replace(::Legends.S.getStatPotential(bro, _attribute), "-", " to ");
+			local potential = ::Legends.S.getStatPotential(bro, _attribute);
+			local text = potential.min + " to " + potential.max;
 
 			if (!_addDistance) {
 				return text;
