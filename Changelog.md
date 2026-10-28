@@ -189,6 +189,7 @@
 - `Terrifying Visage`  - had Horrify's active moved to it, now properly uses horror
 - `Lone Wolf` - bonus to movement reworked into a single free move if starting engaged (once per turn)
 - `Cacophony` - added new sounds
+- `Recover` - the active now automatically ends the bros turn
 
 ### Removed Perks
 - `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters

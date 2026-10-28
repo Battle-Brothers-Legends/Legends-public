@@ -70,6 +70,8 @@
 		}
 
 		this.m.UsedAP = 0;
+		this.getContainer().getActor().m.IsTurnDone = true;
+		::Tactical.updateCurrentEntity();
 		return true;
 	}
 
