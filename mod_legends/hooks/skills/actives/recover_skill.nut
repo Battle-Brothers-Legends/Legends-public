@@ -71,7 +71,7 @@
 
 		this.m.UsedAP = 0;
 		this.getContainer().getActor().m.IsTurnDone = true;
-		::Tactical.updateCurrentEntity();
+		::Tactical.State.updateCurrentEntity();
 		return true;
 	}
 
