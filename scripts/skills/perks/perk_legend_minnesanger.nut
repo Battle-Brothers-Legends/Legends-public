@@ -6,17 +6,17 @@ this.perk_legend_minnesanger <- this.inherit("scripts/skills/skill", {
 			::Legends.Active.LegendMartialMarch
 		]
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMinnesanger);
 	}
 
-	function onUpdate( _properties ) {
-		foreach(skill in this.m.SkillsToAdjust) {
+	function onAfterUpdate(_properties) {
+		foreach (skill in this.m.SkillsToAdjust) {
 			_properties.SkillCostAdjustments.push({
 				ID = ::Legends.Actives.getID(skill),
 				APAdjust = -1,
-				FatigueMultAdjust = 0.75
+				FatigueMultAdjust = ::Const.Combat.WeaponSpecFatigueMult
 			});
 		}
 	}

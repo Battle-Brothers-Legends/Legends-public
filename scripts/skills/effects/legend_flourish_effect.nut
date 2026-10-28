@@ -116,10 +116,10 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		return ::Math.max(0, _attacker.getInitiative() - _defender.getInitiative());
 	}
 
-	function onUpdate(_properties) {
+	function onAfterUpdate(_properties) {
 		foreach (skill in this.getContainer().queryActives().filter(@(_, _skill)(_skill.isAttack()))) {
 			_properties.SkillCostAdjustments.push({
-				ID = skill.m.ID,
+				ID = skill.getID(),
 				APAdjust = 1,
 				FatigueMultAdjust = 1.75
 			});

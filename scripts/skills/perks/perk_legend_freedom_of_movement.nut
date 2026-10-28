@@ -16,16 +16,14 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendFreedomOfMovement);
 	}
 
-	function onUpdate(_properties) {
+	function onAfterUpdate(_properties) {
 		foreach (skill in this.m.Skills) {
 			_properties.SkillCostAdjustments.push({
 				ID = skill,
 				FatigueMultAdjust = 0.5
 			});
 		}
-	}
 
-	function onAfterUpdate(_properties) {
 		local skills = this.getContainer().getAllSkillsOfType(::Const.SkillType.Active);
 		foreach (skill in skills) {
 			if (this.m.Skills.find(skill.getID()) != null) {

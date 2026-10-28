@@ -695,6 +695,8 @@
 - split man should no longer behave erratically
 - stollwurms contracts can now properly appear in steppe villages
 - white wolves can now properly appear in snow villages and with 1.5 the chance
+- Magic Missile and Chain Lightning are now properly affected by AP modifier
+- fixed Flourish, Freedom of Movement, Music Mastery and Minnesanger not affecting fatigue costs
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

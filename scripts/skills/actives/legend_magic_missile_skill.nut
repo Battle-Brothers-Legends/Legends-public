@@ -79,8 +79,10 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 	function onAfterUpdate(_properties) {
 		this.m.FatigueCost = this.m.BaseFatigueCost;
 		this.m.MaxRange = this.m.Range - 1 + (_properties.IsSpecializedInStaves ? 1 : 0);
-		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.ActionPointCost = _properties.IsSpecializedInStaves ? 5 : 6;
+		if (_properties.IsSpecializedInStaves) {
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+		}
 
 		if (this.m.Container.hasPerk(::Legends.Perk.LegendMagicMissileFocus)) {
 			this.m.ActionPointCost -= 1;
@@ -90,5 +92,4 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 			this.m.FatigueCost -= 6;
 		}
 	}
-
 });

@@ -6,15 +6,18 @@ this.perk_legend_mastery_music <- this.inherit("scripts/skills/skill", {
 			::Legends.Active.LegendMartialMarch
 		]
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMasteryMusic);
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.IsSpecializedInMusic = true;
-		foreach(skill in this.m.SkillsToAdjust) {
+
+	}
+
+	function onAfterUpdate(_properties) {
+		foreach (skill in this.m.SkillsToAdjust) {
 			_properties.SkillCostAdjustments.push({
 				ID = ::Legends.Actives.getID(skill),
 				APAdjust = -1,
@@ -22,5 +25,4 @@ this.perk_legend_mastery_music <- this.inherit("scripts/skills/skill", {
 			});
 		}
 	}
-
 });
