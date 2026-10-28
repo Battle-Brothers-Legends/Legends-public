@@ -294,7 +294,7 @@
 		_target.morale <- _entity.getMoraleState();
 		_target.moraleMax <- ::Const.MoraleState.COUNT - 1;
 		_target.moraleLabel <- ::Const.MoraleStateName[_entity.getMoraleState()];
-		if(::Legends.Mod.ModSettings.getSetting("ShowPotentialOnBars").getValue()){
+		if(::Legends.Mod.ModSettings.getSetting("ShowPotentialOnBars").getValue() && _entity.getLevel() < 12){
 			_target.potentials <- {
                 hitpoints = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Hitpoints).avg,
                 fatigue = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Fatigue).avg,

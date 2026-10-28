@@ -318,10 +318,6 @@
 }
 
 ::Legends.S.getStatPotential <- function (bro, attribute) {
-	if (bro.getLevel() >= 12) {
-		return "";
-	}
-
 	local baseProp = 0;
 	switch (attribute) {
 		case ::Const.Attributes.Hitpoints:
