@@ -255,6 +255,10 @@
 - added 5 more variations of Face Mask, art by Ivan
 
 ### Weapons
+** One Handed Axes**
+- `Cull` - an expensive attack that is effective against fleeing and wavering enemies
+> Has 30% more damage, 20% more penetration and 20% more chance to hit against enemies that are fleeing, has a 20% more damage, 10% more penetration and 10% more hitchance against enemies that are fleeing 
+
 **Staves**
 - `Gnarled Staff` - loses `Hex`
 - `Riposte` is now available to all staves

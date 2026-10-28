@@ -459,7 +459,7 @@ Master combat with axes and destroying shields.
 
 • [color=%skill%]Round Swing[/color] gains [color=%positive%]+5%[/color] chance to hit.
 
-• The Longaxe no longer has a penalty for attacking targets directly adjacent.
+• Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecAxe].Tooltip = ::Const.Strings.PerkDescription.SpecAxe;
 
@@ -476,6 +476,8 @@ Master cleavers to inflict gruesome wounds.
 • [color=%skill%]Hew[/color] does an additional [color=%positive%]20%[/color] damage for each body part if the target is [color=%status%]Bleeding[/color] or [color=%status%]Injured[/color]. [color=%skill%]Harvest[/color] does an additional [color=%positive%]10%[/color] bonus damage if the target is [color=%status%]Bleeding[/color].
 
 • [color=%skill%]Disarm[/color] only has half the penalty to hit.
+
+• Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecCleaver].Tooltip = ::Const.Strings.PerkDescription.SpecCleaver;
 
@@ -522,6 +524,9 @@ Master flails and circumvent your opponent's shield.
 • [color=%skill%]Thresh[/color] gains [color=%positive%]+5%[/color] chance to hit and ignores an additional [color=%positive%]25%[/color] of Block value.
 
 • [color=%skill%]Pound[/color] ignores additional [color=%positive%]+10%[/color] armor penetration on hits to the head and ignores an additional [color=%positive%]33%[/color] of Block value.
+
+• Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
+
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecFlail].Tooltip = ::Const.Strings.PerkDescription.SpecFlail;
 
@@ -538,6 +543,9 @@ Master hammers and fighting against heavily armored opponents.
 • [color=%skill%]Obliterate[/color] gains [color=%positive%]+25%[/color] chance to hit.
 
 • The Polehammer no longer has a penalty for attacking targets directly adjacent.
+
+• Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
+
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecHammer].Tooltip = ::Const.Strings.PerkDescription.SpecHammer;
 
@@ -550,6 +558,9 @@ Master maces to beat your opponents into submission, armored or not.
 • [color=%skill%]Knock Out[/color], [color=%skill%]Knock Over[/color], and [color=%skill%]Strike Down[/color] have a [color=%positive%]100%[/color] chance to [color=%status%]Stun[/color] the target if not immune.
 
 • The Polemace no longer has a penalty for attacking targets directly adjacent.
+
+• Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
+
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecMace].Tooltip = ::Const.Strings.PerkDescription.SpecMace;
 
@@ -563,7 +574,7 @@ Master polearms and keeping the enemy at bay.
 
 • Increases [color=%status%]Daze[/color] chance of [color=%skill%]Staff Daze[/color] to [color=%positive%]100%[/color] and the range of [color=%skill%]Leap[/color] by [color=%positive%]1[/color] while using a staff.
 
-• Other polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
+• Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
 
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecPolearm].Tooltip = ::Const.Strings.PerkDescription.SpecPolearm;
@@ -597,6 +608,9 @@ Master the art of swordfighting and using your opponent's mistakes to your advan
 • [color=%skill%]Flowing Slash[/color] now has [color=%positive%]20%[/color] chance to reroll the attack.
 
 • When [color=%status%]Dual Wielding[/color], [color=%skill%]Riposte[/color] can trigger from both weapons, allowing two counter-attacks per missed enemy attack.
+
+• Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
+
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecSword].Tooltip = ::Const.Strings.PerkDescription.SpecSword;
 

@@ -34,6 +34,7 @@
 	local onEquip = o.onEquip;
 	o.onEquip = function () {
 		onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendThrowBackupAxe);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendCull);
+::Legends.Actives.grant(this, ::Legends.Active.LegendThrowBackupAxe);
 	}
 });

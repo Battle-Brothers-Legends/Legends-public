@@ -23,5 +23,6 @@
 		::Legends.Actives.getID(::Legends.Active.LegendBreach),
 		::Legends.Actives.getID(::Legends.Active.LegendFlowingSlash),
 		::Legends.Actives.getID(::Legends.Active.LegendBackstab)
+		::Legends.Actives.getID(::Legends.Active.LegendCull),
 	]);
 });
