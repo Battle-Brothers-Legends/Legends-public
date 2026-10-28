@@ -26,9 +26,8 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 		if (!this.m.TargetTile.IsOccupiedByActor) {
 			return false;
 		}
-		
-		if (!actor.isHiddenToPlayer() || this.m.TargetTile.IsVisibleForPlayer)
-		{
+
+		if (!actor.isHiddenToPlayer() || this.m.TargetTile.IsVisibleForPlayer) {
 			this.getContainer().setBusy(true);
 			local tag = {
 				Skill = this,
@@ -36,23 +35,29 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 				TargetTile = this.m.TargetTile
 			};
 			::Time.scheduleEvent(::TimeUnit.Virtual, this.m.Delay, this.onPerformAttack, tag);
-		
-			if (!actor.isPlayerControlled() && this.m.TargetTile.getEntity().isPlayerControlled()) {		
+
+			if (!actor.isPlayerControlled() && this.m.TargetTile.getEntity().isPlayerControlled()) {
 				actor.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			return true;
-		}
-		else {		
+		} else {
 			return this.attackEntity(actor, this.m.TargetTile.getEntity());
 		}
 	}
 
-	function onUse( _user, _targetTile ) {
+	function onUse(_user, _targetTile) {
 		this.m.Prepared = true;
 		this.m.TargetTile = _targetTile;
 		_targetTile.spawnDetail("mortar_target_02", ::Const.Tactical.DetailFlag.SpecialOverlay, false, true);
 		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " draws the bow to it's maximum and prepares a shot");
+		local actor = this.getContainer().getActor();
+		if (actor.getCurrentProperties().IsSpecializedInBows && ::Tactical.TurnSequenceBar.canEntityWait(actor)) {
+			::Tactical.TurnSequenceBar.entityWaitTurn(actor);
+		} else {
+			actor.m.IsTurnDone = true;
+		}
+		::Tactical.State.updateCurrentEntity();
 		return true;
 	}
 
@@ -63,12 +68,15 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 	}
 
 	function onResumeTurn() {
-		if (this.m.Prepared && this.getContainer().getActor().getCurrentProperties().IsSpecializedInBows) {
+		local actor = this.getContainer().getActor();
+		if (this.m.Prepared && actor.getCurrentProperties().IsSpecializedInBows) {
 			this.onResumeUse();
+			actor.m.IsTurnDone = true;
+			::Tactical.State.updateCurrentEntity();
 		}
 	}
 
-	function onAfterUpdate ( _properties ) {
+	function onAfterUpdate(_properties) {
 		this.aimed_shot.onAfterUpdate(_properties);
 		if (_properties.IsSpecializedInBows) {
 			this.m.ActionPointCost -= 1;
@@ -76,7 +84,7 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 		this.m.MaxRange = this.m.Item.getRangeMax() + (_properties.IsSpecializedInBows ? 2 : 1);
 	}
 
-	function onAnySkillUsed ( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
 			_properties.RangedSkill += this.m.HitChanceBonus;
@@ -89,7 +97,7 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 		}
 	}
 
-	function onUpdate ( _properties ) {
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		if (actor.m.MoraleState == ::Const.MoraleState.Fleeing) {
 			if (this.m.TargetTile != null) {
@@ -100,7 +108,7 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 		}
 	}
 
-	function onDeath ( _fatalityType ) {
+	function onDeath(_fatalityType) {
 		if (this.m.TargetTile != null) {
 			this.m.TargetTile.clear(::Const.Tactical.DetailFlag.SpecialOverlay);
 		}
