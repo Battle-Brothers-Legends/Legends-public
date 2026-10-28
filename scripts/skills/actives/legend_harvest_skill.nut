@@ -1,14 +1,10 @@
 this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
-	m = {
-		SoundsA = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3),
-		SoundsB = ::Legends.S.setSounds("sounds/combat/chop_hit", 3),
-		TilesLeft = 1
-	},
+	m = {},
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHarvest);
-		this.m.Description = "Swinging the weapon in an arc that hits two adjacent tiles in counter-clockwise order. Be careful around your own men unless you want to relieve your payroll!";
-		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/swing", 3);
-		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/swing_hit", 3);
+		this.m.Description = "A seemingly weak attack meant to finish off a wounded enemy.";
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/cleave", 3);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/decapitate_hit", 3);
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -21,9 +17,9 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsWeaponSkill = true;
 		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
 		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
-		this.m.DirectDamageMult = 0.25;
-		this.m.ActionPointCost = 6;
-		this.m.FatigueCost = 25;
+		this.m.DirectDamageMult = 0.35;
+		this.m.ActionPointCost = 4;
+		this.m.FatigueCost = 20;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.ChanceDecapitate = 99;
@@ -33,27 +29,18 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local ret = this.getDefaultTooltip();
-		local specialized = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers;
-		local dmg = specialized ? 10 : 5;
 		ret.push({
-			id = 6,
+			id = 8,
 			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Can hit up to 2 targets"
+			icon = "ui/icons/damage_dealt.png",
+			text = "Inflicts [color=%damage%]20%[/color] more damage for each injury on the target"
 		});
 		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=%damage%]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
+			text = "Killing your target will refund this skill's Action Point cost"
 		});
-		if (specialized)
-			ret.push({
-				id = 8,
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "Inflicts [color=%damage%]10%[/color] more damage against bleeding enemies"
-			});
 		return ret;
 	}
 
@@ -62,36 +49,8 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onUse( _user, _targetTile ) {
-		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSwing);
-		local success = false;
-		local ownTile = _user.getTile();
-		local dir = ownTile.getDirectionTo(_targetTile);
-		local target = _targetTile.getEntity();
-		local hp = target.getHitpoints();
-		success = this.attackEntity(_user, target);
-
-		if (::Legends.S.isEntityNullOrDead(_user))
-			return success;
-		
-		if (success)
-			::Legends.S.applyBleed(target, _user, hp, this.m.SoundsA, this.m.SoundsB);
-
-		local nextDir = dir - 1 >= 0 ? dir - 1 : ::Const.Direction.COUNT - 1;
-
-		if (ownTile.hasNextTile(nextDir)) {
-			local nextTile = ownTile.getNextTile(nextDir);
-
-			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && ::Math.abs(nextTile.Level - ownTile.Level) <= 1) {
-				target = nextTile.getEntity();
-				hp = nextTile.getEntity().getHitpoints();
-				success = this.attackEntity(_user, target) || success;
-
-				if (success)
-					::Legends.S.applyBleed(target, _user, hp, this.m.SoundsA, this.m.SoundsB);
-			}
-		}
-
-		return success;
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSlash);
+		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
 	function onTargetSelected( _targetTile ) {
@@ -109,13 +68,22 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onTargetKilled( _targetEntity, _skill ) {
+		if (_skill == this) {
+			local actor = this.getContainer().getActor();
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + this.m.ActionPointCost));
+		}
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
-		if (_targetEntity == null)
+		if (_skill != this)
 			return;
 
-		if (_skill == this && ::Legends.Effects.has(_targetEntity, ::Legends.Effect.Bleeding)) {
-			_properties.DamageTotalMult *= 1.1;
+		local damage = 0.1;
+		if (_targetEntity != null) {
+			damage += _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len() * 0.2;
 		}
+		_properties.DamageTotalMult *= damage
 	}
 });
 

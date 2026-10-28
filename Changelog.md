@@ -320,9 +320,11 @@
 - `Gut`
 > attacks repeatedly the body of the enemy depending on how many injuries they have
 
-**2h Swordcleavers**
+**2h Cleavers**
 - `Hew` - 70% base for each attack, 80% when specialized
-- `Harvest` - 10% bonus damage down from 20% with mastery when target is bleeding
+- `Harvest` - now is a single target damage ability which costs 4 action points and does 10% damage
+> an additional 20% damage is inflicted per injury on the target
+> killing the target will refund the ability's action point cost 
 - `Decapitate` - additionally increases head hit chance depending on how wounded the target is
 
 **1h Cleavers**
