@@ -306,7 +306,11 @@ CharacterScreenStatsModule.prototype.setProgressbarValue = function (_progressba
 			_progressbarDiv.changeProgressbarLabel(_data[_labelKey]);
 		}
 		else {
-			var potential = (_data.potentials != null && _data.potentials[_valueKey] != null && _data.potentials[_valueKey] != "" ? " (" + (parseInt(_data.potentials[_valueKey].split("-")[0])+parseInt(_data.potentials[_valueKey].split("-")[1]))/2 + ")" : '')
+			var potential = "";
+			if (_data.potentials != null && _data.potentials[_valueKey] != null && _data.potentials[_valueKey] != "") {
+				var range = _data.potentials[_valueKey].match(/-?\d+/g).map(Number);
+				potential = " (" + (range[0] + range[1]) / 2 + ")";
+			}
 			switch (_valueKey) {
 				case ProgressbarValueIdentifier.ArmorHead:
 				case ProgressbarValueIdentifier.ArmorBody:
