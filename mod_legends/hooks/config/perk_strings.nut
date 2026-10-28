@@ -473,7 +473,7 @@ Master cleavers to inflict gruesome wounds.
 
 • Reduces the AP cost of [color=%skill%]Whip[/color] by [color=%negative%]1[/color].
 
-• [color=%skill%]Hew[/color] does an additional [color=%positive%]20%[/color] damage for each body part if the target is [color=%status%]Bleeding[/color] or [color=%status%]Injured[/color]. [color=%skill%]Harvest[/color] does an additional [color=%positive%]10%[/color] bonus damage if the target is [color=%status%]Bleeding[/color].
+• [color=%skill%]Hew[/color] does an additional [color=%positive%]10%[/color] damage for each body part.
 
 • [color=%skill%]Disarm[/color] only has half the penalty to hit.
 

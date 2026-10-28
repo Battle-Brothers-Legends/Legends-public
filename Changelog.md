@@ -321,7 +321,7 @@
 > attacks repeatedly the body of the enemy depending on how many injuries they have
 
 **2h Swordcleavers**
-- `Hew` - 60% base for each attack, +20% if the target is bleeding or injured
+- `Hew` - 70% base for each attack, 80% when specialized
 - `Harvest` - 10% bonus damage down from 20% with mastery when target is bleeding
 - `Decapitate` - additionally increases head hit chance depending on how wounded the target is
 
