@@ -458,7 +458,7 @@
 		}
 
 		local addTerrainTitle = true;
-		foreach (id in ::Const.CharacterProperties.TerrainTypeTooltipIDs) {
+		foreach (id in ::Const.CharacterProperties.TerrainTypesDisplayedInTooltips) {
 			if (id in ::Const.CharacterProperties.TerrainTypes) {
 				local key = ::Const.CharacterProperties.TerrainTypes[id];
 				local val = modifiers.Terrain[key];

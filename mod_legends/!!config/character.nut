@@ -252,7 +252,19 @@
 }
 ();
 
-::Const.CharacterProperties.TerrainTypeTooltipIDs <- [2, 3, 4, 5, 9, 11, 12, 14, 15, 17, 18];
+::Const.CharacterProperties.TerrainTypesDisplayedInTooltips <- [
+	::Const.World.TerrainType.Plains,
+	::Const.World.TerrainType.Swamp,
+	::Const.World.TerrainType.Hills,
+	::Const.World.TerrainType.Forest,
+	::Const.World.TerrainType.Mountains,
+	::Const.World.TerrainType.Farmland,
+	::Const.World.TerrainType.Snow,
+	::Const.World.TerrainType.Tundra,
+	::Const.World.TerrainType.Steppe,
+	::Const.World.TerrainType.Desert,
+	::Const.World.TerrainType.Oasis,
+];
 
 ::Const.CharacterProperties.getInitiativeMinDamage <- function () {
 	return this.DamageInitiativeMin + ::Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);
