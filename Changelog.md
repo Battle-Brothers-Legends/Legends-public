@@ -697,6 +697,7 @@
 - white wolves can now properly appear in snow villages and with 1.5 the chance
 - Magic Missile and Chain Lightning are now properly affected by AP modifier
 - fixed Flourish, Freedom of Movement, Music Mastery and Minnesanger not affecting fatigue costs
+- fixed Recuperation and Himshaw proccing twice
 - fixed Immovable Object not granting its advertised effects on exactly 50 and 80 weight
 
 ### For modders:

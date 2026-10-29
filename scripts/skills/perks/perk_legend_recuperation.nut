@@ -10,12 +10,14 @@ this.perk_legend_recuperation <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onCombatFinished() {
-		local actor = this.getContainer().getActor();
-		if (actor.isAlive() && actor.getHitpointsPct() < 1.0) {
-			
-			local hp = this.getBonus(actor);
-			actor.setHitpoints(::Math.min(actor.getHitpointsMax(), hp + actor.getHitpoints()));
-			actor.setDirty(true);
+		if (::Tactical.isActive()) {
+			local actor = this.getContainer().getActor();
+			if (actor.isAlive() && actor.getHitpointsPct() < 1.0) {
+
+				local hp = this.getBonus(actor);
+				actor.setHitpoints(::Math.min(actor.getHitpointsMax(), hp + actor.getHitpoints()));
+				actor.setDirty(true);
+			}
 		}
 	}
 

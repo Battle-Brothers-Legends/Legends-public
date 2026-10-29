@@ -58,13 +58,15 @@ this.perk_legend_near_death_experience <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onCombatFinished() {
-		local actor = this.getContainer().getActor();
-		local xp = this.m.HpDamageReceived + (this.m.InjuriesCountThisBattle * 20);
-		if (actor.getLevel() >= 12) {
-			xp *= 0.1;
+		if (::Tactical.isActive()) {
+			local actor = this.getContainer().getActor();
+			local xp = this.m.HpDamageReceived + (this.m.InjuriesCountThisBattle * 20);
+			if (actor.getLevel() >= 12) {
+				xp *= 0.1;
+			}
+			actor.addXP(xp);
+			actor.updateLevel();
 		}
-		actor.addXP(xp);
-		actor.updateLevel();
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
