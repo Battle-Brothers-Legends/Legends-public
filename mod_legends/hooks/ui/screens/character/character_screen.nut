@@ -109,7 +109,7 @@
 			::World.State.updateTopbarAssets();
 
 			// Get obituary messages based on compensation
-			if (_data.len() > 2 && _data[2] != null) {
+			if (_data.len() > 2 && _data[2] != null && _data[2]) {
 				local type = payCompensation ? "pos" : "neg";
 				local backgroundID = bro.getBackground().getID();
 				local useBackgroundSpecificMessage = (::Math.rand(1, 100) < ::Legends.Mod.ModSettings.getSetting("Backgroundspecific").getValue()) && backgroundID in ::Legends.Obituary.FateText.BackgroundMessages && ::Legends.Obituary.FateText.BackgroundMessages[backgroundID][type] != "";
