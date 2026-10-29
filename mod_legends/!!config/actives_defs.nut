@@ -1416,6 +1416,12 @@ if (!("Actives" in ::Legends)) {
 	LegendSecondWind = {
 		Overlay = "perk_54_active"
 	},
+	LegendShadowAlpTeleport = {
+		Name = "Fade",
+		Icon = "",
+		IconDisabled = "",
+		Overlay = ""
+	},
 	LegendShootPreciseStone = {
 		Name = "Precise Shot"
 	},

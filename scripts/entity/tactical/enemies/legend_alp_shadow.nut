@@ -46,7 +46,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.MaxTraversibleLevels = 3;
 		// basic alp skill
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_shadow_alp_teleport_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendShadowAlpTeleport);
 		// basic racial skill
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialGhost);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialAlp);

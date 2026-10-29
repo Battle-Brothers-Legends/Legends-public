@@ -1,7 +1,7 @@
 this.legend_shadow_alp_teleport_skill <- this.inherit("scripts/skills/actives/alp_teleport_skill", {
 	m = {},
-	function onUse( _user, _targetTile )
-	{
+
+	function onUse(_user, _targetTile) {
 		local tag = {
 			Skill = this,
 			User = _user,
@@ -13,8 +13,7 @@ this.legend_shadow_alp_teleport_skill <- this.inherit("scripts/skills/actives/al
 			IgnoreColors = false
 		};
 
-		if (_user.getTile().IsVisibleForPlayer)
-		{
+		if (_user.getTile().IsVisibleForPlayer) {
 			local effect = {
 				Delay = 0,
 				Quantity = 12,
@@ -82,15 +81,11 @@ this.legend_shadow_alp_teleport_skill <- this.inherit("scripts/skills/actives/al
 			_user.storeSpriteColors();
 			_user.fadeTo(this.createColor("ffffff00"), 0);
 			this.onTeleportStart(tag);
-		}
-		else if (_targetTile.IsVisibleForPlayer)
-		{
+		} else if (_targetTile.IsVisibleForPlayer) {
 			_user.storeSpriteColors();
 			_user.fadeTo(this.createColor("ffffff00"), 0);
 			this.onTeleportStart(tag);
-		}
-		else
-		{
+		} else {
 			tag.IgnoreColors = true;
 			this.onTeleportStart(tag);
 		}
@@ -98,10 +93,8 @@ this.legend_shadow_alp_teleport_skill <- this.inherit("scripts/skills/actives/al
 		return true;
 	}
 
-	function onTeleportDone( _entity, _tag )
-	{
-		if (!_entity.isHiddenToPlayer())
-		{
+	function onTeleportDone(_entity, _tag) {
+		if (!_entity.isHiddenToPlayer()) {
 			local effect1 = {
 				Delay = 0,
 				Quantity = 4,
@@ -295,9 +288,7 @@ this.legend_shadow_alp_teleport_skill <- this.inherit("scripts/skills/actives/al
 			this.Tactical.spawnParticleEffect(false, effect2.Brushes, _entity.getTile(), effect2.Delay, effect2.Quantity, effect2.LifeTimeQuantity, effect2.SpawnRate, effect2.Stages, this.createVec(0, 40));
 			this.Tactical.spawnParticleEffect(false, effect3.Brushes, _entity.getTile(), effect3.Delay, effect3.Quantity, effect3.LifeTimeQuantity, effect3.SpawnRate, effect3.Stages, this.createVec(0, 40));
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, _tag.OnFadeIn, _tag);
-		}
-		else
-		{
+		} else {
 			_tag.OnFadeIn(_tag);
 		}
 	}
