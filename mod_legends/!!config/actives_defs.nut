@@ -1260,6 +1260,7 @@ if (!("Actives" in ::Legends)) {
 	},
 	LegendEntice = {},
 	LegendEvasion = {},
+	LegendExsanguinate = {},
 	LegendFalcon = {
 		Name = "Unleash Falcon",
 		Icon = "skills/active_104.png",

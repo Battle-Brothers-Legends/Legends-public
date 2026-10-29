@@ -10,12 +10,12 @@
 			this.m.MinRange = 1;
 			this.m.MaxRange = 2;
 			this.m.ActionPointCost = 6;
-			this.m.FatigueCost = 30;
+			this.m.FatigueCost = 25;
 		}
 		else if (this.m.IsTwoHand) {
 			this.m.ActionPointCost = 6;
 			this.m.DirectDamageMult = 0.35;
-			this.m.FatigueCost = 30;
+			this.m.FatigueCost = 25;
 		}
 	}
 

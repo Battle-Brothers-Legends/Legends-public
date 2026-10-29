@@ -18,7 +18,7 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
 		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.35;
-		this.m.ActionPointCost = 4;
+		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
@@ -53,21 +53,6 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
-	function onTargetSelected( _targetTile ) {
-		local ownTile = this.m.Container.getActor().getTile();
-		local dir = ownTile.getDirectionTo(_targetTile);
-		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
-		local nextDir = dir - 1 >= 0 ? dir - 1 : ::Const.Direction.COUNT - 1;
-
-		if (ownTile.hasNextTile(nextDir)) {
-			local nextTile = ownTile.getNextTile(nextDir);
-
-			if (::Math.abs(nextTile.Level - ownTile.Level) <= 1) {
-				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, nextTile, nextTile.Pos.X, nextTile.Pos.Y);
-			}
-		}
-	}
-
 	function onTargetKilled( _targetEntity, _skill ) {
 		if (_skill == this) {
 			local actor = this.getContainer().getActor();
@@ -79,7 +64,7 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill != this)
 			return;
 
-		local damage = 0.1;
+		local damage = 0.2;
 		if (_targetEntity != null) {
 			damage += _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len() * 0.2;
 		}

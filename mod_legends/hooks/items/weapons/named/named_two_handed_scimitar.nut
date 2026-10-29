@@ -5,7 +5,6 @@
 		this.m.Variants = [1, 2];
 		this.m.Value = 4100;
 		this.m.IsAgainstShields = false;
-		this.m.Categories = "Cleaver, Two-Handed";
 	}
 
 	o.randomizeValues <- function () {
@@ -23,8 +22,7 @@
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHew);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
-		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
-			_skill.m.IsTwoHand = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendExsanguinate);
+
 	}
 });

@@ -6,7 +6,7 @@
 		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver;
 		this.m.Categories = "Cleaver, Two-Handed";
 		this.m.IsAgainstShields = false;
-		this.m.Value = 3300;
+		this.m.Value = 2900;
 		this.m.ShieldDamage = 0;
 		this.m.Variants = [1];
 		this.m.StaminaModifier = -18;
@@ -30,8 +30,6 @@
 			_skill.m.Overlay = "active_239";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
-		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
-			_skill.m.IsTwoHand = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendExsanguinate);
 	}
 });

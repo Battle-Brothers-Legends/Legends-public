@@ -17,27 +17,29 @@ this.legend_limb_lopper <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_legend_limb_lopper_01";
-		this.m.Value = 1600;
+		this.m.Value = 1900;
 		this.m.ShieldDamage = 32;
 		this.m.Condition = 64.0;
 		this.m.ConditionMax = 64.0;
-		this.m.StaminaModifier = -26;
-		this.m.RegularDamage = 70;
-		this.m.RegularDamageMax = 90;
-		this.m.ArmorDamageMult = 1.3;
-		this.m.DirectDamageMult = 0.25;
+		this.m.StaminaModifier = -32;
+		this.m.RegularDamage = 100;
+		this.m.RegularDamageMax = 115;
+		this.m.ArmorDamageMult = 1.5;
+		this.m.DirectDamageMult = 0.35;
 		this.m.FatigueOnSkillUse = 5;
 	}
 
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Cleave);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHew);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
-		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
+			_skill.m.IsTwoHand = true;
+		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
 			_skill.setApplyAxeMastery(true);
-			_skill.setFatigueCost(::Math.round(_skill.getFatigueCostRaw() + 10)); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
+			_skill.setFatigueCost(::Math.round(_skill.getFatigueCostRaw() + 5));
 		}.bindenv(this));
 	}
 

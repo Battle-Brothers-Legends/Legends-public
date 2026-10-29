@@ -5,7 +5,7 @@
 		create();
 		this.m.Categories = "Cleaver, Two-Handed";
 		this.m.IsAgainstShields = false;
-		this.m.Value = 2900;
+		this.m.Value = 2600;
 		this.m.Condition = 68.0;
 		this.m.ConditionMax = 68.0;
 		this.m.StaminaModifier = -14;
@@ -24,14 +24,11 @@
 		this.m.ArmamentIcon = "icon_two_handed_scimitar_01" + v;
 	}
 
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHew);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
-		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
-			_skill.m.IsTwoHand = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendExsanguinate);
 	}
 
 });

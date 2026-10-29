@@ -322,10 +322,14 @@
 
 **2h Cleavers**
 - `Hew` - 70% base for each attack, 80% when specialized
-- `Harvest` - now is a single target damage ability which costs 4 action points and does 10% damage
+- `Harvest` - now is a single target damage ability which costs 6 action points and does 20% damage
 > an additional 20% damage is inflicted per injury on the target
 > killing the target will refund the ability's action point cost 
-- `Decapitate` - additionally increases head hit chance depending on how wounded the target is
+- `Exsanguinate` - additionally instantly triggers all damaging poisons and bleeds on the target
+
+**Limp Lopper, Crypt Cleaver and Great Khopesh**
+- `Exsanguinate` is replaced with `Decapitate`
+> `Decapitate` additionally increases head hit chance depending on how wounded the target is
 
 **1h Cleavers**
 - `Cleave` - unchanged

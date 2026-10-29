@@ -24,7 +24,7 @@ this.legend_named_great_khopesh <- this.inherit("scripts/items/weapons/named/nam
 		this.m.StaminaModifier = -18;
 		this.m.RegularDamage = 80;
 		this.m.RegularDamageMax = 115;
-		this.m.ArmorDamageMult = 1.2;
+		this.m.ArmorDamageMult = 1.3;
 		this.m.DirectDamageMult = 0.35;
 		this.m.FatigueOnSkillUse = 5;
 		this.randomizeValues();

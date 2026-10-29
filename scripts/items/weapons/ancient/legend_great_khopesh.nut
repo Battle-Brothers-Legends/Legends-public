@@ -1,7 +1,6 @@
 this.legend_great_khopesh <- this.inherit("scripts/items/weapons/weapon", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_great_khopesh";
 		this.m.Name = "Great Khopesh";
@@ -17,20 +16,19 @@ this.legend_great_khopesh <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_legend_great_khopesh";
-		this.m.Value = 3200;
+		this.m.Value = 2900;
 		this.m.ShieldDamage = 0;
 		this.m.Condition = 54.0;
 		this.m.ConditionMax = 54.0;
 		this.m.StaminaModifier = -18;
 		this.m.RegularDamage = 80;
 		this.m.RegularDamageMax = 115;
-		this.m.ArmorDamageMult = 1.2;
+		this.m.ArmorDamageMult = 1.3;
 		this.m.DirectDamageMult = 0.35;
 		this.m.FatigueOnSkillUse = 5;
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHew);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
