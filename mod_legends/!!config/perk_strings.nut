@@ -58,7 +58,7 @@ A training a day keeps the exhaustion away.
 Those trained in circus maneuvers can move out of harm's way with astonishing speed.
 
 [color=%passive%][u]Passive:[/u][/color]
-• If you have taken the [color=%perk%]Footwork[/color] or [color=%perk%]Leap[/color] perk, they gain [color=%positive%]1[/color] range.
+• [color=%perk%]Footwork[/color] and [color=%perk%]Leap[/color] skills, gain [color=%positive%]+1[/color] range.
 ";
 
 ::Const.Strings.PerkDescription.LegendBackToBasics <- @"
@@ -300,7 +300,7 @@ Death solves all problems, but maiming is the next best thing.
 In pain we find the truth about ourselves. We have no identity beyond servitude, our glory is agony.
 
 [color=%passive%][u]Passive:[/u][/color]
-• While your face is obscured by a cultist hood, gain [color=%positive%]+15%[/color] of your total Resolve as a bonus to melee and Ranged Defense.
+• While your face is obscured by a cultist hood, gain [color=%positive%]+15%[/color] of your total Resolve as Melee and Ranged Defense.
 
 • Also works with cultist leather hood, leather helmet, sack, decayed sack helm, warlock hood or mask of davkul.
 
@@ -421,7 +421,6 @@ A skeptical mind sees through the tricks of the occult, exposing what can be sla
 • At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to hunt the following Occult leaders: Demon Alps, Greenwood Schrats and Hexe Coven Leaders.
 ";
 
-//Madman is registered as king
 ::Const.Strings.PerkDescription.LegendFavouredEnemyOutlaw <- @"
 The uncivilized are a plague to be uprooted.
 
@@ -445,8 +444,6 @@ For every famous swordmaster there is a throng of those who have fallen adding t
 ";
 
 //No contract
-//Lich and Emperor not included
-//Treasure hunters and betrayers included as knights
 ::Const.Strings.PerkDescription.LegendFavouredEnemyUndead <- @"
 Among there ruins of the old world, horrors lay sleepless in their graves.
 
@@ -467,7 +464,7 @@ Style over substance.
 It takes patience to win the grand prize.
 
 [color=%passive%][u]Passive:[/u][/color]
-• If an attack misses, it costs [color=%negative%]-20%[/color] less Fatigue than normal.
+• Missed attacks cost [color=%negative%]-20%[/color] less Fatigue.
 
 • After missing an attack you leave your opponent [color=%status%]Parried[/color], lowering their defenses by [color=%negative%]10[/color].
 ";
@@ -628,7 +625,7 @@ Bring enough of your friends and no meal will be too big to chew on.
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Insect Swarm[/color] skill which reduces the targets Melee Skill, Melee Defense, Ranged Skill, Ranged Defense and Initiative by [color=%negative%]50%[/color] for three turns.
 
-• Has a range of seven tiles
+• Has a range of seven tiles.
 
 • Costs [color=%negative%]6[/color] AP and [color=%negative%]15[/color] Fatigue.
 ";
@@ -732,7 +729,7 @@ Never put all your eggs in one basket.
 Better to face your fears head on than to keep looking over your shoulder.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increases your resolve by [color=%positive%]10%[/color].
+• Gain [color=%positive%]10%[/color] Resolve.
 
 • Being surrounded by enemies no longer affects your morale.
 ";
@@ -899,15 +896,15 @@ Release a cloud of noxious gasses that are harmful to any living being.
 Push your body beyond what is humanly possible through the sheer force of will.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain scaling Fatigue reduction on skills and Fatigue cost of getting hit for each point of Resolve over 60.
+• Gain scaling Fatigue cost reduction based on Resolve over 60.
 
-70 Resolve: [color=%negative%]7%[/color] Fatigue reduction
-80 Resolve: [color=%negative%]10%[/color] Fatigue reduction
-90 Resolve: [color=%negative%]18%[/color] Fatigue reduction
-100 Resolve: [color=%negative%]22%[/color] Fatigue reduction
-120 Resolve: [color=%negative%]29%[/color] Fatigue reduction
-140 Resolve: [color=%negative%]34%[/color] Fatigue reduction
-160 Resolve: [color=%negative%]39%[/color] Fatigue reduction
+70 Resolve: [color=%negative%]7%[/color] reduction
+80 Resolve: [color=%negative%]10%[/color] reduction
+90 Resolve: [color=%negative%]18%[/color] reduction
+100 Resolve: [color=%negative%]22%[/color] reduction
+120 Resolve: [color=%negative%]29%[/color] reduction
+140 Resolve: [color=%negative%]34%[/color] reduction
+160 Resolve: [color=%negative%]39%[/color] reduction
 ";
 
 ::Const.Strings.PerkDescription.LegendMinnesanger <- @"
@@ -1222,7 +1219,7 @@ Working with fresh corpses takes much less work than carefully preparing carrion
 ";
 
 ::Const.Strings.PerkDescription.LegendRebound <- @"
-The Gods' work does not stop for exertion.
+The Gods' work does not care for exhaustion.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Fatigue regeneration is increased by [color=%positive%]10%[/color] of your currently accumulated Fatigue rounded up.
@@ -1344,6 +1341,7 @@ Some folks take joy in the simple pleasures like destroying shields.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants an additional [color=%positive%]+50%[/color] damage to shields when using [color=%skill%]Split Shield[/color] or a Throwing Spear.
+
 • If the shield is destroyed, gain [color=%positive%]4[/color] additional AP and any damage above the max durability of the target's shield will hit the target.
 
 • When [color=%status%]Dual Wielding[/color] axes, [color=%skill%]Split Shield[/color] uses the combined shield damage from both weapons.
@@ -1357,8 +1355,11 @@ There's no need to overthink things when they can be smashed instead.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Wind Up[/color] skill which allows you to knock back and [color=%status%]Baffle[/color] an opponent on your next swing.
+
 • [color=%status%]Baffled[/color] enemies suffer [color=%negative%]-15%[/color] Damage, Max Fatigue, and Initiative.
+
 • Costs [color=%negative%]2[/color] AP and [color=%negative%]15[/color] Fatigue.
+
 • When wielding a two-handed weapon, reduces AP cost to [color=%negative%]1[/color]. Works only with melee weapons, unarmed attacks and one handed slings. With one handed slings it will grant the [color=%skill%]Prepare Bullet[/color] effect.
 ";
 
@@ -1929,7 +1930,7 @@ Each individual has a Warden spirit that follows their soul from birth to death.
 An eye for an eye... and then some.
 
 [color=%passive%][u]Passive:[/u][/color]
-• After receiving a hit, or a death of a party member or a pet, gain a stack of [color=%effect]Vengeance[/color], which allows you to deal [color=%positive%]20%[/color] extra Damage.
+• After receiving a hit, or a death of a party member or a pet, gain a stack of [color=%effect]Vengeance[/color], which increases Damage dealt by [color=%positive%]20%[/color].
 
 • The damage does not stack and each attack consumes one charge.
 ";
@@ -1962,7 +1963,7 @@ Corrupt the force sustaining one of your fashioned thralls
 Be broad enough and it will stick eventually.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain a [color=%positive%]50%[/color] chance upon missing an attack execute the skill again on the target you missed. The follow up will deal [color=%negative%]50%[/color] less damage and gain [color=%positive%]30%[/color] hitchance.
+• Gain a [color=%positive%]50%[/color] chance upon missing an attack execute the skill again on the target you missed. The follow up will deal [color=%negative%]50%[/color] less damage and gain [color=%positive%]+30%[/color] hitchance.
 ";
 
 ::Const.Strings.PerkDescription.LegendWindReader <- @"
@@ -2076,8 +2077,6 @@ Braaaains!
 ";
 
 ::Const.Strings.PerkDescription.LegendHorseMovement <- @"
-
-
 [color=%passive%][u]Passive:[/u][/color]
 Move like a horse, quickly across flat terrain, but slowly through bogs and mountains.
 ";

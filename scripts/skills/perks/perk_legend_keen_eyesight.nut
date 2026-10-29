@@ -6,8 +6,13 @@ this.perk_legend_keen_eyesight <- this.inherit("scripts/skills/skill", {
 		RangedDefenseBonus = 0
 	},
 
-	function setBonus( _vision ) {
-		local helmet = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Head);
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendKeenEyesight);
+	}
+
+	function setBonus(_vision, _actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+		local helmet = actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 		local bonus = 0;
 		local mult = 1.0;
 
@@ -16,19 +21,16 @@ this.perk_legend_keen_eyesight <- this.inherit("scripts/skills/skill", {
 		this.m.MeleeDefenseBonus = 0;
 		this.m.RangedDefenseBonus = 0;
 
-		if (helmet != null)
-		{
-			local positiveVision = helmet.m.Upgrades.filter(@(_, _layer) _layer != null && _layer.getVision() > 0)
-				.map(@(_layer) _layer.getVision()).reduce(@(a,b) a + b);
-			if (positiveVision == null)
+		if (helmet != null) {
+			local positiveVision = helmet.m.Upgrades.filter(@(_, _layer) _layer != null && _layer.getVision() > 0).map(@(_layer) _layer.getVision()).reduce(@(a, b) a + b);
+			if (positiveVision == null) {
 				positiveVision = 0;
+			}
 			bonus = helmet.getVision() * -1;
-			if (bonus > 2)
-			{
+			if (bonus > 2) {
 				mult += -0.1;
 			}
-			if (bonus > 4)
-			{
+			if (bonus > 4) {
 				mult += -0.1;
 			}
 			bonus += positiveVision;
@@ -37,8 +39,7 @@ this.perk_legend_keen_eyesight <- this.inherit("scripts/skills/skill", {
 		bonus += _vision - 7;
 		bonus = ::Math.min(12, bonus);
 
-		if (bonus > 0)
-		{
+		if (bonus > 0) {
 			this.m.MeleeSkillBonus = ::Math.floor(bonus * 3 * mult);
 			this.m.RangedSkillBonus = ::Math.floor(bonus * 5 * mult);
 			this.m.MeleeDefenseBonus = ::Math.floor(bonus * 3 * mult);
@@ -46,18 +47,45 @@ this.perk_legend_keen_eyesight <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function create()
-	{
-		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendKeenEyesight);
-	}
-
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.setBonus(_properties.Vision);
 		_properties.MeleeSkill += this.m.MeleeSkillBonus;
 		_properties.RangedSkill += this.m.RangedSkillBonus;
 		_properties.MeleeDefense += this.m.MeleeDefenseBonus;
 		_properties.RangedDefense += this.m.RangedDefenseBonus;
 	}
-});
 
+	function getDynamicTooltip(_actor = null) {
+		local tooltip = [];
+		this.setBonus(_actor.getCurrentProperties().Vision, _actor);
+		if (this.m.MeleeSkillBonus > 0) {
+			tooltip.extend([
+				{
+					id = 4,
+					type = "text",
+					icon = "ui/icons/melee_skill.png",
+					text = "[color=%positive%]+" + this.m.MeleeSkillBonus + "[/color] Melee Skill"
+				},
+				{
+					id = 5,
+					type = "text",
+					icon = "ui/icons/ranged_skill.png",
+					text = "[color=%positive%]+" + this.m.RangedSkillBonus + "[/color] Ranged Skill"
+				},
+				{
+					id = 3,
+					type = "text",
+					icon = "ui/icons/melee_defense.png",
+					text = "[color=%positive%]+" + this.m.MeleeDefenseBonus + "[/color] Melee Defense"
+				},
+				{
+					id = 4,
+					type = "text",
+					icon = "ui/icons/ranged_defense.png",
+					text = "[color=%positive%]+" + this.m.RangedDefenseBonus + "[/color] Ranged Defense"
+				}
+			]);
+		}
+		return tooltip;
+	}
+});

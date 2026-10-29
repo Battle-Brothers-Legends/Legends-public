@@ -19,15 +19,15 @@
 		return ret;
 	}
 
-	o.onShieldHitSkills <- function ( _skill, _attacker, _shield ) {
+	o.onShieldHitSkills <- function (_skill, _attacker, _shield) {
 		this.m.IsUpdating = true;
 
-		foreach( skill in this.m.Skills ) {
+		foreach (skill in this.m.Skills) {
 			if (skill.isGarbage()) {
 				continue;
 			}
 
-			skill.onShieldHitSkills( _skill, _attacker, _shield );
+			skill.onShieldHitSkills(_skill, _attacker, _shield);
 		}
 
 		this.m.IsUpdating = false;
@@ -73,11 +73,7 @@
 		}
 
 		foreach (skill in this.m.Skills) {
-			if (!skill.isGarbage()
-				&& skill.isType(_filter)
-				&& !skill.isType(_notFilter)
-				&& !skill.isHidden())
-			{
+			if (!skill.isGarbage() && skill.isType(_filter) && !skill.isType(_notFilter) && !skill.isHidden()) {
 				if (skill.getItem() != null) {
 					local slotType = skill.getItem().getCurrentSlotType();
 					if (slotType >= 0 && slotType < ::Const.ItemSlot.COUNT) {

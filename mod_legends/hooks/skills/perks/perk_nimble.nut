@@ -2,12 +2,35 @@
 	o.m.NimbleThreshold <- 15;
 	o.m.SteepnessFactor <- 1.5;
 
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function () {
-		local fm = ::Math.ceil(this.getArmorReductionMult() * 100);
-		local tooltip = getTooltip();
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend(this.getDynamicTooltip());
+		return tooltip;
+	}
 
-		if (fm < 100 && this.getContainer().hasPerk(::Legends.Perk.Relentless)) {
+	o.getDynamicTooltip <- function (_actor = null) {
+		local tooltip = [];
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+
+		local fm = ::Math.round(this.getChance(actor) * 100);
+		if (fm < 100) {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/damage_received.png",
+				text = "Only receive [color=%positive%]" + fm + "%[/color] of any damage to hitpoints from attacks"
+			});
+		} else {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]This character\'s body and head armor are too heavy as to gain any benefit from being Nimble[/color]"
+			});
+		}
+
+		fm = ::Math.ceil(this.getArmorReductionMult(actor) * 100);
+		if (fm < 100 && ::Legends.Perks.has(actor, ::Legends.Perk.Relentless)) {
 			tooltip.push({
 				id = 7,
 				type = "text",
@@ -15,14 +38,15 @@
 				text = "Only receive [color=%positive%]" + fm + "%[/color] of any damage to armor from attacks"
 			});
 		}
-
 		return tooltip;
 	}
 
-	o.getChance = function () {
+	o.getChance = function (_actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
 		local fat = 0;
-		local body = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Body);
-		local head = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Head);
+
+		local body = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
+		local head = actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 
 		if (body != null) {
 			fat = fat + body.getStaminaModifier();
@@ -37,7 +61,7 @@
 		return ret;
 	}
 
-	o.getArmorReductionMult <- @()(1 - (1 - this.getChance()) / 3);
+	o.getArmorReductionMult <- @(_actor = null)(1 - (1 - this.getChance(_actor)) / 3);
 
 	local onBeforeDamageReceived = o.onBeforeDamageReceived;
 	o.onBeforeDamageReceived = function (_attacker, _skill, _hitInfo, _properties) {

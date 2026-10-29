@@ -45,14 +45,14 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "All your fatigue costs are reduced by [color=%positive%]" + reduction + "%[/color]"
+				text = "Fatigue costs reduced by [color=%positive%]-" + reduction + "%[/color]"
 			});
 		} else {
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "This character does not have enough resolve to benefit from Mind Over Body."
+				text = "This character does not have enough Resolve to benefit from Mind Over Body."
 			});
 		}
 

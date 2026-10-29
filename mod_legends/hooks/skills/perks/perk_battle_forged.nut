@@ -10,22 +10,27 @@
 		return "Specialize in heavy armor! Armor damage taken is reduced by a percentage equal to [color=%positive%]" + this.m.ArmorPercentageAsReduction + "[/color] of the current total armor value of both body and head armor. The heavier your armor and helmet, the more you benefit.";
 	}
 
-	o.getReductionPercentage <- function () {
-		local armor = this.getContainer().getActor().getArmor(::Const.BodyPart.Head) + this.getContainer().getActor().getArmor(::Const.BodyPart.Body);
+	o.getReductionPercentage <- function (_actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+		local armor = actor.getArmor(::Const.BodyPart.Head) + actor.getArmor(::Const.BodyPart.Body);
 		return ::Math.min(this.m.ReductionCapMax, ::Math.floor(armor * this.m.ArmorPercentageAsReduction * 0.01));
 	}
 
 	o.getTooltip = function () {
 		local tooltip = this.skill.getTooltip();
-
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Only receive [color=%positive%]" + (100 - this.getReductionPercentage()) + "%[/color] of any damage to armor from attacks"
-		});
-
+		tooltip.extend(this.getDynamicTooltip());
 		return tooltip;
+	}
+
+	o.getDynamicTooltip <- function (_actor = null) {
+		return [
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/armor_damage_received.png",
+				text = "Only receive [color=%positive%]" + (100 - this.getReductionPercentage(_actor)) + "%[/color] of any damage to armor from attacks"
+			}
+		];
 	}
 
 	o.onBeforeDamageReceived = function (_attacker, _skill, _hitInfo, _properties) {

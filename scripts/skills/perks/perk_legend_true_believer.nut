@@ -1,68 +1,63 @@
 this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
-	m = {},
-	function create()
-	{
+	m = {
+		RemovedTraits = [
+			::Legends.Trait.Craven,
+			::Legends.Trait.Dastard,
+			::Legends.Trait.Insecure,
+			::Legends.Trait.Superstitious
+		]
+	},
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendTrueBeliever);
+		this.m.Description = "Dangerous is the man who puts an absolute trust in something he can't see.";
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
-	function onUpdate( _properties )
-	{
+	function isHidden() {
+		return this.getBonus() == 0;
+	}
+
+	function onUpdate(_properties) {
 		_properties.IsAffectedByFleeingAllies = false;
 		_properties.IsAffectedByDyingAllies = false;
-		local bonus = this.getFleeing() * 0.05;
-		_properties.BraveryMult += bonus;
-
+		_properties.BraveryMult += this.getBonus();
 	}
 
-	function getFleeing()
-	{
-		if (!("Entities" in ::Tactical))
-		{
+	function getBonus() {
+		if (!::Tactical.isActive()) {
 			return 0;
 		}
-		if (::Tactical.Entities == null)
-		{
-			return 0;
-		}
+		return ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _actor)(_actor.getMoraleState() == ::Const.MoraleState.Fleeing)).len() * 0.05;
+	}
 
-		if (!::Tactical.isActive())
-		{
-			return 0;
-		}
-
-		local fleeing = 0;
-
-		local actors = ::Tactical.Entities.getAllInstancesAsArray();
-
-		foreach( a in actors )
-		{
-			if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
-			{
-				fleeing += 1;
-
+	function onAdded() {
+		local actor = this.getContainer().getActor();
+		foreach (trait in this.m.RemovedTraits) {
+			if (::Legends.Traits.has(actor, trait)) {
+				::Legends.Traits.remove(actor, trait);
 			}
-
 		}
-		return fleeing;
 	}
 
-	function onAdded()
-	{
-		if (this.m.Container.hasTrait(::Legends.Trait.Superstitious))
-		{
-			::Legends.Traits.remove(this, ::Legends.Trait.Superstitious);
+	function getTooltip() {
+		local tooltip = this.skill.getTooltip();
+		local bonus = this.getBonus();
+		if (bonus > 0) {
+			tooltip.extend([
+				{
+					id = 3,
+					type = "text",
+					icon = "ui/icons/bravery.png",
+					text = "[color=%positive%]+" + (bonus * 100) + "%[/color] Resolve"
+				}
+			]);
 		}
-		if (this.m.Container.hasTrait(::Legends.Trait.Dastard))
-		{
-			::Legends.Traits.remove(this, ::Legends.Trait.Dastard);
-		}
-		if (this.m.Container.hasTrait(::Legends.Trait.Insecure))
-		{
-			::Legends.Traits.remove(this, ::Legends.Trait.Insecure);
-		}
-		if (this.m.Container.hasTrait(::Legends.Trait.Craven))
-		{
-			::Legends.Traits.remove(this, ::Legends.Trait.Craven);
-		}
+		return tooltip;
+	}
+
+	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
+		local bonus = this.getBonus();
+		return (bonus > 0 ? "[color=%positive%]+" + (this.getBonus() * 100) + "%[/color] " + ::Legends.S.inlineIcon("bravery") : null);
 	}
 });

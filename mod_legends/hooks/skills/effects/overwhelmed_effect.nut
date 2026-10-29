@@ -1,5 +1,6 @@
 ::mods_hookExactClass("skills/effects/overwhelmed_effect", function (o) {
 	o.m.Stacks <- 1;
+	o.m.TurnsLeft <- 1;
 
 	o.getDescription <- function () {
 		return "Overwhelmed with a flurry of attacks to defend against, leaving few openings to effectively attack for %themselves%.";

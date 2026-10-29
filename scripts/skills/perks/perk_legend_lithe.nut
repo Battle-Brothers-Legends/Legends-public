@@ -15,35 +15,38 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local bonus = this.getBonus(true);
-		local bonusWithoutDura = this.getBonus(false);
 		local tooltip = this.skill.getTooltip();
+		tooltip.extend(this.getDynamicTooltip());
+		return tooltip;
+	}
 
+	function getDynamicTooltip(_actor = null) {
+		local bonus = this.getBonus(true, _actor);
+		local bonusWithoutDura = this.getBonus(false, _actor);
+		local tooltip = [];
 		if (bonus > this.m.BonusMin) {
 			tooltip.push({
 				id = 6,
 				type = "text",
-				icon = "ui/icons/armor_body.png",
+				icon = "ui/icons/armor_damage_received.png",
 				text = "Only receive [color=%positive%]" + (100 - bonus) + "%[/color] of any damage to Armor from attacks"
 			});
 			tooltip.push({
 				id = 7,
 				type = "text",
-				icon = "ui/icons/special.png",
+				icon = "ui/icons/damage_received.png",
 				text = "Only receive [color=%positive%]" + (100 - bonusWithoutDura) + "%[/color] of any damage to Hitpoints from attacks"
 			});
-			return tooltip;
 		}
 
-		if (this.getContainer().getActor().getBodyItem() == null) {
+		if (_actor.getBodyItem() == null) {
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "This character is not wearing any body armor and hence receives no bonus damage reduction"
+				text = "[color=%negative]This character is not wearing any body armor and hence receives no bonus damage reduction[/color]"
 			});
 		}
-
 		return tooltip;
 	}
 
@@ -65,8 +68,8 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 		return mult;
 	}
 
-	function getBonus(_useDurability = true) {
-		local actor = this.getContainer().getActor();
+	function getBonus(_useDurability = true, _actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
 		local armor = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
 
 		if (armor == null) {

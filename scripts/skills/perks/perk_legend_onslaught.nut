@@ -3,6 +3,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendOnslaught);
+		this.m.Description = "The only real power comes behind a heavy blade.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/bash", 3);
 		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/bash_hit", 3);
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
@@ -10,12 +11,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/damage_dealt.png",
-			text = "Current melee damage bonus is [color=%positive%]+" + this.getBonus() + "%" + "[/color]"
-		});
+		tooltip.extend(this.getDynamicTooltip());
 		return tooltip;
 	}
 
@@ -23,8 +19,8 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 		return this.getBonus() == 0;
 	}
 
-	function getBonus() {
-		local actor = this.getContainer().getActor();
+	function getBonus(_actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
 		return 0.02 * (actor.getArmor(::Const.BodyPart.Head) + actor.getArmor(::Const.BodyPart.Body));
 	}
 
@@ -51,6 +47,17 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 		}
 
 		return true;
+	}
+
+	function getDynamicTooltip(_actor = null) {
+		return [
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/damage_dealt.png",
+				text = "[color=%positive%]+" + this.getBonus(_actor) + "%" + "[/color] Melee Damage dealt"
+			}
+		];
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
