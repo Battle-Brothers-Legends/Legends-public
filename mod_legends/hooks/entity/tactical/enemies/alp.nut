@@ -121,7 +121,6 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);

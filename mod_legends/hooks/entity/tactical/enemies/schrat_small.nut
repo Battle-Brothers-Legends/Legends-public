@@ -2,7 +2,6 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialSchrat, function (_skill) {
 			_skill.m.SpawnSchratling = false;
 		}.bindenv(this));

@@ -37,6 +37,7 @@
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInCleavers = true;
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -87,7 +88,6 @@
 		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.Captain);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
@@ -95,7 +95,6 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 		if (::Legends.isLegendaryDifficulty()) {
-			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);

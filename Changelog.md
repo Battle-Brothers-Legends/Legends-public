@@ -1128,3 +1128,4 @@ Refactors/deletions:
 - `scripts/skills/effects/legend_web_at_start_effect` -> deleted, functionality changed to use Web active's onUse
 - `scripts/skills/effects/legend_freedom_of_movement_effect` -> `scripts/skills/effects/legend_lightning_reflexes_effect`
 - `legend_holyflame` -> `legend_holy_flame`
+- `perk_battering_ram` and `perk_stalwart` are no longer used, instead entities are granted immunities directly (for tooltip clarity)

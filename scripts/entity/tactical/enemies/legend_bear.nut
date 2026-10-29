@@ -184,6 +184,7 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		b.setValues(::Const.Tactical.Actor.LegendBear);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 
 		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay)
 		{
@@ -223,7 +224,6 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendGrapple);

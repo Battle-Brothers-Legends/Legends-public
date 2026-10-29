@@ -80,6 +80,7 @@ this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToStun = true;
 		b.IsImmuneToPoison = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsAffectedByNight = false;
 		b.IsMovable = false;
 		b.TargetAttractionMult = 1.5;
@@ -96,7 +97,6 @@ this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 		injury.Visible = false;
 		injury.setBrush("donkey_tactical_injured");
 		this.addDefaultStatusSprites();
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		this.m.Skills.update();
 	}
 });

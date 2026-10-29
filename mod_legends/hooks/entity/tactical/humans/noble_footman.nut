@@ -14,9 +14,10 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
 		if (::Legends.isLegendaryDifficulty()) {
+			local b = this.m.BaseProperties;
+			b.IsImmuneToKnockBackAndGrab = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
-			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);

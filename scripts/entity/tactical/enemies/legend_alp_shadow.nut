@@ -52,7 +52,6 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialAlp);
 		// basic perks
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 	}
 
 	// must be called after the onInit of the child class
@@ -73,6 +72,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToDisarm = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsImmuneToFire = true;
 		b.IsImmuneToStun = true;
 		b.IsImmuneToPoison = true;

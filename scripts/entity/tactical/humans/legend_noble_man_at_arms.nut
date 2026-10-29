@@ -22,6 +22,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendManAtArms);
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -45,7 +46,6 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.BagsAndBelts);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);

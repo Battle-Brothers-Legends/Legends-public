@@ -67,7 +67,6 @@ this.legend_horse_destrier_background <- this.inherit("scripts/skills/background
 				::Legends.Perk.LegendHorseTempiChange,
 			],
 			[
-				::Legends.Perk.Stalwart,
 				::Legends.Perk.LegendHorseFlyingChange,
 				::Legends.Perk.LegendHorsePirouette,
 				::Legends.Perk.LegendHorsePassage

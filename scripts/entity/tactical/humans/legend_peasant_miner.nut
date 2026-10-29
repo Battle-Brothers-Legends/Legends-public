@@ -1,7 +1,7 @@
 this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendPeasantMiner;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendPeasantMiner.XP;
@@ -18,8 +18,7 @@ this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendPeasantMiner);
@@ -34,19 +33,17 @@ this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecHammer);
 		this.getSprite("socket").setBrush("bust_base_militia");
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			b.IsImmuneToKnockBackAndGrab = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
-			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 			::Legends.Perks.grant(this, ::Legends.Perk.Indomitable);
 			::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 		this.m.Items.equip(this.new("scripts/items/weapons/pickaxe"));
 
 		this.m.Items.equip(::Legends.Items.pickArmor([
@@ -55,14 +52,11 @@ this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 			[8, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		if (::Math.rand(1, 100) <= 66)
-		{
+		if (::Math.rand(1, 100) <= 66) {
 			this.m.Items.equip(::Legends.Items.pickHelmet([
 				[2, ::Legends.Helmet.Standard.mouth_piece],
 				[1, ::Legends.Helmet.Standard.hood]
 			]));
 		}
 	}
-
 });
-

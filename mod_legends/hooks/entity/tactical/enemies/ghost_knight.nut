@@ -3,7 +3,6 @@
 	o.onInit = function () {
 		onInit();
 		this.m.BaseProperties.IsAffectedByRain = false;
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		if (::Legends.isLegendaryDifficulty()) {

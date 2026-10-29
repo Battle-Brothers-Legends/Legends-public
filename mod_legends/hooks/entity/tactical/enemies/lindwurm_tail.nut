@@ -4,7 +4,6 @@
 		onInit();
 		local b = this.m.BaseProperties;
 		b.IsAffectedByRain = false;
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if (::Legends.isLegendaryDifficulty()) {
 			b.Hitpoints *= 1.5;
 			this.m.ActionPoints = b.ActionPoints + 5;

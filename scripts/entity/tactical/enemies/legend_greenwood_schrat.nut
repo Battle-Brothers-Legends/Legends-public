@@ -134,10 +134,11 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToStun = true;
 		b.IsImmuneToPoison = true;
+		b.IsImmuneToDisarm = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsIgnoringArmorOnAttack = true;
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
-		b.IsImmuneToDisarm = true;
 
 		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsGreenwoodSchratMeleeSkillIncreaseDay) {
 			b.MeleeSkill += 5;
@@ -174,7 +175,6 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendGrowGreenwoodShield);
 		::Legends.Actives.grant(this, ::Legends.Active.Uproot);
 		::Legends.Actives.grant(this, ::Legends.Active.UprootZoc);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if (::Legends.isLegendaryDifficulty()) {
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;

@@ -72,6 +72,7 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		b.IsImmuneToStun = true;
 		b.IsImmuneToPoison = true;
 		b.IsImmuneToRoot = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsIgnoringArmorOnAttack = true;
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
@@ -100,7 +101,6 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Actives.grant(this, ::Legends.Active.UprootSmall);
 		::Legends.Actives.grant(this, ::Legends.Active.UprootSmallZoc);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);

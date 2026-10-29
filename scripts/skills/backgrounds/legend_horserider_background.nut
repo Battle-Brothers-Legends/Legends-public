@@ -52,8 +52,7 @@ this.legend_horserider_background <- this.inherit("scripts/skills/backgrounds/ch
 				::Legends.Perk.LegendMuscularity
 			],
 			[
-				::Legends.Perk.Fearsome,
-				::Legends.Perk.Stalwart,
+				::Legends.Perk.Fearsome
 			],
 			[],
 			[],

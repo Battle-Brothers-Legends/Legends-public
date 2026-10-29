@@ -414,6 +414,7 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToStun = true;
 		b.IsMovable = false;
 		b.IsImmuneToDisarm = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsAffectedByRain = false;
 		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay) {
 			b.MeleeSkill += 10;
@@ -457,7 +458,6 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendStollwurmMoveTail);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if (::Legends.isLegendaryDifficulty()) {
 			b.Hitpoints *= 1.5;
 			this.m.ActionPoints = b.ActionPoints + 5;

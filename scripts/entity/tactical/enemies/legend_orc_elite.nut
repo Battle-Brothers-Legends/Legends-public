@@ -76,6 +76,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInCleavers = true;
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints * 2;
 		this.m.CurrentProperties = clone b;
@@ -116,7 +117,6 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
 		::Legends.Actives.grant(this, ::Legends.Active.Charge);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);

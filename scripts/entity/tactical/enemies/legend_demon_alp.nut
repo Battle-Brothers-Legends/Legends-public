@@ -189,6 +189,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToPoison = true;
 		b.IsImmuneToDisarm = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -216,7 +217,6 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 
 		if (::Legends.isLegendaryDifficulty()) {
 			b.Hitpoints -= 100;

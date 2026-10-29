@@ -7,7 +7,6 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 
 	function create() {
 		this.legend_alp_shadow.create();
-
 		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/dlc2/tentacle_hurt", 5);
 		this.m.Sound[::Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/enemies/dlc2/krake_choke", 5);
 		this.m.Flags.set("type", "tentacle");
@@ -58,10 +57,8 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		::Legends.Actives.grant(this, ::Legends.Active.KrakenMove);
 		::Legends.Actives.grant(this, ::Legends.Active.KrakenBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 
 		this.applySignatureAbilities();
 	}
@@ -74,5 +71,4 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		this.getSprite("blur_1").setHorizontalFlipping(flip);
 		this.getSprite("blur_2").setHorizontalFlipping(flip);
 	}
-
 });

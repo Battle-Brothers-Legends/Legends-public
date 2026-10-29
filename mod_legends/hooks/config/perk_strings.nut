@@ -610,14 +610,15 @@ Master throwing weapons to wound or kill the enemy before they even get close.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecThrowing].Tooltip = ::Const.Strings.PerkDescription.SpecThrowing;
 
-::Const.Strings.PerkDescription.Stalwart <- @"
-Unyielding in the face of adversity, the stalwart warrior stands firm against all odds.
+//::Const.Strings.PerkDescription.Stalwart <- @"
+//Unyielding in the face of adversity, the stalwart warrior stands firm against all odds.
 
-[color=%passive%][u]Passive:[/u][/color]
-• Grants passive immunity against being [color=%status%]Knocked Back[/color], [color=%status%]Pulled[/color], [color=%status%]Grabbed[/color] or [color=%status%]Swallowed[/color].
-• Applies to skills such as Knock Back, Hook and others that change a character's position.
-";
-::Const.Perks.PerkDefObjects[::Legends.Perk.Stalwart].Tooltip = ::Const.Strings.PerkDescription.Stalwart;
+//[color=%passive%][u]Passive:[/u][/color]
+//• Grants passive immunity against being [color=%status%]Knocked Back[/color], [color=%status%]Pulled[/color], [color=%status%]Grabbed[/color] or [color=%status%]Swallowed[/color].
+
+//• Applies to skills such as Knock Back, Hook and others that change a character's position.
+//";
+//::Const.Perks.PerkDefObjects[::Legends.Perk.Stalwart].Tooltip = ::Const.Strings.PerkDescription.Stalwart;
 
 ::Const.Strings.PerkDescription.Steadfast <- @"
 Firm and resolute.

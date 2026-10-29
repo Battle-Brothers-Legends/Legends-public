@@ -24,7 +24,6 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);

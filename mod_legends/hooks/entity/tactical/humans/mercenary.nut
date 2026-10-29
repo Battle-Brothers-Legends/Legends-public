@@ -1,6 +1,6 @@
-::mods_hookExactClass("entity/tactical/humans/mercenary", function(o) {
+::mods_hookExactClass("entity/tactical/humans/mercenary", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
@@ -8,8 +8,7 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
@@ -18,11 +17,11 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
+			local b = this.m.BaseProperties;
+			b.IsImmuneToKnockBackAndGrab = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendRebound);
-			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
@@ -33,12 +32,10 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local r;
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
 			local weapons = [
 				"weapons/billhook",
 				"weapons/pike",
@@ -63,45 +60,30 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
-			if (::Math.rand(1, 100) <= 75)
-			{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
+			if (::Math.rand(1, 100) <= 75) {
 				r = ::Math.rand(0, 2);
 
-				if (r == 0)
-				{
+				if (r == 0) {
 					this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
-				}
-				else if (r == 1)
-				{
+				} else if (r == 1) {
 					this.m.Items.equip(this.new("scripts/items/shields/heater_shield"));
-				}
-				else if (r == 2)
-				{
+				} else if (r == 2) {
 					this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
 				}
-			}
-			else
-			{
+			} else {
 				this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
 			}
 		}
 
-		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 60)
-		{
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 60) {
 			r = ::Math.rand(1, 3);
 
-			if (r == 1)
-			{
+			if (r == 1) {
 				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
 			}
 		}
@@ -160,8 +142,7 @@
 			[1, ::Legends.Outfit.traze_northern_mercenary_outfit_00],
 		];
 
-		foreach( item in ::Legends.Items.pickOutfit(outfits, armor, helm) )
-		{
+		foreach (item in ::Legends.Items.pickOutfit(outfits, armor, helm)) {
 			this.m.Items.equip(item)
 		}
 	}

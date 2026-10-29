@@ -2,9 +2,11 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
-		local b = this.m.BaseProperties;
 		::Legends.Perks.remove(this, ::Legends.Perk.BatteringRam);
+		::Legends.Perks.remove(this, ::Legends.Perk.Stalwart);
+		local b = this.m.BaseProperties;
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		local body = this.getSprite("body");
 		local head = this.getSprite("head");
 		if (::Math.rand(1, 100) < 10) {

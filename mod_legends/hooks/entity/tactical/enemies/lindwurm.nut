@@ -38,7 +38,6 @@
 		onInit();
 		local b = this.m.BaseProperties;
 		b.IsAffectedByRain = false;
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.remove(this, ::Legends.Perk.HoldOut);
 		if (::Legends.isLegendaryDifficulty()) {
 			b.Hitpoints *= 1.5;

@@ -3,7 +3,6 @@
 	o.onInit = function () {
 		onInit();
 		this.m.BaseProperties.IsAffectedByRain = false;
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);

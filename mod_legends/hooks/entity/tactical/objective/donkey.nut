@@ -1,18 +1,14 @@
-::mods_hookExactClass("entity/tactical/objective/donkey", function(o)
-{
+::mods_hookExactClass("entity/tactical/objective/donkey", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
 		b.IsImmuneToBleeding = false;
 		b.IsImmuneToPoison = false;
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDonkeyKick);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
-			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		}
 		this.m.Skills.update();
 	}

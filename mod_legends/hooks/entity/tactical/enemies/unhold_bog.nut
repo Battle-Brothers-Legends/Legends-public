@@ -1,13 +1,12 @@
-::mods_hookExactClass("entity/tactical/enemies/unhold_bog", function(o)
-{
-	o.onInit = function ()
-	{
+::mods_hookExactClass("entity/tactical/enemies/unhold_bog", function (o) {
+	o.onInit = function () {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.UnholdBog);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRotation = true;
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 
 		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;
@@ -29,18 +28,14 @@
 		injury_body.setBrush("bust_unhold_03_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		if(::Math.rand(1, 100) < 2)
-		{
-		head.setBrush("bust_unhold_head_05");
-		}
-		else
-		{
-		head.setBrush("bust_unhold_head_03");
+		if (::Math.rand(1, 100) < 2) {
+			head.setBrush("bust_unhold_head_05");
+		} else {
+			head.setBrush("bust_unhold_head_03");
 		}
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
 			this.addSprite(a);
 		}
 		this.addSprite("accessory");
@@ -51,15 +46,13 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialUnhold);
 		::Legends.Actives.grant(this, ::Legends.Active.Sweep);
 		::Legends.Actives.grant(this, ::Legends.Active.SweepZoc);
 		::Legends.Actives.grant(this, ::Legends.Active.FlingBack);
 		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendBogUnhold);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

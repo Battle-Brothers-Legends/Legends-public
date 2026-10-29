@@ -1,16 +1,12 @@
-::mods_hookExactClass("entity/tactical/enemies/orc_warrior", function(o)
-{
-	o.onFactionChanged <- function ()
-	{
+::mods_hookExactClass("entity/tactical/enemies/orc_warrior", function (o) {
+	o.onFactionChanged <- function () {
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
 		local v = 1;
 		local v2 = -6;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
-			if (!this.hasSprite(a))
-			{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			if (!this.hasSprite(a)) {
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
@@ -18,13 +14,12 @@
 		}
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.OrcWarrior);
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.WarriorStatIncreaseDay)	{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.WarriorStatIncreaseDay) {
 			b.MeleeSkill += 5;
 			b.DamageTotalMult += 0.1;
 		}
@@ -33,6 +28,7 @@
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInCleavers = true;
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -57,8 +53,7 @@
 		this.setAlwaysApplySpriteOffset(true);
 		local v = 1;
 		local v2 = -6;
-		foreach (a in ::Const.CharacterSprites.Helmets)
-		{
+		foreach (a in ::Const.CharacterSprites.Helmets) {
 			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
@@ -72,13 +67,11 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -89,14 +82,12 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 	}
 
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
-		this.legend_orc.onDeath( _killer, _skill, _tile, _fatalityType );
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
+		this.legend_orc.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
-		{
+	o.assignRandomEquipment = function () {
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null) {
 			local weapons = [
 				"weapons/greenskins/orc_axe",
 				"weapons/greenskins/legend_skin_flayer",
@@ -105,13 +96,11 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_heavy_shield"));
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null) {
 			local armor = [
 				[1, ::Legends.Armor.Greenskin.orc_warrior_light_armor],
 				[1, ::Legends.Armor.Greenskin.orc_warrior_medium_armor],
@@ -122,8 +111,7 @@
 			this.m.Items.equip(item);
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
-		{
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
 			local helmet = [
 				[1, ::Legends.Helmet.Greenskin.orc_warrior_light_helmet],
 				[1, ::Legends.Helmet.Greenskin.orc_warrior_medium_helmet],
@@ -134,10 +122,8 @@
 		}
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss <- function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -150,13 +136,10 @@
 			"shields/named/named_orc_heavy_shield"
 		];
 
-		if (::Math.rand(1, 100) <= 80)
-		{
+		if (::Math.rand(1, 100) <= 80) {
 			this.m.Items.unequip(this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		}
-		else
-		{
+		} else {
 			this.m.Items.unequip(this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand));
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}

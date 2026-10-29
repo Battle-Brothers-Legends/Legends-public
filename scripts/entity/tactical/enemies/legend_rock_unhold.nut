@@ -154,6 +154,7 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		b.setValues(::Const.Tactical.Actor.LegendRockUnhold);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 
 		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;
@@ -191,7 +192,6 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialUnhold);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendRockUnhold);

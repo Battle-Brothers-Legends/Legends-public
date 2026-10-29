@@ -228,6 +228,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToStun = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsAffectedByRain = false;
 
 		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay) {
@@ -268,14 +269,12 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
 		::Legends.Actives.grant(this, ::Legends.Active.Gorge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		// ::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLindwurm);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendStollwurmMove);
 
 		if (::Legends.isLegendaryDifficulty()) {

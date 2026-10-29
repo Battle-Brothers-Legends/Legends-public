@@ -126,6 +126,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToPoison = true;
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToDisarm = true;
+		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsIgnoringArmorOnAttack = true;
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
@@ -171,7 +172,6 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBansheeScream);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialGhost);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);

@@ -3,6 +3,5 @@
 	o.onInit = function () {
 		onInit();
 		this.m.BaseProperties.IsAffectedByRain = false;
-		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 	}
 });

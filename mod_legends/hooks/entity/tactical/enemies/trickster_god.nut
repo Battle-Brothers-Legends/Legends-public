@@ -10,7 +10,10 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
-		this.m.BaseProperties.IsAffectedByRain = false;
+		::Legends.Perks.remove(this, ::Legends.Perk.Stalwart);
+		local b = this.m.BaseProperties;
+		b.IsImmuneToKnockBackAndGrab = true;
+		b.IsAffectedByRain = false;
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
