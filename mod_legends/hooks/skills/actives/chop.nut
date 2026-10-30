@@ -1,11 +1,5 @@
 ::mods_hookExactClass("skills/actives/chop", function (o) {
 	o.m.IsHack <- false;
-	o.m.ApplicableSkills <- [
-		::Legends.Effect.LegendGrappled,
-		::Legends.Effect.LegendKnockedOver,
-		::Legends.Effect.Stunned,
-	];
-
 	o.setItem <- function (_item) {
 		if (this.m.IsHack) {
 			this.m.Name = "Hack";

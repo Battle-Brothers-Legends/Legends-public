@@ -91,11 +91,6 @@
 	o.calculateDamage <- function (_target) {
 		local damage = this.getItem().getShieldDamage();
 		local shield = _target.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-
-		if (shield.getID() == "shield.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger") {
-			damage *= 0.20;
-		}
-
 		return ::Math.floor(damage);
 	}
 
@@ -107,9 +102,6 @@
 		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield)) {
 			local damage = this.calculateDamage(target);
 
-			if (shield.getID() == "weapon.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger") {
-				damage *= 0.20;
-			}
 			local flip = !this.m.IsProjectileRotated && target.getPos().X > _user.getPos().X;
 			local time = ::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			::Time.scheduleEvent(::TimeUnit.Virtual, time, this.onApplyShieldDamage.bindenv(this), {
