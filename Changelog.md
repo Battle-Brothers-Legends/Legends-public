@@ -236,8 +236,8 @@
 ## Traits
 - `Lucky` - now additionally gives 10% chance to reroll a missed attack
 - `Mad` - now has a chance to shift his morale up or down at the start of each turn in combat, cannot become fleeing from this effect but can rally from fleeing
-- `Fat` - now has a flat -10 Initiative malus instead of an indirect penalty applied by modifying current Stamina
-- `Old` - now has a flat -20 Initiative malus instead of an indirect penalty applied by modifying current Stamina and the previous -10
+- `Deathwish` - now additionally increases damage done with up to 25% based on missing hitpoints with the maximum bonus achieved at 40% remaining hitpoints
+- `Bloodthirsty` - now heals hp and fatigue by 1 if an enemy dies to bleeding or poison
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
