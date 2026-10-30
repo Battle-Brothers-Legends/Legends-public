@@ -42,7 +42,7 @@ this.legend_warlock_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		local ret = [
 			{
 				InstanceID = "req_warlock",
-				ImagePath = "ui/backgrounds/warlock_01.png",
+				ImagePath = "ui/backgrounds/legend_commander_necro.png",
 				IsMissing = !this.hasWarlock(),
 				IsSkill = 1
 			}
