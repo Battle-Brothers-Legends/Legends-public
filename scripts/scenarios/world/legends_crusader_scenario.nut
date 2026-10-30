@@ -23,7 +23,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		::Legends.Traits.grant(bro, ::Legends.Trait.LegendUndeadKiller);
 		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.FortifiedMind);
 		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendRebound);
-		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendFavouredEnemyUndead);
+		//this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendFavouredEnemyUndead);
 		bro.m.PerkPointsSpent += 3;
 		bro.setPlaceInFormation(4);
 		bro.setVeteranPerks(2);

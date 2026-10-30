@@ -1,7 +1,7 @@
 ::mods_hookExactClass("scenarios/world/beast_hunters_scenario", function (o) {
 	o.m.FavouredEnemyPerks <- [
-		::Legends.Perk.LegendFavouredEnemyOccult,
-		::Legends.Perk.LegendFavouredEnemyBeast,
+		//::Legends.Perk.LegendFavouredEnemyOccult,
+		//::Legends.Perk.LegendFavouredEnemyBeast,
 	];
 
 	o.create <- function () {
@@ -169,7 +169,7 @@
 	}
 
 	o.onBuildPerkTree <- function (_background) {
-		local perk = ::MSU.Array.rand(this.m.FavouredEnemyPerks);
-		this.addScenarioPerk(_background, perk);
+		/*local perk = ::MSU.Array.rand(this.m.FavouredEnemyPerks);
+		this.addScenarioPerk(_background, perk);*/
 	}
 });

@@ -62,7 +62,7 @@ this.legend_reanimator_background <- this.inherit("scripts/skills/backgrounds/ch
 			],
 			[
 				::Legends.Perk.Backstabber,
-				::Legends.Perk.LegendFavouredEnemyCivilization,
+				//::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.LegendDeflection,
 				::Legends.Perk.LegendBloodbath
 			],
@@ -85,8 +85,8 @@ this.legend_reanimator_background <- this.inherit("scripts/skills/backgrounds/ch
 			],
 			[
 				::Legends.Perk.LegendClarity,
-				::Legends.Perk.LegendFavouredEnemyOccult,
-				::Legends.Perk.LegendFavouredEnemyBeast,
+				//::Legends.Perk.LegendFavouredEnemyOccult,
+				//::Legends.Perk.LegendFavouredEnemyBeast,
 				::Legends.Perk.Taunt
 			],
 			[

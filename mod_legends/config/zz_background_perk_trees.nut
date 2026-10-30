@@ -19,7 +19,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ViciousTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -97,8 +97,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Enemy = [
 		::Const.Perks.SwordmastersTree,
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.OutlawTree
+		//::Const.Perks.CivilizationTree,
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [],
@@ -126,7 +126,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ViciousTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -155,7 +155,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -179,7 +179,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.LargeTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -206,8 +206,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.OccultTree,
-		::Const.Perks.BeastTree,
+		//::Const.Perks.OccultTree,
+		//::Const.Perks.BeastTree,
 	],
 	Class = [
 		::Const.Perks.BeastClassTree
@@ -260,7 +260,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IntelligentTree
 	],
 	Enemy = [
-		::Const.Perks.SwordmastersTree
+		//::Const.Perks.SwordmastersTree
 	],
 	Class = [
 		::Const.Perks.JugglerClassTree
@@ -358,7 +358,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.LargeTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [
@@ -460,7 +460,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IndestructibleTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -490,8 +490,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.OutlawTree,
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -519,7 +519,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.UndeadTree
+		//::Const.Perks.UndeadTree
 	],
 	Class = [],
 	Profession = [],
@@ -545,8 +545,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IndestructibleTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree,
 	],
 	Class = [
 		::Const.Perks.NinetailsClassTree,
@@ -622,8 +621,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DeviousTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.OutlawTree,
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -647,7 +646,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.MartyrTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -697,8 +696,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.CalmTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.OutlawTree,
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -746,7 +745,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FastTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree
+		//::Const.Perks.BeastTree
 	],
 	Class = [
 		::Const.Perks.BeastClassTree
@@ -853,8 +852,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.SturdyTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.UndeadTree
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.UndeadTree
 	],
 	Class = [],
 	Profession = [],
@@ -877,8 +876,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DeviousTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.UndeadTree
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.UndeadTree
 	],
 	Class = [],
 	Profession = [],
@@ -983,8 +982,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DeviousTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.OccultTree,
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.OccultTree,
 	],
 	Class = [],
 	Profession = [],
@@ -1037,8 +1036,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FastTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.OutlawTree
+		//::Const.Perks.CivilizationTree,
+		//::Const.Perks.OutlawTree
 	],
 	Profession = [],
 	Class = [],
@@ -1095,7 +1094,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree
+		//::Const.Perks.BeastTree
 	],
 	Class = [
 		::Const.Perks.BeastClassTree
@@ -1146,8 +1145,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FastTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.OutlawTree
+		//::Const.Perks.CivilizationTree,
+		//::Const.Perks.OutlawTree
 	],
 	Class = [
 		::Const.Perks.BeastClassTree
@@ -1218,7 +1217,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.AgileTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [],
@@ -1265,8 +1264,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.SturdyTree
 	],
 	Enemy = [
-		::Const.Perks.GreenskinTree,
-		::Const.Perks.BeastTree
+		//::Const.Perks.GreenskinTree,
+		//::Const.Perks.BeastTree
 	],
 	Class = [],
 	Profession = [
@@ -1293,7 +1292,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.InspirationalTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [
 		::Const.Perks.JugglerClassTree
@@ -1321,7 +1320,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.InspirationalTree
 	],
 	Enemy = [
-		::Const.Perks.UndeadTree
+		//::Const.Perks.UndeadTree
 	],
 	Class = [
 		::Const.Perks.FaithClassTree,
@@ -1377,8 +1376,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DeviousTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.BeastTree,
+		//::Const.Perks.CivilizationTree,
+		//::Const.Perks.BeastTree,
 	],
 	Class = [],
 	Profession = [],
@@ -1402,8 +1401,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DeviousTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.BeastTree,
+		//::Const.Perks.CivilizationTree,
+		//::Const.Perks.BeastTree,
 	],
 	Class = [],
 	Profession = [],
@@ -1427,8 +1426,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.LargeTree
 	],
 	Enemy = [
-		::Const.Perks.GreenskinTree,
-		::Const.Perks.BeastTree,
+		//::Const.Perks.GreenskinTree,
+		//::Const.Perks.BeastTree,
 	],
 	Class = [],
 	Profession = [],
@@ -1481,7 +1480,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IntelligentTree
 	],
 	Enemy = [
-		::Const.Perks.UndeadTree
+		//::Const.Perks.UndeadTree
 	],
 	Class = [],
 	Profession = [],
@@ -1508,7 +1507,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IntelligentTree
 	],
 	Enemy = [
-		::Const.Perks.UndeadTree
+		//::Const.Perks.UndeadTree
 	],
 	Class = [
 		::Const.Perks.FaithClassTree
@@ -1533,7 +1532,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IntelligentTree,
 		::Const.Perks.DeviousTree
 	],
-	Enemy = [::Const.Perks.OutlawTree],
+	Enemy = [],//::Const.Perks.OutlawTree],
 	Class = [],
 	Profession = [
 		//::Const.Perks.BarterProfessionTree
@@ -1558,8 +1557,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DeviousTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.OutlawTree
+		//::Const.Perks.CivilizationTree,
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [
@@ -1585,8 +1584,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.AgileTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.GreenskinTree
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.GreenskinTree
 	],
 	Class = [],
 	Profession = [],
@@ -1611,8 +1610,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ViciousTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.OutlawTree
+		//::Const.Perks.CivilizationTree,
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [],
@@ -1693,7 +1692,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [
@@ -1721,8 +1720,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.LargeTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.OutlawTree,
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -1771,7 +1770,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FastTree,
 		::Const.Perks.AgileTree
 	],
-	Enemy = [::Const.Perks.BeastTree],
+	Enemy = [],//::Const.Perks.BeastTree],
 	Class = [],
 	Profession = [],
 	Magic = []
@@ -1798,7 +1797,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IndestructibleTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -1825,7 +1824,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [],
@@ -1929,8 +1928,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DeviousTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.OutlawTree
+		//::Const.Perks.CivilizationTree,
+		//::Const.Perks.OutlawTree
 	],
 	Class = [
 		::Const.Perks.ConArtistTree
@@ -1980,7 +1979,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.GreenskinTree
+		//::Const.Perks.GreenskinTree
 	],
 	Class = [],
 	Profession = [],
@@ -2005,8 +2004,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ViciousTree
 	],
 	Enemy = [
-		::Const.Perks.UndeadTree,
-		::Const.Perks.OccultTree
+		//::Const.Perks.UndeadTree,
+		//::Const.Perks.OccultTree
 	],
 	Class = [
 		::Const.Perks.PoisonClassTree
@@ -2032,7 +2031,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.InspirationalTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Magic = []
@@ -2083,8 +2082,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ViciousTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.OutlawTree,
+		//::Const.Perks.CivilizationTree
 	],
 	Profession = [],
 	Class = [],
@@ -2112,7 +2111,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.SturdyTree
 	],
 	Enemy = [
-		::Const.Perks.UndeadTree
+		//::Const.Perks.UndeadTree
 	],
 	Class = [
 		::Const.Perks.FaithClassTree
@@ -2162,7 +2161,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.GreenskinTree
+		//::Const.Perks.GreenskinTree
 	],
 	Class = [],
 	Profession = [],
@@ -2214,7 +2213,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Enemy = [
 		::Const.Perks.SwordmastersTree,
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [],
@@ -2242,9 +2241,9 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.AgileTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
+		//::Const.Perks.CivilizationTree,
 		::Const.Perks.SwordmastersTree,
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [],
@@ -2278,8 +2277,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.OutlawTree,
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [
 		::Const.Perks.JugglerClassTree,
@@ -2329,8 +2328,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.GreenskinTree,
-		::Const.Perks.BeastTree
+		//::Const.Perks.GreenskinTree,
+		//::Const.Perks.BeastTree
 	],
 	Class = [],
 	Magic = [
@@ -2364,9 +2363,9 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.InspirationalTree
 	],
 	Enemy = [
-		::Const.Perks.OccultTree,
-		::Const.Perks.BeastTree,
-		::Const.Perks.UndeadTree
+		//::Const.Perks.OccultTree,
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.UndeadTree
 	],
 	Class = [
 		::Const.Perks.FaithClassTree
@@ -2407,8 +2406,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.InspirationalTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.OutlawTree,
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [],
 	Profession = [
@@ -2438,7 +2437,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.DeviousTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Profession = [
@@ -2473,9 +2472,9 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.LargeTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.GreenskinTree,
-		::Const.Perks.OccultTree,
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.GreenskinTree,
+		//::Const.Perks.OccultTree,
 	],
 	Class = [
 		::Const.Perks.BeastClassTree,
@@ -2643,7 +2642,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.TrainedTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Class = [],
 	Magic = []
@@ -2758,8 +2757,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.TrainedTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.OccultTree,
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.OccultTree,
 	],
 	Class = [
 		::Const.Perks.BeastClassTree
@@ -2784,7 +2783,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.AgileTree,
 		::Const.Perks.CalmTree
 	],
-	Enemy = [::Const.Perks.OccultTree],
+	Enemy = [],//::Const.Perks.OccultTree],
 	Class = [
 		::Const.Perks.PoisonClassTree,
 		//::Const.Perks.HealerClassTree
@@ -2836,8 +2835,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IndestructibleTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [
 		::Const.Perks.BeastClassTree,
@@ -2864,7 +2862,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.InspirationalTree
 	],
 	Enemy = [
-		::Const.Perks.OccultTree
+		//::Const.Perks.OccultTree
 	],
 	Class = [],
 	Profession = [],
@@ -2943,7 +2941,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.CalmTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree
+		//::Const.Perks.BeastTree
 	],
 	Class = [
 		//::Const.Perks.HealerClassTree
@@ -3222,7 +3220,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.MartyrTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
+		//::Const.Perks.CivilizationTree,
 	],
 	Class = [
 		::Const.Perks.BeastClassTree,
@@ -3249,8 +3247,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.InspirationalTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [
 		::Const.Perks.NinetailsClassTree,
@@ -3282,8 +3279,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FitTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree,
-		::Const.Perks.BeastTree
+		//::Const.Perks.OutlawTree,
+		//::Const.Perks.BeastTree
 	],
 	Class = [],
 	Profession = [
@@ -3333,7 +3330,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.AgileTree
 	],
 	Enemy = [
-		::Const.Perks.CivilizationTree
+		//::Const.Perks.CivilizationTree
 	],
 	Class = [
 		::Const.Perks.HoundmasterClassTree
@@ -3405,7 +3402,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.SturdyTree
 	],
 	Enemy = [
-		::Const.Perks.OccultTree
+		//::Const.Perks.OccultTree
 	],
 	Profession = [],
 	Class = [],
@@ -3430,7 +3427,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IndestructibleTree
 	],
 	Enemy = [
-		::Const.Perks.UndeadTree
+		//::Const.Perks.UndeadTree
 	],
 	Class = [
 		::Const.Perks.FaithClassTree
@@ -3506,7 +3503,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.IndestructibleTree
 	],
 	Enemy = [
-		::Const.Perks.OccultTree
+		//::Const.Perks.OccultTree
 	],
 	Class = [],
 	Profession = [
@@ -3539,7 +3536,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FastTree
 	],
 	Enemy = [
-		::Const.Perks.OutlawTree
+		//::Const.Perks.OutlawTree
 	],
 	Profession = [],
 	Class = [],
@@ -3592,8 +3589,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ViciousTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.OccultTree
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.OccultTree
 	],
 	Profession = [
 		//::Const.Perks.WoodworkingProfessionTree,
@@ -3657,8 +3654,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.AgileTree
 	],
 	Enemy = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.OccultTree,
+		//::Const.Perks.BeastTree,
+		//::Const.Perks.OccultTree,
 	],
 	Class = [
 		::Const.Perks.BeastClassTree
@@ -3714,8 +3711,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ViciousTree
 	],
 	Enemy = [
-		::Const.Perks.UndeadTree,
-		::Const.Perks.OccultTree
+		//::Const.Perks.UndeadTree,
+		//::Const.Perks.OccultTree
 	],
 	Class = [
 		::Const.Perks.FaithClassTree

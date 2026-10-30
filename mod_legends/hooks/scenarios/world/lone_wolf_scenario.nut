@@ -24,7 +24,7 @@
 		bros[0].setStartValuesEx([::Legends.Background.LegendLoneWolf]);
 		bros[0].getBackground().buildDescription(true);
 		bros[0].setTitle("the Lone Wolf");
-		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendFavouredEnemySwordmaster);
+		//::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendFavouredEnemySwordmaster);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendLoneWolfRelationship);
 		bros[0].setPlaceInFormation(4);

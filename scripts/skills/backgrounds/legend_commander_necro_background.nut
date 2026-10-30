@@ -77,7 +77,7 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 			],
 			[
 				::Legends.Perk.LegendMiasma,
-				::Legends.Perk.LegendFavouredEnemyCivilization,
+				//::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.LegendFashionBody,
 				::Legends.Perk.LegendChanneledPower,
 				::Legends.Perk.LegendDeflection,
@@ -97,14 +97,14 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 				::Legends.Perk.LegendLacerate,
 				::Legends.Perk.LegendLithe,
 				::Legends.Perk.LegendStaffSpins,
-				::Legends.Perk.LegendFavouredEnemyBeast,
+				//::Legends.Perk.LegendFavouredEnemyBeast,
 				::Legends.Perk.LegendViolentDecomposition,
 				::Legends.Perk.LegendConservation,
 				::Legends.Perk.LegendCarnage,
 				::Legends.Perk.LegendRemakeMan
 			],
 			[
-				::Legends.Perk.LegendFavouredEnemyOccult,
+				//::Legends.Perk.LegendFavouredEnemyOccult,
 				::Legends.Perk.LegendGruesomeFeast,
 				::Legends.Perk.LegendRebound,
 				::Legends.Perk.LegendPenance,

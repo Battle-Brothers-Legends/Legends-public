@@ -59,7 +59,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			],
 			[
 				::Legends.Perk.Backstabber,
-				::Legends.Perk.LegendFavouredEnemyCivilization,
+				//::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.InspiringPresence,
 				::Legends.Perk.LegendTrueBeliever,
@@ -76,7 +76,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			[
 				::Legends.Perk.Nimble,
 				::Legends.Perk.LegendStaffSpins,
-				::Legends.Perk.LegendFavouredEnemyBeast,
+				//::Legends.Perk.LegendFavouredEnemyBeast,
 				::Legends.Perk.LegendBlendIn,
 				::Legends.Perk.LegendMindOverBody,
 				::Legends.Perk.LegendConservation,
@@ -85,7 +85,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			[
 				::Legends.Perk.LegendClarity,
 				::Legends.Perk.LegendReclamation,
-				::Legends.Perk.LegendFavouredEnemyOccult,
+				//::Legends.Perk.LegendFavouredEnemyOccult,
 				::Legends.Perk.LegendRebound
 			],
 			[

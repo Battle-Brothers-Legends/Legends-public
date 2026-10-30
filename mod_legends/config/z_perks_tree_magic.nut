@@ -191,11 +191,11 @@ if (!("Perks" in ::Const)) {
 	Tree = [
 		[::Legends.Perk.Pathfinder, ::Legends.Perk.DevastatingStrikes],
 		[],
-		[::Legends.Perk.HoldOut, ::Legends.Perk.LegendFavouredEnemyOutlaw],
+		[::Legends.Perk.HoldOut], // , ::Legends.Perk.LegendFavouredEnemyOutlaw
 		[],
 		[],
 		[::Legends.Perk.LegendWindReader],
-		[::Legends.Perk.KillingFrenzy, ::Legends.Perk.LegendFavouredEnemySwordmaster]
+		[::Legends.Perk.KillingFrenzy] // , ::Legends.Perk.LegendFavouredEnemySwordmaster
 	]
 };
 

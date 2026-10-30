@@ -3,122 +3,6 @@ if (!("Perks" in ::Const)) {
 }
 
 local category = "Enemy";
-::Const.Perks.BeastTree <- {
-	ID = "BeastTree",
-	Name = "Beasts",
-	Icon = "ui/perks/legend_favoured_enemy_beast.png",
-	Category = category,
-	Descriptions = [
-		"beasts"
-	],
-	Tree = [
-		[],
-		[],
-		[::Legends.Perk.LegendFavouredEnemyBeast],
-		[],
-		[],
-		[],
-		[]
-	]
-};
-
-::Const.Perks.OccultTree <- {
-	ID = "OccultTree",
-	Name = "Occult",
-	Icon = "ui/perks/legend_favoured_enemy_occult.png",
-	Category = category,
-	Descriptions = [
-		"occult"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendFavouredEnemyOccult],
-		[],
-		[]
-	]
-};
-
-::Const.Perks.UndeadTree <- {
-	ID = "UndeadTree",
-	Name = "Undead",
-	Icon = "ui/perks/legend_favoured_enemy_undead.png",
-	Category = category,
-	Descriptions = [
-		"undead"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[
-			::Legends.Perk.LegendFavouredEnemyUndead
-		],
-		[],
-		[]
-	]
-};
-
-::Const.Perks.GreenskinTree <- {
-	ID = "GreenskinTree",
-	Name = "Greenskins",
-	Icon = "ui/perks/legend_favoured_enemy_greenskin.png",
-	Category = category,
-	Descriptions = [
-		"greenskins"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendFavouredEnemyGreenskin],
-		[],
-		[]
-	]
-};
-
-::Const.Perks.CivilizationTree <- {
-	ID = "CivilizationTree",
-	Name = "Civilization",
-	Icon = "ui/perks/legend_favoured_enemy_civilization.png",
-	Category = category,
-	Descriptions = [
-		"law-abiding fools"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendFavouredEnemyCivilization],
-		[],
-		[]
-	]
-};
-
-::Const.Perks.OutlawTree <- {
-	ID = "OutlawTree",
-	Name = "Outlaws",
-	Icon = "ui/perks/legend_favoured_enemy_outlaw.png",
-	Category = category,
-	Descriptions = [
-		"outlaws"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendFavouredEnemyOutlaw],
-		[],
-		[]
-	]
-};
-
 ::Const.Perks.SwordmastersTree <- {
 	ID = "SwordmastersTree",
 	Name = "Swordmasters",
@@ -133,7 +17,7 @@ local category = "Enemy";
 		[::Legends.Perk.Steadfast, ::Legends.Perk.LegendSmackdown],
 		[],
 		[],
-		[::Legends.Perk.LegendFavouredEnemySwordmaster],
+		[],
 		[::Legends.Perk.BattleFlow]
 	]
 };
@@ -141,12 +25,6 @@ local category = "Enemy";
 ::Const.Perks.EnemyTrees <- {
 	GroupsCategory = "Enemy",
 	Tree = [
-		::Const.Perks.BeastTree,
-		::Const.Perks.OccultTree,
-		::Const.Perks.UndeadTree,
-		::Const.Perks.GreenskinTree,
-		::Const.Perks.CivilizationTree,
-		::Const.Perks.OutlawTree,
 		::Const.Perks.SwordmastersTree,
 	],
 	function getRandom(_exclude) {

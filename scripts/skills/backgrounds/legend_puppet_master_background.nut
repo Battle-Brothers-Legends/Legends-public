@@ -67,7 +67,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 			],
 			[
 				::Legends.Perk.Backstabber,
-				::Legends.Perk.LegendFavouredEnemyCivilization,
+				//::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.Brawny,
 				::Legends.Perk.LegendRust,
 				::Legends.Perk.LegendDeflection,
@@ -85,14 +85,14 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 				::Legends.Perk.Underdog,
 				::Legends.Perk.LegendLithe,
 				::Legends.Perk.LegendStaffSpins,
-				::Legends.Perk.LegendFavouredEnemyBeast,
+				//::Legends.Perk.LegendFavouredEnemyBeast,
 				::Legends.Perk.LegendBlendIn,
 				::Legends.Perk.LegendInsectSwarm,
 				::Legends.Perk.LegendCarnage
 			],
 			[
 				::Legends.Perk.LegendClarity,
-				::Legends.Perk.LegendFavouredEnemyOccult,
+				//::Legends.Perk.LegendFavouredEnemyOccult,
 				::Legends.Perk.Taunt,
 				::Legends.Perk.LegendViolentDecomposition,
 				::Legends.Perk.LegendDrainingTouch,

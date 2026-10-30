@@ -41,7 +41,7 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 					_event.m.Cannibal.getBackground().buildDescription(true);
 
 					_event.m.Cannibal.getBackground().addPerkGroup(::Const.Perks.MartyrTree.Tree);
-					_event.m.Cannibal.getBackground().addPerkGroup(::Const.Perks.CivilizationTree.Tree);
+					//_event.m.Cannibal.getBackground().addPerkGroup(::Const.Perks.CivilizationTree.Tree);
 					_event.m.Cannibal.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 					_event.m.Cannibal.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
 
