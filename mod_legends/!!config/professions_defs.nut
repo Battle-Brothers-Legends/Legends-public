@@ -4,6 +4,7 @@ if (!("Professions" in ::Legends)) {
 
 ::Legends.Professions.ProfessionDefObjects <- {};
 ::Legends.Professions.ProfessionDefs <- {};
+::Legends.Professions.LookupMap <- {};
 
 ::Legends.Professions.defaultDef <- function(_def) {
     local snakeCase = ::Legends.DefsHelpers.convertToSnakeCase(_def.Const);

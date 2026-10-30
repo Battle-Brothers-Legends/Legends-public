@@ -62,6 +62,14 @@ if (!("Professions" in ::Legends))
 	return null;
 }
 
+::Legends.Professions.findById <- function (_professionID) {
+	if (_professionID != null && _professionID in ::Legends.Professions.LookupMap) {
+		return ::Legends.Professions.LookupMap[_professionID];
+	}
+
+	return null;
+};
+
 ::Legends.Professions.has <- function (_target, _def) {
 	return ::Legends.Professions.getContainer(_target, "on get").hasSkill(::Legends.Professions.getID(_def));
 }
