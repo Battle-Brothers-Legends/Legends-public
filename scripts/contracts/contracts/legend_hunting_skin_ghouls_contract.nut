@@ -4,7 +4,7 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 		Dude = null,
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyBeast,
+		Profession = ::Legends.Profession.LegendFavouredEnemyBeast,
 		Category = ::Legends.FavoriteEnemy.Types.Beast,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
@@ -346,12 +346,12 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 		foreach( bro in ::World.getPlayerRoster().getAll() )
 		{
 			sumLevels += bro.getLevel();
-			if (!bro.getSkills().hasPerk(this.m.Perk))
-				continue;
-
-			local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
-			if (stats.Strength >= this.m.MinStrength)
-				return true;
+			if (::Legends.Professions.has(bro, this.m.Profession)) {
+				local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
+				if (stats.Strength >= this.m.MinStrength) {
+					return true;
+				}
+			}
 		}
 
 		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;

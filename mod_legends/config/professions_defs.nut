@@ -164,6 +164,41 @@ if (!("Professions" in ::Legends)) {
         ScalingArray = [0, 4], // stars visible
         ScalingFactor = 0.25
     },
+    LegendFavouredEnemyBeast = {
+		Name = "Favoured Enemy - Beasts",
+        ScalingArray = [0, 1], // personal profession
+        ScalingFactor = 0
+	},
+	LegendFavouredEnemyCivilization = {
+		Name = "Favoured Enemy - Civilization",
+        ScalingArray = [0, 1], // personal profession
+        ScalingFactor = 0
+	},
+	LegendFavouredEnemyGreenskin = {
+		Name = "Favoured Enemy - Greenskin",
+        ScalingArray = [0, 1], // personal profession
+        ScalingFactor = 0
+	},
+	LegendFavouredEnemyOccult = {
+		Name = "Favoured Enemy - Occult",
+        ScalingArray = [0, 1], // personal profession
+        ScalingFactor = 0
+	},
+	LegendFavouredEnemyOutlaw = {
+		Name = "Favoured Enemy - Outlaw",
+        ScalingArray = [0, 1], // personal profession
+        ScalingFactor = 0
+	},
+	LegendFavouredEnemySwordmaster = {
+		Name = "Favoured Enemy - Sword Master",
+        ScalingArray = [0, 1], // personal profession
+        ScalingFactor = 0
+	},
+	LegendFavouredEnemyUndead = {
+		Name = "Favoured Enemy - Undead",
+        ScalingArray = [0, 1], // personal profession
+        ScalingFactor = 0
+	},
     LegendFerretItOut = {
         ScalingArray = [0, 0.05], // extra loot chance
         ScalingFactor = 0.2

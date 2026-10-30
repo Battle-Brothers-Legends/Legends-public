@@ -4,7 +4,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 		Dude = null,
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyBeast,
+		Profession = ::Legends.Profession.LegendFavouredEnemyBeast,
 		Category = ::Legends.FavoriteEnemy.Types.Beast,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
@@ -134,45 +134,31 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 				}
 			}
 
-			function onTargetAttacked( _dest, _isPlayerAttacking )
-			{
-				if (this.Flags.get("IsDriveOff") && !this.Flags.get("IsEncounterShown"))
-				{
+			function onTargetAttacked(_dest, _isPlayerAttacking) {
+				if (this.Flags.get("IsDriveOff") && !this.Flags.get("IsEncounterShown")) {
 					this.Flags.set("IsEncounterShown", true);
-					local bros = ::World.getPlayerRoster().getAll();
 					local candidates = [];
-
-					foreach( bro in bros )
-					{
-						if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Houndmaster) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Wildman) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendWarden) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger) || bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyBeast))
-						{
-							candidates.push(bro);
-						}
+					local self = this;
+					foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(::Legends.Backgrounds.hasAny(_bro, ::Legends.Background.BeastSlayer, ::Legends.Background.Houndmaster, ::Legends.Background.Wildman, ::Legends.Background.LegendCommanderRanger, ::Legends.Background.LegendMuladi, ::Legends.Background.LegendVala, ::Legends.Background.LegendWarden)
+						|| ::Legends.Professions.has(_bro, self.m.Profession)))) {
+						candidates.push(bro);
 					}
 
-					if (candidates.len() == 0)
-					{
+					if (candidates.len() == 0) {
 						::World.Contracts.showCombatDialog(_isPlayerAttacking);
-					}
-					else
-					{
+					} else {
 						this.Contract.m.Dude = candidates[::Math.rand(0, candidates.len() - 1)];
 						this.Contract.setScreen("DriveThemOff");
 						::World.Contracts.showActiveContract();
 					}
-				}
-				else if (!this.Flags.get("IsEncounterShown"))
-				{
+				} else if (!this.Flags.get("IsEncounterShown")) {
 					this.Flags.set("IsEncounterShown", true);
 					this.Contract.setScreen("Encounter");
 					::World.Contracts.showActiveContract();
-				}
-				else
-				{
+				} else {
 					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
-
 		});
 		this.m.States.push({
 			ID = "Return",
@@ -559,12 +545,12 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 		foreach( bro in ::World.getPlayerRoster().getAll() )
 		{
 			sumLevels += bro.getLevel();
-			if (!bro.getSkills().hasPerk(this.m.Perk))
-				continue;
-
-			local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
-			if (stats.Strength >= this.m.MinStrength)
-				return true;
+			if (::Legends.Professions.has(bro, this.m.Profession)) {
+				local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
+				if (stats.Strength >= this.m.MinStrength) {
+					return true;
+				}
+			}
 		}
 
 		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;

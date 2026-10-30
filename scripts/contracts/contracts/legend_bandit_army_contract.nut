@@ -11,7 +11,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		OriginalReward = 0,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		BribeMoney = 1000,
-		Perk = ::Legends.Perk.LegendFavouredEnemyOutlaw,
+		Profession = ::Legends.Profession.LegendFavouredEnemyOutlaw,
 		Category = ::Legends.FavoriteEnemy.Types.Outlaw,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
@@ -143,7 +143,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 					this.Contract.setState("Return");
 				}
 
-				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive())	{
+				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive()) {
 					if (!this.Flags.get("Intercepted")) {
 						this.Contract.setScreen("Shortcut");
 						::World.Contracts.showActiveContract();
@@ -180,10 +180,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 					this.Contract.setState("Return");
 				}
 
-				if (this.Contract.m.Target == null
-					|| this.Contract.m.Target.isNull()
-					|| !this.Contract.m.Target.isAlive())
-				{
+				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive()) {
 					if (!this.Flags.get("Intercepted")) {
 						this.Contract.setScreen("Shortcut");
 						::World.Contracts.showActiveContract();
@@ -221,10 +218,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 					this.Contract.setState("Return");
 				}
 
-				if (this.Contract.m.Target == null
-					|| this.Contract.m.Target.isNull()
-					|| !this.Contract.m.Target.isAlive())
-				{
+				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive()) {
 					if (!this.Flags.get("Intercepted")) {
 						this.Contract.setScreen("Shortcut");
 						::World.Contracts.showActiveContract();
@@ -273,13 +267,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 					local candidates = [];
 
 					foreach (bro in bros) {
-						if (::Legends.S.oneOf(bro.getBackground().getID(),
-							::Legends.Backgrounds.getID(::Legends.Background.Assassin),
-							::Legends.Backgrounds.getID(::Legends.Background.Sellsword),
-							::Legends.Backgrounds.getID(::Legends.Background.Thief),
-							::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin),
-							::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderPeddler)
-						)) {
+						if (::Legends.S.oneOf(bro.getBackground().getID(), ::Legends.Backgrounds.getID(::Legends.Background.Assassin), ::Legends.Backgrounds.getID(::Legends.Background.Sellsword), ::Legends.Backgrounds.getID(::Legends.Background.Thief), ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin), ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderPeddler))) {
 							candidates.push(bro);
 						}
 					}
@@ -679,12 +667,8 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		]);
 		_vars.push([
 			"direction",
-			this.m.Destination == null
-				|| this.m.Destination.isNull()
-				|| !this.m.Destination.isAlive()
-				? ""
-				: ::Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Destination.getTile())]
-			]);
+			this.m.Destination == null || this.m.Destination.isNull() || !this.m.Destination.isAlive() ? "" : ::Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Destination.getTile())]
+		]);
 	}
 
 	function onHomeSet() {
@@ -715,17 +699,11 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 	}
 
 	function onIsTileUsed(_tile) {
-		if (this.m.Location1 != null
-			&& !this.m.Location1.isNull()
-			&& _tile.ID == this.m.Location1.getTile().ID)
-		{
+		if (this.m.Location1 != null && !this.m.Location1.isNull() && _tile.ID == this.m.Location1.getTile().ID) {
 			return true;
 		}
 
-		if (this.m.Location2 != null
-			&& !this.m.Location2.isNull()
-			&& _tile.ID == this.m.Location2.getTile().ID)
-		{
+		if (this.m.Location2 != null && !this.m.Location2.isNull() && _tile.ID == this.m.Location2.getTile().ID) {
 			return true;
 		}
 
@@ -734,7 +712,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 
 	function onIsValid() {
 		if (this.m.IsStarted) {
-			if (this.m.Destination == null || this.m.Destination.isNull() || !this.m.Destination.isAlive())	{
+			if (this.m.Destination == null || this.m.Destination.isNull() || !this.m.Destination.isAlive()) {
 				return false;
 			}
 
@@ -754,13 +732,11 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		local sumLevels = 0;
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			sumLevels += bro.getLevel();
-			if (!bro.getSkills().hasPerk(this.m.Perk)) {
-				continue;
-			}
-
-			local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
-			if (stats.Strength >= this.m.MinStrength) {
-				return true;
+			if (::Legends.Professions.has(bro, this.m.Profession)) {
+				local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
+				if (stats.Strength >= this.m.MinStrength) {
+					return true;
+				}
 			}
 		}
 

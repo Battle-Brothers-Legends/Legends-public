@@ -21,7 +21,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 			]
 		},
 		Flags = null,
-		Perk = ::Legends.Perks.getID(::Legends.Perk.LegendFavouredEnemySwordmaster),
+		Profession = ::Legends.Profession.LegendFavouredEnemySwordmaster,
 		Category = ::Legends.FavoriteEnemy.Types.Swordmaster,
 		WasInReserves = [],
 		isValidForEncounter = false
@@ -43,7 +43,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 				if (_event.checkTownProximity()) {
 					_event.m.Title = "In town...";
 				}
-				_event.m.Candidates.sort(function(_a, _b) {
+				_event.m.Candidates.sort(function (_a, _b) {
 					if (_a.getXP() > _b.getXP()) {
 						return -1;
 					} else if (_a.getXP() < _b.getXP()) {
@@ -67,7 +67,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 				this.Options.push({
 					Text = "Leave %them_enemy% alone. Slaughtering a %child_enemy% wont bring us any fame.",
-					getResult = @(_event) 0
+					getResult = @(_event)0
 				});
 				_event.m.Champion = _event.m.Candidates[::Math.rand(0, _event.m.Candidates.len() - 1)]; // for event text so the enemy can point to one of the candidates before you choose one
 			}
@@ -84,17 +84,18 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 					function getResult(_event) {
 						local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						properties.Music = ::Const.Music.NobleTracks;
-						properties.Entities = [{
-							// this entity unfortunately is generated separately from the one in event, so we need to copy stuff over
-							ID = _event.m.Enemy.ID,
-							Variant = 1,
-							Row = 0,
-							Name = _event.m.Enemy.Name,
-							Script = _event.m.Enemy.Script,
-							Faction = ::Const.Faction.Enemy,
-							Callback = _event.onActorPlaced.bindenv(_event)
-						}];
-
+						properties.Entities = [
+							{
+								// this entity unfortunately is generated separately from the one in event, so we need to copy stuff over
+								ID = _event.m.Enemy.ID,
+								Variant = 1,
+								Row = 0,
+								Name = _event.m.Enemy.Name,
+								Script = _event.m.Enemy.Script,
+								Faction = ::Const.Faction.Enemy,
+								Callback = _event.onActorPlaced.bindenv(_event)
+							}
+						];
 						if (_event.m.Champion.isInReserves()) {
 							_event.m.WasInReserves.push(_event.m.Champion);
 							_event.m.Champion.setInReserves(false);
@@ -103,7 +104,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 						properties.IsUsingSetPlayers = true;
 						properties.IsFleeingProhibited = true;
 						properties.IsAttackingLocation = true;
-						properties.BeforeDeploymentCallback = function() {
+						properties.BeforeDeploymentCallback = function () {
 							local size = ::Tactical.getMapSize();
 							for (local x = 0; x < size.X; ++x) {
 								for (local y = 0; y < size.Y; ++y) {
@@ -131,10 +132,12 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "You did well, %chosen%.",
-				getResult = @(_event) 0
-			}],
+			Options = [
+				{
+					Text = "You did well, %chosen%.",
+					getResult = @(_event)0
+				}
+			],
 
 			function start(_event) {
 				_event.m.Title = "After the battle...";
@@ -182,7 +185,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 			function start(_event) {
 				_event.m.Title = "After the battle...";
 
-				_event.m.Candidates.sort(function(_a, _b) {
+				_event.m.Candidates.sort(function (_a, _b) {
 					if (_a.getXP() > _b.getXP()) {
 						return -1;
 					} else if (_a.getXP() < _b.getXP()) {
@@ -197,6 +200,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 					local bro = _event.m.Candidates[i];
 					this.Options.push({
 						Text = "I need you to avenge us, " + bro.getName() + ".",
+
 						function getResult(_event) {
 							_event.m.Champion = bro;
 							return "N";
@@ -206,7 +210,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 				this.Options.push({
 					Text = "This isn\'t worth it. We should leave.",
-					getResult = @ (_event) 0
+					getResult = @(_event)0
 				});
 			}
 		});
@@ -219,7 +223,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 		foreach (t in towns) {
 			if (t.getTile().getDistanceTo(playerTile) <= 8 && !t.isIsolated()) // WAS 10
-				{
+			{
 				nearTown = true;
 				break;
 			}
@@ -241,17 +245,9 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		local candidates = [];
 		local maxStrength = 0;
 
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemySwordmaster)) {
-				continue;
-			}
-
-			if (bro.getLevel() < 11) {
-				continue;
-			}
-
-			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, ::Const.LegendMod.FavoriteSwordmaster);
-
+		local self = this;
+		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (::Legends.Professions.has(_bro, self.m.Profession) && _bro.getLevel >= 12))) {
+			local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
 			if (stats.Strength > maxStrength) {
 				maxStrength = stats.Strength;
 			}

@@ -212,6 +212,76 @@ Having the ability to pick out a natural-born killer from a lineup of starving p
 • Grants insight about the talents of potential recruits.
 ";
 
+::Const.Strings.ProfessionDescription.LegendFavouredEnemyBeast <- @"
+Enforce your position at the top of the food chain.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting Beasts. This bonus increases with every Beast kill made by this character.
+
+• At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to hunt the following legendary Beasts: Redback Spiders, Rock Unholds, Skin Ghouls, Stollwurms and White Direwolfs.
+";
+
+::Const.Strings.ProfessionDescription.LegendFavouredEnemyCivilization <- @"
+And you call that 'civilization'? Farkin', stinkin' people.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting law-abiding citizens. This bonus increases with every Lawful kill made by this character.  
+
+• Increases the likelihood of encountering Lawful champions.
+
+• [color=%positive%]5%[/color] chance to get any items from slain enemies, that otherwise might not be available to loot. Stacks with itself and effects of a similar nature.
+";
+
+::Const.Strings.ProfessionDescription.LegendFavouredEnemyGreenskin <- @"
+Lumbering orcs and crafty goblins - a tide that could drown humanity if not for their constant feuds.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Grants bonuses to Melee Skill, Ranged Skill, maximum damage while fighting Greenskins. This bonus increases with every Greenskin kill made by this character.
+
+• Increases the likelihood of encountering Greenskin champions.
+";
+
+::Const.Strings.ProfessionDescription.LegendFavouredEnemyOccult <- @"
+A skeptical mind sees through the tricks of the occult, exposing what can be slashed with steel.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Grants bonuses to Melee Skill, Ranged Skill, maximum damage and Resolve while fighting the Occult. This bonus increases with every Occult kill made by this character.
+
+• At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to hunt the following Occult leaders: Demon Alps, Greenwood Schrats and Hexe Coven Leaders.
+";
+
+::Const.Strings.ProfessionDescription.LegendFavouredEnemyOutlaw <- @"
+The uncivilized are a plague to be uprooted.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting outlaws and criminals. This bonus increases with every Outlaw kill made by this character.
+
+• Increases the likelihood of encountering Outlaw champions.
+
+• At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to stop a brigand army from taking over a settlement and to escort an important barbarian prisoner.
+";
+
+::Const.Strings.ProfessionDescription.LegendFavouredEnemySwordmaster <- @"
+For every famous swordmaster there is a throng of those who have fallen adding to that fame.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting elite melee combatants. This bonus increases with every Swordmaster kill made by this character.
+
+• Increases the likelihood of encountering Swordmaster champions.
+
+• Unlocks a very difficult recurring encounter in which a Swordmaster champion challenges a brother to single combat.
+";
+
+//No contract
+::Const.Strings.ProfessionDescription.LegendFavouredEnemyUndead <- @"
+Among there ruins of the old world, horrors lay sleepless in their graves.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Grants bonuses to Melee Skill, Ranged Skill, maximum damage and Resolve while fighting the Undead. This bonus increases with every Undead kill made by this character.
+
+• Increases the likelihood of encountering Undead champions.
+";
+
 ::Const.Strings.ProfessionDescription.LegendFerretItOut <- @"
 Nobody buries their valuables deep enough to hide them from a truly motivated looter.
 

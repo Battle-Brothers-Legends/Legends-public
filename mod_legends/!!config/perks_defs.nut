@@ -403,27 +403,6 @@ if (!("Perks" in ::Legends))
 	LegendExtendedAura = {},
 	LegendEscapeArtist = {},
 	LegendEvasion = {},
-	LegendFavouredEnemyBeast = {
-		Name = "Favoured Enemy - Beasts",
-	},
-	LegendFavouredEnemyCivilization = {
-		Name = "Favoured Enemy - Civilization",
-	},
-	LegendFavouredEnemyGreenskin = {
-		Name = "Favoured Enemy - Greenskin",
-	},
-	LegendFavouredEnemyOccult = {
-		Name = "Favoured Enemy - Occult",
-	},
-	LegendFavouredEnemyOutlaw = {
-		Name = "Favoured Enemy - Outlaw",
-	},
-	LegendFavouredEnemySwordmaster = {
-		Name = "Favoured Enemy - Sword Master",
-	},
-	LegendFavouredEnemyUndead = {
-		Name = "Favoured Enemy - Undead",
-	},
 	LegendFashionable = {},
 	LegendFashionBody = {},
 	LegendFeint = {},

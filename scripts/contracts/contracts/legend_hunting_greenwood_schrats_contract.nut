@@ -4,7 +4,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		Dude = null,
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk =  ::Legends.Perk.LegendFavouredEnemyOccult,
+		Profession =  ::Legends.Profession.LegendFavouredEnemyOccult,
 		Category = ::Legends.FavoriteEnemy.Types.Occult,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
@@ -533,12 +533,12 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		foreach( bro in ::World.getPlayerRoster().getAll() )
 		{
 			sumLevels += bro.getLevel();
-			if (!bro.getSkills().hasPerk(this.m.Perk))
-				continue;
-
-			local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
-			if (stats.Strength >= this.m.MinStrength)
-				return true;
+			if (::Legends.Professions.has(bro, this.m.Profession)) {
+				local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
+				if (stats.Strength >= this.m.MinStrength) {
+					return true;
+				}
+			}
 		}
 
 		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;

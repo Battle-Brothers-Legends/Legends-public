@@ -151,7 +151,7 @@
 	}
 
 	local bonus = 0;
-	foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(::Legends.Perks.has(_bro, ::Legends.Perk["LegendFavouredEnemy" + category])))) {
+	foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(::Legends.Professions.has(_bro, ::Legends.Profession["LegendFavouredEnemy" + category])))) {
 		bonus += ::Math.floor((::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, category).Kills * 1.0) / 10.0);
 	}
 	return bonus;

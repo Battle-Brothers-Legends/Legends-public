@@ -1,12 +1,12 @@
-this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
+this.profession_legend_favoured_enemy <- this.inherit("scripts/skills/skill", {
 	m = {
 		Category = "",
 		BraveryMult = 1.0
 	},
 
 	function create() {
-		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		local constName = ::Legends.DefsHelpers.tokenizeConst(::Const.Perks.LookupMap[this.m.ID].Const);
+		this.m.Type = ::Const.SkillType.Profession | ::Const.SkillType.StatusEffect;
+		local constName = ::Legends.DefsHelpers.tokenizeConst(::Legends.Professions.LookupMap[this.m.ID].Const);
 		this.m.Category = constName[constName.len() - 1];
 	}
 
@@ -21,12 +21,13 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
-		tooltip.extend(this.getDynamicTooltip());
+		tooltip.extend(this.getDynamicTooltip(::Legends.Professions.LookupMap[this.m.ID], true));
 		return tooltip;
 	}
 
-	function getDynamicTooltip(_actor = null) {
-		local stats = this.getTotalKillStats(_actor);
+	function getDynamicTooltip(_def, _active) {
+		local actor = ("getActor" in this.getContainer() ? this.getContainer().getActor() : ::World.State.m.CharacterScreen.getSelectedActor());
+		local stats = this.getTotalKillStats(actor);
 		local tooltip = [
 			{
 				id = 7,
@@ -86,7 +87,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		if (_targetEntity == null || !this.isFavoriteEnemy(_targetEntity)) {
 			return;
 		}
-		
+
 		local stats = this.getTotalKillStats();
 		_properties.MeleeSkill += stats.HitChance;
 		_properties.RangedSkill += stats.HitChance;
