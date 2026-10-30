@@ -1,4 +1,4 @@
-::mods_hookExactClass("ui/screens/tooltip/tooltip_events", function (o) {
+::mods_hookNewObject("ui/screens/tooltip/tooltip_events", function (o) {
 	o.general_queryUIProfessionTooltipData <- function (_entityId, _professionId) {
 		local player = ::Tactical.getEntityByID(_entityId);
 		local profession = player.getBackground().getProfession(_professionId);
@@ -61,9 +61,7 @@
 
 		return null;
 	}
-});
 
-::mods_hookNewObject("ui/screens/tooltip/tooltip_events", function (o) {
 	o.tactical_queryUIItemTooltipData = function (_entityId, _itemId, _itemOwner) {
 		local entity = ::Tactical.getEntityByID(_entityId);
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
