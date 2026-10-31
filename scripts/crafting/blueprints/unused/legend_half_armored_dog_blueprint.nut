@@ -1,7 +1,7 @@
 this.legend_half_armored_dog_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_half_armored_dog";
 		this.m.Type = ::Const.Items.ItemType.Accessory;
@@ -28,12 +28,13 @@ this.legend_half_armored_dog_blueprint <- this.inherit("scripts/crafting/bluepri
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendDogBreeder)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/legend_armored_wardog_item"));
 		_stash.add(this.new("scripts/items/accessory/legend_wardog_item"));
 		_stash.add(this.new("scripts/items/accessory/legend_wardog_item"));
 	}
 
+	function isValid() {
+		return false;
+	}
 });
-

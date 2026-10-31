@@ -28,4 +28,8 @@ this.legend_wolf_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		_stash.add(this.new("scripts/items/accessory/legend_wolf_item"));
 		_stash.add(this.new("scripts/items/accessory/legend_wolf_item"));
 	}
+
+	function isValid() {
+		return false;
+	}
 });

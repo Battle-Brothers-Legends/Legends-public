@@ -1,35 +1,35 @@
-this.legend_armored_dog_blueprint <- this.inherit("scripts/crafting/blueprint", {
+this.legend_dog_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
-		this.m.ID = "blueprint.legend_armored_dog";
+		this.m.ID = "blueprint.legend_dog";
 		this.m.Type = ::Const.Items.ItemType.Accessory;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_wardog_item");
 		this.m.PreviewCraftable.m.Name = "Wardog";
 		this.m.Cost = 120;
 		local ingredients = [
 			{
-				Script = "scripts/items/accessory/legend_armored_wardog_item",
+				Script = "scripts/items/accessory/legend_wardog_item",
 				Num = 2
 			},
-
 			{
 				Script = "scripts/items/supplies/legend_fresh_meat_item",
 				Num = 2
 			}
 		];
 		this.init(ingredients);
-		this.m.PreviewComponents[0].Instance.m.Name = "Armored Wardog";
+		this.m.PreviewComponents[0].Instance.m.Name = "Wardog";
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendDogBreeder)]);
 	}
 
-	function onCraft( _stash )
-	{
-		_stash.add(this.new("scripts/items/accessory/legend_armored_wardog_item"));
-		_stash.add(this.new("scripts/items/accessory/legend_armored_wardog_item"));
+	function onCraft(_stash) {
+		_stash.add(this.new("scripts/items/accessory/legend_wardog_item"));
+		_stash.add(this.new("scripts/items/accessory/legend_wardog_item"));
 		_stash.add(this.new("scripts/items/accessory/legend_wardog_item"));
 	}
 
+	function isValid() {
+		return false;
+	}
 });
-

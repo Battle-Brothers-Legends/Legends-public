@@ -453,7 +453,7 @@ if (!("Professions" in ::Legends)) {
 
 ::Legends.Professions.DogBreedingProfessionTree <- [
 	[],
-	[::Legends.Profession.LegendDogBreeder],
+	[],//[::Legends.Profession.LegendDogBreeder],
 	[::Legends.Profession.LegendHippology],
 	[],
 	[],
