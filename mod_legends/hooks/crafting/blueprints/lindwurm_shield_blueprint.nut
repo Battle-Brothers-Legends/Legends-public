@@ -1,19 +1,11 @@
-::mods_hookExactClass("crafting/blueprints/lindwurm_shield_blueprint", function(o)
-{
-	local create = o.create;
-	o.create = function ()
-	{
-		create();
-		this.m.Type = ::Const.Items.ItemType.Shield;
-		local preview = ::new("scripts/items/shields/named/named_lindwurm_shield");
-		preview.resetStats();
-		preview.setName("Lindwurm Shield");
-		this.m.PreviewCraftable = preview;
-		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
+::mods_hookExactClass("crafting/blueprints/lindwurm_shield_blueprint", function (o) {
+	o.create = function () {
+		::Legends.Blueprints.onCreate(this, ::Legends.Blueprint.HyenaFurUpgrade);
+		this.blueprint.create();
+		this.m.PreviewCraftable.m.Name = "Lindwurm Shield";
 	}
 
-	o.onCraft = function ( _stash )
-	{
-		_stash.add(::new("scripts/items/shields/named/named_lindwurm_shield"));
+	o.onCraft = function (_stash) {
+		this.blueprint.onCraft(_stash);
 	}
 });

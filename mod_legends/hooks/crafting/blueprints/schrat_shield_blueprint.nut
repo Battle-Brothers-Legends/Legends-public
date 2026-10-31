@@ -1,19 +1,10 @@
-::mods_hookExactClass("crafting/blueprints/schrat_shield_blueprint", function(o)
-{
-	local create = o.create;
-	o.create = function ()
-	{
-		create();
-		local preview = this.new("scripts/items/shields/special/legend_craftable_schrat_shield");
-		preview.resetStats();
-		this.m.PreviewCraftable = preview;
-		this.m.Cost = 650;
-		this.m.Type = ::Const.Items.ItemType.Shield;
-		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendWoodworking)]);
+::mods_hookExactClass("crafting/blueprints/schrat_shield_blueprint", function (o) {
+	o.create = function () {
+		::Legends.Blueprints.onCreate(this, ::Legends.Blueprint.SchratShield);
+		this.blueprint.create();
 	}
 
-	o.onCraft <- function ( _stash )
-	{
-		_stash.add(this.new("scripts/items/shields/special/legend_craftable_schrat_shield"));
+	o.onCraft = function (_stash) {
+		this.blueprint.onCraft(_stash);
 	}
 });

@@ -6,22 +6,7 @@ this.legend_warlock_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	}
 
 	function hasWarlock() {
-		local bgs = [
-			::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNecro),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendPreserver),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendPuppetMaster),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendReanimator)
-		];
-
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			foreach (bg in bgs) {
-				if (bro.getSkills().hasSkill(bg)) {
-					return true;
-				}
-			}
-		}
-
-		return false;
+		return ::World.getPlayerRoster().getAll().filter(@(_, _bro)(::Legends.Backgrounds.hasAny(_bro, ::Legends.Background.LegendCommanderNecro, ::Legends.Background.LegendPreserver, ::Legends.Background.LegendPuppetMaster, ::Legends.Background.LegendReanimator))).len() > 0;
 	}
 
 	function isCraftable() {

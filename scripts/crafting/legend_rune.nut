@@ -1,29 +1,11 @@
 this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
-	m = {
-		Rune = 0,
-	},
+	m = {},
 
 	function create() {
 		this.blueprint.create();
-		this.m.ID = "";
-		local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-		token.setRuneVariant(this.m.Rune);
-		token.updateRuneSigilToken();
-		token.getRuneSigilTooltip = this.getRuneSigilTooltip;
-		this.m.PreviewCraftable = token;
-		this.m.Cost = 1200;
-		this.m.BlueprintType = "Enchanting";
-		local ingredients = [
-			{
-				Script = "scripts/items/trade/uncut_gems_item",
-				Num = 1
-			}
-		];
-		this.init(ingredients);
-		local skills = [
-			::Legends.Backgrounds.new(::Legends.Background.LegendVala)
-		];
-		this.initSkills(skills);
+		this.m.PreviewCraftable.setRuneVariant(this.m.Rune);
+		this.m.PreviewCraftable.updateRuneSigilToken();
+		this.m.PreviewCraftable.getRuneSigilTooltip = this.getRuneSigilTooltip;
 	}
 
 	function isUpgraded() {
@@ -38,6 +20,8 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 		return ::Legends.Runes.getRuneTooltip(def, this.isUpgraded());
 	}
 
+	function onCraft(_stash) {}
+
 	function onEnchant(_upgraded) {
 		local def = ::Legends.Runes.get(this.m.Rune);
 		if (def == null) {
@@ -46,7 +30,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 		local rune = ::new(def.Script);
 		rune.setRuneVariant(this.m.Rune);
 		rune.setRuneBonus(_upgraded, true);
-		if (def.ItemType == ::Legends.Runes.Target.Weapon || def.ItemType == ::Legends.Runes.Target.Shield)	{
+		if (def.ItemType == ::Legends.Runes.Target.Weapon || def.ItemType == ::Legends.Runes.Target.Shield) {
 			rune.updateRuneSigilToken();
 		}
 		::World.Assets.getStash().add(rune);

@@ -1,8 +1,10 @@
 ::mods_hookExactClass("crafting/blueprints/large_powder_bag_blueprint", function(o) {
-	local create = o.create;
 	o.create = function () {
-		create();
-		this.m.Type = ::Const.Items.ItemType.Ammo;
-		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
+		::Legends.Blueprints.onCreate(this, ::Legends.Blueprint.LargePowderBag);
+		this.blueprint.create();
+	}
+
+	o.onCraft = function (_stash) {
+		this.blueprint.onCraft(_stash);
 	}
 });

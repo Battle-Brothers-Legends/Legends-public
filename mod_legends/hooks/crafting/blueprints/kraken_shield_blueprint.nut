@@ -1,19 +1,10 @@
-::mods_hookExactClass("crafting/blueprints/kraken_shield_blueprint", function(o)
-{
-	local create = o.create;
-	o.create = function ()
-	{
-		create();
-		local preview = this.new("scripts/items/shields/special/legend_craftable_kraken_shield");
-		preview.resetStats();
-		this.m.PreviewCraftable = preview;
-		this.m.Cost = 1100;
-		this.m.Type = ::Const.Items.ItemType.Armor;
-		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
+::mods_hookExactClass("crafting/blueprints/kraken_shield_blueprint", function (o) {
+	o.create = function () {
+		::Legends.Blueprints.onCreate(this, ::Legends.Blueprint.KrakenShield);
+		this.blueprint.create();
 	}
 
-	o.onCraft = function ( _stash )
-	{
-		_stash.add(this.new("scripts/items/shields/special/legend_craftable_kraken_shield"));
+	o.onCraft = function (_stash) {
+		this.blueprint.onCraft(_stash);
 	}
 });

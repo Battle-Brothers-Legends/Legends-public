@@ -1,50 +1,68 @@
-::mods_hookBaseClass("crafting/blueprint", function ( o )
-{
-	while(!("ID" in o.m)) o=o[o.SuperName];
+::mods_hookBaseClass("crafting/blueprint", function (o) {
+	while (!("ID" in o.m)) o = o[o.SuperName];
 
 	o.m.PreviewSkills <- [];
-	o.m.BlueprintType <- "Crafting";
+	o.m.BlueprintType <- "Crafting"; // tbd
 	o.m.Type <- ::Const.Items.ItemType.None;
 	o.m.CraftMultiplier <- 1.0;
 
-	o.getItemType <- function ()
-	{
+	o.create = function () {
+		if ("ItemScript" in this.m) {
+			this.m.PreviewCraftable = ::new(this.m.ItemScript);
+			this.init(this.m.Ingredients);
+			local requirements = [];
+			if (this.m.ProfessionRequired) {
+				requirements.push(::Legends.Professions.new(this.m.Category));
+			}
+			if ("AlternativeRequirements" in this.m) {
+				requirements.extend(this.m.AlternativeRequirements.map(@(_reqArray)(_reqArray[1].new(_reqArray[0]))));
+			}
+			if (requirements.len()) {
+				if (this.m.RequireAll) {
+					this.initSkills(requirements);
+				} else {
+					this.initSkillsOneOf(requirements);
+				}
+			}
+			this.m.Type = ::Const.Items.ItemType.Accessory; //tbd
+		}
+	}
+
+	o.getItemType <- function () {
 		return this.m.Type;
 	}
 
-	o.getCostForCraft <- function  () {
+	o.getCostForCraft <- function () {
 		local modifier = 1.0;
 
-    	foreach (reqGroup in this.m.PreviewSkills) {
+		foreach (reqGroup in this.m.PreviewSkills) {
 			foreach (skillInstance in reqGroup.Instances) {
 				local skillID = skillInstance.getID(); // switcheroo for enchanting - we require vala but assist with enchanters assistant
-				if(skillID == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala)) {
+				if (skillID == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala)) {
 					skillID = ::Legends.Professions.getID(::Legends.Profession.LegendEnchantersAssistant);
 				}
 
 				local professionDef = ::Legends.Professions.findById(skillID);
-				if(professionDef != null) {
+				if (professionDef != null) {
 					local effect = ::World.Assets.m.ProfessionEffect[professionDef.Const];
 					if (effect > 0) {
 						modifier /= effect;
 					}
 				}
-       		}
-    	}
+			}
+		}
 		return this.getCost() * this.m.CraftMultiplier * modifier;
 	}
 
-	o.getIcon = function ()
-	{
-		if (::Legends.S.oneOf(this.m.PreviewCraftable.getIcon(), "layers/named_icon_glow.png", "layers/legendary_icon_glow.png"))
+	o.getIcon = function () {
+		if (::Legends.S.oneOf(this.m.PreviewCraftable.getIcon(), "layers/named_icon_glow.png", "layers/legendary_icon_glow.png")) {
 			return this.m.PreviewCraftable.m.Icon;
+		}
 		return this.m.PreviewCraftable.getIcon();
 	}
 
-	o.getTooltipForComponent = function ( _idx )
-	{
-		if (_idx > this.m.PreviewComponents.len() - 1)
-		{
+	o.getTooltipForComponent = function (_idx) {
+		if (_idx > this.m.PreviewComponents.len() - 1) {
 			this.logError("Out of bound error on blueprint :: " + this.m.ID);
 			return null;
 		}
@@ -52,21 +70,18 @@
 		return this.m.PreviewComponents[_idx].Instance.getTooltip();
 	}
 
-	o.getTooltipForSkill <- function ( _idx )
-	{
-		foreach( c in this.m.PreviewSkills )
-		{
-			foreach( s in c.Instances )
-			{
-				if (s.getID() == _idx)
-				{
+	o.getTooltipForSkill <- function (_idx) {
+		foreach (c in this.m.PreviewSkills) {
+			foreach (s in c.Instances) {
+				if (s.getID() == _idx) {
 					local tooltip = s.getTooltip();
-					if(tooltip[0].text.find("Background:") != null)
+					if (tooltip[0].text.find("Background:") != null) {
 						tooltip.push({
 							id = 2,
 							type = "description",
 							text = "Requires a " + tooltip[0].text.slice(tooltip[0].text.find("Background:") + 12) + " to craft."
 						});
+					}
 					return tooltip;
 				}
 			}
@@ -75,21 +90,14 @@
 		return null;
 	}
 
-	o.init = function ( _comps )
-	{
-		foreach( i in _comps )
-		{
+	o.init = function (_comps) {
+		foreach (i in _comps) {
 			local c = this.new(i.Script);
 			local pc = {
 				Name = i.Script,
 				Num = i.Num,
 				Instance = c
 			};
-
-			if ("LegendsArmor" in i)
-			{
-				pc.LegendsArmor <- i.LegendsArmor;
-			}
 
 			this.m.PreviewComponents.push(pc);
 		}
@@ -109,7 +117,6 @@
 		});
 	}
 
-
 	o.requirementsMet <- function (_ids) {
 		local roster = ::World.getPlayerRoster().getAll();
 
@@ -125,7 +132,7 @@
 		if (town != null) {
 			local buildingID = ::MSU.isKindOf(town, "city_state") ? "building.taxidermist_oriental" : "building.taxidermist";
 			local taxidermist = town.getBuilding(buildingID);
-			if(taxidermist != null && _ids.filter(@(_, _id) (_id == ::Legends.Professions.getID(taxidermist.m.TaxidermistSpecialization))).len() > 0) {
+			if (taxidermist != null && _ids.filter(@(_, _id)(_id == ::Legends.Professions.getID(taxidermist.m.TaxidermistSpecialization))).len() > 0) {
 				return true;
 			}
 		}
@@ -133,36 +140,29 @@
 		return false;
 	}
 
-	o.isPartlyCraftable <- function ()
-	{
+	o.isPartlyCraftable <- function () {
 		local itemsMap = ::World.Assets.getStash().getNumItemsMap(true);
 
-		foreach( c in this.m.PreviewSkills )
-		{
+		foreach (c in this.m.PreviewSkills) {
 			local ids = [];
 
-			foreach( s in c.Instances )
-			{
+			foreach (s in c.Instances) {
 				ids.push(s.getID());
 			}
 
-			if (!this.requirementsMet(ids))
-			{
+			if (!this.requirementsMet(ids)) {
 				return false;
 			}
 		}
 
-		foreach( c in this.m.PreviewComponents )
-		{
+		foreach (c in this.m.PreviewComponents) {
 			local num = 0;
 
-			if (c.Instance.getID() in itemsMap)
-			{
+			if (c.Instance.getID() in itemsMap) {
 				num = itemsMap[c.Instance.getID()];
 			}
 
-			if (num >= c.Num)
-			{
+			if (num >= c.Num) {
 				return true;
 			}
 		}
@@ -170,36 +170,29 @@
 		return false;
 	}
 
-	o.isCraftable = function ()
-	{
+	o.isCraftable = function () {
 		local itemsMap = ::World.Assets.getStash().getNumItemsMap(true);
 
-		foreach( c in this.m.PreviewComponents )
-		{
+		foreach (c in this.m.PreviewComponents) {
 			local num = 0;
 
-			if (c.Instance.getID() in itemsMap)
-			{
+			if (c.Instance.getID() in itemsMap) {
 				num = itemsMap[c.Instance.getID()];
 			}
 
-			if (num < c.Num)
-			{
+			if (num < c.Num) {
 				return false;
 			}
 		}
 
-		foreach( c in this.m.PreviewSkills )
-		{
+		foreach (c in this.m.PreviewSkills) {
 			local ids = [];
 
-			foreach( s in c.Instances )
-			{
+			foreach (s in c.Instances) {
 				ids.push(s.getID());
 			}
 
-			if (!this.requirementsMet(ids))
-			{
+			if (!this.requirementsMet(ids)) {
 				return false;
 			}
 		}
@@ -207,25 +200,25 @@
 		return true;
 	}
 
-	o.isQualified = function ()	{
+	o.isQualified = function () {
 		if (this.m.TimesCrafted >= 1) {
 			return true;
 		}
 
-		if (::Legends.Mod.ModSettings.getSetting("ShowBlueprintsWhen").getValue() == "Always") return true;
-		if (::Legends.Mod.ModSettings.getSetting("ShowBlueprintsWhen").getValue() == "One Ingredient Available") return this.isPartlyCraftable();
+		if (::Legends.Mod.ModSettings.getSetting("ShowBlueprintsWhen").getValue() == "Always") {
+			return true;
+		}
+		if (::Legends.Mod.ModSettings.getSetting("ShowBlueprintsWhen").getValue() == "One Ingredient Available") {
+			return this.isPartlyCraftable();
+		}
 
 		return this.isCraftable();
 	}
 
-	o.getUIData = function ()
-	{
-		if (this.m.PreviewCraftable.m.ID == "shield.heater_shield" || this.m.PreviewCraftable.m.ID == "shield.kite_shield" || this.m.PreviewCraftable.m.ID == "shield.legend_tower_shield")
-		{
+	o.getUIData = function () {
+		if (this.m.PreviewCraftable.m.ID == "shield.heater_shield" || this.m.PreviewCraftable.m.ID == "shield.kite_shield" || this.m.PreviewCraftable.m.ID == "shield.legend_tower_shield") {
 			this.m.PreviewCraftable.onPaintInCompanyColors();
-		}
-		else if (this.m.PreviewCraftable.m.ID == "shield.faction_kite_shield" || this.m.PreviewCraftable.m.ID == "shield.heater_kite_shield")
-		{
+		} else if (this.m.PreviewCraftable.m.ID == "shield.faction_kite_shield" || this.m.PreviewCraftable.m.ID == "shield.heater_kite_shield") {
 			this.m.PreviewCraftable.setFaction(1);
 		}
 		local ret = {
@@ -233,25 +226,24 @@
 			Name = this.getName(),
 			Description = this.getDescription(),
 			ImagePath = this.getIcon(),
-			LargeImagePath = this.getIconLarge() != null ? this.getIconLarge() : this.getIcon(),
+			LargeImagePath = this.getIconLarge() != null ? this.getIconLarge(): this.getIcon(),
 			IconOverlay = this.m.PreviewCraftable.getIconOverlay(),
 			Ingredients = this.getIngredients(),
 			Cost = this.getCost(),
 			IsCraftable = this.isCraftable(),
 			Type = this.getItemType()
 		};
-		if ("Variants" in this.m && this.m.Variants > 0)
-		{
+		if ("Variants" in this.m && this.m.Variants > 0) {
 			ret.Variants <- this.m.Variants;
 			ret.ItemPath <- this.IO.scriptFilenameByHash(this.m.PreviewCraftable.ClassNameHash); //this.m.PreviewCraftable;
-		}
-		else
-		{
+		} else {
 			ret.Variants <- 0;
 			ret.ItemPath <- 0;
 		}
 		ret.isAmountShown <- this.m.PreviewCraftable.isAmountShown();
-		if(this.m.PreviewCraftable.isAmountShown()) ret.Amount <- this.m.PreviewCraftable.getAmountString();
+		if (this.m.PreviewCraftable.isAmountShown()) {
+			ret.Amount <- this.m.PreviewCraftable.getAmountString();
+		}
 		return ret;
 	}
 
@@ -279,7 +271,7 @@
 			foreach (s in c.Instances) {
 				groupIDs.push(s.getID());
 			}
-			foreach( s in c.Instances )	{
+			foreach (s in c.Instances) {
 				ret.push({
 					InstanceID = s.getID(),
 					ImagePath = s.getIconColored(),
@@ -351,6 +343,14 @@
 		}
 
 		this.onCraft(stash);
+	}
+
+	o.onCraft = function (_stash) {
+		if ("ItemScript" in this.m) {
+			for (local i = 0; i < this.m.Crafts; i++) {
+				_stash.add(::new(this.m.ItemScript));
+			}
+		}
 	}
 
 	o.onEnchant <- function (_upgraded) {}

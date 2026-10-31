@@ -1,16 +1,11 @@
 ::mods_hookExactClass("crafting/blueprints/direwolf_pelt_upgrade_blueprint", function(o)
 {
-	local create = o.create;
-	o.create = function ()
-	{
-		create();
-		this.m.Type = ::Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak");
-		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
+	o.create = function () {
+		::Legends.Blueprints.onCreate(this, ::Legends.Blueprint.DirewolfPeltUpgrade);
+		this.blueprint.create();
 	}
 
-	o.onCraft = function ( _stash )
-	{
-		_stash.add(this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak"));
+	o.onCraft = function (_stash) {
+		this.blueprint.onCraft(_stash);
 	}
 });
