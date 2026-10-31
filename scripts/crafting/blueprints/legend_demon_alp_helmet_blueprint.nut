@@ -3,5 +3,6 @@ this.legend_demon_alp_helmet_blueprint <- this.inherit("scripts/crafting/bluepri
 
 	function create() {
 		::Legends.Blueprints.onCreate(this, ::Legends.Blueprint.LegendDemonAlpHelmet);
+		this.blueprint.create();
 	}
 });
