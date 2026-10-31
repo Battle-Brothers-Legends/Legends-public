@@ -4,22 +4,13 @@
 
 /**
 * Splits consts to array of strings,
-* `LegendMasterOfPuppets` becomes `["Legend", "Master", "Of", "Puppets"]`
+* `LegendMasterOfPuppets01HTML` becomes `["Legend", "Master", "Of", "Puppets", "01", "HTML"]`
 */
 ::Legends.DefsHelpers.tokenizeConst <- function (_string) {
-	local words = [];
-	local lastIndex = 0;
-
-	local predicate = @(_c) _c == _c.toupper() && _c != _c.tolower();
-
-	for (local i = 1; i < _string.len(); i++) {
-		if (predicate(_string.slice(i, i + 1))) {
-			words.push(_string.slice(lastIndex, i));
-			lastIndex = i;
-		}
+	local words = [], word = { end = 0 };
+	while (word = regexp(@"\u\l+|\u+|\d+").search(_string, word.end)) {
+		words.push(_string.slice(word.begin, word.end));
 	}
-	words.push(_string.slice(lastIndex, _string.len()));
-
 	return words;
 }
 
@@ -28,9 +19,7 @@
 * `LegendMasterOfPuppets` becomes `legend_master_of_puppets`
 */
 ::Legends.DefsHelpers.convertToSnakeCase <- function (_string) {
-	return ::Legends.DefsHelpers.tokenizeConst(_string)
-		.map(@(_str) _str.tolower())
-		.reduce(@(p, c) ::format("%s_%s", p, c));
+	return ::Legends.DefsHelpers.tokenizeConst(_string).map(@(_str) _str.tolower()).reduce(@(p, c) ::format("%s_%s", p, c));
 }
 
 /**
@@ -45,11 +34,12 @@
 
 	local words = ::Legends.DefsHelpers.tokenizeConst(_string);
 	local transformedWords = [];
-	foreach(idx, word in words) {
-		if (idx != 0 && ::Legends.DefsHelpers.MinorWords.find(word.tolower()) != null)
+	foreach (idx, word in words) {
+		if (idx != 0 && ::Legends.DefsHelpers.MinorWords.find(word.tolower()) != null) {
 			transformedWords.push(word.tolower());
-		else
+		} else {
 			transformedWords.push(word);
+		}
 	}
 	return transformedWords.reduce(@(p, c) ::format("%s %s", p, c));
 }
