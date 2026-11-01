@@ -702,6 +702,7 @@
 - fixed Flourish, Freedom of Movement, Music Mastery and Minnesanger not affecting fatigue costs
 - fixed Recuperation and Himshaw proccing twice
 - fixed Immovable Object not granting its advertised effects on exactly 50 and 80 weight
+- fixed a bug where leaving camp and going into main menu would still allow the camp screen to pop up and crash the game on quit
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
