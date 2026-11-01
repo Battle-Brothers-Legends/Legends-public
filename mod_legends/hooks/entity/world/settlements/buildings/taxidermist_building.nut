@@ -20,11 +20,11 @@
 
 	o.onSerialize = function (_out) {
 		this.building.onSerialize(_out);
-		_out.writeI8(this.m.TaxidermistSpecialization);
+		_out.writeI32(this.m.TaxidermistSpecialization);
 	}
 
 	o.onDeserialize = function (_in) {
 		this.building.onDeserialize(_in);
-		this.m.TaxidermistSpecialization = _in.readI8();
+		this.m.TaxidermistSpecialization = _in.readI32();
 	}
 });
