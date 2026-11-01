@@ -3,11 +3,8 @@ this.legend_demon_hound_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundPotion);
+		this.m.Description = "tbd";
 		this.m.Order = ::Const.SkillOrder.Perk;
-	}
-
-	function getDescription() {
-		return "tbd";
 	}
 
 	function getTooltip() {

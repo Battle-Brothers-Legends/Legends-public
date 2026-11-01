@@ -22,8 +22,7 @@
 };
 
 ::Legends.Runes.getMinBonus <- function (_minValue, _maxValue) {
-	return (_maxValue - _minValue) * ::World.Assets.m.ProfessionEffect.LegendAncientKnowledge
-		+ _minValue;
+	return (_maxValue - _minValue) * ::World.Assets.m.ProfessionEffect.LegendAncientKnowledge + _minValue;
 }
 
 ::Legends.Runes.getMaxBonus <- function (_value, _upgraded) {
@@ -36,11 +35,11 @@
 		if (i == 0) {
 			ret.extend([
 				["bonus" + (i + 1), _item.getRuneBonus1()]
-			])
+			]);
 		} else if (i == 1) {
 			ret.extend([
 				["bonus" + (i + 1), _item.getRuneBonus2()]
-			])
+			]);
 		}
 	}
 	return _isShort ? ::Legends.tooltip(_def.ShortTooltip, ret) : ::Legends.tooltip(_def.Tooltip, ret);
@@ -55,7 +54,7 @@
 		ret.extend([
 			["min" + (i + 1), minValue],
 			["max" + (i + 1), maxValue]
-		])
+		]);
 	}
 	return ::Legends.tooltip(_def.RuneTooltip, ret);
 }
@@ -74,7 +73,7 @@
 	}
 }
 
-::Legends.Runes.applyCompareHints <- function(_tooltipList, _selectedItem, _equippedItem) {
+::Legends.Runes.applyCompareHints <- function (_tooltipList, _selectedItem, _equippedItem) {
 	local selectedDef = ::Legends.Runes.get(_selectedItem.getRuneVariant());
 	local equippedDef = ::Legends.Runes.get(_equippedItem.getRuneVariant());
 	if (selectedDef != null && equippedDef != null && selectedDef.Name == equippedDef.Name) {
@@ -97,9 +96,9 @@
 			param1.extend([
 				["bonus1Diff", ::Legends.S.colorize(::Legends.S.addSign(bonusDiff1), bonusDiff1)],
 				["new", _selectedItem.getRuneBonus1()],
-				["old",_equippedItem.getRuneBonus1()]
+				["old", _equippedItem.getRuneBonus1()]
 			]);
-			
+
 			_tooltipList.push({
 				id = 20,
 				type = "hint",
@@ -107,13 +106,13 @@
 				text = ::Legends.tooltip(selectedDef.CompareTooltip[0], param1)
 			});
 		}
-		
+
 		if (bonusDiff2 != 0) {
 			local param2 = [];
 			param2.extend([
 				["bonus2Diff", ::Legends.S.colorize(::Legends.S.addSign(bonusDiff2), bonusDiff2)],
 				["new", _selectedItem.getRuneBonus2()],
-				["old",_equippedItem.getRuneBonus2()]
+				["old", _equippedItem.getRuneBonus2()]
 			]);
 
 			_tooltipList.push({
@@ -133,14 +132,14 @@
 				text = ::Legends.Runes.getTooltip(_selectedItem, selectedDef, true)
 			});
 		}
-		
+
 		if (equippedDef != null) {
 			_tooltipList.push({
 				id = 20,
 				type = "hint",
 				icon = "ui/tooltips/negative.png",
 				text = ::Legends.Runes.getTooltip(_equippedItem, equippedDef, true)
-			})
+			});
 		}
 	}
 }
