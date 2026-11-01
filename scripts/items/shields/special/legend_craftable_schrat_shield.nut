@@ -11,6 +11,7 @@ this.legend_craftable_schrat_shield <- this.inherit("scripts/items/shields/named
 		this.m.Description = "This shield carved out of the remains of a living tree slowly regrows if it sustains any damage. At a glance, it almost looks as if its grotesque face is still moving. Once per battle this shield will regenerate to full if destroyed.";
 		this.m.AddGenericSkill = true;
 		this.m.ShowOnCharacter = true;
+		this.m.Variants = [8];
 		this.m.Variant = 8;
 		this.updateVariant();
 		this.m.Value = 1000;

@@ -432,6 +432,7 @@
 - new `Sipar Shield` blueprint from 1 iron ingot
 - `Tower Shield` blueprint now costs 2 quality wood and 1 iron ingot
 - blueprints are now sorted via profession, then actual crafted item type
+- blueprint previews and items crafted now default to the 1st variant for clarity
 
 ### Misc
 - `Balanced Rucksack` - usable item sold around marketplaces which adds 2 extra bag slots to a mercenary
@@ -703,6 +704,7 @@
 - fixed Recuperation and Himshaw proccing twice
 - fixed Immovable Object not granting its advertised effects on exactly 50 and 80 weight
 - fixed a bug where leaving camp and going into main menu would still allow the camp screen to pop up and crash the game on quit
+- fixed a bunch of camping desyncs on serialize/deserialize
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

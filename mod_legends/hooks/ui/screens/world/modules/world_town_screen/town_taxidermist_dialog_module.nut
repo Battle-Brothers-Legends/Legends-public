@@ -95,10 +95,6 @@
 			} else {
 				item.setVariant(item.m.Variants[_result.Variant - 1]);
 			}
-			if (item.m.ID == "shield.faction_kite_shield" || item.m.ID == "shield.heater_kite_shield") {
-				local blueprint = ::World.Crafting.getBlueprint(_result.ID);
-				blueprint.m.PreviewCraftable = item;
-			}
 			result = item.m.IconLarge != null ? item.m.IconLarge : item.m.Icon;
 		}
 

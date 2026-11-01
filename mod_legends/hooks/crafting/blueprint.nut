@@ -222,18 +222,16 @@
 	}
 
 	o.getUIData = function () {
-		if (this.m.PreviewCraftable.m.ID == "shield.heater_shield" || this.m.PreviewCraftable.m.ID == "shield.kite_shield" || this.m.PreviewCraftable.m.ID == "shield.legend_tower_shield") {
-			this.m.PreviewCraftable.onPaintInCompanyColors();
-		} else if (this.m.PreviewCraftable.m.ID == "shield.faction_kite_shield" || this.m.PreviewCraftable.m.ID == "shield.heater_kite_shield") {
-			this.m.PreviewCraftable.setFaction(1);
-		}
+		local preview = this.m.PreviewCraftable;
+		this.applyBasicPaint(preview);
+
 		local ret = {
 			ID = this.getID(),
 			Name = this.getName(),
 			Description = this.getDescription(),
 			ImagePath = this.getIcon(),
 			LargeImagePath = this.getIconLarge() != null ? this.getIconLarge(): this.getIcon(),
-			IconOverlay = this.m.PreviewCraftable.getIconOverlay(),
+			IconOverlay = preview.getIconOverlay(),
 			Ingredients = this.getIngredients(),
 			Cost = this.getCost(),
 			IsCraftable = this.isCraftable(),
@@ -241,16 +239,10 @@
 			Category = this.getCategory(),
 			Crafts = this.getCrafts(),
 		};
-		if ("Variants" in this.m && this.m.Variants > 0) {
-			ret.Variants <- this.m.Variants;
-			ret.ItemPath <- this.IO.scriptFilenameByHash(this.m.PreviewCraftable.ClassNameHash); //this.m.PreviewCraftable;
-		} else {
-			ret.Variants <- 0;
-			ret.ItemPath <- 0;
-		}
-		ret.isAmountShown <- this.m.PreviewCraftable.isAmountShown();
-		if (this.m.PreviewCraftable.isAmountShown()) {
-			ret.Amount <- this.m.PreviewCraftable.getAmountString();
+
+		ret.isAmountShown <- preview.isAmountShown();
+		if (preview.isAmountShown()) {
+			ret.Amount <- preview.getAmountString();
 		}
 		return ret;
 	}
@@ -355,11 +347,23 @@
 
 	o.onCraft = function (_stash) {
 		if ("ItemScript" in this.m) {
+			local item = ::new(this.m.ItemScript);
+			this.applyBasicPaint(item);
 			for (local i = 0; i < this.m.Crafts; i++) {
-				_stash.add(::new(this.m.ItemScript));
+				_stash.add(item);
 			}
 		}
 	}
 
 	o.onEnchant <- function (_upgraded) {}
+
+	o.applyBasicPaint <- function (_item) {
+		if ("PaintInCompanyColors" in this.m) {
+			_item.onPaintInCompanyColors();
+		} else if (::Legends.S.any(["shield", "weapon", "legend_armor", "legend_armor_upgrade", "legend_helmet", "legend_helmet_upgrade"], @(_type)(::isKindOf(_item, _type))) && _item.m.Variants.len()) {
+			_item.setVariant(_item.m.Variants[0]);
+		} else {
+			_item.setVariant(0);
+		}
+	}
 });
