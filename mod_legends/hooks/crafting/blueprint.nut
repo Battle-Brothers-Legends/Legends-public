@@ -156,8 +156,8 @@
 				ids.push(s.getID());
 			}
 
-			if (!this.requirementsMet(ids)) {
-				return false;
+			if (this.requirementsMet(ids)) {
+				return true;
 			}
 		}
 
