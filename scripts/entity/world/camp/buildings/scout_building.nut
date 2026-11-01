@@ -62,11 +62,8 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function init() {
 		this.m.Radius = 250;
-		local mod = this.getModifiers();
-		this.m.Rate = mod.Craft;
 		this.m.Results = [];
-		this.m.NumBros = mod.Assigned;
-		this.m.IsWorkDangerous = !::World.Camp.m.IsEscorting;
+		this.setModifiers();
 	}
 
 	function getModifiers() {
@@ -88,6 +85,13 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			ret.Craft += mod[0];
 		}
 		return ret;
+	}
+
+	function setModifiers() {
+		local mod = this.getModifiers();
+		this.m.Rate = mod.Craft;
+		this.m.NumBros = mod.Assigned;
+		this.m.IsWorkDangerous = !::World.Camp.m.IsEscorting;
 	}
 
 	function getResults() {
@@ -202,5 +206,10 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function updateTick(_hours) {
 		this.m.Radius = 250 + ::Math.pow(this.m.Rate, 0.5) * 300.0 * ::Math.pow(_hours, 0.5 - (0.1 * this.m.Rate));
+	}
+
+	function onDeserialize(_in) {
+		setModifiers();
+		this.camp_building.onDeserialize(_in);
 	}
 });

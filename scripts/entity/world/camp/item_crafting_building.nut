@@ -12,8 +12,7 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 		this.m.ItemsCrafted = [];
 		this.m.CurrentProgress = 0;
 		this.m.CurrentCraft = null;
-		local mod = this.getModifiers();
-		this.m.NumBros = mod.Assigned;
+		this.setModifiers();
 	}
 
 	function onInit() {
@@ -68,6 +67,10 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 			++id;
 		}
 		return ret;
+	}
+
+	function setModifiers() {
+		this.m.NumBros = this.getModifiers().Assigned;
 	}
 
 	function getResults() {
@@ -271,28 +274,37 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 		}
 	}
 
-	function onSerialize( _out ) {
+	function onSerialize(_out) {
 		this.onInit(); //clear out null queue items
 		this.camp_building.onSerialize(_out);
 		_out.writeU16(this.m.Queue.len());
-		foreach( b in this.m.Queue )
-		{
+		foreach (b in this.m.Queue) {
 			_out.writeString(b.Blueprint.getID());
 			_out.writeF32(b.Points);
 			_out.writeBool(b.Forever);
 		}
+		_out.writeU16(this.m.ItemsCrafted.len());
+		foreach (b in this.m.ItemsCrafted) {
+			_out.writeString(b.getID());
+		}
 	}
 
-	function onDeserialize( _in ) {
+	function onDeserialize(_in) {
+		this.setModifiers();
 		this.m.Queue = [];
 		this.camp_building.onDeserialize(_in);
 		local num = _in.readU16();
-		for( local i = 0; i < num; ++i ) {
+		for (local i = 0; i < num; i++) {
 			this.m.Queue.push({
-				Blueprint =  ::World.Crafting.getBlueprint(_in.readString()),
+				Blueprint = ::World.Crafting.getBlueprint(_in.readString()),
 				Points = _in.readF32(),
 				Forever = _in.readBool()
 			});
+		}
+		this.m.ItemsCrafted = [];
+		local num = _in.readU16();
+		for (local i = 0; i < num; i++) {
+			this.m.ItemsCrafted.push(::World.Crafting.getBlueprint(_in.readString()));
 		}
 	}
 });

@@ -60,6 +60,10 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function init() {
 		this.m.AmmoAdded = 0;
 		this.m.Items = [];
+		this.setModifiers();
+	}
+
+	function setModifiers() {
 		local mod = this.getModifiers();
 		this.m.NumBros = mod.Assigned;
 		this.m.Craft = mod.Craft;
@@ -76,7 +80,8 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			});
 			++id;
 		}
-		foreach (item in this.m.Items) {
+		foreach (script in this.m.Items) {
+			local item = ::new(script);
 			res.push({
 				id = id,
 				icon = "ui/items/" + item.getIcon(),
@@ -123,9 +128,29 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		];
 
 		if (::Math.rand(1, 100) <= this.m.Camp.getElapsedHours()) {
-			local item = ::new(secondary[::Math.rand(0, secondary.len() - 1)]);
-			this.m.Items.push(item);
-			::Stash.add(item);
+			local script = secondary[::Math.rand(0, secondary.len() - 1)];
+			this.m.Items.push(script);
+			::Stash.add(::new(script));
+		}
+	}
+
+	function onSerialize(_out) {
+		this.camp_building.onSerialize(_out);
+		_out.writeF32(this.m.AmmoAdded);
+		_out.writeU16(this.m.Items.len());
+		foreach (loot in this.m.Items) {
+			_out.writeString(loot);
+		}
+	}
+
+	function onDeserialize(_in) {
+		this.setModifiers();
+		this.camp_building.onDeserialize(_in);
+		this.m.AmmoAdded = _in.readF32();
+		this.m.Items = [];
+		local num = _in.readU16();
+		for (local i = 0; i < num; i++) {
+			this.m.Items.push(_in.readString());
 		}
 	}
 });

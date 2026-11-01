@@ -6,8 +6,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		ItemsDestroyed = 0,
 		Stash = null,
 		Salvage = null,
-		Capacity = 0,
-		NumBros = 0
+		Capacity = 0
 	},
 	function create()
 	{
@@ -88,7 +87,6 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.ToolsCreated = 0;
 		this.m.PointsSalvaged = 0;
 		this.m.ItemsDestroyed = 0;
-		this.m.NumBros = this.getModifiers().Assigned;
 		this.m.PointsNeeded = 0;
 		foreach (item in this.m.Salvage.filter(@(_, _item) (_item != null))) {
 			this.m.PointsNeeded += item.Item.getRepair();
@@ -411,6 +409,23 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		sourceItem.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
 		sourceItem.Item.setToBeSalvaged(isRepair, isRepair ? targetList.len() - 1 : 0);
 		return true;
+	}
+
+	function onSerialize(_out) {
+		this.camp_building.onSerialize(_out);
+		_out.writeI8(this.m.ItemsDestroyed);
+		_out.writeF32(this.m.PointsNeeded);
+		_out.writeF32(this.m.PointsSalvaged);
+		_out.writeF32(this.m.ToolsCreated);
+	}
+
+	function onDeserialize(_in) {
+		this.onInit();
+		this.camp_building.onDeserialize(_in);
+		this.m.ItemsDestroyed = _in.readI8();
+		this.m.PointsNeeded = _in.readF32();
+		this.m.PointsSalvaged = _in.readF32();
+		this.m.ToolsCreated = _in.readF32();
 	}
 });
 

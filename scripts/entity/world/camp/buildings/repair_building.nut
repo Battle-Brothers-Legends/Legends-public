@@ -9,8 +9,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		PointsRepaired = 0,
 	},
 
-	function create()
-	{
+	function create() {
 		this.camp_building.create();
 		this.m.ID = ::Legends.Camp.CampBuildings.Repair;
 		this.m.BaseCraft = 10.0;
@@ -38,7 +37,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getModifierTooltip() {
 		this.init();
-		local nonNullEntries = this.m.Repairs.filter(@(_, _item) (_item != null)).len();
+		local nonNullEntries = this.m.Repairs.filter(@(_, _item)(_item != null)).len();
 		local mod = this.getModifiers();
 		local ret = [
 			{
@@ -61,8 +60,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			}
 		];
 		local id = 6;
-		foreach (bro in mod.Modifiers)
-		{
+		foreach (bro in mod.Modifiers) {
 			ret.push({
 				id = id,
 				type = "hint",
@@ -74,17 +72,17 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return ret;
 	}
 
-	function getLevel()	{
+	function getLevel() {
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
-	function init()	{
+	function init() {
 		this.onInit();
 		this.m.ToolsUsed = 0;
 		this.m.PointsRepaired = 0;
 		this.m.ItemsRepaired = 0;
 		this.m.PointsNeeded = 0;
-		foreach (item in this.m.Repairs.filter(@(_, _item) (_item != null))) {
+		foreach (item in this.m.Repairs.filter(@(_, _item)(_item != null))) {
 			this.m.PointsNeeded += item.Item.getRepairMax() - item.Item.getRepair();
 		}
 	}
@@ -93,13 +91,13 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local items = this.getListOfItemsNeedingRepair();
 		this.m.Stash = items.Stash;
 		this.m.Repairs = items.Items;
-		local capacity =  this.m.Repairs.len() + this.m.Stash.len();
+		local capacity = this.m.Repairs.len() + this.m.Stash.len();
 		this.m.Capacity = capacity;
 		while (this.m.Stash.len() < capacity) {
 			this.m.Stash.push(null);
 		}
 
-		while (this.m.Repairs.len() < capacity)	{
+		while (this.m.Repairs.len() < capacity) {
 			this.m.Repairs.push(null);
 		}
 	}
@@ -119,7 +117,6 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.m.Repairs;
 	}
 
-
 	function getCapacity() {
 		return this.m.Capacity;
 	}
@@ -138,9 +135,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		];
 	}
 
-
-	function getModifiers()
-	{
+	function getModifiers() {
 		local ret = this.camp_building.getModifiers();
 		// Align consumption with field repairs.
 		// Base: ArmorPartsPerArmor=0.067 (~1/15).
@@ -149,19 +144,20 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 		ret.Craft += this.m.BaseCraft;
 		ret.Craft *= ::World.Assets.m.RepairSpeedMult;
-		if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0)
+		if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0) {
 			ret.Craft *= (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut);
+		}
 		local buff = ::Math.ceil(::World.getPlayerRoster().getAll().len() * ::Const.Difficulty.RepairMult[::World.Assets.getEconomicDifficulty()] * ::World.Assets.m.RepairSpeedMult * (1.33 * ::Const.World.Assets.ArmorPerHour));
 		ret.Craft = ret.Craft + buff; // to buff it as a compensation for disabling asset_manager part while camping
-		if (this.getUpgraded())	{
+		if (this.getUpgraded()) {
 			ret.Craft = ::Math.ceil(ret.Craft * 1.33);
 		}
 		return ret;
 	}
 
-	function getRepairPoints(){
+	function getRepairPoints() {
 		local points = 0;
-		local repairs = this.m.Repairs.filter(@(_, _item) (_item != null));
+		local repairs = this.m.Repairs.filter(@(_, _item)(_item != null));
 		foreach (_item in repairs) {
 			points += _item.Item.getRepairMax() - _item.Item.getRepair();
 		}
@@ -174,7 +170,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getRequiredTime() {
 		this.init();
-		if (this.m.Repairs == null)	{
+		if (this.m.Repairs == null) {
 			return 0;
 		}
 
@@ -185,27 +181,28 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.getModifiers().Assigned;
 	}
 
-
-	function getResourceImage()	{
+	function getResourceImage() {
 		return "ui/buttons/icon_time.png";
 	}
 
-	function getResourceCount()	{
+	function getResourceCount() {
 		return this.getRequiredTime();
 	}
 
 	function getUpdateText() {
-		if (this.m.PointsNeeded == 0)
+		if (this.m.PointsNeeded == 0) {
 			return "No repairs queued";
+		}
 
-		if (this.getRequiredSupplies() == 0)
+		if (this.getRequiredSupplies() == 0) {
 			return "Repaired ... 100%";
+		}
 
 		return "Repaired ... " + (::Math.floor((this.m.PointsRepaired / this.m.PointsNeeded) * 10000) / 100.0) + "%" + (::World.Assets.getArmorParts() == 0 ? "(No tools left!)" : "");
 	}
 
-	function update () {
-		if (this.m.Repairs == null)	{
+	function update() {
+		if (this.m.Repairs == null) {
 			this.init();
 		}
 
@@ -252,17 +249,17 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function getListOfItemsNeedingRepair() {
 		local items = [];
 		local stash = [];
-		foreach (bro in ::World.getPlayerRoster().getAll())	{
-			local broItemsToBeRepaired = bro.getItems().getAllItems().filter(@(_,_item) (_item != null && _item.getRepair() < _item.getRepairMax()));
-			foreach(item in broItemsToBeRepaired) {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			local broItemsToBeRepaired = bro.getItems().getAllItems().filter(@(_, _item)(_item != null && _item.getRepair() < _item.getRepairMax()));
+			foreach (item in broItemsToBeRepaired) {
 				items.push({
 					Bro = bro.getID(),
 					Item = item
 				});
 			}
 		}
-		local stashItemsToBeRepaired = ::Stash.getItems().filter(@(_,_item) (_item != null && _item.getRepair() < _item.getRepairMax()) && !_item.isToBeSalvaged());
-		foreach(item in stashItemsToBeRepaired) {
+		local stashItemsToBeRepaired = ::Stash.getItems().filter(@(_, _item)(_item != null && _item.getRepair() < _item.getRepairMax()) && !_item.isToBeSalvaged());
+		foreach (item in stashItemsToBeRepaired) {
 			local target = item.isToBeRepaired() ? items : stash;
 			target.push({
 				Bro = null,
@@ -270,19 +267,22 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			});
 		}
 		items.sort(@(_a, _b) _a.Item.isToBeRepairedQ() - _b.Item.isToBeRepairedQ());
-		return {Items = items, Stash = stash};
+		return {
+			Items = items,
+			Stash = stash
+		};
 	}
 
 	function assignEquipped() {
-		foreach( bro in ::World.getPlayerRoster().getAll())	{
-			local broItemsNeedingRepair = bro.getItems().getAllItems().filter(@(_,_item) (_item != null && _item.getRepair() < _item.getRepairMax() && !_item.isToBeRepaired()));
-			foreach(item in broItemsNeedingRepair) {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			local broItemsNeedingRepair = bro.getItems().getAllItems().filter(@(_, _item)(_item != null && _item.getRepair() < _item.getRepairMax() && !_item.isToBeRepaired()));
+			foreach (item in broItemsNeedingRepair) {
 				item.setToBeRepaired(true, 0);
 			}
 		}
 	}
 
-	function assignAll( _filter = 0 ) {
+	function assignAll(_filter = 0) {
 		if (_filter == 0) {
 			_filter = ::Const.Items.ItemFilter.All;
 		}
@@ -293,15 +293,15 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				continue;
 			}
 
-			if (_filter == 99 && s.Bro != null)	{
+			if (_filter == 99 && s.Bro != null) {
 				continue;
 			} else if ((s.Item.getItemType() & _filter) == 0) {
 				continue;
 			}
 
 			while (index < this.m.Repairs.len() && this.m.Repairs[index] != null) {
-                index++;
-            }
+				index++;
+			}
 
 			s.Item.setToBeRepaired(true, index);
 			s.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
@@ -310,7 +310,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			} else {
 				this.m.Repairs[index] = s;
 			}
-			
+
 			this.m.Stash[i] = null;
 			index++;
 		}
@@ -319,7 +319,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function removeAll() {
 		local index = 0;
 		foreach (i, s in this.m.Repairs) {
-			if (s == null)	{
+			if (s == null) {
 				continue;
 			}
 
@@ -327,15 +327,15 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			s.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
 
 			while (index < this.m.Stash.len() && this.m.Stash[index] != null) {
-                index++;
-            }
-			
+				index++;
+			}
+
 			if (index >= this.m.Stash.len()) {
 				this.m.Stash.push(s);
 			} else {
 				this.m.Stash[index] = s;
 			}
-			
+
 			this.m.Repairs[i] = null;
 			index++;
 		}
@@ -414,5 +414,22 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		sourceItem.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
 		sourceItem.Item.setToBeRepaired(isRepair, isRepair ? targetList.len() - 1 : 0);
 		return true;
+	}
+
+	function onSerialize(_out) {
+		this.camp_building.onSerialize(_out);
+		_out.writeI8(this.m.ItemsRepaired);
+		_out.writeF32(this.m.PointsNeeded);
+		_out.writeF32(this.m.PointsRepaired);
+		_out.writeF32(this.m.ToolsUsed);
+	}
+
+	function onDeserialize(_in) {
+		this.onInit();
+		this.camp_building.onDeserialize(_in);
+		this.m.ItemsRepaired = _in.readI8();
+		this.m.PointsNeeded = _in.readF32();
+		this.m.PointsRepaired = _in.readF32();
+		this.m.ToolsUsed = _in.readF32();
 	}
 });

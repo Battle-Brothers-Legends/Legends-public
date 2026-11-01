@@ -6,13 +6,13 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		BaseCraft = 0.15, // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
 		TrainingDescriptors = {
 			M = ["Short Guard ", "Upper Snake Guard ", "Bastard Cross ", "The Middle Iron Door ", "thrusts ", "trips ", "grapples ", "foot passing ", "striking ", "vambrace traps ", "a pommel bash ", "half sword ", "The Thumb Scissor ", "jabs ", "hand to hand combat "],
-    		T = ["for hours, ", "all day, ", "for several hours, ", "until exhaustion, ", "as long as possible, "],
-     		A = [" feels ready for a fight", " needs a real opponent", " is prepared for battle", " is keen to try it out", " is ready for a scrap"],
+			T = ["for hours, ", "all day, ", "for several hours, ", "until exhaustion, ", "as long as possible, "],
+			A = [" feels ready for a fight", " needs a real opponent", " is prepared for battle", " is keen to try it out", " is ready for a scrap"]
 		},
 		ActivityName = "Training"
 	},
-	function create()
-	{
+
+	function create() {
 		this.camp_building.create();
 		this.m.ID = ::Legends.Camp.CampBuildings.Training;
 		this.m.ModName = "Training";
@@ -47,7 +47,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		];
 
 		local id = 7;
-		foreach( bro in mod.Modifiers )	{
+		foreach (bro in mod.Modifiers) {
 			ret.push({
 				id = ++id,
 				type = "hint",
@@ -59,18 +59,16 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return ret;
 	}
 
-	function getLevel()	{
+	function getLevel() {
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
-	function init()	{
+	function init() {
 		this.m.Results = [];
-		this.m.NumBros = this.getAssignedBros();
-		local self = this;
-		this.m.Untrained = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro))).len();	
+		this.setModifiers();
 	}
 
-	function getModifiers()	{
+	function getModifiers() {
 		local ret = {
 			Craft = 0.0,
 			Assigned = 0,
@@ -80,8 +78,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		local self = this;
 
-		local trainingBros = roster.filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
-		foreach( bro in trainingBros ) {
+		local trainingBros = roster.filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		foreach (bro in trainingBros) {
 			ret.Assigned++;
 			ret.Modifiers.push([
 				this.m.BaseCraft * (1 + bro.getCurrentProperties().Modifiers.Training),
@@ -93,17 +91,23 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		ret.Modifiers.sort(this.sortModifiers);
 
-		for( local i = 0; i < ret.Modifiers.len(); i++ ) {
+		for (local i = 0; i < ret.Modifiers.len(); i++) {
 			ret.Craft += ret.Modifiers[i][0] * ::Math.pow(i + 1, -0.5) * (this.getUpgraded() ? 1.15 : 1.0);
 		}
 
 		return ret;
 	}
 
-	function getRandomBroName( broName, bros ) {
+	function setModifiers() {
+		this.m.NumBros = this.getAssignedBros();
+		local self = this;
+		this.m.Untrained = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro))).len();
+	}
+
+	function getRandomBroName(broName, bros) {
 		local names = [];
 
-		foreach( b in bros ) {
+		foreach (b in bros) {
 			if (b[1] != broName) {
 				names.push(b[1]);
 			}
@@ -111,7 +115,6 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		return names[::Math.rand(0, names.len() - 1)];
 	}
-
 
 	function getResults() {
 		local res = [];
@@ -131,21 +134,19 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.getModifiers().Assigned;
 	}
 
-	function getDescriptors( bro, extraTrainingDescriptors){
+	function getDescriptors(bro, extraTrainingDescriptors) {
 		local numberOfMTA = this.m.TrainingDescriptors.M.len() * this.m.TrainingDescriptors.T.len() * this.m.TrainingDescriptors.A.len();
 		local numberOfExtraDescriptors = extraTrainingDescriptors.len() + numberOfMTA;
 		local r = ::Math.rand(0, numberOfExtraDescriptors - 1);
 
 		if (r < numberOfMTA) {
 			return "After practicing " + this.m.TrainingDescriptors.M[(r / (this.m.TrainingDescriptors.A.len() * this.m.TrainingDescriptors.T.len())) % this.m.TrainingDescriptors.M.len()] + this.m.TrainingDescriptors.T[(r / this.m.TrainingDescriptors.A.len()) % this.m.TrainingDescriptors.T.len()] + bro.getName() + this.m.TrainingDescriptors.A[r % this.m.TrainingDescriptors.A.len()];
-		}
-		else {
+		} else {
 			return bro.getName() + extraTrainingDescriptors[r - numberOfMTA];
 		}
 	}
 
-	function getTrained( bro )
-	{
+	function getTrained(bro) {
 		local inTraining = ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining);
 		local XPbonus = ::Math.floor(this.m.Camp.getCampTimeHours() * (this.getUpgraded() ? 10 : 5) * (inTraining == null ? 1 : (1 + inTraining.getBonusXP())));
 		local originalXP = bro.m.XP;
@@ -165,8 +166,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			" sets a new personal best in training"
 		];
 
-		if (bro.getLevel() < 3)
-		{
+		if (bro.getLevel() < 3) {
 			extraTrainingDescriptors.push(" figures out what end of the weapon to hold");
 			extraTrainingDescriptors.push(" remembers that you can move your legs as well as your arms");
 		}
@@ -178,11 +178,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return true;
 	}
 
-	function getTrainedAfter11( bro ) {
+	function getTrainedAfter11(bro) {
 		if (bro.getSkills().hasEffect(::Legends.Effect.Trained)) {
 			return;
 		}
-		local effect = ::Legends.Effects.grant(bro, ::Legends.Effect.Trained, function(_effect) {
+		local effect = ::Legends.Effects.grant(bro, ::Legends.Effect.Trained, function (_effect) {
 			_effect.m.Duration = 1;
 			_effect.m.XPGainMult = 1.1;
 			_effect.m.Icon = "skills/status_effect_75.png";
@@ -200,15 +200,15 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return true;
 	}
 
-	function getFailed( _bro ) {
+	function getFailed(_bro) {
 		this.m.Results.push({
 			Icon = "ui/tooltips/negative.png", //Should get an icon for failed training
 			Text = _bro.getName() + " didn't learn anything useful."
 		});
 	}
 
-	function getBonus( bro ) {
-		if (!bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining))	{
+	function getBonus(bro) {
+		if (!bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining)) {
 			return;
 		}
 
@@ -222,67 +222,67 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local icon = "";
 		local properties = bro.getBaseProperties();
 
-		switch(::Math.rand(0, ::Const.Attributes.COUNT - 1))	{
-		case 0:
-			properties.Hitpoints += 1;
-			icon = "ui/icons/health.png";
-			text = "Hitpoint";
-			inTraining.addHitpoint();
-			break;
+		switch (::Math.rand(0, ::Const.Attributes.COUNT - 1)) {
+			case 0:
+				properties.Hitpoints += 1;
+				icon = "ui/icons/health.png";
+				text = "Hitpoint";
+				inTraining.addHitpoint();
+				break;
 
-		case 1:
-			properties.Bravery += 1;
-			icon = "ui/icons/bravery.png";
-			text = "Resolve";
-			inTraining.addBrave();
-			break;
+			case 1:
+				properties.Bravery += 1;
+				icon = "ui/icons/bravery.png";
+				text = "Resolve";
+				inTraining.addBrave();
+				break;
 
-		case 2:
-			properties.Stamina += 1;
-			icon = "ui/icons/fatigue.png";
-			text = "Fatigue";
-			inTraining.addStamina();
-			break;
+			case 2:
+				properties.Stamina += 1;
+				icon = "ui/icons/fatigue.png";
+				text = "Fatigue";
+				inTraining.addStamina();
+				break;
 
-		case 3:
-			properties.Initiative += 1;
-			icon = "ui/icons/initiative.png";
-			text = "Initiative";
-			inTraining.addIni();
-			break;
+			case 3:
+				properties.Initiative += 1;
+				icon = "ui/icons/initiative.png";
+				text = "Initiative";
+				inTraining.addIni();
+				break;
 
-		case 4:
-		case 5:
-			if (properties.MeleeSkill > properties.RangedSkill)	{
-				properties.MeleeSkill += 1;
-				icon = "ui/icons/melee_skill.png";
-				text = "Melee Skill";
-				inTraining.addMatk();
-			} else {
-				properties.RangedSkill += 1;
-				icon = "ui/icons/ranged_skill.png";
-				text = "Ranged Skill";
-				inTraining.addRatk();
-			}
+			case 4:
+			case 5:
+				if (properties.MeleeSkill > properties.RangedSkill) {
+					properties.MeleeSkill += 1;
+					icon = "ui/icons/melee_skill.png";
+					text = "Melee Skill";
+					inTraining.addMatk();
+				} else {
+					properties.RangedSkill += 1;
+					icon = "ui/icons/ranged_skill.png";
+					text = "Ranged Skill";
+					inTraining.addRatk();
+				}
 
-			break;
+				break;
 
-		case 6:
-			properties.MeleeDefense += 1;
-			icon = "ui/icons/melee_defense.png";
-			text = "Melee Defense";
-			inTraining.addMdef();
-			break;
+			case 6:
+				properties.MeleeDefense += 1;
+				icon = "ui/icons/melee_defense.png";
+				text = "Melee Defense";
+				inTraining.addMdef();
+				break;
 
-		case 7:
-			properties.RangedDefense += 1;
-			icon = "ui/icons/ranged_defense.png";
-			text = "Ranged Defense";
-			inTraining.addRdef();
-			break;
+			case 7:
+				properties.RangedDefense += 1;
+				icon = "ui/icons/ranged_defense.png";
+				text = "Ranged Defense";
+				inTraining.addRdef();
+				break;
 
-		default:
-			::logDebug("Intensive training attribute selection bug, please report it.")
+			default:
+				::logDebug("Intensive training attribute selection bug, please report it.")
 		}
 
 		bro.getSkills().update();
@@ -312,15 +312,15 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return null;
 		}
 
-		return "Training ... " + (this.getUpgraded() ? this.m.NumBros : (this.m.Untrained + " / " + this.m.NumBros) ) + " brothers";
+		return "Training ... " + (this.getUpgraded() ? this.m.NumBros : (this.m.Untrained + " / " + this.m.NumBros)) + " brothers";
 	}
 
 	function completed() {
 		local campHours = this.m.Camp.getCampTimeHours();
 		local mod = this.getUpgraded() ? this.getModifiers() : null;
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true)));
-		foreach(bro in assignedBros) {
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true)));
+		foreach (bro in assignedBros) {
 			this.addNegativeSideEffects(bro, campHours);
 
 			local succeeded = false;
@@ -333,11 +333,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				}
 			}
 
-			if (this.getUpgraded())	{
-				for(local hours = campHours; hours > 0;) {
+			if (this.getUpgraded()) {
+				for (local hours = campHours; hours > 0; ) {
 					local r = ::Math.rand(1, 100);
 
-					if (r <= hours + mod.Craft * hours)	{
+					if (r <= hours + mod.Craft * hours) {
 						succeeded = true;
 						this.getBonus(bro);
 						hours -= r;
@@ -352,5 +352,9 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			}
 		}
 	}
-});
 
+	function onDeserialize(_in) {
+		this.setModifiers();
+		this.camp_building.onDeserialize(_in);
+	}
+});

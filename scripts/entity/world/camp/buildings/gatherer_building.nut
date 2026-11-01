@@ -83,24 +83,29 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		};
 	}
 
-	function toggleMode( _id ) {
-        ::Legends.GatheringLoot.CampGatheringMode[_id] = !::Legends.GatheringLoot.CampGatheringMode[_id];
-    }
+	function toggleMode(_id) {
+		::Legends.GatheringLoot.CampGatheringMode[_id] = !::Legends.GatheringLoot.CampGatheringMode[_id];
+	}
 
 	function init() {
-		this.m.Results = [];
 		this.m.Items = [];
-		this.m.Craft = this.getModifiers().Craft;
 		this.m.Points = 0;
 		this.m.CurrentTarget = null;
 		this.m.PreviousTarget = null;
 		this.m.LootGenerator = ::Legends.GatheringLoot.getGenerator(::World.Camp.getCampingTerrain());
+		this.setModifiers();
+	}
+
+	function setModifiers() {
+		this.m.Craft = this.getModifiers().Craft;
+		this.m.Results = [];
 	}
 
 	function getResults() {
 		local res = [];
 		local id = 60;
-		foreach (item in this.m.Items) {
+		foreach (loot in this.m.Items) {
+			local item = ::new(loot);
 			res.push({
 				id = id,
 				icon = "ui/items/" + item.getIcon(),
@@ -177,13 +182,13 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				mainLoot.randomizeAmount();
 				mainLoot.randomizeBestBefore();
 			}
-			this.m.Items.push(mainLoot);
+			this.m.Items.push(this.m.CurrentTarget.Loot);
 			::Stash.add(mainLoot);
 
 			if (this.m.CurrentTarget.ExtraLoot != null && ::Stash.getNumberOfEmptySlots() > 1) {
 				local extraLoot = ::new(this.m.CurrentTarget.ExtraLoot);
-				this.m.Items.push(extraLoot);
-				if(extraLoot.isItemType(::Const.Items.ItemType.Supply)) {
+				this.m.Items.push(this.m.CurrentTarget.ExtraLoot);
+				if (extraLoot.isItemType(::Const.Items.ItemType.Supply)) {
 					extraLoot.consume();
 				} else {
 					::Stash.add(extraLoot);
@@ -208,24 +213,24 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 	function estimateGatheringTime(_difficulty, _craft) {
-        if (_craft <= 0) {
+		if (_craft <= 0) {
 			return null;
 		}
-    	local chancePerStep = _craft.tofloat() / _difficulty.tofloat();
-        local expectedHours = 0.0;
-        local cumulativeFailChance = 1.0;
+		local chancePerStep = _craft.tofloat() / _difficulty.tofloat();
+		local expectedHours = 0.0;
+		local cumulativeFailChance = 1.0;
 
-        for (local i = 1; i <= ::Math.ceil(1.0 / chancePerStep); i++) {
-            local successChance = ::Math.minf(1.0, i * chancePerStep);
-            expectedHours += i * cumulativeFailChance * successChance;
-            cumulativeFailChance *= (1.0 - successChance);
-            if (cumulativeFailChance <= 0.0) {
+		for (local i = 1; i <= ::Math.ceil(1.0 / chancePerStep); i++) {
+			local successChance = ::Math.minf(1.0, i * chancePerStep);
+			expectedHours += i * cumulativeFailChance * successChance;
+			cumulativeFailChance *= (1.0 - successChance);
+			if (cumulativeFailChance <= 0.0) {
 				break;
 			}
-        }
+		}
 
-        return ::Math.max(1, ::Math.round(expectedHours));
-    }
+		return ::Math.max(1, ::Math.round(expectedHours));
+	}
 
 	function getInfo() {
 		local mod = this.getModifiers();
@@ -234,93 +239,104 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local huntLevel = this.getHuntingLevel();
 		ret.push("Hunting Tier: " + (huntLevel != null ? (::Math.min(3, ::Math.floor(huntLevel / 7))) : 0));
 
-		ret.push(::Legends.tooltip("Allowed gathering: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.LegendMod.Language.arrayToText(this.getAllowedTargets().map(@(_v) (::Legends.Professions.ProfessionDefObjects[_v].Name))) + "</span>"));
+		ret.push(::Legends.tooltip("Allowed gathering: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.LegendMod.Language.arrayToText(this.getAllowedTargets().map(@(_v)(::Legends.Professions.ProfessionDefObjects[_v].Name))) + "</span>"));
 
 		local biome = ::World.Camp.getCampingTerrain();
-		ret.push("Current biome: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.World.TerrainLocation[biome] + "</span>") ;
+		ret.push("Current biome: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.World.TerrainLocation[biome] + "</span>");
 		if (!(biome in ::Legends.GatheringLoot.Biomes)) {
-            ret.push("No resources available in this location.");
-            return ret;
-        }
+			ret.push("No resources available in this location.");
+			return ret;
+		}
 
 		local biomeRewards = ::Legends.GatheringLoot.Biomes[biome];
 		foreach (prof in [::Legends.Profession.LegendForaging, ::Legends.Profession.LegendHunting, ::Legends.Profession.LegendMining, ::Legends.Profession.LegendWoodcutting]) {
-            ret.push("<u>" + ::Legends.Professions.ProfessionDefObjects[prof].Name + "</u>");
+			ret.push("<u>" + ::Legends.Professions.ProfessionDefObjects[prof].Name + "</u>");
 
-            foreach (targetData in biomeRewards[prof]) {
-                local target = targetData[1];
-                local hours = this.estimateGatheringTime(calcTargetDifficulty(prof, target.Difficulty), mod.Craft);
-                local text = "- " + target.Name + (hours != null ? " (around " + hours + " " + ::Legends.S.pluralize(hours, "hour") + ")" : "");
+			foreach (targetData in biomeRewards[prof]) {
+				local target = targetData[1];
+				local hours = this.estimateGatheringTime(calcTargetDifficulty(prof, target.Difficulty), mod.Craft);
+				local text = "- " + target.Name + (hours != null ? " (around " + hours + " " + ::Legends.S.pluralize(hours, "hour") + ")" : "");
 
-                if (prof == ::Legends.Profession.LegendHunting && !::Legends.GatheringLoot.hasSufficientHuntingLevelForTier(huntLevel, target.Tier) && hours != null) {
-                    ret.push("<s>" + text + "</s>");
-                    ret.push("<span style=\"color:%negative%; display: inline-block; padding-left: 2rem;\">Requires Hunting Tier " + target.Tier + "</span>");
-                } else {
-                    ret.push(text);
-                }
-            }
-        }
+				if (prof == ::Legends.Profession.LegendHunting && !::Legends.GatheringLoot.hasSufficientHuntingLevelForTier(huntLevel, target.Tier) && hours != null) {
+					ret.push("<s>" + text + "</s>");
+					ret.push("<span style=\"color:%negative%; display: inline-block; padding-left: 2rem;\">Requires Hunting Tier " + target.Tier + "</span>");
+				} else {
+					ret.push(text);
+				}
+			}
+		}
 
 		return ret;
 	}
 
 	function serializeTarget(_out, _target) {
 		if (_target != null) {
-            _out.writeBool(true);
-            _out.writeString(_target.Name);
-            _out.writeI32(_target.Difficulty);
+			_out.writeBool(true);
+			_out.writeString(_target.Name);
+			_out.writeI32(_target.Difficulty);
 			_out.writeI32(_target.Profession);
-            _out.writeString(_target.Loot);
-            _out.writeBool(_target.ExtraLoot != null);
-            if (_target.ExtraLoot != null) {
-                _out.writeString(_target.ExtraLoot);
-            }
-        } else {
-            _out.writeBool(false);
-        }
+			_out.writeString(_target.Loot);
+			_out.writeBool(_target.ExtraLoot != null);
+			if (_target.ExtraLoot != null) {
+				_out.writeString(_target.ExtraLoot);
+			}
+		} else {
+			_out.writeBool(false);
+		}
 	}
 
 	function onSerialize(_out) {
 		this.camp_building.onSerialize(_out);
 		_out.writeF32(this.m.Points);
-        _out.writeF32(this.m.TargetStartTime);
+		_out.writeF32(this.m.TargetStartTime);
 		this.serializeTarget(_out, this.m.CurrentTarget);
 		this.serializeTarget(_out, this.m.PreviousTarget);
 		if (this.m.LootGenerator != null) {
-            _out.writeBool(true);
-            _out.writeI8(this.m.LootGenerator.Biome);
-        } else {
-            _out.writeBool(false);
-        }
+			_out.writeBool(true);
+			_out.writeI8(this.m.LootGenerator.Biome);
+		} else {
+			_out.writeBool(false);
+		}
+		_out.writeU16(this.m.Items.len());
+		foreach (loot in this.m.Items) {
+			_out.writeString(loot);
+		}
 	}
 
 	function deserializeTarget(_in) {
 		if (_in.readBool()) {
-            local target = {
-                Name = _in.readString(),
-                Difficulty = _in.readI32(),
+			local target = {
+				Name = _in.readString(),
+				Difficulty = _in.readI32(),
 				Profession = _in.readI32(),
-                Loot = _in.readString(),
-                ExtraLoot = null
-            };
-            if (_in.readBool()) {
-                target.ExtraLoot = _in.readString();
-            }
+				Loot = _in.readString(),
+				ExtraLoot = null
+			};
+			if (_in.readBool()) {
+				target.ExtraLoot = _in.readString();
+			}
 			return target;
-        } else {
+		} else {
 			return null;
 		}
 	}
 
 	function onDeserialize(_in) {
-		this.init();
+		this.setModifiers();
 		this.camp_building.onDeserialize(_in);
-        this.m.Points = _in.readF32();
-        this.m.TargetStartTime = _in.readF32();
-        this.m.CurrentTarget = this.deserializeTarget(_in);
+		this.m.Points = _in.readF32();
+		this.m.TargetStartTime = _in.readF32();
+		this.m.CurrentTarget = this.deserializeTarget(_in);
 		this.m.PreviousTarget = this.deserializeTarget(_in);
-        if (_in.readBool()) {
-            this.m.LootGenerator = ::Legends.GatheringLoot.getGenerator(_in.readI8());
-        }
+		if (_in.readBool()) {
+			this.m.LootGenerator = ::Legends.GatheringLoot.getGenerator(_in.readI8());
+		}
+		this.m.Items = [];
+		local num = _in.readU16();
+		for (local i = 0; i < num; i++) {
+			this.m.Items.push(
+				_in.readString()
+			);
+		}
 	}
 });

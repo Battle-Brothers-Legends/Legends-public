@@ -12,6 +12,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		IntensiveCost = 0.2,
 		AutoIntensiveHealing = false
 	},
+
 	function create() {
 		this.camp_building.create();
 		this.m.ID = ::Legends.Camp.CampBuildings.Healer;
@@ -80,7 +81,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return ret;
 	}
 
-	function getLevel()	{
+	function getLevel() {
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
@@ -89,18 +90,18 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.getUpgraded() ? ::Math.floor(cost * 0.75) : cost;
 	}
 
-	function init()	{
+	function init() {
 		this.m.MedsUsedInjury = 0;
 		this.m.MedsUsedHP = 0;
 		this.m.IntensiveHPHealed = 0;
 		this.m.InjuriesHealed = [];
 		this.m.PointsNeeded = 0;
 
-		foreach(bro in ::World.getPlayerRoster().getAll()) {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			bro.setCampHealing(0);
 			this.m.PointsNeeded = ::Math.max(this.m.PointsNeeded, (bro.getHitpointsMax() - bro.getHitpoints()));
 		}
-		this.m.Rate = this.getModifiers().Craft;
+		this.setModifiers();
 		this.onInit();
 	}
 
@@ -108,8 +109,8 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local q = [];
 		if (this.m.Queue == null) {
 			foreach (b in ::World.getPlayerRoster().getAll()) {
-				local injuries = b.getSkills().query(::Const.SkillType.TemporaryInjury).filter(@(_, _i) (!_i.isTreated() && _i.isTreatable() && _i.getQueue() != 0));
-				foreach(i in injuries) {
+				local injuries = b.getSkills().query(::Const.SkillType.TemporaryInjury).filter(@(_, _i)(!_i.isTreated() && _i.isTreatable() && _i.getQueue() != 0));
+				foreach (i in injuries) {
 					q.push({
 						Injury = i,
 						Bro = b.weakref()
@@ -117,16 +118,16 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				}
 			}
 			q.sort(@(_a, _b) _a.Injury.getQueue() - _b.Injury.getQueue());
-		}
-		else {
+		} else {
 			foreach (queueEntry in this.m.Queue) {
-				if (queueEntry == null || queueEntry.Injury == null) { //Darxo's possible fix for injuries that heal automatically before they are tended in the tent
-                	continue;
-            	}
+				if (queueEntry == null || queueEntry.Injury == null) {
+					//Darxo's possible fix for injuries that heal automatically before they are tended in the tent
+					continue;
+				}
 				local bro = queueEntry.Bro;
 				if (bro == null || !this.isBroInRoster(bro)) {
-                	continue;
-            	}
+					continue;
+				}
 				if (("isNull" in queueEntry.Injury && queueEntry.Injury.isNull()) || queueEntry.Injury.getQueue() == 0) {
 					continue;
 				}
@@ -138,6 +139,10 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Queue = q;
 	}
 
+	function setModifiers() {
+		this.m.Rate = this.getModifiers().Craft;
+	}
+
 	function getResults() {
 		local id = 30;
 		local res = [];
@@ -147,29 +152,28 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				res.push({
 					id = id++,
 					icon = "ui/buttons/asset_medicine_down.png",
-					text = "You used " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.MedsUsedInjury), "negativeEvent", "unit") + " of medicine and treated " + ::Legends.S.colorizeAndPluralize(this.m.InjuriesHealed.len(), "positiveEvent", "injury") +  "."
+					text = "You used " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.MedsUsedInjury), "negativeEvent", "unit") + " of medicine and treated " + ::Legends.S.colorizeAndPluralize(this.m.InjuriesHealed.len(), "positiveEvent", "injury") + "."
 				});
 			}
 			if (this.m.IntensiveHPHealed > 0) {
-            	res.push({
+				res.push({
 					id = id++,
 					icon = "ui/buttons/asset_medicine_down.png",
 					text = "You used " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.MedsUsedHP), "negativeEvent", "unit") + " of medicine and healed " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.IntensiveHPHealed), "positiveEvent") + "."
 				});
-        	}
+			}
 		}
 
-		local injuries = this.m.InjuriesHealed.filter(@(_, _i) (_i.Injury != null && _i.Injury.getIcon() != null && _i.Injury.getName() != null));
-		foreach (i in injuries) {
+		foreach (i in this.m.InjuriesHealed) {
 			res.push({
 				id = id++,
-				icon = i.Injury.getIcon(),
-				text = i.Bro.getName() + " had " + ::String.replace(i.Injury.getName(), "(Treated)", "treated.")
+				icon = i.Icon,
+				text = i.BroName + " had " + ::String.replace(i.InjuryName, "(Treated)", "treated.")
 			});
 		}
 
-		local brosHealed = ::World.getPlayerRoster().getAll().filter(@(_, _b) (_b.getCampHealing() > 0));
-		foreach(bro in brosHealed) {
+		local brosHealed = ::World.getPlayerRoster().getAll().filter(@(_, _b)(_b.getCampHealing() > 0));
+		foreach (bro in brosHealed) {
 			res.push({
 				id = id++,
 				icon = "ui/icons/health.png",
@@ -182,17 +186,16 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function getModifiers() {
 		local ret = this.camp_building.getModifiers();
 		if (ret.Assigned == 0) {
-			ret.Craft = this.m.BaseCraft *  ::Const.Difficulty.HealMult[::World.Assets.getEconomicDifficulty()];
+			ret.Craft = this.m.BaseCraft * ::Const.Difficulty.HealMult[::World.Assets.getEconomicDifficulty()];
 		}
 		return ret;
 	}
 
-
 	function getUpdateText() {
 		local remainingInjuries = 0;
-    	local activeInjury = null;
+		local activeInjury = null;
 
-		local untreatedInjuries = this.m.Queue.filter(@(_, _i) (_i != null && _i.Injury != null && !_i.Injury.isTreated()));
+		local untreatedInjuries = this.m.Queue.filter(@(_, _i)(_i != null && _i.Injury != null && !_i.Injury.isTreated()));
 		foreach (i in untreatedInjuries) {
 			remainingInjuries++;
 			if (activeInjury == null) {
@@ -216,7 +219,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			return ret;
 		}
 
-		ret += "\n" +  ::Math.floor(activeInjury.Injury.getTreatedPercentage() * 10000) / 100.0 + "% of " + activeInjury.Injury.getName() + " healed";
+		ret += "\n" + ::Math.floor(activeInjury.Injury.getTreatedPercentage() * 10000) / 100.0 + "% of " + activeInjury.Injury.getName() + " healed";
 		return ret;
 	}
 
@@ -227,7 +230,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 
 		local modifiers = this.getModifiers();
-		for (local i = this.m.Queue.len() - 1; i >= 0; --i)	{
+		for (local i = this.m.Queue.len() - 1; i >= 0; --i) {
 			local obj = this.m.Queue[i];
 			if (obj == null || obj.Injury == null || ("isNull" in obj.Injury && obj.Injury.isNull()) || ("isGarbage" in obj.Injury && obj.Injury.isGarbage())) {
 				this.m.Queue.remove(i);
@@ -235,13 +238,13 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			}
 
 			local bro = obj.Bro;
-        	if (bro == null || !this.isBroInRoster(bro)) {
-            	this.m.Queue.remove(i);
-            	continue;
-        	}
+			if (bro == null || !this.isBroInRoster(bro)) {
+				this.m.Queue.remove(i);
+				continue;
+			}
 		}
 
-		if(modifiers.Assigned > 0) {
+		if (modifiers.Assigned > 0) {
 			foreach (i, obj in this.m.Queue) {
 				local r = obj.Injury;
 
@@ -288,16 +291,16 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local currentMissingHP = 0.0;
 		local healText = "Health points ... ";
 
-		local brothersToHeal = ::World.getPlayerRoster().getAll().filter(@(_, _b) (_b.getHitpointsMax() - _b.getHitpoints() > 0));
+		local brothersToHeal = ::World.getPlayerRoster().getAll().filter(@(_, _b)(_b.getHitpointsMax() - _b.getHitpoints() > 0));
 		foreach (bro in brothersToHeal) {
 			local rate = this.getRate();
 			local missing = bro.getHitpointsMax().tofloat() - bro.getHitpoints();
 			if (missing > rate && this.getUpgraded() && (this.m.AutoIntensiveHealing || bro.getFlags().get("CampIntensiveCare")) && ::World.Assets.getMedicine() > 0) {
 				local medCost = this.getIntensiveCost() * ::Math.minf(missing - rate, rate * (this.getIntensiveRate() - 1.0));
 				if (::World.Assets.getMedicine() >= medCost) {
-            		::World.Assets.addMedicine(-medCost);
-            		this.m.MedsUsedHP += medCost;
-            		rate *= this.getIntensiveRate();
+					::World.Assets.addMedicine(-medCost);
+					this.m.MedsUsedHP += medCost;
+					rate *= this.getIntensiveRate();
 				} else {
 					local availableMeds = ::World.Assets.getMedicine();
 					::World.Assets.addMedicine(-availableMeds);
@@ -327,11 +330,15 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return injuryText + healText + "%";
 	}
 
-	function healInjury( _idx ) {
+	function healInjury(_idx) {
 		local table = this.m.Queue[_idx];
 		table.Injury.setTreated(true);
 		table.Injury.setQueue(0);
-		this.m.InjuriesHealed.push(table);
+		this.m.InjuriesHealed.push({
+			Icon = table.Injury.getIcon(),
+			InjuryName = table.Injury.getName(),
+			BroName = table.Bro.getName()
+		});
 		local bro = table.Bro;
 		if (bro != null) {
 			if (this.isBroInRoster(bro)) {
@@ -343,8 +350,8 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getQueue() {
 		local ret = [];
-		local injuries = this.m.Queue.filter(@(_, _i) (_i != null));
-		foreach(i in injuries) {
+		local injuries = this.m.Queue.filter(@(_, _i)(_i != null));
+		foreach (i in injuries) {
 			local b = i.Injury;
 			local r = {
 				ID = b.getID(),
@@ -360,10 +367,10 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getRoster() {
 		local roster = [];
-		foreach(b in ::World.getPlayerRoster().getAll()) {
+		foreach (b in ::World.getPlayerRoster().getAll()) {
 			local injuries = [];
-			local untreatedInjuries = b.getSkills().query(::Const.SkillType.TemporaryInjury).filter(@(_, _i) (!_i.isTreated()));
-			foreach (i in untreatedInjuries){
+			local untreatedInjuries = b.getSkills().query(::Const.SkillType.TemporaryInjury).filter(@(_, _i)(!_i.isTreated()));
+			foreach (i in untreatedInjuries) {
 				injuries.push({
 					id = i.getID(),
 					icon = i.getIconColored(),
@@ -378,7 +385,6 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				continue;
 			}
 
-
 			local background = b.getBackground();
 			local e = {
 				ID = b.getID(),
@@ -389,8 +395,8 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				BackgroundImagePath = background.getIconColored(),
 				BackgroundText = background.getDescription(),
 				Injuries = injuries,
-				Order = injuries.len() > 0 ? 1 : b.getHitpointsMax() > b.getHitpoints() ? 2 : 3,
-            	IsIntensiveCare = b.getFlags().get("CampIntensiveCare")
+				Order = injuries.len() > 0 ? 1: b.getHitpointsMax() > b.getHitpoints() ? 2: 3,
+				IsIntensiveCare = b.getFlags().get("CampIntensiveCare")
 			};
 			roster.push(e);
 		}
@@ -400,38 +406,37 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	}
 
 	function isBroInRoster(_bro) {
-		return ::World.getPlayerRoster().getAll().filter(@(_, _b) (_b.getID() == _bro.getID())).len() > 0 ? true : false;
+		return ::World.getPlayerRoster().getAll().filter(@(_, _b)(_b.getID() == _bro.getID())).len() > 0 ? true : false;
 	}
 
 	function getRequiredMeds() {
 		local points = 0;
-		local injuries = this.m.Queue.filter(@(_, _i) (_i != null));
-		foreach (i in injuries)	{
+		local injuries = this.m.Queue.filter(@(_, _i)(_i != null));
+		foreach (i in injuries) {
 			points += this.getCost(i.Injury);
 		}
 		return points;
 	}
 
-	function getRequiredTime(){
+	function getRequiredTime() {
 		local craft = this.getModifiers().Craft;
-        return (this.m.Queue != null && craft > 0) ? ::Math.ceil(this.getRequiredMeds() / craft) : 0;
+		return (this.m.Queue != null && craft > 0) ? ::Math.ceil(this.getRequiredMeds() / craft) : 0;
 	}
 
 	function getAssignedBros() {
 		return this.getModifiers().Assigned;
 	}
 
-
-	function getResourceImage()	{
+	function getResourceImage() {
 		return "ui/buttons/icon_time.png";
 	}
 
-	function getResourceCount()	{
+	function getResourceCount() {
 		this.init();
 		return ::Math.max(this.getRequiredTime(), ::Math.ceil(this.m.PointsNeeded / this.getRate()));
 	}
 
-	function onAdd(_entityID, _injuryID)	{
+	function onAdd(_entityID, _injuryID) {
 		local entity = ::Tactical.getEntityByID(_entityID);
 		local injury = entity.getSkills().getSkillByID(_injuryID);
 		this.m.Queue.push({
@@ -442,11 +447,11 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.playTreatmentSound();
 	}
 
-	function onRemove( _idx ) {
+	function onRemove(_idx) {
 		this.m.Queue.remove(_idx).Injury.setQueue(0);
 	}
 
-	function onSwap( _source, _target) {
+	function onSwap(_source, _target) {
 		local item = this.m.Queue[_source];
 		item.Injury.setQueue(_target + 1);
 		this.m.Queue[_target].Injury.setQueue(_source + 1);
@@ -455,7 +460,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.playTreatmentSound();
 	}
 
-	function onBroLeave( _bro )	{
+	function onBroLeave(_bro) {
 		foreach (i in _bro.getSkills().query(::Const.SkillType.TemporaryInjury)) {
 			i.setQueue(0);
 		}
@@ -471,7 +476,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	}
 
 	function getIntensiveCost() {
-    	return this.m.IntensiveCost;
+		return this.m.IntensiveCost;
 	}
 
 	function onPopupButtonClicked(_data) {
@@ -481,7 +486,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 	}
 
-	function setMode( _m ) {
+	function setMode(_m) {
 		this.m.AutoIntensiveHealing = _m ? true : false;
 	}
 
@@ -489,7 +494,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return {
 			Title = "Auto Intensive Care",
 			Buttons = ["Manual", "Auto"],
-			CurrentMode = this.m.AutoIntensiveHealing ? 1 : 0
+			CurrentMode = this.m.AutoIntensiveHealing ? 1: 0
 		};
 	}
 
@@ -497,13 +502,37 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.m.HasPopup && this.getUpgraded();
 	}
 
-	function onSerialize( _out ) {
-    	this.camp_building.onSerialize(_out);
-    	_out.writeBool(this.m.AutoIntensiveHealing);
+	function onSerialize(_out) {
+		this.camp_building.onSerialize(_out);
+		_out.writeF32(this.m.MedsUsedInjury);
+		_out.writeF32(this.m.MedsUsedHP);
+		_out.writeF32(this.m.PointsNeeded);
+		_out.writeF32(this.m.IntensiveHPHealed);
+		_out.writeBool(this.m.AutoIntensiveHealing);
+		_out.writeU16(this.m.InjuriesHealed.len());
+		foreach (injury in this.m.InjuriesHealed) {
+			_out.writeString(injury.Icon);
+			_out.writeString(injury.InjuryName);
+			_out.writeString(injury.BroName);
+		}
 	}
 
-	function onDeserialize( _in ) {
-    	this.camp_building.onDeserialize(_in);
-    	this.m.AutoIntensiveHealing = _in.readBool();
+	function onDeserialize(_in) {
+		this.setModifiers();
+		this.camp_building.onDeserialize(_in);
+		this.m.MedsUsedInjury = _in.readF32();
+		this.m.MedsUsedHP = _in.readF32();
+		this.m.PointsNeeded = _in.readF32();
+		this.m.IntensiveHPHealed = _in.readF32();
+		this.m.AutoIntensiveHealing = _in.readBool();
+		this.m.InjuriesHealed = [];
+		local num = _in.readU16();
+		for (local i = 0; i < num; i++) {
+			this.m.InjuriesHealed.push({
+				Icon = _in.readString(),
+				InjuryName = _in.readString(),
+				BroName = _in.readString()
+			});
+		}
 	}
 });
