@@ -4,7 +4,6 @@ this.legend_dog_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_dog";
-		this.m.Type = ::Const.Items.ItemType.Accessory;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_wardog_item");
 		this.m.PreviewCraftable.m.Name = "Wardog";
 		this.m.Cost = 120;

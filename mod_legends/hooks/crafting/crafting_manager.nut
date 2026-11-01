@@ -19,7 +19,7 @@
 			if (o.m.Filters.find(category) == null) {
 				category = "Other";
 			}
-			
+
 			if (b.m.BlueprintType == "Crafting" && (_filter != "All" && (category != _filter))) {
 				continue;
 			}
@@ -56,8 +56,11 @@
 			return -1;
 		} else if (!_b1.IsCraftable && _b2.IsCraftable) {
 			return 1;
+		} else if (_b1.Category > _b2.Category) {
+			return 1;
+		} else if (_b1.Category < _b2.Category) {
+			return -1;
 		} else if (_b1.Type > _b2.Type) {
-			//tbd
 			return 1;
 		} else if (_b1.Type < _b2.Type) {
 			return -1;

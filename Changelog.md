@@ -431,6 +431,7 @@
 ### Blueprints
 - new `Sipar Shield` blueprint from 1 iron ingot
 - `Tower Shield` blueprint now costs 2 quality wood and 1 iron ingot
+- blueprints are now sorted via profession, then actual crafted item type
 
 ### Misc
 - `Balanced Rucksack` - usable item sold around marketplaces which adds 2 extra bag slots to a mercenary
@@ -533,6 +534,8 @@
 - gathering now incorporates hunting and has been overhauled
 - gathering now allows the company to collect more types of materials
 - it is now possible to restrict the types of materials to gather
+- crafting dialog is now filtered by profession, recipes that aren't using the new def system are assigned "Other" automatically
+- blueprints are no longer typed, instead default sorting defaults to the item type of the crafted item
 
 ## New Campaign
 - changed the labels so the functions are easier to understand
@@ -742,6 +745,7 @@
 - `::Const.World.Common.pickArmorUpgrade` becomes `::Legends.Items.pickArmorUpgrade`
 - `::Const.World.Common.pickOutfit` becomes `::Legends.Items.pickOutfit`
 - `::Const.World.Common.convNameToList` becomes `::Legends.Items.convNameToList`
+- added a blueprint defs system, it is optional, but using it allows custom recipes to use profession crafting modifiers and to be categorized under certain filters
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

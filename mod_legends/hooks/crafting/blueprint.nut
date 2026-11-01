@@ -2,8 +2,7 @@
 	while (!("ID" in o.m)) o = o[o.SuperName];
 
 	o.m.PreviewSkills <- [];
-	o.m.BlueprintType <- "Crafting"; // tbd
-	o.m.Type <- ::Const.Items.ItemType.None;
+	o.m.BlueprintType <- "Crafting";
 	o.m.CraftMultiplier <- 1.0;
 
 	o.create = function () {
@@ -24,12 +23,11 @@
 					this.initSkillsOneOf(requirements);
 				}
 			}
-			this.m.Type = ::Const.Items.ItemType.Accessory; //tbd
 		}
 	}
 
 	o.getItemType <- function () {
-		return this.m.Type;
+		return this.m.PreviewCraftable.getItemType();
 	}
 
 	o.getCategory <- function () {
@@ -235,7 +233,8 @@
 			Ingredients = this.getIngredients(),
 			Cost = this.getCost(),
 			IsCraftable = this.isCraftable(),
-			Type = this.getItemType()
+			Type = this.getItemType(),
+			Category = this.getCategory()
 		};
 		if ("Variants" in this.m && this.m.Variants > 0) {
 			ret.Variants <- this.m.Variants;
