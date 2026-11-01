@@ -32,6 +32,10 @@
 		return this.m.Type;
 	}
 
+	o.getCategory <- function () {
+		return "Category" in this.m ? this.m.Category : "Other";
+	}
+
 	o.getCostForCraft <- function () {
 		local modifier = 1.0;
 

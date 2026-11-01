@@ -61,6 +61,16 @@ var Asset =
 	BUTTON_ORGANIZE_LAYERS_STRIP:			'ui/buttons/organize_layers_strip_button.png',
 	BUTTON_FLEE:                            'ui/skin/icon_retreat.png',
 
+	BUTTON_TAILORING_FILTER:				'ui/buttons/filter_tailoring.png',
+	BUTTON_LEATHERWORKING_FILTER:			'ui/buttons/filter_leatherworking.png',
+	BUTTON_METALWORKING_FILTER:				'ui/buttons/filter_metalworking.png',
+	BUTTON_WOODWORKING_FILTER:				'ui/buttons/filter_woodworking.png',
+	BUTTON_TROPHY_CARVING_FILTER:			'ui/buttons/filter_trophy_carving.png',
+	BUTTON_ALCHEMY_FILTER:					'ui/buttons/filter_alchemy.png',
+	BUTTON_HERBCRAFT_FILTER:				'ui/buttons/filter_herbcraft.png',
+	BUTTON_CHARLATAN_FILTER:				'ui/buttons/filter_charlatan.png',
+	BUTTON_OTHER_FILTER:					'ui/buttons/filter_other.png',
+
     BUTTON_MONEY_ASSET:                     'ui/buttons/money-asset-button.png',
     BUTTON_FOOD_ASSET:                      'ui/buttons/food-asset-button.png',
     BUTTON_BROTHERS_ASSET:                  'ui/buttons/brothers-asset-button.png',

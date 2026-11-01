@@ -3477,6 +3477,146 @@
 					}
 				];
 
+			case "camp-screen.crafting-dialog-module.FilterAllButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: All"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show all recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterTailoringButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Tailoring"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show tailoring recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterLeatherworkingButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Leatherworking"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show leatherworking recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterMetalworkingButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Metalworking"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show metalworking recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterWoodworkingButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Woodworking"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show woodworking recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterTrophyCarvingButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Trophy Carving"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show trophy carving recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterAlchemyButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Alchemy"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show alchemy recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterHerbcraftButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Herbcraft"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show herbcraft recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterCharlatanButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Charlatan"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show charlatan recipes."
+					}
+				];
+
+			case "camp-screen.crafting-dialog-module.FilterOtherButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Filter Items: Other"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Show other recipes."
+					}
+				];
+
 			case "world-screen.topbar.TimePauseButton":
 				return [
 					{

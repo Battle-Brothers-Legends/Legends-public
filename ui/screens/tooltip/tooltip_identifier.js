@@ -366,6 +366,19 @@ var TooltipIdentifier =
 			ProfessionPlanScreenTentative: 'character-screen.right-panel-header-module.ProfessionPlanScreenTentative',
 		},
 
+		CampScreenCraftingDialogModule:{
+			FilterAllButton: 'camp-screen.crafting-dialog-module.FilterAllButton',
+			FilterTailoringButton: 'camp-screen.crafting-dialog-module.FilterTailoringButton',
+			FilterLeatherworkingButton: 'camp-screen.crafting-dialog-module.FilterLeatherworkingButton',
+			FilterMetalworkingButton: 'camp-screen.crafting-dialog-module.FilterMetalworkingButton',
+			FilterWoodworkingButton: 'camp-screen.crafting-dialog-module.FilterWoodworkingButton',
+			FilterTrophyCarvingButton: 'camp-screen.crafting-dialog-module.FilterTrophyCarvingButton',
+			FilterAlchemyButton: 'camp-screen.crafting-dialog-module.FilterAlchemyButton',
+			FilterHerbcraftButton: 'camp-screen.crafting-dialog-module.FilterHerbcraftButton',
+			FilterCharlatanButton: 'camp-screen.crafting-dialog-module.FilterCharlatanButton',
+			FilterOtherButton: 'camp-screen.crafting-dialog-module.FilterOtherButton',
+		},
+
 		BattleStartFooterModule:
 		{
 			StartBattleButton: 'character-screen.battle-start-footer-module.StartBattleButton'

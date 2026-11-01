@@ -1,8 +1,7 @@
 
 "use strict";
 
-var CampScreenCraftingDialogModule = function(_parent)
-{
+var CampScreenCraftingDialogModule = function (_parent) {
 	this.mSQHandle = null;
 	this.mParent = _parent;
 
@@ -35,7 +34,7 @@ var CampScreenCraftingDialogModule = function(_parent)
 	// assets labels
 	this.mAssetValues = null;
 	this.mTimeAsset = null;
-	this.mBrothersAsset	= null;
+	this.mBrothersAsset = null;
 
 	// buttons
 	this.mLeaveButton = null;
@@ -48,51 +47,52 @@ var CampScreenCraftingDialogModule = function(_parent)
 
 	// buttons
 	this.mFilterPanel = null;
-	this.mFilterAllButton = null;
-	this.mFilterWeaponsButton = null;
-	this.mFilterArmorButton = null;
-	this.mFilterMiscButton = null;
-	this.mFilterUsableButton = null;
+	this.mCraftingFilters = {
+		mFilterAllButton: null,
+		mFilterTailoringButton: null,
+		mFilterLeatherworkingButton: null,
+		mFilterMetalworkingButton: null,
+		mFilterWoodworkingButton: null,
+		mFilterTrophyCarvingButton: null,
+		mFilterAlchemyButton: null,
+		mFilterHerbcraftButton: null,
+		mFilterCharlatanButton: null,
+		mFilterOtherButton: null
+	}
 
 	// pagination
 	this.mSearch = {
-		ResultButtons : [],
-		ResultPageList : null,
+		ResultButtons: [],
+		ResultPageList: null,
 	};
 	this.mItemPerPage = 4;
 	this.mMaxVisiblePage = 9;
 };
 
 
-CampScreenCraftingDialogModule.prototype.isConnected = function ()
-{
+CampScreenCraftingDialogModule.prototype.isConnected = function () {
 	return this.mSQHandle !== null;
 };
 
-CampScreenCraftingDialogModule.prototype.onConnection = function (_handle)
-{
+CampScreenCraftingDialogModule.prototype.onConnection = function (_handle) {
 	this.mSQHandle = _handle;
 
 	// notify listener
-	if (this.mEventListener !== null && ('onModuleOnConnectionCalled' in this.mEventListener))
-	{
+	if (this.mEventListener !== null && ('onModuleOnConnectionCalled' in this.mEventListener)) {
 		this.mEventListener.onModuleOnConnectionCalled(this);
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.onDisconnection = function ()
-{
+CampScreenCraftingDialogModule.prototype.onDisconnection = function () {
 	this.mSQHandle = null;
 
 	// notify listener
-	if (this.mEventListener !== null && ('onModuleOnDisconnectionCalled' in this.mEventListener))
-	{
+	if (this.mEventListener !== null && ('onModuleOnDisconnectionCalled' in this.mEventListener)) {
 		this.mEventListener.onModuleOnDisconnectionCalled(this);
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.createDIV = function (_parentDiv)
-{
+CampScreenCraftingDialogModule.prototype.createDIV = function (_parentDiv) {
 	var self = this;
 
 	// create: containers (init hidden!)
@@ -107,8 +107,7 @@ CampScreenCraftingDialogModule.prototype.createDIV = function (_parentDiv)
 	// create assets
 	this.mTimeAsset = this.createAssetDIV(tabButtonsContainer, Path.GFX + 'ui/buttons/icon_time.png', 'is-time-required');
 	var assetContainer = $('<div class="l-tab-asset is-brothers"></div>');
-	this.mBrothersAsset = this.createImageButton(assetContainer, Path.GFX + Asset.ICON_ASSET_BROTHERS, function()
-	{
+	this.mBrothersAsset = this.createImageButton(assetContainer, Path.GFX + Asset.ICON_ASSET_BROTHERS, function () {
 		self.notifyBackendBrothersButtonPressed();
 	});
 	tabButtonsContainer.append(assetContainer);
@@ -124,65 +123,105 @@ CampScreenCraftingDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mFilterPanel = $('<div class="filter-panel"/>');
 	column.append(this.mFilterPanel);
 
-	var layout = $('<div class="l-button is-all-filter"/>');
+	var layout = $('<div class="l-button is-filter-1"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterAllButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ALL_FILTER, function ()
-	{
-		self.mFilterAllButton.addClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
+	this.mCraftingFilters.mFilterAllButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ALL_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterAllButton.addClass('is-active');
 		self.notifyBackendFilterAllButtonClicked();
 	}, '', 3);
-	this.mFilterAllButton.addClass('is-active');
+	this.mCraftingFilters.mFilterAllButton.addClass('is-active');
 
-	var layout = $('<div class="l-button is-weapons-filter"/>');
+	var layout = $('<div class="l-button is-filter-2"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterWeaponsButton = layout.createImageButton(Path.GFX + Asset.BUTTON_WEAPONS_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.addClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.notifyBackendFilterWeaponsButtonClicked();
+	this.mCraftingFilters.mFilterTailoringButton = layout.createImageButton(Path.GFX + Asset.BUTTON_TAILORING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterTailoringButton.addClass('is-active');
+		self.notifyBackendFilterTailoringButtonClicked();
 	}, '', 3);
 
-	var layout = $('<div class="l-button is-armor-filter"/>');
+	var layout = $('<div class="l-button is-filter-3"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterArmorButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ARMOR_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.addClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.notifyBackendFilterArmorButtonClicked();
+	this.mCraftingFilters.mFilterLeatherworkingButton = layout.createImageButton(Path.GFX + Asset.BUTTON_LEATHERWORKING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterLeatherworkingButton.addClass('is-active');
+		self.notifyBackendFilterLeatherworkingButtonClicked();
 	}, '', 3);
 
-	var layout = $('<div class="l-button is-misc-filter"/>');
+	var layout = $('<div class="l-button is-filter-4"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterMiscButton = layout.createImageButton(Path.GFX + Asset.BUTTON_MISC_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.addClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.notifyBackendFilterMiscButtonClicked();
+	this.mCraftingFilters.mFilterMetalworkingButton = layout.createImageButton(Path.GFX + Asset.BUTTON_METALWORKING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterMetalworkingButton.addClass('is-active');
+		self.notifyBackendFilterMetalworkingButtonClicked();
 	}, '', 3);
 
-	var layout = $('<div class="l-button is-usable-filter"/>');
+	var layout = $('<div class="l-button is-filter-5"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterUsableButton = layout.createImageButton(Path.GFX + Asset.BUTTON_USABLE_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.addClass('is-active');
-		self.notifyBackendFilterUsableButtonClicked();
+	this.mCraftingFilters.mFilterWoodworkingButton = layout.createImageButton(Path.GFX + Asset.BUTTON_WOODWORKING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterWoodworkingButton.addClass('is-active');
+		self.notifyBackendFilterWoodworkingButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-6"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterTrophyCarvingButton = layout.createImageButton(Path.GFX + Asset.BUTTON_TROPHY_CARVING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterTrophyCarvingButton.addClass('is-active');
+		self.notifyBackendFilterTrophyCarvingButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-7"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterAlchemyButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ALCHEMY_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterAlchemyButton.addClass('is-active');
+		self.notifyBackendFilterAlchemyButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-8"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterHerbcraftButton = layout.createImageButton(Path.GFX + Asset.BUTTON_HERBCRAFT_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterHerbcraftButton.addClass('is-active');
+		self.notifyBackendFilterHerbcraftButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-9"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterCharlatanButton = layout.createImageButton(Path.GFX + Asset.BUTTON_CHARLATAN_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterCharlatanButton.addClass('is-active');
+		self.notifyBackendFilterCharlatanButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-10"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterOtherButton = layout.createImageButton(Path.GFX + Asset.BUTTON_OTHER_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterOtherButton.addClass('is-active');
+		self.notifyBackendFilterOtherButtonClicked();
 	}, '', 3);
 
 	var listContainerLayout = $('<div class="l-list-container"/>');
@@ -240,28 +279,22 @@ CampScreenCraftingDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.Container.append(detailsRow);
 	var craftButtonLayout = $('<div class="l-hire-button"/>');
 	detailsRow.append(craftButtonLayout);
-	this.mDetailsPanel.CraftButton = craftButtonLayout.createTextButton("Craft", function ()
-	{
-		if (self.mSelectedEntry !== null)
-		{
+	this.mDetailsPanel.CraftButton = craftButtonLayout.createTextButton("Craft", function () {
+		if (self.mSelectedEntry !== null) {
 			var data = self.mSelectedEntry.data('entry');
-			if ('ID' in data && data['ID'] !== null)
-			{
-				self.notifyBackendCraft({ID: data['ID'], Variant: 1}, null)
+			if ('ID' in data && data['ID'] !== null) {
+				self.notifyBackendCraft({ ID: data['ID'], Variant: 1 }, null)
 			}
 		}
 	}, '', 1);
 
 	craftButtonLayout = $('<div class="l-craft-forever-button"/>');
 	detailsRow.append(craftButtonLayout);
-	this.mDetailsPanel.CraftForeverButton = craftButtonLayout.createTextButton("Craft Forever", function ()
-	{
-		if (self.mSelectedEntry !== null)
-		{
+	this.mDetailsPanel.CraftForeverButton = craftButtonLayout.createTextButton("Craft Forever", function () {
+		if (self.mSelectedEntry !== null) {
 			var data = self.mSelectedEntry.data('entry');
-			if ('ID' in data && data['ID'] !== null)
-			{
-				self.notifyBackendCraftForever({ID: data['ID'], Variant: 1}, null)
+			if ('ID' in data && data['ID'] !== null) {
+				self.notifyBackendCraftForever({ ID: data['ID'], Variant: 1 }, null)
 			}
 		}
 	}, '', 1);
@@ -273,16 +306,14 @@ CampScreenCraftingDialogModule.prototype.createDIV = function (_parentDiv)
 	// create: buttons
 	var layout = $('<div class="l-leave-button"/>');
 	footerButtonBar.append(layout);
-	this.mLeaveButton = layout.createTextButton("Leave", function ()
-	{
+	this.mLeaveButton = layout.createTextButton("Leave", function () {
 		self.notifyBackendLeaveButtonPressed();
 	}, '', 1);
 
 	this.mIsVisible = false;
 };
 
-CampScreenCraftingDialogModule.prototype.destroyDIV = function ()
-{
+CampScreenCraftingDialogModule.prototype.destroyDIV = function () {
 	this.mTimeAsset.remove();
 	this.mTimeAsset = null;
 	this.mBrothersAsset.remove();
@@ -304,7 +335,7 @@ CampScreenCraftingDialogModule.prototype.destroyDIV = function ()
 	this.mQueueScrollContainer = null;
 	this.mQueueContainer.destroyList();
 	this.mQueueContainer.remove();
-	this.mQueueContainer= null;
+	this.mQueueContainer = null;
 
 	this.mLeaveButton.remove();
 	this.mLeaveButton = null;
@@ -325,17 +356,14 @@ CampScreenCraftingDialogModule.prototype.destroyDIV = function ()
 	this.mQueueSlots = null;
 };
 
-CampScreenCraftingDialogModule.prototype.loadQueueData = function (_data)
-{
-	if(_data === undefined || _data === null || !jQuery.isArray(_data))
-	{
+CampScreenCraftingDialogModule.prototype.loadQueueData = function (_data) {
+	if (_data === undefined || _data === null || !jQuery.isArray(_data)) {
 		return;
 	}
 
 	this.mQueueList = _data;
 
-	if(this.mQueueSlots === null)
-	{
+	if (this.mQueueSlots === null) {
 		this.mQueueSlots = [];
 	}
 
@@ -346,21 +374,17 @@ CampScreenCraftingDialogModule.prototype.loadQueueData = function (_data)
 	this.assignItems('camp-screen-crafting-dialog-module.shop', _data, _data.length, arrayRef.val, containerRef.val);
 };
 
-CampScreenCraftingDialogModule.prototype.assignItemToSlot = function(_owner, _slot, _item)
-{
+CampScreenCraftingDialogModule.prototype.assignItemToSlot = function (_owner, _slot, _item) {
 	var remove = false;
 
-	if(!('ID' in _item) || !('ImagePath' in _item))
-	{
+	if (!('ID' in _item) || !('ImagePath' in _item)) {
 		remove = true;
 	}
 
-	if(remove === true)
-	{
+	if (remove === true) {
 		this.removeItemFromSlot(_slot);
 	}
-	else
-	{
+	else {
 		// update item data
 		var itemData = _slot.data('item') || {};
 		itemData.id = _item.ID;
@@ -374,11 +398,10 @@ CampScreenCraftingDialogModule.prototype.assignItemToSlot = function(_owner, _sl
 
 		var percentage = Math.round(_item.Percentage) == _item.Percentage ? _item.Percentage : _item.Percentage.toFixed(1);
 
-		_slot.assignListItemAmount('' + percentage +'%', '#ffffff');
+		_slot.assignListItemAmount('' + percentage + '%', '#ffffff');
 
-		if (_item.Forever)
-		{
-			var infinityLayer =$('<div class="infinity-layer display-block"/>');
+		if (_item.Forever) {
+			var infinityLayer = $('<div class="infinity-layer display-block"/>');
 			_slot.append(infinityLayer);
 
 			var infinityImage = $('<img/>');
@@ -391,17 +414,13 @@ CampScreenCraftingDialogModule.prototype.assignItemToSlot = function(_owner, _sl
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.assignItems = function (_owner, _items, _capacity, _itemArray, _itemContainer)
-{
+CampScreenCraftingDialogModule.prototype.assignItems = function (_owner, _items, _capacity, _itemArray, _itemContainer) {
 	this.destroyItemSlots(_itemArray, _itemContainer);
 	this.createItemSlots(_owner, _capacity, _itemArray, _itemContainer);
-	if(_items.length > 0)
-	{
-		for(var i = 0; i < _items.length; ++i)
-		{
+	if (_items.length > 0) {
+		for (var i = 0; i < _items.length; ++i) {
 			// ignore empty slots
-			if(_items[i] !== undefined && _items[i] !== null)
-			{
+			if (_items[i] !== undefined && _items[i] !== null) {
 				this.assignItemToSlot(_owner, _itemArray[i], _items[i]);
 			}
 		}
@@ -409,17 +428,14 @@ CampScreenCraftingDialogModule.prototype.assignItems = function (_owner, _items,
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.createItemSlots = function (_owner, _size, _itemArray, _itemContainer)
-{
+CampScreenCraftingDialogModule.prototype.createItemSlots = function (_owner, _size, _itemArray, _itemContainer) {
 	var screen = $('.camp-screen');
-	for(var i = 0; i < _size; ++i)
-	{
+	for (var i = 0; i < _size; ++i) {
 		_itemArray.push(this.createItemSlot(_owner, i, _itemContainer, screen));
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.destroyItemSlots = function (_itemArray, _itemContainer)
-{
+CampScreenCraftingDialogModule.prototype.destroyItemSlots = function (_itemArray, _itemContainer) {
 	this.clearItemSlots(_itemArray);
 
 	_itemContainer.empty();
@@ -427,8 +443,7 @@ CampScreenCraftingDialogModule.prototype.destroyItemSlots = function (_itemArray
 };
 
 
-CampScreenCraftingDialogModule.prototype.createItemSlot = function (_owner, _index, _parentDiv, _screenDiv)
-{
+CampScreenCraftingDialogModule.prototype.createItemSlot = function (_owner, _index, _parentDiv, _screenDiv) {
 	var self = this;
 
 	var result = _parentDiv.createListItem(true);
@@ -441,16 +456,14 @@ CampScreenCraftingDialogModule.prototype.createItemSlot = function (_owner, _ind
 	result.data('item', itemData);
 
 	// add event handler
-	var dropHandler = function (_source, _target)
-	{
+	var dropHandler = function (_source, _target) {
 		var sourceData = _source.data('item');
 		var targetData = _target.data('item');
 
 		var sourceOwner = (sourceData !== null && 'owner' in sourceData) ? sourceData.owner : null;
 		var targetOwner = (targetData !== null && 'owner' in targetData) ? targetData.owner : null;
 
-		if(sourceOwner === null || targetOwner === null)
-		{
+		if (sourceOwner === null || targetOwner === null) {
 			console.error('Failed to drop item. Owner are invalid.');
 			return;
 		}
@@ -458,8 +471,7 @@ CampScreenCraftingDialogModule.prototype.createItemSlot = function (_owner, _ind
 		var sourceItemIdx = (sourceData !== null && 'index' in sourceData) ? sourceData.index : null;
 		var targetItemIdx = (targetData !== null && 'index' in targetData) ? targetData.index : null;
 
-		if(sourceItemIdx === null)
-		{
+		if (sourceItemIdx === null) {
 			console.error('Failed to drop item. Source idx is invalid.');
 			return;
 		}
@@ -467,10 +479,8 @@ CampScreenCraftingDialogModule.prototype.createItemSlot = function (_owner, _ind
 		self.notifyBackendSwap(sourceItemIdx, targetItemIdx, null)
 	};
 
-	var dragEndHandler = function (_source, _target)
-	{
-		if(_source.length === 0 || _target.length === 0)
-		{
+	var dragEndHandler = function (_source, _target) {
+		if (_source.length === 0 || _target.length === 0) {
 			return false;
 		}
 
@@ -481,8 +491,7 @@ CampScreenCraftingDialogModule.prototype.createItemSlot = function (_owner, _ind
 		var targetOwner = (targetData !== null && 'owner' in targetData) ? targetData.owner : null;
 		var itemIdx = (sourceData !== null && 'index' in sourceData) ? sourceData.index : null;
 
-		if(sourceOwner === null || targetOwner === null)
-		{
+		if (sourceOwner === null || targetOwner === null) {
 			console.error('Failed to drop item. Owner is invalid.');
 			return false;
 		}
@@ -492,16 +501,14 @@ CampScreenCraftingDialogModule.prototype.createItemSlot = function (_owner, _ind
 
 	result.assignListItemDragAndDrop(_screenDiv, null, dragEndHandler, dropHandler);
 
-	result.assignListItemRightClick(function (_item, _event)
-	{
+	result.assignListItemRightClick(function (_item, _event) {
 		var data = _item.data('item');
 
 		var isEmpty = (data !== null && 'isEmpty' in data) ? data.isEmpty : true;
 		var owner = (data !== null && 'owner' in data) ? data.owner : null;
 		//var itemId = (data !== null && 'id' in data) ? data.id : null;
 		var itemIdx = (data !== null && 'index' in data) ? data.index : null;
-		if(/*doSomething &&*/ isEmpty === false && owner !== null /*&& itemId !== null*/ && itemIdx !== null)
-		{
+		if (/*doSomething &&*/ isEmpty === false && owner !== null /*&& itemId !== null*/ && itemIdx !== null) {
 			self.notifyBackendRemove(itemIdx, null);
 		}
 	});
@@ -509,21 +516,19 @@ CampScreenCraftingDialogModule.prototype.createItemSlot = function (_owner, _ind
 	return result;
 };
 
-CampScreenCraftingDialogModule.prototype.addListEntry = function (_data)
-{
+CampScreenCraftingDialogModule.prototype.addListEntry = function (_data) {
 	var result = $('<div class="l-row"/>');
 	this.mListScrollContainer.append(result);
 
 	var entry = $('<div class="ui-control list-entry"/>');
 	result.append(entry);
 	entry.data('entry', _data);
-	entry.click(this, function(_event)
-	{
+	entry.click(this, function (_event) {
 		var self = _event.data;
 		self.selectListEntry($(this));
 	});
 
-	if(!_data.IsCraftable)
+	if (!_data.IsCraftable)
 		entry.addClass('is-disabled');
 
 	// left column
@@ -552,14 +557,13 @@ CampScreenCraftingDialogModule.prototype.addListEntry = function (_data)
 		}
 	}, null, 'opacity-none');
 	image.bindTooltip({ contentType: 'ui-item', itemId: _data.ID, itemOwner: 'craft' });
-	if(_data.isAmountShown)
-	{
-		var amountLayer =$('<div class="amount-layer display-block"/>');
+	if (_data.isAmountShown) {
+		var amountLayer = $('<div class="amount-layer display-block"/>');
 		column.append(amountLayer);
 		var amountLabel = $('<div class="label text-font-very-small font-shadow-outline"/>');
 		amountLayer.append(amountLabel);
 		amountLabel.text(_data.Amount);
-		amountLabel.css({'color' : "#ffffff"});
+		amountLabel.css({ 'color': "#ffffff" });
 	}
 	// right column
 	column = $('<div class="column is-right"/>');
@@ -572,13 +576,11 @@ CampScreenCraftingDialogModule.prototype.addListEntry = function (_data)
 	// bind tooltip
 	//image.bindTooltip({ contentType: 'ui-item', itemId: _data.InstanceID, itemOwner: TooltipIdentifier.ItemOwner.Stash });
 
-	if(_data.IsCraftable)
-	{
+	if (_data.IsCraftable) {
 		var name = $('<div class="name title-font-normal font-bold font-color-brother-name">' + _data.Name + '</div>');
 		row.append(name);
 	}
-	else
-	{
+	else {
 		var name = $('<div class="name title-font-normal font-bold font-color-disabled">' + _data.Name + '</div>');
 		row.append(name);
 	}
@@ -588,32 +590,28 @@ CampScreenCraftingDialogModule.prototype.addListEntry = function (_data)
 	entry.data('bottom', row);
 	column.append(row);
 
-	for(var i = 0; i < _data.Ingredients.length; ++i)
-	{
+	for (var i = 0; i < _data.Ingredients.length; ++i) {
 		var iconContainer = $('<div class="icons-container"/>');
 		row.append(iconContainer);
 		var icon;
-		if (_data.Ingredients[i].IsSkill === 1)
-		{
+		if (_data.Ingredients[i].IsSkill === 1) {
 			icon = $('<img src="' + Path.GFX + _data.Ingredients[i].ImagePath + '"/>');
 			icon.bindTooltip({ contentType: 'ui-item', itemId: _data.Ingredients[i].InstanceID, entityId: _data.ID, itemOwner: 'blueprintskill' });
 		}
-		else
-		{
+		else {
 			icon = $('<img src="' + Path.ITEMS + _data.Ingredients[i].ImagePath + '"/>');
 			icon.bindTooltip({ contentType: 'ui-item', itemId: _data.Ingredients[i].InstanceID, entityId: _data.ID, itemOwner: 'blueprint' });
 
-			var amountLayer =$('<div class="amount-layer display-block"/>');
+			var amountLayer = $('<div class="amount-layer display-block"/>');
 			iconContainer.append(amountLayer);
 			var amountLabel = $('<div class="label text-font-very-small font-shadow-outline font-size-10"/>');
 			amountLayer.append(amountLabel);
 			amountLabel.text(_data.Ingredients[i].InvTotal + "/" + _data.Ingredients[i].Num);
-			amountLabel.css({'color' : "#ffffff"});
+			amountLabel.css({ 'color': "#ffffff" });
 		}
 		iconContainer.append(icon);
 
-		if(_data.Ingredients[i].IsMissing)
-		{
+		if (_data.Ingredients[i].IsMissing) {
 			icon.css({ '-webkit-filter': 'brightness(60%)' });
 			var overlay = $('<img src="' + Path.ITEMS + 'missing_component.png" class="component-overlay" />');
 			iconContainer.append(overlay);
@@ -621,10 +619,8 @@ CampScreenCraftingDialogModule.prototype.addListEntry = function (_data)
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.selectListEntry = function(_element, _scrollToEntry)
-{
-	if (_element !== null && _element.length > 0)
-	{
+CampScreenCraftingDialogModule.prototype.selectListEntry = function (_element, _scrollToEntry) {
+	if (_element !== null && _element.length > 0) {
 		// check if this is already selected
 		//if (_element.hasClass('is-selected') !== true)
 		{
@@ -632,8 +628,7 @@ CampScreenCraftingDialogModule.prototype.selectListEntry = function(_element, _s
 			_element.addClass('is-selected');
 
 			// give the renderer some time to layout his shit...
-			if (_scrollToEntry !== undefined && _scrollToEntry === true)
-			{
+			if (_scrollToEntry !== undefined && _scrollToEntry === true) {
 				this.mListContainer.scrollListToElement(_element);
 			}
 
@@ -641,39 +636,32 @@ CampScreenCraftingDialogModule.prototype.selectListEntry = function(_element, _s
 			this.updateDetailsPanel(this.mSelectedEntry);
 		}
 	}
-	else
-	{
+	else {
 		this.mSelectedEntry = null;
 		this.updateDetailsPanel(this.mSelectedEntry);
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.clearItemSlots = function (_itemArray)
-{
-	if(_itemArray === null || _itemArray.length === 0)
-	{
+CampScreenCraftingDialogModule.prototype.clearItemSlots = function (_itemArray) {
+	if (_itemArray === null || _itemArray.length === 0) {
 		return;
 	}
 
-	for(var i = 0; i < _itemArray.length; ++i)
-	{
+	for (var i = 0; i < _itemArray.length; ++i) {
 		// remove item image
 		this.removeItemFromSlot(_itemArray[i]);
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.removeItemFromSlot = function(_slot)
-{
+CampScreenCraftingDialogModule.prototype.removeItemFromSlot = function (_slot) {
 	// remove item image
 	_slot.assignListItemImage();
 	_slot.assignListItemOverlayImage();
 	_slot.assignListItemTooltip();
 };
 
-CampScreenCraftingDialogModule.prototype.updateDetailsPanel = function(_element)
-{
-	if(_element !== null && _element.length > 0)
-	{
+CampScreenCraftingDialogModule.prototype.updateDetailsPanel = function (_element) {
+	if (_element !== null && _element.length > 0) {
 		var data = _element.data('entry');
 
 		// this.mDetailsPanel.CharacterImage.attr('src', Path.ITEMS + data.LargeImagePath);
@@ -684,32 +672,28 @@ CampScreenCraftingDialogModule.prototype.updateDetailsPanel = function(_element)
 		// this.mDetailsPanel.DescriptionTextContainer.html(data['Description']);
 
 		this.mDetailsPanel.Components.empty();
-		for(var i = 0; i < data.Ingredients.length; ++i)
-		{
+		for (var i = 0; i < data.Ingredients.length; ++i) {
 			var iconContainer = $('<div class="icons-container"/>');
 			this.mDetailsPanel.Components.append(iconContainer);
 			var icon;
-			if (data.Ingredients[i].IsSkill === 1)
-			{
+			if (data.Ingredients[i].IsSkill === 1) {
 				icon = $('<img src="' + Path.GFX + data.Ingredients[i].ImagePath + '"/>');
 				icon.bindTooltip({ contentType: 'ui-item', itemId: data.Ingredients[i].InstanceID, entityId: data.ID, itemOwner: 'blueprintskill' });
 			}
-			else
-			{
+			else {
 				icon = $('<img src="' + Path.ITEMS + data.Ingredients[i].ImagePath + '"/>');
 				icon.bindTooltip({ contentType: 'ui-item', itemId: data.Ingredients[i].InstanceID, entityId: data.ID, itemOwner: 'blueprint' });
 
-				var amountLayer =$('<div class="amount-layer display-block"/>');
+				var amountLayer = $('<div class="amount-layer display-block"/>');
 				iconContainer.append(amountLayer);
 				var amountLabel = $('<div class="label text-font-very-small font-shadow-outline font-size-15"/>');
 				amountLayer.append(amountLabel);
 				amountLabel.text(data.Ingredients[i].InvTotal + "/" + data.Ingredients[i].Num);
-				amountLabel.css({'color' : "#ffffff"});
+				amountLabel.css({ 'color': "#ffffff" });
 			}
 			iconContainer.append(icon);
 
-			if(data.Ingredients[i].IsMissing)
-			{
+			if (data.Ingredients[i].IsMissing) {
 				icon.css({ '-webkit-filter': 'brightness(60%)' });
 				var overlay = $('<img src="' + Path.ITEMS + 'missing_component.png" class="component-overlay" />');
 				iconContainer.append(overlay);
@@ -718,78 +702,71 @@ CampScreenCraftingDialogModule.prototype.updateDetailsPanel = function(_element)
 
 		this.mDetailsPanel.Container.removeClass('display-none').addClass('display-block');
 	}
-	else
-	{
+	else {
 		this.mDetailsPanel.Container.removeClass('display-block').addClass('display-none');
 	}
 };
 
 
-CampScreenCraftingDialogModule.prototype.bindTooltips = function ()
-{
-	this.mTimeAsset.bindTooltip({ contentType: 'ui-element', elementId:  'crafting.Time' });
+CampScreenCraftingDialogModule.prototype.bindTooltips = function () {
+	this.mTimeAsset.bindTooltip({ contentType: 'ui-element', elementId: 'crafting.Time' });
 	this.mBrothersAsset.bindTooltip({ contentType: 'ui-element', elementId: 'crafting.Bros' });
 	this.mDetailsPanel.CraftButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.TaxiDermistDialogModule.CraftButton });
 	this.mDetailsPanel.CraftForeverButton.bindTooltip({ contentType: 'ui-element', elementId: 'crafting.CraftForeverButton' });
 	this.mLeaveButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.LeaveButton });
-	this.mFilterAllButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterAllButton });
-	this.mFilterWeaponsButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterWeaponsButton });
-	this.mFilterArmorButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterArmorButton });
-	this.mFilterMiscButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMiscButton });
-	this.mFilterUsableButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterUsableButton });
+	this.mCraftingFilters.mFilterAllButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterAllButton });
+	this.mCraftingFilters.mFilterTailoringButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterTailoringButton });
+	this.mCraftingFilters.mFilterLeatherworkingButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterLeatherworkingButton });
+	this.mCraftingFilters.mFilterMetalworkingButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterMetalworkingButton });
+	this.mCraftingFilters.mFilterWoodworkingButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterWoodworkingButton });
+	this.mCraftingFilters.mFilterTrophyCarvingButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterTrophyCarvingButton });
+	this.mCraftingFilters.mFilterAlchemyButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterAlchemyButton });
+	this.mCraftingFilters.mFilterHerbcraftButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterHerbcraftButton });
+	this.mCraftingFilters.mFilterCharlatanButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterCharlatanButton });
+	this.mCraftingFilters.mFilterOtherButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterOtherButton });
 
 };
 
-CampScreenCraftingDialogModule.prototype.unbindTooltips = function ()
-{
+CampScreenCraftingDialogModule.prototype.unbindTooltips = function () {
 	this.mTimeAsset.unbindTooltip();
 	this.mBrothersAsset.unbindTooltip();
 	this.mDetailsPanel.CraftButton.unbindTooltip();
 	this.mDetailsPanel.CraftForeverButton.unbindTooltip();
 	this.mLeaveButton.unbindTooltip();
-	this.mFilterAllButton.unbindTooltip();
-	this.mFilterWeaponsButton.unbindTooltip();
-	this.mFilterArmorButton.unbindTooltip();
-	this.mFilterMiscButton.unbindTooltip();
-	this.mFilterUsableButton.unbindTooltip();
+	for (var filterButton in this.mCraftingFilters) {
+		this.mCraftingFilters[filterButton].unbindTooltip();
+	};
 };
 
 
-CampScreenCraftingDialogModule.prototype.create = function(_parentDiv)
-{
+CampScreenCraftingDialogModule.prototype.create = function (_parentDiv) {
 	this.createDIV(_parentDiv);
 	this.bindTooltips();
 };
 
-CampScreenCraftingDialogModule.prototype.destroy = function()
-{
+CampScreenCraftingDialogModule.prototype.destroy = function () {
 	this.unbindTooltips();
 	this.destroyDIV();
 };
 
 
-CampScreenCraftingDialogModule.prototype.register = function (_parentDiv)
-{
+CampScreenCraftingDialogModule.prototype.register = function (_parentDiv) {
 	console.log('CampScreenCraftingDialogModule::REGISTER');
 
-	if (this.mContainer !== null)
-	{
+	if (this.mContainer !== null) {
 		console.error('ERROR: Failed to register World Town Screen Taxidermist Dialog Module. Reason: Module is already initialized.');
 		return;
 	}
 
-	if (_parentDiv !== null && typeof(_parentDiv) == 'object')
-	{
+	if (_parentDiv !== null && typeof (_parentDiv) == 'object') {
 		this.create(_parentDiv);
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.unregister = function ()
-{
+CampScreenCraftingDialogModule.prototype.unregister = function () {
 	console.log('CampScreenCraftingDialogModule::UNREGISTER');
 
-	if (this.mContainer === null)
-	{
+	if (this.mContainer === null) {
 		console.error('ERROR: Failed to unregister World Town Screen Taxidermist Dialog Module. Reason: Module is not initialized.');
 		return;
 	}
@@ -797,10 +774,8 @@ CampScreenCraftingDialogModule.prototype.unregister = function ()
 	this.destroy();
 };
 
-CampScreenCraftingDialogModule.prototype.isRegistered = function ()
-{
-	if (this.mContainer !== null)
-	{
+CampScreenCraftingDialogModule.prototype.isRegistered = function () {
+	if (this.mContainer !== null) {
 		return this.mContainer.parent().length !== 0;
 	}
 
@@ -808,138 +783,121 @@ CampScreenCraftingDialogModule.prototype.isRegistered = function ()
 };
 
 
-CampScreenCraftingDialogModule.prototype.registerEventListener = function(_listener)
-{
+CampScreenCraftingDialogModule.prototype.registerEventListener = function (_listener) {
 	this.mEventListener = _listener;
 };
 
 
-CampScreenCraftingDialogModule.prototype.show = function (_withSlideAnimation)
-{
+CampScreenCraftingDialogModule.prototype.show = function (_withSlideAnimation) {
 	var self = this;
 
 	var withAnimation = (_withSlideAnimation !== undefined && _withSlideAnimation !== null) ? _withSlideAnimation : true;
-	if (withAnimation === true)
-	{
+	if (withAnimation === true) {
 		var offset = -(this.mContainer.parent().width() + this.mContainer.width());
 		this.mContainer.css({ 'left': offset });
 		this.mContainer.velocity("finish", true).velocity({ opacity: 1, left: '0', right: '0' },
-		{
-			duration: Constants.SCREEN_SLIDE_IN_OUT_DELAY,
-			easing: 'swing',
-			begin: function ()
 			{
-				$(this).removeClass('display-none').addClass('display-block');
-				self.notifyBackendModuleAnimating();
-			},
-			complete: function ()
-			{
-				self.mIsVisible = true;
-				self.notifyBackendModuleShown();
-			}
-		});
+				duration: Constants.SCREEN_SLIDE_IN_OUT_DELAY,
+				easing: 'swing',
+				begin: function () {
+					$(this).removeClass('display-none').addClass('display-block');
+					self.notifyBackendModuleAnimating();
+				},
+				complete: function () {
+					self.mIsVisible = true;
+					self.notifyBackendModuleShown();
+				}
+			});
 	}
-	else
-	{
+	else {
 		this.mContainer.css({ opacity: 0 });
 		this.mContainer.velocity("finish", true).velocity({ opacity: 1 },
-		{
-			duration: Constants.SCREEN_FADE_IN_OUT_DELAY,
-			easing: 'swing',
-			begin: function ()
 			{
-				$(this).removeClass('display-none').addClass('display-block');
-				self.notifyBackendModuleAnimating();
-			},
-			complete: function ()
-			{
-				self.mIsVisible = true;
-				self.notifyBackendModuleShown();
-			}
-		});
+				duration: Constants.SCREEN_FADE_IN_OUT_DELAY,
+				easing: 'swing',
+				begin: function () {
+					$(this).removeClass('display-none').addClass('display-block');
+					self.notifyBackendModuleAnimating();
+				},
+				complete: function () {
+					self.mIsVisible = true;
+					self.notifyBackendModuleShown();
+				}
+			});
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.hide = function ()
-{
+CampScreenCraftingDialogModule.prototype.hide = function () {
 	var self = this;
 
 	var offset = -(this.mContainer.parent().width() + this.mContainer.width());
 	this.mContainer.velocity("finish", true).velocity({ opacity: 0, left: offset },
-	{
-		duration: Constants.SCREEN_SLIDE_IN_OUT_DELAY,
-		easing: 'swing',
-		begin: function ()
 		{
-			$(this).removeClass('is-center');
-			self.notifyBackendModuleAnimating();
-		},
-		complete: function ()
-		{
-			self.mIsVisible = false;
-			self.mListScrollContainer.empty();
-			$(this).removeClass('display-block').addClass('display-none');
-			self.notifyBackendModuleHidden();
-		}
-	});
+			duration: Constants.SCREEN_SLIDE_IN_OUT_DELAY,
+			easing: 'swing',
+			begin: function () {
+				$(this).removeClass('is-center');
+				self.notifyBackendModuleAnimating();
+			},
+			complete: function () {
+				self.mIsVisible = false;
+				self.mListScrollContainer.empty();
+				$(this).removeClass('display-block').addClass('display-none');
+				self.notifyBackendModuleHidden();
+			}
+		});
 };
 
-CampScreenCraftingDialogModule.prototype.isVisible = function ()
-{
+CampScreenCraftingDialogModule.prototype.isVisible = function () {
 	return this.mIsVisible;
 };
 
-CampScreenCraftingDialogModule.prototype.loadFromData = function (_data)
-{
-	if(_data === undefined || _data === null)
-	{
+CampScreenCraftingDialogModule.prototype.loadFromData = function (_data) {
+	if (_data === undefined || _data === null) {
 		return;
 	}
 
-	if('Title' in _data && _data.Title !== null) {
-		 this.mDialogContainer.findDialogTitle().html(_data.Title);
+	if ('Title' in _data && _data.Title !== null) {
+		this.mDialogContainer.findDialogTitle().html(_data.Title);
 
-		 if(_data.Title === "Crafting")	{
-			this.mFilterPanel.removeClass('display-none').addClass('display-block');
+		if (_data.Title === "Crafting") {
+			for (var filterButton in this.mCraftingFilters) {
+				this.mCraftingFilters[filterButton].removeClass('display-none').addClass('display-block');
+			};
 		} else {
-			this.mFilterPanel.removeClass('display-block').addClass('display-none');
+			for (var filterButton in this.mCraftingFilters) {
+				this.mCraftingFilters[filterButton].removeClass('display-block').addClass('display-none');
+			};
 		}
 	}
 
-	if('SubTitle' in _data && _data.SubTitle !== null)
-	{
-		 this.mDialogContainer.findDialogSubTitle().html(_data.SubTitle);
+	if ('SubTitle' in _data && _data.SubTitle !== null) {
+		this.mDialogContainer.findDialogSubTitle().html(_data.SubTitle);
 	}
 
-	if('Assets' in _data && _data.Assets !== null)
-	{
+	if ('Assets' in _data && _data.Assets !== null) {
 		this.updateAssets(_data.Assets);
 	}
 
-	if('Queue' in _data && _data.Queue !== null)
-	{
+	if ('Queue' in _data && _data.Queue !== null) {
 		this.loadQueueData(_data.Queue);
 	}
 
-	if ('Blueprints' in _data && _data.Blueprints !== null)
-	{
+	if ('Blueprints' in _data && _data.Blueprints !== null) {
 		this.mBlueprints = _data.Blueprints;
 
 		this.mListScrollContainer.empty();
 
-		if (_data.Blueprints.length != 0)
-		{
+		if (_data.Blueprints.length != 0) {
 			this.mNoCraftablesLabel.addClass('display-none');
 
-			for (var i = 0; i < _data.Blueprints.length; ++i)
-			{
+			for (var i = 0; i < _data.Blueprints.length; ++i) {
 				this.addListEntry(_data.Blueprints[i]);
 			}
 
 			this.createResultPageButton(_data.CurrentPage, _data.Pages);
 		}
-		else
-		{
+		else {
 			this.mNoCraftablesLabel.removeClass('display-none');
 		}
 
@@ -949,44 +907,34 @@ CampScreenCraftingDialogModule.prototype.loadFromData = function (_data)
 
 };
 
-CampScreenCraftingDialogModule.prototype.updateAssetValue = function (_container, _value, _valueMax, _valueDifference, _negative)
-{
+CampScreenCraftingDialogModule.prototype.updateAssetValue = function (_container, _value, _valueMax, _valueDifference, _negative) {
 	var label = _container.find('.label:first');
 
-	if(label.length > 0)
-	{
-		if(_valueMax !== undefined && _valueMax !== null)
-		{
+	if (label.length > 0) {
+		if (_valueMax !== undefined && _valueMax !== null) {
 			label.html('' + Helper.numberWithCommas(_value) + '/' + Helper.numberWithCommas(_valueMax));
 		}
-		else
-		{
+		else {
 			label.html(Helper.numberWithCommas(_value));
 		}
 
-		if(_valueDifference !== null && _valueDifference !== 0)
-		{
-			label.animateValueAndFadeOut(_valueDifference < 0, function (_element)
-			{
+		if (_valueDifference !== null && _valueDifference !== 0) {
+			label.animateValueAndFadeOut(_valueDifference < 0, function (_element) {
 				_element.html(_valueDifference);
 			});
 		}
 
-		if(_value <= 0 || _negative)
-		{
+		if (_value <= 0 || _negative) {
 			label.removeClass('font-color-assets-positive-value').addClass('font-color-assets-negative-value');
 		}
-		else
-		{
+		else {
 			label.removeClass('font-color-assets-negative-value').addClass('font-color-assets-positive-value');
 		}
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.updateAssets = function (_data)
-{
-	if(_data === undefined || _data === null || !(typeof(_data) === 'object'))
-	{
+CampScreenCraftingDialogModule.prototype.updateAssets = function (_data) {
+	if (_data === undefined || _data === null || !(typeof (_data) === 'object')) {
 		return;
 	}
 
@@ -996,24 +944,20 @@ CampScreenCraftingDialogModule.prototype.updateAssets = function (_data)
 	var currentAssetInformation = _data;
 	var previousAssetInformation = this.mAssetValues;
 
-	if('Time' in currentAssetInformation && currentAssetInformation['Time'] !== null)
-	{
+	if ('Time' in currentAssetInformation && currentAssetInformation['Time'] !== null) {
 		value = currentAssetInformation['Time'];
 		valueDifference = null;
-		if(previousAssetInformation !== null && 'Time' in previousAssetInformation && previousAssetInformation['Time'] !== null)
-		{
+		if (previousAssetInformation !== null && 'Time' in previousAssetInformation && previousAssetInformation['Time'] !== null) {
 			previousValue = previousAssetInformation['Time'];
 			valueDifference = value - previousValue;
 		}
 		this.updateAssetValue(this.mTimeAsset, value, null, valueDifference);
 	}
 
-	if('Brothers' in currentAssetInformation && currentAssetInformation['Brothers'] !== null)
-	{
+	if ('Brothers' in currentAssetInformation && currentAssetInformation['Brothers'] !== null) {
 		value = currentAssetInformation['Brothers'];
 		valueDifference = null;
-		if(previousAssetInformation !== null && 'Brothers' in previousAssetInformation && previousAssetInformation['Brothers'] !== null)
-		{
+		if (previousAssetInformation !== null && 'Brothers' in previousAssetInformation && previousAssetInformation['Brothers'] !== null) {
 			previousValue = previousAssetInformation['Brothers'];
 			valueDifference = value - previousValue;
 		}
@@ -1024,8 +968,7 @@ CampScreenCraftingDialogModule.prototype.updateAssets = function (_data)
 
 }
 
-CampScreenCraftingDialogModule.prototype.createAssetDIV = function (_parentDiv, _imagePath, _classExtra)
-{
+CampScreenCraftingDialogModule.prototype.createAssetDIV = function (_parentDiv, _imagePath, _classExtra) {
 	var layout = $('<div class="l-tab-asset"/>');
 	layout.addClass(_classExtra);
 	_parentDiv.append(layout);
@@ -1039,8 +982,7 @@ CampScreenCraftingDialogModule.prototype.createAssetDIV = function (_parentDiv, 
 	return layout;
 };
 
-CampScreenCraftingDialogModule.prototype.createImageButton = function (_parentDiv, _imagePath, _callback)
-{
+CampScreenCraftingDialogModule.prototype.createImageButton = function (_parentDiv, _imagePath, _callback) {
 	var layout = $('<div class="l-assets-container"/>');
 	var image = $('<img/>');
 	image.attr('src', _imagePath);
@@ -1048,27 +990,24 @@ CampScreenCraftingDialogModule.prototype.createImageButton = function (_parentDi
 	var text = $('<div class="label text-font-small font-bold font-bottom-shadow font-color-assets-positive-value"/>');
 	layout.append(text);
 
-	if (_callback === undefined)
-	{
+	if (_callback === undefined) {
 		_parentDiv.append(layout);
 		return layout;
 	}
-	else
-	{
+	else {
 		return _parentDiv.createCustomButton(layout, _callback, '', 2);
 	}
 };
 
-CampScreenCraftingDialogModule.prototype.createResultPageButton = function(_currentPage, _pages)
-{
+CampScreenCraftingDialogModule.prototype.createResultPageButton = function (_currentPage, _pages) {
 	var self = this;
 	this.mSearch.ResultPageList.empty();
 	this.mSearch.ResultButtons = [];
 
 	var previousButtonLayout = $('<div class="l-flex-button-39-39"/>');
 	this.mSearch.ResultPageList.append(previousButtonLayout);
-	var previousButton = previousButtonLayout.createImageButton(Path.GFX + 'ui/buttons/arrow_left.png', function(_button) {
-		self.notifyBackendPageChanged({ID: Math.max(0, _currentPage - 1)})
+	var previousButton = previousButtonLayout.createImageButton(Path.GFX + 'ui/buttons/arrow_left.png', function (_button) {
+		self.notifyBackendPageChanged({ ID: Math.max(0, _currentPage - 1) })
 	}, '', 10);
 	previousButton.enableButton(_currentPage != 0);
 
@@ -1082,8 +1021,8 @@ CampScreenCraftingDialogModule.prototype.createResultPageButton = function(_curr
 	for (var i = startPage; i < startPage + this.mMaxVisiblePage && i < _pages; i++) {
 		var buttonLayout = $('<div class="l-flex-button-39-39"/>');
 		this.mSearch.ResultPageList.append(buttonLayout);
-		var button = buttonLayout.createTextButton('' + (i + 1) + '', function(_button) {
-			self.notifyBackendPageChanged({ID: _button.data('page')})
+		var button = buttonLayout.createTextButton('' + (i + 1) + '', function (_button) {
+			self.notifyBackendPageChanged({ ID: _button.data('page') })
 		}, '', 10);
 		button.data('page', i);
 		button.enableButton(i != _currentPage);
@@ -1092,79 +1031,86 @@ CampScreenCraftingDialogModule.prototype.createResultPageButton = function(_curr
 
 	var nextButtonLayout = $('<div class="l-flex-button-39-39"/>');
 	this.mSearch.ResultPageList.append(nextButtonLayout);
-	var nextButton = nextButtonLayout.createImageButton(Path.GFX + 'ui/buttons/arrow_right.png', function(_button) {
-		self.notifyBackendPageChanged({ID: Math.min(_pages, _currentPage + 1)})
+	var nextButton = nextButtonLayout.createImageButton(Path.GFX + 'ui/buttons/arrow_right.png', function (_button) {
+		self.notifyBackendPageChanged({ ID: Math.min(_pages, _currentPage + 1) })
 	}, '', 10);
 	nextButton.enableButton(_currentPage != _pages - 1);
 }
 
-CampScreenCraftingDialogModule.prototype.notifyBackendModuleShown = function ()
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendModuleShown = function () {
 	SQ.call(this.mSQHandle, 'onModuleShown');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendModuleHidden = function ()
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendModuleHidden = function () {
 	SQ.call(this.mSQHandle, 'onModuleHidden');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendModuleAnimating = function ()
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendModuleAnimating = function () {
 	SQ.call(this.mSQHandle, 'onModuleAnimating');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendLeaveButtonPressed = function ()
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendLeaveButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onLeaveButtonPressed');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendBrothersButtonPressed = function ()
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendBrothersButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onBrothersButtonPressed');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendSwap = function (_source, _target, _callback)
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendSwap = function (_source, _target, _callback) {
 	SQ.call(this.mSQHandle, 'onSwap', [_source, _target], _callback);
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendRemove = function (_index, _callback)
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendRemove = function (_index, _callback) {
 	SQ.call(this.mSQHandle, 'onRemove', _index, _callback);
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendCraft = function (_blueprintID, _callback)
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendCraft = function (_blueprintID, _callback) {
 	SQ.call(this.mSQHandle, 'onAdd', _blueprintID, _callback);
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendCraftForever = function (_blueprintID, _callback)
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendCraftForever = function (_blueprintID, _callback) {
 	SQ.call(this.mSQHandle, 'onCraftForever', _blueprintID, _callback);
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendFilterAllButtonClicked = function ()
-{
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterAllButtonClicked = function () {
 	SQ.call(this.mSQHandle, 'onFilterAll');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendFilterWeaponsButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterWeapons');
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterTailoringButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterTailoring');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendFilterArmorButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterArmor');
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterLeatherworkingButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterLeatherworking');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendFilterMiscButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterMisc');
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterMetalworkingButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterMetalworking');
 };
 
-CampScreenCraftingDialogModule.prototype.notifyBackendFilterUsableButtonClicked = function () {
-	SQ.call(this.mSQHandle, 'onFilterUsable');
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterWoodworkingButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterWoodworking');
+};
+
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterTrophyCarvingButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterTrophyCarving');
+};
+
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterAlchemyButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterAlchemy');
+};
+
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterHerbcraftButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterHerbcraft');
+};
+
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterCharlatanButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterCharlatan');
+};
+
+CampScreenCraftingDialogModule.prototype.notifyBackendFilterOtherButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterOther');
 };
 
 CampScreenCraftingDialogModule.prototype.notifyBackendPageChanged = function (_pageID) {

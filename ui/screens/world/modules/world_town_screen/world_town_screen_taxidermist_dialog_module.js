@@ -46,11 +46,18 @@ var WorldTownScreenTaxidermistDialogModule = function(_parent)
 
 	// buttons
 	this.mFilterPanel = null;
-	this.mFilterAllButton = null;
-	this.mFilterWeaponsButton = null;
-	this.mFilterArmorButton = null;
-	this.mFilterMiscButton = null;
-	this.mFilterUsableButton = null;
+	this.mCraftingFilters = {
+		mFilterAllButton: null,
+		mFilterTailoringButton: null,
+		mFilterLeatherworkingButton: null,
+		mFilterMetalworkingButton: null,
+		mFilterWoodworkingButton: null,
+		mFilterTrophyCarvingButton: null,
+		mFilterAlchemyButton: null,
+		mFilterHerbcraftButton: null,
+		mFilterCharlatanButton: null,
+		mFilterOtherButton: null
+	}
 	// pagination
 	this.mSearch = {
 		ResultButtons : [],
@@ -115,66 +122,105 @@ WorldTownScreenTaxidermistDialogModule.prototype.createDIV = function (_parentDi
 	this.mFilterPanel = $('<div class="filter-panel"/>');
 	column.append(this.mFilterPanel);
 
-	var layout = $('<div class="l-button is-all-filter"/>');
+	var layout = $('<div class="l-button is-filter-1"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterAllButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ALL_FILTER, function ()
-	{
-		self.mFilterAllButton.addClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
+	this.mCraftingFilters.mFilterAllButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ALL_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterAllButton.addClass('is-active');
 		self.notifyBackendFilterAllButtonClicked();
 	}, '', 3);
-	this.mFilterAllButton.addClass('is-active');
+	this.mCraftingFilters.mFilterAllButton.addClass('is-active');
 
-	var layout = $('<div class="l-button is-weapons-filter"/>');
+	var layout = $('<div class="l-button is-filter-2"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterWeaponsButton = layout.createImageButton(Path.GFX + Asset.BUTTON_WEAPONS_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.addClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.notifyBackendFilterWeaponsButtonClicked();
+	this.mCraftingFilters.mFilterTailoringButton = layout.createImageButton(Path.GFX + Asset.BUTTON_TAILORING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterTailoringButton.addClass('is-active');
+		self.notifyBackendFilterTailoringButtonClicked();
 	}, '', 3);
 
-
-	var layout = $('<div class="l-button is-armor-filter"/>');
+	var layout = $('<div class="l-button is-filter-3"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterArmorButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ARMOR_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.addClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.notifyBackendFilterArmorButtonClicked();
+	this.mCraftingFilters.mFilterLeatherworkingButton = layout.createImageButton(Path.GFX + Asset.BUTTON_LEATHERWORKING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterLeatherworkingButton.addClass('is-active');
+		self.notifyBackendFilterLeatherworkingButtonClicked();
 	}, '', 3);
 
-	var layout = $('<div class="l-button is-misc-filter"/>');
+	var layout = $('<div class="l-button is-filter-4"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterMiscButton = layout.createImageButton(Path.GFX + Asset.BUTTON_MISC_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.addClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.notifyBackendFilterMiscButtonClicked();
+	this.mCraftingFilters.mFilterMetalworkingButton = layout.createImageButton(Path.GFX + Asset.BUTTON_METALWORKING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterMetalworkingButton.addClass('is-active');
+		self.notifyBackendFilterMetalworkingButtonClicked();
 	}, '', 3);
 
-	var layout = $('<div class="l-button is-usable-filter"/>');
+	var layout = $('<div class="l-button is-filter-5"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterUsableButton = layout.createImageButton(Path.GFX + Asset.BUTTON_USABLE_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.addClass('is-active');
-		self.notifyBackendFilterUsableButtonClicked();
+	this.mCraftingFilters.mFilterWoodworkingButton = layout.createImageButton(Path.GFX + Asset.BUTTON_WOODWORKING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterWoodworkingButton.addClass('is-active');
+		self.notifyBackendFilterWoodworkingButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-6"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterTrophyCarvingButton = layout.createImageButton(Path.GFX + Asset.BUTTON_TROPHY_CARVING_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterTrophyCarvingButton.addClass('is-active');
+		self.notifyBackendFilterTrophyCarvingButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-7"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterAlchemyButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ALCHEMY_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterAlchemyButton.addClass('is-active');
+		self.notifyBackendFilterAlchemyButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-8"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterHerbcraftButton = layout.createImageButton(Path.GFX + Asset.BUTTON_HERBCRAFT_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterHerbcraftButton.addClass('is-active');
+		self.notifyBackendFilterHerbcraftButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-9"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterCharlatanButton = layout.createImageButton(Path.GFX + Asset.BUTTON_CHARLATAN_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterCharlatanButton.addClass('is-active');
+		self.notifyBackendFilterCharlatanButtonClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-filter-10"/>');
+	this.mFilterPanel.append(layout);
+	this.mCraftingFilters.mFilterOtherButton = layout.createImageButton(Path.GFX + Asset.BUTTON_OTHER_FILTER, function () {
+		for (var filterButton in self.mCraftingFilters) {
+			self.mCraftingFilters[filterButton].removeClass('is-active');
+		};
+		self.mCraftingFilters.mFilterOtherButton.addClass('is-active');
+		self.notifyBackendFilterOtherButtonClicked();
 	}, '', 3);
 
 	var listContainerLayout = $('<div class="l-list-container"/>');
@@ -644,11 +690,16 @@ WorldTownScreenTaxidermistDialogModule.prototype.bindTooltips = function ()
 	this.mAssets.bindTooltips();
 	this.mDetailsPanel.CraftButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.TaxiDermistDialogModule.CraftButton });
 	this.mLeaveButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.LeaveButton });
-	this.mFilterAllButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterAllButton });
-	this.mFilterWeaponsButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterWeaponsButton });
-	this.mFilterArmorButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterArmorButton });
-	this.mFilterMiscButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMiscButton });
-	this.mFilterUsableButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterUsableButton });
+	this.mCraftingFilters.mFilterAllButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterAllButton });
+	this.mCraftingFilters.mFilterTailoringButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterTailoringButton });
+	this.mCraftingFilters.mFilterLeatherworkingButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterLeatherworkingButton });
+	this.mCraftingFilters.mFilterMetalworkingButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterMetalworkingButton });
+	this.mCraftingFilters.mFilterWoodworkingButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterWoodworkingButton });
+	this.mCraftingFilters.mFilterTrophyCarvingButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterTrophyCarvingButton });
+	this.mCraftingFilters.mFilterAlchemyButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterAlchemyButton });
+	this.mCraftingFilters.mFilterHerbcraftButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterHerbcraftButton });
+	this.mCraftingFilters.mFilterCharlatanButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterCharlatanButton });
+	this.mCraftingFilters.mFilterOtherButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.CampScreenCraftingDialogModule.FilterOtherButton });
 
 };
 
@@ -657,11 +708,9 @@ WorldTownScreenTaxidermistDialogModule.prototype.unbindTooltips = function ()
 	this.mAssets.unbindTooltips();
 	this.mDetailsPanel.CraftButton.unbindTooltip();
 	this.mLeaveButton.unbindTooltip();
-	this.mFilterAllButton.unbindTooltip();
-	this.mFilterWeaponsButton.unbindTooltip();
-	this.mFilterArmorButton.unbindTooltip();
-	this.mFilterMiscButton.unbindTooltip();
-	this.mFilterUsableButton.unbindTooltip();
+	for (var filterButton in this.mCraftingFilters) {
+		this.mCraftingFilters[filterButton].unbindTooltip();
+	};
 };
 
 
@@ -915,28 +964,44 @@ WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendCraft = function (
 	SQ.call(this.mSQHandle, 'onCraft', _blueprintID, _callback);
 };
 
-WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterAllButtonClicked = function ()
-{
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterAllButtonClicked = function () {
 	SQ.call(this.mSQHandle, 'onFilterAll');
 };
 
-WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterWeaponsButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterWeapons');
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterTailoringButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterTailoring');
 };
 
-WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterArmorButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterArmor');
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterLeatherworkingButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterLeatherworking');
 };
 
-WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterMiscButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterMisc');
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterMetalworkingButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterMetalworking');
 };
 
-WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterUsableButtonClicked = function () {
-	SQ.call(this.mSQHandle, 'onFilterUsable');
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterWoodworkingButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterWoodworking');
+};
+
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterTrophyCarvingButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterTrophyCarving');
+};
+
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterAlchemyButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterAlchemy');
+};
+
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterHerbcraftButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterHerbcraft');
+};
+
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterCharlatanButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterCharlatan');
+};
+
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterOtherButtonClicked = function () {
+	SQ.call(this.mSQHandle, 'onFilterOther');
 };
 
 WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendPageChanged = function (_pageID) {

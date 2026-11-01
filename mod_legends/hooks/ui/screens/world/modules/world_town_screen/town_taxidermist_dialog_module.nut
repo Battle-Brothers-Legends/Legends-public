@@ -1,20 +1,17 @@
-::mods_hookExactClass("ui/screens/world/modules/world_town_screen/town_taxidermist_dialog_module", function(o) {
-
-	o.m.InventoryFilter <- ::Const.Items.ItemFilter.All;
+::mods_hookExactClass("ui/screens/world/modules/world_town_screen/town_taxidermist_dialog_module", function (o) {
+	o.m.InventoryFilter <- "All";
 	o.m.CurrentPage <- 0;
 
-	o.onModuleShown <- function ()
-	{
+	o.onModuleShown <- function () {
 		this.m.CurrentPage = 0;
 		this.ui_module.onModuleShown();
 	}
 
 	local queryBlueprints = o.queryBlueprints;
-	o.queryBlueprints = function()
-	{
+	o.queryBlueprints = function () {
 		local result = queryBlueprints();
 		local taxidermist = ::MSU.isKindOf(::World.State.getCurrentTown(), "city_state") ? "building.taxidermist_oriental" : "building.taxidermist";
-		result.Title = "Taxidermist (" + ::Legends.Professions.ProfessionDefObjects[::World.State.getCurrentTown().getBuilding(taxidermist).m.TaxidermistSpecialization].Name + ")" ;
+		result.Title = "Taxidermist (" + ::Legends.Professions.ProfessionDefObjects[::World.State.getCurrentTown().getBuilding(taxidermist).m.TaxidermistSpecialization].Name + ")";
 		result.SubTitle = "A taxidermist can create useful items from all kinds of beast trophies that you bring";
 
 		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);
@@ -31,60 +28,57 @@
 		return result;
 	}
 
-	o.loadBlueprints <- function ()
-	{
+	o.loadBlueprints <- function () {
 		local result = this.queryBlueprints();
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
-	o.onFilterAll <- function ()
-	{
-		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.All)
-		{
-			this.m.InventoryFilter = ::Const.Items.ItemFilter.All;
+	o.onFilter <- function (_filter) {
+		if (this.m.InventoryFilter != _filter) {
+			this.m.InventoryFilter = _filter;
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
 
-	o.onFilterWeapons <- function ()
-	{
-		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.Weapons)
-		{
-			this.m.InventoryFilter = ::Const.Items.ItemFilter.Weapons;
-			this.m.CurrentPage = 0;
-			this.loadBlueprints();
-		}
+	o.onFilterAll <- function () {
+		this.onFilter("All");
 	}
 
-	o.onFilterArmor <- function ()
-	{
-		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.Armor)
-		{
-			this.m.InventoryFilter = ::Const.Items.ItemFilter.Armor;
-			this.m.CurrentPage = 0;
-			this.loadBlueprints();
-		}
+	o.onFilterTailoring <- function () {
+		this.onFilter(::Legends.Profession.LegendTailoring);
 	}
 
-	o.onFilterMisc <- function ()
-	{
-		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.Misc)
-		{
-			this.m.InventoryFilter = ::Const.Items.ItemFilter.Misc;
-			this.m.CurrentPage = 0;
-			this.loadBlueprints();
-		}
+	o.onFilterLeatherworking <- function () {
+		this.onFilter(::Legends.Profession.LegendLeatherworking);
 	}
 
-	o.onFilterUsable <- function ()
-	{
-		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.Usable)
-		{
-			this.m.InventoryFilter = ::Const.Items.ItemFilter.Usable;
-			this.m.CurrentPage = 0;
-			this.loadBlueprints();
-		}
+	o.onFilterMetalworking <- function () {
+		this.onFilter(::Legends.Profession.LegendMetalworking);
+	}
+
+	o.onFilterWoodworking <- function () {
+		this.onFilter(::Legends.Profession.LegendWoodworking);
+	}
+
+	o.onFilterTrophyCarving <- function () {
+		this.onFilter(::Legends.Profession.LegendTrophyCarving);
+	}
+
+	o.onFilterAlchemy <- function () {
+		this.onFilter(::Legends.Profession.LegendAlchemy);
+	}
+
+	o.onFilterHerbcraft <- function () {
+		this.onFilter(::Legends.Profession.LegendHerbcraft);
+	}
+
+	o.onFilterCharlatan <- function () {
+		this.onFilter(::Legends.Profession.LegendCharlatan);
+	}
+
+	o.onFilterOther <- function () {
+		this.onFilter("Other");
 	}
 
 	o.onPageChange <- function (_result) {
@@ -92,22 +86,16 @@
 		this.loadBlueprints();
 	}
 
-	o.FixVariantImage <- function ( _result )
-	{
+	o.FixVariantImage <- function (_result) {
 		local result = null;
-		if (_result.ItemPath != 0)
-		{
+		if (_result.ItemPath != 0) {
 			local item = this.new(_result.ItemPath);
-			if ("m" in item && "Faction" in item.m)
-			{
+			if ("m" in item && "Faction" in item.m) {
 				item.setFaction(_result.Variant);
+			} else {
+				item.setVariant(item.m.Variants[_result.Variant - 1]);
 			}
-			else
-			{
-				item.setVariant(item.m.Variants[_result.Variant-1]);
-			}
-			if (item.m.ID == "shield.faction_kite_shield" || item.m.ID == "shield.heater_kite_shield")
-			{
+			if (item.m.ID == "shield.faction_kite_shield" || item.m.ID == "shield.heater_kite_shield") {
 				local blueprint = ::World.Crafting.getBlueprint(_result.ID);
 				blueprint.m.PreviewCraftable = item;
 			}
@@ -117,18 +105,15 @@
 		return result;
 	}
 
-	o.onCraft = function ( _result )
-	{
+	o.onCraft = function (_result) {
 		local blueprint = ::World.Crafting.getBlueprint(_result.ID);
-		if (_result.Variant != 0)
-		{
+		if (_result.Variant != 0) {
 			blueprint.setVariant(_result.Variant);
 		}
 		blueprint.craft();
 		::World.Assets.addMoney(-blueprint.getCost());
 
-		if (blueprint.getSounds().len() != 0)
-		{
+		if (blueprint.getSounds().len() != 0) {
 			::Sound.play(blueprint.getSounds()[::Math.rand(0, blueprint.getSounds().len() - 1)], 1.0);
 		}
 

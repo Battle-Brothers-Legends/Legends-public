@@ -1,7 +1,7 @@
 this.camp_item_creation_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		CurrentPage = 0,
-		InventoryFilter = ::Const.Items.ItemFilter.All
+		InventoryFilter = "All"
 	},
 
 	function onShow() {

@@ -889,29 +889,44 @@
 	line-height: 2.6rem;
 }
 
-.world-town-screen .filter-panel .l-button.is-all-filter
-{
-	left: 5.0rem;
+.world-town-screen .filter-panel .l-button.is-filter-1 {
+	left: 2.5rem;
 }
 
-.world-town-screen .filter-panel .l-button.is-weapons-filter
-{
-	left: 10.0rem;
+.world-town-screen .filter-panel .l-button.is-filter-2 {
+	left: 7.0rem;
 }
 
-.world-town-screen .filter-panel .l-button.is-armor-filter
-{
-	left: 15.0rem;
+.world-town-screen .filter-panel .l-button.is-filter-3 {
+	left: 11.5rem;
 }
 
-.world-town-screen .filter-panel .l-button.is-usable-filter
-{
-	left: 20.0rem;
+.world-town-screen .filter-panel .l-button.is-filter-4 {
+	left: 16.0rem;
 }
 
-.world-town-screen .filter-panel .l-button.is-misc-filter
-{
+.world-town-screen .filter-panel .l-button.is-filter-5 {
+	left: 20.5rem;
+}
+
+.world-town-screen .filter-panel .l-button.is-filter-6 {
 	left: 25.0rem;
+}
+
+.world-town-screen .filter-panel .l-button.is-filter-7 {
+	left: 29.5rem;
+}
+
+.world-town-screen .filter-panel .l-button.is-filter-8 {
+	left: 34.0rem;
+}
+
+.world-town-screen .filter-panel .l-button.is-filter-9 {
+	left: 38.5rem;
+}
+
+.world-town-screen .filter-panel .l-button.is-filter-10 {
+	left: 43.0rem;
 }
 
 .world-town-screen .page-bar-row

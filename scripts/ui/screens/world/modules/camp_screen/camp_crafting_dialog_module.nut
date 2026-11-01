@@ -17,25 +17,45 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/world/modul
 		this.onFilter("All");
 	}
 
-	function onFilterWeapons() {
-		this.onFilter("Weapons");
+	function onFilterTailoring() {
+		this.onFilter(::Legends.Profession.LegendTailoring);
 	}
 
-	function onFilterArmor() {
-		this.onFilter("Armor");
+	function onFilterLeatherworking() {
+		this.onFilter(::Legends.Profession.LegendLeatherworking);
 	}
 
-	function onFilterMisc() {
-		this.onFilter("Misc");
+	function onFilterMetalworking() {
+		this.onFilter(::Legends.Profession.LegendMetalworking);
 	}
 
-	function onFilterUsable() {
-		this.onFilter("Usable");
+	function onFilterWoodworking() {
+		this.onFilter(::Legends.Profession.LegendWoodworking);
+	}
+
+	function onFilterTrophyCarving() {
+		this.onFilter(::Legends.Profession.LegendTrophyCarving);
+	}
+
+	function onFilterAlchemy() {
+		this.onFilter(::Legends.Profession.LegendAlchemy);
+	}
+
+	function onFilterHerbcraft() {
+		this.onFilter(::Legends.Profession.LegendHerbcraft);
+	}
+
+	function onFilterCharlatan() {
+		this.onFilter(::Legends.Profession.LegendCharlatan);
+	}
+
+	function onFilterOther() {
+		this.onFilter("Other");
 	}
 
 	function onFilter(_filter) {
-		if (this.m.InventoryFilter != ::Const.Items.ItemFilter[_filter]) {
-			this.m.InventoryFilter = ::Const.Items.ItemFilter[_filter];
+		if (this.m.InventoryFilter != _filter) {
+			this.m.InventoryFilter = _filter;
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
