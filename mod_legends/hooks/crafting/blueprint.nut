@@ -346,7 +346,7 @@
 
 		++this.m.TimesCrafted;
 
-		if (::Legends.S.oneOf(this.m.Type, ::Const.Items.ItemType.Ammo, ::Const.Items.ItemType.Armor, ::Const.Items.ItemType.Helmet, ::Const.Items.ItemType.Shield, ::Const.Items.ItemType.Weapon)) {
+		if (::Legends.S.oneOf(this.getItemType(), ::Const.Items.ItemType.Ammo, ::Const.Items.ItemType.Armor, ::Const.Items.ItemType.Helmet, ::Const.Items.ItemType.Shield, ::Const.Items.ItemType.Weapon)) {
 			::World.Assets.addBusinessReputation(::World.Assets.m.ProfessionEffect.LegendPersonalSeal * this.m.Cost * 0.01);
 		}
 
