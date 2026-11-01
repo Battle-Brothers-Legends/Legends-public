@@ -1080,14 +1080,16 @@
 	}
 
 	o.updateLook = function (_updateTo = -1) {
-		if (_updateTo != -1) {
-			this.m.Look = _updateTo;
-			if (typeof(_updateTo) == "integer" && _updateTo < 10) {
+		if (this.m.Look == 0 && typeof(_updateTo) == "integer") {
+			::World.Assets.getOrigin().updateLook();
+		} else {
+			if (_updateTo != -1) {
+				this.m.Look = _updateTo;
+			}
+			if (typeof(this.m.Look) == "integer" && this.m.Look < 10) {
 				_updateTo = "0" + _updateTo;
 			}
-			::World.State.getPlayer().getSprite("body").setBrush("figure_player_" + _updateTo);
-		} else {
-			::World.Assets.getOrigin().updateLook();
+			::World.State.getPlayer().getSprite("body").setBrush("figure_player_" + this.m.Look);
 		}
 	}
 
