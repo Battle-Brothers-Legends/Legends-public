@@ -34,6 +34,10 @@
 		return "Category" in this.m ? this.m.Category : "Other";
 	}
 
+	o.getCrafts <- function () {
+		return "Crafts" in this.m ? this.m.Crafts : 1;
+	}
+
 	o.getCostForCraft <- function () {
 		local modifier = 1.0;
 
@@ -234,7 +238,8 @@
 			Cost = this.getCost(),
 			IsCraftable = this.isCraftable(),
 			Type = this.getItemType(),
-			Category = this.getCategory()
+			Category = this.getCategory(),
+			Crafts = this.getCrafts(),
 		};
 		if ("Variants" in this.m && this.m.Variants > 0) {
 			ret.Variants <- this.m.Variants;

@@ -112,6 +112,15 @@
 	text-shadow: 1px 1px 1px #000;
 }
 
+.camp-screen > .l-crafting-dialog-container .content .l-list-container .ui-control.list .list-entry .column.is-left .craft-number-label {
+	top: 26px;
+	right: 18px;
+	position: absolute;
+	z-index: 3;
+
+	pointer-events: none;
+}
+
 .camp-screen > .l-crafting-dialog-container .content .l-list-container .ui-control.list .list-entry .column.is-left .amount-layer
 {
 	width: 100%;

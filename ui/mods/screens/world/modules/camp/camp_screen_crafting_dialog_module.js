@@ -555,6 +555,12 @@ CampScreenCraftingDialogModule.prototype.addListEntry = function (_data) {
 				parent.append(overlayImage);
 			}
 		}
+
+		if (_data['Crafts'] > 1) {
+            var craftsLabel = $('<div class="label font-color-label text-font-very-small font-shadow-outline craft-number-label"/>');
+            craftsLabel.text('x' + _data['Crafts']);
+            parent.append(craftsLabel);
+        }
 	}, null, 'opacity-none');
 	image.bindTooltip({ contentType: 'ui-item', itemId: _data.ID, itemOwner: 'craft' });
 	if (_data.isAmountShown) {
