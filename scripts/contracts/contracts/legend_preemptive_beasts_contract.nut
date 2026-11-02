@@ -11,14 +11,14 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.contract.create();
 		this.m.Type = "contract.legend_preemptive_beasts";
 		this.m.Name = "Taking Action";
-		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
-			"Fell beasts have been spotted roaming the hills. The frightened locals are demanding action before attacks occur.",
-			"Amidst the rolling hills, fell beasts lurk in the darkness, their eyes glowing like embers in the night.",
-			"The hills are alive with the haunting cries of fell beasts, their sinister forms weaving through the moonlight.",
-			"Fear grips the hearts of villagers as fell beasts are sighted circling ominously on the mist-covered hills.",
-			"Track and exterminate the deadly beasts allegedly prowling the local hills and valleys.",
-			"\'Big as an \'orse! Wit sharp teef! Five eyez! Sp\'licky as a jabber!\' - The peasant reports are nonsense, but something is clearly out there.",
+			"Fell beasts have made a den nearby. The frightened locals are demanding action before attacks occur.",
+			"Not far from town, fell beasts lurk in a dark den, their eyes glowing like embers in the night.",
+			"The haunting cries of fell beasts echo from their lair outside town. Strike the den before they strike the town.",
+			"Fear grips the hearts of villagers since a hunter found a beast den in the mists beyond town.",
+			"The den of the beasts prowling the local countryside has been found. Raid it and exterminate them.",
+			"\'Big as an \'orse! Wit sharp teef! Five eyez! Lives in a hole!\' The peasant reports are nonsense, but something is clearly living out there.",
 		];
 	}
 
@@ -29,9 +29,9 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 	function start()
 	{
-		this.m.Payment.Pool = 400 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 400 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (::Math.rand(1, 100) <= 33)
+		if (this.Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;
@@ -51,10 +51,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			function start()
 			{
 				this.Contract.m.BulletpointsObjectives = [
-					"Hunt down the beasts spotted near " + this.Contract.m.Home.getName()
+					"Raid the beast den near " + this.Contract.m.Home.getName()
 				];
 
-				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
+				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -66,9 +66,9 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 			function end()
 			{
-				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				local r = ::Math.rand(1, 100);
-				if (r <= 5 && ::World.Assets.getBusinessReputation() > 500)
+				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				local r = this.Math.rand(1, 100);
+				if (r <= 5 && this.World.Assets.getBusinessReputation() > 500)
 				{
 					this.Flags.set("IsHumans", true);
 				}
@@ -77,11 +77,11 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					// Use our own settlement-based randomization system because the Vanilla approach was bugged and overly favoured Ghouls
 					this.Flags.set(::RoamingBeastsContractWeights.rollEnemyBySettlement(this.Contract.getHome().get()), true);
 				}
-				this.Contract.spawnEnemies();
+				this.Contract.spawnDen();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
-				this.Flags.set("Cut", this.Contract.beautifyNumber(this.Contract.m.Payment.getOnCompletion() * ::Math.rand(10, 25) * 0.01));
-				::World.Contracts.setActiveContract(this.Contract);
+				this.Flags.set("Cut", this.Contract.beautifyNumber(this.Contract.m.Payment.getOnCompletion() * this.Math.rand(10, 25) * 0.01));
+				this.World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -92,7 +92,16 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				if (this.Contract.m.Target != null && !this.Contract.m.Target.isNull())
 				{
 					this.Contract.m.Target.getSprite("selection").Visible = true;
-					this.Contract.m.Target.setOnCombatWithPlayerCallback(this.onTargetAttacked.bindenv(this));
+
+					if (this.Contract.m.Target.isLocation())
+					{
+						this.Contract.m.Target.setAttackable(false);
+						this.Contract.m.Target.setOnEnterCallback(this.onTargetAttacked.bindenv(this));
+					}
+					else
+					{
+						this.Contract.m.Target.setOnCombatWithPlayerCallback(this.onTargetAttacked.bindenv(this));
+					}
 				}
 			}
 
@@ -102,7 +111,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				{
 					this.Flags.set("IsPoachersDialogShown", true);
 					this.Contract.setScreen("Poachers1");
-					::World.Contracts.showActiveContract();
+					this.World.Contracts.showActiveContract();
 				}
 
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive())
@@ -110,53 +119,55 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					if (this.Flags.get("IsHumans"))
 					{
 						this.Contract.setScreen("CollectingProof");
-						::World.Contracts.showActiveContract();
+						this.World.Contracts.showActiveContract();
 					}
 					else if (this.Flags.get("IsGhouls"))
 					{
 						this.Contract.setScreen("CollectingGhouls");
-						::World.Contracts.showActiveContract();
+						this.World.Contracts.showActiveContract();
 					}
 					else if (this.Flags.get("IsSpiders"))
 					{
 						this.Contract.setScreen("CollectingSpiders");
-						::World.Contracts.showActiveContract();
+						this.World.Contracts.showActiveContract();
 					}
 					else
 					{
 						this.Contract.setScreen("CollectingPelts");
-						::World.Contracts.showActiveContract();
+						this.World.Contracts.showActiveContract();
 					}
 
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsTrackingBeastsShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 3000) <= 1)
+				else if (!this.Flags.get("IsTrackingBeastsShown") && this.Contract.m.Target.isHiddenToPlayer() && this.Math.rand(1, 3000) <= 1)
 				{
 					this.Flags.set("IsTrackingBeastsShown", true);
 					this.Contract.setScreen("TrackingBeasts");
-					::World.Contracts.showActiveContract();
+					this.World.Contracts.showActiveContract();
 				}
 			}
 
-			function onTargetAttacked( _dest, _isPlayerAttacking )
+			function onTargetAttacked( _dest, _isPlayerAttacking = true )
 			{
 				if (this.Flags.get("IsHumans") && !this.Flags.get("IsAttackDialogTriggered"))
 				{
 					this.Flags.set("IsAttackDialogTriggered", true);
-					local troops = this.Contract.m.Target.getTroops();
-
-					foreach( t in troops )
-					{
-						t.ID = ::Const.EntityType.BanditRaider;
-					}
-
 					this.Contract.m.IsPlayerAttacking = _isPlayerAttacking;
 					this.Contract.setScreen("Humans");
-					::World.Contracts.showActiveContract();
+					this.World.Contracts.showActiveContract();
 				}
 				else
 				{
-					::World.Contracts.showCombatDialog(_isPlayerAttacking);
+					this.Contract.startDenFight(_isPlayerAttacking);
+				}
+			}
+
+			function onCombatVictory( _combatID )
+			{
+				if (_combatID == "BeastDen" && this.Contract.m.Target != null && !this.Contract.m.Target.isNull())
+				{
+					this.Contract.m.Target.die();
+					this.Contract.m.Target = null;
 				}
 			}
 
@@ -169,7 +180,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					{
 						if (_actor.getID() == this.Flags.get("Poacher" + i))
 						{
-							::World.getGuestRoster().remove(_actor);
+							this.World.getGuestRoster().remove(_actor);
 						}
 					}
 				}
@@ -237,7 +248,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 						}
 					}
 
-					::World.Contracts.showActiveContract();
+					this.World.Contracts.showActiveContract();
 				}
 			}
 
@@ -250,7 +261,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					{
 						if (_actor.getID() == this.Flags.get("Poacher" + i))
 						{
-							::World.getGuestRoster().remove(_actor);
+							this.World.getGuestRoster().remove(_actor);
 						}
 					}
 				}
@@ -261,12 +272,12 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 	function createScreens()
 	{
-		this.importScreens(::Const.Contracts.NegotiationDefault);
-		this.importScreens(::Const.Contracts.Overview);
+		this.importScreens(this.Const.Contracts.NegotiationDefault);
+		this.importScreens(this.Const.Contracts.Overview);
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
-			Text = "[img]gfx/ui/events/event_43.png[/img]{%employer% greets you with a worried expression on %their_employer% face.%SPEECH_ON%I\'m glad you\'re here, sellsword. We\'ve been receiving reports of dangerous beasts appearing around the outskirts of our town.%SPEECH_OFF%You look around you, noticing the townsfolk going about their business completely oblivious to the precarious situation their lives are in.%SPEECH_ON%Thankfully, nothing terrible has happened... yet. With your help, we can make sure that it stays that way.%SPEECH_OFF% | %SPEECH_ON%Oi, sellsword! Come, quickly!%SPEECH_OFF%%employer% beckons to you, %their_employer% voice in hushed and hurried tones. You note the urgency in %their_employer% tone as you follow %them_employer% around an isolated corner. %They_employer% looks around agitatedly, as if to ensure you are alone. Preparing for the worst, you reach for your weapon - a move which immediately alarms %them_employer%.%SPEECH_ON%Stop! What are you doing?%SPEECH_OFF%You reply that you\'d ask the same of them.%SPEECH_ON%I needed to speak with you in private. Now put that thing away before one of us gets hurt!%SPEECH_OFF%You raise an eyebrow as you rest your hand on the hilt of your weapon, wondering almost out loud just who exactly would be hurt. %employer% barely notices.%SPEECH_ON%Dangerous beasts have been spotted outside of town. Most folks in this town are blissfully unaware of it so far, and I would like to keep it that way. I want you to hunt these beasts down before they cause any trouble.%SPEECH_OFF% | You are greeted by %employer%, who cuts to the chase.%SPEECH_ON%A few days ago, some children claimed they heard strange sounds while they were playing near the edge of town. I had my guards investigate, and they came back saying they found monstrous tracks in the vicinity.%SPEECH_OFF%You turn to look at the guards. One of them is lazily leaning into a makeshift polearm in a manner that makes you fear for the safety of their right eye. Another is staring in awe at %randombrother%, dreamily confessing their desire to become a hero like %them_randombrother% someday. You refocus your attention on %employer%.%SPEECH_ON%Frankly, I wouldn\'t trust even my dog\'s life to any of my guards. I want you to head out and kill these beasts before they cause any trouble for us, you hear?%SPEECH_OFF%Before %they_employer% could finish %their_employer% sentence, the guard who was resting against their polearm fell asleep standing, tipping over and stabbing the other guard who was fawning over %randombrother% in their left buttock. The %companyname% will never be left wanting for work in this town, it seems.}",
+			Text = "[img]gfx/ui/events/event_43.png[/img]{%employer% greets you with a worried expression on %their_employer% face.%SPEECH_ON%I\'m glad you\'re here, sellsword. We\'ve been receiving reports of dangerous beasts appearing around the outskirts of our town. A hunter followed their tracks back to their den.%SPEECH_OFF%You look around you, noticing the townsfolk going about their business completely oblivious to the precarious situation their lives are in.%SPEECH_ON%Thankfully, nothing terrible has happened... yet. With your help, we can make sure that it stays that way.%SPEECH_OFF% | %SPEECH_ON%Oi, sellsword! Come, quickly!%SPEECH_OFF%%employer% beckons to you, %their_employer% voice in hushed and hurried tones. You note the urgency in %their_employer% tone as you follow %them_employer% around an isolated corner. %They_employer% looks around agitatedly, as if to ensure you are alone. Preparing for the worst, you reach for your weapon - a move which immediately alarms %them_employer%.%SPEECH_ON%Stop! What are you doing?%SPEECH_OFF%You reply that you\'d ask the same of them.%SPEECH_ON%I needed to speak with you in private. Now put that thing away before one of us gets hurt!%SPEECH_OFF%You raise an eyebrow as you rest your hand on the hilt of your weapon, wondering almost out loud just who exactly would be hurt. %employer% barely notices.%SPEECH_ON%Dangerous beasts have been spotted outside of town, and they have made a den nearby. Most folks in this town are blissfully unaware of it so far, and I would like to keep it that way. I want you to raid that den before they cause any trouble.%SPEECH_OFF% | You are greeted by %employer%, who cuts to the chase.%SPEECH_ON%A few days ago, some children claimed they heard strange sounds while they were playing near the edge of town. I had my guards investigate, and they came back saying they found monstrous tracks leading to a den outside town.%SPEECH_OFF%You turn to look at the guards. One of them is lazily leaning into a makeshift polearm in a manner that makes you fear for the safety of their right eye. Another is staring in awe at %randombrother%, dreamily confessing their desire to become a hero like %them_randombrother% someday. You refocus your attention on %employer%.%SPEECH_ON%Frankly, I wouldn\'t trust even my dog\'s life to any of my guards. I want you to head out to that den and kill these beasts before they cause any trouble for us, you hear?%SPEECH_OFF%Before %they_employer% could finish %their_employer% sentence, the guard who was resting against their polearm fell asleep standing, tipping over and stabbing the other guard who was fawning over %randombrother% in their left buttock. The %companyname% will never be left wanting for work in this town, it seems.}",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -284,7 +295,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "{This doesn\'t sound like our kind of work. | I wish you luck, but we\'ll not be part of this.}",
 					function getResult()
 					{
-						::World.Contracts.removeContract(this.Contract);
+						this.World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -381,7 +392,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "TrackingBeastsPoacher",
 			Title = "Along the way...",
-			Text = "[img]gfx/ui/events/event_126.png[/img]{%poacher% steps forward and takes a quick glance at the tracks.%SPEECH_ON%Aye, these must surely be the %beasts% that I saw the other day. Looking at these tracks, they must have headed to the %direction% of here.%SPEECH_OFF% | You turn to find %poacher%, who coincidentally just returned from a brief scouting trip. %They_poacher% hunches over the tracks, a wave of recognition immediately washing over %their_poacher% face.%SPEECH_ON%%beasts%! These are definitely the ones I just spotted as well. I saw them to the %direction% of here. If we hurry, perhaps we can catch them before they cause any harm.%SPEECH_OFF% | %SPEECH_ON%It\'s %beasts%, I\'m sure of it.%SPEECH_OFF%Before you are able to take a closer look to confirm what %they_poacher% said, %poacher% is already walking off towards the %direction%. You quickly order the %companyname% to move out.}",
+			Text = "[img]gfx/ui/events/event_126.png[/img]{%poacher% steps forward and takes a quick glance at the tracks.%SPEECH_ON%Aye, these must surely be the %beasts% that I saw the other day. Looking at these tracks, they must have headed to the %direction% of here.%SPEECH_OFF% | You turn to find %poacher%, who coincidentally just returned from a brief scouting trip. %They_poacher% hunches over the tracks, a wave of recognition immediately washing over %their_poacher% face.%SPEECH_ON%%beasts%! These are definitely the ones I just spotted as well. Their den lies to the %direction% of here. If we hurry, perhaps we can catch them in it before they cause any harm.%SPEECH_OFF% | %SPEECH_ON%It\'s %beasts%, I\'m sure of it.%SPEECH_OFF%Before you are able to take a closer look to confirm what %they_poacher% said, %poacher% is already walking off towards the %direction%. You quickly order the %companyname% to move out.}",
 			Image = "",
 			Characters = [],
 			List = [],
@@ -402,7 +413,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "TrackingBeastsExpert",
 			Title = "Along the way...",
-			Text = "[img]gfx/ui/events/event_126.png[/img]{%experthunter% springs forward, and before you can stop %them_experthunter%, %they_experthunter% is already on all fours examining the tracks.%SPEECH_ON%Hmmm...%SPEECH_OFF%Wait a minute, is %they_experthunter% licking a piece of dirt from the tracks?%SPEECH_ON%Ah, yes. These must be %beasts% indeed.%SPEECH_OFF%Before you are able to ask %them_experthunter% how %they_experthunter% knows, %they_experthunter% gets up and points to the %direction%.%SPEECH_ON%They went that way. If we hurry, we can catch them before they hurt anyone.%SPEECH_OFF% | %experthunter% taps you on the shoulder from behind.%SPEECH_ON%It\'s %beasts%, boss. I saw them while I was scouting ahead.%SPEECH_OFF%You are about to ask when did %they_experthunter% even leave in the first place, but %they_experthunter% interrupts you.%SPEECH_ON%There\'s no time to waste. We should head towards the %direction% immediately if we want to make sure they don\'t cause any trouble.%SPEECH_OFF% | %SPEECH_ON%Those are definitely the tracks of %beasts% if I have ever seen them.%SPEECH_OFF%%experthunter% saunters over to your side and appears to be measuring the tracks with a stick. %They_experthunter% sniffs the air uncomfortably loudly.%SPEECH_ON%We should head %direction%. They can\'t be far now.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_126.png[/img]{%experthunter% springs forward, and before you can stop %them_experthunter%, %they_experthunter% is already on all fours examining the tracks.%SPEECH_ON%Hmmm...%SPEECH_OFF%Wait a minute, is %they_experthunter% licking a piece of dirt from the tracks?%SPEECH_ON%Ah, yes. These must be %beasts% indeed.%SPEECH_OFF%Before you are able to ask %them_experthunter% how %they_experthunter% knows, %they_experthunter% gets up and points to the %direction%.%SPEECH_ON%Their den is that way. If we hurry, we can catch them in it before they hurt anyone.%SPEECH_OFF% | %experthunter% taps you on the shoulder from behind.%SPEECH_ON%It\'s %beasts%, boss. I saw them while I was scouting ahead.%SPEECH_OFF%You are about to ask when did %they_experthunter% even leave in the first place, but %they_experthunter% interrupts you.%SPEECH_ON%There\'s no time to waste. We should head towards the %direction% immediately if we want to make sure they don\'t cause any trouble.%SPEECH_OFF% | %SPEECH_ON%Those are definitely the tracks of %beasts% if I have ever seen them.%SPEECH_OFF%%experthunter% saunters over to your side and appears to be measuring the tracks with a stick. %They_experthunter% sniffs the air uncomfortably loudly.%SPEECH_ON%We should head %direction%. They can\'t be far now.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -502,7 +513,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "Success1",
 			Title = "On your return...",
-			Text = "[img]gfx/ui/events/event_04.png[/img]{You return to %employer% and lay one of the pelts clear across %their_employer% desk. Its limp claws rap against the side of the oak. The %person_employer% lifts one, then lets it fall again.%SPEECH_ON%I see you\'ve found those beasts we were looking for.%SPEECH_OFF%You tell %them_employer% of the battle. %They_employer% seems most pleased, taking a small wooden chest out from %their_employer% bookshelf and handing it over.%SPEECH_ON%%reward_completion% crowns, as agreed upon. The people of %townname% deserve the reprieve you have given them from such horrors.%SPEECH_OFF% | When you step in %employer%\'s room he recoils almost instantly.%SPEECH_ON%What in the hells of the gods is in your hand, sellsword?%SPEECH_OFF%You hold up the nape of a pelt. Black blood ropes out from the neck and splatters the floor.%SPEECH_ON%One of the beasts you were looking for. If you need evidence of the rest, I got those waiting outside...%SPEECH_OFF%The man holds his hand up, staying you.%SPEECH_ON%One is sufficient for my belief. Very good work, sellsword. Your pay will be with %randomname%, a councilman you probably passed in the halls. He\'s got the ugly mug on him and he\'ll be carrying the %reward_completion% crowns, as promised.%SPEECH_OFF%The man takes another look at the beast then slowly shakes his head.%SPEECH_ON%May the dead and their survivors find peace in the passing of those foul creatures.%SPEECH_OFF% | %employer% welcomes your return with a goblet of wine.%SPEECH_ON%Drink up, beast-slayer.%SPEECH_OFF%You\'re curious as to how he already knows of your success. He waves off your curiosity.%SPEECH_ON%I\'ve many eyes and ears in this land - not spies, of course, but the common folk has a big mouth. I should know, I am one! You did well on this one, sellsword, so have a sip. It\'s mighty fine wine.%SPEECH_OFF%It\'s alright. The reward of %reward_completion% crowns you walk out with is far better, though. %employer% stops you.%SPEECH_ON%Just so you know, mercenary, those beasts killed some good men and women out there. Those people might be scared of you, being the sellsword that you are, but they are eternally grateful all the same.%SPEECH_OFF%You weigh the crowns. Quite grateful, yes... | %employer% takes a few steps back.%SPEECH_ON%Ah, uh, I see you\'ve killed the beasts. That\'s a mighty fine pelt you got there.%SPEECH_OFF%You drop what you\'ve brought: a thick, heavy mane of beastly origin collapsing into a pile of fur and flesh. The man, almost too scared to get close, tosses you a satchel.%SPEECH_ON%%reward_completion% crowns, as agreed upon. I will go to the people and tell them of your success. Finally, we can be at peace.%SPEECH_OFF% | %employer%\'s sitting at his table, legs up over a corner. His eyes are staring at the ceiling, the corners of his face pinched with withered folds. He looks at you.%SPEECH_ON%Welcome back. I\'ve been getting word of your doings... of your battles with the monsters.%SPEECH_OFF%You nod, looking around for your reward. The man shows you the door.%SPEECH_ON%%randomname%, a fellow councilman of %townname%, has your payment outside. %reward_completion% crowns as agreed upon. And the people of %townname%, fear you though they may, are blessed all the same by your arrival here. Thank you, mercenary.%SPEECH_OFF% | %employer%\'s feeding one of his dogs when you return. The mutt drops its bone to sniff at what you\'ve brought. The man points at the pelt.%SPEECH_ON%What kind of foul thing is that?%SPEECH_OFF%You shrug and toss it onto his table. The dog pokes its nose at one of the claws, growls, then begins to lick it. %employer% smiles briefly, but then goes to his bookshelf, picking up a wooden chest and handing it to you.%SPEECH_ON%%reward_completion% crowns, was it? You should know that you\'ve brought peace to the people of %townname%.%SPEECH_OFF%You nod.%SPEECH_ON%Does their happiness also come in crowns?%SPEECH_OFF%%employer% frowns at your greedy humor.%SPEECH_ON%No, it does not. Have a good day, mercenary.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_04.png[/img]{You return to %employer% and lay one of the pelts clear across %their_employer% desk. Its limp claws rap against the side of the oak. The %person_employer% lifts one, then lets it fall again.%SPEECH_ON%I see you\'ve found that den.%SPEECH_OFF%You tell %them_employer% of the battle. %They_employer% seems most pleased, taking a small wooden chest out from %their_employer% bookshelf and handing it over.%SPEECH_ON%%reward_completion% crowns, as agreed upon. The people of %townname% will never know how close such horrors came to their doors.%SPEECH_OFF% | When you step in %employer%\'s room he recoils almost instantly.%SPEECH_ON%What in the hells of the gods is in your hand, sellsword?%SPEECH_OFF%You hold up the nape of a pelt. Black blood ropes out from the neck and splatters the floor.%SPEECH_ON%One of the beasts you were looking for. If you need evidence of the rest, I got those waiting outside...%SPEECH_OFF%The man holds his hand up, staying you.%SPEECH_ON%One is sufficient for my belief. Very good work, sellsword. Your pay will be with %randomname%, a councilman you probably passed in the halls. He\'s got the ugly mug on him and he\'ll be carrying the %reward_completion% crowns, as promised.%SPEECH_OFF%The man takes another look at the beast then slowly shakes his head.%SPEECH_ON%And to think, those foul creatures were nesting a short walk from our children. May it stay a story.%SPEECH_OFF% | %employer% welcomes your return with a goblet of wine.%SPEECH_ON%Drink up, beast-slayer.%SPEECH_OFF%You\'re curious as to how he already knows of your success. He waves off your curiosity.%SPEECH_ON%I\'ve many eyes and ears in this land - not spies, of course, but the common folk has a big mouth. I should know, I am one! You did well on this one, sellsword, so have a sip. It\'s mighty fine wine.%SPEECH_OFF%It\'s alright. The reward of %reward_completion% crowns you walk out with is far better, though. %employer% stops you.%SPEECH_ON%Just so you know, mercenary, those beasts would have killed some good men and women before long. Those people might be scared of you, being the sellsword that you are, but they would be eternally grateful if they knew.%SPEECH_OFF%You weigh the crowns. Quite grateful, yes... | %employer% takes a few steps back.%SPEECH_ON%Ah, uh, I see you\'ve killed the beasts. That\'s a mighty fine pelt you got there.%SPEECH_OFF%You drop what you\'ve brought: a thick, heavy mane of beastly origin collapsing into a pile of fur and flesh. The man, almost too scared to get close, tosses you a satchel.%SPEECH_ON%%reward_completion% crowns, as agreed upon. I will go to the people and tell them of your success. Now we can all sleep easy.%SPEECH_OFF% | %employer%\'s sitting at his table, legs up over a corner. His eyes are staring at the ceiling, the corners of his face pinched with withered folds. He looks at you.%SPEECH_ON%Welcome back. I\'ve been getting word of your doings... of your battles with the monsters.%SPEECH_OFF%You nod, looking around for your reward. The man shows you the door.%SPEECH_ON%%randomname%, a fellow councilman of %townname%, has your payment outside. %reward_completion% crowns as agreed upon. And the people of %townname%, fear you though they may, are blessed all the same by your arrival here. Thank you, mercenary.%SPEECH_OFF% | %employer%\'s feeding one of his dogs when you return. The mutt drops its bone to sniff at what you\'ve brought. The man points at the pelt.%SPEECH_ON%What kind of foul thing is that?%SPEECH_OFF%You shrug and toss it onto his table. The dog pokes its nose at one of the claws, growls, then begins to lick it. %employer% smiles briefly, but then goes to his bookshelf, picking up a wooden chest and handing it to you.%SPEECH_ON%%reward_completion% crowns, was it? You should know that you\'ve kept the peace for the people of %townname%.%SPEECH_OFF%You nod.%SPEECH_ON%Does their happiness also come in crowns?%SPEECH_OFF%%employer% frowns at your greedy humor.%SPEECH_ON%No, it does not. Have a good day, mercenary.%SPEECH_OFF%}",
 			Image = "",
 			Characters = [],
 			List = [],
@@ -512,10 +523,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
-						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of direwolves");
-						::World.Contracts.finishActiveContract();
+						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
+						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of direwolves");
+						this.World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -526,7 +537,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -534,7 +545,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "Success2",
 			Title = "On your return...",
-			Text = "[img]gfx/ui/events/event_04.png[/img]{%employer% welcomes your return.%SPEECH_ON%I\'ve already heard the, I suppose, splendid news. I can believe it, though. A bunch of brigands playing dress up. Wolves in... wolf clothing?%SPEECH_OFF%%They_employer% grins at you, expecting a laugh at his cheesy joke. You shrug. %They_employer% shrugs, too.%SPEECH_ON%Ah, well. Your payment, %reward_completion% crowns, is waiting for you outside. I will tell the people of %townname% that the monsters they fear are but men.%SPEECH_OFF% | You return with the costumes of the foolish brigands. %employer% tilts the disguises left to right.%SPEECH_ON%Interesting. They\'re very well done. I\'d almost say the brigands were clever here.%SPEECH_OFF%%They_employer% picks up one of the masks and looks just about ready to try it on, then pauses as though %they_employer% shouldn\'t do this with an audience. %They_employer% puts it back down and smiles at you.%SPEECH_ON%Well, anyway, sellsword... good work. You\'ll have %reward_completion% crowns waiting for you outside with one of %townname%\'s councilmen. %They_employer%\'ll be looking out for you. Now, the people of %townname% can bury our dead and finally be at peace.%SPEECH_OFF% | %employer% reels in laughter at your reveal.%SPEECH_ON%Men? It was only men?%SPEECH_OFF%You nod, but try and get the man back on track.%SPEECH_ON%They killed a lot of peasants and they were still a dangerous lot.%SPEECH_OFF%Your employer nods.%SPEECH_ON%Of course, of course! I didn\'t mean to belittle anything or anyone. Don\'t dare assume things of me, sellsword, those are my friends and neighbors dying out there! Anyway, you did what I asked of you and for that I am very grateful.%SPEECH_OFF%%They_employer% hands over a satchel of crowns. You count %reward_completion% inside before making your leave. The %person_employer% hollers out to you.%SPEECH_ON%Surely you understand trying to find humor in this horrible world, right? Because it is I who went to the funerals of all those slain. I will not go into the grave with a frown on my face, no matter how hard this damned place tries to force it on me.%SPEECH_OFF% | You show %employer% the evidence of the mischievous brigands. %They_employer% picks through the lumps of disguises, rubbing crusty blood off his fingers.%SPEECH_ON%That is the blood of men alright. Are you sure that they weren\'t just having fun playing pretend and the real monsters are still out there?%SPEECH_OFF%You purse your lips and explain that they attacked you with very not-pretend weapons. %employer% nods, seemingly understanding, though a little suspicious.%SPEECH_ON%Well, I suppose I could just wait and see if the monsters return. If they do, well, a man betrayed makes for a mighty fine monster in and of itself, wouldn\'t you agree?%SPEECH_OFF%You just tell the man to pay you and wait and see if he should be so untrusting. %They_employer% nods, giving you %reward_completion% crowns and seeing you off.%SPEECH_ON%I truly do hope you are telling the truth, mercenary. %townname% could use a reprieve from the horrors that is constantly lashing out from this damned world.%SPEECH_OFF% | %employer% runs a finger along the edge of a disguise.%SPEECH_ON%The fur is soft to the touch. Very real...%SPEECH_OFF%%They_employer% looks up at you.%SPEECH_ON%I have to wonder if they killed the original monsters, and then... decided to wear their pelts? Why, though? Do you think they were cursed?%SPEECH_OFF%You shrug and answer.%SPEECH_ON%All I can say is that they had the guise of monsters, and the cruelty of them as well. They attacked us and paid for it. Have any of your locals spotted any creatures in awhile?%SPEECH_OFF%The man brings out a satchel of %reward_completion% crowns and slides it over to you.%SPEECH_ON%No, they haven\'t. In fact, they\'re starting to venture out again. I don\'t mean down the roads, but leaving the safety of their front doors is a big step for many! You\'ve definitely brought us peace, sellsword, and for that we thank you.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_04.png[/img]{%employer% welcomes your return.%SPEECH_ON%I\'ve already heard the, I suppose, splendid news. I can believe it, though. A bunch of brigands playing dress up. Wolves in... wolf clothing?%SPEECH_OFF%%They_employer% grins at you, expecting a laugh at his cheesy joke. You shrug. %They_employer% shrugs, too.%SPEECH_ON%Ah, well. Your payment, %reward_completion% crowns, is waiting for you outside. I will tell the people of %townname% that the monsters they fear are but men.%SPEECH_OFF% | You return with the costumes of the foolish brigands. %employer% tilts the disguises left to right.%SPEECH_ON%Interesting. They\'re very well done. I\'d almost say the brigands were clever here.%SPEECH_OFF%%They_employer% picks up one of the masks and looks just about ready to try it on, then pauses as though %they_employer% shouldn\'t do this with an audience. %They_employer% puts it back down and smiles at you.%SPEECH_ON%Well, anyway, sellsword... good work. You\'ll have %reward_completion% crowns waiting for you outside with one of %townname%\'s councilmen. %They_employer%\'ll be looking out for you. Now, the people of %townname% can stop looking over their shoulders.%SPEECH_OFF% | %employer% reels in laughter at your reveal.%SPEECH_ON%Men? It was only men?%SPEECH_OFF%You nod, but try and get the man back on track.%SPEECH_ON%They would have killed a lot of peasants and they were still a dangerous lot.%SPEECH_OFF%Your employer nods.%SPEECH_ON%Of course, of course! I didn\'t mean to belittle anything or anyone. Don\'t dare assume things of me, sellsword, those are my friends and neighbors they were waiting for out there! Anyway, you did what I asked of you and for that I am very grateful.%SPEECH_OFF%%They_employer% hands over a satchel of crowns. You count %reward_completion% inside before making your leave. The %person_employer% hollers out to you.%SPEECH_ON%Surely you understand trying to find humor in this horrible world, right? Because it is I who would have gone to the funerals of all those slain. I will not go into the grave with a frown on my face, no matter how hard this damned place tries to force it on me.%SPEECH_OFF% | You show %employer% the evidence of the mischievous brigands. %They_employer% picks through the lumps of disguises, rubbing crusty blood off his fingers.%SPEECH_ON%That is the blood of men alright. Are you sure that they weren\'t just having fun playing pretend and the real monsters are still out there?%SPEECH_OFF%You purse your lips and explain that they attacked you with very not-pretend weapons. %employer% nods, seemingly understanding, though a little suspicious.%SPEECH_ON%Well, I suppose I could just wait and see if the monsters show up. If they do, well, a man betrayed makes for a mighty fine monster in and of itself, wouldn\'t you agree?%SPEECH_OFF%You just tell the man to pay you and wait and see if he should be so untrusting. %They_employer% nods, giving you %reward_completion% crowns and seeing you off.%SPEECH_ON%I truly do hope you are telling the truth, mercenary. %townname% could use a reprieve from the horrors that is constantly lashing out from this damned world.%SPEECH_OFF% | %employer% runs a finger along the edge of a disguise.%SPEECH_ON%The fur is soft to the touch. Very real...%SPEECH_OFF%%They_employer% looks up at you.%SPEECH_ON%I have to wonder if they killed the original monsters, and then... decided to wear their pelts? Why, though? Do you think they were cursed?%SPEECH_OFF%You shrug and answer.%SPEECH_ON%All I can say is that they had the guise of monsters, and the cruelty of them as well. They attacked us and paid for it. Have any of your locals spotted any creatures in awhile?%SPEECH_OFF%The man brings out a satchel of %reward_completion% crowns and slides it over to you.%SPEECH_ON%No, they haven\'t. In fact, the few who heard the stories are starting to venture out again. I don\'t mean down the roads, but leaving the safety of their front doors is a big step for some! You\'ve definitely kept the peace here, sellsword, and for that we thank you.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -543,10 +554,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "Beast, men... what matters is the crowns.",
 					function getResult()
 					{
-						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
-						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of brigands masquerading as direwolves");
-						::World.Contracts.finishActiveContract();
+						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
+						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of brigands masquerading as direwolves");
+						this.World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -557,7 +568,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -565,7 +576,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "Success3",
 			Title = "On your return...",
-			Text = "[img]gfx/ui/events/event_04.png[/img]{You find %employer% resting on %their_employer% laurels. %They_employer% stands and pulls %their_employer% pants up, a servant quickly retrieving a bucket from whence %they_employer% was sitting. The poor servant quickly rushes out of the room. %employer% points at the Nachzehrer head dangling from your hand.%SPEECH_ON%That is absolutely disgusting. %randomname%, give the %companyname% their pay. %reward_completion% crowns, was it?%SPEECH_OFF% | You place the Nachzehrer head onto %employer%\'s desk. For some reason, fluids still issue from its neck, dribbling down the side of the oak and no doubt staining it. The %person_employer% leans back, tenting %their_employer% fingers on %their_employer% belly.%SPEECH_ON%Nachzehrers? And what else, ghosts?%SPEECH_OFF%The %person_employer% snickers to %themselves_employer%.%SPEECH_ON%Nothing is too difficult for you, sellsword.%SPEECH_OFF%%They_employer% snaps %their_employer% fingers and a servant comes up, handing you a satchel of %reward_completion% crowns. | Between the battle and walking to %employer%\'s place, the maw of the Nachzehrer became filled with flies, its tongue replaced by a formless, throbbing black ball that\'s more buzz than bite. %employer% takes one look at it and puts a cloth to %their_employer% mouth.%SPEECH_ON%Yes, I get it, take it away, please.%SPEECH_OFF%%They_employer% waves one of %their_employer% guards over and you are handed a satchel of %reward_completion% crowns. | A steely eyed %employer% leans forward to get a good look at the Nachzehrer head you\'ve brought in.%SPEECH_ON%That is quite the sight, mercenary. I\'m happy you have brought it to me.%SPEECH_OFF%%They_employer% leans back.%SPEECH_ON%Leave it on my desk. Maybe I can scare the children with it. The little gits are getting too used to fineries methinks.%SPEECH_OFF%%They_employer% snaps his fingers and a servant comes to give you %reward_completion% crowns. | You bring the Nachzehrer head to %employer% who stares at it for a long time.%SPEECH_ON%That reminds me of someone. I can\'t quite put my finger on it, and I\'m not sure I should. Excuse me, sellsword, I borrow your time without paying for it. Servant, give the %companyname% their money!%SPEECH_OFF%You are rewarded as promised. | %employer% takes the Nachzehrer head and holds it up. A few mewling cats seemingly appear out of nowhere, circling beneath it like buzzards would overhead. %They_employer% throws it out the window and the felines go running.%SPEECH_ON%Good work, sellsword. %reward_completion% crowns, as promised.%SPEECH_OFF% | You put a Nachzehrer head on %employer%\'s table. %They_employer% looks up from a dinner plate, glances at the head, then at you.%SPEECH_ON%I was eating, sellsword.%SPEECH_OFF%The silverware clatters as the disgusted %person_employer% shoves the plate aside. A servant whisks the food away, probably to try and eat it himself. %employer% takes a satchel out and puts it on the table.%SPEECH_ON%%reward_completion% crowns as was promised.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_04.png[/img]{You find %employer% resting on %their_employer% laurels. %They_employer% stands and pulls %their_employer% pants up, a servant quickly retrieving a bucket from whence %they_employer% was sitting. The poor servant quickly rushes out of the room. %employer% points at the Nachzehrer head dangling from your hand.%SPEECH_ON%That is absolutely disgusting. %randomname%, give the %companyname% their pay. %reward% crowns, was it?%SPEECH_OFF% | You place the Nachzehrer head onto %employer%\'s desk. For some reason, fluids still issue from its neck, dribbling down the side of the oak and no doubt staining it. The %person_employer% leans back, tenting %their_employer% fingers on %their_employer% belly.%SPEECH_ON%Nachzehrers? And what else, ghosts?%SPEECH_OFF%The %person_employer% snickers to %themselves_employer%.%SPEECH_ON%Nothing is too difficult for you, sellsword.%SPEECH_OFF%%They_employer% snaps %their_employer% fingers and a servant comes up, handing you a satchel of %reward% crowns. | Between the battle and walking to %employer%\'s place, the maw of the Nachzehrer became filled with flies, its tongue replaced by a formless, throbbing black ball that\'s more buzz than bite. %employer% takes one look at it and puts a cloth to %their_employer% mouth.%SPEECH_ON%Yes, I get it, take it away, please.%SPEECH_OFF%%They_employer% waves one of %their_employer% guards over and you are handed a satchel of %reward% crowns. | A steely eyed %employer% leans forward to get a good look at the Nachzehrer head you\'ve brought in.%SPEECH_ON%That is quite the sight, mercenary. I\'m happy you have brought it to me.%SPEECH_OFF%%They_employer% leans back.%SPEECH_ON%Leave it on my desk. Maybe I can scare the children with it. The little gits are getting too used to fineries methinks.%SPEECH_OFF%%They_employer% snaps his fingers and a servant comes to give you %reward% crowns. | You bring the Nachzehrer head to %employer% who stares at it for a long time.%SPEECH_ON%That reminds me of someone. I can\'t quite put my finger on it, and I\'m not sure I should. Excuse me, sellsword, I borrow your time without paying for it. Servant, give the %companyname% their money!%SPEECH_OFF%You are rewarded as promised. | %employer% takes the Nachzehrer head and holds it up. A few mewling cats seemingly appear out of nowhere, circling beneath it like buzzards would overhead. %They_employer% throws it out the window and the felines go running.%SPEECH_ON%Good work, sellsword. %reward% crowns, as promised.%SPEECH_OFF% | You put a Nachzehrer head on %employer%\'s table. %They_employer% looks up from a dinner plate, glances at the head, then at you.%SPEECH_ON%I was eating, sellsword.%SPEECH_OFF%The silverware clatters as the disgusted %person_employer% shoves the plate aside. A servant whisks the food away, probably to try and eat it himself. %employer% takes a satchel out and puts it on the table.%SPEECH_ON%%reward_completion% crowns as was promised.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -574,10 +585,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
-						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of nachzehrers");
-						::World.Contracts.finishActiveContract();
+						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
+						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of nachzehrers");
+						this.World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -588,7 +599,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -605,10 +616,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
-						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of webknechts");
-						::World.Contracts.finishActiveContract();
+						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
+						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of webknechts");
+						this.World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -619,7 +630,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -651,7 +662,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			function start()
 			{
 				local brothers = ::World.getPlayerRoster().getAll();
-				local peddlerBackgrounds = [::Legends.Backgrounds.getID(::Legends.Background.Peddler),::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderPeddler)];
+				local peddlerBackgrounds = ["background.peddler","background.legend_trader","background.legend_commander_trader"];
 				foreach( bro in brothers )
 				{
 					if (peddlerBackgrounds.find(bro.getBackground().getID()) != null)
@@ -692,14 +703,14 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			function start()
 			{
 				// Pay their price
-				::World.Assets.addMoney(this.Flags.get("Cut") * -1);
+				this.World.Assets.addMoney(this.Flags.get("Cut") * -1);
 
 				// Add 2 poachers to the guest roster
 				local numPoachers = 2;
 				local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 				for( local i = 0; i != numPoachers; i = ++i )
 				{
-					local poacher = ::World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
+					local poacher = this.World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
 					poacher.setFaction(1);
 					poacher.setPlaceInFormation(freeSlots.pop());
 					poacher.assignRandomEquipment();
@@ -788,11 +799,11 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				{
 					this.Text += "{Say what you want about %peddler%, but %they_peddler% somehow managed to pull it off. You quickly pick the coins off the outstretched palms of the very confused-looking poachers before they change their minds. | As the befuddled-looking poachers hand over their precious crowns, you wonder why %peddler% even needed to turn to a life of mercenary work. | To the astonishment of everyone except %peddler%, the poachers hand over a bag of crowns and eagerly fall in line with the %companyname%.}";
 					// Profit
-					::World.Assets.addMoney(this.Flags.get("Cut"));
+					this.World.Assets.addMoney(this.Flags.get("Cut"));
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
+						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
 					});
 
 					this.Contract.m.Peddler.improveMood(::Const.MoodState.Euphoric - ::Math.minf(this.Contract.m.Peddler.getMood(), ::Const.MoodState.Euphoric), "Bamboozled some poachers");
@@ -869,7 +880,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 				for( local i = 0; i != numPoachers; i = ++i )
 				{
-					local poacher = ::World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
+					local poacher = this.World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
 					poacher.setFaction(1);
 					poacher.setPlaceInFormation(freeSlots.pop());
 					poacher.assignRandomEquipment();
@@ -954,15 +965,15 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				if (this.Flags.get("PeddlerPayLater"))
 				{
 					this.Text = "[img]gfx/ui/events/event_10.png[/img]{The poachers excitedly recount to each other the adventure they\'d had, happily handing over a bag of crowns to you before parting ways.}";
-					::World.Assets.addMoney(this.Flags.get("Cut"));
+					this.World.Assets.addMoney(this.Flags.get("Cut"));
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
+						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
 					});
 				}
 
-				if (::Math.rand(1, 100) <= 50)
+				if (this.Math.rand(1, 100) <= 50)
 				{
 					this.Text += "{%SPEECH_ON%We'll be sure to let the town know of the good work you\'ve done.%SPEECH_OFF%}";
 					this.Contract.addSituation(this.new("scripts/entity/world/settlements/situations/legend_word_of_mouth_situation"), 3, this.Contract.m.Home, this.List);
@@ -1023,11 +1034,11 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				if (this.Flags.get("PeddlerPayLater"))
 				{
 					this.Text = "[img]gfx/ui/events/event_10.png[/img]{" + format("The remaining %s %s over their share of the payment promised for the \"once-in-a-lifetime\" experience. For some, the experience did live up to its name.",::Const.LegendMod.Language.pluralize(poachers.len(),"poacher", "poachers"),::Const.LegendMod.Language.pluralize(poachers.len(),"hands", "hand")) + "}";
-					::World.Assets.addMoney(::Math.ceil(this.Flags.get("Cut") * 1.0 * poachers.len() / this.Flags.get("NumPoachers")));
+					this.World.Assets.addMoney(::Math.ceil(this.Flags.get("Cut") * 1.0 * poachers.len() / this.Flags.get("NumPoachers")));
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
+						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
 					});
 				}
 
@@ -1077,74 +1088,197 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 	}
 
-	function spawnEnemies() {
-		local playerTile = ::World.State.getPlayer().getTile();
-		local tile = this.getTileToSpawnLocation(playerTile, 5, 10);
-		local party;
+	function spawnDen()
+	{
+		local playerTile = this.World.State.getPlayer().getTile();
+		local script = "scripts/entity/world/locations/legend_beast_den_location";
+		local tile = null;
 
-		if (this.m.Flags.get("IsHumans"))
+		if (this.m.Flags.get("IsSpiders"))
 		{
-			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits).spawnEntity(tile, "Direwolves", false, ::Const.World.Spawn.BanditsDisguisedAsDirewolves, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
-			party.setDescription("A pack of ferocious direwolves on the hunt for prey.");
-			party.setFootprintType(::Const.World.FootprintsType.Direwolves);
-			::Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Direwolves, 0.75);
+			tile = this.getForestTileForNest(playerTile);
+
+			if (tile != null)
+			{
+				script = "scripts/entity/world/locations/legend_spider_nest_location";
+			}
 		}
-		else if (this.m.Flags.get("IsGhouls"))
+
+		if (tile == null)
 		{
-			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Nachzehrers", false, ::Const.World.Spawn.Ghouls, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
-			party.setDescription("A flock of scavenging nachzehrers.");
-			party.setFootprintType(::Const.World.FootprintsType.Ghouls);
-			::Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Ghouls, 0.75);
+			tile = this.getTileToSpawnLocation(playerTile, 5, 10, [
+				this.Const.World.TerrainType.Ocean,
+				this.Const.World.TerrainType.Shore,
+				this.Const.World.TerrainType.Mountains,
+				this.Const.World.TerrainType.Swamp,
+				this.Const.World.TerrainType.Desert,
+				this.Const.World.TerrainType.Oasis
+			], false);
+		}
+
+		tile.clear();
+
+		local den = this.World.spawnLocation(script, tile.Coords);
+		den.onSpawned();
+		den.setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID());
+		den.setAttackable(false);
+		den.setDiscovered(true);
+		this.World.uncoverFogOfWar(den.getTile().Pos, 500.0);
+		this.m.Target = this.WeakTableRef(den);
+
+		local footprints = this.Const.World.FootprintsType.Direwolves;
+
+		if (this.m.Flags.get("IsGhouls"))
+		{
+			footprints = this.Const.World.FootprintsType.Ghouls;
 		}
 		else if (this.m.Flags.get("IsSpiders"))
 		{
-			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Webknechts", false, ::Const.World.Spawn.Spiders, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
-			party.setDescription("A swarm of webknechts skittering about.");
-			party.setFootprintType(::Const.World.FootprintsType.Spiders);
-			::Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Spiders, 0.75);
+			footprints = this.Const.World.FootprintsType.Spiders;
+		}
+
+		this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), den.getTile(), this.Const.BeastFootprints, footprints, 0.75);
+		return den;
+	}
+
+	function isForestTile( _tile )
+	{
+		return _tile.Type == this.Const.World.TerrainType.Forest || _tile.Type == this.Const.World.TerrainType.LeaveForest || _tile.Type == this.Const.World.TerrainType.AutumnForest;
+	}
+
+	function getForestTileForNest( _pivot )
+	{
+		local mapSize = this.World.getMapSize();
+		local settlements = this.World.EntityManager.getSettlements();
+		local locations = this.World.EntityManager.getLocations();
+		local candidates = [];
+
+		for( local x = this.Math.max(4, _pivot.SquareCoords.X - 12); x <= this.Math.min(mapSize.X - 4, _pivot.SquareCoords.X + 12); x = ++x )
+		{
+			for( local y = this.Math.max(4, _pivot.SquareCoords.Y - 12); y <= this.Math.min(mapSize.Y - 4, _pivot.SquareCoords.Y + 12); y = ++y )
+			{
+				if (!this.World.isValidTileSquare(x, y))
+				{
+					continue;
+				}
+
+				local tile = this.World.getTileSquare(x, y);
+				local d = tile.getDistanceTo(_pivot);
+
+				if (d < 5 || d > 12 || !this.isForestTile(tile) || tile.IsOccupied || tile.HasRoad)
+				{
+					continue;
+				}
+
+				local isFree = true;
+
+				for( local j = 0; j != 6; j = ++j )
+				{
+					if (tile.hasNextTile(j) && tile.getNextTile(j).HasRoad)
+					{
+						isFree = false;
+						break;
+					}
+				}
+
+				foreach( s in settlements )
+				{
+					if (isFree && s.getTile().getDistanceTo(tile) < 5)
+					{
+						isFree = false;
+					}
+				}
+
+				foreach( v in locations )
+				{
+					if (isFree && v.getTile().getDistanceTo(tile) < 4)
+					{
+						isFree = false;
+					}
+				}
+
+				if (isFree)
+				{
+					candidates.push(tile);
+				}
+			}
+		}
+
+		for( local i = 0; i < 10 && candidates.len() != 0; i = ++i )
+		{
+			local tile = candidates.remove(this.Math.rand(0, candidates.len() - 1));
+			local navSettings = this.World.getNavigator().createSettings();
+			navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+
+			if (!this.World.getNavigator().findPath(_pivot, tile, navSettings, 0).isEmpty())
+			{
+				return tile;
+			}
+		}
+
+		return null;
+	}
+
+	function startDenFight( _isPlayerAttacking = true )
+	{
+		local tile = this.m.Target.getTile();
+		local isInForest = this.m.Flags.get("IsSpiders") && this.isForestTile(tile);
+		local p = this.Const.Tactical.CombatInfo.getClone();
+		p.CombatID = "BeastDen";
+		p.Tile = tile;
+		p.TerrainTemplate = isInForest ? "tactical.legend_beast_den_forest" : "tactical.legend_beast_den";
+		p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
+		p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;
+		p.Music = this.Const.Music.BeastsTracks;
+		p.IsWithoutAmbience = !isInForest;
+
+		if (!isInForest)
+		{
+			p.AfterDeploymentCallback = function ()
+			{
+				this.Tactical.getWeather().setAmbientLightingPreset(5);
+				this.Tactical.getWeather().setAmbientLightingSaturation(0.9);
+			};
+		}
+
+		if (this.m.Flags.get("IsHumans"))
+		{
+			p.TerrainTemplate = "tactical.legend_beast_den_bandits";
+			p.Music = this.Const.Music.BanditTracks;
+			this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.BanditsDisguisedAsDirewolves, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).getID(), this.getMinibossModifier());
+		}
+		else if (this.m.Flags.get("IsGhouls"))
+		{
+			this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Ghouls, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID(), this.getMinibossModifier());
+		}
+		else if (this.m.Flags.get("IsSpiders"))
+		{
+			this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Spiders, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID(), this.getMinibossModifier());
 		}
 		else
 		{
-			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Direwolves", false, ::Const.World.Spawn.Direwolves, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
-			party.setDescription("A pack of ferocious direwolves on the hunt for prey.");
-			party.setFootprintType(::Const.World.FootprintsType.Direwolves);
-			::Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Direwolves, 0.75);
+			this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Direwolves, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID(), this.getMinibossModifier());
 		}
 
-		party.setAttackableByAI(false);
-		party.setFootprintSizeOverride(0.75);
-		this.m.Target = this.WeakTableRef(party);
-		party.getSprite("banner").setBrush("banner_beasts_01");
-		local c = party.getController();
-		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-		local roam = this.new("scripts/ai/world/orders/roam_order");
-		roam.setPivot(this.m.Home);
-		roam.setMinRange(2);
-		roam.setMaxRange(8);
-		roam.setAllTerrainAvailable();
-		roam.setTerrain(::Const.World.TerrainType.Ocean, false);
-		roam.setTerrain(::Const.World.TerrainType.Shore, false);
-		roam.setTerrain(::Const.World.TerrainType.Mountains, false);
-		c.addOrder(roam);
-		return party;
+		this.World.Contracts.startScriptedCombat(p, _isPlayerAttacking, false, true);
 	}
 
 	function onPrepareVariables( _vars )
 	{
 		_vars.push([
 			"direction",
-			this.m.Target == null || this.m.Target.isNull() ? "" : ::Legends.S.highlightForDarkBackground(::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Target.getTile())])
+			this.m.Target == null || this.m.Target.isNull() ? "" : ::Const.UI.getColorized(::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Target.getTile())], ::Const.UI.Color.getHighlightDarkBackgroundValue())
 		]);
 		_vars.push([ // Will store the cut that the optional characters ask for.
 			"cut",
-			::Legends.S.highlightForDarkBackground(this.m.Flags.get("Cut")),
+			::Const.UI.getColorized(this.m.Flags.get("Cut"), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 		]);
 
 		if (!::MSU.isNull(this.m.Peddler))
 		{
 			_vars.push([
 				"peddler",
-				::Legends.S.highlightForDarkBackground(this.m.Peddler.getName()),
+				::Const.UI.getColorized(this.m.Peddler.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
 		}
 
@@ -1152,7 +1286,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		{
 			_vars.push([
 				"poacher",
-				::Legends.S.highlightForDarkBackground(this.m.Poacher.getName()),
+				::Const.UI.getColorized(this.m.Poacher.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
 		}
 
@@ -1160,7 +1294,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		{
 			_vars.push([
 				"experthunter",
-				::Legends.S.highlightForDarkBackground(this.m.ExpertHunter.getName()),
+				::Const.UI.getColorized(this.m.ExpertHunter.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
 		}
 
@@ -1183,7 +1317,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		}
 		_vars.push([
 			"beasts",
-			::Legends.S.highlightForDarkBackground(beasts),
+			::Const.UI.getColorized(beasts, ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 		])
 	}
 
@@ -1199,11 +1333,19 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			{
 				this.m.Target.getSprite("selection").Visible = false;
 				this.m.Target.setOnCombatWithPlayerCallback(null);
+
+				if (this.m.Target.isLocation())
+				{
+					this.m.Target.setOnEnterCallback(null);
+				}
+
+				this.m.Target.die();
+				this.m.Target = null;
 			}
 
 			this.m.Home.getSprite("selection").Visible = false;
 
-			::World.getGuestRoster().clear();
+			this.World.getGuestRoster().clear();
 			this.m.Peddler = null;
 			this.m.Poacher = null;
 			this.m.ExpertHunter = null;
@@ -1235,7 +1377,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 		if (target != 0)
 		{
-			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
 
 		this.contract.onDeserialize(_in);
