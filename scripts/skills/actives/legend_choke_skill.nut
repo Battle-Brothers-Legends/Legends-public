@@ -8,7 +8,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/puncture", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/puncture_hit", 3);
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.OffensiveTargeted+3;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted + 3;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -29,24 +29,26 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip() {
 		local tooltip = this.getDefaultTooltip();
 
-		tooltip.extend([{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/regular_damage.png",
-			text = "[color=%positive%]+50%[/color] damage to Choked, Tackled or Grappled enemies"
-		},
-		{
-			id = 9,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Adds the Choked effect which reduces enemy fatigue recovery by [color=%negative%]15[/color]"
-		},
-		{
-			id = 10,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Additionally if your target is [color=%effect%]Dazed[/color] or [color=%effect%]Parried[/color] hitchance is increased by [color=%positive%]+10%[/color], if they are stunned or rooted you gain [color=%positive%]+25%[/color], if they are [color=%effect%]Grappled[/color], [color=%effect%]Tackled[/color], [color=%effect%]Fleeing[/color] you gain [color=%positive%]+50%[/color]"
-		}]);
+		tooltip.extend([
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/regular_damage.png",
+				text = "[color=%positive%]+50%[/color] damage to Choked, Tackled or Grappled enemies"
+			},
+			{
+				id = 9,
+				type = "text",
+				icon = "ui/icons/fatigue_recovery_down.png",
+				text = "Adds the Choked effect which reduces enemy fatigue recovery by [color=%negative%]15[/color]"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Additionally if your target is [color=%effect%]Bewildered[/color], [color=%effect%]Dazed[/color] or [color=%effect%]Parried[/color] hitchance is increased by [color=%positive%]+10%[/color], if they are stunned or rooted you gain [color=%positive%]+25%[/color], if they are [color=%effect%]Grappled[/color], [color=%effect%]Tackled[/color], [color=%effect%]Fleeing[/color] or [color=%effect%]Sleeping[/color] you gain [color=%positive%]+50%[/color]"
+			}
+		]);
 		return tooltip;
 	}
 
@@ -55,8 +57,9 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
-		if (hasNet && mainhand == null && this.skill.isUsable())
+		if (hasNet && mainhand == null && this.skill.isUsable()) {
 			return true;
+		}
 		return ((offhand == null && mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
@@ -65,60 +68,53 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
-		if (hasNet && mainhand == null)
+		if (hasNet && mainhand == null) {
 			return false;
+		}
 		return mainhand != null || offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || actor.isStabled();
 	}
 
-	function onGetHitFactors( _skill, _targetTile, _tooltip ) {
-		if (_skill == this) {
-			local target = _targetTile.getEntity();
-			local actor = this.getContainer().getActor();
-			if (target != null) {
-				local bonus = ::Math.max(0, ::Math.floor((target.getFatiguePct() - actor.getFatiguePct()) * 100));
-				this.logInfo(bonus);
-				_tooltip.push({
-					icon = "ui/tooltips/positive.png",
-					text = "[color=%positive%]%_bonus%%[/color] damage due to the difference in fatigue",
-					param = [["_bonus", bonus]]
-				});
-			}
-		}
-	}
-
-	function getHitChance( _targetEntity )
-	{
+	function getHitChance(_targetEntity) {
 		if (_targetEntity == null) {
 			return 0;
 		}
 		local mod = 0;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendStupefied))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendStupefied)) {
 			mod += 10;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
+		}
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried)) {
 			mod += 10;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Dazed))
+		}
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Dazed)) {
 			mod += 10;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled))
+		}
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled)) {
 			mod += 50;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
+		}
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned)) {
 			mod += 25;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendKnockedOver))
+		}
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendKnockedOver)) {
 			mod += 50;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping))
+		}
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping)) {
 			mod += 50;
-		if (_targetEntity.getCurrentProperties().IsRooted)
+		}
+		if (_targetEntity.getCurrentProperties().IsRooted) {
 			mod += 25;
-		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Fleeing)
+		}
+		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Fleeing) {
 			mod += 50;
+		}
 		local chance = _targetEntity.getFatiguePct() * 50;
 		return mod + ::Math.round(chance);
 	}
 
-	function onAfterUpdate( _properties ) {
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile ) {
+	function onUse(_user, _targetTile) {
 		local success = this.attackEntity(_user, _targetTile.getEntity());
 		if (success && _targetTile.IsOccupiedByActor) {
 			local target = _targetTile.getEntity();
@@ -128,7 +124,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		return success;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill != this) {
 			return;
 		}
@@ -148,19 +144,16 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMult += _targetEntity.getFatiguePct() - actor.getFatiguePct();
 		}
 
-		if (_targetEntity != null && (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled) || _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendChoked)))
-		{
+		if (_targetEntity != null && (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled) || _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendChoked))) {
 			_properties.DamageRegularMult *= 1.5;
 		}
 
 		_properties.HitChance[::Const.BodyPart.Head] += 100.0;
 
 		local accessory = actor.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
-		if (accessory != null && accessory.isItemType(::Const.Items.ItemType.Brawler))
-		{
+		if (accessory != null && accessory.isItemType(::Const.Items.ItemType.Brawler)) {
 			_properties.DamageRegularMin += accessory.m.ChokeMin;
 			_properties.DamageRegularMax += accessory.m.ChokeMax;
 		}
 	}
 });
-

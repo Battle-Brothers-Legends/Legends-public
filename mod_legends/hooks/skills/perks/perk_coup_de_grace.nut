@@ -24,47 +24,21 @@
 			return;
 		}
 
-		local mult = 1.0 + this.calculateBonus(_targetEntity);
-
-		_properties.DamageTotalMult *= mult;
+		_properties.DamageTotalMult *= 1.0 + this.calculateBonus(_targetEntity);
 	}
 
 	o.calculateBonus <- function (_targetEntity) {
-
 		local bonus = 0;
 
-		if (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury)) {
+		if (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury) || ::Legends.S.any(this.m.HighBonus, @(_effect) ::Legends.Effects.has(_targetEntity, _effect))) {
 			bonus += 0.2;
-		} else {
-			foreach (effect in this.m.HighBonus) {
-				if (_targetEntity.getSkills().hasEffect(effect)) {
-					bonus += 0.2;
-					break;
-				}
-			}
 		}
 
-		foreach (effect in this.m.LowBonus) {
-			if (_targetEntity.getSkills().hasEffect(effect)) {
-				bonus += 0.1;
-				break;
-			}
+		if (::Legends.S.any(this.m.LowBonus, @(_effect) ::Legends.Effects.has(_targetEntity, _effect))) {
+			bonus += 0.1;
 		}
 
 		return bonus;
-	}
-
-	// Requires MSU; this will add tooltips to display bonuses when targeting an enemy
-	o.onGetHitFactors <- function (_skill, _targetTile, _tooltip) {
-		local bonus = this.calculateBonus(_targetTile.getEntity()) * 100;
-
-		if (bonus > 0) {
-			_tooltip.push({
-				icon = "ui/icons/damage_dealt.png",
-				text = "[color=%positive%]+" + bonus + "%[/color] damage from " + this.m.Name
-			});
-
-		}
 	}
 
 	o.onBeforeTargetHit = function (_skill, _targetEntity, _hitInfo) {

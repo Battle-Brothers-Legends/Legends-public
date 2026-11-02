@@ -105,16 +105,4 @@ this.profession_legend_favoured_enemy <- this.inherit("scripts/skills/skill", {
 			_properties.BraveryMult *= this.m.BraveryMult;
 		};
 	}
-
-	// Requires MSU; this will add tooltips to display bonuses when targeting an enemy
-	function onGetHitFactors(_skill, _targetTile, _tooltip) {
-		if (this.isFavoriteEnemy(_targetTile.getEntity())) {
-
-			local bonuses = this.getTotalKillStats();
-			_tooltip.push({
-				icon = "ui/tooltips/positive.png",
-				text = format("[color=%positive%]%s%%[/color] Favoured Enemy (also grants [color=%positive%]+%s%%[/color] max damage)", bonuses.HitChance.tostring(), bonuses.HitChance.tostring())
-			});
-		}
-	}
 });
