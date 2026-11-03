@@ -1182,7 +1182,9 @@ Stitch the body together with such precision so that, once raised, it could pass
 Strike back with interest!
 
 [color=%passive%][u]Passive:[/u][/color]
-•  If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
+• If you're armed with a shield and a melee attack is fully blocked, you will strike back with your shield.
+
+• If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
 ";
 
 ::Const.Strings.PerkDescription.LegendRoots <- @"

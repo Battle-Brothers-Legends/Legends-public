@@ -406,7 +406,7 @@ Just like dancing with your nan when you were young.
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Rotation].Tooltip = ::Const.Strings.PerkDescription.Rotation;
 
 ::Const.Strings.PerkDescription.ShieldBash <- @"
-'Knock them back!'
+'Tell me how the grass tastes, little man!'
 
 [color=%passive%][u]Passive:[/u][/color]
 • The [color=%skill%]Knock Back[/color] skill now inflicts [color=%positive%]10-25[/color] Damage (50% effective against armor) and [color=%damage%]10[/color] Fatigue Damage.
@@ -429,7 +429,7 @@ Learn to better deflect hits to the side instead of blocking them head on.
 
 • [color=%skill%]Knock Back[/color] gains [color=%positive%]+15%[/color] chance to hit.
 
-• [color=%skill%]Buckler Bash[/color] now will automatically attack after any other attack.
+• [color=%skill%]Buckler Bash[/color] will now automatically attack after any other attack.
 
 • Shield skills will also cost [color=%negative%]-25%[/color] less Fatigue.
 ";

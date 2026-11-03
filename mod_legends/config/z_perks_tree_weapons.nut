@@ -16,7 +16,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendOnslaught],
 		[::Legends.Perk.SpecMace],
 		[::Legends.Perk.LegendPushTheAdvantage],
-		[::Legends.Perk.LegendReturnFavor],
+		[],
 		[]
 	]
 };
@@ -262,7 +262,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.ShieldBash],
 		[],
 		[::Legends.Perk.ShieldExpert],
-		[::Legends.Perk.LegendMasteryShields],
+		[::Legends.Perk.LegendReturnFavor, ::Legends.Perk.LegendMasteryShields],
 		[],
 		[]
 	]

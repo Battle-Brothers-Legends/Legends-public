@@ -1,6 +1,6 @@
 this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 	m = {
-		Skills = [
+		RangedSkills = [
 			::Legends.Active.ShootBolt,
 			::Legends.Active.ShootStake,
 			::Legends.Active.QuickShot,
@@ -11,7 +11,12 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 			::Legends.Active.SlingStone,
 			::Legends.Active.LegendShootStone,
 			::Legends.Active.LegendSlingHeavyStone
-		]
+		],
+		ShieldSkills = [
+			::Legends.Active.KnockBack,
+			::Legends.Active.LegendBucklerBash
+		],
+		ShieldRiposteSkillCounter = 0,
 	},
 
 	function create() {
@@ -31,7 +36,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 		}
 
 		local skill = null;
-		foreach (s in this.m.Skills) {
+		foreach (s in this.m.RangedSkills) {
 			if (::Legends.Actives.has(this, s)) {
 				skill = ::Legends.Actives.get(this, s);
 				break;
@@ -68,6 +73,44 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function onShieldHitSkills (_skill, _attacker, _shield) {
+		if (!::Legends.S.isEntityNullOrDead(_attacker) && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
+			local skill = null;
+			foreach (s in this.m.ShieldSkills) {
+				if (::Legends.Actives.has(this, s)) {
+					skill = ::Legends.Actives.get(this, s);
+					break;
+				}
+			}
+
+			if (skill == null) {
+				return;
+			}
+
+			if (skill != null) {
+				local info = {
+					User = this,
+					Skill = skill,
+					TargetTile = _attacker.getTile()
+				};
+				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onShieldRiposte.bindenv(this), info);
+			}
+		}
+	}
+
+	function onShieldRiposte( _info ) {
+		if (!::Legends.S.isEntityNullOrDead(_info.User)) {
+			return;
+		}
+
+		if (this.m.ShieldRiposteSkillCounter == this.Const.SkillCounter) {
+			return;
+		}
+
+		this.m.ShieldRiposteSkillCounter = this.Const.SkillCounter;
+		_info.Skill.useForFree(_info.TargetTile);
+	}
+
 	function getDynamicTooltip(_actor = null) {
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
 		local rDef = actor.getCurrentProperties().getRangedDefense();
@@ -77,7 +120,8 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 					id = 3,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = "[color=%positive%]" + rDef + "%[/color] to return fire on being missed with a ranged attack"
+					text = "[color=%positive%]%_rdef%%[/color] to return fire on being missed with a ranged attack",
+					param = [["_rdef", rDef]]
 				}
 			];
 		} else {

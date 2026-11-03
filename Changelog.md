@@ -170,7 +170,7 @@
 - `Night Raider` - will now also appear in the Devious trait tree
 - `Prepared` - crossbows and firearms in your bags will be loaded at combat start; bombs and poisons cost 0 at the first turn of combat
 - `Anticipation` - reduce damage taken by 1% for each point of Ranged Defense you have for the first few hits you take in combat
-- `Return Favor` - If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
+- `Return Favor` - If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense. If you're armed with a shield and a melee attack is fully blocked, you will strike back with your shield.
 - `Versatile` - now grants stacks which will increase damage by 10% damage for the opposite attack type, up to 3 stacks that can gradually be reduced
 - `Rebound` - moved to tier 6
 - `Overwhelm` - moved to tier 3
