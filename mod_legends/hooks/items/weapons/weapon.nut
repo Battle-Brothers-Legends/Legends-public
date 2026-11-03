@@ -235,20 +235,16 @@
 
 	o.getGrantedSkills <- function () {
 		local skillsGranted = [];
-		local temp = ::Legends.Actives.grant;
-		::Legends.Actives.grant = @(_target, _def, _applyFn = null)(_target.addSkill(::new(::Legends.Actives.ActiveDefObjects[_def].Script)));
 		this.onEquip.call({
+			IsDummy = true,
 			addSkill = @(_skill)(skillsGranted.push(_skill)),
 			weapon = {
-				onEquip = @() {
-				}
+				onEquip = @() {}
 			},
 			named_weapon = {
-				onEquip = @() {
-				}
+				onEquip = @() {}
 			}
 		});
-		::Legends.Actives.grant = temp;
 		return skillsGranted;
 	}
 
