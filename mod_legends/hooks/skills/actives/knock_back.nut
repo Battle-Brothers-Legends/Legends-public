@@ -3,13 +3,15 @@
 	local create = o.create;
 	o.create = function() {
 		create();
+		this.m.Name = "Shield Bash";
+		this.m.Description = "Use the shield to bash the target dealing some damage.";
 		this.m.HitChanceBonus = 25;
 		this.m.FatigueCost = 15;
 		this.m.DirectDamageMult = 0.2;
 	}
 
 	o.getTooltip = function () {
-		local ret = ::Legends.Perks.has(this, ::Legends.Perk.ShieldBash) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
+		local ret = this.getDefaultTooltip();
 
 		if (this.getContainer().hasTrait(::Legends.Trait.OathOfFortification)) {
 			ret.push({
