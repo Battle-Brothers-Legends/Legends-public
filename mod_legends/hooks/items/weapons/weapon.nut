@@ -1,10 +1,8 @@
-::mods_hookExactClass("items/weapons/weapon", function(o) {
+::mods_hookExactClass("items/weapons/weapon", function (o) {
 	o.m.Variants <- [];
 
-	o.getShieldDamage = function ()
-	{
-		if (this.getContainer() == null || this.getContainer().getActor() == null)
-		{
+	o.getShieldDamage = function () {
+		if (this.getContainer() == null || this.getContainer().getActor() == null) {
 			return this.m.ShieldDamage;
 		}
 		local perk = ::Legends.Perks.get(this, ::Legends.Perk.LegendSmashingShields);
@@ -29,11 +27,9 @@
 	}
 
 	local getTooltip = o.getTooltip;
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local result = getTooltip();
-		if (this.isRuned())
-		{
+		if (this.isRuned()) {
 			result.push({
 				id = 20,
 				type = "text",
@@ -69,36 +65,40 @@
 			}
 		}
 
+		local grantedSkills = this.getGrantedSkills();
+		foreach (skill in grantedSkills) {
+			result.push({
+				id = 23,
+				type = "text",
+				icon = skill.m.Icon,
+				text = skill.getName() + " (" + skill.m.ActionPointCost + ::Legends.S.inlineIcon("action_points")  + ", " + skill.m.FatigueCost + ::Legends.S.inlineIcon("fatigue") + ")"
+			});
+		}
+
 		return result;
 	}
 
-	o.getIconOverlay <- function ()
-	{
+	o.getIconOverlay <- function () {
 		if (this.isRuned()) {
 			return ["layers/glow_runed_icon.png"];
 		}
-		return  [""];
+		return [""];
 
 	}
 
-	o.getIconLargeOverlay <- function ()
-	{
+	o.getIconLargeOverlay <- function () {
 		if (this.isRuned()) {
 			return ["layers/glow_runed_inventory.png"];
 		}
-		return  [""];
-
+		return [""];
 	}
 
-	o.isDroppedAsLoot = function ()
-	{
-		if (!this.item.isDroppedAsLoot())
-		{
+	o.isDroppedAsLoot = function () {
+		if (!this.item.isDroppedAsLoot()) {
 			return false;
 		}
 
-		if (this.isNamed())
-		{
+		if (this.isNamed()) {
 			return true;
 		}
 
@@ -142,24 +142,20 @@
 		}
 	}
 
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		this.item.onEquip();
 
-		if (this.m.AddGenericSkill)
-		{
+		if (this.m.AddGenericSkill) {
 			this.addGenericItemSkill();
 		}
 
 		this.updateAppearance();
 
-		if (this.getContainer().getActor().isSummoned())
-		{
+		if (this.getContainer().getActor().isSummoned()) {
 			return;
 		}
 
-		if (this.m.Condition == this.m.ConditionMax && !this.isKindOf(this.getContainer().getActor().get(), "player"))
-		{
+		if (this.m.Condition == this.m.ConditionMax && !this.isKindOf(this.getContainer().getActor().get(), "player")) {
 			this.m.Condition = ::Math.rand(1, ::Math.max(1, this.m.ConditionMax - 2)) * 1.0;
 		}
 	}
@@ -192,10 +188,7 @@
 
 		if (this.m.ShowArmamentIcon) {
 			local currentSlot = this.getCurrentSlotType();
-			local brushName = _isBloodied
-				&& this.doesBrushExist(this.m.ArmamentIcon + "_bloodied")
-				? this.m.ArmamentIcon + "_bloodied"
-				: this.m.ArmamentIcon;
+			local brushName = _isBloodied && this.doesBrushExist(this.m.ArmamentIcon + "_bloodied") ? this.m.ArmamentIcon + "_bloodied" : this.m.ArmamentIcon;
 
 			local appearance = this.getContainer().getAppearance();
 			if (currentSlot == ::Const.ItemSlot.Offhand) {
@@ -208,12 +201,10 @@
 		}
 	}
 
-	o.onUpdateProperties = function ( _properties )
-	{
+	o.onUpdateProperties = function (_properties) {
 		_properties.Stamina += this.m.StaminaModifier;
 
-		if (this.getCurrentSlotType() == ::Const.ItemSlot.Mainhand)
-		{
+		if (this.getCurrentSlotType() == ::Const.ItemSlot.Mainhand) {
 			_properties.DamageRegularMin += this.m.RegularDamage;
 			_properties.DamageRegularMax += this.m.RegularDamageMax;
 			_properties.DamageArmorMult *= this.m.ArmorDamageMult;
@@ -222,8 +213,7 @@
 		}
 	}
 
-	o.updateRuneSigil <- function ()
-	{
+	o.updateRuneSigil <- function () {
 		this.item.updateRuneSigil();
 		// return
 		// if (this.m.ArmamentIcon.find("runed_") != null)
@@ -233,12 +223,29 @@
 		// this.m.ArmamentIcon = "runed_" + this.m.ArmamentIcon;
 	}
 
+	o.getGrantedSkills <- function () {
+		local skillsGranted = [];
+		local temp = ::Legends.Actives.grant;
+		::Legends.Actives.grant = @(_target, _def, _applyFn = null)(_target.addSkill(::new(::Legends.Actives.ActiveDefObjects[_def].Script)));
+		this.onEquip.call({
+			addSkill = @(_skill)(skillsGranted.push(_skill)),
+			weapon = {
+				onEquip = @() {
+				}
+			},
+			named_weapon = {
+				onEquip = @() {
+				}
+			}
+		});
+		::Legends.Actives.grant = temp;
+		return skillsGranted;
+	}
+
 	local onDeserialize = o.onDeserialize;
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function (_in) {
 		onDeserialize(_in);
-		if (this.isRuned())
-		{
+		if (this.isRuned()) {
 			this.updateRuneSigil();
 		}
 	}
