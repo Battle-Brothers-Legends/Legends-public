@@ -1,10 +1,16 @@
 this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/named/named_weapon", {
 	m = {
 		PossibleEffects = ["scripts/skills/effects/legend_named_mace_stagger_effect"],
-		EffectBounds = [ [15, 25] ]
+		EffectBounds = [
+			[15, 25]
+		],
+		EffectTooltip = {
+			Text = @(_item)"[color=%positive%]+" + _item.m.EffectChanceOrBonus + "%[/color] Stagger Chance" + ::Legends.Items.Named.getRangeOfSpecialEffect(_item),
+			Icon = "ui/icons/special.png"
+		}
 	},
-	function create()
-	{
+
+	function create() {
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_military_goedendag";
 		this.m.NameList = ::Const.Strings.MaceNames;
@@ -32,31 +38,13 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 		this.randomizeValues();
 	}
 
-	function getTooltip()
-	{
-		local result = this.named_weapon.getTooltip();
-		if (this.m.PossibleEffectIdx == 0)
-		{
-			result.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stagger Chance" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
-			});
-		}
-		return result;
-	}
-
-	function updateVariant()
-	{
+	function updateVariant() {
 		this.m.IconLarge = "weapons/melee/legend_military_goedendag_named_0" + this.m.Variant + ".png";
 		this.m.Icon = "weapons/melee/legend_military_goedendag_named_0" + this.m.Variant + "_70x70.png";
 		this.m.ArmamentIcon = "icon_legend_military_goedendag_named_0" + this.m.Variant;
 	}
 
-
-	function onEquip()
-	{
+	function onEquip() {
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Thrust, function (_skill) {
 			_skill.m.IsGoedendagThrust = true;
@@ -74,4 +62,3 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 	}
 
 });
-

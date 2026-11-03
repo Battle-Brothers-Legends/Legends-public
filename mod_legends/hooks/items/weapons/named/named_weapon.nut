@@ -1,36 +1,36 @@
-::mods_hookExactClass("items/weapons/named/named_weapon", function(o) {
+::mods_hookExactClass("items/weapons/named/named_weapon", function (o) {
 	o.m.BaseProperties <- {};
 	o.m.PossibleEffects <- [];
 	o.m.EffectBounds <- [];
 	o.m.EffectChanceOrBonus <- 0;
-	o.m.PossibleEffectIdx <- -1;
 
 	local onEquip = o.onEquip;
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		onEquip();
 
-		if (this.m.PossibleEffectIdx >= 0)
-		{
+		if (this.m.PossibleEffectIdx >= 0) {
 			local s = this.new(this.m.PossibleEffects[this.m.PossibleEffectIdx]);
 			s.setBonus(this.m.EffectChanceOrBonus);
 			this.addSkill(s);
 		}
 	}
 
-	o.getTooltip <- function ()	{
+	o.getTooltip <- function () {
 		local result = this.weapon.getTooltip();
 
-		foreach (k, p in this.m.BaseProperties)	{
-			if (this.m[k] == p)
+		foreach (k, p in this.m.BaseProperties) {
+			if (this.m[k] == p) {
 				continue;
+			}
 
 			foreach (tooltip in result) {
-				if (!tooltip.rawin("icon"))
+				if (!tooltip.rawin("icon")) {
 					continue;
+				}
 
-				if (!::Legends.Items.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.BaseProperties, "weapon"))
+				if (!::Legends.Items.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.BaseProperties, "weapon")) {
 					continue;
+				}
 
 				tooltip.icon = ::Legends.Items.Named.HighlightNamedRoll[k].Icon;
 				if (::Legends.Mod.ModSettings.getSetting("ShowPotentialOnItems").getValue()) {
@@ -43,7 +43,7 @@
 		return result;
 	}
 
-	o.randomizeValues = function ()	{
+	o.randomizeValues = function () {
 		if (this.m.BaseProperties.len() == 0) {
 			this.m.BaseProperties.ConditionMax <- this.m.ConditionMax;
 			this.m.BaseProperties.RegularDamage <- this.m.RegularDamage;
@@ -61,40 +61,39 @@
 
 		local ranges = ::Legends.Items.Named.randomizeRanges;
 
-		if (this.m.ConditionMax > 1)
-		{
+		if (this.m.ConditionMax > 1) {
 			this.m.Condition = ::Math.round(this.m.Condition * ::Math.rand(ranges.Condition[0], ranges.Condition[1]) * 0.01) * 1.0;
 			this.m.ConditionMax = this.m.Condition;
 		}
 
 		local available = [];
-		available.push(function ( _i ) {
+		available.push(function (_i) {
 			local f = ::Math.rand(ranges.RegularDamage[0], ranges.RegularDamage[1]) * 0.01;
 			_i.m.RegularDamage = ::Math.round(_i.m.RegularDamage * f);
 			_i.m.RegularDamageMax = ::Math.round(_i.m.RegularDamageMax * f);
 		});
-		available.push(function ( _i ) {
+		available.push(function (_i) {
 			_i.m.ArmorDamageMult = _i.m.ArmorDamageMult + ::Math.rand(ranges.ArmorDamageMult[0], ranges.ArmorDamageMult[1]) * 0.01;
 		});
 
-		if (this.m.ChanceToHitHead > 0)	{
-			available.push(function ( _i ) {
+		if (this.m.ChanceToHitHead > 0) {
+			available.push(function (_i) {
 				_i.m.ChanceToHitHead = _i.m.ChanceToHitHead + ::Math.rand(ranges.ChanceToHitHead[0], ranges.ChanceToHitHead[1]);
 			});
 		}
 
-		available.push(function ( _i ) {
+		available.push(function (_i) {
 			_i.m.DirectDamageAdd = _i.m.DirectDamageAdd + ::Math.rand(ranges.DirectDamageAdd[0], ranges.DirectDamageAdd[1]) * 0.01;
 		});
 
 		if (this.m.StaminaModifier <= -10) {
-			available.push(function ( _i ) {
+			available.push(function (_i) {
 				_i.m.StaminaModifier = ::Math.round(_i.m.StaminaModifier * ::Math.rand(ranges.StaminaModifier[0], ranges.StaminaModifier[1]) * 0.01);
 			});
 		}
 
 		if (this.m.ShieldDamage >= 16) {
-			available.push(function ( _i ) {
+			available.push(function (_i) {
 				_i.m.ShieldDamage = ::Math.round(_i.m.ShieldDamage * ::Math.rand(ranges.ShieldDamage[0], ranges.ShieldDamage[1]) * 0.01);
 			});
 		}
@@ -106,7 +105,7 @@
 			});
 		}
 
-		if (this.m.AdditionalAccuracy != 0 || this.isItemType(::Const.Items.ItemType.RangedWeapon))	{
+		if (this.m.AdditionalAccuracy != 0 || this.isItemType(::Const.Items.ItemType.RangedWeapon)) {
 			available.push(function (_i) {
 				_i.m.AdditionalAccuracy = _i.m.AdditionalAccuracy + ::Math.rand(ranges.AdditionalAccuracy[0], ranges.AdditionalAccuracy[1]);
 			});
@@ -130,8 +129,7 @@
 		}
 	}
 
-	o.onSerialize = function ( _out )
-	{
+	o.onSerialize = function (_out) {
 		_out.writeString(this.m.Name);
 		_out.writeF32(this.m.ConditionMax);
 		_out.writeI8(this.m.StaminaModifier);
@@ -150,8 +148,7 @@
 		this.weapon.onSerialize(_out);
 	}
 
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function (_in) {
 		this.m.Name = _in.readString();
 		this.m.ConditionMax = _in.readF32();
 		this.m.StaminaModifier = _in.readI8();
@@ -169,8 +166,7 @@
 		//_in.readF32();
 		this.weapon.onDeserialize(_in);
 		this.updateVariant();
-		if (this.isRuned())
-		{
+		if (this.isRuned()) {
 			this.updateRuneSigil();
 		}
 	}

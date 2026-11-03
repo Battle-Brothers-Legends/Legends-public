@@ -622,6 +622,7 @@
 - reworked on actor hover tooltips to allow dynamic combat descriptions
 - changed the way immunities are displayed on enemy tooltip, expanded the list of displayed immunities
 - enemy tooltips reworked to include turns left, non-stacking effect stacks
+- added skill icons to weapons and shields
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -749,6 +750,7 @@
 - `::Const.World.Common.pickOutfit` becomes `::Legends.Items.pickOutfit`
 - `::Const.World.Common.convNameToList` becomes `::Legends.Items.convNameToList`
 - added a blueprint defs system, it is optional, but using it allows custom recipes to use profession crafting modifiers and to be categorized under certain filters
+- possible effect tooltips on named weapons are now defined in the m table so they can be added in weapon's own tooltip (for ordering)
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

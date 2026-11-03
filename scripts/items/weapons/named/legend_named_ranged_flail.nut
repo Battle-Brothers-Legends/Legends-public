@@ -1,10 +1,16 @@
 this.legend_named_ranged_flail <- this.inherit("scripts/items/weapons/named/named_weapon", {
 	m = {
 		PossibleEffects = ["scripts/skills/effects/legend_named_flail_effect"],
-		EffectBounds = [ [100, 100] ]
+		EffectBounds = [
+			[100, 100]
+		],
+		EffectTooltip = {
+			Text = @(_item)"[color=%positive%]100%[/color] chance to Daze a target on a hit to the head",
+			Icon = "ui/icons/chance_to_hit_head.png"
+		}
 	},
-	function create()
-	{
+
+	function create() {
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_flail";
 		this.m.NameList = ::Const.Strings.TwoHandedFlailNames;
@@ -37,23 +43,7 @@ this.legend_named_ranged_flail <- this.inherit("scripts/items/weapons/named/name
 		this.randomizeValues();
 	}
 
-	function getTooltip()
-	{
-		local result = this.named_weapon.getTooltip();
-		if (this.m.PossibleEffectIdx == 0)
-		{
-			result.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/armor_head.png",
-				text = "Applies [color=%positive%]Daze[/color] to Targets Hit"
-			});
-		}
-		return result;
-	}
-
-	function onEquip()
-	{
+	function onEquip() {
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Flail, function (_skill) {
 			_skill.m.IsRanged = true;
@@ -64,4 +54,3 @@ this.legend_named_ranged_flail <- this.inherit("scripts/items/weapons/named/name
 	}
 
 });
-

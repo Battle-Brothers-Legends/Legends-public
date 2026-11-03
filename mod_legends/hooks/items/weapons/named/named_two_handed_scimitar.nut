@@ -1,17 +1,14 @@
-::mods_hookExactClass("items/weapons/named/named_two_handed_scimitar", function(o) {
-
+::mods_hookExactClass("items/weapons/named/named_two_handed_scimitar", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.Variants = [1,2];
+		this.m.Variants = [1, 2];
 		this.m.Value = 4100;
 		this.m.IsAgainstShields = false;
 		this.m.Categories = "Cleaver, Two-Handed";
 	}
 
-	o.randomizeValues <- function ()
-	{
+	o.randomizeValues <- function () {
 		this.m.Condition = 68.0;
 		this.m.ConditionMax = 68.0;
 		this.m.StaminaModifier = -14;
@@ -19,11 +16,10 @@
 		this.m.RegularDamageMax = 105;
 		this.m.DirectDamageMult = 0.35;
 		this.m.ShieldDamage = 0;
-		named_weapon.randomizeValues();
+		this.named_weapon.randomizeValues();
 	}
 
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHew);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);

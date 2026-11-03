@@ -2,6 +2,10 @@
 
 	o.m.PossibleEffects <- ["scripts/skills/effects/legend_named_whip_bleed_effect", "scripts/skills/effects/legend_named_whip_feint_effect"];
 	o.m.EffectBounds <- [ [30, 50], [20, 35] ];
+	o.m.EffectTooltip <- {
+		Text = @(_item)"[color=%positive%]+" + _item.m.EffectChanceOrBonus + "%[/color] to apply "+ (_item.m.PossibleEffectIdx == 0 ? "Bleeding" : "Parried") + " to the Target on Hit" + ::Legends.Items.Named.getRangeOfSpecialEffect(_item),
+		Icon = "ui/icons/chance_to_hit_head.png"
+	};
 
 	local create = o.create;
 	o.create = function ()
@@ -11,30 +15,6 @@
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.m.Categories = "Cleaver/Whip, One-Handed";
 		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Cultist;
-	}
-
-	o.getTooltip <- function ()
-	{
-		local result = this.named_weapon.getTooltip();
-		if (this.m.PossibleEffectIdx == 0)
-		{
-			result.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] to Bleed Target on Hit" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
-			});
-		}
-		if (this.m.PossibleEffectIdx == 1)
-		{
-			result.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] to Feint Target on Hit" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
-			});
-		}
-		return result;
 	}
 
 	local onEquip = o.onEquip;

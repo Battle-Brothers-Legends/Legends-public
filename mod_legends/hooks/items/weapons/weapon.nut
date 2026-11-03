@@ -1,5 +1,6 @@
 ::mods_hookExactClass("items/weapons/weapon", function (o) {
 	o.m.Variants <- [];
+	o.m.PossibleEffectIdx <- -1;
 
 	o.getShieldDamage = function () {
 		if (this.getContainer() == null || this.getContainer().getActor() == null) {
@@ -44,6 +45,16 @@
 			});
 		}
 
+		foreach (tooltip in result) {
+			if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
+				continue;
+			}
+
+			if (tooltip.id == 8 && tooltip.icon == "ui/icons/fatigue.png" && tooltip.text.find("skills build up") == null) {
+				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]";
+			}
+		}
+
 		if (!this.isItemType(::Const.Items.ItemType.Ammo) && this.m.AmmoMax > 0) {
 			foreach (tooltip in result) {
 				if (("text" in tooltip) && typeof tooltip.text == "string") {
@@ -55,14 +66,13 @@
 			}
 		}
 
-		foreach (tooltip in result) {
-			if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
-				continue;
-			}
-
-			if (tooltip.id == 8 && tooltip.icon == "ui/icons/fatigue.png" && tooltip.text.find("skills build up") == null) {
-				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]";
-			}
+		if (this.m.PossibleEffectIdx != -1) {
+			result.push({
+				id = 12,
+				type = "text",
+				icon = this.m.EffectTooltip.Icon
+				text = this.m.EffectTooltip.Text(this)
+			});
 		}
 
 		local grantedSkills = this.getGrantedSkills();
@@ -71,7 +81,7 @@
 				id = 23,
 				type = "text",
 				icon = skill.m.Icon,
-				text = skill.getName() + " (" + skill.m.ActionPointCost + ::Legends.S.inlineIcon("action_points")  + ", " + skill.m.FatigueCost + ::Legends.S.inlineIcon("fatigue") + ")"
+				text = skill.getName() + " (" + skill.m.ActionPointCost + ::Legends.S.inlineIcon("action_points") + ", " + skill.m.FatigueCost + ::Legends.S.inlineIcon("fatigue") + ")"
 			});
 		}
 
