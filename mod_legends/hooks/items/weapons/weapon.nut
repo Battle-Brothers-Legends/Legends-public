@@ -81,7 +81,7 @@
 				id = 23,
 				type = "text",
 				icon = skill.m.Icon,
-				text = skill.getName() + " (" + skill.m.ActionPointCost + ::Legends.S.inlineIcon("action_points") + ", " + skill.m.FatigueCost + ::Legends.S.inlineIcon("fatigue") + ")"
+				text = skill.getName() + (skill.isActive() ? " (" + skill.m.ActionPointCost + ::Legends.S.inlineIcon("action_points") + ", " + skill.m.FatigueCost + ::Legends.S.inlineIcon("fatigue") + ")" : "")
 			});
 		}
 
@@ -235,16 +235,13 @@
 
 	o.getGrantedSkills <- function () {
 		local skillsGranted = [];
-		this.onEquip.call({
-			IsDummy = true,
-			addSkill = @(_skill)(skillsGranted.push(_skill)),
-			weapon = {
-				onEquip = @() {}
-			},
-			named_weapon = {
-				onEquip = @() {}
-			}
-		});
+		local dummy = ::World.getTemporaryRoster().create("scripts/entity/tactical/human");
+		local dummyItem = ::new(::IO.scriptFilenameByHash(this.ClassNameHash));
+		dummyItem.addSkill = @(_skill)(skillsGranted.push(_skill));
+		dummyItem.weapon.onEquip = @() {};
+		dummyItem.setContainer(dummy.getItems());
+		dummyItem.onEquip();
+		::World.getTemporaryRoster().clear();
 		return skillsGranted;
 	}
 
