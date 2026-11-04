@@ -828,6 +828,13 @@
 			entity = ::Tactical.getEntityByID(_entityId);
 		}
 
+		local selectedEntity = ::Tactical.isActive() ? ::Tactical.TurnSequenceBar.getActiveEntity() : ::World.State.m.CharacterScreen.getSelectedActor();
+		local b, c;
+		if (selectedEntity != null) {
+			b = selectedEntity.getBaseProperties();
+			c = selectedEntity.getCurrentProperties();
+		}
+
 		switch (_elementId) {
 			case "CharacterName":
 				local ret = [
@@ -1583,6 +1590,21 @@
 						id = 2,
 						type = "description",
 						text = "Hitpoints represent the damage a character can take before dying. Once these reach zero, the character is considered dead. The higher the maximum hitpoints, the less likely it is a character will suffer debilitating injuries when hit."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Base: " + b.Hitpoints
+					},
+					{
+						id = 4,
+						type = "text",
+						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.Hitpoints - b.Hitpoints), c.Hitpoints - b.Hitpoints)
+					},
+					{
+						id = 5,
+						type = "text",
+						text = "Mult: " + ::Legends.S.colorize(c.HitpointsMult, c.HitpointsMult, 1)
 					}
 				];
 
@@ -1611,6 +1633,21 @@
 						id = 2,
 						type = "description",
 						text = "Fatigue is gained for every action, like moving or using skills, and when being hit in combat or dodging in melee. It is reduced at a fixed rate of 15 each turn or as much as necessary for a character to start every turn with 15 less than their maximum fatigue. If a character accumulates too much fatigue they may need to rest a turn (i.e. do nothing) before being able to use more specialized skills again."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Base: " + b.Stamina
+					},
+					{
+						id = 4,
+						type = "text",
+						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(::Math.round(c.Stamina - b.Stamina)), ::Math.round(c.Stamina - b.Stamina))
+					},
+					{
+						id = 5,
+						type = "text",
+						text = "Mult: " + ::Legends.S.colorize(c.StaminaMult, c.StaminaMult, 1)
 					}
 				];
 
@@ -1667,6 +1704,21 @@
 						id = 2,
 						type = "description",
 						text = "Determines the base probability of hitting a target with a melee attack, such as with swords and spears. Can be increased as the character gains experience."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Base: " + b.MeleeSkill
+					},
+					{
+						id = 4,
+						type = "text",
+						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.MeleeSkill - b.MeleeSkill), c.MeleeSkill - b.MeleeSkill)
+					},
+					{
+						id = 5,
+						type = "text",
+						text = "Mult: " + ::Legends.S.colorize(c.MeleeSkillMult, c.MeleeSkillMult, 1)
 					}
 				];
 
@@ -1681,10 +1733,27 @@
 						id = 2,
 						type = "description",
 						text = "Determines the base probability of hitting a target with a ranged attack, such as with bows and crossbows. Can be increased as the character gains experience."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Base: " + b.RangedSkill
+					},
+					{
+						id = 4,
+						type = "text",
+						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.RangedSkill - b.RangedSkill), c.RangedSkill - b.RangedSkill)
+					},
+					{
+						id = 5,
+						type = "text",
+						text = "Mult: " + ::Legends.S.colorize(c.RangedSkillMult, c.RangedSkillMult, 1)
 					}
 				];
 
 			case "character-stats.MeleeDefense":
+				local def = c.MeleeDefense * c.MeleeDefenseMult;
+				local effectiveDef = def <= 50 ? def : ::Math.floor((def - 50) / 2) + 50;
 				return [
 					{
 						id = 1,
@@ -1695,10 +1764,32 @@
 						id = 2,
 						type = "description",
 						text = "A higher melee defense reduces the probability of being hit with a melee attack, such as the thrust of a spear. It can be increased as the character gains experience and by equipping a good shield. Diminishing returns above 50."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Base: " + b.MeleeDefense
+					},
+					{
+						id = 4,
+						type = "text",
+						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.MeleeDefense - b.MeleeDefense), c.MeleeDefense - b.MeleeDefense)
+					},
+					{
+						id = 5,
+						type = "text",
+						text = "Mult: " + ::Legends.S.colorize(c.MeleeDefenseMult, c.MeleeDefenseMult, 1)
+					},
+					{
+						id = 6,
+						type = "text",
+						text = "Effective: " + ::Legends.S.colorize(effectiveDef, effectiveDef)
 					}
 				];
 
 			case "character-stats.RangeDefense":
+				local def = c.RangedDefense * c.RangedDefenseMult;
+				local effectiveDef = def <= 50 ? def : ::Math.floor((def - 50) / 2) + 50;
 				return [
 					{
 						id = 1,
@@ -1709,6 +1800,26 @@
 						id = 2,
 						type = "description",
 						text = "A higher ranged defense reduces the probability of being hit with a ranged attack, such as an arrow shot from afar. It can be increased as the character gains experience and by equipping a good shield. Diminishing returns above 50."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Base: " + b.RangedDefense
+					},
+					{
+						id = 4,
+						type = "text",
+						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.RangedDefense - b.RangedDefense), c.RangedDefense - b.RangedDefense)
+					},
+					{
+						id = 5,
+						type = "text",
+						text = "Mult: " + ::Legends.S.colorize(c.RangedDefenseMult, c.RangedDefenseMult, 1)
+					},
+					{
+						id = 6,
+						type = "text",
+						text = "Effective: " + ::Legends.S.colorize(effectiveDef, effectiveDef)
 					}
 				];
 
@@ -1779,6 +1890,21 @@
 						id = 2,
 						type = "description",
 						text = "The higher this value, the earlier the position in the turn order. Initiative is reduced by the current fatigue, as well as any penalty to maximum fatigue (such as from heavy armor). In general, someone in light armor will act before someone in heavy armor, and someone fresh will act before someone fatigued."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Base: " + b.Initiative
+					},
+					{
+						id = 4,
+						type = "text",
+						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(selectedEntity.getInitiative() - ::Math.floor(b.Initiative * c.InitiativeMult)), selectedEntity.getInitiative() - ::Math.floor(b.Initiative * c.InitiativeMult))
+					},
+					{
+						id = 5,
+						type = "text",
+						text = "Mult: " + ::Legends.S.colorize(c.InitiativeMult, c.InitiativeMult, 1)
 					}
 				];
 
@@ -1793,6 +1919,21 @@
 						id = 2,
 						type = "description",
 						text = "Resolve represents the willpower and bravery of characters. The higher, the less likely that characters fall to lower morale states at negative events, and the more likely that characters gain confidence from positive events. Resolve also acts as defense against certain mental attacks that inflict panic, fear or mind control. See also: Morale."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Base: " + b.Bravery
+					},
+					{
+						id = 4,
+						type = "text",
+						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.Bravery - b.Bravery), c.Bravery - b.Bravery)
+					},
+					{
+						id = 5,
+						type = "text",
+						text = "Mult: " + ::Legends.S.colorize(c.BraveryMult, c.BraveryMult, 1)
 					}
 				];
 
