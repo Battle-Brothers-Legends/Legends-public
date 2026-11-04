@@ -1,7 +1,7 @@
 this.legend_word_of_mouth_situation <- this.inherit("scripts/entity/world/settlements/situations/situation", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.situation.create();
 		this.m.ID = "situation.legend_word_of_mouth";
 		this.m.Name = "Word of Mouth";
@@ -14,26 +14,20 @@ this.legend_word_of_mouth_situation <- this.inherit("scripts/entity/world/settle
 		this.m.IsStacking = false;
 	}
 
-	function getAddedString( _s )
-	{
+	function getAddedString(_s) {
 		return _s + " now has " + this.m.Name;
 	}
 
-	function getRemovedString( _s )
-	{
+	function getRemovedString(_s) {
 		return _s + " no longer has " + this.m.Name;
 	}
 
-	function onAdded( _settlement )
-	{
+	function onAdded(_settlement) {
 		_settlement.resetRoster(true);
 	}
 
-	function onUpdate( _modifiers )
-	{
+	function onUpdate(_modifiers) {
 		_modifiers.BuyPriceMult *= 0.90;
 		_modifiers.RecruitsMult *= 1.50;
 	}
-
 });
-

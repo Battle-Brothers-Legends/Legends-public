@@ -1,7 +1,7 @@
 this.legend_rallied_militia_situation <- this.inherit("scripts/entity/world/settlements/situations/situation", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.situation.create();
 		this.m.ID = "situation.legend_rallied_militia";
 		this.m.Name = "Rallied Militia";
@@ -14,7 +14,7 @@ this.legend_rallied_militia_situation <- this.inherit("scripts/entity/world/sett
 		];
 	}
 
-	function onAdded( _settlement ) //most bad events except the major ones.
+	function onAdded(_settlement) //most bad events except the major ones.
 	{
 		_settlement.resetRoster(true);
 		_settlement.removeSituationByID("situation.ambushed_trade_routes");
@@ -24,27 +24,15 @@ this.legend_rallied_militia_situation <- this.inherit("scripts/entity/world/sett
 		_settlement.removeSituationByID("situation.unhold_attacks");
 	}
 
-	function onUpdate( _modifiers )
-	{
+	function onUpdate(_modifiers) {
 		_modifiers.RecruitsMult *= 1.3;
 	}
 
-	function onUpdateDraftList( _draftList )
-	{
-		for (local i = 0; i < 15; ++i)
-		{
-			_draftList.push(::Legends.Background.Militia);
-		}
+	function onUpdateDraftList(_draftList) {
+		::Legends.S.extend(_draftList, ::Legends.Background.Militia, 15);
 
-		if  (::World.Assets.getOrigin().getID() == "scenario.militia")
-		{
-			for (local i = 0; i < 6; ++i)
-			{
-				_draftList.push(::Legends.Background.LegendManAtArms);
-			}
+		if (::World.Assets.getOrigin().getID() == "scenario.militia") {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms, 6);
 		}
-
 	}
-
 });
-

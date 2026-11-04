@@ -2,8 +2,8 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 	m = {
 		Target = ""
 	},
-	function create()
-	{
+
+	function create() {
 		this.situation.create();
 		this.m.ID = "situation.legend_building_effort";
 		this.m.Name = "Building Effort";
@@ -16,36 +16,28 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 		this.m.ValidDays = 5;
 	}
 
-	function getDescription()
-	{
-		if (this.m.Target != "")
-		{
+	function getDescription() {
+		if (this.m.Target != "") {
 			return "In an effort to build the new " + this.m.Target.tolower() + ", building materials are in high demand and low supply.";
-		}
-		else
-		{
+		} else {
 			return this.m.Description;
 		}
 	}
 
-	function isValid()
-	{
-		if (this.m.Target == "")
-		{
+	function isValid() {
+		if (this.m.Target == "") {
 			return false;
 		}
 
 		return this.situation.isValid();
 	}
 
-	function onAdded( _settlement )
-	{
+	function onAdded(_settlement) {
 		_settlement.resetShop();
 
 		local a = _settlement.buildNewLocation();
 
-		if (a == null)
-		{
+		if (a == null) {
 			_settlement.removeSituationByID("situation.legend_building_effort");
 			return;
 		}
@@ -56,18 +48,14 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 		this.m.Target = a.getRealName();
 	}
 
-	function onUpdate( _modifiers )
-	{
+	function onUpdate(_modifiers) {
 		_modifiers.BuildingPriceMult *= 1.5;
 		_modifiers.BuildingRarityMult *= 0.5;
 	}
 
-	function onRemoved( _settlement )
-	{
-		foreach( a in _settlement.getAttachedLocations() )
-		{
-			if (!a.isBuilding())
-			{
+	function onRemoved(_settlement) {
+		foreach (a in _settlement.getAttachedLocations()) {
+			if (!a.isBuilding()) {
 				continue;
 			}
 
@@ -78,44 +66,25 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 		}
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.situation.onSerialize(_out);
 		_out.writeString(this.m.Target);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.situation.onDeserialize(_in);
 		this.m.Target = _in.readString();
 	}
 
-	function onUpdateDraftList( _draftList )
-	{
+	function onUpdateDraftList(_draftList) {
 		if (this.m.IsSouthern) {
-			_draftList.push(::Legends.Background.DaytalerSouthern);
-			_draftList.push(::Legends.Background.DaytalerSouthern);
-			_draftList.push(::Legends.Background.DaytalerSouthern);
-			_draftList.push(::Legends.Background.DaytalerSouthern);
-			_draftList.push(::Legends.Background.SlaveSouthern);
-			_draftList.push(::Legends.Background.SlaveSouthern);
-			_draftList.push(::Legends.Background.SlaveSouthern);
-			_draftList.push(::Legends.Background.SlaveSouthern);
-			_draftList.push(::Legends.Background.SlaveSouthern);
-			_draftList.push(::Legends.Background.SlaveSouthern);
+			::Legends.S.extend(_draftList, ::Legends.Background.DaytalerSouthern, 4);
+			::Legends.S.extend(_draftList, ::Legends.Background.SlaveSouthern, 6);
+		} else {
+			::Legends.S.extend(_draftList, ::Legends.Background.Daytaler, 3);
+			::Legends.S.extend(_draftList, ::Legends.Background.Lumberjack, 2);
+			::Legends.S.extend(_draftList, ::Legends.Background.Mason, 2);
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendInventor, 1);
 		}
-		else {
-			_draftList.push(::Legends.Background.Lumberjack);
-			_draftList.push(::Legends.Background.Lumberjack);
-			_draftList.push(::Legends.Background.Mason);
-			_draftList.push(::Legends.Background.Mason);
-			_draftList.push(::Legends.Background.Daytaler);
-			_draftList.push(::Legends.Background.Daytaler);
-			_draftList.push(::Legends.Background.Daytaler);
-			_draftList.push(::Legends.Background.LegendInventor);
-		}
-
 	}
-
 });
-

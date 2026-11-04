@@ -1,11 +1,11 @@
 this.perk_legend_bloody_harvest <- this.inherit("scripts/skills/skill", {
 	m = {},
+
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBloodyHarvest);
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill.isAttack()) {
 			local bonus = ::Math.round(_skill.getFatigueCost() * 0.5);
 			_properties.DamageTotalMult += 0.01 * bonus;
@@ -15,17 +15,15 @@ this.perk_legend_bloody_harvest <- this.inherit("scripts/skills/skill", {
 				return;
 			}
 			if (!_skill.isRanged()) {
-				_skill.m.HitChanceBonus += _properties.MeleeSkillMult *bonus;
-			}
-			else if (_skill.isRanged()) {
+				_skill.m.HitChanceBonus += _properties.MeleeSkillMult * bonus;
+			} else if (_skill.isRanged()) {
 				if (::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
 					_skill.m.AdditionalAccuracy += _properties.RangedSkillMult * bonus;
 				} else {
-					::logError("AdditionalAccuracy not found in skill")
+					::logError("AdditionalAccuracy not found in skill");
 				}
 			}
 		}
 	}
 
 });
-

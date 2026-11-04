@@ -1,7 +1,7 @@
 this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/world/settlements/situations/situation", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.situation.create();
 		this.m.ID = "situation.legend_merc_company_disbands";
 		this.m.Name = "Mercenaries For Hire";
@@ -14,7 +14,7 @@ this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/worl
 		];
 	}
 
-	function onAdded( _settlement ) //most bad events except the major ones.
+	function onAdded(_settlement) //most bad events except the major ones.
 	{
 		_settlement.resetRoster(true);
 		_settlement.removeSituationByID("situation.ambushed_trade_routes");
@@ -24,44 +24,24 @@ this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/worl
 		_settlement.removeSituationByID("situation.unhold_attacks");
 	}
 
-	function onUpdate( _modifiers )
-	{
+	function onUpdate(_modifiers) {
 		_modifiers.RecruitsMult *= 1.5;
 	}
 
-	function onUpdateDraftList( _draftList )
-	{
-		_draftList.push(::Legends.Background.Sellsword);
-		_draftList.push(::Legends.Background.Sellsword);
-		_draftList.push(::Legends.Background.Sellsword);
-		_draftList.push(::Legends.Background.Sellsword);
-		_draftList.push(::Legends.Background.Sellsword);
-		_draftList.push(::Legends.Background.Sellsword);
-		_draftList.push(::Legends.Background.HedgeKnight);
-		_draftList.push(::Legends.Background.HedgeKnight);
-		_draftList.push(::Legends.Background.Swordmaster);
-		_draftList.push(::Legends.Background.LegendMasterArcher);
-		_draftList.push(::Legends.Background.RetiredSoldier);
-		_draftList.push(::Legends.Background.RetiredSoldier);
-		_draftList.push(::Legends.Background.RetiredSoldier);
-		_draftList.push(::Legends.Background.RetiredSoldier);
-		_draftList.push(::Legends.Background.Deserter);
-		_draftList.push(::Legends.Background.Deserter);
-		_draftList.push(::Legends.Background.Deserter);
-		_draftList.push(::Legends.Background.Militia);
-		_draftList.push(::Legends.Background.Militia);
-		_draftList.push(::Legends.Background.Militia);
-		_draftList.push(::Legends.Background.Militia);
-
+	function onUpdateDraftList(_draftList) {
+		::Legends.S.extend(_draftList, ::Legends.Background.Deserter, 3);
+		::Legends.S.extend(_draftList, ::Legends.Background.HedgeKnight, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.Militia, 4);
+		::Legends.S.extend(_draftList, ::Legends.Background.RetiredSoldier, 4);
+		::Legends.S.extend(_draftList, ::Legends.Background.Sellsword, 6);
+		::Legends.S.extend(_draftList, ::Legends.Background.Swordmaster, 1);
+		::Legends.S.extend(_draftList, ::Legends.Background.LegendMasterArcher, 1);
 		if (::World.Assets.getOrigin().getID() == "scenario.legends_noble") {
-			_draftList.push(::Legends.Background.LegendHouseGuard);
-			_draftList.push(::Legends.Background.LegendFootSoldier);
-			_draftList.push(::Legends.Background.LegendArbalester);
-			_draftList.push(::Legends.Background.AdventurousNoble);
-			_draftList.push(::Legends.Background.AdventurousNoble);
-			_draftList.push(::Legends.Background.HedgeKnight);
+			::Legends.S.extend(_draftList, ::Legends.Background.AdventurousNoble, 2);
+			::Legends.S.extend(_draftList, ::Legends.Background.HedgeKnight, 1);
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendArbalester, 1);
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendFootSoldier, 1);
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendHouseGuard, 1);
 		}
 	}
-
 });
-

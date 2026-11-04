@@ -1,7 +1,7 @@
 this.legend_degrading_effort_situation <- this.inherit("scripts/entity/world/settlements/situations/situation", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.situation.create();
 		this.m.ID = "situation.legend_degrading_effort";
 		this.m.Name = "Town ";
@@ -14,27 +14,21 @@ this.legend_degrading_effort_situation <- this.inherit("scripts/entity/world/set
 		this.m.ValidDays = 3;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return this.m.Description;
 	}
 
-	function onAdded( _settlement )
-	{
+	function onAdded(_settlement) {
 		_settlement.resetShop();
 		_settlement.setUpgrading(true);
 	}
 
-	function onUpdate( _modifiers )
-	{
+	function onUpdate(_modifiers) {
 		_modifiers.BuildingPriceMult *= 0.5;
 		_modifiers.BuildingRarityMult *= 0.55;
 	}
 
-	function onRemoved( _settlement )
-	{
+	function onRemoved(_settlement) {
 		_settlement.changeSize(_settlement.getSize() - 1);
 	}
-
 });
-

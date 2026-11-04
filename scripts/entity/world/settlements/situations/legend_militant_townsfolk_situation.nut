@@ -1,7 +1,7 @@
 this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/settlements/situations/situation", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.situation.create();
 		this.m.ID = "situation.legend_militant_townsfolk";
 		this.m.Name = "Militant Townsfolk";
@@ -14,25 +14,20 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 		];
 	}
 
-	function getAddedString( _s )
-	{
+	function getAddedString(_s) {
 		return _s + " now has " + this.m.Name;
 	}
 
-	function getRemovedString( _s )
-	{
+	function getRemovedString(_s) {
 		return _s + " no longer has " + this.m.Name;
 	}
 
-	function onAdded( _settlement )
-	{
+	function onAdded(_settlement) {
 		// This situation can only occur in Tier 1 and Tier 2 settlements (non-fort and non-city-state)
-		if ( _settlement.getSize() > 2 || _settlement.isMilitary() || _settlement.isSouthern())
-		{
+		if (_settlement.getSize() > 2 || _settlement.isMilitary() || _settlement.isSouthern()) {
 			_settlement.removeSituationByID(this.getID());
 			return;
 		}
-
 
 		_settlement.addWorldEconomyResources(-5);
 		_settlement.resetRoster(true);
@@ -40,8 +35,7 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 
 	}
 
-	function onUpdate( _modifiers )
-	{
+	function onUpdate(_modifiers) {
 		_modifiers.FoodRarityMult *= 0.75;
 		_modifiers.MineralRarityMult *= 0.25;
 		_modifiers.BuildingRarityMult *= 0.25;
@@ -91,28 +85,13 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 		}
 	}
 
-	function onUpdateDraftList( _draftList )
-	{
+	function onUpdateDraftList(_draftList) {
 		// Future improvement: make the backgrounds dynamic based on attached locations or settlement type
-		_draftList.push(::Legends.Background.Farmhand);
-		_draftList.push(::Legends.Background.Farmhand);
-		_draftList.push(::Legends.Background.Farmhand);
-		_draftList.push(::Legends.Background.Farmhand);
-		_draftList.push(::Legends.Background.Farmhand);
-		_draftList.push(::Legends.Background.Farmhand);
-		_draftList.push(::Legends.Background.Miller);
-		_draftList.push(::Legends.Background.Miller);
-		_draftList.push(::Legends.Background.Miller);
-		_draftList.push(::Legends.Background.Butcher);
-		_draftList.push(::Legends.Background.Butcher);
-		_draftList.push(::Legends.Background.Butcher);
-		_draftList.push(::Legends.Background.Shepherd);
-		_draftList.push(::Legends.Background.Shepherd);
-		_draftList.push(::Legends.Background.Shepherd);
-		_draftList.push(::Legends.Background.Tailor);
-		_draftList.push(::Legends.Background.Tailor);
-		_draftList.push(::Legends.Background.Apprentice);
-		_draftList.push(::Legends.Background.Apprentice);
+		::Legends.S.extend(_draftList, ::Legends.Background.Apprentice, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.Butcher, 3);
+		::Legends.S.extend(_draftList, ::Legends.Background.Farmhand, 6);
+		::Legends.S.extend(_draftList, ::Legends.Background.Miller, 3);
+		::Legends.S.extend(_draftList, ::Legends.Background.Shepherd, 3);
+		::Legends.S.extend(_draftList, ::Legends.Background.Tailor, 2);
 	}
 });
-
