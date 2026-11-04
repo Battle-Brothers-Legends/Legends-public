@@ -20,10 +20,6 @@
 
 	o.onEquip = function () {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash);
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendBucklerDefense, function(_effect) {
-			_effect.m.Order = ::Const.SkillOrder.UtilityTargeted + 1;
-			_effect.setItem(this);
-			this.m.SkillPtrs.push(_effect);
-		}.bindenv(this));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendBucklerDefense);
 	}
 });

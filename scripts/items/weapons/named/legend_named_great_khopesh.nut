@@ -34,7 +34,7 @@ this.legend_named_great_khopesh <- this.inherit("scripts/items/weapons/named/nam
 	{
 		this.m.IconLarge = "weapons/melee/legend_great_khopesh_named.png";
 		this.m.Icon = "weapons/melee/legend_great_khopesh_named_70x70.png";
-		this.m.ArmamentIcon = "icon_legend_great_khopesh_named"
+		this.m.ArmamentIcon = "icon_legend_great_khopesh_named";
 	}
 
 	function onEquip()

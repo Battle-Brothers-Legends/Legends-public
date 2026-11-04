@@ -6,7 +6,7 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBucklerDefense);
 		this.m.Description = "Fighting with a buckler, this character depends on quick reactions to keep themselves safe of harm.";
-		this.m.Order = ::Const.SkillOrder.VeryLast;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted + 1;
 		this.m.IsSerialized = false;
 	}
 

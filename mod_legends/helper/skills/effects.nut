@@ -45,20 +45,24 @@ if (!("Effects" in ::Legends)) {
 ::Legends.Effects.grant <- function (_target, _def, _applyFn = null) {
 	local container = ::Legends.Effects.getContainer(_target, "on grant");
 	local effectDef = ::Legends.Effects.EffectDefObjects[_def];
-
-	local skill = null;
-	if (container.hasSkill(effectDef.ID)) {
-		skill = container.getSkillByID(effectDef.ID);
-		if (skill.m.IsStacking) {
-			skill = ::new(effectDef.Script);
-		}
-	} else {
-		skill = ::new(effectDef.Script);
+	local skill = ::isKindOf(_target, "item") || !container.hasSkill(effectDef.ID) ? ::new(effectDef.Script) : container.getSkillByID(effectDef.ID);
+	// Prevents an issue when deserializing dual wield weapons and having ambidextrous
+	// which grants double swing active - not sure how to fix it properly yet
+	if (skill == null) {
+		return null;
 	}
 	if (_applyFn != null) {
 		_applyFn(skill);
 	}
-	container.add(skill);
+	// When granting to an item, always create a new skill instance so each weapon
+	// has its own skill in m.SkillPtrs. This handles dual wielding (both identical
+	// weapons and different weapons that share skills).
+	if (::isKindOf(_target, "item")) {
+		_target.addSkill(skill);
+		skill.setContainer(container);
+	} else {
+		container.add(skill);
+	}
 	return skill;
 }
 

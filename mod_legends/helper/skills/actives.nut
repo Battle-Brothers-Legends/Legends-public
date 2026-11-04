@@ -43,13 +43,8 @@ if (!("Actives" in ::Legends)) {
  * Returns newly added skill
  */
 ::Legends.Actives.grant <- function (_target, _def, _applyFn = null) {
-	local skillDef = ::Legends.Actives.ActiveDefObjects[_def];
-	if("IsDummy" in _target) {
-		_target.addSkill(::new(skillDef.Script));
-		return null;
-	}
-
 	local container = ::Legends.Actives.getContainer(_target, "on grant");
+	local skillDef = ::Legends.Actives.ActiveDefObjects[_def];
 	local skill = ::isKindOf(_target, "item") || !container.hasSkill(skillDef.ID) ? ::new(skillDef.Script) : container.getSkillByID(skillDef.ID);
 	// Prevents an issue when deserializing dual wield weapons and having ambidextrous
 	// which grants double swing active - not sure how to fix it properly yet
@@ -64,7 +59,6 @@ if (!("Actives" in ::Legends)) {
 	// weapons and different weapons that share skills).
 	if (::isKindOf(_target, "item")) {
 		_target.addSkill(skill);
-		skill.setItem(_target);
 		skill.setContainer(container);
 	} else {
 		container.add(skill);
