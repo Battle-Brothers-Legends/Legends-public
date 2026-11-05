@@ -18,6 +18,12 @@
 	return (_value > 0 ? "+" : "") + _value;
 }
 
+::Legends.S.addSignAndColorize <- function (_value, _isPercentage = false) {
+	local sign = _value > 0 ? "+" : "";
+	local percent = _isPercentage ? "%" : "";
+	return ::Legends.S.colorize(sign + _value + percent, _value);
+}
+
 ::Legends.S.highlightForLightBackground <- function (_text) {
 	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightLightBackgroundValue());
 }

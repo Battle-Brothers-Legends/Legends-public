@@ -244,7 +244,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + ::Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+				text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.getStaminaModifier(), false)
 			});
 		}
 
@@ -323,7 +323,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + ::Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+					text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.getStaminaModifier(), false)
 				});
 			}
 
@@ -607,7 +607,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					icon = "ui/icons/armor_body.png",
 					text = "%_diff% Armor (%_this_armor% vs %_compared_armor%)"
 					param = [
-						["_diff", ::Legends.S.colorize(::Legends.S.addSign(compareMath), compareMath)],
+						["_diff", ::Legends.S.addSignAndColorize(compareMath, false)],
 						["_this_armor", this.getConditionMax()],
 						["_compared_armor", _compareLayer.getConditionMax()]
 					]
@@ -624,7 +624,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					icon = "ui/icons/fatigue.png",
 					text = "%_diff% Fatigue Weight Penalty (%_this_weight% vs %_compared_weight%)",
 					param = [
-						["_diff", ::Legends.S.colorize(::Legends.S.addSign(compareMath), compareMath)],
+						["_diff", ::Legends.S.addSignAndColorize(compareMath, false)],
 						["_this_weight", this.getStaminaModifier()],
 						["_compared_weight", _compareLayer.getStaminaModifier()]
 					]
