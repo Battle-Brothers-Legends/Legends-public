@@ -1080,17 +1080,10 @@
 	}
 
 	o.updateLook = function (_updateTo = -1) {
-		if (this.m.Look == 0 && typeof(_updateTo) == "integer") {
-			::World.Assets.getOrigin().updateLook();
-		} else {
-			if (_updateTo != -1) {
-				this.m.Look = _updateTo;
-			}
-			if (typeof(this.m.Look) == "integer" && this.m.Look < 10) {
-				_updateTo = "0" + _updateTo;
-			}
-			::World.State.getPlayer().getSprite("body").setBrush("figure_player_" + this.m.Look);
+		if (_updateTo != -1) {
+			this.m.Look = ((typeof(_updateTo) == "integer" && _updateTo < 10) ? "0" + _updateTo : _updateTo);
 		}
+		::World.State.getPlayer().getSprite("body").setBrush("figure_player_" + this.m.Look);
 	}
 
 	local init = o.init;
@@ -1110,6 +1103,7 @@
 			_out.writeString(name);
 		}
 		_out.writeU16(this.m.LastDayResourcesUpdated);
+		_out.writeString("" + this.m.Look);
 	}
 
 	local onDeserialize = o.onDeserialize;
@@ -1120,6 +1114,6 @@
 			this.setFormationName(i, _in.readString());
 		}
 		this.m.LastDayResourcesUpdated = _in.readU16();
+		this.m.Look = _in.readString();
 	}
-
 });
