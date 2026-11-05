@@ -133,7 +133,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		if (::Legends.S.isEntityNullOrDead(entity) || ::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
-		if (::MSU.isNull(_info.Skill)) {
+		if (::Legends.S.isNull(_info.Skill)) {
 			::logWarning("legend_ambidextrous: offhand skill is null, cannot execute follow-up attack");
 			return;
 		}

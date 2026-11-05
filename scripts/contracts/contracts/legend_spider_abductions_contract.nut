@@ -130,7 +130,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
         			}
     			}
 
-				if (::MSU.isNull(this.Contract.m.Destination))
+				if (::Legends.S.isNull(this.Contract.m.Destination))
 				{
 					this.Contract.setScreen("NestDestroyed");
 					::World.Contracts.showActiveContract();
@@ -221,7 +221,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 						// Spawn additional ring of eggs / decorations between center and circle of enemies
 						local limit = ::Math.rand(20,30);
-						local wc = ::MSU.Class.WeightedContainer([
+						local entityTypes = ([
 							[3,"Egg"],
 							[5,"CrushedEgg"],
 							[2,"BrokenWeb"],
@@ -252,7 +252,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 							if (tile == null)
 								continue;
 
-							switch(wc.roll())
+							switch(::Legends.S.rollWeighted(entityTypes)[1])
 							{
 								case "Egg":
 									local egg = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/spider_eggs", tile.Coords);
@@ -334,7 +334,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					"Return with the rescued townsfolk to " + this.Contract.m.Home.getName()
 				];
 
-				if (!::MSU.isNull(this.Contract.m.Destination))
+				if (!::Legends.S.isNull(this.Contract.m.Destination))
 				{
 					this.Contract.m.Destination.getSprite("selection").Visible = false;
 				}
@@ -585,7 +585,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			],
 			function start()
 			{
-				if (::MSU.isNull(this.Contract.m.Destination))
+				if (::Legends.S.isNull(this.Contract.m.Destination))
 				{
 					this.Text += "\n\n{%employer% lets out a sigh.%SPEECH_ON%Fine, I shall pay half of the agreed payment for at least having destroyed the nest.%SPEECH_OFF%}";
 					this.Contract.m.PaymentModifier = 0.5;
@@ -614,7 +614,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 	function onPrepareVariables( _vars )
 	{
-		if (::MSU.isNull(this.m.Destination))
+		if (::Legends.S.isNull(this.m.Destination))
 		{
 			_vars.push([
 				"direction",
@@ -625,7 +625,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		{
 			_vars.push([
 				"direction",
-				::MSU.isNull(this.m.Destination) ? "" : ::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Destination.getTile())]
+				::Legends.S.isNull(this.m.Destination) ? "" : ::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Destination.getTile())]
 			]);
 		}
 	}
@@ -638,7 +638,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 	{
 		if (this.m.IsActive)
 		{
-			if (!::MSU.isNull(this.m.Destination))
+			if (!::Legends.S.isNull(this.m.Destination))
 			{
 				this.m.Destination.getSprite("selection").Visible = false;
 			}
@@ -671,7 +671,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 	function onSerialize( _out )
 	{
-		if (!::MSU.isNull(this.m.Destination))
+		if (!::Legends.S.isNull(this.m.Destination))
 		{
 			_out.writeU32(this.m.Destination.getID());
 		}

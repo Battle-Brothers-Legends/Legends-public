@@ -32,17 +32,9 @@ if (!("Items" in ::Legends)) {
 * @param _script base path to script or a function that returns item object
 */
 ::Legends.Items.pickItem <- function(_list, _script = "") {
-	local candidates = _list.filter(@(idx, t) t[0] > 0);
-	if (!candidates.len())
+	local selected = ::Legends.S.rollWeighted(_list);
+	if (selected == null)
 		return null;
-
-	local totalWeight = candidates.map(@(t) t[0]).reduce(@(p, c) p + c);
-	local r = ::Math.rand(0, totalWeight);
-	local selected = candidates.filter(@(idx, t) (r -= t[0]) <= 0);
-
-	if (!selected.len())
-		return null;
-	selected = selected[0];
 
 	if (typeof(selected[1]) == "function") {
 		local result = selected[1]();
@@ -81,15 +73,9 @@ if (!("Items" in ::Legends)) {
 * Variant can be an array, in this case a random variant will be picked out of the array.
 */
 ::Legends.Items.pickHelmet <- function(_helms) {
-	local candidates = _helms.filter(@(idx, t) t[0] > 0);
-	local totalWeight = candidates.map(@(t) t[0]).reduce(@(p, c) p + c);
-
-	local r = ::Math.rand(0, totalWeight);
-	local selected = candidates.filter(@(idx, t) (r -= t[0]) <= 0);
-
-	if (!selected.len())
+	local selected = ::Legends.S.rollWeighted(_helms);
+	if (selected == null)
 		return null;
-	selected = selected[0];
 
 	local helm = selected[1];
 	//Disabling helmet layers temporarily
@@ -150,15 +136,9 @@ if (!("Items" in ::Legends)) {
 * TODO <variant> seems to be unused?
 */
 ::Legends.Items.pickArmor <- function(_armors) {
-	local candidates = _armors.filter(@(idx, t) t[0] > 0);
-	local totalWeight = candidates.map(@(t) t[0]).reduce(@(p, c) p + c);
-
-	local r = ::Math.rand(0, totalWeight);
-	local selected = candidates.filter(@(idx, t) (r -= t[0]) <= 0);
-
-	if (!selected.len())
+	local selected = ::Legends.S.rollWeighted(_armors);
+	if (selected == null)
 		return null;
-	selected = selected[0];
 
 	local armorID = selected[1];
 	local faction = selected.len() == 4 ? selected[3] : null;
@@ -213,15 +193,11 @@ if (!("Items" in ::Legends)) {
 * - [[1, "relative/path/to/upgrade"]]
 */
 ::Legends.Items.pickArmorUpgrade <- function(_armors) {
-	local candidates = _armors.filter(@(idx, t) t[0] > 0);
-	local totalWeight = candidates.map(@(t) t[0]).reduce(@(p, c) p + c);
-
-	local r = ::Math.rand(0, totalWeight);
-	local selected = candidates.filter(@(idx, t) (r -= t[0]) <= 0);
-	if (!selected.len())
+	local selected = ::Legends.S.rollWeighted(_armors);
+	if (selected == null)
 		return null;
-	local armorID = selected[0][1];
 
+	local armorID = selected[1];
 	if (!(armorID in ::Const.LegendMod.Armors))
 		return ::new("scripts/items/armor_upgrades/" + armorID);
 
@@ -250,14 +226,14 @@ if (!("Items" in ::Legends)) {
 */
 ::Legends.Items.pickOutfit <- function(_outfitArr, _armorArr = null, _helmetArr = null, _chance = 0) {
 	if (_chance != 0 && ::Math.rand(1, 100) >= _chance) {
-		return [::Legends.Items.pickArmor(_armorArr), ::Legends.Items.pickHelmet(_helmetArr)]
+		return [::Legends.Items.pickArmor(_armorArr), ::Legends.Items.pickHelmet(_helmetArr)];
 	} else if (_armorArr != null && _helmetArr != null && _armorArr.len() > 0 && _helmetArr.len() > 0) {
 		local armorCount = _armorArr.filter(@(idx, t) t[0] > 0).len();
 		local helmCount = _helmetArr.filter(@(idx, t) t[0] > 0).len();
 		local outfitCount = _outfitArr.filter(@(idx, t) t[0] > 0).len();
 
 		if (::Math.rand(1, armorCount * helmCount) > outfitCount) {
-			return [::Legends.Items.pickArmor(_armorArr), ::Legends.Items.pickHelmet(_helmetArr)]
+			return [::Legends.Items.pickArmor(_armorArr), ::Legends.Items.pickHelmet(_helmetArr)];
 		}
 	}
 

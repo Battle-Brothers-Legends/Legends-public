@@ -64,7 +64,7 @@ this.legend_piercing_javelin_skill <- ::inherit("scripts/skills/actives/throw_ja
 		// proceed as normal
 		_info.Skill.throw_javelin.onScheduledTargetHit(_info);
 
-		if (_info.Skill.m.IsDoingPiercingJavelin || ::MSU.isNull(_info.User) || !_info.User.isAlive() || _info.User.isDying())
+		if (_info.Skill.m.IsDoingPiercingJavelin || ::Legends.S.isNull(_info.User) || !_info.User.isAlive() || _info.User.isDying())
 			return;
 
 		local forwardTile = _info.Skill.getAffectedTiles(targetTile, _info.Skill.m.OriginalDirection);

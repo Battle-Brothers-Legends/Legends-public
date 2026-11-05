@@ -61,7 +61,7 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 				switch (_event.m.Bought) {
 					case 1:
 						this.List.extend(::Legends.EventList.addItems([
-							::new(::MSU.Class.WeightedContainer([
+							::new(::Legends.S.rollWeighted([
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_southern_top_tail"],
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_wizard_cowl"],
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_wreath"],
@@ -75,7 +75,7 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_ponytail"],
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_royal_hood"],
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_southern_silk_headscarf"]
-							]).roll())
+							])[1])
 						], ::World.Assets.getStash()));
 						this.List.push(::Legends.EventList.changeMoney(-125));
 						break;

@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/stunned_effect", function (o) {
 	o.setTurns = function (_t) {
-		if (!::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor())) {
+		if (!::Legends.S.isNull(this.getContainer()) && !::Legends.S.isNull(this.getContainer().getActor())) {
 			this.m.TurnsLeft = ::Math.max(1, _t + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		}
 	}

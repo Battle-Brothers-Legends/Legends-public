@@ -1,7 +1,6 @@
-::mods_hookExactClass("items/weapons/barbarians/drum_item", function(o) {
+::mods_hookExactClass("items/weapons/barbarians/drum_item", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Name = "Barbarian Drum";
 		this.m.Description = "A barbarian instrument, can produce inspiring rhythms if you have the skill. The drum sticks make weak maces in a pinch.";
@@ -24,10 +23,8 @@
 		this.m.DirectDamageMult = 0.4;
 	}
 
-	local onEquip = o.onEquip;
-	o.onEquip = function ()
-	{
-		onEquip();
+	o.onEquip = function () {
+		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
 			_skill.m.IsDrumBash = true;
 		}.bindenv(this));
@@ -35,11 +32,9 @@
 		::Legends.Actives.grant(this, ::Legends.Active.LegendWarChant);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSongOfLife);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendMartialMarch);
-		::Legends.Actives.remove(this, ::Legends.Active.DrumsOfWar);
 	}
 
-	o.onUpdateProperties <- function ( _properties )
-	{
+	o.onUpdateProperties <- function (_properties) {
 		this.weapon.onUpdateProperties(_properties);
 	}
 });

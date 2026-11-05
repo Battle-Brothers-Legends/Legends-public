@@ -89,24 +89,24 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		local effects = ::MSU.Class.WeightedContainer([
-			[0.5, ::Legends.Effect.ImmuneToPoison],
-			[0.5, ::Legends.Effect.Bleeding],
-			[0.5, ::Legends.Effect.LegendBeerBuzz],
-			[0.5, ::Legends.Effect.LegendMeadWarmth],
-			[0.5, ::Legends.Effect.LegendWineTipsy],
-			[0.4, ::Legends.Effect.CatPotion],
-			[0.4, ::Legends.Effect.LionheartPotion],
-			[0.4, ::Legends.Effect.LegendStupefied],
-			[0.3, ::Legends.Effect.RecoveryPotion],
-			[0.3, ::Legends.Effect.Chilled],
-			[0.3, ::Legends.Effect.GoblinPoison],
-			[0.2, ::Legends.Effect.SpiderPoison],
-			[0.2, ::Legends.Effect.LegendRedbackSpiderPoison],
-			[0.2, ::Legends.Effect.IronWill],
-			[0.1, ::Legends.Effect.LegendHeartwoodFocus]
-		]);
-		::Legends.Effects.grant(_user, effects.roll());
+		local effects = [
+			[5, ::Legends.Effect.ImmuneToPoison],
+			[5, ::Legends.Effect.Bleeding],
+			[5, ::Legends.Effect.LegendBeerBuzz],
+			[5, ::Legends.Effect.LegendMeadWarmth],
+			[5, ::Legends.Effect.LegendWineTipsy],
+			[4, ::Legends.Effect.CatPotion],
+			[4, ::Legends.Effect.LionheartPotion],
+			[4, ::Legends.Effect.LegendStupefied],
+			[3, ::Legends.Effect.RecoveryPotion],
+			[3, ::Legends.Effect.Chilled],
+			[3, ::Legends.Effect.GoblinPoison],
+			[2, ::Legends.Effect.SpiderPoison],
+			[2, ::Legends.Effect.LegendRedbackSpiderPoison],
+			[2, ::Legends.Effect.IronWill],
+			[1, ::Legends.Effect.LegendHeartwoodFocus]
+		];
+		::Legends.Effects.grant(_user, ::Legends.S.rollWeighted(effects)[1]);
 		this.getItem().setConsumed(true);
 	}
 });

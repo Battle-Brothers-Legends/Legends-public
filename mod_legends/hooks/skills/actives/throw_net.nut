@@ -1,17 +1,14 @@
-::mods_hookExactClass("skills/actives/throw_net", function(o)
-{
+::mods_hookExactClass("skills/actives/throw_net", function (o) {
 	o.m.IsUnholdNet <- false;
 
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "Throw a net on your target in order to prevent them from moving or defending themself effectively.";
 		this.m.IsRanged = true;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local tooltip = this.getDefaultUtilityTooltip();
 		if (this.m.IsUnholdNet) {
 			tooltip.push({
@@ -32,57 +29,51 @@
 		return tooltip;
 	}
 
-	o.onAfterUpdate = function ( _properties )
-	{
-		this.m.IsHidden = !::MSU.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0;
+	o.onAfterUpdate = function (_properties) {
+		this.m.IsHidden = !::Legends.S.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0;
 
 		if (_properties.IsSpecializedInNets) {
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost = 3;
 		}
 
-		if (_properties.IsSpecializedInNetCasting)
+		if (_properties.IsSpecializedInNetCasting) {
 			this.m.MaxRange = 5;
+		}
 
 		local skill = ::Legends.Perks.get(this, ::Legends.Perk.LegendSpecialistSpearfisher);
-		if (skill != null && skill.m.FreeNet)
+		if (skill != null && skill.m.FreeNet) {
 			this.m.ActionPointCost = 0;
+		}
 	}
 
 	local onUse = o.onUse;
-	o.onUse = function ( _user, _targetTile )
-	{
+	o.onUse = function (_user, _targetTile) {
 		local isPlayer = ::MSU.isKindOf(_user, "player");
 		local net = _user.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local target = _targetTile.getEntity();
 
-		if (this.m.IsUnholdNet)
-			target.isAlliedWithPlayer = @() false;
+		if (this.m.IsUnholdNet) {
+			target.isAlliedWithPlayer = @()false;
+		}
 
 		this.m.Item.consumeAmmo();
 		local ret = onUse(_user, _targetTile); // this returns `null` or `false`, bruh
 		this.m.Item.drop(_targetTile); // just drop the spent net there
-		if (_user.getCurrentProperties().IsSpecializedInNetCasting && ret != false)
-		{
+		if (_user.getCurrentProperties().IsSpecializedInNetCasting && ret != false) {
 			local targetTiles = [];
 			local chance = _user.getCurrentProperties().getRangedSkill() + _user.getCurrentProperties().getRangedDefense();
 			local successes = 1.0;
 			local newRet;
-			for( local i = 0; i != 6; i = ++i )
-			{
-				for( local i = 0; i != 6; i = ++i )
-				{
-					if (_targetTile.hasNextTile(i))
-					{
+			for (local i = 0; i != 6; i = ++i) {
+				for (local i = 0; i != 6; i = ++i) {
+					if (_targetTile.hasNextTile(i)) {
 						local next = _targetTile.getNextTile(i);
 
-						if (next.IsOccupiedByActor && ::Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
-						{
-							if (::Math.rand(1, 100) < ::Math.floor(chance / (successes + 1.0)))
-							{
+						if (next.IsOccupiedByActor && ::Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer()) {
+							if (::Math.rand(1, 100) < ::Math.floor(chance / (successes + 1.0))) {
 								newRet = onUse(_user, next);
-								if (newRet != false)
-								{
+								if (newRet != false) {
 									successes += 1.0;
 								}
 							}
@@ -118,10 +109,7 @@
 			// special case for contract unhold nets
 			local target = _targetTile.getEntity();
 			if (::isKindOf(target, "unhold") || ::isKindOf(target, "unhold_bog") || ::isKindOf(target, "unhold_frost")) {
-				return target.getHitpoints() <= target.getHitpointsMax() / 4
-					|| target.getSkills().hasEffect(::Legends.Effect.LegendBaffled)
-					|| target.getSkills().hasEffect(::Legends.Effect.LegendStupefied)
-					|| target.getSkills().hasEffect(::Legends.Effect.Dazed);
+				return target.getHitpoints() <= target.getHitpointsMax() / 4 || target.getSkills().hasEffect(::Legends.Effect.LegendBaffled) || target.getSkills().hasEffect(::Legends.Effect.LegendStupefied) || target.getSkills().hasEffect(::Legends.Effect.Dazed);
 			}
 			return false;
 		}

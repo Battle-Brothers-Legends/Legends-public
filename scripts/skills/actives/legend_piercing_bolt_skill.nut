@@ -57,7 +57,7 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		// proceed as normal
 		_info.Skill.shoot_bolt.onScheduledTargetHit(_info);
 
-		if (_info.Skill.m.IsDoingPiercingShot || ::MSU.isNull(_info.User) || !_info.User.isAlive() || _info.User.isDying())
+		if (_info.Skill.m.IsDoingPiercingShot || ::Legends.S.isNull(_info.User) || !_info.User.isAlive() || _info.User.isDying())
 			return;
 
 		local forwardTile = _info.Skill.getAffectedTiles(targetTile, _info.Skill.m.OriginalDirection);

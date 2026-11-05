@@ -13,7 +13,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden() {
-		return ::MSU.isNull(this.m.WardenEntity);
+		return ::Legends.S.isNull(this.m.WardenEntity);
 	}
 
 	function getWarden() {
@@ -68,7 +68,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onDeath(_fatalityType) {
-		if (::MSU.isNull(this.m.WardenEntity)) {
+		if (::Legends.S.isNull(this.m.WardenEntity)) {
 			return;
 		}
 
@@ -101,7 +101,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	}
 
 	function summonWarden() {
-		if (this.m.WardenSummonSpent == false && ::MSU.isNull(this.m.WardenEntity)) {
+		if (this.m.WardenSummonSpent == false && ::Legends.S.isNull(this.m.WardenEntity)) {
 			local WardenSpawnTile = this.findTileToSpawnWarden();
 
 			if (WardenSpawnTile != null) {

@@ -307,7 +307,7 @@
 		if (this.getFlags().has("CaravanInvestment"))
 		{
 			local origin = this.getOrigin();
-			if (!::MSU.isNull(origin))
+			if (!::Legends.S.isNull(origin))
 			{
 				local destinationID = this.getFlags().get("CaravanDestinationID");
 				if (destinationID == null)

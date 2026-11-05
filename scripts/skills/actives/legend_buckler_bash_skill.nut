@@ -136,7 +136,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		if (::Legends.S.isEntityNullOrDead(entity) || ::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
-		if (::MSU.isNull(_info.Skill)) {
+		if (::Legends.S.isNull(_info.Skill)) {
 			::logWarning("buckler bash is null for follow up attack for some reason");
 			return;
 		}

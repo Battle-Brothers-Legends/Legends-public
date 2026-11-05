@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/world/locations/legendary/unique_goblin_city_location", function(o)
-{
+::mods_hookExactClass("entity/world/locations/legendary/unique_goblin_city_location", function (o) {
 	o.m.MeleeEnemies <- [
 		[75, ::Const.World.Spawn.Troops.LegendGoblinHarrier],
 		[35, ::Const.World.Spawn.Troops.LegendGoblinFiend]
@@ -18,43 +17,37 @@
 		[50, ::Const.World.Spawn.Troops.GoblinOverseer]
 	];
 
-	o.onSpawned = function ()
-	{
+	o.onSpawned = function () {
 		// 3 melee champs, 3 ranged champs, 3 rider champs and 4 special champs
 		this.m.Name = "Rul\'gazhix";
 		this.location.onSpawned();
-		for( local i = 0; i < 10; i++ )
-		{
+		for (local i = 0; i < 10; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.MeleeEnemies)[1]
 			}, false);
 		}
 
-		for( local i = 0; i < 3; i++ )
-		{
+		for (local i = 0; i < 3; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.MeleeEnemies)[1]
 			}, false, 100);
 		}
 
-		for( local i = 0; i < 4; i++ )
-		{
+		for (local i = 0; i < 4; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RangedEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.RangedEnemies)[1]
 			}, false);
 		}
 
-		for( local i = 0; i < 7; i++ )
-		{
+		for (local i = 0; i < 7; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RiderEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.RiderEnemies)[1]
 			}, false);
 		}
 
-		for( local i = 0; i < 2; i++ )
-		{
+		for (local i = 0; i < 2; i++) {
 			::Const.World.Common.addTroop(this, {
-			Type = ::Const.World.Spawn.Troops.LegendGoblinWitchDoctor
+				Type = ::Const.World.Spawn.Troops.LegendGoblinWitchDoctor
 			}, false, 100);
 
 			::Const.World.Common.addTroop(this, {
@@ -62,56 +55,48 @@
 			}, false, 100);
 		}
 
-		for( local i = 0; i < 7; i++ )
-		{
+		for (local i = 0; i < 7; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RangedEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.RangedEnemies)[1]
 			}, false, 100);
 		}
 
-		for( local i = 0; i < 3; i++ )
-		{
+		for (local i = 0; i < 3; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RiderEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.RiderEnemies)[1]
 			}, false, 100);
 		}
 
-		for( local i = 0; i < 5; i++ )
-		{
+		for (local i = 0; i < 5; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RiderEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.RiderEnemies)[1]
 			}, false);
 		}
 
-		for( local i = 0; i < 8; i++ )
-		{
+		for (local i = 0; i < 8; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.MeleeEnemies)[1]
 			}, false);
 		}
 
-		for( local i = 0; i < 7; i++ )
-		{
+		for (local i = 0; i < 7; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RangedEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.RangedEnemies)[1]
 			}, false);
 		}
 
-		for( local i = 0; i < 3; i++ )
-		{
+		for (local i = 0; i < 3; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.SpecialEnemies).roll()
+				Type = ::Legends.S.rollWeighted(this.m.SpecialEnemies)[1]
 			}, false);
 		}
 	}
 
-	o.onBeforeCombatStarted = function ()
-	{
+	o.onBeforeCombatStarted = function () {
 		this.location.onBeforeCombatStarted();
 	}
 
-	o.onDropLootForPlayer = function ( _lootTable )
-	{
+	o.onDropLootForPlayer = function (_lootTable) {
 		this.location.onDropLootForPlayer(_lootTable);
 		this.dropMoney(::Math.rand(0, 100), _lootTable);
 		this.dropArmorParts(::Math.rand(10, 20), _lootTable);

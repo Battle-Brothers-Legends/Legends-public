@@ -75,7 +75,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
-		if (::MSU.isNull(_attacker) || _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack()) {
+		if (::Legends.S.isNull(_attacker) || _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack()) {
 			return;
 		}
 

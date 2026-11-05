@@ -24,7 +24,7 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity)) {
+		if (::Legends.S.isNull(this.m.Vala) || ::Legends.S.isNull(this.m.Vala.m.WardenEntity)) {
 			return false;
 		}
 
@@ -44,7 +44,7 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
-		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity)) {
+		if (::Legends.S.isNull(this.m.Vala) || ::Legends.S.isNull(this.m.Vala.m.WardenEntity)) {
 			return false;
 		}
 

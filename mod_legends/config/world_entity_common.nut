@@ -6,9 +6,6 @@ if (!("World" in ::Const))
 ::Const.World.Common.WorldEconomy <- {};
 
 ::Const.World.Common.WorldEconomy.Trade <- {
-	// weigted container
-	WeightedContainer = null,
-
 	// the table to look up the price of an item, unrecorded one will be filled up automatically the first time it shows up
 	PriceLookUp = {},
 
@@ -186,18 +183,6 @@ if (!("World" in ::Const))
 		return _data.itemHashes.map(function(hash){return this.new(::IO.scriptFilenameByHash(hash));});
 	}
 
-	function getWeightContainer( _array = null )
-	{
-		if (this.WeightedContainer == null) this.WeightedContainer = ::MSU.Class.WeightedContainer();
-
-		if (_array != null) {
-			this.WeightedContainer.clear();
-			this.WeightedContainer.addArray(_array);
-		}
-
-		return this.WeightedContainer;
-	}
-
 	function calculateTradingBudget( _settlement, _min = -1, _max = -1 )
 	{
 		local isMilitary = _settlement.isMilitary();
@@ -268,7 +253,7 @@ if (!("World" in ::Const))
 		if (decisions.Potential.len() == 0) return this.addFillerGoods(_settlement, _budget, null, false, "tools/throwing_net");
 
 		local result;
-		local name = this.getWeightContainer(decisions.Potential).roll();
+		local name = ::Legends.S.rollWeighted(decisions.Potential)[1];
 
 		if (name == "FreshlyProduced")
 			result = this.gatherProduce(_settlement, _budget);
@@ -425,7 +410,7 @@ if (!("World" in ::Const))
 
 		local tries = 0;
 		local isOverBudget = false;
-		local weight_container = this.getWeightContainer(array);
+		local weight_container = ::Legends.S.rollWeighted(array)[1];
 		local result = { Items = [], Value = 0 };
 
 		while(tries < 25 && weight_container.len() > 0)

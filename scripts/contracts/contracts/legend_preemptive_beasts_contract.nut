@@ -197,7 +197,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 						local poachers = [];
 						for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
 						{
-							if(!::MSU.isNull(::Tactical.getEntityByID(this.Flags.get("Poacher" + i))))
+							if(!::Legends.S.isNull(::Tactical.getEntityByID(this.Flags.get("Poacher" + i))))
 							{
 								survivors++;
 							}
@@ -336,13 +336,13 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
 					{
 						local p = ::Tactical.getEntityByID(this.Flags.get("Poacher" + i));
-						if (!::MSU.isNull(p))
+						if (!::Legends.S.isNull(p))
 						{
 							poacher = p;
 							break;
 						}
 					}
-					if (!::MSU.isNull(poacher))
+					if (!::Legends.S.isNull(poacher))
 					{
 						this.Contract.m.Poacher = ::MSU.asWeakTableRef(poacher);
 						this.Options.push({
@@ -351,7 +351,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 							{
 								return "TrackingBeastsPoacher";
 							}
-						})
+						});
 					}
 				}
 
@@ -365,7 +365,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					}
 				}
 				local expert = ::MSU.Array.rand(candidates);
-				if (!::MSU.isNull(expert))
+				if (!::Legends.S.isNull(expert))
 				{
 					this.Contract.m.ExpertHunter = ::MSU.asWeakTableRef(expert);
 					this.Options.push({
@@ -661,7 +661,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 						break;
 					}
 				}
-				if (!::MSU.isNull(this.Contract.m.Peddler))
+				if (!::Legends.S.isNull(this.Contract.m.Peddler))
 				{
 					Options.push({
 						Text = "%peddler% has a business proposal",
@@ -669,7 +669,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 						{
 							return "Peddler1";
 						}
-					})
+					});
 				}
 			}
 		});
@@ -813,7 +813,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 								return 0;
 							}
 						}
-					]
+					];
 				}
 				else if (this.Flags.get("PeddlerPayLater"))
 				{
@@ -837,7 +837,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 								return 0;
 							}
 						}
-					]
+					];
 				}
 				else if (this.Flags.get("PeddlerFree"))
 				{
@@ -861,7 +861,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 								return 0;
 							}
 						}
-					]
+					];
 				}
 
 				// Add 2 poachers to the guest roster
@@ -1017,7 +1017,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
 				{
 					local p = ::Tactical.getEntityByID(this.Flags.get("Poacher" + i));
-					if (!::MSU.isNull(p)) poachers.push(p.getName());
+					if (!::Legends.S.isNull(p)) poachers.push(p.getName());
 				}
 
 				if (this.Flags.get("PeddlerPayLater"))
@@ -1140,7 +1140,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			::Legends.S.highlightForDarkBackground(this.m.Flags.get("Cut")),
 		]);
 
-		if (!::MSU.isNull(this.m.Peddler))
+		if (!::Legends.S.isNull(this.m.Peddler))
 		{
 			_vars.push([
 				"peddler",
@@ -1148,7 +1148,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			]);
 		}
 
-		if (!::MSU.isNull(this.m.Poacher))
+		if (!::Legends.S.isNull(this.m.Poacher))
 		{
 			_vars.push([
 				"poacher",
@@ -1156,7 +1156,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			]);
 		}
 
-		if (!::MSU.isNull(this.m.ExpertHunter))
+		if (!::Legends.S.isNull(this.m.ExpertHunter))
 		{
 			_vars.push([
 				"experthunter",
@@ -1184,7 +1184,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		_vars.push([
 			"beasts",
 			::Legends.S.highlightForDarkBackground(beasts),
-		])
+		]);
 	}
 
 	function onHomeSet()

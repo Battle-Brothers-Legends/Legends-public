@@ -428,3 +428,15 @@
 	}
 	return true;
 }*/
+
+::Legends.S.rollWeighted <- function (_array) {
+	local candidates = _array.filter(@(_, t) t[0] > 0);
+	if (!candidates.len())
+		return null;
+	local totalWeight = candidates.map(@(t) t[0]).reduce(@(p, c) p + c);
+	local r = ::Math.rand(0, totalWeight);
+	local selected = candidates.filter(@(_, t)(r -= t[0]) <= 0);
+	if (!selected.len())
+		return null;
+	return selected[0];
+}
