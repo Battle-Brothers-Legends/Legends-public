@@ -242,7 +242,7 @@
 	}
 
 	o.onBuildPerkTree <- function (_background) {
-		local perk = ::MSU.Array.rand(this.m.PeasantPerks);
+		local perk = ::Legends.Array.rand(this.m.PeasantPerks);
 		this.addScenarioPerk(_background, perk);
 	}
 

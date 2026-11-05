@@ -112,16 +112,16 @@
 	local start = o.start;
 	o.start = function () {
 		start();
-		this.m.Flags.set("ItemName", ::MSU.Array.rand(this.m.Items));
+		this.m.Flags.set("ItemName", ::Legends.Array.rand(this.m.Items));
 	}
 
 	// Ran when we actually add the contract
 	o.formatDescription <- function () {
 		if (!this.m.Flags.has("ItemName")) {
-			this.m.Flags.set("ItemName", ::MSU.Array.rand(this.m.Items));
+			this.m.Flags.set("ItemName", ::Legends.Array.rand(this.m.Items));
 		}
 
-		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local r = ::Legends.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null) {
 			r = format(r, ::Legends.Text.highlightForLightBackground(this.m.Flags.get("ItemName")));

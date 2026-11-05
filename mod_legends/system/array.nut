@@ -40,4 +40,4 @@
 	return selected[0];
 }
 
-::Legends.Array.rand <- @(_array) (_array.len() ? _array(::Math.rand(0, _array.len() - 1)) : null);
+::Legends.Array.rand <- @(_array) (_array.len() ? _array[::Math.rand(0, _array.len() - 1)] : null);

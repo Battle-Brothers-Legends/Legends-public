@@ -1,6 +1,6 @@
-::mods_hookExactClass("entity/tactical/humans/gladiator", function(o) {
+::mods_hookExactClass("entity/tactical/humans/gladiator", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
@@ -8,8 +8,7 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
@@ -22,12 +21,8 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
-
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
+	o.assignRandomEquipment = function () {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
 			local weapons = [
 				"weapons/shamshir",
 				"weapons/shamshir",
@@ -38,8 +33,7 @@
 				"weapons/fighting_spear"
 			];
 
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-			{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 				weapons.extend([
 					"weapons/oriental/two_handed_scimitar",
 					"weapons/oriental/swordlance",
@@ -50,8 +44,7 @@
 				]);
 			}
 
-			if (::Const.DLC.Wildmen && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-			{
+			if (::Const.DLC.Wildmen && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 				weapons.extend([
 					"weapons/two_handed_flail",
 					"weapons/two_handed_flanged_mace",
@@ -62,8 +55,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50)
-		{
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50) {
 			local weapons = [
 				"weapons/throwing_axe",
 				"weapons/javelin",
@@ -73,8 +65,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 			local offhand = [
 				"tools/throwing_net",
 				"shields/oriental/metal_round_shield"
@@ -82,17 +73,13 @@
 			this.m.Items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
 		}
 
-
 		local armor = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
-		if (::Math.rand(1,3) <= 2)
-		{
+		if (::Math.rand(1, 3) <= 2) {
 			armor.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
-		}
-		else
-		{
+		} else {
 			armor.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 		}
 
@@ -105,10 +92,8 @@
 		this.m.Items.equip(helm);
 	}
 
-	o.makeMiniboss = function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss = function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -118,42 +103,28 @@
 		local armor = clone ::Const.Items.NamedSouthernArmors;
 		local helmets = clone ::Const.Items.NamedSouthernHelmets;
 
-		if (r == 1)
-		{
-			if (::Math.rand(0, 1) == 0)
-			{
+		if (r == 1) {
+			if (::Math.rand(0, 1) == 0) {
 				this.m.Items.equip(this.new("scripts/items/" + ::Const.Items.NamedSouthernMeleeWeapons[::Math.rand(0, ::Const.Items.NamedSouthernMeleeWeapons.len() - 1)]));
-			}
-			else
-			{
-				local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;		// Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
+			} else {
+				local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;  // Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
 				::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
-				this.m.Items.equip(this.new("scripts/items/" + ::MSU.Array.rand(namedWeaponArray)));
+				this.m.Items.equip(this.new("scripts/items/" + ::Legends.Array.rand(namedWeaponArray)));
 			}
-		}
-		else if (r == 2)
-		{
-			if (::Math.rand(0, 1) == 0)
-			{
+		} else if (r == 2) {
+			if (::Math.rand(0, 1) == 0) {
 				this.m.Items.equip(this.new("scripts/items/" + ::Const.Items.NamedSouthernShields[::Math.rand(0, ::Const.Items.NamedSouthernShields.len() - 1)]));
-			}
-			else
-			{
+			} else {
 				this.m.Items.equip(this.new("scripts/items/" + ::Const.Items.NamedShields[::Math.rand(0, ::Const.Items.NamedShields.len() - 1)]));
 			}
-		}
-		else if (r == 3)
-		{
-			if (::Math.rand(0, 1) == 0)
-			{
+		} else if (r == 3) {
+			if (::Math.rand(0, 1) == 0) {
 				this.m.Items.equip(::Legends.Items.pickArmor(
 					::Legends.Items.convNameToList(
 						armor
 					)
 				));
-			}
-			else
-			{
+			} else {
 				this.m.Items.equip(::Legends.Items.pickHelmet(
 					::Legends.Items.convNameToList(
 						helmets

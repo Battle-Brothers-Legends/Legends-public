@@ -16,7 +16,7 @@
 
 	o.formatDescription <- function ()
 	{
-		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local r = ::Legends.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null)
 			r = format(r, ::Legends.Text.highlightForLightBackground(::World.FactionManager.getFaction(this.getFaction()).getName()));

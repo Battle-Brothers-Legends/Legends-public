@@ -364,8 +364,8 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 						candidates.push(c);
 					}
 				}
-				local expert = ::MSU.Array.rand(candidates);
-				if (!::Legends.S.isNull(expert))
+				local expert = ::Legends.Array.rand(candidates);
+				if (candidates.len() > 0)
 				{
 					this.Contract.m.ExpertHunter = ::MSU.asWeakTableRef(expert);
 					this.Options.push({

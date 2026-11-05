@@ -62,7 +62,7 @@
 		if (this.m.DescriptionTemplates.len() == 0)
 			return;
 
-		this.m.Description = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		this.m.Description = ::Legends.Array.rand(this.m.DescriptionTemplates);
 	}
 
 	local getOnCompletion = o.m.Payment.getOnCompletion;

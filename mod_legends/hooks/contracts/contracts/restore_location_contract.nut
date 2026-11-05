@@ -16,7 +16,7 @@
 
 	// Ran when we actually add the contract
 	o.formatDescription <- function () {
-		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local r = ::Legends.Array.rand(this.m.DescriptionTemplates);
 		local count = 0, find = r.find("%");
 
 		while (find != null) {

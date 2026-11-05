@@ -177,9 +177,9 @@
 	o.formatDescription <- function ()
 	{
 		if (!this.m.Flags.has("Item"))
-			this.m.Flags.set("Item", ::MSU.Array.rand(this.m.StolenItemNames));
+			this.m.Flags.set("Item", ::Legends.Array.rand(this.m.StolenItemNames));
 
-		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local r = ::Legends.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null)
 			r = format(r, ::Legends.Text.highlightForLightBackground(this.m.Flags.get("Item")));
@@ -202,7 +202,7 @@
 		}
 
 		if (!this.m.Flags.has("Item"))
-			this.m.Flags.set("Item", ::MSU.Array.rand(this.m.StolenItemNames));
+			this.m.Flags.set("Item", ::Legends.Array.rand(this.m.StolenItemNames));
 
 		this.contract.start();
 	}

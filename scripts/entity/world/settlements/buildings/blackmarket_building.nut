@@ -10,7 +10,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 	function create() {
 		this.building.create();
 		this.m.ID = "building.blackmarket";
-		this.m.Name = ::MSU.Array.rand([
+		this.m.Name = ::Legends.Array.rand([
 			"The Black Market",
 			"The Shadow Trade",
 			"The Dusk Traders",

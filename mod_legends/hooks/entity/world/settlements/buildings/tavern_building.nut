@@ -4,7 +4,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.Name = ::MSU.Array.rand([
+		this.m.Name = ::Legends.Array.rand([
 			"The Catchpole",
 			"The Mother Black",
 			"The Ratcatcher",

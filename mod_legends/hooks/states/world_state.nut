@@ -220,10 +220,10 @@
 
 				if (party.getStashInventory().getItems().len() != 0) {
 					local prefix = "scripts/items/";
-					local script = ::IO.scriptFilenameByHash(::MSU.Array.rand(party.getStashInventory().getItems()).ClassNameHash);
+					local script = ::IO.scriptFilenameByHash(::Legends.Array.rand(party.getStashInventory().getItems()).ClassNameHash);
 					::World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", script.slice(prefix.len()));
 				} else if (party.getInventory().len() != 0) {
-					::World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", ::MSU.Array.rand(party.getInventory()));
+					::World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", ::Legends.Array.rand(party.getInventory()));
 				}
 			}
 		}

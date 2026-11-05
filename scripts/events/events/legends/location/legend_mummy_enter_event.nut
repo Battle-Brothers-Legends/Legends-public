@@ -268,7 +268,7 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 
 	function addLootToScriptedCombat(_properties) {
 		for (local i = 0; i < ::Math.rand(4, 5); ++i) {
-			_properties.Loot.push("scripts/items/" + ::MSU.Array.rand(m.LootTable));
+			_properties.Loot.push("scripts/items/" + ::Legends.Array.rand(m.LootTable));
 		}
 	}
 

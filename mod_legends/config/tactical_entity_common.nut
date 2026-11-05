@@ -60,7 +60,7 @@
 		return;
 	}
 
-	::Sound.play(::MSU.Array.rand(::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6)), ::Const.Sound.Volume.Actor, _entity.getPos());
+	::Sound.play(::Legends.Array.rand(::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6)), ::Const.Sound.Volume.Actor, _entity.getPos());
 
 	::Legends.Effects.grant(_entity, ::Legends.Effect.LegendAlpRealmOfShadow);
 }

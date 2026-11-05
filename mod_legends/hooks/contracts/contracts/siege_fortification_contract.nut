@@ -22,7 +22,7 @@
 
 	o.formatDescription <- function ()
 	{
-		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local r = ::Legends.Array.rand(this.m.DescriptionTemplates);
 		local count = 0;
 		local find = r.find("%");
 

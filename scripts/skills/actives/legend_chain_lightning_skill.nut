@@ -188,7 +188,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 		selectedTargets.push(currentTargetTile.ID);
 
 		if (m.SoundOnLightning.len() != 0) {
-			::Sound.play(::MSU.Array.rand(m.SoundOnLightning), ::Const.Sound.Volume.Skill * 2.0, _user.getPos());
+			::Sound.play(::Legends.Array.rand(m.SoundOnLightning), ::Const.Sound.Volume.Skill * 2.0, _user.getPos());
 		}
 
 		for (local i = 0; i < m.ChainingTimes; i++) {
@@ -196,12 +196,12 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 			local potentialTargets = searchTargets(_user, potentialTiles, selectedTargets);
 
 			if (potentialTargets.len() != 0) {
-				currentTargetTile = ::MSU.Array.rand(potentialTargets);
+				currentTargetTile = ::Legends.Array.rand(potentialTargets);
 				selectedTargets.push(currentTargetTile.ID);
 				target = currentTargetTile.getEntity();
 			} else {
 				target = null;
-				currentTargetTile = ::MSU.Array.rand(potentialTiles);
+				currentTargetTile = ::Legends.Array.rand(potentialTiles);
 			}
 
 			applyEffect({

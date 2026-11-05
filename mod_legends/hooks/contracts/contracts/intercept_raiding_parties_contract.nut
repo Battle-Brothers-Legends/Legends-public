@@ -17,7 +17,7 @@
 
 	o.formatDescription <- function ()
 	{
-		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local r = ::Legends.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null)
 			if (this.m.Home != null)
