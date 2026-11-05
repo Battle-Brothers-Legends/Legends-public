@@ -49,10 +49,4 @@ this.legend_mummy_racial <- this.inherit("scripts/skills/skill", {
 			_properties.DamageReceivedRegularMult *= 0.75;
 		}
 	}
-
-	function onDeathWithInfo(_killer, _skill, _deathTile, _corpseTile, _fatalityType) {
-		if (_killer != null) {
-			::Legends.Effects.grant(_killer, ::Legends.Effect.LegendCurseOfTheMummy);
-		}
-	}
 });

@@ -3,19 +3,14 @@
 ::Const.World.TerrainType.COUNT = 21;
 
 ::Const.World.AllTerrainTypes <- []; // Added by Legends
-for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
-{
+for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++) {
 	::Const.World.AllTerrainTypes.push(i);
 }
 
-::Const.World.getAllTerrainTypesExcept <- function ( _types )
-{
-	local ret = clone ::Const.World.AllTerrainTypes;
-	local garbage = clone _types;
-	::MSU.Array.sortDescending(garbage);
-	foreach( i in garbage )
-		ret.remove(i);
-	return ret;
+::Const.World.getAllTerrainTypesExcept <- function (_types) {
+	local garbage = {};
+	foreach (t in _types) garbage[t] <- true;
+	return ::Const.World.AllTerrainTypes.filter(@(_, _type) !(_type in garbage));
 }
 
 ::Const.World.TerrainLocation <- [

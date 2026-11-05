@@ -29,6 +29,9 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		if (_killer != null) {
+			::Legends.Effects.grant(_killer, ::Legends.Effect.LegendCurseOfTheMummy);
+		}
 		local appearance = this.getItems().getAppearance();
 		local targetScale = 0.9;
 		local flip = ::Math.rand(1, 100) < 50;
