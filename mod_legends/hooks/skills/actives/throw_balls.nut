@@ -1,4 +1,6 @@
-::mods_hookExactClass("skills/actives/throw_balls", function(o) {
+::mods_hookExactClass("skills/actives/throw_balls", function (o) {
+	o.m.AdditionalAccuracy <- 0;
+
 	local create = o.create;
 	o.create = function () {
 		create();
@@ -9,18 +11,20 @@
 	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
 		local ammo = this.getAmmo();
-		ret.extend([{
-			id = 5,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Apply Constrained on a hit to the body for a turn"
-		},
-		{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Constrained increases the fatigue and AP cost of moving"
-		}]);
+		ret.extend([
+			{
+				id = 5,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Apply Constrained on a hit to the body for a turn"
+			},
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Constrained increases the fatigue and AP cost of moving"
+			}
+		]);
 
 		if (ammo > 0) {
 			ret.push({
@@ -28,10 +32,11 @@
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]%_ammo%[/color] spiked balls left",
-				param = [["_ammo", ammo]]
+				param = [
+					["_ammo", ammo]
+				]
 			});
-		}
-		else {
+		} else {
 			ret.push({
 				id = 8,
 				type = "text",
@@ -54,13 +59,14 @@
 
 	o.isUsable = function () {
 		local isUsable = !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank)) {
 			return isUsable;
+		}
 
 		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
-	
-	o.onTargetHit <- function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+
+	o.onTargetHit <- function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		if (_skill != this) {
 			return;
 		}
@@ -68,7 +74,7 @@
 		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity)) {
 			return;
 		}
-			
+
 		if (_bodyPart != ::Const.BodyPart.Body) {
 			return;
 		}
@@ -77,14 +83,14 @@
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties ) {
+	o.onAfterUpdate = function (_properties) {
 		onAfterUpdate(_properties);
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank)) {
 			this.m.MinRange = 1;
 		}
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.RangedSkill += this.m.HitChanceBonus;
 			_properties.HitChanceAdditionalWithEachTile -= 10;
