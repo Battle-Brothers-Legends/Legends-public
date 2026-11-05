@@ -410,12 +410,11 @@ if (!("World" in ::Const))
 
 		local tries = 0;
 		local isOverBudget = false;
-		local weight_container = ::Legends.Array.rollWeighted(array)[1];
 		local result = { Items = [], Value = 0 };
 
-		while(tries < 25 && weight_container.len() > 0)
+		while(tries < 25 && array.len() > 0)
 		{
-			local r = weight_container.roll();
+			local r = ::Legends.Array.rollWeighted(array)[1];
 
 			if (this.PriceLookUp[r] > _budget)
 			{
@@ -423,7 +422,12 @@ if (!("World" in ::Const))
 				{
 					++tries;
 					// remove from selection list when the price can no longer be affordable
-					weight_container.remove(r);
+					for (local i = array.len() - 1; i >= 0; --i) {
+						if (array[i][1] == r) {
+							array.remove(i);
+							break;
+						}
+					}
 					continue;
 				}
 
