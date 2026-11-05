@@ -62,6 +62,6 @@ this.legend_levitating_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "Base movement costs set to [color=%positive%]1[/color] " + ::Legends.S.inlineIcon("action_points") + " and [color=%positive%]2[/color] " + ::Legends.S.inlineIcon("fatigue") + " per tile traveled";
+		return "Base movement costs set to [color=%positive%]1[/color] " + ::Legends.Text.inlineIcons("action_points") + " and [color=%positive%]2[/color] " + ::Legends.Text.inlineIcons("fatigue") + " per tile traveled";
 	}
 });

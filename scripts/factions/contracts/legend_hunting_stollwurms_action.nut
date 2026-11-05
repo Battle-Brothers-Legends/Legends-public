@@ -41,7 +41,7 @@ this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_
 		}
 
 		local village = _faction.getSettlements()[0];
-		if (!::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
+		if (!::Legends.Array.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
 			return;
 		}
 

@@ -49,6 +49,6 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (this.m.Penalty * 100) + "%[/color] " + ::Legends.S.inlineIcon("initiative");
+		return "[color=%negative%]-" + (this.m.Penalty * 100) + "%[/color] " + ::Legends.Text.inlineIcons("initiative");
 	}
 });

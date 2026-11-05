@@ -7,6 +7,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-30%[/color] " + ::Legends.S.inlineIcon(["melee_defense", "initiative"]);
+		return "[color=%negative%]-30%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "initiative"]);
 	}
 });

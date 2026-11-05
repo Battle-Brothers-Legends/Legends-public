@@ -51,6 +51,6 @@ this.perk_legend_balance <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%positive%]+" + ::Math.max(0, this.m.BonusMax - this.getBonus()) + "[/color] " + ::Legends.S.inlineIcon("ranged_defense");
+		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.Text.inlineIcons("melee_defense") + ", [color=%positive%]+" + ::Math.max(0, this.m.BonusMax - this.getBonus()) + "[/color] " + ::Legends.Text.inlineIcons("ranged_defense");
 	}
 });

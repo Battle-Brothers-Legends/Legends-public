@@ -41,6 +41,6 @@ this.legend_demon_hound_bite_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-70%[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_down");
+		return "[color=%negative%]-70%[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_down");
 	}
 });

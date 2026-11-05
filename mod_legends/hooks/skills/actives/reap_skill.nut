@@ -14,7 +14,7 @@
 	o.getTooltip = function ()
 	{
 		local tooltip = getTooltip();
-		if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
 		{
 			tooltip.push({
 				id = 8,
@@ -41,7 +41,7 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
@@ -51,7 +51,7 @@
 	{
 		if (_skill == this)
 		{
-			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 			{
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus = -15;
@@ -133,7 +133,7 @@
 		if (::Legends.S.isEntityNullOrDead(_user))
 			return success;
 
-		if (success && ::Legends.S.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem())) {
+		if (success && ::Legends.Weapons.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem())) {
 			local damage = 5;
 			::Legends.S.applyBleed(target, _user, hp, this.m.SoundsA, this.m.SoundsB, damage);
 		}

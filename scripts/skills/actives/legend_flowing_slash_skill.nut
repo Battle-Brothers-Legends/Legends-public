@@ -8,7 +8,7 @@ this.legend_flowing_slash_skill <- this.inherit("scripts/skills/actives/slash", 
 
 	function getTooltip () {
 		local ret = this.slash.getTooltip();
-		local chance = ::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()) ? 20 : 10;
+		local chance = ::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()) ? 20 : 10;
 		ret.push({
 			id = 11,
 			type = "text",
@@ -23,7 +23,7 @@ this.legend_flowing_slash_skill <- this.inherit("scripts/skills/actives/slash", 
 		this.slash.onAnySkillUsed( _skill, _targetEntity, _properties );
 		if (_skill == this) {
 			_properties.RerollAttackChance += 10;
-			if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
+			if (::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 				_properties.RerollAttackChance += 10;
 			}
 		}

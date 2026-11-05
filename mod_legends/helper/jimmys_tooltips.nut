@@ -244,7 +244,7 @@ local function pushSection(_tooltip, _entity, _shownPerks, _items, _title, _star
 		}
 
 		if ("TurnsLeft" in item.m) {
-			text += " " + ::Legends.S.inlineIcon("turns_left") + item.m.TurnsLeft;
+			text += " " + ::Legends.Text.inlineIcons("turns_left") + item.m.TurnsLeft;
 		}
 
 		local itemRow = {
@@ -255,7 +255,7 @@ local function pushSection(_tooltip, _entity, _shownPerks, _items, _title, _star
 		};
 
 		if (_title == "Ammo") {
-			itemRow.text += " Ammo: " + (::isKindOf(_entity, "player") ? (item.getAmmo() + " / " + item.getAmmoMax() + " " + ::Legends.S.inlineIcon("ammo")) : "infinite");
+			itemRow.text += " Ammo: " + (::isKindOf(_entity, "player") ? (item.getAmmo() + " / " + item.getAmmoMax() + " " + ::Legends.Text.inlineIcons("ammo")) : "infinite");
 		}
 
 		_tooltip.push(itemRow);
@@ -393,7 +393,7 @@ local function addItems(_tooltip, _entity, _shownPerks, _targetedWithSkill) {
 	local getItemTooltip = function (_id, _item) {
 		local text = _item.makeName() + " ";
 		if (_item.isItemType(::Const.Items.ItemType.Ammo) || ("getAmmoMax" in _item && _item.getAmmoMax() > 0)) {
-			text += _item.getAmmo() + " / " + _item.getAmmoMax() + " " + ::Legends.S.inlineIcon("ammo") + " ";
+			text += _item.getAmmo() + " / " + _item.getAmmoMax() + " " + ::Legends.Text.inlineIcons("ammo") + " ";
 		}
 		if (_entity.isPlayerControlled()) {
 			if (_item.getConditionMax() > 1) {

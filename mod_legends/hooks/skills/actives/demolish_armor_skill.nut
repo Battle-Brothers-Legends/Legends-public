@@ -40,7 +40,7 @@
 			text = "Has a range of [color=%positive%]2[/color] tiles"
 		});
 
-		if (!::Legends.S.isCharacterWeaponSpecialized(p, this.getItem())) {
+		if (!::Legends.Weapons.isCharacterWeaponSpecialized(p, this.getItem())) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -53,7 +53,7 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
@@ -61,11 +61,11 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			_properties.DamageArmorMult *= ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 1.93 : 1.45;
+			_properties.DamageArmorMult *= ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 1.93 : 1.45;
 			_properties.DamageRegularMult *= 0.0;
 			_properties.DamageMinimum += 10;
 
-			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 			{
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus = -15;

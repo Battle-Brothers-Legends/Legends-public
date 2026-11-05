@@ -145,10 +145,10 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local tooltip = "";
 		if (this.m.MeleeStacks > 0) {
-			tooltip += "[color=%positive%]+" + this.m.MeleeStacks * 10 + "%[/color] Melee " + ::Legends.S.inlineIcon("damage_dealt");
+			tooltip += "[color=%positive%]+" + this.m.MeleeStacks * 10 + "%[/color] Melee " + ::Legends.Text.inlineIcons("damage_dealt");
 		}
 		if (this.m.RangedStacks > 0) {
-			tooltip += "[color=%positive%]+" + this.m.RangedStacks * 10 + "%[/color] Ranged " + ::Legends.S.inlineIcon("damage_dealt");
+			tooltip += "[color=%positive%]+" + this.m.RangedStacks * 10 + "%[/color] Ranged " + ::Legends.Text.inlineIcons("damage_dealt");
 		}
 		return (tooltip.len() ? tooltip : null);
 	}

@@ -75,6 +75,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.calculateBlock(this.getBonus()) + "[/color] " + ::Legends.S.inlineIcon("block");
+		return "[color=%positive%]+" + this.calculateBlock(this.getBonus()) + "[/color] " + ::Legends.Text.inlineIcons("block");
 	}
 });

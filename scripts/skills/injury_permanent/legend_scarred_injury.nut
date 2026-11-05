@@ -64,6 +64,6 @@ this.legend_scarred_injury <- this.inherit("scripts/skills/injury_permanent/perm
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon(["health", "fatigue"]);
+		return "[color=%negative%]-10%[/color] " + ::Legends.Text.inlineIcons(["health", "fatigue"]);
 	}
 });

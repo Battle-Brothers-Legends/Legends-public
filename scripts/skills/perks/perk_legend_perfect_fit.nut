@@ -90,6 +90,6 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local bonus = this.getBonus();
-		return (bonus > 0 ? ("[color=%positive%]+" + this.getInitiativeBonus(bonus) + "[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + this.getFatCostReductionBonus(bonus) + "%[/color] " + ::Legends.S.inlineIcon("fatigue") + " cost of skills") : null);
+		return (bonus > 0 ? ("[color=%positive%]+" + this.getInitiativeBonus(bonus) + "[/color] " + ::Legends.Text.inlineIcons("initiative") + ", [color=%negative%]-" + this.getFatCostReductionBonus(bonus) + "%[/color] " + ::Legends.Text.inlineIcons("fatigue") + " cost of skills") : null);
 	}
 });

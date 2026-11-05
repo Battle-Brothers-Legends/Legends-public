@@ -63,6 +63,6 @@ this.legend_lurking_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+3[/color] " + ::Legends.S.inlineIcon("action_points") + ", [color=%positive%]+30%[/color] " + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%positive%]+20[/color] " + ::Legends.S.inlineIcon("initiative");
+		return "[color=%positive%]+3[/color] " + ::Legends.Text.inlineIcons("action_points") + ", [color=%positive%]+30%[/color] " + ::Legends.Text.inlineIcons("ranged_defense") + ", [color=%positive%]+20[/color] " + ::Legends.Text.inlineIcons("initiative");
 	}
 });

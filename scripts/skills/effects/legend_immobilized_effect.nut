@@ -53,6 +53,6 @@ this.legend_immobilized_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-35%[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense", "initiative"], ", unable to move");
+		return "[color=%negative%]-35%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative"], ", unable to move");
 	}
 });

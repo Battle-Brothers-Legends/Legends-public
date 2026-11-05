@@ -112,6 +112,6 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.m.Stacks * 1 + "[/color] Melee " + ::Legends.S.inlineIcon(["damage_dealt" ,"melee_skill"]);
+		return "[color=%positive%]+" + this.m.Stacks * 1 + "[/color] Melee " + ::Legends.Text.inlineIcons(["damage_dealt" ,"melee_skill"]);
 	}
 });

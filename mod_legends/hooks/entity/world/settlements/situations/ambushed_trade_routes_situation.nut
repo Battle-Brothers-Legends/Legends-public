@@ -28,11 +28,11 @@
 
 	o.onUpdateDraftList <- function (_draftList) {
 		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 2);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendPuppet, 2);
 		}
 
-		::Legends.S.extend(_draftList, ::Legends.Background.CaravanHand, 5);
-		::Legends.S.extend(_draftList, ::Legends.Background.Peddler, 3);
-		::Legends.S.extend(_draftList, ::Legends.Background.Thief, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.CaravanHand, 5);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Peddler, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Thief, 2);
 	}
 });

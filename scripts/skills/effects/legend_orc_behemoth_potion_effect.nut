@@ -46,6 +46,6 @@ this.legend_orc_behemoth_potion_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("fatigue") + " cost of Adrenaline reduced by [color=%positive%]60%[/color]";
+		return ::Legends.Text.inlineIcons("fatigue") + " cost of Adrenaline reduced by [color=%positive%]60%[/color]";
 	}
 });

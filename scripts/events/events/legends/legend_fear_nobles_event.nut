@@ -69,9 +69,9 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 		local candidates = brothers.filter(function (_, _bro) {
 			if (_bro.getLevel() > 7)
 				return false;
-			if (::Legends.S.any(this.m.ExcludedBackgrounds, @(_bg) ::Legends.Backgrounds.has(_bro, _bg)))
+			if (::Legends.Array.any(this.m.ExcludedBackgrounds, @(_bg) ::Legends.Backgrounds.has(_bro, _bg)))
 				return false;
-			if (::Legends.S.any(this.m.ExcludedTraits, @(_trait) _bro.getSkills().hasTrait(_trait)))
+			if (::Legends.Array.any(this.m.ExcludedTraits, @(_trait) _bro.getSkills().hasTrait(_trait)))
 				return false;
 			return true;
 		}.bindenv(this));

@@ -23,13 +23,13 @@
 
 	o.onUpdateDraftList <- function (_draftList) {
 		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 4);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendPuppet, 4);
 		} else if (::World.Assets.getOrigin().getID() == "scenario.militia") {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms, 2);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendManAtArms, 2);
 		}
 
-		::Legends.S.extend(_draftList, ::Legends.Background.Deserter, 4);
-		::Legends.S.extend(_draftList, ::Legends.Background.Sellsword, 3);
-		::Legends.S.extend(_draftList, ::Legends.Background.HedgeKnight, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Deserter, 4);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Sellsword, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.HedgeKnight, 2);
 	}
 });

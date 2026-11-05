@@ -58,10 +58,10 @@ this.perk_legend_last_stand <- this.inherit("scripts/skills/skill", {
 		local result = null;
 		local currentPercent = this.getContainer().getActor().getHitpointsPct();
 		if (currentPercent < 0.66) {
-			result = "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon(["melee_defense", "ranged_defense"]);
+			result = "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense"]);
 		}
 		if (currentPercent < 0.33) {
-			result += ", " + ::Legends.S.inlineIcon("immunity") + " to fresh Injuries and morale checks on " + ::Legends.S.inlineIcon("damage_received");
+			result += ", " + ::Legends.Text.inlineIcons("immunity") + " to fresh Injuries and morale checks on " + ::Legends.Text.inlineIcons("damage_received");
 		}
 		return result;
 	}

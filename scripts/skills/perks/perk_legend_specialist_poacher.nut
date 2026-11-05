@@ -30,9 +30,9 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 			local ammo = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
 			if (ammo == null)
 				return;
-			if (::Legends.S.patternIsInText("Piercing", ammo.getName()))
+			if (::Legends.Text.isPatternInText("Piercing", ammo.getName()))
 				_properties.DamageDirectAdd += 0.01 * this.calculateSpecialistBonus(25, _skill.getItem());
-			else if (::Legends.S.patternIsInText("Broad Head", ammo.getName()))
+			else if (::Legends.Text.isPatternInText("Broad Head", ammo.getName()))
 				_properties.DamageTotalMult += 0.01 * this.calculateSpecialistBonus(10, _skill.getItem());
 		}
 	}
@@ -52,7 +52,7 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 		{
 			local user = _skill.getContainer().getActor();
 			local ammo = user.getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
-			if (ammo != null && ::Legends.S.patternIsInText("Broad Head", ammo.getName()))
+			if (ammo != null && ::Legends.Text.isPatternInText("Broad Head", ammo.getName()))
 			{
 				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazed);
 

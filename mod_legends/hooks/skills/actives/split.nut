@@ -68,7 +68,7 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				this.m.HitChanceBonus += 15;
 			}
 

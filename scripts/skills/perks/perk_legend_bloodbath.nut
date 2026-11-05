@@ -101,6 +101,6 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local bonus = this.getBleeders();
-		return "[color=%positive%]+" + bonus + "[/color] " + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("ranged_skill") + ::Legends.S.inlineIcon("bravery") + ", [color=%positive%]+" + ::Math.min(5, bonus) + "[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_up");
+		return "[color=%positive%]+" + bonus + "[/color] " + ::Legends.Text.inlineIcons("melee_skill") + ::Legends.Text.inlineIcons("ranged_skill") + ::Legends.Text.inlineIcons("bravery") + ", [color=%positive%]+" + ::Math.min(5, bonus) + "[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_up");
 	}
 });

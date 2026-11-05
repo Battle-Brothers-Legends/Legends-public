@@ -15,12 +15,12 @@ if (!("Roster" in ::Legends)) {
 	return result;
 }
 
-::Legends.Roster.getHumans <- function (_returnFullRosterIfEmpty=false) {
+::Legends.Roster.getHumans <- function (_returnFullRosterIfEmpty = false) {
 	local result = [];
 	local roster = ::World.getPlayerRoster().getAll();
 
 	foreach (b in roster) {
-		if (::Legends.S.humansOnly(b)) {
+		if (::Legends.Roster.isHuman(b)) {
 			result.push(b);
 		}
 	}
@@ -31,3 +31,5 @@ if (!("Roster" in ::Legends)) {
 
 	return result;
 }
+
+::Legends.Roster.isHuman <- @(_bro)(!_bro.getFlags().get("donkey") && !_bro.getFlags().get("PlayerZombie") && !::MSU.isKindOf(_bro, "legend_player_legion"));

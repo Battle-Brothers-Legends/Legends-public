@@ -68,6 +68,6 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local bonus = this.getBonus();
-		return "[color=%negative%]-" + bonus + "[/color] " + ::Legends.S.inlineIcon(["action_points", "vision"]) + ", [color=%negative%]-" + (bonus * 10) + "[/color] " + ::Legends.S.inlineIcon("initiative");
+		return "[color=%negative%]-" + bonus + "[/color] " + ::Legends.Text.inlineIcons(["action_points", "vision"]) + ", [color=%negative%]-" + (bonus * 10) + "[/color] " + ::Legends.Text.inlineIcons("initiative");
 	}
 });

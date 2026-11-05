@@ -50,6 +50,6 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+50%[/color] " + ::Legends.S.inlineIcon("fatigue") + " inflicted per successful hit";
+		return "[color=%positive%]+50%[/color] " + ::Legends.Text.inlineIcons("fatigue") + " inflicted per successful hit";
 	}
 });

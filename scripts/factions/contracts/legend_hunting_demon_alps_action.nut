@@ -39,7 +39,7 @@ this.legend_hunting_demon_alps_action <- this.inherit("scripts/factions/faction_
 			return;
 		}
 
-		if (::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
+		if (::Legends.Array.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
 			return;
 		}
 

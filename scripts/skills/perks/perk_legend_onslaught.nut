@@ -61,6 +61,6 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.getBonus() + "%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%positive%]50%[/color] to Baffle enemies on hit";
+		return "[color=%positive%]+" + this.getBonus() + "%[/color] " + ::Legends.Text.inlineIcons("damage_dealt") + ", [color=%positive%]50%[/color] to Baffle enemies on hit";
 	}
 });

@@ -70,6 +70,6 @@ this.legend_well_tended_effect <- this.inherit("scripts/skills/injury/injury", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+5%[/color] " + ::Legends.S.inlineIcon(["health", "melee_skill", "ranged_skill"]) + ", [color=%positive%]+3%[/color] " + ::Legends.S.inlineIcon("fatigue") + ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("bravery");
+		return "[color=%positive%]+5%[/color] " + ::Legends.Text.inlineIcons(["health", "melee_skill", "ranged_skill"]) + ", [color=%positive%]+3%[/color] " + ::Legends.Text.inlineIcons("fatigue") + ", [color=%positive%]+5[/color] " + ::Legends.Text.inlineIcons("bravery");
 	}
 });

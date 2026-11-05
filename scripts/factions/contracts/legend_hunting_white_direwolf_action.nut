@@ -47,7 +47,7 @@ this.legend_hunting_white_direwolf_action <- this.inherit("scripts/factions/fact
 		}
 
 		local village = _faction.getSettlements()[0];
-		if (::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement)) && ::Math.rand(1,100) <= 50) {
+		if (::Legends.Array.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement)) && ::Math.rand(1,100) <= 50) {
 			this.m.Score = 2;
 		} else {
 			this.m.Score = 1;

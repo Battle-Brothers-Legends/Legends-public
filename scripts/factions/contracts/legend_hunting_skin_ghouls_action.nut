@@ -37,7 +37,7 @@ this.legend_hunting_skin_ghouls_action <- this.inherit("scripts/factions/faction
 			return;
 		}
 
-		if (::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
+		if (::Legends.Array.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
 			return;
 		}
 

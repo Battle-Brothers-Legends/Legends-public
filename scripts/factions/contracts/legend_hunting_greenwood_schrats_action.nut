@@ -37,7 +37,7 @@ this.legend_hunting_greenwood_schrats_action <- this.inherit("scripts/factions/f
 			return;
 		}
 
-		if (!::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
+		if (!::Legends.Array.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
 			return;
 		}
 

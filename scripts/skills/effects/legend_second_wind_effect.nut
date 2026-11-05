@@ -66,7 +66,7 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		if (this.m.Counter > 0) {
-			return "[color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_up");
+			return "[color=%positive%]+5[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_up");
 		}
 		return null;
 	}

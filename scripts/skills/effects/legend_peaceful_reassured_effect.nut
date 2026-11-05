@@ -49,6 +49,6 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local peaceful = this.countPeaceful();
-		return "[color=%positive%]+" + (peaceful * 3) + "[/color] " + ::Legends.S.inlineIcon("bravery") + ", [color=%positive%]+" + peaceful + "%[/color] " + ::Legends.S.inlineIcon("xp_received");
+		return "[color=%positive%]+" + (peaceful * 3) + "[/color] " + ::Legends.Text.inlineIcons("bravery") + ", [color=%positive%]+" + peaceful + "%[/color] " + ::Legends.Text.inlineIcons("xp_received");
 	}
 });

@@ -8,7 +8,7 @@
 	}
 
 	o.onAfterUpdate = function (_properties) {
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 			this.m.BlockBypass += 0.25;

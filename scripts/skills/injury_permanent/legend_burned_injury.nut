@@ -86,6 +86,6 @@ this.legend_burned_injury <- this.inherit("scripts/skills/injury_permanent/perma
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense"]) + ", [color=%negative%]-1[/color] " + ::Legends.S.inlineIcon("vision") + ", [color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("bravery") + " of surrounding enemies";
+		return "[color=%negative%]-10%[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense"]) + ", [color=%negative%]-1[/color] " + ::Legends.Text.inlineIcons("vision") + ", [color=%negative%]-10[/color] " + ::Legends.Text.inlineIcons("bravery") + " of surrounding enemies";
 	}
 });

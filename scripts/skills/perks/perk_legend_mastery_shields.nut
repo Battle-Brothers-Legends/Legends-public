@@ -67,6 +67,6 @@ this.perk_legend_mastery_shields <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%negative%]-10%[/color] " + ::Legends.Text.inlineIcons("damage_received");
 	}
 });

@@ -42,6 +42,6 @@ this.legend_taste_the_pain_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+4[/color] " + ::Legends.S.inlineIcon("bravery") + "when receiving Damage instead of triggering a Morale Check";
+		return "[color=%positive%]+4[/color] " + ::Legends.Text.inlineIcons("bravery") + "when receiving Damage instead of triggering a Morale Check";
 	}
 });

@@ -60,6 +60,6 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-			return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon("health_recovery") + " every turn";
+			return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.Text.inlineIcons("health_recovery") + " every turn";
 	}
 });

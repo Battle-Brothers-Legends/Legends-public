@@ -54,6 +54,6 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("immunity") + " to Bleeding, Injuries, Poison and Morale checks on " + ::Legends.S.inlineIcon("damage_received");
+		return ::Legends.Text.inlineIcons("immunity") + " to Bleeding, Injuries, Poison and Morale checks on " + ::Legends.Text.inlineIcons("damage_received");
 	}
 });

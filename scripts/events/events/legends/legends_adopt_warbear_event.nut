@@ -3,6 +3,7 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 		Bro = null,
 		BearTamer = null
 	},
+
 	function create() {
 		this.m.ID = "event.legends.adopt_warbear";
 		this.m.Title = "Deep in the forest...";
@@ -13,18 +14,22 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "This is no circus! A bear is dangerous. Keep well away from that thing",
-				getResult = @(_event) "B"
-			}, {
-				Text = "Better to put it down now before it steals any of our supplies later.",
-				getResult = @(_event) ::Math.rand(1, 100) <= 60 ? "C" : "D"
-			}],
+			Options = [
+				{
+					Text = "This is no circus! A bear is dangerous. Keep well away from that thing",
+					getResult = @(_event)"B"
+				},
+				{
+					Text = "Better to put it down now before it steals any of our supplies later.",
+					getResult = @(_event) ::Math.rand(1, 100) <= 60 ? "C": "D"
+				}
+			],
+
 			function start(_event) {
 				if (_event.m.BearTamer != null) {
 					this.Options.push({
 						Text = "%bearTamer%, you\'re trained to handle bears, right?",
-						getResult = @(_event) "G"
+						getResult = @(_event)"G"
 					});
 				}
 			}
@@ -36,10 +41,13 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "And stay away!",
-				getResult = @(_event) 0
-			}],
+			Options = [
+				{
+					Text = "And stay away!",
+					getResult = @(_event)0
+				}
+			],
+
 			function start(_event) {}
 		});
 		this.m.Screens.push({
@@ -48,10 +56,13 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "I meant to scare it off.",
-				getResult = @(_event) 0
-			}],
+			Options = [
+				{
+					Text = "I meant to scare it off.",
+					getResult = @(_event)0
+				}
+			],
+
 			function start(_event) {}
 		});
 		this.m.Screens.push({
@@ -60,10 +71,13 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "Poor thing.",
-				getResult = @(_event) 0
-			}],
+			Options = [
+				{
+					Text = "Poor thing.",
+					getResult = @(_event)0
+				}
+			],
+
 			function start(_event) {}
 
 		});
@@ -73,10 +87,13 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "Nice.",
-				getResult = @(_event) 0
-			}],
+			Options = [
+				{
+					Text = "Nice.",
+					getResult = @(_event)0
+				}
+			],
+
 			function start(_event) {
 				this.Characters.push(_event.m.BearTamer.getImagePath());
 				this.List.extend(::Legends.EventList.addItems([
@@ -107,7 +124,7 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 		foreach (bro in brothers) {
 			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSummonBear) || ::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendDruid)) {
 				candidates.push(bro);
-				bearBros++
+				bearBros++;
 			}
 		}
 
@@ -139,4 +156,3 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 		this.m.BearTamer = null;
 	}
 });
-

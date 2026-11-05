@@ -1133,18 +1133,18 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 	{
 		_vars.push([
 			"direction",
-			this.m.Target == null || this.m.Target.isNull() ? "" : ::Legends.S.highlightForDarkBackground(::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Target.getTile())])
+			this.m.Target == null || this.m.Target.isNull() ? "" : ::Legends.Text.highlightForDarkBackground(::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Target.getTile())])
 		]);
 		_vars.push([ // Will store the cut that the optional characters ask for.
 			"cut",
-			::Legends.S.highlightForDarkBackground(this.m.Flags.get("Cut")),
+			::Legends.Text.highlightForDarkBackground(this.m.Flags.get("Cut")),
 		]);
 
 		if (!::Legends.S.isNull(this.m.Peddler))
 		{
 			_vars.push([
 				"peddler",
-				::Legends.S.highlightForDarkBackground(this.m.Peddler.getName()),
+				::Legends.Text.highlightForDarkBackground(this.m.Peddler.getName()),
 			]);
 		}
 
@@ -1152,7 +1152,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		{
 			_vars.push([
 				"poacher",
-				::Legends.S.highlightForDarkBackground(this.m.Poacher.getName()),
+				::Legends.Text.highlightForDarkBackground(this.m.Poacher.getName()),
 			]);
 		}
 
@@ -1160,7 +1160,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		{
 			_vars.push([
 				"experthunter",
-				::Legends.S.highlightForDarkBackground(this.m.ExpertHunter.getName()),
+				::Legends.Text.highlightForDarkBackground(this.m.ExpertHunter.getName()),
 			]);
 		}
 
@@ -1183,7 +1183,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		}
 		_vars.push([
 			"beasts",
-			::Legends.S.highlightForDarkBackground(beasts),
+			::Legends.Text.highlightForDarkBackground(beasts),
 		]);
 	}
 

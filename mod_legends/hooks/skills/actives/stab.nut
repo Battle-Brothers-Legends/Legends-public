@@ -12,7 +12,7 @@
 	o.getTooltip = function() {
 		local ret = getTooltip();
 		if (this.m.IsQatalStab) {
-			if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
+			if (::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 				ret.push({
 					id = 7,
 					type = "text",
@@ -60,9 +60,9 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) { //!this.m.IsEstocStab &&
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) { //!this.m.IsEstocStab &&
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 });

@@ -77,6 +77,6 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon(["melee_defense", "block"]) + ", [color=%positive%]+" + ::Math.round(this.getBonus() / 2) + "[/color] " + ::Legends.S.inlineIcon("ranged_defense");
+		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "block"]) + ", [color=%positive%]+" + ::Math.round(this.getBonus() / 2) + "[/color] " + ::Legends.Text.inlineIcons("ranged_defense");
 	}
 });

@@ -72,7 +72,7 @@
 	}
 
 	o.onAfterUpdate = function (_properties) {
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		if (this.m.IsStaffKnockOut) {
 			this.m.StunChance = _properties.IsSpecializedInPolearms ? 100 : 75;
 		}

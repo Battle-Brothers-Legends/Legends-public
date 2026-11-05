@@ -106,7 +106,7 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 			[2, ::Legends.Effect.IronWill],
 			[1, ::Legends.Effect.LegendHeartwoodFocus]
 		];
-		::Legends.Effects.grant(_user, ::Legends.S.rollWeighted(effects)[1]);
+		::Legends.Effects.grant(_user, ::Legends.Array.rollWeighted(effects)[1]);
 		this.getItem().setConsumed(true);
 	}
 });

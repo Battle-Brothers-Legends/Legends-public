@@ -99,7 +99,7 @@ this.legend_headache_effect <- this.inherit("scripts/skills/injury/injury", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-15%[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "initiative", "bravery"]);
+		return "[color=%negative%]-15%[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "initiative", "bravery"]);
 	}
 
 	function onSerialize(_out) {

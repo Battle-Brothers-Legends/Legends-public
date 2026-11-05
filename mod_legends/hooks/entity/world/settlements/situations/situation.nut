@@ -82,7 +82,7 @@
 						id = 10,
 						type = "text",
 						icon = "ui/icons/" + data.icon,
-						text = (ratio > 1.0 ? "Increases " : "Decreases ") + data.text + " by "+ ::Legends.S.colorize(::Math.abs(::Math.round((ratio - 1.0) * 100)), ratio, 1.0) + "%"});
+						text = (ratio > 1.0 ? "Increases " : "Decreases ") + data.text + " by "+ ::Legends.Text.colorize(::Math.abs(::Math.round((ratio - 1.0) * 100)), ratio, 1.0) + "%"});
 				}
 			}
 		}

@@ -8,7 +8,7 @@ this.legend_backstab_skill <- this.inherit("scripts/skills/actives/stab", {
 
 	function getTooltip () {
 		local ret = this.stab.getTooltip();
-		if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 			ret.extend([{
 				id = 7,
 				type = "text",

@@ -29,6 +29,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "Unable to act, [color=%negative%]-100[/color] " + ::Legends.S.inlineIcon("initiative");
+		return "Unable to act, [color=%negative%]-100[/color] " + ::Legends.Text.inlineIcons("initiative");
 	}
 });

@@ -50,6 +50,6 @@ this.legend_demon_hound_potion_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+3[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_up");
+		return "[color=%positive%]+3[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_up");
 	}
 });

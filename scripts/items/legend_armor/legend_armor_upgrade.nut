@@ -244,7 +244,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.getStaminaModifier(), false)
+				text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.getStaminaModifier(), false)
 			});
 		}
 
@@ -323,7 +323,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.getStaminaModifier(), false)
+					text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.getStaminaModifier(), false)
 				});
 			}
 
@@ -347,7 +347,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			id = 1,
 			type = "text",
 			section = _section,
-			text = ::Legends.S.highlightForLightBackground("Currently equipped:\n%_item%"),
+			text = ::Legends.Text.highlightForLightBackground("Currently equipped:\n%_item%"),
 			param = [
 				["_item", this.getName()]
 			],
@@ -594,7 +594,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			_tooltipList.push({
 				id = 20,
 				type = "hint",
-				text = ::Legends.S.highlightForLightBackground("Changes if you equip this layer:")
+				text = ::Legends.Text.highlightForLightBackground("Changes if you equip this layer:")
 			});
 
 			// Compare Armor value
@@ -607,7 +607,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					icon = "ui/icons/armor_body.png",
 					text = "%_diff% Armor (%_this_armor% vs %_compared_armor%)"
 					param = [
-						["_diff", ::Legends.S.addSignAndColorize(compareMath, false)],
+						["_diff", ::Legends.Text.addSignAndColorize(compareMath, false)],
 						["_this_armor", this.getConditionMax()],
 						["_compared_armor", _compareLayer.getConditionMax()]
 					]
@@ -624,7 +624,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					icon = "ui/icons/fatigue.png",
 					text = "%_diff% Fatigue Weight Penalty (%_this_weight% vs %_compared_weight%)",
 					param = [
-						["_diff", ::Legends.S.addSignAndColorize(compareMath, false)],
+						["_diff", ::Legends.Text.addSignAndColorize(compareMath, false)],
 						["_this_weight", this.getStaminaModifier()],
 						["_compared_weight", _compareLayer.getStaminaModifier()]
 					]
@@ -646,7 +646,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 						icon = "ui/icons/fatigue.png",
 						text = "%_diff% Armor per 1 Weight (%_this_efficiency% vs %_other_efficiency%)",
 						param = [
-							["_diff", ::Legends.S.colorize((compareMath > 0 ? "+" : "") + format("%.1f", compareMath), compareMath)],
+							["_diff", ::Legends.Text.colorize((compareMath > 0 ? "+" : "") + format("%.1f", compareMath), compareMath)],
 							["_this_efficiency", format("%.1f", thisEfficiency)],
 							["_other_efficiency", format("%.1f", otherEfficiency)]
 						]

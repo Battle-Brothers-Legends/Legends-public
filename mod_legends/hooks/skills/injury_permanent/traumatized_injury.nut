@@ -70,7 +70,7 @@
 			local isDrunkard = ::Legends.Traits.has(this, ::Legends.Trait.Drunkard);
 			local resolveMalus = isDrunkard ? 20 : 40;
 			local iniMalus = isDrunkard ? 10 : 30;
-			return "[color=%negative%]-" + iniMalus + "[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-" + resolveMalus + "[/color] " + ::Legends.S.inlineIcon("bravery");
+			return "[color=%negative%]-" + iniMalus + "[/color] " + ::Legends.Text.inlineIcons("initiative") + ", [color=%negative%]-" + resolveMalus + "[/color] " + ::Legends.Text.inlineIcons("bravery");
 		}
 	}
 });

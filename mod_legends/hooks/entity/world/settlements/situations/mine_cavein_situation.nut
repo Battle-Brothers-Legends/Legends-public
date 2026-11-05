@@ -6,11 +6,11 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.LegendIronmonger, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.LegendIronmonger, 3);
 		_draftList.push(::Legends.Background.LegendBlacksmith);
 
 		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 4);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendPuppet, 4);
 		}
 	}
 });

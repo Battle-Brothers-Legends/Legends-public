@@ -50,6 +50,6 @@ this.legend_greenwood_schrat_potion_effect <- this.inherit("scripts/skills/skill
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("immunity") + " to fresh Injuries";
+		return ::Legends.Text.inlineIcons("immunity") + " to fresh Injuries";
 	}
 });

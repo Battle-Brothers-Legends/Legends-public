@@ -37,6 +37,6 @@ this.perk_legend_clarity <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.calculateBonus() * 100 + "%[/color] " + ::Legends.S.inlineIcon("direct_damage");
+		return "[color=%positive%]+" + this.calculateBonus() * 100 + "%[/color] " + ::Legends.Text.inlineIcons("direct_damage");
 	}
 });

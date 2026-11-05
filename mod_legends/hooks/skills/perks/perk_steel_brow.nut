@@ -30,6 +30,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("immunity") + " to Stun, instead get Dazed";
+		return ::Legends.Text.inlineIcons("immunity") + " to Stun, instead get Dazed";
 	}
 });

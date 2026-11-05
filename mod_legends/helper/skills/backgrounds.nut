@@ -105,7 +105,7 @@ if (!("Backgrounds" in ::Legends)) {
 	local arr = vargv;
 	if (typeof vargv[0] == "array")
 		arr = vargv[0];
-	return ::Legends.S.any(arr, @(_def) ::Legends.Backgrounds.has(_target, _def));
+	return ::Legends.Array.any(arr, @(_def) ::Legends.Backgrounds.has(_target, _def));
 }
 
 ::Legends.Backgrounds.remove <- function(_target, _def) {

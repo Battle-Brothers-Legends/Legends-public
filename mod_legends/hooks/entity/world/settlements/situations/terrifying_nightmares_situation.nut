@@ -24,11 +24,11 @@
 
 	o.onUpdateDraftList <- function (_draftList) {
 		if (::World.Assets.getOrigin().getID() == "scenario.militia") {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendNightwatch, 3);
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendNightwatch, 3);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendManAtArms);
 		}
 
-		::Legends.S.extend(_draftList, ::Legends.Background.Witchhunter, 3);
-		::Legends.S.extend(_draftList, ::Legends.Background.BeastSlayer, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Witchhunter, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.BeastSlayer, 2);
 	}
 });

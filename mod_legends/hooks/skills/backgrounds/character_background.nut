@@ -357,7 +357,7 @@
 					id = 4,
 					type = "hint",
 					icon = c.icon,
-					text = c.name + " " + ::Legends.S.colorize(::Legends.S.addSign(val), val)
+					text = c.name + " " + ::Legends.Text.addSignAndColorize(val)
 				});
 			}
 		}
@@ -452,7 +452,7 @@
 					id = 5,
 					type = "hint",
 					icon = s.icon,
-					text = s.name + " " + ::Legends.S.colorize(::Legends.S.addSign(val * 100) + "%", val)
+					text = s.name + " " + ::Legends.Text.colorize(::Legends.Text.addSign(val * 100) + "%", val)
 				});
 			}
 		}
@@ -477,7 +477,7 @@
 						id = 6,
 						type = "hint",
 						icon = "ui/icons/tracking_disabled.png",
-						text = key + " " + ::Legends.S.colorize(::Legends.S.addSign(val * 100) + "%", val)
+						text = key + " " + ::Legends.Text.colorize(::Legends.Text.addSign(val * 100) + "%", val)
 					});
 				}
 			}
@@ -543,7 +543,7 @@
 		}
 
 		local getStat = function (_attribute, _addDistance = true) {
-			local potential = ::Legends.S.getStatPotential(bro, _attribute);
+			local potential = ::Legends.Player.getStatPotential(bro, _attribute);
 			local text = potential.min + " to " + potential.max;
 
 			if (!_addDistance) {

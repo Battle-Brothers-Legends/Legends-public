@@ -51,6 +51,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" +  this.getReduction() + "%[/color] Ranged " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%negative%]-" +  this.getReduction() + "%[/color] Ranged " + ::Legends.Text.inlineIcons("damage_received");
 	}
 });

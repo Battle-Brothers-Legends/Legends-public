@@ -77,7 +77,7 @@ if (!("Perks" in ::Legends))
 	local arr = vargv;
 	if (typeof vargv[0] == "array")
 		arr = vargv[0];
-	return ::Legends.S.any(arr, @(_def) ::Legends.Perks.has(_target, _def));
+	return ::Legends.Array.any(arr, @(_def) ::Legends.Perks.has(_target, _def));
 }
 
 ::Legends.Perks.remove <- function (_target, _def) {

@@ -137,6 +137,6 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+75%[/color] " + ::Legends.S.inlineIcon("fatigue") + " cost, [color=%positive%]+1[/color] " + ::Legends.S.inlineIcon("action_points") + " cost, chance to deal " + ::Legends.S.inlineIcon("direct_damage");
+		return "[color=%positive%]+75%[/color] " + ::Legends.Text.inlineIcons("fatigue") + " cost, [color=%positive%]+1[/color] " + ::Legends.Text.inlineIcons("action_points") + " cost, chance to deal " + ::Legends.Text.inlineIcons("direct_damage");
 	}
 });

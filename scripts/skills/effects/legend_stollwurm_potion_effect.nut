@@ -41,6 +41,6 @@ this.legend_stollwurm_potion_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("immunity") + " to Stun";
+		return ::Legends.Text.inlineIcons("immunity") + " to Stun";
 	}
 });

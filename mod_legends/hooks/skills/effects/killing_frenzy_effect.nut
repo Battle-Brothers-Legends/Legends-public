@@ -34,6 +34,6 @@
 	o.reset = function () {}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+25%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", more likely to be targeted";
+		return "[color=%positive%]+25%[/color] " + ::Legends.Text.inlineIcons("damage_dealt") + ", more likely to be targeted";
 	}
 });

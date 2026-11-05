@@ -72,6 +72,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-10[/color] " + ::Legends.S.inlineIcon("vision") + ", [color=%negative%]-50%[/color] ranged " + ::Legends.S.inlineIcon("damage_received") + ", unaffected by Zones of Control";
+		return "[color=%negative%]-10[/color] " + ::Legends.Text.inlineIcons("vision") + ", [color=%negative%]-50%[/color] ranged " + ::Legends.Text.inlineIcons("damage_received") + ", unaffected by Zones of Control";
 	}
 });

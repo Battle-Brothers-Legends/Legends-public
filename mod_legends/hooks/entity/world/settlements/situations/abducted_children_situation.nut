@@ -28,6 +28,6 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Witchhunter, 6);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Witchhunter, 6);
 	}
 });

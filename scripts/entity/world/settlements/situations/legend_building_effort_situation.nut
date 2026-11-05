@@ -78,13 +78,13 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 
 	function onUpdateDraftList(_draftList) {
 		if (this.m.IsSouthern) {
-			::Legends.S.extend(_draftList, ::Legends.Background.DaytalerSouthern, 4);
-			::Legends.S.extend(_draftList, ::Legends.Background.SlaveSouthern, 6);
+			::Legends.Array.extend(_draftList, ::Legends.Background.DaytalerSouthern, 4);
+			::Legends.Array.extend(_draftList, ::Legends.Background.SlaveSouthern, 6);
 		} else {
-			::Legends.S.extend(_draftList, ::Legends.Background.Daytaler, 3);
-			::Legends.S.extend(_draftList, ::Legends.Background.Lumberjack, 2);
-			::Legends.S.extend(_draftList, ::Legends.Background.Mason, 2);
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendInventor, 1);
+			::Legends.Array.extend(_draftList, ::Legends.Background.Daytaler, 3);
+			::Legends.Array.extend(_draftList, ::Legends.Background.Lumberjack, 2);
+			::Legends.Array.extend(_draftList, ::Legends.Background.Mason, 2);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendInventor, 1);
 		}
 	}
 });

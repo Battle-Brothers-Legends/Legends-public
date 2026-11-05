@@ -47,6 +47,6 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]0[/color] " + ::Legends.S.inlineIcon("block");
+		return "[color=%negative%]0[/color] " + ::Legends.Text.inlineIcons("block");
 	}
 });

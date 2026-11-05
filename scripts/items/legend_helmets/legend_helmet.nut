@@ -596,7 +596,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	function getTooltip()
 	{
 		if (::Legends.Mod.ModSettings.getSetting("LogOutfits").getValue())
-			::Legends.S.logHelmet(this);
+			::Legends.Items.logHelmet(this);
 
 		local description = this.getDescription();
 
@@ -675,7 +675,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.getStaminaModifier(), false)
+				text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.getStaminaModifier(), false)
 			});
 		}
 
@@ -695,7 +695,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Combined Vision: " + ::Legends.S.addSignAndColorize(this.getVision(), false)
+				text = "Combined Vision: " + ::Legends.Text.addSignAndColorize(this.getVision(), false)
 			});
 		}
 
@@ -730,7 +730,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.m.StaminaModifier, false)
+					text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.m.StaminaModifier, false)
 				});
 			}
 			if (this.m.Vision != 0)
@@ -739,7 +739,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/vision.png",
-					text = "Vision " + ::Legends.S.addSignAndColorize(this.m.Vision, false)
+					text = "Vision " + ::Legends.Text.addSignAndColorize(this.m.Vision, false)
 				});
 			}
 		}

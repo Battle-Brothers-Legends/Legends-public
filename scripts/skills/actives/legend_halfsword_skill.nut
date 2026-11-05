@@ -23,7 +23,7 @@ this.legend_halfsword_skill <- this.inherit("scripts/skills/actives/puncture", {
 	}
 
 	function onAfterUpdate( _properties ) {
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.IsHidden = !this.canDoubleGrip() && !this.m.Item.isItemType(::Const.Items.ItemType.TwoHanded);
 	}
 

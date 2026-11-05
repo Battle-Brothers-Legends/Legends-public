@@ -4,8 +4,8 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		SpiderNestTile = null,
 		PaymentModifier = 1,
 	},
-	function create()
-	{
+
+	function create() {
 		this.contract.create();
 		this.m.Type = "contract.legend_spider_abductions";
 		this.m.Name = "Horror In The Woods";
@@ -20,15 +20,12 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		];
 	}
 
-	function onImportIntro()
-	{
+	function onImportIntro() {
 		this.importSettlementIntro();
 	}
 
-	function start()
-	{
-		if (this.m.SpiderNestTile == null || this.m.SpiderNestTile.IsOccupied)
-		{
+	function start() {
+		if (this.m.SpiderNestTile == null || this.m.SpiderNestTile.IsOccupied) {
 			local playerTile = ::World.State.getPlayer().getTile();
 			local excluded = ::Const.World.getAllTerrainTypesExcept([::Const.World.TerrainType.Forest, ::Const.World.TerrainType.LeaveForest, ::Const.World.TerrainType.AutumnForest]);
 			this.m.SpiderNestTile = this.getTileToSpawnLocation(playerTile, 6, 12, excluded, false);
@@ -36,46 +33,37 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 		this.m.Payment.Pool = 550 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (::Math.rand(1, 100) <= 33)
-		{
+		if (::Math.rand(1, 100) <= 33) {
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;
-		}
-		else
-		{
+		} else {
 			this.m.Payment.Completion = 1.0;
 		}
 
 		this.contract.start();
 	}
 
-	function createStates()
-	{
+	function createStates() {
 		this.m.States.push({
 			ID = "Offer",
-			function start()
-			{
+
+			function start() {
 				// TODO: intermediary steps to investigate site before finding the nest
 				// TODO: Special scenarios: Redback / Spider Queen / Kobold Ambush
 				this.Contract.m.BulletpointsObjectives = [
 					"Find the Webknecht Nest where the abducted townsfolk from " + this.Contract.m.Home.getName() + " were taken to"
 				];
 
-				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
-				{
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance) {
 					this.Contract.setScreen("Intro");
-				}
-				else
-				{
+				} else {
 					this.Contract.setScreen("Task");
 				}
 			}
 
-			function end()
-			{
+			function end() {
 				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				if (this.Contract.m.SpiderNestTile == null || this.Contract.m.SpiderNestTile.IsOccupied)
-				{
+				if (this.Contract.m.SpiderNestTile == null || this.Contract.m.SpiderNestTile.IsOccupied) {
 					local playerTile = ::World.State.getPlayer().getTile();
 					local excluded = ::Const.World.getAllTerrainTypesExcept([::Const.World.TerrainType.Forest, ::Const.World.TerrainType.LeaveForest, ::Const.World.TerrainType.AutumnForest]);
 					this.Contract.m.SpiderNestTile = this.Contract.getTileToSpawnLocation(playerTile, 6, 12, excluded, false);
@@ -98,17 +86,15 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		});
 		this.m.States.push({
 			ID = "Running",
-			function start()
-			{
-				if (this.Contract.m.Destination != null && !this.Contract.m.Destination.isNull())
-				{
+
+			function start() {
+				if (this.Contract.m.Destination != null && !this.Contract.m.Destination.isNull()) {
 					this.Contract.m.Destination.getSprite("selection").Visible = true;
 					this.Contract.m.Destination.setOnCombatWithPlayerCallback(this.onDestinationAttacked.bindenv(this));
 				}
 			}
 
-			function update()
-			{
+			function update() {
 				// if (!this.TempFlags.get("IsNestReached") && !this.TempFlags.get("IsNestEntered") && this.Contract.isPlayerAt(this.Contract.m.Destination))
 				// {
 				// 	this.TempFlags.set("IsNestReached", true);
@@ -119,19 +105,17 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				// TODO: Handle "successful retreat" (player rescued the townsfolk and retreated without destroying the nest)
 
 				if (this.Contract.m.Destination != null && !this.Contract.m.Destination.isNull()) {
-			        if (this.Contract.isPlayerAt(this.Contract.m.Destination)) {
-            			if (!this.TempFlags.get("AlreadyVisited")) {
-                			this.Contract.setScreen("Nest1");
-                			::World.Contracts.showActiveContract();
-            			}
-        			}
-        			else {
-            			this.TempFlags.set("AlreadyVisited", false);
-        			}
-    			}
+					if (this.Contract.isPlayerAt(this.Contract.m.Destination)) {
+						if (!this.TempFlags.get("AlreadyVisited")) {
+							this.Contract.setScreen("Nest1");
+							::World.Contracts.showActiveContract();
+						}
+					} else {
+						this.TempFlags.set("AlreadyVisited", false);
+					}
+				}
 
-				if (::Legends.S.isNull(this.Contract.m.Destination))
-				{
+				if (::Legends.S.isNull(this.Contract.m.Destination)) {
 					this.Contract.setScreen("NestDestroyed");
 					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
@@ -139,16 +123,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 			}
 
-			function onDestinationAttacked( _dest, _isPlayerAttacking = true )
-			{
+			function onDestinationAttacked(_dest, _isPlayerAttacking = true) {
 				// if (!this.Flags.get("IsAttackDialogTriggered"))
 				// {
 				// 	this.Flags.set("IsAttackDialogTriggered", true);
 				// 	this.Contract.setScreen("Nest1");
 				// 	::World.Contracts.showActiveContract();
 				// }
-				if (this.Flags.get("IsAttackingNest"))
-				{
+				if (this.Flags.get("IsAttackingNest")) {
 					local tile = this.Contract.m.Destination.getTile();
 					local p = ::Const.Tactical.CombatInfo.getClone();
 					p.Music = ::Const.Music.BeastsTracks;
@@ -156,18 +138,16 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					p.Tile = tile;
 					p.CombatID = "SpiderNest";
 					p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Custom;
-					p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;			//Was 80, but this proved to be almost three fold the difficulty expected. Decreased to 30 as a test on 6/3/24 - Luft
+					p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;   //Was 80, but this proved to be almost three fold the difficulty expected. Decreased to 30 as a test on 6/3/24 - Luft
 					::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Spiders, 20 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
 
 					// TODO: Balance the fight
 					// Maybe also add another "ring" of eggs between the player and the surrounding spiders
-					local onPlayerDeployment = function(_frontline)
-					{
+					local onPlayerDeployment = function (_frontline) {
 						// Chance for some of the player's units to start webbed
-						foreach (unit in _frontline)
-						{
-							if (::Math.rand(1,6) == 1) {
-								::Time.scheduleEvent(::TimeUnit.Real, 50, function ( _unit ) {
+						foreach (unit in _frontline) {
+							if (::Math.rand(1, 6) == 1) {
+								::Time.scheduleEvent(::TimeUnit.Real, 50, function (_unit) {
 									::Legends.Actives.new(::Legends.Active.Web).onUse(_unit, _unit.getTile());
 								}, unit);
 							}
@@ -175,11 +155,11 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 						local entities = [];
 						local eggs = [];
-						local abductees = ::Math.rand(3,6);
+						local abductees = ::Math.rand(3, 6);
 						this.Flags.set("NumAbductees", abductees);
 
 						local freeSlots = ::Legends.S.getEmptySlotsInFormation();
-						for (local i=0; i < abductees; i++) {
+						for (local i = 0; i < abductees; i++) {
 							local villager = ::World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
 							local items = villager.getItems();
 							items.equip(::Legends.Items.pickArmor([
@@ -192,15 +172,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 							villager.setName("Abducted Villager");
 							villager.setFaction(1);
 							villager.setPlaceInFormation(freeSlots.pop());
-							::Time.scheduleEvent(::TimeUnit.Real, 50, function ( _unit ) {
+							::Time.scheduleEvent(::TimeUnit.Real, 50, function (_unit) {
 								::Legends.Actives.new(::Legends.Active.Web).onUse(_unit, _unit.getTile());
 							}, villager);
 							villager.getFlags().add("IsSpiderAbductee", true);
 							entities.push(villager);
 						}
 
-						for (local i=0; i < ::Math.rand(4,6); i++)
-						{
+						for (local i = 0; i < ::Math.rand(4, 6); i++) {
 							local egg = {
 								ID = ::Const.EntityType.SpiderEggs,
 								Variant = 0,
@@ -220,40 +199,39 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						::Tactical.Entities.spawnEntitiesAtCenter(eggs);
 
 						// Spawn additional ring of eggs / decorations between center and circle of enemies
-						local limit = ::Math.rand(20,30);
+						local limit = ::Math.rand(20, 30);
 						local entityTypes = ([
-							[3,"Egg"],
-							[5,"CrushedEgg"],
-							[2,"BrokenWeb"],
+							[3, "Egg"],
+							[5, "CrushedEgg"],
+							[2, "BrokenWeb"],
 						]);
-						for( local i=0; i < limit; i++ )
-						{
+						for (local i = 0; i < limit; i++) {
 							local x = 0, y = 0;
 							local tries = 0, tile;
 
-							while (1)
-							{
+							while (1) {
 								x = ::Math.rand(9, 23);
 								y = ::Math.rand(9, 23);
 
-								if (x > 13 && x < 19 && y > 13 && y < 19)
+								if (x > 13 && x < 19 && y > 13 && y < 19) {
 									continue;
+								}
 
-								if (::Tactical.isValidTileSquare(x, y) && ::Tactical.getTileSquare(x, y).IsEmpty && !::Tactical.Entities.isTileIsolated(::Tactical.getTileSquare(x, y)))
-								{
+								if (::Tactical.isValidTileSquare(x, y) && ::Tactical.getTileSquare(x, y).IsEmpty && !::Tactical.Entities.isTileIsolated(::Tactical.getTileSquare(x, y))) {
 									tile = ::Tactical.getTileSquare(x, y);
 									break;
 								}
 
-								if (++tries >= 500)
+								if (++tries >= 500) {
 									break;
+								}
 							}
 
-							if (tile == null)
+							if (tile == null) {
 								continue;
+							}
 
-							switch(::Legends.S.rollWeighted(entityTypes)[1])
-							{
+							switch (::Legends.Array.rollWeighted(entityTypes)[1]) {
 								case "Egg":
 									local egg = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/spider_eggs", tile.Coords);
 									egg.setFaction(::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
@@ -262,7 +240,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 									break;
 
 								case "CrushedEgg":
-									tile.spawnDetail("nest_01_dead", ::Const.Tactical.DetailFlag.Corpse, ::Math.rand(1,2) == 1);
+									tile.spawnDetail("nest_01_dead", ::Const.Tactical.DetailFlag.Corpse, ::Math.rand(1, 2) == 1);
 									break;
 
 								case "BrokenWeb":
@@ -277,37 +255,30 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 					p.PlayerDeploymentWithFrontlineCallback = onPlayerDeployment.bindenv(this);
 					::World.Contracts.startScriptedCombat(p, false, false, true);
-				}
-				else
-				{
+				} else {
 					this.Contract.setScreen("Nest1");
 					::World.Contracts.showActiveContract();
 				}
 			}
 
-			function onActorKilled( _actor, _killer, _combatID )
-			{
-				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
-				{
+			function onActorKilled(_actor, _killer, _combatID) {
+				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee")) {
 					::World.getGuestRoster().remove(_actor);
 				}
 			}
 
-			function onEggPlaced( _entity, _tag)
-			{
+			function onEggPlaced(_entity, _tag) {
 				_entity.setSpawnDelay(1); // add a delay so that the eggs don't spawn hatchlings on the very first turn
 			}
 
-			function onRetreatedFromCombat( _combatID )
-			{
+			function onRetreatedFromCombat(_combatID) {
 				// if (_combatID == "SpiderNest")
 				// {
 				// 	this.Contract.setScreen("Retreat");
 				// 	this.Contract.m.Destination.onFinish();
 				// 	::World.Contracts.removeContract(this.Contract);
 				// }
-				if (_combatID == "SpiderNest")
-				{
+				if (_combatID == "SpiderNest") {
 					// TODO: different outcomes depending on the number of survivors
 					// this.Contract.m.Destination.onFinish();
 					this.Contract.m.Destination.die();
@@ -315,10 +286,8 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				}
 			}
 
-			function onCombatVictory( _combatID )
-			{
-				if (_combatID == "SpiderNest")
-				{
+			function onCombatVictory(_combatID) {
+				if (_combatID == "SpiderNest") {
 					// TODO: different outcomes depending on the number of survivors
 					this.Contract.m.Destination.die();
 					this.Contract.m.Destination = null;
@@ -328,39 +297,31 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		});
 		this.m.States.push({
 			ID = "Return",
-			function start()
-			{
+
+			function start() {
 				this.Contract.m.BulletpointsObjectives = [
 					"Return with the rescued townsfolk to " + this.Contract.m.Home.getName()
 				];
 
-				if (!::Legends.S.isNull(this.Contract.m.Destination))
-				{
+				if (!::Legends.S.isNull(this.Contract.m.Destination)) {
 					this.Contract.m.Destination.getSprite("selection").Visible = false;
 				}
 
 				this.Contract.m.Home.getSprite("selection").Visible = true;
 			}
 
-			function update()
-			{
-				if (this.Contract.isPlayerAt(this.Contract.m.Home))
-				{
+			function update() {
+				if (this.Contract.isPlayerAt(this.Contract.m.Home)) {
 					local survivorCount = 0;
-					foreach ( g in ::World.getGuestRoster().getAll())
-					{
-						if ( g.getFlags().get("IsSpiderAbductee") )
-						{
+					foreach (g in ::World.getGuestRoster().getAll()) {
+						if (g.getFlags().get("IsSpiderAbductee")) {
 							survivorCount += 1;
 						}
 					}
 
-					if (survivorCount > 0)
-					{
+					if (survivorCount > 0) {
 						this.Contract.setScreen("Success1");
-					}
-					else
-					{
+					} else {
 						this.Contract.setScreen("Failure1");
 					}
 
@@ -368,18 +329,15 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				}
 			}
 
-			function onActorKilled( _actor, _killer, _combatID )
-			{
-				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
-				{
+			function onActorKilled(_actor, _killer, _combatID) {
+				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee")) {
 					::World.getGuestRoster().remove(_actor);
 				}
 			}
 		});
 	}
 
-	function createScreens()
-	{
+	function createScreens() {
 		this.importScreens(::Const.Contracts.NegotiationDefault);
 		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({
@@ -393,25 +351,20 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			Options = [
 				{
 					Text = "{Attacking a Webknecht nest is dangerous. This better pay well. | How much are their lives worth to you? | We will rescue them if the pay is right.}",
-					function getResult()
-					{
+					function getResult() {
 						return "Negotiation";
 					}
-
 				},
 				{
 					Text = "{This isn\'t worth it. | This sounds far too dangerous.}",
-					function getResult()
-					{
+					function getResult() {
 						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
-
 				}
 			],
-			function start()
-			{
-			}
+
+			function start() {}
 		});
 
 		// At the Nest
@@ -424,29 +377,25 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			Options = [
 				{
 					Text = "{Rush in!}",
-					function getResult()
-					{
+					function getResult() {
 						// this.TempFlags.set("IsNestEntered", true);
 						this.TempFlags.set("AlreadyVisited", true);
 						return "Nest2";
 					}
-
 				},
 				{
 
-//For result, 'We'll come back later', how about turning it into a night battle, with 50% of victims already dead, and no large spiders?
-//"You wait until nightfall, when the larger creatures are away hunting for prey. It seems quieter now, many of the victims seem to have expired during the day. Regrettable, but you reckon that if can still grab a few survivors and torch the nest you'll likely get paid the same regardless."
+					//For result, 'We'll come back later', how about turning it into a night battle, with 50% of victims already dead, and no large spiders?
+					//"You wait until nightfall, when the larger creatures are away hunting for prey. It seems quieter now, many of the victims seem to have expired during the day. Regrettable, but you reckon that if can still grab a few survivors and torch the nest you'll likely get paid the same regardless."
 					Text = "{We\'ll come back later.}",
-					function getResult()
-					{
+					function getResult() {
 						this.TempFlags.set("AlreadyVisited", true);
 						return 0;
 					}
 				}
 			],
-			function start()
-			{
-			}
+
+			function start() {}
 		});
 		// TODO: Different battle layouts depending on player choice
 		this.m.Screens.push({
@@ -458,20 +407,16 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			Options = [
 				{
 					Text = "{Defend the townsfolk! | To arms! | Prepare for battle!}",
-					function getResult()
-					{
+					function getResult() {
 						this.Flags.set("IsAttackingNest", true);
 						this.Contract.getActiveState().onDestinationAttacked(this.Contract.m.Destination);
 						return 0;
 					}
-
 				}
 			],
-			function start()
-			{
-			}
-		});
 
+			function start() {}
+		});
 
 		this.m.Screens.push({
 			ID = "Retreat",
@@ -482,16 +427,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			Options = [
 				{
 					Text = "{Better them than us.}",
-					function getResult()
-					{
+					function getResult() {
 						// TODO: clear guest roster of any rescued townsfolk
 						return 0;
 					}
 				}
 			],
-			function start()
-			{
-			}
+
+			function start() {}
 		});
 		this.m.Screens.push({
 			ID = "NestDestroyed",
@@ -502,16 +445,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			Options = [
 				{
 					Text = "{Let\'s get these poor souls back to safety. | We\'ve seen enough here.}",
-					function getResult()
-					{
+					function getResult() {
 						this.Contract.setState("Return");
 						return 0;
 					}
 				}
 			],
-			function start()
-			{
-			}
+
+			function start() {}
 		});
 
 		// Return home
@@ -525,8 +466,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			Options = [
 				{
 					Text = "{All in a day\'s work. | I hope to never see a spider again for the rest of my life.}",
-					function getResult()
-					{
+					function getResult() {
 						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
 						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
 						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rescued townsfolk from Webknechts");
@@ -535,14 +475,12 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					}
 				}
 			],
-			function start()
-			{
+
+			function start() {
 				// Count survivors
 				local survivorCount = 0;
-				foreach ( g in ::World.getGuestRoster().getAll())
-				{
-					if ( g.getFlags().get("IsSpiderAbductee") )
-					{
+				foreach (g in ::World.getGuestRoster().getAll()) {
+					if (g.getFlags().get("IsSpiderAbductee")) {
 						survivorCount += 1;
 					}
 				}
@@ -553,8 +491,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					text = format("You rescued %s out of %s Abducted Townsfolk", ::Const.UI.getColorized(survivorCount, survivorCount == 0 ? ::Const.UI.Color.NegativeEventValue : ::Const.UI.Color.PositiveEventValue), ::Const.UI.getColorized(this.Flags.get("NumAbductees"), ::Const.UI.Color.PositiveEventValue))
 				});
 				// TODO: scale reward based on the number of survivors who made it back?
-				if (survivorCount == this.Flags.get("NumAbductees"))
-				{
+				if (survivorCount == this.Flags.get("NumAbductees")) {
 					this.Text += "{\n\nAs you leave the employer's chambers, the townsfolk you rescued gather around.%SPEECH_ON%They saved all of us! We thought we were all done for, but they kept us safe.\"\n\n\"And not a single one of us was left behind either!\"\n\n\"All shall hear of the %companyname%!\"\n\n\"Hear, hear!%SPEECH_OFF%}";
 					this.Contract.addSituation(this.new("scripts/entity/world/settlements/situations/legend_word_of_mouth_situation"), 5, this.Contract.m.Home, this.List);
 				}
@@ -575,23 +512,19 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			Options = [
 				{
 					Text = "{Next time you try clearing out a Webknecht nest yourself. | It\'s a dangerous world. | At least we made it back alive ourselves.}",
-					function getResult()
-					{
+					function getResult() {
 						::World.Assets.addMoney(::Math.round(this.Contract.m.Payment.getOnCompletion() * this.Contract.m.PaymentModifier));
 						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 				}
 			],
-			function start()
-			{
-				if (::Legends.S.isNull(this.Contract.m.Destination))
-				{
+
+			function start() {
+				if (::Legends.S.isNull(this.Contract.m.Destination)) {
 					this.Text += "\n\n{%employer% lets out a sigh.%SPEECH_ON%Fine, I shall pay half of the agreed payment for at least having destroyed the nest.%SPEECH_OFF%}";
 					this.Contract.m.PaymentModifier = 0.5;
-				}
-				else
-				{
+				} else {
 					this.Text += "\n\n{After a brief moment of consideration, %employer% hands you a paltry sum of crowns.%SPEECH_ON%I don\'t think you deserve this at all, but having risked your lives for this, perhaps you should get something for the trouble%SPEECH_OFF%}";
 					this.Contract.m.PaymentModifier = 0.1;
 				}
@@ -612,17 +545,13 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 	}
 
-	function onPrepareVariables( _vars )
-	{
-		if (::Legends.S.isNull(this.m.Destination))
-		{
+	function onPrepareVariables(_vars) {
+		if (::Legends.S.isNull(this.m.Destination)) {
 			_vars.push([
 				"direction",
 				this.m.SpiderNestTile == null ? "" : ::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.SpiderNestTile)]
 			]);
-		}
-		else
-		{
+		} else {
 			_vars.push([
 				"direction",
 				::Legends.S.isNull(this.m.Destination) ? "" : ::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Destination.getTile())]
@@ -630,16 +559,11 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		}
 	}
 
-	function onHomeSet()
-	{
-	}
+	function onHomeSet() {}
 
-	function onClear()
-	{
-		if (this.m.IsActive)
-		{
-			if (!::Legends.S.isNull(this.m.Destination))
-			{
+	function onClear() {
+		if (this.m.IsActive) {
+			if (!::Legends.S.isNull(this.m.Destination)) {
 				this.m.Destination.getSprite("selection").Visible = false;
 			}
 
@@ -647,48 +571,37 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 			// Instead of calling getGuestRoster().clear(), only remove guest townsfolk for future compatibility with possible other guests
 			local survivors = [];
-			foreach ( g in ::World.getGuestRoster().getAll())
-			{
-				if ( g.getFlags().get("IsSpiderAbductee") )
-				{
+			foreach (g in ::World.getGuestRoster().getAll()) {
+				if (g.getFlags().get("IsSpiderAbductee")) {
 					survivors.push(g);
 				}
 			}
-			if (survivors.len() > 0)
-			{
-				foreach(g in survivors)
-				{
+			if (survivors.len() > 0) {
+				foreach (g in survivors) {
 					::World.getGuestRoster().remove(g);
 				}
 			}
 		}
 	}
 
-	function onIsValid()
-	{
+	function onIsValid() {
 		return true;
 	}
 
-	function onSerialize( _out )
-	{
-		if (!::Legends.S.isNull(this.m.Destination))
-		{
+	function onSerialize(_out) {
+		if (!::Legends.S.isNull(this.m.Destination)) {
 			_out.writeU32(this.m.Destination.getID());
-		}
-		else
-		{
+		} else {
 			_out.writeU32(0);
 		}
 
 		this.contract.onSerialize(_out);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		local destination = _in.readU32();
 
-		if (destination != 0)
-		{
+		if (destination != 0) {
 			this.m.Destination = this.WeakTableRef(::World.getEntityByID(destination));
 		}
 

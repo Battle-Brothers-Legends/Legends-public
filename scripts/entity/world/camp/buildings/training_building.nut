@@ -42,7 +42,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = 6,
 				type = "text",
 				icon = "ui/buttons/asset_vision_up.png",
-				text = "Total training modifier is " + ::Legends.S.colorizeAndPluralize(mod.Craft * 100.0, "positive", "", true)
+				text = "Total training modifier is " + ::Legends.Text.colorizeAndPluralize(mod.Craft * 100.0, "positive", "", true)
 			}
 		];
 
@@ -52,7 +52,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = ++id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = ::Legends.S.colorizeAndPluralize(bro[0] * 100.0, "positive", "", true) + " " + bro[1] + " (" + bro[2] + ")" + (bro[3] ? " [color=%negative%]Training fulfilled[/color]" : "")
+				text = ::Legends.Text.colorizeAndPluralize(bro[0] * 100.0, "positive", "", true) + " " + bro[1] + " (" + bro[2] + ")" + (bro[3] ? " [color=%negative%]Training fulfilled[/color]" : "")
 			});
 		}
 
@@ -173,7 +173,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		this.m.Results.push({
 			Icon = "ui/icons/xp_received.png",
-			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains " + ::Legends.S.colorizeAndPluralize(bro.m.XP - originalXP, "positiveEvent") + " XP."
+			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains " + ::Legends.Text.colorizeAndPluralize(bro.m.XP - originalXP, "positiveEvent") + " XP."
 		});
 		return true;
 	}
@@ -293,7 +293,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			inTraining.finishedTraining(traitConst);
 			this.m.Results.push({
 				Icon = "ui/icons/level.png",
-				Text = bro.getName() + " completed the training course and gained [color=%positiveEvent%]1[/color] " + text + ", Perk Point and " + ::Legends.S.colorizeAndPluralize(::Legends.Traits.get(bro, traitConst).getName(), "positiveEvent")
+				Text = bro.getName() + " completed the training course and gained [color=%positiveEvent%]1[/color] " + text + ", Perk Point and " + ::Legends.Text.colorizeAndPluralize(::Legends.Traits.get(bro, traitConst).getName(), "positiveEvent")
 			});
 		} else {
 			this.m.Results.push({

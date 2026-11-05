@@ -32,7 +32,7 @@ if (!("Items" in ::Legends)) {
 * @param _script base path to script or a function that returns item object
 */
 ::Legends.Items.pickItem <- function(_list, _script = "") {
-	local selected = ::Legends.S.rollWeighted(_list);
+	local selected = ::Legends.Array.rollWeighted(_list);
 	if (selected == null)
 		return null;
 
@@ -73,7 +73,7 @@ if (!("Items" in ::Legends)) {
 * Variant can be an array, in this case a random variant will be picked out of the array.
 */
 ::Legends.Items.pickHelmet <- function(_helms) {
-	local selected = ::Legends.S.rollWeighted(_helms);
+	local selected = ::Legends.Array.rollWeighted(_helms);
 	if (selected == null)
 		return null;
 
@@ -136,7 +136,7 @@ if (!("Items" in ::Legends)) {
 * TODO <variant> seems to be unused?
 */
 ::Legends.Items.pickArmor <- function(_armors) {
-	local selected = ::Legends.S.rollWeighted(_armors);
+	local selected = ::Legends.Array.rollWeighted(_armors);
 	if (selected == null)
 		return null;
 
@@ -193,7 +193,7 @@ if (!("Items" in ::Legends)) {
 * - [[1, "relative/path/to/upgrade"]]
 */
 ::Legends.Items.pickArmorUpgrade <- function(_armors) {
-	local selected = ::Legends.S.rollWeighted(_armors);
+	local selected = ::Legends.Array.rollWeighted(_armors);
 	if (selected == null)
 		return null;
 

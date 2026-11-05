@@ -24,7 +24,7 @@
 
 		local ret = this.getDefaultTooltip();
 		local properties = this.getContainer().getActor().getCurrentProperties();
-		local dmg = ::Legends.S.isCharacterWeaponSpecialized(properties, this.getItem()) ? 10 : 5;
+		local dmg = ::Legends.Weapons.isCharacterWeaponSpecialized(properties, this.getItem()) ? 10 : 5;
 		ret.push({
 			id = 7,
 			type = "text",
@@ -38,7 +38,7 @@
 			text = "Inflicts additional stacking [color=%damage%]%_damage%[/color] bleeding damage per turn, for 2 turns",
 			param = [["_damage", dmg]]
 		});
-		if (!::Legends.S.isCharacterWeaponSpecialized(properties, this.getItem())) {
+		if (!::Legends.Weapons.isCharacterWeaponSpecialized(properties, this.getItem())) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -50,10 +50,10 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (this.m.IsScytheCleave && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (this.m.IsScytheCleave && ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0; 
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0; 
 	}
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {

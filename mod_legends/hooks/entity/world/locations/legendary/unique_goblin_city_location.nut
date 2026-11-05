@@ -23,25 +23,25 @@
 		this.location.onSpawned();
 		for (local i = 0; i < 10; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.MeleeEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.MeleeEnemies)[1]
 			}, false);
 		}
 
 		for (local i = 0; i < 3; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.MeleeEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.MeleeEnemies)[1]
 			}, false, 100);
 		}
 
 		for (local i = 0; i < 4; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.RangedEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.RangedEnemies)[1]
 			}, false);
 		}
 
 		for (local i = 0; i < 7; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.RiderEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.RiderEnemies)[1]
 			}, false);
 		}
 
@@ -57,37 +57,37 @@
 
 		for (local i = 0; i < 7; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.RangedEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.RangedEnemies)[1]
 			}, false, 100);
 		}
 
 		for (local i = 0; i < 3; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.RiderEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.RiderEnemies)[1]
 			}, false, 100);
 		}
 
 		for (local i = 0; i < 5; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.RiderEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.RiderEnemies)[1]
 			}, false);
 		}
 
 		for (local i = 0; i < 8; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.MeleeEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.MeleeEnemies)[1]
 			}, false);
 		}
 
 		for (local i = 0; i < 7; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.RangedEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.RangedEnemies)[1]
 			}, false);
 		}
 
 		for (local i = 0; i < 3; i++) {
 			::Const.World.Common.addTroop(this, {
-				Type = ::Legends.S.rollWeighted(this.m.SpecialEnemies)[1]
+				Type = ::Legends.Array.rollWeighted(this.m.SpecialEnemies)[1]
 			}, false);
 		}
 	}

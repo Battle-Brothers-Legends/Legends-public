@@ -253,7 +253,7 @@ if (!("World" in ::Const))
 		if (decisions.Potential.len() == 0) return this.addFillerGoods(_settlement, _budget, null, false, "tools/throwing_net");
 
 		local result;
-		local name = ::Legends.S.rollWeighted(decisions.Potential)[1];
+		local name = ::Legends.Array.rollWeighted(decisions.Potential)[1];
 
 		if (name == "FreshlyProduced")
 			result = this.gatherProduce(_settlement, _budget);
@@ -410,7 +410,7 @@ if (!("World" in ::Const))
 
 		local tries = 0;
 		local isOverBudget = false;
-		local weight_container = ::Legends.S.rollWeighted(array)[1];
+		local weight_container = ::Legends.Array.rollWeighted(array)[1];
 		local result = { Items = [], Value = 0 };
 
 		while(tries < 25 && weight_container.len() > 0)

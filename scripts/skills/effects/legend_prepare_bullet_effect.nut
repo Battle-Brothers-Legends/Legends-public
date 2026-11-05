@@ -82,6 +82,6 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local bonus = this.getBonus();
-		return "[color=%positive%]+" + bonus + "[/color] " + ::Legends.S.inlineIcon("regular_damage") + ", [color=%positive%]+" + bonus + "%[/color] " + ::Legends.S.inlineIcon("direct_damage") + ", [color=%positive%]+1%[/color] Sling Stone range";
+		return "[color=%positive%]+" + bonus + "[/color] " + ::Legends.Text.inlineIcons("regular_damage") + ", [color=%positive%]+" + bonus + "%[/color] " + ::Legends.Text.inlineIcons("direct_damage") + ", [color=%positive%]+1%[/color] Sling Stone range";
 	}
 });

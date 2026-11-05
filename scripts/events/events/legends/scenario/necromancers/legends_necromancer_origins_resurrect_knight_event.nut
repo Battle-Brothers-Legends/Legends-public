@@ -174,7 +174,7 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 	}
 
 	function onUpdateScore() {
-		//see 'static_functions' ::Legends.S.humansOnly for more details.
+		//see 'static_functions' ::Legends.Roster.isHuman for more details.
 		local originID = ::World.Assets.getOrigin().getID();
 		if (originID != "scenario.legends_solo_necro" && originID != "scenario.legends_necro") {
 			return;

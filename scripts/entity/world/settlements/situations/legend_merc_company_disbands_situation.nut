@@ -29,19 +29,19 @@ this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/worl
 	}
 
 	function onUpdateDraftList(_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Deserter, 3);
-		::Legends.S.extend(_draftList, ::Legends.Background.HedgeKnight, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Militia, 4);
-		::Legends.S.extend(_draftList, ::Legends.Background.RetiredSoldier, 4);
-		::Legends.S.extend(_draftList, ::Legends.Background.Sellsword, 6);
-		::Legends.S.extend(_draftList, ::Legends.Background.Swordmaster, 1);
-		::Legends.S.extend(_draftList, ::Legends.Background.LegendMasterArcher, 1);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Deserter, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.HedgeKnight, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Militia, 4);
+		::Legends.Array.extend(_draftList, ::Legends.Background.RetiredSoldier, 4);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Sellsword, 6);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Swordmaster, 1);
+		::Legends.Array.extend(_draftList, ::Legends.Background.LegendMasterArcher, 1);
 		if (::World.Assets.getOrigin().getID() == "scenario.legends_noble") {
-			::Legends.S.extend(_draftList, ::Legends.Background.AdventurousNoble, 2);
-			::Legends.S.extend(_draftList, ::Legends.Background.HedgeKnight, 1);
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendArbalester, 1);
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendFootSoldier, 1);
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendHouseGuard, 1);
+			::Legends.Array.extend(_draftList, ::Legends.Background.AdventurousNoble, 2);
+			::Legends.Array.extend(_draftList, ::Legends.Background.HedgeKnight, 1);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendArbalester, 1);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendFootSoldier, 1);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendHouseGuard, 1);
 		}
 	}
 });

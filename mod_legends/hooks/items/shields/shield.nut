@@ -89,7 +89,7 @@
 				id = 23,
 				type = "text",
 				icon = skill.m.Icon,
-				text = skill.getName() + (skill.isActive() ? " (" + skill.m.ActionPointCost + ::Legends.S.inlineIcon("action_points") + ", " + skill.m.FatigueCost + ::Legends.S.inlineIcon("fatigue") + ")" : "")
+				text = skill.getName() + (skill.isActive() ? " (" + skill.m.ActionPointCost + ::Legends.Text.inlineIcons("action_points") + ", " + skill.m.FatigueCost + ::Legends.Text.inlineIcons("fatigue") + ")" : "")
 			});
 		}
 

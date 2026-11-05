@@ -31,9 +31,9 @@
                     }
                 }
 
-                local selected = ::Legends.S.rollWeighted(pool)[1];
+                local selected = ::Legends.Array.rollWeighted(pool)[1];
                 local targetDef = selected.Def;
-                local extraLoot = "ExtraLoot" in targetDef ? ::Legends.S.rollWeighted(targetDef.ExtraLoot)[1] : "";
+                local extraLoot = "ExtraLoot" in targetDef ? ::Legends.Array.rollWeighted(targetDef.ExtraLoot)[1] : "";
 
                 return {
                     Name = targetDef.Name,

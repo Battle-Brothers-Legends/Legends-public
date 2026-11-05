@@ -73,6 +73,6 @@ this.legend_knocked_over_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%negative%]-70%[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%positive%]+25%[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("melee_defense") + ", [color=%negative%]-70%[/color] " + ::Legends.Text.inlineIcons("initiative") + ", [color=%positive%]+25%[/color] " + ::Legends.Text.inlineIcons("damage_received");
 	}
 });

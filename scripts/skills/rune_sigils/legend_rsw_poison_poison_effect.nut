@@ -89,6 +89,6 @@ this.legend_rsw_poison_poison_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (this.m.TurnsLeft) + "[/color] " + ::Legends.S.inlineIcon(["action_points", "vision"]) + ", [color=%negative%]-" + (10 * this.m.TurnsLeft) + "[/color] " + ::Legends.S.inlineIcon("initiative");
+		return "[color=%negative%]-" + (this.m.TurnsLeft) + "[/color] " + ::Legends.Text.inlineIcons(["action_points", "vision"]) + ", [color=%negative%]-" + (10 * this.m.TurnsLeft) + "[/color] " + ::Legends.Text.inlineIcons("initiative");
 	}
 });

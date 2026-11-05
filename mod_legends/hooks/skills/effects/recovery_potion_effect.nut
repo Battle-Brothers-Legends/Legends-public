@@ -19,6 +19,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+4[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_up") + " per turn";
+		return "[color=%positive%]+4[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_up") + " per turn";
 	}
 });

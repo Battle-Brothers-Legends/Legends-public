@@ -43,6 +43,6 @@ this.legend_patient_hunter_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + ::Math.min(3, this.getContainer().getActor().getActionPoints()) + "[/color] " + ::Legends.S.inlineIcon("action_points");
+		return "[color=%positive%]+" + ::Math.min(3, this.getContainer().getActor().getActionPoints()) + "[/color] " + ::Legends.Text.inlineIcons("action_points");
 	}
 });

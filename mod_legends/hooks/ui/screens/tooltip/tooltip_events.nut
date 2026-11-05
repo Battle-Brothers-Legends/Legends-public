@@ -202,7 +202,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = "Produced in " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()),
+					text = "Produced in " + ::Legends.Text.highlightForLightBackground(_item.getOriginSettlement().getName()),
 					divider = "bottom",
 				});
 			} else if (_item.getTradeHistorySettlementIDs().len() == 1) {
@@ -210,7 +210,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()) + " to " + ::Legends.S.highlightForLightBackground(_item.getTradeHistorySettlements()[0].getName()),
+					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Legends.Text.highlightForLightBackground(_item.getOriginSettlement().getName()) + " to " + ::Legends.Text.highlightForLightBackground(_item.getTradeHistorySettlements()[0].getName()),
 					divider = "bottom",
 				});
 			} else if (_item.getTradeHistorySettlementIDs().len() > 1) {
@@ -222,7 +222,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()) + " to " + ::Legends.S.highlightForLightBackground(arr[arr.len() - 1]) + " via " + ::Const.LegendMod.Language.arrayToText(slice, "and"),
+					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Legends.Text.highlightForLightBackground(_item.getOriginSettlement().getName()) + " to " + ::Legends.Text.highlightForLightBackground(arr[arr.len() - 1]) + " via " + ::Const.LegendMod.Language.arrayToText(slice, "and"),
 					divider = "bottom",
 				});
 			} else {
@@ -335,7 +335,7 @@
 						});
 					}
 				} else if (stashLocked == true) {
-					if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity)) {
+					if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.Items.isWarhoundAllowedIntoBags(_item, _entity)) {
 						tooltip.push({
 							id = 1,
 							type = "hint",
@@ -355,7 +355,7 @@
 						]) + "[/color][/b] AP)"
 					});
 				} else {
-					if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity)) {
+					if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.Items.isWarhoundAllowedIntoBags(_item, _entity)) {
 						tooltip.push({
 							id = 1,
 							type = "hint",
@@ -390,7 +390,7 @@
 						});
 					}
 
-					if (_item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity)) {
+					if (_item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.Items.isWarhoundAllowedIntoBags(_item, _entity)) {
 						tooltip.push({
 							id = 2,
 							type = "hint",
@@ -448,7 +448,7 @@
 					});
 				}
 
-				if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && _entity != null && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity)) {
+				if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && _entity != null && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.Items.isWarhoundAllowedIntoBags(_item, _entity)) {
 					tooltip.push({
 						id = 2,
 						type = "hint",
@@ -1599,12 +1599,12 @@
 					{
 						id = 4,
 						type = "text",
-						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.Hitpoints - b.Hitpoints), c.Hitpoints - b.Hitpoints)
+						text = "Bonus: " + ::Legends.Text.addSignAndColorize(c.Hitpoints - b.Hitpoints)
 					},
 					{
 						id = 5,
 						type = "text",
-						text = "Mult: " + ::Legends.S.colorize(c.HitpointsMult, c.HitpointsMult, 1)
+						text = "Mult: " + ::Legends.Text.colorize(c.HitpointsMult, c.HitpointsMult, 1)
 					}
 				];
 
@@ -1642,12 +1642,12 @@
 					{
 						id = 4,
 						type = "text",
-						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(::Math.round(c.Stamina - b.Stamina)), ::Math.round(c.Stamina - b.Stamina))
+						text = "Bonus: " + ::Legends.Text.addSignAndColorize(c.Stamina - b.Stamina)
 					},
 					{
 						id = 5,
 						type = "text",
-						text = "Mult: " + ::Legends.S.colorize(c.StaminaMult, c.StaminaMult, 1)
+						text = "Mult: " + ::Legends.Text.colorize(c.StaminaMult, c.StaminaMult, 1)
 					}
 				];
 
@@ -1713,12 +1713,12 @@
 					{
 						id = 4,
 						type = "text",
-						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.MeleeSkill - b.MeleeSkill), c.MeleeSkill - b.MeleeSkill)
+						text = "Bonus: " + ::Legends.Text.addSignAndColorize(c.MeleeSkill - b.MeleeSkill)
 					},
 					{
 						id = 5,
 						type = "text",
-						text = "Mult: " + ::Legends.S.colorize(c.MeleeSkillMult, c.MeleeSkillMult, 1)
+						text = "Mult: " + ::Legends.Text.colorize(c.MeleeSkillMult, c.MeleeSkillMult, 1)
 					}
 				];
 
@@ -1742,12 +1742,12 @@
 					{
 						id = 4,
 						type = "text",
-						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.RangedSkill - b.RangedSkill), c.RangedSkill - b.RangedSkill)
+						text = "Bonus: " + ::Legends.Text.addSignAndColorize(c.RangedSkill - b.RangedSkill)
 					},
 					{
 						id = 5,
 						type = "text",
-						text = "Mult: " + ::Legends.S.colorize(c.RangedSkillMult, c.RangedSkillMult, 1)
+						text = "Mult: " + ::Legends.Text.colorize(c.RangedSkillMult, c.RangedSkillMult, 1)
 					}
 				];
 
@@ -1773,17 +1773,17 @@
 					{
 						id = 4,
 						type = "text",
-						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.MeleeDefense - b.MeleeDefense), c.MeleeDefense - b.MeleeDefense)
+						text = "Bonus: " + ::Legends.Text.addSignAndColorize(c.MeleeDefense - b.MeleeDefense)
 					},
 					{
 						id = 5,
 						type = "text",
-						text = "Mult: " + ::Legends.S.colorize(c.MeleeDefenseMult, c.MeleeDefenseMult, 1)
+						text = "Mult: " + ::Legends.Text.colorize(c.MeleeDefenseMult, c.MeleeDefenseMult, 1)
 					},
 					{
 						id = 6,
 						type = "text",
-						text = "Effective: " + ::Legends.S.colorize(effectiveDef, effectiveDef)
+						text = "Effective: " + ::Legends.Text.colorize(effectiveDef, effectiveDef)
 					}
 				];
 
@@ -1809,17 +1809,17 @@
 					{
 						id = 4,
 						type = "text",
-						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.RangedDefense - b.RangedDefense), c.RangedDefense - b.RangedDefense)
+						text = "Bonus: " + ::Legends.Text.addSignAndColorize(c.RangedDefense - b.RangedDefense)
 					},
 					{
 						id = 5,
 						type = "text",
-						text = "Mult: " + ::Legends.S.colorize(c.RangedDefenseMult, c.RangedDefenseMult, 1)
+						text = "Mult: " + ::Legends.Text.colorize(c.RangedDefenseMult, c.RangedDefenseMult, 1)
 					},
 					{
 						id = 6,
 						type = "text",
-						text = "Effective: " + ::Legends.S.colorize(effectiveDef, effectiveDef)
+						text = "Effective: " + ::Legends.Text.colorize(effectiveDef, effectiveDef)
 					}
 				];
 
@@ -1899,12 +1899,12 @@
 					{
 						id = 4,
 						type = "text",
-						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(selectedEntity.getInitiative() - ::Math.floor(b.Initiative * c.InitiativeMult)), selectedEntity.getInitiative() - ::Math.floor(b.Initiative * c.InitiativeMult))
+						text = "Bonus: " + ::Legends.Text.addSignAndColorize(selectedEntity.getInitiative() - ::Math.floor(b.Initiative * c.InitiativeMult))
 					},
 					{
 						id = 5,
 						type = "text",
-						text = "Mult: " + ::Legends.S.colorize(c.InitiativeMult, c.InitiativeMult, 1)
+						text = "Mult: " + ::Legends.Text.colorize(c.InitiativeMult, c.InitiativeMult, 1)
 					}
 				];
 
@@ -1928,12 +1928,12 @@
 					{
 						id = 4,
 						type = "text",
-						text = "Bonus: " + ::Legends.S.colorize(::Legends.S.addSign(c.Bravery - b.Bravery), c.Bravery - b.Bravery)
+						text = "Bonus: " + ::Legends.Text.addSignAndColorize(c.Bravery - b.Bravery)
 					},
 					{
 						id = 5,
 						type = "text",
-						text = "Mult: " + ::Legends.S.colorize(c.BraveryMult, c.BraveryMult, 1)
+						text = "Mult: " + ::Legends.Text.colorize(c.BraveryMult, c.BraveryMult, 1)
 					}
 				];
 

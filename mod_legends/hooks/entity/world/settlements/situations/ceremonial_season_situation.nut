@@ -6,16 +6,16 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Monk, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Monk, 2);
 		_draftList.push(::Legends.Background.Cultist);
 		_draftList.push(::Legends.Background.Flagellant);
 
 		if (::World.Assets.getOrigin().getID() == "scenario.cultists") {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendHusk, 2);
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendLurker, 3);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendHusk, 2);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendLurker, 3);
 			_draftList.push(::Legends.Background.LegendMagister);
 		} else if (::World.Assets.getOrigin().getID() == "scenario.legends_crusader") {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendPilgrim, 17);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendPilgrim, 17);
 		}
 	}
 });

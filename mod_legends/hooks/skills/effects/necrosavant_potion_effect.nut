@@ -13,6 +13,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "Heal [color=%positive%]25%[/color] of health " + ::Legends.S.inlineIcon("damage_dealt") + " to adjacent enemies that have blood";
+		return "Heal [color=%positive%]25%[/color] of health " + ::Legends.Text.inlineIcons("damage_dealt") + " to adjacent enemies that have blood";
 	}
 });

@@ -10,16 +10,16 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Beggar, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Cripple, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Beggar, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Cripple, 2);
 		_draftList.push(::Legends.Background.Gravedigger);
 		_draftList.push(::Legends.Background.Deserter);
 		_draftList.push(::Legends.Background.Militia);
 
 		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 3);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendPuppet, 3);
 		} else if (::World.Assets.getOrigin().getID() == "scenario.militia") {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms, 3);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendManAtArms, 3);
 		}
 	}
 });

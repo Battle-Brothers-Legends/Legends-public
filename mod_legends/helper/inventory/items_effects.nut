@@ -14,12 +14,12 @@ if (!("Items" in ::Legends)) {
 			local val = _value != null ? _value : _item.getDirectDamageModifier();
 			return {
 				CompareValue = _item.getDirectDamageModifier(),
-				CompareValueStr = ::Legends.S.addSign(_item.getDirectDamageModifier()) + "%",
+				CompareValueStr = ::Legends.Text.addSign(_item.getDirectDamageModifier()) + "%",
 				ID = 15,
 				Icon = "ui/icons/direct_damage.png",
 				Text = "%modifierPercent% damage ignoring armor",
 				Param = [
-					["modifierPercent", ::Legends.S.colorize("" + ::Legends.S.getSign(val) + ::Math.abs(val) + "%", val)]
+					["modifierPercent", ::Legends.Text.addSignAndColorize(val, true)]
 				]
 			};
 		},
@@ -43,12 +43,12 @@ if (!("Items" in ::Legends)) {
 			}
 			return {
 				CompareValue = _item.getDamageReceivedArmorMult(),
-				CompareValueStr = ::Legends.S.addSign(_item.getDamageReceivedArmorMult()) + "%",
+				CompareValueStr = ::Legends.Text.addSign(_item.getDamageReceivedArmorMult()) + "%",
 				ID = 16,
 				Icon = "ui/icons/armor_body.png",
 				Text = "%modifierPercent% damage taken to %armorType%",
 				Param = [
-					["modifierPercent", ::Legends.S.colorize("" + ::Legends.S.getSign(val) + ::Math.abs(val) + "%", val)],
+					["modifierPercent", ::Legends.Text.addSignAndColorize(val, true)],
 					["armorType", armorType]
 				]
 			};
@@ -70,12 +70,12 @@ if (!("Items" in ::Legends)) {
 			}
 			return {
 				CompareValue = _item.getCurrentFatigueModifier(),
-				CompareValueStr = ::Legends.S.addSign(_item.getCurrentFatigueModifier()),
+				CompareValueStr = ::Legends.Text.addSign(_item.getCurrentFatigueModifier()),
 				ID = 17,
 				Icon = "ui/icons/fatigue.png",
 				Text = "%modifier% Fatigue Weight Penalty of %armorType%",
 				Param = [
-					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(val) + ::Math.abs(val), val)],
+					["modifier", ::Legends.Text.addSignAndColorize(val)],
 					["armorType", armorType]
 				]
 			};
@@ -97,12 +97,12 @@ if (!("Items" in ::Legends)) {
 			}
 			return {
 				CompareValue = _item.getFatiguePenaltyMultiplier(),
-				CompareValueStr = ::Legends.S.addSign(_item.getFatiguePenaltyMultiplier()) + "%",
+				CompareValueStr = ::Legends.Text.addSign(_item.getFatiguePenaltyMultiplier()) + "%",
 				ID = 17,
 				Icon = "ui/icons/fatigue.png",
 				Text = "%modifierPercent% Fatigue Weight Penalty of %armorType%",
 				Param = [
-					["modifierPercent", ::Legends.S.colorize("" + ::Legends.S.getSign(val) + ::Math.abs(val) + "%", val)],
+					["modifierPercent", ::Legends.Text.addSignAndColorize(val, true)],
 					["armorType", armorType]
 				]
 			};
@@ -117,12 +117,12 @@ if (!("Items" in ::Legends)) {
 			local val = _value != null ? _value : _item.getResolveModifier();
 			return {
 				CompareValue = _item.getResolveModifier(),
-				CompareValueStr = ::Legends.S.addSign(_item.getResolveModifier()),
+				CompareValueStr = ::Legends.Text.addSign(_item.getResolveModifier()),
 				ID = 12,
 				Icon = "ui/icons/bravery.png",
 				Text = "%resolveMod% Resolve",
 				Param = [
-					["resolveMod", ::Legends.S.colorize("" + ::Legends.S.getSign(val) + ::Math.abs(val), val)]
+					["resolveMod", ::Legends.Text.addSignAndColorize(val)]
 				]
 			};
 		},
@@ -137,12 +137,12 @@ if (!("Items" in ::Legends)) {
 			local val = _value != null ? _value : mult;
 			return {
 				CompareValue = mult,
-				CompareValueStr = ::Legends.S.addSign(mult) + "%",
+				CompareValueStr = ::Legends.Text.addSign(mult) + "%",
 				ID = 15,
 				Icon = "ui/icons/bravery.png",
 				Text = "%resolveModPercent% Resolve",
 				Param = [
-					["resolveModPercent", ::Legends.S.colorize(::Legends.S.addSign(val) + "%", val)]
+					["resolveModPercent", ::Legends.Text.addSignAndColorize(val, true)]
 				]
 			};
 		},
@@ -156,12 +156,12 @@ if (!("Items" in ::Legends)) {
 			local val = _value != null ? _value : _item.getInitiativeModifier();
 			return {
 				CompareValue = _item.getInitiativeModifier(),
-				CompareValueStr = ::Legends.S.addSign(_item.getInitiativeModifier()),
+				CompareValueStr = ::Legends.Text.addSign(_item.getInitiativeModifier()),
 				ID = 11,
 				Icon = "ui/icons/initiative.png",
 				Text = "%initMod% Initiative",
 				Param = [
-					["initMod", ::Legends.S.colorize("" + ::Legends.S.getSign(val) + ::Math.abs(val), val)]
+					["initMod", ::Legends.Text.addSignAndColorize(val)]
 				]
 			};
 		},
@@ -176,12 +176,12 @@ if (!("Items" in ::Legends)) {
 			local val = _value != null ? _value : invertedThreat;
 			return {
 				CompareValue = invertedThreat,
-				CompareValueStr = ::Legends.S.addSign(invertedThreat),
+				CompareValueStr = ::Legends.Text.addSign(invertedThreat),
 				ID = 11,
 				Icon = "ui/icons/special.png",
 				Text = "%modifier% to the Resolve of any opponent engaged in melee",
 				Param = [
-					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(val) + ::Math.abs(val), val)]
+					["modifier", ::Legends.Text.addSignAndColorize(val)]
 				]
 			};
 		},

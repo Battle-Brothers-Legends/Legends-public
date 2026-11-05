@@ -50,6 +50,6 @@ this.legend_demon_alp_potion_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("immunity") + " to Surrounding";
+		return ::Legends.Text.inlineIcons("immunity") + " to Surrounding";
 	}
 });

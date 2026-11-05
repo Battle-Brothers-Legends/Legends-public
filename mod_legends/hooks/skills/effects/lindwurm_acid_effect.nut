@@ -37,7 +37,7 @@
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
 		local flags = this.getContainer().getActor().getFlags();
-		local icons = "" + (!flags.has("body_immune_to_acid") ? ::Legends.S.inlineIcon("armor_body") : "") + (!flags.has("head_immune_to_acid") ? ::Legends.S.inlineIcon("armor_head") : "");
+		local icons = "" + (!flags.has("body_immune_to_acid") ? ::Legends.Text.inlineIcons("armor_body") : "") + (!flags.has("head_immune_to_acid") ? ::Legends.Text.inlineIcons("armor_head") : "");
 		return "[color=%negative%]-" + 10 * _stacks + "%[/color] " + icons + " every turn";
 	}
 });

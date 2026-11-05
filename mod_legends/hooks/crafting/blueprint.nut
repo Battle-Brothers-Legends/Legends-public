@@ -360,7 +360,7 @@
 	o.applyBasicPaint <- function (_item) {
 		if ("PaintInCompanyColors" in this.m) {
 			_item.onPaintInCompanyColors();
-		} else if (::Legends.S.any(["shield", "weapon", "legend_armor", "legend_armor_upgrade", "legend_helmet", "legend_helmet_upgrade"], @(_type)(::isKindOf(_item, _type))) && _item.m.Variants.len()) {
+		} else if (::Legends.Array.any(["shield", "weapon", "legend_armor", "legend_armor_upgrade", "legend_helmet", "legend_helmet_upgrade"], @(_type)(::isKindOf(_item, _type))) && _item.m.Variants.len()) {
 			_item.setVariant(_item.m.Variants[0]);
 		} else {
 			_item.setVariant(0);

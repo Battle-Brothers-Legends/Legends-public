@@ -56,6 +56,6 @@ this.legend_compromised_armor_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+20%[/color] " + ::Legends.S.inlineIcon(["damage_received", "armor_damage_received"]);
+		return "[color=%positive%]+20%[/color] " + ::Legends.Text.inlineIcons(["damage_received", "armor_damage_received"]);
 	}
 });

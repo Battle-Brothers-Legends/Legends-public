@@ -42,7 +42,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	// 			text = "[color=%positive%]+" + this.calculateSpecialistBonus(6, _item) + "[/color] Melee Defense"
 	// 		});
 	// 	}
-	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
+	// 	if (::Legends.Weapons.isCharacterWeaponSpecialized(properties, _item))
 	// 	{
 	// 		tooltip.push({
 	// 			id = 7,

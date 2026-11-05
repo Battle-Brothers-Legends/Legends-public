@@ -7,11 +7,11 @@
 
 	o.onUpdateDraftList <- function (_draftList) {
 		_draftList.push(::Legends.Background.RetiredSoldier);
-		::Legends.S.extend(_draftList, ::Legends.Background.Cripple, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Deserter, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Cripple, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Deserter, 2);
 
 		if (::World.Assets.getOrigin().getID() == "scenario.militia") {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms, 3);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendManAtArms, 3);
 		}
 
 	}

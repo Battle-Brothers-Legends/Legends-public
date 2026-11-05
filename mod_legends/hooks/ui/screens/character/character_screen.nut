@@ -938,12 +938,12 @@
 	local helper_isActionAllowed = o.helper_isActionAllowed;
 	o.helper_isActionAllowed = function (_entity, _items, _putIntoBags) {
 		local sourceItem = _items[0];
-		if (sourceItem != null && !::Legends.S.isWarhoundAllowedIntoBags(sourceItem, _entity) && _putIntoBags) {
+		if (sourceItem != null && !::Legends.Items.isWarhoundAllowedIntoBags(sourceItem, _entity) && _putIntoBags) {
 			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
 		}
 		if (_items.len() > 1) {
 			local targetItem = _items[1];
-			if (sourceItem != null && targetItem != null && sourceItem.isInBag() && !targetItem.isInBag() && !::Legends.S.isWarhoundAllowedIntoBags(targetItem, _entity) && !_putIntoBags) {
+			if (sourceItem != null && targetItem != null && sourceItem.isInBag() && !targetItem.isInBag() && !::Legends.Items.isWarhoundAllowedIntoBags(targetItem, _entity) && !_putIntoBags) {
 				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
 			}
 		}

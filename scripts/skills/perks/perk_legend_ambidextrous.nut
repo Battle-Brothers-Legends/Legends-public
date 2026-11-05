@@ -158,7 +158,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		local result = "Follows up attacks with off-hand";
 		local main = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed))) {
-			result += ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("melee_skill") + "[color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_defense");
+			result += ", [color=%positive%]+5[/color] " + ::Legends.Text.inlineIcons("melee_skill") + "[color=%positive%]+10[/color] " + ::Legends.Text.inlineIcons("melee_defense");
 		}
 		return result;
 	}

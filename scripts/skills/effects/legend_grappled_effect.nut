@@ -66,6 +66,6 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-12[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%negative%]-30%[/color] " + ::Legends.S.inlineIcon("initiative");
+		return "[color=%negative%]-12[/color] " + ::Legends.Text.inlineIcons("melee_defense") + ", [color=%negative%]-30%[/color] " + ::Legends.Text.inlineIcons("initiative");
 	}
 });

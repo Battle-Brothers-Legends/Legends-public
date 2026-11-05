@@ -80,6 +80,6 @@ this.perk_legend_penance <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.getDamageBonus() + "[/color] Maximum " + ::Legends.S.inlineIcon("regular_damage") + ", [color=%positive%]+" + this.getResolveBonus() + "[/color] " + ::Legends.S.inlineIcon("bravery");
+		return "[color=%positive%]+" + this.getDamageBonus() + "[/color] Maximum " + ::Legends.Text.inlineIcons("regular_damage") + ", [color=%positive%]+" + this.getResolveBonus() + "[/color] " + ::Legends.Text.inlineIcons("bravery");
 	}
 });

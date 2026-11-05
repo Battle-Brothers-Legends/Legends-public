@@ -10,7 +10,7 @@
 
 	o.getTooltip = function ()
 	{
-		local bonusText = this.m.Bonus == 0 ? "No attribute bonus" : ("[color=%positive%]" + ::Legends.S.addSign(this.m.Bonus) + "[/color] to every attribute");
+		local bonusText = this.m.Bonus == 0 ? "No attribute bonus" : ("[color=%positive%]" + ::Legends.Text.addSign(this.m.Bonus) + "[/color] to every attribute");
 		return [
 			{
 				id = 1,

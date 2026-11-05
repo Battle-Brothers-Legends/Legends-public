@@ -37,8 +37,8 @@
 	}
 
 	o.onAfterUpdate = function (_properties) {
-		this.m.DazeChance = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 50 : 25;
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.DazeChance = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 50 : 25;
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onTargetHit <- function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {

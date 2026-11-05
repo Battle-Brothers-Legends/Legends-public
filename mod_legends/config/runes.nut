@@ -94,7 +94,7 @@
 		if (bonusDiff1 != 0) {
 			local param1 = [];
 			param1.extend([
-				["bonus1Diff", ::Legends.S.colorize(::Legends.S.addSign(bonusDiff1), bonusDiff1)],
+				["bonus1Diff", ::Legends.Text.addSignAndColorize(bonusDiff1)],
 				["new", _selectedItem.getRuneBonus1()],
 				["old", _equippedItem.getRuneBonus1()]
 			]);
@@ -110,7 +110,7 @@
 		if (bonusDiff2 != 0) {
 			local param2 = [];
 			param2.extend([
-				["bonus2Diff", ::Legends.S.colorize(::Legends.S.addSign(bonusDiff2), bonusDiff2)],
+				["bonus2Diff", ::Legends.Text.addSignAndColorize(bonusDiff2)],
 				["new", _selectedItem.getRuneBonus2()],
 				["old", _equippedItem.getRuneBonus2()]
 			]);

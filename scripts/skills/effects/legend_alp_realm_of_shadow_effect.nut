@@ -114,7 +114,7 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		return (this.getContainer().getActor().getFlags().has("alp")
-			? "[color=%positive%]+33%[/color] " + ::Legends.S.inlineIcon("bravery") + ", [color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%positive%]+100%[/color] " + ::Legends.S.inlineIcon("ranged_defense") + ", Not affected by Zones of Control"
-			: "[color=%negative%]-33%[/color] " + ::Legends.S.inlineIcon("bravery") + ", [color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]-1[/color] " + ::Legends.S.inlineIcon("vision") + ", +33% " + ::Legends.S.inlineIcon("damage_received") + " from Nightmare");
+			? "[color=%positive%]+33%[/color] " + ::Legends.Text.inlineIcons("bravery") + ", [color=%positive%]+10[/color] " + ::Legends.Text.inlineIcons("melee_defense") + ", [color=%positive%]+100%[/color] " + ::Legends.Text.inlineIcons("ranged_defense") + ", Not affected by Zones of Control"
+			: "[color=%negative%]-33%[/color] " + ::Legends.Text.inlineIcons("bravery") + ", [color=%negative%]-10%[/color] " + ::Legends.Text.inlineIcons("initiative") + ", [color=%negative%]-1[/color] " + ::Legends.Text.inlineIcons("vision") + ", +33% " + ::Legends.Text.inlineIcons("damage_received") + " from Nightmare");
 	}
 });

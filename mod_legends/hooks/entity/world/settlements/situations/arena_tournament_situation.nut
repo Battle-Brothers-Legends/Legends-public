@@ -2,7 +2,7 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function (_draftList) {
 		onUpdateDraftList(_draftList);
-		::Legends.S.extend(_draftList, ::Legends.Background.LegendGladiatorPrizefighter, 4);
+		::Legends.Array.extend(_draftList, ::Legends.Background.LegendGladiatorPrizefighter, 4);
 	}
 
 });

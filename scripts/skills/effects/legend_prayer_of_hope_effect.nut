@@ -61,6 +61,6 @@ this.legend_prayer_of_hope_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]" + this.m.Heal + "[/color] " + ::Legends.S.inlineIcon("health") + " healed at the end of the turn";
+		return "[color=%positive%]" + this.m.Heal + "[/color] " + ::Legends.Text.inlineIcons("health") + " healed at the end of the turn";
 	}
 });

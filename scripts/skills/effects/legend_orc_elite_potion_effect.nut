@@ -64,6 +64,6 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "Reduces " + ::Legends.S.inlineIcon(["fatigue", "initiative"]) + " of your equipped head, armor and weapons by [color=%positive%]20%[/color]";
+		return "Reduces " + ::Legends.Text.inlineIcons(["fatigue", "initiative"]) + " of your equipped head, armor and weapons by [color=%positive%]20%[/color]";
 	}
 });

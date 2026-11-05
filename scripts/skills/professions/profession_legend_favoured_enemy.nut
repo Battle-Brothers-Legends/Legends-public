@@ -60,7 +60,7 @@ this.profession_legend_favoured_enemy <- this.inherit("scripts/skills/skill", {
 				id = 12,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = format((stats.Kills > 0 ? format("This character has already made %s favored enemy kills for a total of %s XP", ::Legends.S.highlightForLightBackground(stats.Kills), ::Legends.S.highlightForLightBackground(stats.XP)) : "This character has not made any favored enemy kills yet"))
+				text = format((stats.Kills > 0 ? format("This character has already made %s favored enemy kills for a total of %s XP", ::Legends.Text.highlightForLightBackground(stats.Kills), ::Legends.Text.highlightForLightBackground(stats.XP)) : "This character has not made any favored enemy kills yet"))
 			}
 		];
 		if (this.m.BraveryMult > 1) {

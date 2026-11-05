@@ -15,7 +15,7 @@
 			text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 		});
 
-		if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -31,7 +31,7 @@
 			});
 		}
 
-		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
+		if (!::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -56,7 +56,7 @@
 		}
 
 		if (success) {
-			if ((::Legends.S.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem()) || ::Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned)) {
+			if ((::Legends.Weapons.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem()) || ::Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned)) {
 				local stun = ::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
@@ -69,7 +69,7 @@
 	}
 
 	o.onAfterUpdate = function (_properties) {
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
@@ -80,7 +80,7 @@
 			_properties.DamageTotalMult *= 0.5;
 			_properties.FatigueDealtPerHitMult += 2.0;
 
-			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus = -15;
 			}

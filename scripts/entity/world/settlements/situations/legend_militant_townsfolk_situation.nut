@@ -68,7 +68,7 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 
 			local amt = ::Math.rand(10, 15);
 			for (local i = 0; i < amt; i++) {
-				local item = ::new(::Legends.S.rollWeighted(weapons)[1]);
+				local item = ::new(::Legends.Array.rollWeighted(weapons)[1]);
 				if (item.getConditionMax() > 1) {
 					if (::Math.rand(1, 100) <= 50) {
 						item.setCondition(::Math.rand(item.getConditionMax() * 0.4, item.getConditionMax() * 0.9));
@@ -81,11 +81,11 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 
 	function onUpdateDraftList(_draftList) {
 		// Future improvement: make the backgrounds dynamic based on attached locations or settlement type
-		::Legends.S.extend(_draftList, ::Legends.Background.Apprentice, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Butcher, 3);
-		::Legends.S.extend(_draftList, ::Legends.Background.Farmhand, 6);
-		::Legends.S.extend(_draftList, ::Legends.Background.Miller, 3);
-		::Legends.S.extend(_draftList, ::Legends.Background.Shepherd, 3);
-		::Legends.S.extend(_draftList, ::Legends.Background.Tailor, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Apprentice, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Butcher, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Farmhand, 6);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Miller, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Shepherd, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Tailor, 2);
 	}
 });

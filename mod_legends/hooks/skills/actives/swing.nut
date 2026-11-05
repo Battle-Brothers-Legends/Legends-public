@@ -21,15 +21,15 @@
 	}
 
 	o.onAfterUpdate = function (_properties) {
-		if (this.m.IsStaffSwing	&& ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (this.m.IsStaffSwing	&& ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				this.m.HitChanceBonus += 15;
 			}
 

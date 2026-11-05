@@ -36,7 +36,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 				id = 6,
 				type = "text",
 				icon = "ui/buttons/asset_vision_up.png",
-				text = "Total patrol modifier is " + ::Legends.S.colorizeAndPluralize(mod.Craft * 100.0, "positive", "", true) + "."
+				text = "Total patrol modifier is " + ::Legends.Text.colorizeAndPluralize(mod.Craft * 100.0, "positive", "", true) + "."
 			}
 		];
 		local id = 7;
@@ -45,7 +45,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = ::Legends.S.colorizeAndPluralize(bro[0] * 100.0, "positive", "", true) + " " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.Text.colorizeAndPluralize(bro[0] * 100.0, "positive", "", true) + " " + bro[1] + " (" + bro[2] + ")"
 			});
 			++id;
 		}
@@ -133,7 +133,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		if (campHours > 0) {
 			this.m.Results.push({
 				Icon = "ui/icons/vision.png",
-				Text = "Scouts covered the radius of " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.Radius), "positiveEvent") + " around the camp."
+				Text = "Scouts covered the radius of " + ::Legends.Text.colorizeAndPluralize(::Math.floor(this.m.Radius), "positiveEvent") + " around the camp."
 			});
 		}
 
@@ -190,7 +190,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 					if (location != null) {
 						this.m.Results.push({
 							Icon = "ui/icons/vision.png",
-							Text = "While on patrol, " + mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1] + " came across some " + tracks + " tracks and followed them towards the " + ::Legends.S.colorizeAndPluralize(location.getName(), "negativeEvent") + ". It is " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, playerTile.getDistanceTo(location.getTile()) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + " to the " + ::Const.Strings.Direction8[playerTile.getDirection8To(location.getTile())] + "."
+							Text = "While on patrol, " + mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1] + " came across some " + tracks + " tracks and followed them towards the " + ::Legends.Text.colorizeAndPluralize(location.getName(), "negativeEvent") + ". It is " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, playerTile.getDistanceTo(location.getTile()) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + " to the " + ::Const.Strings.Direction8[playerTile.getDirection8To(location.getTile())] + "."
 						});
 					}
 				}

@@ -7,6 +7,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + (this.m.XPGainMult * 100 - 100) + "%[/color] " + ::Legends.S.inlineIcon("xp_received");
+		return "[color=%positive%]+" + (this.m.XPGainMult * 100 - 100) + "%[/color] " + ::Legends.Text.inlineIcons("xp_received");
 	}
 });

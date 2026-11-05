@@ -36,6 +36,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "Unable to act, [color=%negative%]-300[/color] " + ::Legends.S.inlineIcon("initiative") + ", [color=%negative%]" + this.m.Damage + "[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
+		return "Unable to act, [color=%negative%]-300[/color] " + ::Legends.Text.inlineIcons("initiative") + ", [color=%negative%]" + this.m.Damage + "[/color] " + ::Legends.Text.inlineIcons("damage_received") + " every turn";
 	}
 });

@@ -54,6 +54,6 @@ this.legend_rain_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-10%[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%positive%]+10%[/color] " + ::Legends.S.inlineIcon("ranged_defense") + ", [color=%negative%]-1[/color] " + ::Legends.S.inlineIcon("vision");
+		return "[color=%negative%]-10%[/color] " + ::Legends.Text.inlineIcons("ranged_skill") + ", [color=%positive%]+10%[/color] " + ::Legends.Text.inlineIcons("ranged_defense") + ", [color=%negative%]-1[/color] " + ::Legends.Text.inlineIcons("vision");
 	}
 });

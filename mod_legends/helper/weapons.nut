@@ -82,3 +82,43 @@ if (!("Weapons" in ::Legends)) {
     local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
     return mh.isWeaponType(_weaponType) && oh.isWeaponType(_weaponType);
 }
+
+::Legends.Weapons.isCharacterWeaponSpecialized <- function (_properties, _weapon) {
+	switch (true) {
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Axe) && _properties.IsSpecializedInAxes:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Bow) && _properties.IsSpecializedInBows:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Cleaver) && _properties.IsSpecializedInCleavers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) && _properties.IsSpecializedInCrossbows:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Firearm) && _properties.IsSpecializedInCrossbows:
+			// handgonne
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Flail) && _properties.IsSpecializedInFlails:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Hammer) && _properties.IsSpecializedInHammers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Mace) && _properties.IsSpecializedInMaces:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Sling) && _properties.IsSpecializedInSlings:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Spear) && _properties.IsSpecializedInSpears:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Sword) && _properties.IsSpecializedInSwords:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Throwing) && _properties.IsSpecializedInThrowing:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Staff) && _properties.IsSpecializedInPolearms:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Polearm) && _properties.IsSpecializedInPolearms:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Musical) && _properties.IsSpecializedInMusic:
+			return true;
+		default:
+			return false;
+	}
+}

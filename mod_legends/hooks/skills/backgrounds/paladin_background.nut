@@ -68,7 +68,7 @@
 			icon = "ui/icons/special.png",
 			text = "[color=%positive%]%_bonus%[/color] to Hitpoints, Fatigue and Initiative (%_rate%% of base Resolve)",
 			param = [
-				["_bonus", ::Legends.S.addSign(bonus)],
+				["_bonus", ::Legends.Text.addSign(bonus)],
 				["_rate", this.m.ResolveConversion * 100]
 			]
 		});

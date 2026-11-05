@@ -3,7 +3,7 @@
 		local tooltip = "Unable to move or use skills";
 		if (this.m.Mode == 0) {
 			function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-				tooltip += " [color=%negative%]10[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
+				tooltip += " [color=%negative%]10[/color] " + ::Legends.Text.inlineIcons("damage_received") + " every turn";
 			}
 		}
 		return tooltip;

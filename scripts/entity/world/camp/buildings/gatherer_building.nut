@@ -109,7 +109,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			res.push({
 				id = id,
 				icon = "ui/items/" + item.getIcon(),
-				text = "The gatherers brought " + ::Legends.S.colorizeAndPluralize(item.getName(), "positiveEvent") + "."
+				text = "The gatherers brought " + ::Legends.Text.colorizeAndPluralize(item.getName(), "positiveEvent") + "."
 			});
 			id = ++id;
 		}
@@ -142,9 +142,9 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		if (this.getAssignedBros() != 0) {
 			local hours = ::Math.ceil((::Time.getVirtualTimeF() - this.m.TargetStartTime) / (::World.getTime().SecondsPerDay / 24)) + 1;
 			if (this.m.CurrentTarget != null) {
-				text.push((::Legends.Professions.ProfessionDefObjects[this.m.CurrentTarget.Profession].Name + " " + this.m.CurrentTarget.Name) + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
+				text.push((::Legends.Professions.ProfessionDefObjects[this.m.CurrentTarget.Profession].Name + " " + this.m.CurrentTarget.Name) + " ... " + hours + " " + ::Legends.Text.pluralize(hours, "hour"));
 			} else if (this.m.PreviousTarget != null) {
-				text.push((::String.replace(::Legends.Professions.ProfessionDefObjects[this.m.PreviousTarget.Profession].Name, "ing", "ed ") + this.m.PreviousTarget.Name + "!") + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
+				text.push((::String.replace(::Legends.Professions.ProfessionDefObjects[this.m.PreviousTarget.Profession].Name, "ing", "ed ") + this.m.PreviousTarget.Name + "!") + " ... " + hours + " " + ::Legends.Text.pluralize(hours, "hour"));
 			}
 		}
 
@@ -255,7 +255,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			foreach (targetData in biomeRewards[prof]) {
 				local target = targetData[1];
 				local hours = this.estimateGatheringTime(calcTargetDifficulty(prof, target.Difficulty), mod.Craft);
-				local text = "- " + target.Name + (hours != null ? " (around " + hours + " " + ::Legends.S.pluralize(hours, "hour") + ")" : "");
+				local text = "- " + target.Name + (hours != null ? " (around " + hours + " " + ::Legends.Text.pluralize(hours, "hour") + ")" : "");
 
 				if (prof == ::Legends.Profession.LegendHunting && !::Legends.GatheringLoot.hasSufficientHuntingLevelForTier(huntLevel, target.Tier) && hours != null) {
 					ret.push("<s>" + text + "</s>");

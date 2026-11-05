@@ -29,10 +29,10 @@ this.legend_rallied_militia_situation <- this.inherit("scripts/entity/world/sett
 	}
 
 	function onUpdateDraftList(_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Militia, 15);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Militia, 15);
 
 		if (::World.Assets.getOrigin().getID() == "scenario.militia") {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms, 6);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendManAtArms, 6);
 		}
 	}
 });

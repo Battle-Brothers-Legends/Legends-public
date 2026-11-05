@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/serpent_ensnare_effect", function (o) {
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("immunity") + " to Knockback and Grab";
+		return ::Legends.Text.inlineIcons("immunity") + " to Knockback and Grab";
 	}
 
 	o.getDescription <- function () {
@@ -33,6 +33,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "Unable to move and use skills, [color=%negative%]10[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
+		return "Unable to move and use skills, [color=%negative%]10[/color] " + ::Legends.Text.inlineIcons("damage_received") + " every turn";
 	}
 });

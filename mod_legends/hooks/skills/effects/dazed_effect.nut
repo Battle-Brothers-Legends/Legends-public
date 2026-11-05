@@ -29,6 +29,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-25%[/color] " + ::Legends.S.inlineIcon(["damage_dealt", "fatigue", "initiative"]);
+		return "[color=%negative%]-25%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "fatigue", "initiative"]);
 	}
 });

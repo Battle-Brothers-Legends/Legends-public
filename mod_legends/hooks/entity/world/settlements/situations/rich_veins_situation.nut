@@ -6,8 +6,8 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Miner, 4);
-		::Legends.S.extend(_draftList, ::Legends.Background.LegendIronmonger, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Miner, 4);
+		::Legends.Array.extend(_draftList, ::Legends.Background.LegendIronmonger, 2);
 		_draftList.push(::Legends.Background.LegendBlacksmith);
 	}
 });

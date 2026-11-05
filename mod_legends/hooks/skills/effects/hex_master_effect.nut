@@ -17,6 +17,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "Mirrors " + ::Legends.S.inlineIcon("damage_received") + " to another";
+		return "Mirrors " + ::Legends.Text.inlineIcons("damage_received") + " to another";
 	}
 });

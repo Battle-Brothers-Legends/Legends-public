@@ -46,6 +46,6 @@ this.legend_hexe_ichor_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("action_points") + " costs halved";
+		return ::Legends.Text.inlineIcons("action_points") + " costs halved";
 	}
 });

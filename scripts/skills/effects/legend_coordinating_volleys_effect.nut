@@ -33,6 +33,6 @@ this.legend_coordinating_volleys_effect <- this.inherit("scripts/skills/legend_c
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%positive%]+5%[/color] Ranged " + ::Legends.S.inlineIcon("damage_dealt");
+		return "[color=%positive%]+10[/color] " + ::Legends.Text.inlineIcons("ranged_skill") + ", [color=%positive%]+5%[/color] Ranged " + ::Legends.Text.inlineIcons("damage_dealt");
 	}
 });

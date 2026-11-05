@@ -39,6 +39,6 @@ this.legend_pushing_forward_effect <- this.inherit("scripts/skills/legend_comman
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+10[/color] " + ::Legends.S.inlineIcon("melee_skill") + ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("bravery") + ", [color=%positive%]+3[/color] " + ::Legends.S.inlineIcon("melee_defense");
+		return "[color=%positive%]+10[/color] " + ::Legends.Text.inlineIcons("melee_skill") + ", [color=%positive%]+5[/color] " + ::Legends.Text.inlineIcons("bravery") + ", [color=%positive%]+3[/color] " + ::Legends.Text.inlineIcons("melee_defense");
 	}
 });

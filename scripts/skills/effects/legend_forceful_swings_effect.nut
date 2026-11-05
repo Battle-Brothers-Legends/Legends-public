@@ -24,6 +24,6 @@ this.legend_forceful_swings_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+10%[/color] Area of Effect " + ::Legends.S.inlineIcon("damage_dealt");
+		return "[color=%positive%]+10%[/color] Area of Effect " + ::Legends.Text.inlineIcons("damage_dealt");
 	}
 });

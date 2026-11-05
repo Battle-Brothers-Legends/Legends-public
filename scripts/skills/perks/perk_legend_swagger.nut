@@ -88,6 +88,6 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local bonus = this.getBonus();
-		return (bonus > 0 ? ("[color=%positive%]+" + ::Math.floor(bonus) + "[/color] " + ::Legends.S.inlineIcon("armor_body") + ", [color=%positive%]+" + ::Math.floor(bonus / 2) + "[/color] " + ::Legends.S.inlineIcon("armor_head")) : null);
+		return (bonus > 0 ? ("[color=%positive%]+" + ::Math.floor(bonus) + "[/color] " + ::Legends.Text.inlineIcons("armor_body") + ", [color=%positive%]+" + ::Math.floor(bonus / 2) + "[/color] " + ::Legends.Text.inlineIcons("armor_head")) : null);
 	}
 });

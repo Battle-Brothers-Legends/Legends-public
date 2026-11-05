@@ -46,19 +46,19 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = 3,
 				type = "text",
 				icon = "ui/icons/plus.png",
-				text = "There are " + ::Legends.S.colorizeAndPluralize(nonNullEntries, "positive", "item") + " in the salvage queue."
+				text = "There are " + ::Legends.Text.colorizeAndPluralize(nonNullEntries, "positive", "item") + " in the salvage queue."
 			},
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/buttons/icon_time.png",
-				text = "It will take " + ::Legends.S.colorizeAndPluralize(this.getRequiredTime(), "positive", "hour") + " to salvage all items in the queue."
+				text = "It will take " + ::Legends.Text.colorizeAndPluralize(this.getRequiredTime(), "positive", "hour") + " to salvage all items in the queue."
 			},
 			{
 				id = 5,
 				type = "text",
 				icon = "ui/icons/asset_supplies.png",
-				text = "Total salvage modifier is " + ::Legends.S.colorizeAndPluralize(mod.Craft, "positive", "unit") + " per hour."
+				text = "Total salvage modifier is " + ::Legends.Text.colorizeAndPluralize(mod.Craft, "positive", "unit") + " per hour."
 			}
 		];
 		local id = 6;
@@ -69,7 +69,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = ::Legends.S.colorizeAndPluralize(bro[0], "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.Text.colorizeAndPluralize(bro[0], "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			id = ++id;
 			id = id;
@@ -135,7 +135,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			{
 				id = 11,
 				icon = "ui/icons/asset_supplies.png",
-				text = "You created " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.ToolsCreated), "positiveEvent", "unit") + " of tools and salvaged " + ::Legends.S.colorizeAndPluralize(this.m.ItemsDestroyed, "negativeEvent", "piece") + " of equipment."
+				text = "You created " + ::Legends.Text.colorizeAndPluralize(::Math.floor(this.m.ToolsCreated), "positiveEvent", "unit") + " of tools and salvaged " + ::Legends.Text.colorizeAndPluralize(this.m.ItemsDestroyed, "negativeEvent", "piece") + " of equipment."
 			}
 		];
 	}

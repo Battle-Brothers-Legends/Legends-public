@@ -61,7 +61,7 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 				switch (_event.m.Bought) {
 					case 1:
 						this.List.extend(::Legends.EventList.addItems([
-							::new(::Legends.S.rollWeighted([
+							::new(::Legends.Array.rollWeighted([
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_southern_top_tail"],
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_wizard_cowl"],
 								[1, "scripts/items/legend_helmets/vanity/legend_helmet_wreath"],

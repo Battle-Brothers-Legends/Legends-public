@@ -23,7 +23,7 @@
 
 		if (r.find("%") != null) {
 			if (this.getFaction() != null)
-				r = this.format(r, ::Legends.S.highlightForLightBackground(::World.FactionManager.getFaction(this.getFaction()).getName()));
+				r = this.format(r, ::Legends.Text.highlightForLightBackground(::World.FactionManager.getFaction(this.getFaction()).getName()));
 		}
 
 		this.m.Description = r;

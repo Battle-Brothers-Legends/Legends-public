@@ -567,7 +567,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	function getTooltip()
 	{
 		if (::Legends.Mod.ModSettings.getSetting("LogOutfits").getValue())
-			::Legends.S.logArmor(this);
+			::Legends.Items.logArmor(this);
 
 		local description = this.getDescription();
 
@@ -636,7 +636,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.getStaminaModifier(), false)
+				text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.getStaminaModifier(), false)
 			});
 		}
 		else {
@@ -687,7 +687,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.m.StaminaModifier, false)
+					text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.m.StaminaModifier, false)
 				});
 			}
 		}
@@ -730,7 +730,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			id = 1,
 			type = "text",
 			section = _section,
-			text = ::Legends.S.highlightForLightBackground("Currently equipped set:\n%_item%"),
+			text = ::Legends.Text.highlightForLightBackground("Currently equipped set:\n%_item%"),
 			param = [["_item", this.makeName()]],
 			divider = "grandparent-top"
 		});
@@ -754,7 +754,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			id = 1,
 			type = "text",
 			section = _section,
-			text = ::Legends.S.highlightForLightBackground("Currently equipped base armor:\n%_item%"),
+			text = ::Legends.Text.highlightForLightBackground("Currently equipped base armor:\n%_item%"),
 			param = [["_item", this.getName()]],
 			divider = "grandparent-top"
 		});
@@ -789,7 +789,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 				type = "text",
 				section = _section,
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.m.StaminaModifier, false)
+				text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.m.StaminaModifier, false)
 			});
 		}
 		if (this.m.StaminaModifier < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() )

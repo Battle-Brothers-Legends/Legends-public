@@ -82,6 +82,6 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + 50 * this.m.Stacks + "%[/color] " + ::Legends.S.inlineIcon("damage_dealt");
+		return "[color=%positive%]+" + 50 * this.m.Stacks + "%[/color] " + ::Legends.Text.inlineIcons("damage_dealt");
 	}
 });

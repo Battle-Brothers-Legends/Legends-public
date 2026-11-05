@@ -2,132 +2,9 @@
 
 ::Legends.S.isNull <- ::MSU.isNull;
 
-::Legends.S.colorize <- function (_valueString, _value, _threshold = 0) {
-	return "[color=" + (_value >= _threshold ? "%positive%" : "%negative%") + "]" + _valueString + "[/color]";
-}
+::Legends.S.randomizeFractionToInt <- @(_value)((_value * 100).tointeger() + ::Math.rand(0, 99)) / 100;
 
-::Legends.S.getSign <- function (_value) {
-	return (_value == 0 ? "" : (_value > 0 ? "+" : "-"));
-}
-
-::Legends.S.getSignWithEqual <- function (_value) {
-	return (::Legends.S.getSign == "" ? "=" : ::Legends.S.getSign);
-}
-
-::Legends.S.addSign <- function (_value) {
-	return (_value > 0 ? "+" : "") + _value;
-}
-
-::Legends.S.addSignAndColorize <- function (_value, _isPercentage = false) {
-	local sign = _value > 0 ? "+" : "";
-	local percent = _isPercentage ? "%" : "";
-	return ::Legends.S.colorize(sign + _value + percent, _value);
-}
-
-::Legends.S.highlightForLightBackground <- function (_text) {
-	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightLightBackgroundValue());
-}
-
-::Legends.S.highlightForDarkBackground <- function (_text) {
-	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightDarkBackgroundValue());
-}
-
-::Legends.S.fadeForDarkBackground <- function (_text) {
-	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getFadeDarkBackgroundValue());
-}
-
-::Legends.S.getChangingWord <- function (_value) {
-	return (_value >= 0 ? "increase" : "decrease");
-}
-
-::Legends.S.patternIsInText <- function (pattern, text) {
-	return ((!pattern || !text) ? false : this.regexp(pattern).search(text));
-};
-
-::Legends.S.inlineIcon <- function (_icons, _height = 16, _width = 16, _path = "gfx/ui/icons/", _extension = ".png") {
-	local result = "";
-	if (typeof(_icons) == "array") {
-		foreach (icon in _icons) {
-			result += "[leg_img](" + _path + icon + _extension + ",height=" + _height + "px,width=" + _width + "px)[/leg_img]";
-		}
-	} else {
-		result = "[leg_img](" + _path + _icons + _extension + ",height=" + _height + "px,width=" + _width + "px)[/leg_img]";
-	}
-	return result;
-}
-
-::Legends.S.pluralize <- function (_value, _text, _irregular = "") {
-	if (_value != 1) {
-		if (_irregular.len() > 0) {
-			_text = _irregular;
-		} else {
-			local last = _text.slice(-1).tolower();
-
-			if (last == "y") {
-				local secondLast = _text.slice(-2, -1).tolower();
-				_text = (secondLast != "a" && secondLast != "e" && secondLast != "i" && secondLast != "o" && secondLast != "u") ? (_text.slice(0, -1) + "ies") : (_text + "s");
-			} else {
-				local lastTwo = _text.slice(-2).tolower();
-				_text += (last == "s" || last == "x" || last == "z" || lastTwo == "sh" || lastTwo == "ch") ? "es" : "s";
-			}
-		}
-	}
-
-	return _text;
-}
-
-::Legends.S.colorizeAndPluralize <- function (_value, _color, _text = "", _percent = false, _irregular = "") {
-	return "[color=%" + _color + "%]" + _value + (_percent ? "%" : "") + "[/color]" + (_text.len() > 0 ? " " + ::Legends.S.pluralize(_value, _text, _irregular) : "");
-}
-
-::Legends.S.randomizeFractionToInt <- function (_value) {
-	return ((_value * 100).tointeger() + ::Math.rand(0, 99)) / 100;
-}
-
-::Legends.S.isCharacterWeaponSpecialized <- function (_properties, _weapon) {
-	switch (true) {
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Axe) && _properties.IsSpecializedInAxes:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Bow) && _properties.IsSpecializedInBows:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Cleaver) && _properties.IsSpecializedInCleavers:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) && _properties.IsSpecializedInCrossbows:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Firearm) && _properties.IsSpecializedInCrossbows: // handgonne
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Flail) && _properties.IsSpecializedInFlails:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Hammer) && _properties.IsSpecializedInHammers:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Mace) && _properties.IsSpecializedInMaces:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Sling) && _properties.IsSpecializedInSlings:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Spear) && _properties.IsSpecializedInSpears:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Sword) && _properties.IsSpecializedInSwords:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Throwing) && _properties.IsSpecializedInThrowing:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Staff) && _properties.IsSpecializedInPolearms:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Polearm) && _properties.IsSpecializedInPolearms:
-			return true;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Musical) && _properties.IsSpecializedInMusic:
-			return true;
-		default:
-			return false;
-	}
-}
-
-::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
-	return _baseLootAmount + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= (::World.Assets.getExtraLootChance() + ::World.Assets.m.ProfessionEffect.LegendSkinning) ? 1 : 0);
-}
-
-::Legends.S.getClosestSettlement <- function (_predicate = @(_, _town) true) {
+::Legends.S.getClosestSettlement <- function (_predicate = @(_, _town)true) {
 	local towns = ::World.EntityManager.getSettlements().filter(_predicate);
 	if (towns.len() == 0) {
 		return null;
@@ -209,32 +86,6 @@
 	}
 }
 
-/*
-	Returns true if AT LEAST ONE element matches the predicate
-	@param _predicate - lambda, anonymous function or reference to function
-*/
-::Legends.S.any <- function (_array, _predicate) {
-	foreach (item in _array) {
-		if (_predicate(item)) {
-			return true;
-		}
-	}
-	return false;
-}
-
-/*
-	Returns true only if EVERY element matches the predicate
-	@param _predicate - lambda, anonymous function or reference to function
-*/
-::Legends.S.all <- function (_array, _predicate) {
-	foreach (item in _array) {
-		if (!_predicate(item)) {
-			return false;
-		}
-	}
-	return true; // empty array will also be true
-}
-
 ::Legends.S.oneOf <- function (_value, ...) {
 	if (vargv.len() == 0) {
 		::logError("::Legends.S.oneOf used with empty args, returning false");
@@ -244,14 +95,7 @@
 	if (typeof vargv[0] == "array") {
 		arr = vargv[0];
 	}
-	return ::Legends.S.any(arr, @(_val) _val == _value);
-}
-
-::Legends.S.hasItemFlag <- function (_item, _flag) {
-	if (_item == null) {
-		return false;
-	}
-	return _item.getFlags().has(_flag);
+	return ::Legends.Array.any(arr, @(_val) _val == _value);
 }
 
 // it's intended to use with .pop() when filling, so the sort is opposite of what it would normally be
@@ -265,7 +109,8 @@
 	}
 	ret.sort(function (a, b) {
 		local rowA = a / 9, rowB = b / 9, colA = a % 9, colB = b % 9;
-		if (rowA != rowB) { // prefer further rows
+		if (rowA != rowB) {
+			// prefer further rows
 			return rowA - rowB;
 		}
 		local distA = ::Math.abs(colA - 4);
@@ -275,123 +120,7 @@
 	return ret;
 }
 
-::Legends.S.logArmor <- function (_armor) {
-	if (!_armor.isEquipped()) {
-		return;
-	}
-
-	::logWarning("Armor Layering");
-	::logWarning("--------------");
-	::logWarning("Durability: " + _armor.getArmorMax());
-	::logWarning("StaminaMod: " + _armor.getStaminaModifier());
-
-	local upgrade = _armor.getUpgradeIDs();
-	local upgText = [];
-	local clothText = "\"cloth/" + split(_armor.getID(), ".")[2] + "\", " + _armor.getVariant();
-
-	upgText.push(upgrade[0] == null ? "\"\"" : "\"chain/" + split(upgrade[0], ".")[2] + "\", " + _armor.getUpgradeVariant(0));
-	upgText.push(upgrade[1] == null ? "\"\"" : "\"plate/" + split(upgrade[1], ".")[2] + "\", " + _armor.getUpgradeVariant(1));
-	upgText.push(upgrade[3] == null ? "\"\"" : "\"cloak/" + split(upgrade[3], ".")[2] + "\", " + _armor.getUpgradeVariant(3));
-	upgText.push(upgrade[2] == null ? "\"\"" : "\"tabard/" + split(upgrade[2], ".")[2] + "\", " + _armor.getUpgradeVariant(2));
-	upgText.push(upgrade[4] == null ? "\"\"" : "\"armor_upgrades/" + split(upgrade[4], ".")[2] + "\", " + _armor.getUpgradeVariant(4));
-
-	local toPrint = "{" + "\n\tID = \"CHANGEME\"," + "\n\tScript = \"\"," + "\n\tSets = [{" + "\n\t\tCloth = [[1, " + clothText + "]]," + "\n\t\tChain = [[1, " + upgText[0] + "]]," + "\n\t\tPlate = [[1, " + upgText[1] + "]]," + "\n\t\tCloak = [[1, " + upgText[2] + "]]," + "\n\t\tTabard = [[1, " + upgText[3] + "]]," + "\n\t\tAttachments = [[1, " + upgText[4] + "]]," + "\n\t}]" + "\n},";
-
-	::logWarning(toPrint);
-}
-
-::Legends.S.logHelmet <- function (_helmet) {
-	if (!_helmet.isEquipped()) {
-		return;
-	}
-
-	::logWarning("Helmet Layering");
-	::logWarning("---------------");
-	::logWarning("Durability: " + _helmet.getArmorMax());
-	::logWarning("StaminaMod: " + _helmet.getStaminaModifier());
-
-	local upgrade = _helmet.getUpgradeIDs();
-	local upgText = [];
-	local hoodText = "\"hood/" + split(_helmet.getID(), ".")[2] + "\", " + _helmet.getVariant();
-
-	upgText.push(upgrade[0] == null ? "\"\"" : "\"helm/" + split(upgrade[0], ".")[2] + "\", " + _helmet.getUpgradeVariant(0));
-	upgText.push(upgrade[1] == null ? "\"\"" : "\"top/" + split(upgrade[1], ".")[2] + "\", " + _helmet.getUpgradeVariant(1));
-	upgText.push(upgrade[2] == null ? "\"\"" : "\"vanity/" + split(upgrade[2], ".")[2] + "\", " + _helmet.getUpgradeVariant(2));
-
-	local toPrint = "{" + "\n\tID = \"CHANGEME\"," + "\n\tScript = \"\"," + "\n\tSets = [{" + "\n\t\tHoods = [[1, " + hoodText + "]]," + "\n\t\tHelms = [[1, " + upgText[0] + "]]," + "\n\t\tTops = [[1, " + upgText[1] + "]]," + "\n\t\tVanity = [[1, " + upgText[2] + "]]," + "\n\t}]" + "\n},";
-
-	::logWarning(toPrint);
-}
-
-::Legends.S.getStatPotential <- function (bro, attribute) {
-	local baseProp = 0;
-	switch (attribute) {
-		case ::Const.Attributes.Hitpoints:
-			baseProp = bro.getBaseProperties().Hitpoints;
-			break;
-		case ::Const.Attributes.Bravery:
-			baseProp = bro.getBaseProperties().Bravery;
-			break;
-		case ::Const.Attributes.Fatigue:
-			baseProp = bro.getBaseProperties().Stamina;
-			break;
-		case ::Const.Attributes.Initiative:
-			baseProp = bro.getBaseProperties().Initiative;
-			break;
-		case ::Const.Attributes.MeleeSkill:
-			baseProp = bro.getBaseProperties().MeleeSkill;
-			break;
-		case ::Const.Attributes.RangedSkill:
-			baseProp = bro.getBaseProperties().RangedSkill;
-			break;
-		case ::Const.Attributes.MeleeDefense:
-			baseProp = bro.getBaseProperties().MeleeDefense;
-			break;
-		case ::Const.Attributes.RangedDefense:
-			baseProp = bro.getBaseProperties().RangedDefense;
-			break;
-	}
-
-	local attributeMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(bro.m.Talents[attribute], 2);
-	local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
-	if (bro.m.Talents[attribute] == 3) {
-		attributeMax += 1;
-	}
-	local levelUps = ::Math.max(12 - bro.getLevel() + bro.getLevelUps(), 0);
-	local min = baseProp + attributeMin * levelUps;
-	local max = baseProp + attributeMax * levelUps;
-
-	return {
-		min = min,
-		max = max,
-		avg = (min + max) / 2
-	};
-}
-
-::Legends.S.isWarhoundAllowedIntoBags <- function (_item, _entity) {
-	return (_item.getID().find("wardog") == null && _item.getID().find("warhound") == null) || ::Legends.Perks.has(_entity, ::Legends.Perk.LegendPackLeader);
-}
-
-::Legends.S.humansOnly <- function (_bro) //excludes the following flags from ALL events unless specified. The reason for this is that none of owners of these flags 'talk' at all or as normal brothers do.
-{
-	if (_bro.getFlags().get("donkey")) {
-		return false;
-	}
-	if (_bro.getFlags().get("PlayerZombie")) {
-		return false;
-	}
-	if (::MSU.isKindOf(_bro, "legend_player_legion")) {
-		return false;
-	}
-	return true;
-}
-
-::Legends.S.extend <- @(_array, _item, _count = 1) _array.extend(array(_count, _item));
-
-::Legends.S.setSounds <- function (_prefix, _count = 1, _startIndex = 1, _suffix = ".wav") {
-	local i = _startIndex;
-	return array(_count).map(@(_) format(_prefix + "_%02d" + _suffix, i++));
-}
+::Legends.S.setSounds <- @(_prefix, _count = 1, _startIndex = 1, _suffix = ".wav") array(_count).map(@(_) format(_prefix + "_%02d" + _suffix, _startIndex++));
 
 // unused
 /*::Legends.S.getNeighbouringActors <- function (_tile) {
@@ -435,14 +164,62 @@
 	return true;
 }*/
 
-::Legends.S.rollWeighted <- function (_array) {
-	local candidates = _array.filter(@(_, t) t[0] > 0);
-	if (!candidates.len())
-		return null;
-	local totalWeight = candidates.map(@(t) t[0]).reduce(@(p, c) p + c);
-	local r = ::Math.rand(0, totalWeight);
-	local selected = candidates.filter(@(_, t)(r -= t[0]) <= 0);
-	if (!selected.len())
-		return null;
-	return selected[0];
+// TODO remove with 19.6 tbd
+::Legends.S.fadeForDarkBackground <- function (_text) {
+	::logWarning("Legends.S.fadeForDarkBackground deprecated, will be removed in 19.6");
+	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getFadeDarkBackgroundValue());
+};
+
+// TODO remove with 19.6 tbd
+::Legends.S.getChangingWord <- function (_value) {
+	::logWarning("Legends.S.getChangingWord deprecated, will be removed in 19.6");
+	return (_value >= 0 ? "increase" : "decrease");
+};
+
+// TODO remove with 19.6 tbd
+::Legends.S.hasItemFlag <- function (_text) {
+	::logWarning("Legends.S.hasItemFlag deprecated, will be removed in 19.6, use ::Legends.Items.hasItemFlag instead");
+	return ::Legends.Items.hasItemFlag(_text);
+};
+
+// TODO remove with 19.6 tbd
+::Legends.S.logArmor <- function (_armor) {
+	::logWarning("Legends.S.logArmor deprecated, will be removed in 19.6, use ::Legends.Items.logArmor instead");
+	return ::Legends.Items.logArmor(_armor);
+};
+
+// TODO remove with 19.6 tbd
+::Legends.S.logHelmet <- function (_helmet) {
+	::logWarning("Legends.S.logHelmet deprecated, will be removed in 19.6, use ::Legends.Items.logHelmet instead");
+	return ::Legends.Items.logHelmet(_helmet);
+};
+
+// TODO remove with 19.6 tbd
+::Legends.S.skillEntityAliveCheck <- function (_entity, _otherEntity = 0) {
+	::logWarning("Legends.S.skillEntityAliveCheck deprecated, will be removed in 19.6, use ::Legends.S.isEntityNullOrDead instead");
+	return ::Legends.S.isEntityNullOrDead(_entity, _otherEntity);
+}
+
+// TODO remove with 19.6 tbd
+::Legends.S.isCharacterWeaponSpecialized <- function (_properties, _weapon) {
+	::logWarning("Legends.S.isCharacterWeaponSpecialized deprecated, will be removed in 19.6, use ::Legends.Weapons.isCharacterWeaponSpecialized instead");
+	return ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, _weapon);
+}
+
+// TODO remove with 19.6 tbd
+::Legends.S.patternIsInText <- function (pattern, text) {
+	::logWarning("Legends.S.patternIsInText deprecated, will be removed in 19.6, use ::Legends.Text.isPatternInText instead");
+	return ::Legends.Text.isPatternInText(pattern, text);
+}
+
+// TODO remove with 19.6 tbd
+::Legends.S.getSign <- function (_value) {
+	::logWarning("Legends.S.getSign deprecated, will be removed in 19.6, use ::Legends.Text.getSign instead");
+	return ::Legends.Text.getSign(_value);
+}
+
+// TODO remove with 19.6 tbd
+::Legends.S.colorize <- function (_valueString, _value, _threshold = 0) {
+	::logWarning("Legends.S.colorize deprecated, will be removed in 19.6, use ::Legends.Text.colorize instead");
+	return ::Legends.Text.colorize(_valueString, _value, _threshold = 0);
 }

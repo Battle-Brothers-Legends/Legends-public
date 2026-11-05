@@ -60,9 +60,9 @@
 			bonus += 0.1 * (morale - 3);
 		}
 		if (bonus > 0) {
-			return "[color=%positive%]+" + bonus * 100 + "%[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "bravery"]);
+			return "[color=%positive%]+" + bonus * 100 + "%[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "bravery"]);
 		} else if (bonus < 0) {
-			return "[color=%negative%]-" + bonus * 100 + "%[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "bravery"]);
+			return "[color=%negative%]-" + bonus * 100 + "%[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "bravery"]);
 		} else {
 			return null;
 		}

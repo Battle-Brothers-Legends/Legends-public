@@ -19,6 +19,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "Receives the same " + ::Legends.S.inlineIcon("damage_received") + " as another";
+		return "Receives the same " + ::Legends.Text.inlineIcons("damage_received") + " as another";
 	}
 });

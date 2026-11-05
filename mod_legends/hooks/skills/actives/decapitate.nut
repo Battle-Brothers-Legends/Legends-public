@@ -50,7 +50,7 @@
 			icon = "ui/icons/vision.png",
 			text = "Has a range of [color=%positive%]2[/color] tiles"
 		});
-		if (!::Legends.S.isCharacterWeaponSpecialized(p, this.getItem())) {
+		if (!::Legends.Weapons.isCharacterWeaponSpecialized(p, this.getItem())) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -62,10 +62,10 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.m.IsScytheDecapitate) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.m.IsScytheDecapitate) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
@@ -73,7 +73,7 @@
 		onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (!this.m.IsScytheDecapitate)
 			return;
-		if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+		if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 			this.m.HitChanceBonus += -15;
 		}
 		_properties.MeleeSkill += this.m.HitChanceBonus;

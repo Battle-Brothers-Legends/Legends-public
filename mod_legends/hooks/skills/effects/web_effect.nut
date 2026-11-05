@@ -4,6 +4,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-50%[/color] " + ::Legends.S.inlineIcon(["damage_dealt", "melee_defense", "ranged_defense", "initiative"]) + ", [color=%negative%]+100%[/color]" + ::Legends.S.inlineIcon("damage_received") + ", from webknechts, unable to move, more likely to get attacked";
+		return "[color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "melee_defense", "ranged_defense", "initiative"]) + ", [color=%negative%]+100%[/color]" + ::Legends.Text.inlineIcons("damage_received") + ", from webknechts, unable to move, more likely to get attacked";
 	}
 });

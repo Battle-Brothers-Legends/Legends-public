@@ -93,6 +93,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+25%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%positive%]+" + ::Math.floor(this.getContainer().getActor().getCurrentProperties().MeleeSkill * 0.25) + "%[/color] " + ::Legends.S.inlineIcon("direct_damage");
+		return "[color=%positive%]+25%[/color] " + ::Legends.Text.inlineIcons("damage_dealt") + ", [color=%positive%]+" + ::Math.floor(this.getContainer().getActor().getCurrentProperties().MeleeSkill * 0.25) + "%[/color] " + ::Legends.Text.inlineIcons("direct_damage");
 	}
 });

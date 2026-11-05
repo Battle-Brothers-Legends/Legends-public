@@ -34,7 +34,7 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 	// 		icon = "ui/icons/armor_damage.png",
 	// 		text = "[color=%positive%]+" + this.calculateSpecialistBonus(25, _item) + "[/color] Chance to hit Head"
 	// 	}]);
-	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
+	// 	if (::Legends.Weapons.isCharacterWeaponSpecialized(properties, _item))
 	// 	{
 	// 		tooltip.push({
 	// 			id = 7,

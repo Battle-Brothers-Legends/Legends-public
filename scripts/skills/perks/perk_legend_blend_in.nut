@@ -51,6 +51,6 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+3[/color] " + ::Legends.S.inlineIcon("melee_defense") + ", [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("ranged_defense") + ", less likely to get attacked";
+		return "[color=%positive%]+3[/color] " + ::Legends.Text.inlineIcons("melee_defense") + ", [color=%positive%]+5[/color] " + ::Legends.Text.inlineIcons("ranged_defense") + ", less likely to get attacked";
 	}
 });

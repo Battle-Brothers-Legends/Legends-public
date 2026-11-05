@@ -41,19 +41,19 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 				id = 3,
 				type = "text",
 				icon = "ui/icons/plus.png",
-				text = "There are " + ::Legends.S.colorizeAndPluralize(this.m.Queue.len(), "positive", "item") + " in the queue."
+				text = "There are " + ::Legends.Text.colorizeAndPluralize(this.m.Queue.len(), "positive", "item") + " in the queue."
 			},
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/buttons/icon_time.png",
-				text = "It will take " + ::Legends.S.colorizeAndPluralize(this.getRequiredTime(), "positive", "hour") + " to finish."
+				text = "It will take " + ::Legends.Text.colorizeAndPluralize(this.getRequiredTime(), "positive", "hour") + " to finish."
 			},
 			{
 				id = 5,
 				type = "text",
 				icon = "ui/icons/repair_item.png",
-				text = "Total " + this.m.ActivityName.tolower() + "ing modifier is " + ::Legends.S.colorizeAndPluralize(mod.Craft, "positive", "unit") + " per hour."
+				text = "Total " + this.m.ActivityName.tolower() + "ing modifier is " + ::Legends.Text.colorizeAndPluralize(mod.Craft, "positive", "unit") + " per hour."
 			}
 		];
 		local id = 6;
@@ -62,7 +62,7 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = ::Legends.S.colorizeAndPluralize(bro[0], "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.Text.colorizeAndPluralize(bro[0], "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			++id;
 		}
@@ -80,7 +80,7 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 			res.push({
 				id = id,
 				icon = "ui/items/" + b.getIcon(),
-				text = "Crafting completed: " + ::Legends.S.colorizeAndPluralize(b.getName(), "positiveEvent") + "."
+				text = "Crafting completed: " + ::Legends.Text.colorizeAndPluralize(b.getName(), "positiveEvent") + "."
 			});
 			++id;
 		}

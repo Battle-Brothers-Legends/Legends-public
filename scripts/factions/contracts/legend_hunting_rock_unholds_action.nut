@@ -54,11 +54,11 @@ this.legend_hunting_rock_unholds_action <- this.inherit("scripts/factions/factio
 			return;
 		}
 
-		if (::Legends.S.any(this.m.ValidSettlements[0], @(_settlement) ::isKindOf(village, _settlement))) {
+		if (::Legends.Array.any(this.m.ValidSettlements[0], @(_settlement) ::isKindOf(village, _settlement))) {
 			this.m.EnemyType = 0;
-		} else if (::Legends.S.any(this.m.ValidSettlements[1], @(_settlement) ::isKindOf(village, _settlement))) {
+		} else if (::Legends.Array.any(this.m.ValidSettlements[1], @(_settlement) ::isKindOf(village, _settlement))) {
 			this.m.EnemyType = 1;
-		} else if (::Legends.S.any(this.m.ValidSettlements[2], @(_settlement) ::isKindOf(village, _settlement))) {
+		} else if (::Legends.Array.any(this.m.ValidSettlements[2], @(_settlement) ::isKindOf(village, _settlement))) {
 			this.m.EnemyType = 2;
 		} else {
 			return;

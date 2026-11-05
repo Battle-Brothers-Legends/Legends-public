@@ -5,7 +5,7 @@
 			// patch roster method
 			local roster = ::World.getPlayerRoster();
 			local original_getAll = roster.getAll;
-			roster.getAll = @() original_getAll().filter(@(_, bro) ::Legends.S.humansOnly(bro));
+			roster.getAll = @() original_getAll().filter(@(_, bro) ::Legends.Roster.isHuman(bro));
 			onUpdateScore();
 			roster.getAll = original_getAll;
 		});

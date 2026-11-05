@@ -41,7 +41,7 @@ this.legend_hunting_coven_leader_action <- this.inherit("scripts/factions/factio
 			return;
 		}
 
-		if (::Legends.S.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
+		if (::Legends.Array.any(this.m.ValidSettlements, @(_settlement) ::isKindOf(village, _settlement))) {
 			return;
 		}
 

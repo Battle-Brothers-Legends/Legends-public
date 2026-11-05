@@ -80,6 +80,6 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "Takes [color=%negative%]" + this.m.DamageMin + " - " + this.m.DamageMax + "[/color] " + ::Legends.S.inlineIcon("regular_damage") + "every turn, loses " + ::Legends.S.inlineIcon("immunity") + " to Bleeding, Injuries and Poison";
+		return "Takes [color=%negative%]" + this.m.DamageMin + " - " + this.m.DamageMax + "[/color] " + ::Legends.Text.inlineIcons("regular_damage") + "every turn, loses " + ::Legends.Text.inlineIcons("immunity") + " to Bleeding, Injuries and Poison";
 	}
 });

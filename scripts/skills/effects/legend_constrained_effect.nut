@@ -40,6 +40,6 @@ this.legend_constrained_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+2[/color] " + ::Legends.S.inlineIcon("action_points") + " and [color=%positive%]+5[/color] " + ::Legends.S.inlineIcon("fatigue") + " per tile traveled";
+		return "[color=%positive%]+2[/color] " + ::Legends.Text.inlineIcons("action_points") + " and [color=%positive%]+5[/color] " + ::Legends.Text.inlineIcons("fatigue") + " per tile traveled";
 	}
 });

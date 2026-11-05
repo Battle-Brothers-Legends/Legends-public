@@ -101,6 +101,6 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + this.getBonus(true) + "%[/color] " + ::Legends.S.inlineIcon("armor_damage_received") + ", [color=%negative%]-" + this.getBonus(false) + "%[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%negative%]-" + this.getBonus(true) + "%[/color] " + ::Legends.Text.inlineIcons("armor_damage_received") + ", [color=%negative%]-" + this.getBonus(false) + "%[/color] " + ::Legends.Text.inlineIcons("damage_received");
 	}
 });

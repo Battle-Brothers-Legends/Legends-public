@@ -6,8 +6,8 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Butcher, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Servant, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Butcher, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Servant, 3);
 		_draftList.push(::Legends.Background.Eunuch);
 	}
 });

@@ -69,6 +69,6 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local bonus = this.getBonus();
-		return (bonus > 1 ? "[color=%negative%]-" + ::Math.round((1 - 1 / ::Math.pow(bonus, 0.5)) * 100) + "%[/color] " + ::Legends.S.inlineIcon("fatigue") + " costs" : null);
+		return (bonus > 1 ? "[color=%negative%]-" + ::Math.round((1 - 1 / ::Math.pow(bonus, 0.5)) * 100) + "%[/color] " + ::Legends.Text.inlineIcons("fatigue") + " costs" : null);
 	}
 });

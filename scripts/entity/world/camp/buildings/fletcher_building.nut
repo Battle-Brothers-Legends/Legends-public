@@ -37,7 +37,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = 5,
 				type = "text",
 				icon = "ui/buttons/asset_ammo_up.png",
-				text = "Produces " + ::Legends.S.colorizeAndPluralize(mod.Craft / 2.0, "positive", "unit") + " of ammo per hour."
+				text = "Produces " + ::Legends.Text.colorizeAndPluralize(mod.Craft / 2.0, "positive", "unit") + " of ammo per hour."
 			}
 		];
 		local id = 6;
@@ -46,7 +46,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = ::Legends.S.colorizeAndPluralize(bro[0] / 2.0, "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.Text.colorizeAndPluralize(bro[0] / 2.0, "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			++id;
 		}
@@ -76,7 +76,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			res.push({
 				id = id,
 				icon = "ui/buttons/asset_ammo_up.png",
-				text = "You created " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.AmmoAdded), "positiveEvent", "unit") + " of ammunition."
+				text = "You created " + ::Legends.Text.colorizeAndPluralize(::Math.floor(this.m.AmmoAdded), "positiveEvent", "unit") + " of ammunition."
 			});
 			++id;
 		}
@@ -85,7 +85,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			res.push({
 				id = id,
 				icon = "ui/items/" + item.getIcon(),
-				text = "You gained " + ::Legends.S.colorizeAndPluralize(item.getName(), "positiveEvent", "unit") + "."
+				text = "You gained " + ::Legends.Text.colorizeAndPluralize(item.getName(), "positiveEvent", "unit") + "."
 			});
 			++id;
 		}
@@ -105,7 +105,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			this.m.AmmoAdded = ::Math.min(::World.Assets.getMaxAmmo(), (::Math.floor(this.m.Craft * this.m.Camp.getElapsedHours()) / 2.0));
 		}
 
-		return "Fletched ... " + ::Math.floor(this.m.AmmoAdded) + " " + ::Legends.S.pluralize(::Math.floor(this.m.AmmoAdded), "unit") + " of ammunition";
+		return "Fletched ... " + ::Math.floor(this.m.AmmoAdded) + " " + ::Legends.Text.pluralize(::Math.floor(this.m.AmmoAdded), "unit") + " of ammunition";
 	}
 
 	function completed() {

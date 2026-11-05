@@ -58,6 +58,6 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local bonus = this.getBonus();
-		return (bonus > 0 ? "[color=%positive%]+" + (this.getBonus() * 100) + "%[/color] " + ::Legends.S.inlineIcon("bravery") : null);
+		return (bonus > 0 ? "[color=%positive%]+" + (this.getBonus() * 100) + "%[/color] " + ::Legends.Text.inlineIcons("bravery") : null);
 	}
 });

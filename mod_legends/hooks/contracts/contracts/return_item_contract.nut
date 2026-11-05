@@ -182,7 +182,7 @@
 		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null)
-			r = format(r, ::Legends.S.highlightForLightBackground(this.m.Flags.get("Item")));
+			r = format(r, ::Legends.Text.highlightForLightBackground(this.m.Flags.get("Item")));
 
 		this.m.Description = r;
 	}

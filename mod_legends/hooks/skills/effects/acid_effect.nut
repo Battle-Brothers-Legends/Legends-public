@@ -97,7 +97,7 @@
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
 		local damage = this.isKindOf(this.getContainer().getActor().get(), "kraken") ? 10 : 20;
 		local flags = this.getContainer().getActor().getFlags();
-		local icons = "" + (!flags.has("body_immune_to_acid") ? ::Legends.S.inlineIcon("armor_body") : "") + (!flags.has("head_immune_to_acid") ? ::Legends.S.inlineIcon("armor_head") : "");
+		local icons = "" + (!flags.has("body_immune_to_acid") ? ::Legends.Text.inlineIcons("armor_body") : "") + (!flags.has("head_immune_to_acid") ? ::Legends.Text.inlineIcons("armor_head") : "");
 		return "[color=%negative%]-" + (damage * _stacks) + "%[/color] " + icons + " every turn";
 	}
 });

@@ -55,6 +55,6 @@ this.legend_necrosavant_lord_potion_effect <- this.inherit("scripts/skills/skill
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return ::Legends.S.inlineIcon("immunity") + " to Zone of Control if " + ::Legends.S.inlineIcon("health") + " < [color=%positive%]50%[/color]";
+		return ::Legends.Text.inlineIcons("immunity") + " to Zone of Control if " + ::Legends.Text.inlineIcons("health") + " < [color=%positive%]50%[/color]";
 	}
 });

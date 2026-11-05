@@ -84,6 +84,6 @@ this.legend_rsw_bleeding_bleed_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%negative%]" + (this.getDamage() * _stacks) + "[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
+		return "[color=%negative%]" + (this.getDamage() * _stacks) + "[/color] " + ::Legends.Text.inlineIcons("damage_received") + " every turn";
 	}
 });

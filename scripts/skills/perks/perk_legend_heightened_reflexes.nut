@@ -34,6 +34,6 @@ this.perk_legend_heightened_reflexes <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + (this.getBonus() * 100) + "%[/color] " + ::Legends.S.inlineIcon("damage_dealt");
+		return "[color=%positive%]+" + (this.getBonus() * 100) + "%[/color] " + ::Legends.Text.inlineIcons("damage_dealt");
 	}
 });

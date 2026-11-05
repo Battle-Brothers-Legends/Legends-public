@@ -93,6 +93,6 @@ this.perk_legend_anchor <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.m.Bonuses[this.m.Stacks] + "[/color] " + ::Legends.S.inlineIcon(["melee_skill", "ranged_skill", "melee_defense"]);
+		return "[color=%positive%]+" + this.m.Bonuses[this.m.Stacks] + "[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense"]);
 	}
 });

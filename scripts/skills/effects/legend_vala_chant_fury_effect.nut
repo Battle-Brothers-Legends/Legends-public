@@ -210,6 +210,6 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.getDamageBonus() + "%[/color] " + ::Legends.S.inlineIcon("damage_dealt") + ", [color=%positive%]" + this.getPayBackChance() + "%[/color] chance to retaliate against adjacent attackers for [color=%positive%]+" + this.getPayBackDamage() + "%[/color] " + ::Legends.S.inlineIcon("damage_dealt");
+		return "[color=%positive%]+" + this.getDamageBonus() + "%[/color] " + ::Legends.Text.inlineIcons("damage_dealt") + ", [color=%positive%]" + this.getPayBackChance() + "%[/color] chance to retaliate against adjacent attackers for [color=%positive%]+" + this.getPayBackDamage() + "%[/color] " + ::Legends.Text.inlineIcons("damage_dealt");
 	}
 });

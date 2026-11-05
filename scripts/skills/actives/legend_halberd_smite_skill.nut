@@ -53,7 +53,7 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost -= 1;
 		}
@@ -73,7 +73,7 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax += 20;
 		}
 
-		if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+		if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 		{
 			this.m.HitChanceBonus -= 15;
 		}

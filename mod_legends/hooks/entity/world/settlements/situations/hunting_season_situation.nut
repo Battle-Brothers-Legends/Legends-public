@@ -6,11 +6,11 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Hunter, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Poacher, 4);
-		::Legends.S.extend(_draftList, ::Legends.Background.LegendTaxidermist, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Houndmaster, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Butcher, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.LegendMasterArcher, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Hunter, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Poacher, 4);
+		::Legends.Array.extend(_draftList, ::Legends.Background.LegendTaxidermist, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Houndmaster, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Butcher, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.LegendMasterArcher, 2);
 	}
 });

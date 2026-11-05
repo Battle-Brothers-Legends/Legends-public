@@ -19,6 +19,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+5%[/color] bows, slings or crossbow " + ::Legends.S.inlineIcon("direct_damage");
+		return "[color=%positive%]+5%[/color] bows, slings or crossbow " + ::Legends.Text.inlineIcons("direct_damage");
 	}
 });

@@ -40,7 +40,7 @@
 				text = "Has a range of [color=%positive%]2[/color] tiles"
 			});
 
-			if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
+			if (!::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 				ret.push({
 					id = 6,
 					type = "text",
@@ -62,7 +62,7 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			if (this.m.IsRanged) {
 				this.m.ActionPointCost -= 1;
 			}
@@ -75,7 +75,7 @@
 		if (_skill != this) {
 			return;
 		}
-		else if (this.m.IsRanged && _targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+		else if (this.m.IsRanged && _targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 			this.m.HitChanceBonus += -15;
 		}
 		_properties.MeleeSkill += this.m.HitChanceBonus;

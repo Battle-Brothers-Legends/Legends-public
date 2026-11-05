@@ -80,9 +80,9 @@
 	// }
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		local tooltip = "[color=%negative%]-" + (1.0 - this.getChance()) * 100 + "%[/color] " + ::Legends.S.inlineIcon("damage_received");
+		local tooltip = "[color=%negative%]-" + (1.0 - this.getChance()) * 100 + "%[/color] " + ::Legends.Text.inlineIcons("damage_received");
 		if (::Legends.Perks.has(this, ::Legends.Perk.Relentless)) {
-			tooltip += ", [color=%negative%]-" + (1.0 - this.getArmorReductionMult()) * 100 + "%[/color] " + ::Legends.S.inlineIcon("armor_damage_received");
+			tooltip += ", [color=%negative%]-" + (1.0 - this.getArmorReductionMult()) * 100 + "%[/color] " + ::Legends.Text.inlineIcons("armor_damage_received");
 		}
 		return tooltip;
 	}

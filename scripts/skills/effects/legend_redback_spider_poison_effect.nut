@@ -109,6 +109,6 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
 			timeDamage *= 2;
 		}
-		return "[color=%negative%]" + timeDamage * _stacks + "[/color] " + ::Legends.S.inlineIcon("damage_received") + " every turn";
+		return "[color=%negative%]" + timeDamage * _stacks + "[/color] " + ::Legends.Text.inlineIcons("damage_received") + " every turn";
 	}
 });

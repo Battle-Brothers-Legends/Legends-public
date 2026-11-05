@@ -6,14 +6,14 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Refugee, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Cripple, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Refugee, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Cripple, 2);
 		_draftList.push(::Legends.Background.Vagabond);
-		::Legends.S.extend(_draftList, ::Legends.Background.Gravedigger, 2);
-		::Legends.S.extend(_draftList, ::Legends.Background.Beggar, 3);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Gravedigger, 2);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Beggar, 3);
 
 		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
-			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 4);
+			::Legends.Array.extend(_draftList, ::Legends.Background.LegendPuppet, 4);
 		}
 
 	}

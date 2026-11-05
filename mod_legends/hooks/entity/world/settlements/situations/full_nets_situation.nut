@@ -6,6 +6,6 @@
 	}
 
 	o.onUpdateDraftList <- function (_draftList) {
-		::Legends.S.extend(_draftList, ::Legends.Background.Fisherman, 6);
+		::Legends.Array.extend(_draftList, ::Legends.Background.Fisherman, 6);
 	}
 });

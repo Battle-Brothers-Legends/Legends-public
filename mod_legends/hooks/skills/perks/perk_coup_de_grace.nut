@@ -30,11 +30,11 @@
 	o.calculateBonus <- function (_targetEntity) {
 		local bonus = 0;
 
-		if (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury) || ::Legends.S.any(this.m.HighBonus, @(_effect) ::Legends.Effects.has(_targetEntity, _effect))) {
+		if (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury) || ::Legends.Array.any(this.m.HighBonus, @(_effect) ::Legends.Effects.has(_targetEntity, _effect))) {
 			bonus += 0.2;
 		}
 
-		if (::Legends.S.any(this.m.LowBonus, @(_effect) ::Legends.Effects.has(_targetEntity, _effect))) {
+		if (::Legends.Array.any(this.m.LowBonus, @(_effect) ::Legends.Effects.has(_targetEntity, _effect))) {
 			bonus += 0.1;
 		}
 

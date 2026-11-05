@@ -44,7 +44,7 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/legend_spe
 	// 		icon = "ui/icons/special.png",
 	// 		text = "[color=%positive%]+" + this.calculateSpecialistBonus(10, _item) + "%[/color] Area of Effect attacks"
 	// 	}]);
-	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
+	// 	if (::Legends.Weapons.isCharacterWeaponSpecialized(properties, _item))
 	// 	{
 	// 		tooltip.push({
 	// 			id = 7,

@@ -39,6 +39,6 @@ this.legend_perfect_focus_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + 3 * _stacks + "[/color] " + ::Legends.S.inlineIcon("action_points");
+		return "[color=%positive%]+" + 3 * _stacks + "[/color] " + ::Legends.Text.inlineIcons("action_points");
 	}
 });

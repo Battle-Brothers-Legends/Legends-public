@@ -33,6 +33,6 @@ this.perk_legend_rebound <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.S.inlineIcon("fatigue_recovery_up");
+		return "[color=%positive%]+" + this.getBonus() + "[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_up");
 	}
 });

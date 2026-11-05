@@ -53,11 +53,11 @@
 
 	o.onAfterUpdate = function(_properties) {
 		if (this.m.IsMeleeRupture) {
-			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				this.m.ActionPointCost -= 1;
 			}
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
@@ -66,7 +66,7 @@
 
 			if (this.m.IsMeleeRupture)
 				return;
-			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus = -10;
 			}

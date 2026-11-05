@@ -93,6 +93,6 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + (this.m.MeleeSkillMult * 100 - 100) + "%[/color] " + ::Legends.S.inlineIcon("melee_skill") + ::Legends.S.inlineIcon("ranged_skill") + ", [color=%negative%]-" + this.m.ThreatModifier + "[/color] " + ::Legends.S.inlineIcon("bravery") + " of adjacent enemies";
+		return "[color=%positive%]+" + (this.m.MeleeSkillMult * 100 - 100) + "%[/color] " + ::Legends.Text.inlineIcons("melee_skill") + ::Legends.Text.inlineIcons("ranged_skill") + ", [color=%negative%]-" + this.m.ThreatModifier + "[/color] " + ::Legends.Text.inlineIcons("bravery") + " of adjacent enemies";
 	}
 });

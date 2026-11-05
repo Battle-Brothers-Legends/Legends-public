@@ -240,7 +240,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.getStaminaModifier(), false)
+				text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.getStaminaModifier(), false)
 			});
 		}
 
@@ -260,7 +260,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Vision " + ::Legends.S.addSignAndColorize(this.getVision(), false)
+				text = "Vision " + ::Legends.Text.addSignAndColorize(this.getVision(), false)
 			});
 		}
 
@@ -317,7 +317,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 						id = 10,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "Fatigue Weight Penalty: " + ::Legends.S.addSignAndColorize(this.getStaminaModifier(), false)
+						text = "Fatigue Weight Penalty: " + ::Legends.Text.addSignAndColorize(this.getStaminaModifier(), false)
 					});
 				}
 			}
@@ -329,7 +329,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Vision " + ::Legends.S.addSignAndColorize(this.getVision(), false)
+				text = "Vision " + ::Legends.Text.addSignAndColorize(this.getVision(), false)
 			});
 		}
 

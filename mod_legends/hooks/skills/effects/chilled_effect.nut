@@ -23,6 +23,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (1 + this.m.TurnsLeft) + "[/color] " + ::Legends.S.inlineIcon("action_points") + ", [color=%negative%]-" + (10 + 20 * this.m.TurnsLeft) + "[/color] " + ::Legends.S.inlineIcon("initiative");
+		return "[color=%negative%]-" + (1 + this.m.TurnsLeft) + "[/color] " + ::Legends.Text.inlineIcons("action_points") + ", [color=%negative%]-" + (10 + 20 * this.m.TurnsLeft) + "[/color] " + ::Legends.Text.inlineIcons("initiative");
 	}
 });

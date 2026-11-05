@@ -50,6 +50,6 @@ this.legend_curse_of_the_mummy_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + (25 * this.m.Stacks) + "%[/color] " + ::Legends.S.inlineIcon("damage_received");
+		return "[color=%positive%]+" + (25 * this.m.Stacks) + "%[/color] " + ::Legends.Text.inlineIcons("damage_received");
 	}
 });

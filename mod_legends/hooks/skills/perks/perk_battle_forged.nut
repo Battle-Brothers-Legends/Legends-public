@@ -42,6 +42,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + this.getReductionPercentage() + "%[/color] " + ::Legends.S.inlineIcon("armor_damage_received");
+		return "[color=%negative%]-" + this.getReductionPercentage() + "%[/color] " + ::Legends.Text.inlineIcons("armor_damage_received");
 	}
 });
