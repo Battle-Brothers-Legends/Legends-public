@@ -19,7 +19,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for(local i = 0; i < rolls; i++)
 			this.m.OnDeathLootTable.push([0.5, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}
@@ -101,7 +101,7 @@
 		this.m.BaseProperties.ActionPoints = 9;
 		this.m.Skills.update();
 
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for(local i = 0; i < rolls; i++)
 			this.m.OnDeathLootTable.push([3, "scripts/items/misc/legend_ancient_scroll_item"]);
 		return true;

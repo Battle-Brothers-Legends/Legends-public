@@ -9,7 +9,7 @@
 	o.create = function () {
 		create();
 		this.m.Flags.add("alp");
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.push([1, function () {
 				local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];

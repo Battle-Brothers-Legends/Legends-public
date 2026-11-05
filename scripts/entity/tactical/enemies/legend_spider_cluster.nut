@@ -44,7 +44,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/spider_agent");
 		this.m.AIAgent.setActor(this);
 
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[60, "scripts/items/misc/poison_gland_item"]

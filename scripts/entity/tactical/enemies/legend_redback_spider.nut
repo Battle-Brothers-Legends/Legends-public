@@ -32,7 +32,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_redback_spider_agent");
 		this.m.AIAgent.setActor(this);
 
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[100, "scripts/items/misc/legend_redback_poison_gland_item"]

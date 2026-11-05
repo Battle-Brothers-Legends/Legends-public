@@ -46,7 +46,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 			]
 		]);
 
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[33, "scripts/items/misc/legend_demon_alp_skin_item"],

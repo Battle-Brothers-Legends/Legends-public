@@ -6,7 +6,7 @@
 		create();
 		this.m.IsLady = ::Math.rand(1, 100) <= 50;
 
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.push([0.5, "scripts/items/misc/legend_ancient_scroll_item"]);
 		}

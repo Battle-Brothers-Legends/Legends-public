@@ -6,7 +6,7 @@
 			[10, "scripts/items/loot/glittering_rock_item"],
 			[5, "scripts/items/trade/uncut_gems_item"]
 		]);
-		local rolls = ::Legends.S.extraLootChance(::Math.rand(0, 1));
+		local rolls = ::Legends.Items.extraLootChance(::Math.rand(0, 1));
 		for (local i = 0; i < rolls; i++) this.m.OnDeathLootTable.push([100, "scripts/items/misc/sulfurous_rocks_item"]);
 	}
 

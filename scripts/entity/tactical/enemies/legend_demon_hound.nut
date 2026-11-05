@@ -33,7 +33,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/wardog_agent");
 		this.m.AIAgent.setActor(this);
 
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_demon_hound_bones_item"]

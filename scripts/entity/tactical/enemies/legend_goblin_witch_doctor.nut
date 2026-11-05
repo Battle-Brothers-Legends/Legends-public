@@ -8,7 +8,7 @@ this.legend_goblin_witch_doctor <- this.inherit("scripts/entity/tactical/goblin"
 		this.m.SoundPitch = ::Math.rand(90, 100) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/goblin_shaman_agent");
 		this.m.AIAgent.setActor(this);
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for(local i = 0; i < rolls; i++)
 			this.m.OnDeathLootTable.push([5, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}

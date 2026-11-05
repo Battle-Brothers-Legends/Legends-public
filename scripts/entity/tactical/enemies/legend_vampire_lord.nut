@@ -27,7 +27,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 			[8, "scripts/items/misc/legend_masterwork_metal"],
 			[7, "scripts/items/misc/legend_masterwork_tools"]
 		]);
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[3, "scripts/items/misc/legend_ancient_scroll_item"]

@@ -38,7 +38,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_skin_ghoul_agent");
 		this.m.AIAgent.setActor(this);
 
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[100, function () {

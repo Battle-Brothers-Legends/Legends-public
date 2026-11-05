@@ -1,21 +1,24 @@
 // refresh perk tooltips after all mods are loaded
-::Legends.updatePerkGroupTooltips <- function(_perkDef = null, _groups = []) {
+::Legends.updatePerkGroupTooltips <- function (_perkDef = null, _groups = []) {
 	local map = {};
 
 	foreach (group in ::Const.Perks) {
-		if (!("Name" in group))
+		if (!("Name" in group)) {
 			continue;
+		}
 
 		foreach (row in group.Tree) {
 			foreach (perkDef in row) {
-				if (_perkDef != null && perkDef != _perkDef)
+				if (_perkDef != null && perkDef != _perkDef) {
 					continue;
+				}
 
-				if (!(perkDef in map))
+				if (!(perkDef in map)) {
 					map[perkDef] <- {
 						Groups = [],
 						Const = perkDef
 					};
+				}
 				map[perkDef].Groups.push(group.Name);
 			}
 		}
@@ -72,11 +75,11 @@
 		}
 	}
 }
-
-::Legends.updatePerkGroupTooltips();
+();
 
 // call to check if crashes
 foreach (def in ::Legends.Background) {
-	if (def != null)
+	if (def != null) {
 		::Legends.Backgrounds.getStats(def);
+	}
 }

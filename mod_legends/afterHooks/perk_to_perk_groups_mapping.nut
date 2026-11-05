@@ -24,8 +24,7 @@
 // 	Other = 7
 // }
 ::Legends.Perks.PerkGroupCategoriesPriority <- {};
-foreach(key, value in ::Legends.Perks.PerkGroupCategoriesOrder)
-{
+foreach (key, value in ::Legends.Perks.PerkGroupCategoriesOrder) {
 	::Legends.Perks.PerkGroupCategoriesPriority[value] <- key;
 }
 
@@ -39,11 +38,9 @@ foreach(key, value in ::Legends.Perks.PerkGroupCategoriesOrder)
 // 	Magic = [],
 // 	Other = []
 // }
-::Legends.Perks.buildPerkGroupCategoriesTableOfArrays <- function()
-{
+::Legends.Perks.buildPerkGroupCategoriesTableOfArrays <- function () {
 	local ret = {};
-	foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder)
-	{
+	foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder) {
 		ret[category] <- [];
 	};
 	return ret;
@@ -59,11 +56,9 @@ foreach(key, value in ::Legends.Perks.PerkGroupCategoriesOrder)
 // 	Magic = {},
 // 	Other = {}
 // }
-::Legends.Perks.buildPerkGroupCategoriesTableOfTables <- function()
-{
+::Legends.Perks.buildPerkGroupCategoriesTableOfTables <- function () {
 	local ret = {};
-	foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder)
-	{
+	foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder) {
 		ret[category] <- {};
 	};
 	return ret;
@@ -80,9 +75,9 @@ foreach(key, value in ::Legends.Perks.PerkGroupCategoriesOrder)
 // 	null,
 // 	null
 // ]
-::Legends.Perks.buildPerkGroupCategoriesArray <- function() {
+::Legends.Perks.buildPerkGroupCategoriesArray <- function () {
 	local ret = [];
-	foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder) {
+	foreach (_ in ::Legends.Perks.PerkGroupCategoriesOrder) {
 		ret.push(null);
 	}
 	return ret;
@@ -99,24 +94,18 @@ foreach(key, value in ::Legends.Perks.PerkGroupCategoriesOrder)
 // 	[],
 // 	[]
 // ]
-::Legends.Perks.buildPerkGroupCategoriesArrayOfArrays <- function()
-{
+::Legends.Perks.buildPerkGroupCategoriesArrayOfArrays <- function () {
 	local ret = [];
-	foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder)
-	{
+	foreach (_ in ::Legends.Perks.PerkGroupCategoriesOrder) {
 		ret.push([]);
 	}
 	return ret;
 };
 
 // Record the category for each perk group that belongs to a category
-foreach (key, category in ::Const.Perks)
-{
-	if ("GroupsCategory" in category)
-	{
-		// ::MSU.Log.printData("Handling Category: " + key);
-		foreach (group in category.Tree)
-		{
+foreach (_, category in ::Const.Perks) {
+	if ("GroupsCategory" in category) {
+		foreach (group in category.Tree) {
 			group.Category <- category.GroupsCategory;
 		}
 	}
@@ -125,21 +114,19 @@ foreach (key, category in ::Const.Perks)
 // Populate ::Legends.Perks.PerkToPerkGroupMap
 // key: a number matching the index of the corresponding perk in ::Const.Perks.PerkDefObjects
 // value: a table containing information regarding any and all perk groups that the perk belongs to
-foreach (key, group in ::Const.Perks)
-{
+foreach (_, group in ::Const.Perks) {
 	// Only handle perk groups
-	if (!("Name" in group))
+	if (!("Name" in group)) {
 		continue;
+	}
 
-	// ::MSU.Log.printData("Handling Group: " + key);
 	group.Perks <- []; // single array to store all the perkDefs that the perk group comprises
 	foreach (row in group.Tree) {
 		foreach (perkDef in row) {
 
 			group.Perks.push(perkDef);
 
-			if (!(perkDef in ::Legends.Perks.PerkToPerkGroupMap))
-			{
+			if (!(perkDef in ::Legends.Perks.PerkToPerkGroupMap)) {
 				::Legends.Perks.PerkToPerkGroupMap[perkDef] <- {
 					Groups = [],
 					Const = ::Const.Perks.PerkDefObjects[perkDef].Const
@@ -154,20 +141,17 @@ foreach (key, group in ::Const.Perks)
 				IsForEnemies = isForEnemies
 			};
 
-			// ::MSU.Log.printData("Perk " + ::Const.Perks.PerkDefObjects[perkDef].Const + " from Group [" + key + "] categorized as [" + entry.Category + "]");
 			::Legends.Perks.PerkToPerkGroupMap[perkDef].Groups.push(entry);
 		}
 	}
 }
 
 // Update all PerkDefObjects to add PerkGroups
-foreach (perk in ::Const.Perks.PerkDefObjects)
-{
+foreach (perk in ::Const.Perks.PerkDefObjects) {
 	local key = ::Legends.Perk[perk.Const];
 
 	// Handle Perks that do not belong to any Perk Group
-	if (!(key in ::Legends.Perks.PerkToPerkGroupMap))
-	{
+	if (!(key in ::Legends.Perks.PerkToPerkGroupMap)) {
 		local entry = {
 			ID = "Other",
 			Name = "Other",
@@ -181,21 +165,16 @@ foreach (perk in ::Const.Perks.PerkDefObjects)
 	}
 
 	// Handle Perks that belong to Perk Groups
-	if ("PerkGroups" in perk)
-	{
+	if ("PerkGroups" in perk) {
 		perk.PerkGroups = ::Legends.Perks.PerkToPerkGroupMap[key].Groups;
-	}
-	else
-	{
+	} else {
 		perk.PerkGroups <- ::Legends.Perks.PerkToPerkGroupMap[key].Groups;
 	}
 }
 
 // Check and resolve any perk group ID mismatches
-foreach (key, value in ::Const.Perks)
-{
-	if ("Name" in value && key != value.ID)
-	{
+foreach (key, value in ::Const.Perks) {
+	if ("Name" in value && key != value.ID) {
 		::logWarning("Detected mismatched perk group key and ID: ::Const.Perks." + key + ".ID = " + value.ID);
 		::Const.Perks[key].ID = key;
 		::logWarning("Updated mismatched perk group key and ID: ::Const.Perks." + key + ".ID = " + value.ID);
@@ -214,17 +193,13 @@ foreach (key, value in ::Const.Perks)
  *
  * 	@return a boolean
  */
-::Legends.Perks.isPerkGroupFullyRepresented <- function (_id, _perkDefsTable)
-{
-	if (_id == "Other")
-	{
+::Legends.Perks.isPerkGroupFullyRepresented <- function (_id, _perkDefsTable) {
+	if (_id == "Other") {
 		return false;
 	}
 
-	foreach (perkDef in ::Const.Perks[_id].Perks)
-	{
-		if (!(perkDef in _perkDefsTable))
-		{
+	foreach (perkDef in ::Const.Perks[_id].Perks) {
+		if (!(perkDef in _perkDefsTable)) {
 			return false;
 		}
 	}

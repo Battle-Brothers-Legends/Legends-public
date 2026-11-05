@@ -23,7 +23,7 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.OnDeathLootTable.extend([
 			[33, "scripts/items/supplies/strange_meat_item"]
 		]);
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_rock_unhold_bones_item"],

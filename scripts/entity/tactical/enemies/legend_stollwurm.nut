@@ -72,7 +72,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.OnDeathLootTable.extend([
 			[90, "scripts/items/loot/lindwurm_hoard_item"]
 		]);
-		local rolls = ::Legends.S.extraLootChance(2);
+		local rolls = ::Legends.Items.extraLootChance(2);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[100, "scripts/items/misc/legend_stollwurm_scales_item"],

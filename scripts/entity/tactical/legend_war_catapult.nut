@@ -31,7 +31,7 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.OnDeathLootTable.extend([
 			[33, "scripts/items/supplies/ammo_item"]
 		]);
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[100, "scripts/items/trade/quality_wood_item"]

@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[60, "scripts/items/misc/spider_silk_item"],

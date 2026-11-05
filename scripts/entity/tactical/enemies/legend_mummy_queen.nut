@@ -13,7 +13,7 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 			[100, "scripts/items/loot/ancient_gold_coins_item"],
 			[100, "scripts/items/loot/jeweled_crown_item"],
 		]);
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[3, "scripts/items/misc/legend_ancient_scroll_item"]

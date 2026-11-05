@@ -38,7 +38,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			}.bindenv(this)
 			]
 		]);
-		local rolls = ::Legends.S.extraLootChance(2);
+		local rolls = ::Legends.Items.extraLootChance(2);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_witch_leader_hair_item"],
@@ -46,7 +46,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 				[30, "scripts/items/misc/poisoned_apple_item"],
 			]);
 		}
-		local rolls = ::Legends.S.extraLootChance(1);
+		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) this.m.OnDeathLootTable.push([3, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}
 

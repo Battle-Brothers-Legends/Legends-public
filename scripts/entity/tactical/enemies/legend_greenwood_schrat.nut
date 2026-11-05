@@ -32,7 +32,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/schrat_agent");
 		this.m.AIAgent.setActor(this);
 
-		local rolls = ::Legends.S.extraLootChance(2);
+		local rolls = ::Legends.Items.extraLootChance(2);
 		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_ancient_green_wood_item"],
