@@ -100,7 +100,7 @@
 
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendAmbidextrous))
 		{
-			if (actor.getMainhandItem() != null)
+			if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
 			{
 				_properties.MeleeDamageMult /= 1.25; // Attempt to undo double grip damage bonus for just this skill. Might not work for missing hand.
 			}

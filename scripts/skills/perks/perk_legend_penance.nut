@@ -72,7 +72,7 @@ this.perk_legend_penance <- this.inherit("scripts/skills/skill", {
 
 		local damageBonus = this.getDamageBonus();
 		if (damageBonus != 0) {
-			local item = this.getContainer().getActor().getMainhandItem();
+			local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 			if (item != null) {
 				_properties.DamageRegularMax += item.m.RegularDamageMax * damageBonus;
 			}

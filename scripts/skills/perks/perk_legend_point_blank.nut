@@ -29,7 +29,7 @@ this.perk_legend_point_blank <- this.inherit("scripts/skills/skill", {
 
 	function getBonus(_properties) {
 		local actor = this.getContainer().getActor();
-		local isWeaponThrowingType = actor.getMainhandItem() != null && actor.getMainhandItem().isWeaponType(::Const.Items.WeaponType.Throwing);
+		local isWeaponThrowingType = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null && actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isWeaponType(::Const.Items.WeaponType.Throwing);
 		return (isWeaponThrowingType ? (::Math.floor(0.3 * _properties.getMeleeSkill()) + ::Math.floor(0.5 * _properties.getRangedDefense())) : ::Math.floor(0.3 * _properties.getRangedDefense()));
 	}
 

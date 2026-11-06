@@ -15,7 +15,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 	{
 		local tooltip = this.skill.getTooltip();
 
-		if (this.getContainer().getActor().getBodyItem() == null)
+		if (this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
 			tooltip.push({
 				id = 6,

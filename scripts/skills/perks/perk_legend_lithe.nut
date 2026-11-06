@@ -39,7 +39,7 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (_actor.getBodyItem() == null) {
+		if (_actor.getItems().getItemAtSlot(::Const.ItemSlot.Body) == null) {
 			tooltip.push({
 				id = 6,
 				type = "text",

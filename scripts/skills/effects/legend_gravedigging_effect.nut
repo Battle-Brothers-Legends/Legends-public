@@ -43,7 +43,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden() {
-		local weapon = this.getContainer().getActor().getMainhandItem();
+		local weapon = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		return weapon == null || !(weapon.isWeaponType(::Const.Items.WeaponType.Mace) && weapon.isItemType(::Const.Items.ItemType.TwoHanded)) || getCorpses() == 0;
 	}
 
@@ -61,7 +61,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		}
 
 		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		this.m.Stacks = (item != null && item.isWeaponType(::Const.Items.WeaponType.Mace) && item.isItemType(::Const.Items.ItemType.TwoHanded) ? getCorpses() : 0);
 
 		if (!(item.getID() == "weapon.legend_shovel")) {

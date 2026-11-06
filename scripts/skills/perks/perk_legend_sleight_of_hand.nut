@@ -7,7 +7,7 @@ this.perk_legend_sleight_of_hand <- this.inherit("scripts/skills/skill", {
 
 	function onNewRound()
 	{
-		local weapon = this.getContainer().getActor().getMainhandItem();
+		local weapon = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing) || weapon.getAmmoMax() == 0)
 			return;
 		if (weapon.getAmmoMax() != weapon.getAmmo())

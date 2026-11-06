@@ -55,7 +55,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			return false;
 		}
 
-		if (!::Legends.Items.hasItemFlag(actor.getMainhandItem(), "vala_staff")) {
+		if (!::Legends.Items.hasItemFlag(actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand), "vala_staff")) {
 			return false;
 		}
 
@@ -76,7 +76,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			text = "If the Vala is successful in her dealings with these harmful spirits, they will haunt and weaken her opponents. Lowers damage, lowers maximum fatigue, increases fatigue cost for skills."
 		});
 
-		if (!::Legends.Items.hasItemFlag(actor.getMainhandItem(), "vala_staff")) {
+		if (!::Legends.Items.hasItemFlag(actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand), "vala_staff")) {
 			ret.push({
 				id = 9,
 				type = "text",

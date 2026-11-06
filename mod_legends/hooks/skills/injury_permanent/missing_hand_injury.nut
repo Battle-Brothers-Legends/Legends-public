@@ -18,8 +18,8 @@
 		}
 		local actor = this.getContainer().getActor();
 		local itemToUnequip = null;
-		local oh = actor.getOffhandItem();
-		local mh = actor.getMainhandItem();
+		local oh = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		local mh = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (oh != null) { // unequip offhand
 			itemToUnequip = oh;
 		} else if (mh != null && mh.getBlockedSlotType() == ::Const.ItemSlot.Offhand) { // unequip 2handers

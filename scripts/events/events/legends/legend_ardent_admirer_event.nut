@@ -134,7 +134,7 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 		if (!(playerTile.HasRoad || settlement.getTile().getDistanceTo(playerTile) <= 3))
 			return;
 
-		local candidates_gunner = ::World.getPlayerRoster().getAll().filter(@(_idx, _bro) _bro.getMainhandItem() != null && ::Legends.S.oneOf(_bro.getMainhandItem(), "weapon.handgonne", "weapon.named_handgonne"));
+		local candidates_gunner = ::World.getPlayerRoster().getAll().filter(@(_idx, _bro) _bro.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null && ::Legends.S.oneOf(_bro.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand), "weapon.handgonne", "weapon.named_handgonne"));
 		if (candidates_gunner.len() > 0) {
 			this.m.Gunner = candidates_gunner[::Math.rand(0, candidates_gunner.len() - 1)];
 		}

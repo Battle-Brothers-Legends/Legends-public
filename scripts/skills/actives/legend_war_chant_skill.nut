@@ -53,7 +53,7 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 				text = "[color=%negative%]Cannot be used because this character is engaged in melee[/color]"
 			});
 		}
-		local weapon = actor.getMainhandItem();
+		local weapon = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Musical)) {
 			ret.push({
 				id = 9,
@@ -72,7 +72,7 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable() {
 		local actor = this.getContainer().getActor();
-		local mainhand = actor.getMainhandItem();
+		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		return this.skill.isUsable() && ::Tactical.isActive() && mainhand != null && mainhand.isWeaponType(::Const.Items.WeaponType.Musical) && !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions());
 	}
 

@@ -14,7 +14,7 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 	function getBonus(_actor = null) {
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
 
-		local bodyitem = actor.getBodyItem();
+		local bodyitem = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
 
 		if (bodyitem == null) {
 			return 0;
@@ -70,7 +70,7 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
 
-		if (actor.getBodyItem() == null) {
+		if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Body) == null) {
 			tooltip.push({
 				id = 6,
 				type = "text",

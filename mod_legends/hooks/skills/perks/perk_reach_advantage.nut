@@ -3,7 +3,7 @@
 	o.onUpdate = function (_properties) {
 		onUpdate(_properties);
 		local actor = this.getContainer().getActor();
-		if (actor.getMainhandItem() == null || !actor.getMainhandItem().isWeaponType(::Const.Items.WeaponType.Staff)) {
+		if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) == null || !actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isWeaponType(::Const.Items.WeaponType.Staff)) {
 			return;
 		}
 		if (_properties.IsImmuneToSurrounding == true || ::Legends.Perks.has(actor, ::Legends.Perk.Underdog)) {

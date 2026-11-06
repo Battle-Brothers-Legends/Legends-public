@@ -39,12 +39,12 @@ this.legend_orc_elite_potion_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local fat = actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
 
-		local mainhand = actor.getMainhandItem();
+		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (mainhand != null) {
 			fat += mainhand.getStaminaModifier();
 		}
 
-		local offhand = actor.getOffhandItem();
+		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		if (offhand != null) {
 			fat += offhand.getStaminaModifier();
 		}

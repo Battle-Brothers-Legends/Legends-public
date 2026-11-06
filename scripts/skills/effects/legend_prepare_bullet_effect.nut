@@ -52,7 +52,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onUpdate(_properties) {
-		local weapon = this.getContainer().getActor().getMainhandItem();
+		local weapon = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sling) || !weapon.isItemType(::Const.Items.ItemType.OneHanded)) {
 			this.removeSelf();
 		}

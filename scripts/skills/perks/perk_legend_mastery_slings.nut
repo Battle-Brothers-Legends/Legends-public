@@ -13,7 +13,7 @@ this.perk_legend_mastery_slings <- this.inherit("scripts/skills/skill", {
 	function onWaitTurn()
 	{
 		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (item != null && item.isWeaponType(::Const.Items.WeaponType.Sling) && item.isItemType(::Const.Items.ItemType.OneHanded))
 			::Legends.Effects.grant(actor, ::Legends.Effect.LegendPrepareBullet);
 	}

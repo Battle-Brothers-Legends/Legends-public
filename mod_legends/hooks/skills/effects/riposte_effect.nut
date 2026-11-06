@@ -27,7 +27,7 @@
 	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (item != null && item.isWeaponType(::Const.Items.WeaponType.Staff)) {
 			if (!actor.getCurrentProperties().IsSpecializedInPolearms) {
 				_properties.MeleeSkill -= 10;

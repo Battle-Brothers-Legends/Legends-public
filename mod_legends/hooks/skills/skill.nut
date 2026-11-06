@@ -397,7 +397,7 @@
 	}
 
 	o.removeMainhandBonuses <- function (_properties) {
-		local mainhand = this.getContainer().getActor().getMainhandItem();
+		local mainhand = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
 		if (mainhand == null) {
 			return;

@@ -36,7 +36,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 		}
 
 		local user = _skill.getContainer().getActor();
-		local item = user.getMainhandItem();
+		local item = user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (item == null || item.isWeaponType(::Const.Items.WeaponType.Whip) || !item.isWeaponType(::Const.Items.WeaponType.Cleaver)) {
 			return;
 		}

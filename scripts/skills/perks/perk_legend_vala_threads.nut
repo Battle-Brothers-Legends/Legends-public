@@ -14,7 +14,7 @@ this.perk_legend_vala_threads <- this.inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 
-		if (!::Legends.Items.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
+		if (!::Legends.Items.hasItemFlag(actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand), "vala_staff"))
 			return;
 
 		local expertise = actor.getBravery();

@@ -233,7 +233,7 @@
 	}
 
 	o.isArmedWithMagicStaff <- function () {
-		local item = this.getMainhandItem();
+		local item = this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		return item != null && item.isWeaponType(::Const.Items.WeaponType.MagicStaff);
 	}
 

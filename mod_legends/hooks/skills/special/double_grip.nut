@@ -60,8 +60,8 @@
 	// // you can just hook this or isValid/isFullEffect/isPartialEffect and the tooltip will auto calculate without needing to replace anything
 	// o.getBonus <- function()
 	// {
-	// 	local main = getContainer().getActor().getMainhandItem();
-	// 	local off = getContainer().getActor().getOffhandItem();
+	// 	local main = getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+	// 	local off = getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 	// 	if (!isValid(main, off))
 	// 		return 0;
 

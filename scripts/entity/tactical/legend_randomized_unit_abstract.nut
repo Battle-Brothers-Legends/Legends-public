@@ -201,8 +201,8 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		local selection = ::Const.GetWeaponAndTree(this.m.WeaponsAndTrees);
 		local weaponScriptAndChances = selection[0];
 		this.m.Items.equip( this.new( "scripts/items/weapons/" + weaponScriptAndChances[0] ) );
-		local weapon = this.getMainhandItem();
-		local weaponID = this.getMainhandItem().getID();
+		local weapon = this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local weaponID = weapon.getID();
 
 		if (selection.len() > 1 && ::Legends.isLegendaryDifficulty()) {
 			foreach (perk in selection[1])
@@ -226,7 +226,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	function assignShield()
 	{
 		if (this.m.Shields.len() == 0) { return; }
-		if (this.getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded)) { return; }
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isItemType(::Const.Items.ItemType.TwoHanded)) { return; }
 
 		local candidates = [];
 		local totalWeight = 0;

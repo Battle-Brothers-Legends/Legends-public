@@ -22,7 +22,7 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
 
 	function onEvaluate(_entity) {
 		this.m.TargetTile = null;
-		local weapon = _entity.getMainhandItem();
+		local weapon = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
 		if (weapon == null || this.m.Slingstaffs.find(weapon.getID()) == null) {
 			return ::Const.AI.Behavior.Score.Zero;

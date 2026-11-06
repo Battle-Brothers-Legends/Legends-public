@@ -50,7 +50,7 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		local mainhand = this.m.Container.getActor().getMainhandItem();
+		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (mainhand == null || !this.skill.isUsable())
 		{
 			return false;

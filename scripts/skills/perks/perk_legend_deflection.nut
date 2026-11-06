@@ -12,7 +12,7 @@ this.perk_legend_deflection <- this.inherit("scripts/skills/legend_specialist_ab
 	}
 
 	function onUpdate(_properties) {
-		local item = this.getContainer().getActor().getMainhandItem();
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local bonus = 16;
 		if (item == null) {
 			return;

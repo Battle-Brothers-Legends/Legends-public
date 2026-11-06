@@ -13,7 +13,7 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 
 	function onUpdate( _properties )
 	{
-		local item = this.getContainer().getActor().getMainhandItem();
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (item != null && item.isWeaponType(::Const.Items.WeaponType.Musical))
 			_properties.MeleeDefense += 10;
 	}
