@@ -7,32 +7,35 @@ if (!("Items" in ::Legends)) {
 ::Legends.Items.Effects.ItemEffectDefs <- {
 
 	DirectDamage = {
+		getValue = function(_item) {
+			return _item.getDirectDamageModifier();
+		},
 		isApplicable = function(_item) {
 			return _item.getDirectDamageModifier() != 0;
 		},
-		getTooltipData = function(_item, _value = null) {
-			local val = _value != null ? _value : _item.getDirectDamageModifier();
+		getTooltipData = function(_value, _) {
 			return {
-				CompareValue = _item.getDirectDamageModifier(),
-				CompareValueStr = ::Legends.Text.addSign(_item.getDirectDamageModifier()) + "%",
 				ID = 15,
 				Icon = "ui/icons/direct_damage.png",
 				Text = "%modifierPercent% damage ignoring armor",
 				Param = [
-					["modifierPercent", ::Legends.Text.addSignAndColorize(val, true)]
+					["modifierPercent", ::Legends.Text.addSignAndColorize(_value, true)]
 				]
 			};
 		},
 	},
 	
 	ArmorDamageMult = {
+		getValue = function(_item) {
+			return _item.getDamageReceivedArmorMult();
+		},
 		isApplicable = function(_item) {
 			return _item.getDamageReceivedArmorMult() != 0;
 		},
-		getTooltipData = function(_item, _value = null) {
+		getTooltipData = function(_value, _item) {
 			local armorType = "Armor";
 			local iconType = "ui/icons/armor_body.png";
-			local val = _value != null ? _value : _item.getDamageReceivedArmorMult();
+			
 			if (_item.m.ItemType == ::Const.Items.ItemType.Armor) {
 				armorType = "Body Armor";
 				iconType = "ui/icons/armor_body.png";
@@ -41,41 +44,13 @@ if (!("Items" in ::Legends)) {
 				armorType = "Helmet Armor";
 				iconType = "ui/icons/armor_head.png";
 			}
+
 			return {
-				CompareValue = _item.getDamageReceivedArmorMult(),
-				CompareValueStr = ::Legends.Text.addSign(_item.getDamageReceivedArmorMult()) + "%",
 				ID = 16,
 				Icon = "ui/icons/armor_body.png",
 				Text = "%modifierPercent% damage taken to %armorType%",
 				Param = [
-					["modifierPercent", ::Legends.Text.addSignAndColorize(val, true)],
-					["armorType", armorType]
-				]
-			};
-		},
-	},
-
-	Fatigue = {
-		isApplicable = function(_item) {
-			return _item.getCurrentFatigueModifier() != 0;
-		},
-		getTooltipData = function(_item, _value = null) {
-			local armorType = "Armor";
-			local val = _value != null ? _value : _item.getCurrentFatigueModifier();
-			if (_item.m.ItemType == ::Const.Items.ItemType.Armor) {
-				armorType = "Body Armor";
-
-			} else if (_item.m.ItemType == ::Const.Items.ItemType.Helmet) {
-				armorType = "Helmets";
-			}
-			return {
-				CompareValue = _item.getCurrentFatigueModifier(),
-				CompareValueStr = ::Legends.Text.addSign(_item.getCurrentFatigueModifier()),
-				ID = 17,
-				Icon = "ui/icons/fatigue.png",
-				Text = "%modifier% Fatigue Weight Penalty of %armorType%",
-				Param = [
-					["modifier", ::Legends.Text.addSignAndColorize(val)],
+					["modifierPercent", ::Legends.Text.addSignAndColorize(_value, true)],
 					["armorType", armorType]
 				]
 			};
@@ -83,26 +58,31 @@ if (!("Items" in ::Legends)) {
 	},
 
 	FatigueMult = {
+		getValue = function(_item) {
+			return _item.getFatiguePenaltyMultiplier();
+		},
 		isApplicable = function(_item) {
 			return _item.getFatiguePenaltyMultiplier() != 0;
 		},
-		getTooltipData = function(_item, _value = null) {
+		getTooltipData = function(_value, _item) {
 			local armorType = "Armor";
-			local val = _value != null ? _value : _item.getFatiguePenaltyMultiplier();
+			local modifier = _item.getCurrentFatigueModifier(); // the resultant fatigue modifier if the item is equipped
+			local optionalModifierText = modifier == 0 ? "" : " (" + ::Legends.Text.addSignAndColorize(modifier, false) + ")";
+
 			if (_item.m.ItemType == ::Const.Items.ItemType.Armor) {
 				armorType = "Body Armor";
 
 			} else if (_item.m.ItemType == ::Const.Items.ItemType.Helmet) {
 				armorType = "Helmets";
 			}
+			
 			return {
-				CompareValue = _item.getFatiguePenaltyMultiplier(),
-				CompareValueStr = ::Legends.Text.addSign(_item.getFatiguePenaltyMultiplier()) + "%",
 				ID = 17,
 				Icon = "ui/icons/fatigue.png",
-				Text = "%modifierPercent% Fatigue Weight Penalty of %armorType%",
+				Text = "%modifierPercent%%optionalModifierText% Fatigue Weight Penalty of %armorType%",
 				Param = [
-					["modifierPercent", ::Legends.Text.addSignAndColorize(val, true)],
+					["modifierPercent", ::Legends.Text.addSignAndColorize(_value, true)],
+					["optionalModifierText", optionalModifierText],
 					["armorType", armorType]
 				]
 			};
@@ -110,78 +90,76 @@ if (!("Items" in ::Legends)) {
 	},
 
 	Resolve = {
+		getValue = function(_item) {
+			return _item.getResolveModifier();
+		},
 		isApplicable = function(_item) {
 			return _item.getResolveModifier() != 0;
 		},
-		getTooltipData = function(_item, _value = null) {
-			local val = _value != null ? _value : _item.getResolveModifier();
+		getTooltipData = function(_value, _) {
 			return {
-				CompareValue = _item.getResolveModifier(),
-				CompareValueStr = ::Legends.Text.addSign(_item.getResolveModifier()),
 				ID = 12,
 				Icon = "ui/icons/bravery.png",
 				Text = "%resolveMod% Resolve",
 				Param = [
-					["resolveMod", ::Legends.Text.addSignAndColorize(val)]
+					["resolveMod", ::Legends.Text.addSignAndColorize(_value, false)]
 				]
 			};
 		},
 	},
 
 	ResolveMult = {
+		getValue = function(_item) {
+			return _item.getBraveryMult() * 100.0 - 100;
+		},
 		isApplicable = function(_item) {
 			return _item.getBraveryMult() != 1;
 		},
-		getTooltipData = function(_item, _value = null) {
-			local mult = ::Math.round(_item.getBraveryMult() * 100.0 - 100);
-			local val = _value != null ? _value : mult;
+		getTooltipData = function(_value, _) {
 			return {
-				CompareValue = mult,
-				CompareValueStr = ::Legends.Text.addSign(mult) + "%",
 				ID = 15,
 				Icon = "ui/icons/bravery.png",
 				Text = "%resolveModPercent% Resolve",
 				Param = [
-					["resolveModPercent", ::Legends.Text.addSignAndColorize(val, true)]
+					["resolveModPercent", ::Legends.Text.addSignAndColorize(_value, true)]
 				]
 			};
 		},
 	},
 
 	Initiative = {
+		getValue = function(_item) {
+			return _item.getInitiativeModifier();
+		},
 		isApplicable = function(_item) {
 			return _item.getInitiativeModifier() != 0;
 		},
-		getTooltipData = function(_item, _value = null) {
-			local val = _value != null ? _value : _item.getInitiativeModifier();
+		getTooltipData = function(_value, _) {
 			return {
-				CompareValue = _item.getInitiativeModifier(),
-				CompareValueStr = ::Legends.Text.addSign(_item.getInitiativeModifier()),
 				ID = 11,
 				Icon = "ui/icons/initiative.png",
 				Text = "%initMod% Initiative",
 				Param = [
-					["initMod", ::Legends.Text.addSignAndColorize(val)]
+					["initMod", ::Legends.Text.addSignAndColorize(_value, false)]
 				]
 			};
 		},
 	},
 
 	Threat = {
+		getValue = function(_item) {
+			return -1 * _item.getThreatModifier();	// We want to show the actual effect on the enemy
+		},
 		isApplicable = function(_item) {
 			return _item.getThreatModifier() != 0;
 		},
-		getTooltipData = function(_item, _value = null) {
-			local invertedThreat = -1 * _item.getThreatModifier();	// For this tooltip we want to show the actual effect on the enemy
-			local val = _value != null ? _value : invertedThreat;
+		getTooltipData = function(_value, _) {
 			return {
-				CompareValue = invertedThreat,
-				CompareValueStr = ::Legends.Text.addSign(invertedThreat),
 				ID = 11,
 				Icon = "ui/icons/special.png",
 				Text = "%modifier% to the Resolve of any opponent engaged in melee",
 				Param = [
-					["modifier", ::Legends.Text.addSignAndColorize(val)]
+					["modifier", ::Legends.Text.addSignAndColorize(_value, false)]
 				]
 			};
 		},
@@ -192,8 +170,8 @@ if (!("Items" in ::Legends)) {
 	foreach( _ , effect in ::Legends.Items.Effects.ItemEffectDefs) {
 		
 		if (effect.isApplicable(_item)) {
-			
-			local data = effect.getTooltipData(_item);
+			local value = effect.getValue(_item);
+			local data = effect.getTooltipData(value, _item);
 			local paramArr = [];
 			if ("Param" in data) {
 				paramArr = data.Param;
@@ -213,54 +191,27 @@ if (!("Items" in ::Legends)) {
 ::Legends.Items.Effects.applyCompareHints <- function (_tooltipList, _selectedItem, _equippedItem) {
 	// Compare standardised effects
 	foreach ( _, effect in ::Legends.Items.Effects.ItemEffectDefs) {
-		if (effect.isApplicable(_selectedItem) && !effect.isApplicable(_equippedItem)) {
-			// Gain effect from selected item
-			local data = effect.getTooltipData(_selectedItem);
+		local selectedVal = effect.getValue(_selectedItem);
+		local equippedVal = effect.getValue(_equippedItem);
+		local diff = selectedVal - equippedVal;
+		if (diff != 0) {
+			local data = effect.getTooltipData(diff, _selectedItem);
 			local paramArr = [];
 			if ("Param" in data) {
 				paramArr = data.Param;
 			}
+			local compareText = ::Legends.tooltip(data.Text, paramArr);
 			_tooltipList.push({
 				id = 20,
 				type = "hint",
-				icon = "ui/tooltips/positive.png",
-				text = data.Text,
-				param = paramArr
+				icon = data.Icon,
+				text = "%compareText% (%after% vs %before%)",
+				param = [
+					["compareText", compareText],
+					["after", selectedVal],
+					["before", equippedVal]
+				]
 			});
-		} else if (!effect.isApplicable(_selectedItem) && effect.isApplicable(_equippedItem)) {
-			// Lose effect from equipped item
-			local data = effect.getTooltipData(_equippedItem);
-			local paramArr = [];
-			if ("Param" in data) {
-				paramArr = data.Param;
-			}
-			_tooltipList.push({
-				id = 20,
-				type = "hint",
-				icon = "ui/tooltips/negative.png",
-				text = data.Text,
-				param = paramArr
-			});
-		} else if (effect.isApplicable(_selectedItem) && effect.isApplicable(_equippedItem)) {
-			// Nett effect of switching equipped item to selected item
-			local dataS = effect.getTooltipData(_selectedItem);
-			local dataE = effect.getTooltipData(_equippedItem);
-			local diff = dataS.CompareValue - dataE.CompareValue;
-			if (diff != 0) {
-				local dataDiff = effect.getTooltipData(_selectedItem, diff);
-				local compareText = ::Legends.tooltip(dataDiff.Text, dataDiff.Param); // assumes that effect that can compare its value must always have non-empty Param
-				_tooltipList.push({
-					id = 20,
-					type = "hint",
-					icon = dataS.Icon,
-					text = "%compareText% (%valueS% vs %valueE%)",
-					param = [
-						["compareText", compareText],
-						["valueS", dataS.CompareValue],
-						["valueE", dataE.CompareValue]
-					] // If you're wondering why CompareValueStr isn't used in this script at the time of writing: it was used here at first, but it has been changed to CompareValue for brevity
-				});
-			}
 		}
 	}
 
