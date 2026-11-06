@@ -26,8 +26,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 				text = "+[color=%positive%]" + bonus + "%[/color] Melee Skill"
 			});
 
-			if (!actor.isPlacedOnMap() || ::Tactical.Entities.getHostileActors(actor.getFaction(), actor.getTile(), 1, true).len() > 0)
-			{
+			if (actor.getOpponentsInRange(1) > 0) {
 				bonus *= 2;
 			}
 
@@ -47,9 +46,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/warning.png",
 				text = "The Melee Damage bonus will be [color=%negative%]halved[/color] when not engaged in melee"
 			});
-		}
-		else if (::Tactical.Entities.getHostileActors(actor.getFaction(), actor.getTile(), 1, true) == 0)
-		{
+		} else if (actor.getOpponentsInRange(1) == 0) {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -86,8 +83,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 			local bonus = this.getBonus();
 			_properties.MeleeSkillMult *= 1 + bonus * 0.01;
 
-			if (!actor.isPlacedOnMap() || ::Tactical.Entities.getHostileActors(actor.getFaction(), actor.getTile(), 1, true).len() > 0)
-			{
+			if (actor.getOpponentsInRange(1) > 0) {
 				bonus *= 2;
 			}
 

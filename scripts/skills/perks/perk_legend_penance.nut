@@ -41,8 +41,7 @@ this.perk_legend_penance <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getDamageBonus() {
-		local actor = this.getContainer().getActor();
-		return !actor.isPlacedOnMap() ? 0 : ::Tactical.Entities.getHostileActors(actor.getFaction(), actor.getTile(), 1).len() * 0.05;
+		return this.getContainer().getActor().getOpponentsInRange(1) * 0.05;
 	}
 
 	function getResolveBonus() {

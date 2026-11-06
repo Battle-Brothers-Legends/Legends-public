@@ -680,4 +680,15 @@
 	}
 
 	o.isEngagedInMelee <- @() ::Tactical.isActive() && this.isPlacedOnMap() && this.getTile().hasZoneOfControlOtherThan(this.getAlliedFactions());
+
+	o.getOpponentsInRange <- function (_maxRange, _minRange = 1) {
+		if (!::Tactical.isActive() || !this.isPlacedOnMap()) {
+			return 0;
+		}
+		local result = {
+			Opponents = 0
+		}
+		::Tactical.queryActorsInRange(this.getTile(), _minRange, _maxRange, @(_actor, _tag) (!_actor.isAlliedWithPlayer()) ? _tag.Opponents++ : "", result);
+		return result.Opponents;
+	}
 });
