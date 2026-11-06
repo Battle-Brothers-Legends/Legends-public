@@ -37,10 +37,7 @@
 		local ret = isActionAffordable(_items);
 		if (!::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting)) {
 			return ret;
-		} else if (::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting)
-			&& _items.len() == 1
-			&& _items[0].getID().find("throwing_net") != null)
-		{
+		} else if (::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting) && _items.len() == 1 && _items[0].getID().find("throwing_net") != null) {
 			return true;
 		}
 		local nets = 0;
@@ -67,10 +64,7 @@
 		local ret = getActionCost(_items);
 		if (!::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting)) {
 			return ret;
-		} else if (::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting)
-			&& _items.len() == 1
-			&& _items[0].getID().find("throwing_net") != null)
-		{
+		} else if (::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting) && _items.len() == 1 && _items[0].getID().find("throwing_net") != null) {
 			return 0;
 		}
 		local nets = 0;
@@ -109,7 +103,7 @@
 		}
 
 		// Allow equipping mainhand weapons in offhand slot
-		if (_item.getSlotType() == ::Const.ItemSlot.Mainhand && _item.getBlockedSlotType() == null)	{
+		if (_item.getSlotType() == ::Const.ItemSlot.Mainhand && _item.getBlockedSlotType() == null) {
 			local mh = this.getItemAtSlot(::Const.ItemSlot.Mainhand);
 			local oh = this.getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (mh != null && oh == null && !this.hasBlockedSlot(::Const.ItemSlot.Offhand)) {
@@ -136,18 +130,18 @@
 		local slot = _item.getSlotType();
 		if (result && (slot == ::Const.ItemSlot.Mainhand || slot == ::Const.ItemSlot.Offhand)) {
 			if (_item.getCurrentSlotType() == ::Const.ItemSlot.Mainhand) {
-                local oh = this.getItemAtSlot(::Const.ItemSlot.Offhand);
-                
-                if (oh != null && oh.isItemType(::Const.Items.ItemType.Weapon)) {
-                    oh.onUnequip();
-                    oh.onEquip();
-                    
-                    if (!::Legends.S.isEntityNullOrDead(this.m.Actor)) {
-                        this.m.Actor.getSkills().update();
+				local oh = this.getItemAtSlot(::Const.ItemSlot.Offhand);
+
+				if (oh != null && oh.isItemType(::Const.Items.ItemType.Weapon)) {
+					oh.onUnequip();
+					oh.onEquip();
+
+					if (!::Legends.S.isEntityNullOrDead(this.m.Actor)) {
+						this.m.Actor.getSkills().update();
 						this.m.Actor.setDirty(true);
-                    }
-                }
-            }
+					}
+				}
+			}
 			this.updateDualWield();
 		}
 
@@ -218,9 +212,7 @@
 		if (_item.isItemType(::Const.Items.ItemType.RangedWeapon)) {
 			return false;
 		}
-		if (_item.isItemType(::Const.Items.ItemType.TwoHanded)
-			&& _item.getBlockedSlotType() != null)
-		{
+		if (_item.isItemType(::Const.Items.ItemType.TwoHanded) && _item.getBlockedSlotType() != null) {
 			return false;
 		}
 		return true;
@@ -234,12 +226,7 @@
 		local items = actor.getItems();
 		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-		local dw = mh != null
-			&& oh != null
-			&& mh.isItemType(::Const.Items.ItemType.Weapon)
-			&& oh.isItemType(::Const.Items.ItemType.Weapon)
-			&& this.canDualWield(actor, mh)
-			&& this.canDualWield(actor, oh);
+		local dw = mh != null && oh != null && mh.isItemType(::Const.Items.ItemType.Weapon) && oh.isItemType(::Const.Items.ItemType.Weapon) && this.canDualWield(actor, mh) && this.canDualWield(actor, oh);
 		/* if (dw) { used to have applicable items but now unnecessary?
 			local ambidextrous = ::Legends.Perks.get(actor, ::Legends.Perk.LegendAmbidextrous);
 			dw = ambidextrous == null; // || ambidextrous.m.ApplicableItems.find(oh.getID()) == null;
@@ -379,9 +366,7 @@
 
 	local canDropItems = o.canDropItems;
 	o.canDropItems = function (_killer) {
-		if (this.m.Actor == null
-			|| (this.m.Actor instanceof ::WeakTableRef && this.m.Actor.isNull()))
-		{
+		if (this.m.Actor == null || (this.m.Actor instanceof ::WeakTableRef && this.m.Actor.isNull())) {
 			return false;
 		}
 		return canDropItems(_killer);
@@ -402,10 +387,7 @@
 
 			if (slotType == ::Const.ItemSlot.Bag) {
 				win = this.addToBag(item);
-			} else if (slotType == ::Const.ItemSlot.Offhand
-				&& item.getSlotType() == ::Const.ItemSlot.Mainhand
-				&& item.getBlockedSlotType() == null)
-			{
+			} else if (slotType == ::Const.ItemSlot.Offhand && item.getSlotType() == ::Const.ItemSlot.Mainhand && item.getBlockedSlotType() == null) {
 				// Vanilla just calls `equip(item)` which won't work with offhand weapons
 				this.m.Items[::Const.ItemSlot.Offhand][0] = item;
 				item.setContainer(this);
@@ -427,4 +409,8 @@
 		}
 	}
 
+	o.getStaminaModifier <- function (_array) {
+		local self = this;
+		return _array.map(@(_itemSlot) self.getAllItemsAtSlot(_itemSlot).map(@(_item)(_item.getStaminaModifier())).reduce(@(p, c) p + c)).filter(@(_, _v)(_v != null)).reduce(@(p, c) p + c);
+	};
 });
