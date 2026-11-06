@@ -110,7 +110,7 @@ if (!("Items" in ::Legends)) {
 
 	ResolveMult = {
 		getValue = function(_item) {
-			return _item.getBraveryMult() * 100.0 - 100;
+			return ::Math.round(_item.getBraveryMult() * 100.0) - 100;
 		},
 		isApplicable = function(_item) {
 			return _item.getBraveryMult() != 1;
