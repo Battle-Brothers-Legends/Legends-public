@@ -26,11 +26,14 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 
 		local skills = this.getContainer().getAllSkillsOfType(::Const.SkillType.Active);
 		foreach (skill in skills) {
-			if (this.m.Skills.find(skill.getID()) != null) {
-				if (::Legends.S.oneOf(skill.getID(), ::Legends.Actives.getID(::Legends.Active.LegendEvasion), ::Legends.Actives.getID(::Legends.Active.LegendLeap))) {
+			local id = skill.getID();
+			if (this.m.Skills.find(id) != null) {
+				if (::Legends.S.oneOf(id, ::Legends.Actives.getID(::Legends.Active.LegendEvasion), ::Legends.Actives.getID(::Legends.Active.LegendLeap))) {
 					skill.m.ActionPointCost /= 2;
-				} else if (!::Legends.S.oneOf(skill.getID(), ::Legends.Actives.getID(::Legends.Active.Lunge), ::Legends.Actives.getID(::Legends.Active.LegendQuickStep))) {
-					skill.m.ActionPointCost -= 1; //LegendClimb, Footwork, Rotation, LegendHorsePirouette
+				} else if (!::Legends.S.oneOf(id, ::Legends.Actives.getID(::Legends.Active.Lunge), ::Legends.Actives.getID(::Legends.Active.LegendQuickStep))) {
+					if (id != ::Legends.Actives.getID(::Legends.Active.Footwork) || !::Legends.Actives.get(this.getContainer().getActor(), ::Legends.Active.Footwork).m.IsFootwork) {
+						skill.m.ActionPointCost -= 1; //LegendClimb, Footwork, Rotation, LegendHorsePirouette
+					}
 				}
 			}
 		}
