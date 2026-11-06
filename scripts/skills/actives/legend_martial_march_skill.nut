@@ -2,8 +2,8 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		AffectedActors = []
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMartialMarch);
 		this.m.Description = "A good marching melody uplifts the company, granting them temporary AP. Targets can only be inspired once per turn.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
@@ -23,8 +23,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -49,8 +48,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -63,15 +61,14 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden() {
-		if (this.getContainer != null && !::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendMeistersanger))
+		if (this.getContainer != null && !::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendMeistersanger)) {
 			return true;
+		}
 		return this.skill.isHidden();
 	}
 
-	function isUsable()
-	{
-		if (!::Tactical.isActive())
-		{
+	function isUsable() {
+		if (!::Tactical.isActive()) {
 			return false;
 		}
 
@@ -79,20 +76,22 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 		return this.skill.isUsable() && !tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
 		local actors = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 
-		foreach( a in actors ) {
-			if (_user.getID() == a.getID())
+		foreach (a in actors) {
+			if (_user.getID() == a.getID()) {
 				continue;
+			}
 
-			if (a.getSkills().hasEffect(::Legends.Effect.LegendMartialMarch))
-				continue;			
-
-			if (a.getTile().getDistanceTo(myTile) > 8)
+			if (a.getSkills().hasEffect(::Legends.Effect.LegendMartialMarch)) {
 				continue;
+			}
+
+			if (a.getTile().getDistanceTo(myTile) > 8) {
+				continue;
+			}
 
 			if (a.getFaction() == _user.getFaction()) {
 				::Legends.Effects.grant(a, ::Legends.Effect.LegendMartialMarch);
@@ -102,25 +101,24 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onTurnStart()
-	{
-		foreach(actor in this.m.AffectedActors)
-		{
-			if (actor == null)
+	function onTurnStart() {
+		foreach (actor in this.m.AffectedActors) {
+			if (actor == null) {
 				continue;
-			if ("isNull" in actor && actor.isNull())
+			}
+			if ("isNull" in actor && actor.isNull()) {
 				continue;
-			if (::Legends.S.isEntityNullOrDead(actor))
+			}
+			if (::Legends.S.isEntityNullOrDead(actor)) {
 				continue;
+			}
 			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendWarChant);
 		}
 		this.m.AffectedActors = [];
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.m.AffectedActors = [];
 	}
 
 });
-

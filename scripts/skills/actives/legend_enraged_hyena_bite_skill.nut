@@ -165,20 +165,8 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
-		if (!this.skill.isUsable()) {
-			return false;
-		}
 		local actor = this.getContainer().getActor();
-		if (actor == null && actor.getCurrentProperties().IsRooted) {
-			return false;
-		}
-		if (actor.getTile() != null && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
-			return false;
-		}
-		if (actor.getFlags().has("LegendEnragedHyenaBiteVictim")) {
-			return false;
-		}
-		return true;
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && !actor.getCurrentProperties().IsRooted && !actor.getFlags().has("LegendEnragedHyenaBiteVictim");
 	}
 
 	function onUse(_actor, _targetTile) {

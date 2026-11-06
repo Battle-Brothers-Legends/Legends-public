@@ -1,10 +1,8 @@
-::mods_hookExactClass("skills/actives/fire_handgonne_skill", function(o)
-{
+::mods_hookExactClass("skills/actives/fire_handgonne_skill", function (o) {
 	o.m.AdditionalAccuracy = 10;
 	o.m.AdditionalHitChance = -10;
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local tooltip = this.getDefaultTooltip();
 		tooltip.push({
 			id = 10,
@@ -15,17 +13,14 @@
 
 		local ammo = this.getAmmo();
 
-		if (ammo > 0)
-		{
+		if (ammo > 0) {
 			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]" + ammo + "[/color] shots left"
 			});
-		}
-		else
-		{
+		} else {
 			tooltip.push({
 				id = 8,
 				type = "text",
@@ -34,8 +29,7 @@
 			});
 		}
 
-		if (!this.getItem().isLoaded())
-		{
+		if (!this.getItem().isLoaded()) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -44,8 +38,7 @@
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -54,8 +47,7 @@
 			});
 		}
 
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
-		{
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBallistics)) {
 			local s = ::Legends.Perks.get(this, ::Legends.Perk.LegendBallistics);
 			tooltip.push({
 				id = 6,
@@ -65,8 +57,7 @@
 			});
 		}
 
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-		{
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage)) {
 			tooltip.push({
 				id = 7,
 				type = "text",

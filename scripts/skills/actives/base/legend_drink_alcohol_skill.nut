@@ -4,7 +4,7 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 		Effect = null,
 	},
 
-	function setItem( _i ) {
+	function setItem(_i) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
@@ -44,8 +44,7 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -57,64 +56,74 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function getCursorForTile( _tile ) {
-		if (_tile.ID == this.getContainer().getActor().getTile().ID)
+	function getCursorForTile(_tile) {
+		if (_tile.ID == this.getContainer().getActor().getTile().ID) {
 			return ::Const.UI.Cursor.Drink;
+		}
 		return ::Const.UI.Cursor.Give;
 	}
 
 	function isUsable() {
-		return !::Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return this.skill.isUsable() && !this.getContainer().getActor().isEngagedInMelee();
 	}
 
-	function onVerifyTarget( _originTile, _targetTile ) {
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
+		}
 
 		local target = _targetTile.getEntity();
 
-		if (!this.m.Container.getActor().isAlliedWith(target))
+		if (!this.m.Container.getActor().isAlliedWith(target)) {
 			return false;
+		}
 
-		if (target.getID() != _originTile.getEntity().getID() && !target.getItems().hasEmptySlot(::Const.ItemSlot.Bag))
+		if (target.getID() != _originTile.getEntity().getID() && !target.getItems().hasEmptySlot(::Const.ItemSlot.Bag)) {
 			return false;
+		}
 
-		if (!target.getFlags().has("human"))
+		if (!target.getFlags().has("human")) {
 			return false;
+		}
 
 		return true;
 	}
 
-
-	function onUse( _user, _targetTile ) {
+	function onUse(_user, _targetTile) {
 		local user = _targetTile.getEntity();
 
 		if (_user.getID() == user.getID()) {
-			if (user.getSkills().hasSkill("injury.severe_concussion") && user.getSkills().hasSkill("injury.sickness") && user.getSkills().hasSkill("injury.weakened_heart"))
+			if (user.getSkills().hasSkill("injury.severe_concussion") && user.getSkills().hasSkill("injury.sickness") && user.getSkills().hasSkill("injury.weakened_heart")) {
 				user.getSkills().add(this.new("scripts/skills/injury_permanent/brain_damage_injury"));
+			}
 
-			if (user.getSkills().hasSkill("injury.severe_concussion") && user.getSkills().hasSkill("injury.sickness"))
+			if (user.getSkills().hasSkill("injury.severe_concussion") && user.getSkills().hasSkill("injury.sickness")) {
 				user.getSkills().add(this.new("scripts/skills/injury_permanent/weakened_heart_injury"));
+			}
 
-			if (user.getSkills().hasSkill("injury.sickness"))
+			if (user.getSkills().hasSkill("injury.sickness")) {
 				user.getSkills().add(this.new("scripts/skills/injury/severe_concussion_injury"));
-			else if (user.getSkills().hasEffect(::Legends.Effect.Drunk))
+			} else if (user.getSkills().hasEffect(::Legends.Effect.Drunk)) {
 				user.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
-			else if (::Legends.Food.isTipsy(user))
+			} else if (::Legends.Food.isTipsy(user)) {
 				::Legends.Effects.grant(user, ::Legends.Effect.Drunk);
-			else if (this.m.Effect != null)
+			} else if (this.m.Effect != null) {
 				::Legends.Effects.grant(user, this.m.Effect);
+			}
 
-			if (!user.isHiddenToPlayer())
+			if (!user.isHiddenToPlayer()) {
 				::Tactical.EventLog.log(this.tacticalLogDrink(user));
+			}
 
-			if (this.m.Item != null && !this.m.Item.isNull())
+			if (this.m.Item != null && !this.m.Item.isNull()) {
 				this.m.Item.removeSelf();
+			}
 
 			::Const.Tactical.Common.checkDrugEffect(user);
 		} else {
-			if (!_user.isHiddenToPlayer())
+			if (!_user.isHiddenToPlayer()) {
 				::Tactical.EventLog.log(this.tacticalLogGive(_user, user));
+			}
 
 			this.spawnIcon("status_effect_93", _targetTile);
 			::Sound.play("sounds/combat/drink_01.wav", ::Const.Sound.Volume.Inventory);

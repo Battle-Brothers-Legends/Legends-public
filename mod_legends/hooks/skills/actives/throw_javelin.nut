@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/actives/throw_javelin", function(o) {
+::mods_hookExactClass("skills/actives/throw_javelin", function (o) {
 
 	local create = o.create;
 	o.create = function () {
@@ -28,7 +28,6 @@
 
 	o.getTooltip = function () {
 		local tooltip = this.getDefaultTooltip();
-
 		local ammo = this.getAmmo();
 		if (ammo > 0) {
 			tooltip.push({
@@ -36,10 +35,11 @@
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]%_ammo%[/color] javelins left",
-				param = [["_ammo", ammo]]
+				param = [
+					["_ammo", ammo]
+				]
 			});
-		}
-		else {
+		} else {
 			tooltip.push({
 				id = 8,
 				type = "text",
@@ -48,7 +48,8 @@
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		local actor = this.getContainer().getActor();
+		if (!::Legends.Perks.has(actor, ::Legends.Perk.LegendPointBlank) && actor.isEngagedInMelee()) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -61,22 +62,19 @@
 	}
 
 	o.isUsable = function () {
-		local isUsable = !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank)) {
-			return isUsable;
-		}
-
-		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		local actor = this.getContainer().getActor();
+		return this.skill.isUsable() && this.getAmmo() > 0 && (::Legends.Perks.has(actor, ::Legends.Perk.LegendPointBlank) || !actor.isEngagedInMelee());
 	}
 
-	o.onAfterUpdate = function ( _properties ) {
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
+	o.onAfterUpdate = function (_properties) {
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank)) {
 			this.m.MinRange = 1;
+		}
 
 		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
 			_properties.RangedSkill += this.m.HitChanceBonus;

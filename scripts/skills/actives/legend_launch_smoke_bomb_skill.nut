@@ -1,7 +1,7 @@
 this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/throw_smoke_bomb_skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.throw_smoke_bomb_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchSmokeBomb);
 		this.m.Description = "Ignite and launch, using your slingstaff, a pot filled with substances that upon impact will quickly create a dense cloud.";
@@ -18,52 +18,46 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/thro
 		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
 		ret.extend([
-		{
-			id = 5,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Covers [color=%damage%]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
-		},
-		{
-			id = 5,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Increases Ranged Defense by [color=%positive%]+100%[/color], but lowers Ranged Skill by [color=%negative%]-50%[/color] for anyone inside"
-		},
-		{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Extinguishes existing tile effects like Fire or Miasma"
-		}]);
+			{
+				id = 5,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Covers [color=%damage%]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
+			},
+			{
+				id = 5,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Increases Ranged Defense by [color=%positive%]+100%[/color], but lowers Ranged Skill by [color=%negative%]-50%[/color] for anyone inside"
+			},
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Extinguishes existing tile effects like Fire or Miasma"
+			}
+		]);
 
 		local ammo = 0;
-		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
-		{
-			if (item.getID() == "weapon.smoke_bomb")
-			{
-				if (item.getAmmo() != 0)
-				{
+		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)) {
+			if (item.getID() == "weapon.smoke_bomb") {
+				if (item.getAmmo() != 0) {
 					ammo += item.getAmmo();
 				}
 			}
 		}
 
-		if (ammo > 0)
-		{
+		if (ammo > 0) {
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]" + ammo + "[/color] use left"
 			});
-		}
-		else
-		{
+		} else {
 			ret.push({
 				id = 8,
 				type = "text",
@@ -75,36 +69,35 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/thro
 		return ret;
 	}
 
-	function isUsable()
-	{
-		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	function isUsable() {
+		return this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().isEngagedInMelee();
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		local actor = this.getContainer().getActor();
-		if (actor == null)
+		if (actor == null) {
 			return true;
-		if (actor.getCurrentProperties() == null)
+		}
+		if (actor.getCurrentProperties() == null) {
 			return true;
-		if (!actor.getCurrentProperties().IsSpecializedInSlings)
+		}
+		if (!actor.getCurrentProperties().IsSpecializedInSlings) {
 			return true;
-		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
+		}
+		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0) {
 			return false;
+		}
 		return this.skill.isHidden();
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			_properties.DamageRegularMin = 0;
 			_properties.DamageRegularMax = 0;
 		}
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.MaxRange = this.m.MaxRange + (_properties.IsSpecializedInSlings ? 1 : 0);
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}

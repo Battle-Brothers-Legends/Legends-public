@@ -9,8 +9,7 @@ this.legend_drink_heartwood_sap_skill <- this.inherit("scripts/skills/actives/ba
 		this.m.Effects = ["legend_greenwood_sap_effect"];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -35,8 +34,7 @@ this.legend_drink_heartwood_sap_skill <- this.inherit("scripts/skills/actives/ba
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -56,4 +54,3 @@ this.legend_drink_heartwood_sap_skill <- this.inherit("scripts/skills/actives/ba
 		return ::Const.UI.getColorizedEntityName(_user) + " gives Heartwood Sap to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
-

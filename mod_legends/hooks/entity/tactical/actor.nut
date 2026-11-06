@@ -678,4 +678,6 @@
 
 		return d;
 	}
+
+	o.isEngagedInMelee <- @() ::Tactical.isActive() && this.isPlacedOnMap() && this.getTile().hasZoneOfControlOtherThan(this.getAlliedFactions());
 });

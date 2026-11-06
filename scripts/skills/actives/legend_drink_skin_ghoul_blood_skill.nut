@@ -9,8 +9,7 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 		this.m.Effects = ["legend_skin_ghoul_blood_effect"];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
@@ -40,8 +39,7 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -61,4 +59,3 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 		return ::Const.UI.getColorizedEntityName(_user) + " gives Skin Ghoul Potion to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
-

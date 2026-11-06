@@ -58,7 +58,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -79,8 +79,9 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
+		local actor = this.getContainer().getActor();
 		local ammoNeeded = this.canDoubleGrip() ? 2 : 1;
-		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() >= ammoNeeded && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && this.getAmmo() > ammoNeeded;
 	}
 
 	function getAmmo() {

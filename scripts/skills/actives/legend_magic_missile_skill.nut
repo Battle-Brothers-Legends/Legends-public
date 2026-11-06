@@ -69,11 +69,7 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 
 	function isUsable() {
 		local actor = this.getContainer().getActor();
-		if (!actor.isArmedWithMagicStaff()) {
-			return false;
-		}
-
-		return this.skill.isUsable() && (!::Tactical.isActive() || !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()));
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && actor.isArmedWithMagicStaff();
 	}
 
 	function onAfterUpdate(_properties) {

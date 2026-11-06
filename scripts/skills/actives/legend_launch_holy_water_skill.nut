@@ -1,7 +1,7 @@
 this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/throw_holy_water", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.throw_holy_water.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchHolyWater);
 		this.m.Description = "Launch a flask of blessed water, with your slingstaff, towards a target, where it will shatter and spray its contents. The blessed water will burn the undead, but will not affect other targets.";
@@ -17,52 +17,46 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
 		ret.extend([
-		{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts [color=%damage%]20[/color] damage to hitpoints for [color=%damage%]3[/color] turns, all of which ignores armor"
-		},
-		{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well."
-		},
-		{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Only affects undead targets"
-		}]);
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/regular_damage.png",
+				text = "Inflicts [color=%damage%]20[/color] damage to hitpoints for [color=%damage%]3[/color] turns, all of which ignores armor"
+			},
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well."
+			},
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Only affects undead targets"
+			}
+		]);
 
 		local ammo = 0;
-		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
-		{
-			if (item.getID() == "weapon.holy_water")
-			{
-				if (item.getAmmo() != 0)
-				{
+		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)) {
+			if (item.getID() == "weapon.holy_water") {
+				if (item.getAmmo() != 0) {
 					ammo += item.getAmmo();
 				}
 			}
 		}
 
-		if (ammo > 0)
-		{
+		if (ammo > 0) {
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]" + ammo + "[/color] use left"
 			});
-		}
-		else
-		{
+		} else {
 			ret.push({
 				id = 8,
 				type = "text",
@@ -74,38 +68,38 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 		return ret;
 	}
 
-	function isUsable()
-	{
-		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	function isUsable() {
+		return this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().isEngagedInMelee();
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		local actor = this.getContainer().getActor();
-		if (actor == null)
+		if (actor == null) {
 			return true;
-		if (actor.getCurrentProperties() == null)
+		}
+		if (actor.getCurrentProperties() == null) {
 			return true;
-		if (!actor.getCurrentProperties().IsSpecializedInSlings)
+		}
+		if (!actor.getCurrentProperties().IsSpecializedInSlings) {
 			return true;
-		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
+		}
+		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0) {
 			return false;
+		}
 		return this.skill.isHidden();
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			_properties.DamageRegularMin = 0;
 			_properties.DamageRegularMax = 0;
 		}
 	}
 
-	function applyEffect( _target )
-	{
-		if (!_target.getFlags().has("undead"))
+	function applyEffect(_target) {
+		if (!_target.getFlags().has("undead")) {
 			return;
+		}
 
 		local effect = ::Legends.Effects.grant(_target, ::Legends.Effect.HolyWater);
 
@@ -117,52 +111,36 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 		effect.resetTime();
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
-		if (_originTile.Level + 1 < _targetTile.Level)
-		{
+		if (_originTile.Level + 1 < _targetTile.Level) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onApplyEffect( _data )
-	{
+	function onApplyEffect(_data) {
 		local targetEntity = _data.TargetTile.getEntity();
 
-		if (_data.Skill.m.SoundOnHit.len() != 0)
-		{
+		if (_data.Skill.m.SoundOnHit.len() != 0) {
 			::Sound.play(_data.Skill.m.SoundOnHit[::Math.rand(0, _data.Skill.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, targetEntity.getPos());
 		}
 
 		_data.Skill.applyEffect(targetEntity);
 
-		for( local i = 0; i < 6; i = ++i )
-		{
-			if (!_data.TargetTile.hasNextTile(i))
-			{
-			}
-			else
-			{
+		for (local i = 0; i < 6; i = ++i) {
+			if (!_data.TargetTile.hasNextTile(i)) {
+			} else {
 				local nextTile = _data.TargetTile.getNextTile(i);
 
-				if (::Math.rand(1, 100) > 33)
-				{
-				}
-				else if (nextTile.Level > _data.TargetTile.Level)
-				{
-				}
-				else if (!nextTile.IsOccupiedByActor)
-				{
-				}
-				else
-				{
+				if (::Math.rand(1, 100) > 33) {
+				} else if (nextTile.Level > _data.TargetTile.Level) {
+				} else if (!nextTile.IsOccupiedByActor) {
+				} else {
 					local entity = nextTile.getEntity();
 					_data.Skill.applyEffect(entity);
 				}
@@ -170,8 +148,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 		}
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.MaxRange = this.m.MaxRange + (_properties.IsSpecializedInSlings ? 1 : 0);
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}

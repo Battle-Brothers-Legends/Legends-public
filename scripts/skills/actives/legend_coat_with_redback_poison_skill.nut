@@ -45,8 +45,7 @@ this.legend_coat_with_redback_poison_skill <- this.inherit("scripts/skills/skill
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -58,29 +57,30 @@ this.legend_coat_with_redback_poison_skill <- this.inherit("scripts/skills/skill
 		return ret;
 	}
 
-	function getCurrentItem() { // search for more poison bottles if the one under this.m.Item is empty
-        if (this.m.Item.m.Ammo <= 0) {
+	function getCurrentItem() {
+		// search for more poison bottles if the one under this.m.Item is empty
+		if (this.m.Item.m.Ammo <= 0) {
 			local self = this;
-			local filledPoisons = this.getContainer().getActor().getItems().getAllItems().filter(@(_,_item) (_item.getID() == self.m.Item.getID() && _item.m.Ammo > 0));
+			local filledPoisons = this.getContainer().getActor().getItems().getAllItems().filter(@(_, _item)(_item.getID() == self.m.Item.getID() && _item.m.Ammo > 0));
 			foreach (item in filledPoisons) {
 				this.setItem(item);
 				return item;
 			}
 		}
 
-        return this.m.Item;
-    }
+		return this.m.Item;
+	}
 
-	function isHidden () {
+	function isHidden() {
 		return this.getCurrentItem().m.Ammo <= 0;
 	}
 
 	function isUsable() {
 		local actor = this.getContainer().getActor();
-		return (!::Tactical.isActive() || this.skill.isUsable()	&& !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) && (this.getCurrentItem().m.Ammo > 0);
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && this.getCurrentItem().m.Ammo > 0;
 	}
 
-	function onAfterUpdate (_properties) {
+	function onAfterUpdate(_properties) {
 		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPrepared) && ::Time.getRound() == 1) {
 			this.m.ActionPointCost = 0;
 		}

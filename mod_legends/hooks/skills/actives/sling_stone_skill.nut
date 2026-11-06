@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/actives/sling_stone_skill", function(o) {
+::mods_hookExactClass("skills/actives/sling_stone_skill", function (o) {
 	local create = o.create;
 	o.create = function () {
 		create();
@@ -16,28 +16,29 @@
 				icon = "ui/icons/special.png",
 				text = "Has a [color=%negative%]100%[/color] chance to baffle a target on a hit to the head"
 			});
+		} else {
+			ret.extend([
+				{
+					id = 7,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Has a [color=%positive%]100%[/color] chance to debilitate a target on a hit to the head"
+				},
+				{
+					id = 7,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Has a [color=%positive%]100%[/color] chance to baffle a target on a hit"
+				},
+				{
+					id = 8,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Ignores the bonus to Defense granted by shields"
+				}
+			]);
 		}
-		else {
-			ret.extend([{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]100%[/color] chance to debilitate a target on a hit to the head"
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]100%[/color] chance to baffle a target on a hit"
-			},
-			{
-				id = 8,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Ignores the bonus to Defense granted by shields"
-			}]);
-		}
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -49,12 +50,12 @@
 		return ret;
 	}
 
-	o.onAfterUpdate = function ( _properties ) {
+	o.onAfterUpdate = function (_properties) {
 		this.m.MaxRange = this.m.Item.getRangeMax() + (_properties.IsSpecializedInSlings ? 1 : 0);
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
 			_properties.RangedSkill += this.m.HitChanceBonus;
@@ -62,13 +63,12 @@
 			_properties.FatigueDealtPerHitMult += 2.0;
 		}
 
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-		{
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage)) {
 			this.m.IsShieldRelevant = false;
 		}
 	}
 
-	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+	o.onTargetHit = function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying()) {
 			local targetTile = _targetEntity.getTile();
 			local user = this.getContainer().getActor();

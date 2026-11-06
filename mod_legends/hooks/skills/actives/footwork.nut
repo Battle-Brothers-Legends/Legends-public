@@ -28,27 +28,7 @@
 	}
 
 	o.onUpdate <- function (_properties) {
-		local actor = this.getContainer().getActor();
-		this.m.IsFootwork = false;
-		if (::Tactical.isActive() && actor.isPlacedOnMap() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
-			local myTile = actor.getTile();
-
-			for (local i = 0; i < 6; i++) {
-				if (myTile.hasNextTile(i)) {
-					local nextTile = myTile.getNextTile(i);
-
-					if (nextTile.IsOccupiedByActor && ::Math.abs(nextTile.Level - myTile.Level) <= 1) {
-						local entity = nextTile.getEntity();
-
-						if (!entity.getCurrentProperties().IsStunned && !entity.isAlliedWith(actor)) {
-							this.m.IsFootwork = true;
-							break;
-						}
-					}
-				}
-			}
-		}
-		this.m.IsQuickStep = !this.m.IsFootwork;
+		this.m.IsFootwork = this.getContainer().getActor().isEngagedInMelee();
 	}
 
 	o.isUsable = function () {

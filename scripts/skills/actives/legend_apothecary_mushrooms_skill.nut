@@ -1,15 +1,13 @@
 this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/base/legend_eat_skill", {
 	m = {},
 
-	function create()
-	{
+	function create() {
 		this.legend_eat_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendApothecaryMushrooms);
 		this.m.Description = "Give these strange mushrooms to an adjacent ally, or eat them yourself to enter a state of trance-like state with otherworldly dodging and no sense of pain. May result in sickness. The effect will slowly wear off over 4 turns. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -52,8 +50,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -65,39 +62,29 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 		return ret;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local user = _targetTile.getEntity();
 
-		if (_user.getID() == user.getID())
-		{
+		if (_user.getID() == user.getID()) {
 			local shrooms = ::Legends.Effects.get(user, ::Legends.Effect.LegendApothecaryMushrooms);
 
-			if (shrooms != null)
-			{
+			if (shrooms != null) {
 				shrooms.resetTime();
-			}
-			else
-			{
+			} else {
 				::Legends.Effects.grant(user, ::Legends.Effect.LegendApothecaryMushrooms);
 			}
 
-			if (!_user.isHiddenToPlayer())
-			{
+			if (!_user.isHiddenToPlayer()) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " eats Magic Mushrooms");
 			}
 
-			if (this.m.Item != null && !this.m.Item.isNull())
-			{
+			if (this.m.Item != null && !this.m.Item.isNull()) {
 				this.m.Item.removeSelf();
 			}
 
 			::Const.Tactical.Common.checkDrugEffect(user);
-		}
-		else
-		{
-			if (!_user.isHiddenToPlayer())
-			{
+		} else {
+			if (!_user.isHiddenToPlayer()) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " gives Magic Mushrooms to " + ::Const.UI.getColorizedEntityName(user));
 			}
 
@@ -112,4 +99,3 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 	}
 
 });
-

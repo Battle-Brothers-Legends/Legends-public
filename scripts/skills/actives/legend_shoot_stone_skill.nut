@@ -65,7 +65,7 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 			}
 		]);
 
-		if (::Tactical.isActive() && this.getContainer().getActor().isEngagedInMelee()) {
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -78,7 +78,7 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
-		return !::Tactical.isActive() || (this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
+		return this.skill.isUsable() && !this.getContainer().getActor().isEngagedInMelee();
 	}
 
 	function onAfterUpdate(_properties) {

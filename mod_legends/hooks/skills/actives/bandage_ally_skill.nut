@@ -43,7 +43,7 @@
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			tooltip.push({
 				id = 5,
 				type = "text",

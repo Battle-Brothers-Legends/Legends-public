@@ -46,7 +46,7 @@ this.legend_drink_potion_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (this.getContainer().getActor().isEngagedInMelee())
 		{
 			ret.push({
 				id = 5,
@@ -66,7 +66,7 @@ this.legend_drink_potion_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
-		return !::Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return this.skill.isUsable() && !this.getContainer().getActor().isEngagedInMelee();
 	}
 
 	function onVerifyTarget( _originTile, _targetTile ) {

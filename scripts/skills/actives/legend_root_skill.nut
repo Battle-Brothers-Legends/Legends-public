@@ -30,7 +30,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip() {
 		local tooltip = this.getDefaultUtilityTooltip();
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			tooltip.push({
 				id = 5,
 				type = "text",

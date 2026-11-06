@@ -31,7 +31,7 @@
 
 	o.isUsable = function () {
 		local actor = this.getContainer().getActor();
-		return (!::Tactical.isActive() || this.skill.isUsable()	&& !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) && (this.getCurrentItem().m.Ammo > 0);
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && this.getCurrentItem().m.Ammo > 0;
 	}
 
 	o.onUse = function (_user, _targetTile) {

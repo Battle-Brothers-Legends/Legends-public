@@ -9,8 +9,7 @@ this.legend_drink_stollwurm_blood_skill <- this.inherit("scripts/skills/actives/
 		this.m.Effects = ["legend_stollwurm_blood_effect"];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -35,8 +34,7 @@ this.legend_drink_stollwurm_blood_skill <- this.inherit("scripts/skills/actives/
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -56,4 +54,3 @@ this.legend_drink_stollwurm_blood_skill <- this.inherit("scripts/skills/actives/
 		return ::Const.UI.getColorizedEntityName(_user) + " gives Stollwurm Blood to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
-

@@ -2,8 +2,8 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		IsSpent = false
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendQuickStep);
 		this.m.Description = "Exert yourself to move one tile at an unusually quick speed. Can only be used once per turn while outside of zone of control.";
 		this.m.SoundOnUse = ["sounds/combat/footwork_01.wav"];
@@ -25,8 +25,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -45,8 +44,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -55,8 +53,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
-		{
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -65,8 +62,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.m.IsSpent == true)
-		{
+		if (this.m.IsSpent == true) {
 			ret.push({
 				id = 10,
 				type = "text",
@@ -77,20 +73,12 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
-		if (this.skill.isUsable() && !this.m.IsSpent &&  !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && !this.getContainer().getActor().getCurrentProperties().IsRooted)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+	function isUsable() {
+		local actor = this.getContainer().getActor();
+		return this.skill.isUsable() && !this.m.IsSpent && !actor.isEngagedInMelee() && !actor.getCurrentProperties().IsRooted;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		// if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip))
 		// {
 		// 	this.m.MaxRange = 2;
@@ -104,32 +92,25 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 		// }
 	}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.m.IsSpent = false;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
-		if (!_targetTile.IsEmpty)
-		{
+		if (!_targetTile.IsEmpty) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		this.m.IsSpent = true;
 		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
 		return true;
 	}
-
 });
-

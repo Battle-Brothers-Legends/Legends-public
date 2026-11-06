@@ -27,8 +27,7 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
-		local actor = this.getContainer().getActor();
-		return !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions());
+		return this.skill.isUsable() && !this.getContainer().getActor().isEngagedInMelee();
 	}
 
 	function onUse(_user, _targetTile) {

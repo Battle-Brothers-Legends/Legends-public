@@ -4,8 +4,8 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		AdditionalHitChance = 0,
 		SoundOnFire = []
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLineThemUp);
 		this.m.Description = "Limit the recoil and shoot in a straight line with your handgonne.";
 		this.m.SoundOnFire = ::Legends.S.setSounds("sounds/combat/dlc6/fire_gonne", 4);
@@ -39,8 +39,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		this.m.HitChanceBonus = 10;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local tooltip = this.getDefaultTooltip();
 		local targets = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCrossbows ? 4 : 3;
 		tooltip.push({
@@ -51,17 +50,14 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		});
 		local ammo = this.getAmmo();
 
-		if (ammo > 0)
-		{
+		if (ammo > 0) {
 			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]" + ammo + "[/color] shots left"
 			});
-		}
-		else
-		{
+		} else {
 			tooltip.push({
 				id = 8,
 				type = "text",
@@ -70,8 +66,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (!this.getItem().isLoaded())
-		{
+		if (!this.getItem().isLoaded()) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -80,8 +75,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -93,27 +87,23 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function isUsable()
-	{
-		return this.skill.isUsable() && this.getItem().isLoaded() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	function isUsable() {
+		return this.skill.isUsable() && !this.getContainer().getActor().isEngagedInMelee() && this.getItem().isLoaded();
 	}
 
-	function getAmmo()
-	{
+	function getAmmo() {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
 
-		if (item == null)
-		{
+		if (item == null) {
 			return 0;
 		}
 
-		if (item.getAmmoType() == ::Const.Items.AmmoType.Powder)
-		{
+		if (item.getAmmoType() == ::Const.Items.AmmoType.Powder) {
 			return item.getAmmo();
 		}
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
 			_properties.RangedSkill += this.m.HitChanceBonus;
@@ -122,47 +112,37 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onTargetSelected( _targetTile )
-	{
+	function onTargetSelected(_targetTile) {
 		local affectedTiles = this.getAffectedTiles(_targetTile);
 
-		foreach( t in affectedTiles )
-		{
+		foreach (t in affectedTiles) {
 			::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, t, t.Pos.X, t.Pos.Y);
 		}
 	}
 
-	function applyEffectToTargets( _tag )
-	{
+	function applyEffectToTargets(_tag) {
 		local user = _tag.User;
 		local targets = _tag.Targets;
 
-		foreach( t in targets )
-		{
-			if (!t.IsOccupiedByActor || !t.getEntity().isAttackable())
-			{
+		foreach (t in targets) {
+			if (!t.IsOccupiedByActor || !t.getEntity().isAttackable()) {
 				continue;
 			}
 
 			local target = t.getEntity();
-			if (::Legends.S.isEntityNullOrDead(target))
+			if (::Legends.S.isEntityNullOrDead(target)) {
 				continue;
+			}
 			local success = this.attackEntity(user, target, false);
 
-			if (success && t.IsVisibleForPlayer)
-			{
-				if (user.getPos().X <= target.getPos().X)
-				{
-					for( local i = 0; i < ::Const.Tactical.ShrapnelLeftParticles.len(); i = ++i )
-					{
+			if (success && t.IsVisibleForPlayer) {
+				if (user.getPos().X <= target.getPos().X) {
+					for (local i = 0; i < ::Const.Tactical.ShrapnelLeftParticles.len(); i = ++i) {
 						local effect = ::Const.Tactical.ShrapnelLeftParticles[i];
 						::Tactical.spawnParticleEffect(false, effect.Brushes, t, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 0));
 					}
-				}
-				else
-				{
-					for( local i = 0; i < ::Const.Tactical.ShrapnelRightParticles.len(); i = ++i )
-					{
+				} else {
+					for (local i = 0; i < ::Const.Tactical.ShrapnelRightParticles.len(); i = ++i) {
 						local effect = ::Const.Tactical.ShrapnelRightParticles[i];
 						::Tactical.spawnParticleEffect(false, effect.Brushes, t, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 0));
 					}
@@ -171,8 +151,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function getAffectedTiles( _targetTile )
-	{
+	function getAffectedTiles(_targetTile) {
 		local ret = [
 			_targetTile
 		];
@@ -181,35 +160,30 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		local dir = ownTile.getDirectionTo(_targetTile);
 		local forwardTile;
 
-		if (_targetTile.hasNextTile(dir))
-		{
+		if (_targetTile.hasNextTile(dir)) {
 			forwardTile = _targetTile.getNextTile(dir);
 
-			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1)
-			{
+			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
 				ret.push(forwardTile);
 			}
 		}
 
-		if (forwardTile.hasNextTile(dir))
-		{
+		if (forwardTile.hasNextTile(dir)) {
 			local forwardTile = forwardTile.getNextTile(dir);
 
-			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1)
-			{
+			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
 				ret.push(forwardTile);
 			}
 		}
 
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInCrossbows)
+		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInCrossbows) {
 			return ret;
+		}
 
-		if (forwardTile.hasNextTile(dir))
-		{
+		if (forwardTile.hasNextTile(dir)) {
 			local forwardTile = forwardTile.getNextTile(dir);
 
-			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1)
-			{
+			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
 				ret.push(forwardTile);
 			}
 		}
@@ -217,13 +191,11 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInCrossbows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		::Sound.play(this.m.SoundOnFire[::Math.rand(0, this.m.SoundOnFire.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, _user.getPos());
 		local tag = {
 			Skill = this,
@@ -235,26 +207,19 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onDelayedEffect( _tag )
-	{
+	function onDelayedEffect(_tag) {
 		local user = _tag.User;
 		local targetTile = _tag.TargetTile;
 		local myTile = user.getTile();
 
-		if (myTile.IsVisibleForPlayer)
-		{
-			if (user.isAlliedWithPlayer())
-			{
-				for( local i = 0; i < ::Const.Tactical.HandgonneRightParticles.len(); i = ++i )
-				{
+		if (myTile.IsVisibleForPlayer) {
+			if (user.isAlliedWithPlayer()) {
+				for (local i = 0; i < ::Const.Tactical.HandgonneRightParticles.len(); i = ++i) {
 					local effect = ::Const.Tactical.HandgonneRightParticles[i];
 					::Tactical.spawnParticleEffect(false, effect.Brushes, myTile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 0));
 				}
-			}
-			else
-			{
-				for( local i = 0; i < ::Const.Tactical.HandgonneLeftParticles.len(); i = ++i )
-				{
+			} else {
+				for (local i = 0; i < ::Const.Tactical.HandgonneLeftParticles.len(); i = ++i) {
 					local effect = ::Const.Tactical.HandgonneLeftParticles[i];
 					::Tactical.spawnParticleEffect(false, effect.Brushes, myTile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 0));
 				}
@@ -273,4 +238,3 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

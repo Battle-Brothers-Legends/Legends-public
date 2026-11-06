@@ -35,11 +35,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	function isUsable() {
 		local actor = this.getContainer().getActor();
 
-		if (!::Tactical.isActive()) {
-			return false;
-		}
-
-		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
+		if (actor.isEngagedInMelee()) {
 			return false;
 		}
 
@@ -94,7 +90,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			});
 		}
 
-		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
+		if (actor.isEngagedInMelee()) {
 			ret.push({
 				id = 11,
 				type = "text",

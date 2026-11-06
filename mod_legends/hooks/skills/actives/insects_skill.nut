@@ -59,7 +59,7 @@
 				text = "[color=%negative%]-50%[/color] Initiative"
 			}
 		];
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))	{
+		if (this.getContainer().getActor().isEngagedInMelee())	{
 			ret.push({
 				id = 15,
 				type = "text",

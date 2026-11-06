@@ -9,8 +9,7 @@ this.legend_drink_hexe_ichor_potion_skill <- this.inherit("scripts/skills/active
 		this.m.Effects = ["legend_hexe_ichor_potion_effect", "goblin_poison_effect"];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -47,8 +46,7 @@ this.legend_drink_hexe_ichor_potion_skill <- this.inherit("scripts/skills/active
 			}
 		];
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -68,4 +66,3 @@ this.legend_drink_hexe_ichor_potion_skill <- this.inherit("scripts/skills/active
 		return ::Const.UI.getColorizedEntityName(_user) + " gives Hexen Ichor Potion to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
-

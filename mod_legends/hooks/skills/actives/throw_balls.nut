@@ -45,7 +45,8 @@
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		local actor = this.getContainer().getActor();
+		if (!::Legends.Perks.has(actor, ::Legends.Perk.LegendPointBlank) && actor.isEngagedInMelee()) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -58,12 +59,8 @@
 	}
 
 	o.isUsable = function () {
-		local isUsable = !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank)) {
-			return isUsable;
-		}
-
-		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		local actor = this.getContainer().getActor();
+		return this.skill.isUsable() && this.getAmmo() > 0 && (::Legends.Perks.has(actor, ::Legends.Perk.LegendPointBlank) || !actor.isEngagedInMelee());
 	}
 
 	o.onTargetHit <- function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {

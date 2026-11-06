@@ -85,11 +85,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable() {
 		local actor = this.getContainer().getActor();
-		if (!actor.isArmedWithMagicStaff()) {
-			return false;
-		}
-
-		return !::Tactical.isActive() || this.skill.isUsable() && !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions());
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && actor.isArmedWithMagicStaff();
 	}
 
 	function onUse(_user, _targetTile) {

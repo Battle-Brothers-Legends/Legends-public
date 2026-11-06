@@ -24,11 +24,7 @@ this.legend_stupefy_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable() {
 		local actor = this.getContainer().getActor();
-		if (!actor.isArmedWithMagicStaff()) {
-			return false;
-		}
-
-		return this.skill.isUsable() && (!::Tactical.isActive() || !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()));
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && actor.isArmedWithMagicStaff();
 	}
 
 	function getTooltip() {

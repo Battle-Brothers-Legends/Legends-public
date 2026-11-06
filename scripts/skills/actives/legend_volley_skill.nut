@@ -61,7 +61,7 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -105,10 +105,8 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
-		if (!this.getContainer().getActor().isArmedWithRangedWeapon()) {
-			return false;
-		}
-		return (!::Tactical.isActive() || this.skill.isUsable()) && this.getAmmo() > 2 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		local actor = this.getContainer().getActor();
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && actor.isArmedWithRangedWeapon() && this.getAmmo() > 2;
 	}
 
 

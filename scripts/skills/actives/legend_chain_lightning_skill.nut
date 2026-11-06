@@ -78,7 +78,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 				icon = "ui/tooltips/warning.png",
 				text = "[color=%negative%]Can only be used while wielding a magic staff[/color]"
 			});
-		} else if (::Tactical.isActive() && actor.isEngagedInMelee()) {
+		} else if (actor.isEngagedInMelee()) {
 			ret.push({
 				id = 10,
 				type = "text",
@@ -98,7 +98,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable() {
 		local actor = this.getContainer().getActor();
-		return actor.isArmedWithMagicStaff() && (!::Tactical.isActive() || this.skill.isUsable() && !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()));
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && actor.isArmedWithMagicStaff();
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {

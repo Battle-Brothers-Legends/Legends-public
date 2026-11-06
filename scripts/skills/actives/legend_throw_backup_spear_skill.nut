@@ -8,7 +8,7 @@ this.legend_throw_backup_spear_skill <- this.inherit("scripts/skills/actives/thr
 		this.m.FatigueCost = 20;
 	}
 
-	function getTooltip () {
+	function getTooltip() {
 		local tooltip = this.getDefaultTooltip();
 
 		local ammo = this.getAmmo();
@@ -18,10 +18,11 @@ this.legend_throw_backup_spear_skill <- this.inherit("scripts/skills/actives/thr
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]%_ammo%[/color] javelins left",
-				param = [["_ammo", ammo]]
+				param = [
+					["_ammo", ammo]
+				]
 			});
-		}
-		else {
+		} else {
 			tooltip.push({
 				id = 8,
 				type = "text",
@@ -30,7 +31,7 @@ this.legend_throw_backup_spear_skill <- this.inherit("scripts/skills/actives/thr
 			});
 		}
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			tooltip.push({
 				id = 9,
 				type = "text",

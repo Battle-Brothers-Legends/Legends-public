@@ -1,26 +1,20 @@
-::mods_hookExactClass("skills/actives/sleep_skill", function(o)
-{
+::mods_hookExactClass("skills/actives/sleep_skill", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "Use soothing vapours to lull an enemy to sleep. The chance of success is determined by their resolve";
 	}
 
-	o.onVerifyTarget = function ( _userTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_userTile, _targetTile))
-		{
+	o.onVerifyTarget = function (_userTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_userTile, _targetTile)) {
 			return false;
 		}
 
-		if (_targetTile.getEntity().getCurrentProperties().IsStunned || _targetTile.getEntity().getMoraleState() == ::Const.MoraleState.Ignore)
-		{
+		if (_targetTile.getEntity().getCurrentProperties().IsStunned || _targetTile.getEntity().getMoraleState() == ::Const.MoraleState.Ignore) {
 			return false;
 		}
 
-		if (_targetTile.getEntity().isNonCombatant())
-		{
+		if (_targetTile.getEntity().isNonCombatant()) {
 			return false;
 		}
 
@@ -55,15 +49,8 @@
 
 	// }
 
-	o.isUsable = function () //allows this skill to be used by non-melee entities now
-	{
-		if (!this.skill.isUsable())
-			return false;
-
-		if (this.getContainer().getActor().getFlags().has("alp"))
-			return true;
-
-		return !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	o.isUsable = function () {
+		local actor = this.getContainer().getActor();
+		return this.skill.isUsable() && (!this.isEngagedInMelee() || actor.getFlags().has("alp"));
 	}
-
 });

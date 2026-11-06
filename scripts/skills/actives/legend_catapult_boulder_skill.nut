@@ -3,8 +3,8 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		AdditionalAccuracy = 0,
 		AdditionalHitChance = 0
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCatapultBoulder);
 		this.m.Description = "Hurl a boulder towards a target with your catapult. Hard to aim and very unwieldy, but boulders are everywhere so you never run out of ammunition. Can not be used while engaged in melee.";
 		this.m.KilledString = "Crushed";
@@ -42,8 +42,7 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		this.m.HitChanceBonus = -70;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultTooltip();
 
 		ret.push({
@@ -53,8 +52,7 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 			text = "Has a [color=%negative%]100%[/color] chance to daze a target on a hit to the head"
 		});
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.getContainer().getActor().isEngagedInMelee()) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -66,13 +64,11 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
-		return !::Tactical.isActive() || !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	function isUsable() {
+		return this.skill.isUsable() && !this.getContainer().getActor().isEngagedInMelee();
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.DamageRegularMin += 100;
 		_properties.DamageRegularMax += 200;
 		_properties.DamageArmorMult *= 1.5;
@@ -80,16 +76,12 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDisembowel = 50;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-
-	function onUse( _user, _targetTile )
-	{
-		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
-		{
+	function onUse(_user, _targetTile) {
+		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer) {
 			this.getContainer().setBusy(true);
 			local tag = {
 				Skill = this,
@@ -98,26 +90,22 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 			};
 			::Time.scheduleEvent(::TimeUnit.Virtual, this.m.Delay, this.onPerformAttack, tag);
 
-			if (!_user.isPlayerControlled() && _targetTile.getEntity().isPlayerControlled())
-			{
+			if (!_user.isPlayerControlled() && _targetTile.getEntity().isPlayerControlled()) {
 				_user.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			return true;
-		}
-		else
-		{
+		} else {
 			return this.attackEntity(_user, _targetTile.getEntity());
 		}
 	}
 
-	function onPerformAttack( _tag )
-	{
+	function onPerformAttack(_tag) {
 		_tag.Skill.getContainer().setBusy(false);
 		return _tag.Skill.attackEntity(_tag.User, _tag.TargetTile.getEntity());
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
 			_properties.RangedSkill += this.m.HitChanceBonus;
@@ -125,16 +113,18 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_skill != this)
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (_skill != this) {
 			return;
+		}
 
-		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
+		}
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToStun)
+		if (_targetEntity.getCurrentProperties().IsImmuneToStun) {
 			return;
+		}
 
 		local targetTile = _targetEntity.getTile();
 		local user = this.getContainer().getActor();
@@ -142,12 +132,10 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		if (_bodyPart == ::Const.BodyPart.Head) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 
-			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-			{
+			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
 	}
 
 });
-

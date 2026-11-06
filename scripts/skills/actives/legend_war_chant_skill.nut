@@ -45,7 +45,7 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 		local actor = this.getContainer().getActor();
-		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
+		if (actor.isEngagedInMelee()) {
 			ret.push({
 				id = 8,
 				type = "text",
@@ -73,7 +73,7 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable() {
 		local actor = this.getContainer().getActor();
 		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		return this.skill.isUsable() && ::Tactical.isActive() && mainhand != null && mainhand.isWeaponType(::Const.Items.WeaponType.Musical) && !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions());
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && mainhand != null && mainhand.isWeaponType(::Const.Items.WeaponType.Musical);
 	}
 
 	function onUse(_user, _targetTile) {
