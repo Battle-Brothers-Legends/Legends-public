@@ -125,9 +125,9 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		this.starting_scenario.onInit();
 		::World.Flags.set("IsLegendsHunter", true);
 		::World.Flags.set("IsLegendsDruid", true);
-	}
-	function getMovementSpeedMult() {
-		return 1.057;
+		if (::World.State.getPlayer() != null) {
+			::World.State.getPlayer().m.BaseMovementSpeed = 111;
+		}
 	}
 
 	function onCombatFinished() {
