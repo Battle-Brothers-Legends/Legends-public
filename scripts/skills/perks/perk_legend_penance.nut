@@ -13,8 +13,7 @@ this.perk_legend_penance <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local ret = this.skill.getTooltip();
-		if (!("getActor" in this.getContainer())) {
-			// todo something about it? idk what, but tooltip on crafting screen goes here - chopeks
+		if (!::Tactical.isActive()) {
 			return ret;
 		}
 		local damageBonus = this.getDamageBonus();
@@ -79,6 +78,6 @@ this.perk_legend_penance <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.getDamageBonus() + "[/color] Maximum " + ::Legends.Text.inlineIcons("regular_damage") + ", [color=%positive%]+" + this.getResolveBonus() + "[/color] " + ::Legends.Text.inlineIcons("bravery");
+		return "[color=%positive%]+" + (this.getDamageBonus() * 100) + "%[/color] Maximum " + ::Legends.Text.inlineIcons("regular_damage") + ", [color=%positive%]+" + this.getResolveBonus() + "[/color] " + ::Legends.Text.inlineIcons("bravery");
 	}
 });

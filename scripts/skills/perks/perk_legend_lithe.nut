@@ -21,8 +21,9 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getDynamicTooltip(_actor = null) {
-		local bonus = this.getBonus(true, _actor);
-		local bonusWithoutDura = this.getBonus(false, _actor);
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+		local bonus = this.getBonus(true, actor);
+		local bonusWithoutDura = this.getBonus(false, actor);
 		local tooltip = [];
 		if (bonus > this.m.BonusMin) {
 			tooltip.push({
@@ -39,7 +40,7 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (_actor.getItems().getItemAtSlot(::Const.ItemSlot.Body) == null) {
+		if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Body) == null) {
 			tooltip.push({
 				id = 6,
 				type = "text",

@@ -411,6 +411,7 @@
 
 	o.getStaminaModifier <- function (_array) {
 		local self = this;
-		return _array.map(@(_itemSlot) self.getAllItemsAtSlot(_itemSlot).map(@(_item)(_item.getStaminaModifier())).reduce(@(p, c) p + c)).filter(@(_, _v)(_v != null)).reduce(@(p, c) p + c);
+		local res = _array.map(@(_itemSlot) self.getAllItemsAtSlot(_itemSlot).map(@(_item)(_item.getStaminaModifier())).reduce(@(p, c) p + c)).filter(@(_, _v)(_v != null)).reduce(@(p, c) p + c);
+		return res != null ? res : 0;
 	};
 });

@@ -3,22 +3,19 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 		Stacks = 0,
 		MaxStacks = 25
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendInTheZone);
 		this.m.Description = "%name% utilizes %their% armor\'s blend of protection and mobility to deal increased damage and gain increased accuracy when foes miss attacks against %them%.";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
-
 		local bonus = this.getBonus();
 		local actor = this.getContainer().getActor();
 
-		if (bonus > 0)
-		{
+		if (bonus > 0) {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -38,8 +35,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (!actor.isPlacedOnMap())
-		{
+		if (!actor.isPlacedOnMap()) {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -58,28 +54,23 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getBonus()
-	{
+	function getBonus() {
 		return this.m.Stacks * 0.5;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap())
-		{
+		if (!actor.isPlacedOnMap()) {
 			this.m.Stacks = 0;
 
 			local armorFat = actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) * -1;
 
-			if (actor.getInitiative() >= 2*armorFat)
-			{
+			if (actor.getInitiative() >= 2 * armorFat) {
 				this.m.Stacks = ::Math.min(this.m.MaxStacks, ::Math.max(0, armorFat - 15));
 			}
 		}
 
-		if (this.m.Stacks > 0)
-		{
+		if (this.m.Stacks > 0) {
 			local bonus = this.getBonus();
 			_properties.MeleeSkillMult *= 1 + bonus * 0.01;
 
@@ -91,23 +82,19 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMissed( _attacker, _skill )
-	{
-		if (_attacker != null && _skill != null && _skill.isAttack() && !_skill.isRanged())
-		{
+	function onMissed(_attacker, _skill) {
+		if (_attacker != null && _skill != null && _skill.isAttack() && !_skill.isRanged()) {
 			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
 		}
 	}
 
-	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
-	{
-		if (_attacker != null && _skill != null && _skill.isAttack())
-		{
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
+		if (_attacker != null && _skill != null && _skill.isAttack()) {
 			this.m.Stacks -= 2;
 		}
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.m.Stacks * 1 + "[/color] Melee " + ::Legends.Text.inlineIcons(["damage_dealt" ,"melee_skill"]);
+		return "[color=%positive%]+" + this.m.Stacks * 1 + "[/color] Melee " + ::Legends.Text.inlineIcons(["damage_dealt", "melee_skill"]);
 	}
 });
