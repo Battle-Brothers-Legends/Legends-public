@@ -623,6 +623,7 @@
 - changed the way immunities are displayed on enemy tooltip, expanded the list of displayed immunities
 - enemy tooltips reworked to include turns left, non-stacking effect stacks
 - added skill icons to weapons and shields
+- added simple values to stats in character screen on mouseover
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -706,6 +707,9 @@
 - fixed Immovable Object not granting its advertised effects on exactly 50 and 80 weight
 - fixed a bug where leaving camp and going into main menu would still allow the camp screen to pop up and crash the game on quit
 - fixed a bunch of camping desyncs on serialize/deserialize
+- fixed single throw spears and bolas not getting extra hit chance from Bloody Harvest
+- item skills should now properly reappear instantly on the bro after consuming an oblivion potion
+- fixed a bug with stray stake shots targeting vampires dealing extra dmg to other targets
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
@@ -751,6 +755,9 @@
 - `::Const.World.Common.convNameToList` becomes `::Legends.Items.convNameToList`
 - added a blueprint defs system, it is optional, but using it allows custom recipes to use profession crafting modifiers and to be categorized under certain filters
 - possible effect tooltips on named weapons are now defined in the m table so they can be added in weapon's own tooltip (for ordering)
+- a bunch of `::Legends.S` functions were moved to separate files, check depreciation messages
+- added some useful functions to `::Legends.Array`, `::Legends.Text`, `::Legends.Items` etc., check the helper directory
+- added `isEngagedInMelee` and `getOpponentsInRange(_maxrange, _minrange = 1)` functions to actor and `getStaminaModifier` to item container (behavior of the funcs known from msu should be unchanged)
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`
