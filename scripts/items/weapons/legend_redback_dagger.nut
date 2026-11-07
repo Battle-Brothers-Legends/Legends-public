@@ -61,7 +61,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Stab);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBackstab);
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
 		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendThrowKnife);
