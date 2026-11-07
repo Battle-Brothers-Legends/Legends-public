@@ -148,28 +148,32 @@
 		this.addRequirement(_text, this.checkRequiredSkills, _isNotImportant, _afterAddRequirementFunction);
 	}
 
-	o.checkRequiredSkills <- function ()
-	{
-		if (this.m.RequiredSkills.len() == 0)
-		{
+	o.checkRequiredSkills <- function () {
+		if (this.m.RequiredSkills.len() == 0) {
 			return true;
 		}
 
-		local isCorrectSkill = function( _skill )
-		{
-			if (this.m.RequiredSkills.find(_skill.getID()) != null) return true;
-
-			return false;
-		}
-
-		foreach (bro in ::World.getPlayerRoster().getAll())
-		{
-			if (bro.getSkills().getSkillsByFunction(isCorrectSkill.bindenv(this)).len() != 0)
-			{
+		local self = this;
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			if (bro.getSkills().m.Skills.filter(@(_, _skill)(!_skill.isGarbage() && self.m.RequiredSkills.find(_skill.getID()) != null)).len() != 0) {
 				this.m.LinkedBro = bro;
 				break;
 			}
 		}
+
+		/* return to what's below if problems arise, unused atm
+		local isCorrectSkill = function( _skill ) {
+			if (this.m.RequiredSkills.find(_skill.getID()) != null) return true;
+			return false;
+		}
+
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			if (bro.getSkills().getSkillsByFunction(isCorrectSkill.bindenv(this)).len() != 0) {
+				this.m.LinkedBro = bro;
+				break;
+			}
+		}
+		*/
 
 		return this.m.LinkedBro != null && this.m.LinkedBro.isAlive();
 	}

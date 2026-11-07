@@ -187,9 +187,7 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gained 1 Initiative from " + ::Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
 
-		local target_skills = _targetEntity.getSkills().getSkillsByFunction(function(skill) {
-			return skill.isType(::Const.SkillType.Perk);
-		});
+		local target_skills = _targetEntity.getSkills().query(::Const.SkillType.Perk, true);
 		local allperks = [];
 
 		for (local i = 0; i != target_skills.len(); i++) {
