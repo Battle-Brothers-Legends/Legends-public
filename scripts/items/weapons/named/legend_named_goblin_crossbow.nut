@@ -2,18 +2,16 @@ this.legend_named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/n
 	m = {
 		IsLoaded = true
 	},
-	function isLoaded()
-	{
+
+	function isLoaded() {
 		return this.m.IsLoaded;
 	}
 
-	function setLoaded( _l )
-	{
+	function setLoaded(_l) {
 		this.m.IsLoaded = _l;
 	}
 
-	function create()
-	{
+	function create() {
 		this.named_weapon.create();
 		this.m.Variant = ::Math.rand(1, 2);
 		this.updateVariant();
@@ -43,24 +41,20 @@ this.legend_named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/n
 		this.randomizeValues();
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		this.m.IconLarge = "weapons/ranged/goblin_crossbow_named_0" + this.m.Variant + ".png";
 		this.m.Icon = "weapons/ranged/goblin_crossbow_named_0" + this.m.Variant + "_70x70.png";
 		this.m.ArmamentIcon = "icon_goblin_crossbow_named_0" + this.m.Variant;
 	}
 
-	function getAmmoID()
-	{
+	function getAmmoID() {
 		return "ammo.bolts";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = this.weapon.getTooltip();
 
-		if (!this.m.IsLoaded)
-		{
+		if (!this.m.IsLoaded) {
 			result.push({
 				id = 9,
 				type = "text",
@@ -79,16 +73,13 @@ this.legend_named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/n
 		return result;
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.ShootStake, function(_skill)
-		{
+		::Legends.Actives.grant(this, ::Legends.Active.ShootStake, function (_skill) {
 			_skill.m.Name = "Shoot Stake";
 		});
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
-		if (!this.m.IsLoaded)
-		{
+		if (!this.m.IsLoaded) {
 			::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 		}
 		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
@@ -97,33 +88,8 @@ this.legend_named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/n
 		}.bindenv(this));
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.weapon.onCombatFinished();
 		this.m.IsLoaded = true;
 	}
-
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		local item = _skill.getItem();
-
-		if (!_skill.isAttack())
-			return;
-
-		if (!_skill.isRanged())
-			return;
-
-		if (item == null)
-			return;
-
-		if (item.getID() != this.getID())
-			return;
-
-		if (_targetEntity != null && (_targetEntity.getType() == ::Const.EntityType.Vampire || _targetEntity.getType() == ::Const.EntityType.LegendVampireLord))
-		{
-			_properties.DamageRegularMin += 100;
-			_properties.DamageRegularMax += 100;
-		}
-	}
-
 });

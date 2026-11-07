@@ -1,7 +1,7 @@
 this.legend_wooden_stake <- this.inherit("scripts/items/weapons/weapon", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_wooden_stake";
 		this.m.Name = "Wooden Stake";
@@ -26,39 +26,12 @@ this.legend_wooden_stake <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageAdd = -0.05;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		local item = _skill.getItem();
-
-		if (!_skill.isAttack())
-			return;
-
-		if (!_skill.isRanged())
-			return;
-
-		if (item == null)
-			return;
-
-		if (item.getID() != this.getID())
-			return;
-
-		if (_targetEntity != null && (_targetEntity.getType() == ::Const.EntityType.Vampire || _targetEntity.getType() == ::Const.EntityType.LegendVampireLord))
-		{
-			_properties.DamageRegularMin += 100;
-			_properties.DamageRegularMax += 105;
-		}
-	}
-
-	function onEquip()
-	{
+	function onEquip() {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Stab);
 	}
 
-	function onUpdateProperties( _properties )
-	{
+	function onUpdateProperties(_properties) {
 		this.weapon.onUpdateProperties(_properties);
 	}
-
 });
-

@@ -1,7 +1,6 @@
-::mods_hookExactClass("items/weapons/greenskins/goblin_crossbow", function(o) {
+::mods_hookExactClass("items/weapons/greenskins/goblin_crossbow", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "A large and heavy crossbow with menacing spikes in front. More like a miniature ballista, it shoots stakes with enough force to knock back a target hit. Very effective against vampires.";
 		this.setVariant(::Math.rand(0, 1));
@@ -19,7 +18,7 @@
 		return result;
 	}
 
-	o.updateVariant <- function() {
+	o.updateVariant <- function () {
 		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
 		this.m.Icon = "weapons/ranged/crossbow_goblin_01" + v + "_70x70.png";
 		this.m.IconLarge = "weapons/ranged/crossbow_goblin_01" + v + ".png";
@@ -38,8 +37,7 @@
 	}
 
 	local onEquip = o.onEquip;
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
 		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
@@ -48,32 +46,8 @@
 		}.bindenv(this));
 	}
 
-	o.onCombatFinished = function ()
-	{
+	o.onCombatFinished = function () {
 		this.weapon.onCombatFinished();
 		this.setLoaded(true);
-	}
-
-	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
-	{
-		local item = _skill.getItem();
-
-		if (!_skill.isAttack())
-			return;
-
-		if (!_skill.isRanged())
-			return;
-
-		if (item == null)
-			return;
-
-		if (item.getID() != this.getID())
-			return;
-
-		if (_targetEntity != null && (_targetEntity.getType() == ::Const.EntityType.Vampire || _targetEntity.getType() == ::Const.EntityType.LegendVampireLord))
-		{
-			_properties.DamageRegularMin += 100;
-			_properties.DamageRegularMax += 100;
-		}
 	}
 });
