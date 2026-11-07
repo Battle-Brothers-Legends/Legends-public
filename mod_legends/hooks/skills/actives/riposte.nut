@@ -1,8 +1,4 @@
 ::mods_hookExactClass("skills/actives/riposte", function(o) {
-	o.setItem <- function (_item) {
-		this.skill.setItem(_item);
-	}
-
 	local create = o.create;
 	o.create <- function () {
 		create();

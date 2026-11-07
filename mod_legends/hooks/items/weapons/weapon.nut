@@ -237,7 +237,12 @@
 		local skillsGranted = [];
 		local dummy = ::World.getTemporaryRoster().create("scripts/entity/tactical/human");
 		local dummyItem = ::new(::IO.scriptFilenameByHash(this.ClassNameHash));
-		dummyItem.addSkill = @(_skill)(skillsGranted.push(_skill));
+		dummyItem.addSkill = function (_skill) {
+			_skill.setItem(dummyItem);
+			if (!_skill.m.IsHidden) {
+				skillsGranted.push(_skill);
+			}
+		};
 		dummyItem.weapon.onEquip = @() {};
 		dummyItem.setContainer(dummy.getItems());
 		dummyItem.onEquip();

@@ -15,10 +15,9 @@
 		::Legends.Effect.Stunned,
 	];
 
-	local create = o.create;
-	o.create = function () {
-		create();
-		this.m.IsHidden = true;
+	o.setItem <- function (_item) {
+		this.m.IsHidden = !this.m.DeathblowBonus;
+		this.skill.setItem(_item);
 	}
 
 	o.getTooltip = function () {

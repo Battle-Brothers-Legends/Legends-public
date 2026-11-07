@@ -18,7 +18,6 @@ this.legend_halfsword_skill <- this.inherit("scripts/skills/actives/puncture", {
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 25;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.IsHidden = true;
 		this.m.HitChanceBonus = -80;
 	}
 
