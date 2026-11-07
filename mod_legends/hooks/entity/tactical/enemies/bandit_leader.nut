@@ -189,10 +189,8 @@
 		local r = ::Math.rand(1, 100);
 
 		if (r < 30) {
-			local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;  // Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
-			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
-			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_battle_whip");
-			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
+			local incompatibleWeapons = ["weapons/named/named_battle_whip", "weapons/named/named_dagger", "weapons/named/named_estoc"];
+			local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons.filter(@(_, _weapon) (incompatibleWeapons.find(_weapon) == null));  // Temporary solution to prevent these minibosses from spawning with bad or incompatible weapons
 			this.getItems().equip(::Legends.Items.pickItem(namedWeaponArray.map(@(_it)[1, _it]), "scripts/items/"));
 		} else if (r < 60) {
 			local named = ::Const.Items.NamedArmors;

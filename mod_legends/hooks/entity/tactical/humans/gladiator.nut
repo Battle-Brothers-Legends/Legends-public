@@ -107,8 +107,7 @@
 			if (::Math.rand(0, 1) == 0) {
 				this.m.Items.equip(this.new("scripts/items/" + ::Const.Items.NamedSouthernMeleeWeapons[::Math.rand(0, ::Const.Items.NamedSouthernMeleeWeapons.len() - 1)]));
 			} else {
-				local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;  // Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
-				::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
+				local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons.filter(@(_, _weapon)(_weapon != "weapons/named/named_dagger")); // Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
 				this.m.Items.equip(this.new("scripts/items/" + ::Legends.Array.rand(namedWeaponArray)));
 			}
 		} else if (r == 2) {
