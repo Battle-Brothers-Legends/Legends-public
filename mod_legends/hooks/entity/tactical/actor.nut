@@ -306,7 +306,7 @@
 
 		// Get all items that are adding skills to this character and unequip them to remove those skills
 		// Necessary, as some items may add perks
-		local items = this.getItems().getAllItems().filter(@(idx, item) item.getSkills().len() != 0);
+		local items = this.getItems().getAllItems();
 		foreach (item in items) {
 			this.getItems().unequip(item);
 		}

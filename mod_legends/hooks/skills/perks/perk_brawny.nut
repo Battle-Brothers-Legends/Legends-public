@@ -10,12 +10,10 @@
 			return;
 		}
 
-		local weapons = this.getContainer().getActor().getItems().getAllItems().filter(@(idx, item) item.isItemType(::Const.Items.ItemType.Weapon) && item.getSkills().len() != 0);
-		foreach (weapon in weapons) {
-			if (weapon != null && weapon.m.FatigueOnSkillUse > 0) {
-				foreach (skill in weapon.getSkills()) {
-					skill.m.FatigueCost -= 1;
-				}
+		local actor = this.getContainer().getActor();
+		foreach (weapon in [actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand), actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand)].filter(@(_, _item)(_item != null && _item.isItemType(::Const.Items.ItemType.Weapon) && _item.m.FatigueOnSkillUse > 0))) {
+			foreach (skill in actor.getSkills().queryActives().filter(@(_, _skill)(_skill.getItem() != null && _skill.getItem().get() == weapon))) {
+				skill.m.FatigueCost -= 1;
 			}
 		}
 	}
