@@ -189,6 +189,8 @@
 					// Compare set to set
 					tooltip.extend(equippedArmor.getCompareTooltip(2));
 				}
+				_item.applyCompareHints(tooltip, equippedArmor);
+				tooltip.top().divider <- "bottom";
 			} else if (equippedLayer != null && ::MSU.isKindOf(_item, "legend_armor_upgrade")) {
 				tooltip.extend(equippedLayer.getCompareTooltip(2));
 				_item.applyCompareHints(tooltip, equippedLayer);

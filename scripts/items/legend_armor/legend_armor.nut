@@ -186,6 +186,10 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		return ::Math.floor(upgradeMultiplier * this.getAddedValue("getStaminaModifier", this.m.StaminaModifier));
 	}
 
+	function getBaseStaminaModifier() {
+		return this.m.StaminaModifier;
+	}
+
 	function getValue()
 	{
 		return ::Math.floor(this.getAddedValue("getValue", this.m.Value * (1.0 * this.m.Condition / (1.0 * this.m.ConditionMax))));
@@ -816,7 +820,129 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		return result;
 	}
 
-	function applyCompareHints( _tooltipList, _compareLayer)
+	function applyCompareHints( _tooltipList, _compareItem)
+	{
+
+		if (_compareItem == null) {
+			return;
+		}
+		
+		local compareMath;
+		local compareArmor;
+		local compareWeight;
+		local compareArmorPerWeight;
+		local hasStatDiff = false;
+		local itemText = "";
+
+		local armorDiff = 0;
+		local thisArmor = 0;
+		local otherArmor = 0;
+		local weightDiff = 0;
+		local thisWeight = 0;
+		local otherWeight = 0;
+		local efficiencyDiff = 0;
+		local thisEfficiency = 0;
+		local otherEfficiency = 0;
+
+		local compareEfficiency = ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() && this.getStaminaModifier() < 0 && _compareItem.getStaminaModifier() < 0;
+
+		if (this.hasUpgrades()) {
+			// Compare set to set
+			itemText = "armor set";
+			thisArmor = this.getArmorMax();
+			otherArmor = _compareItem.getArmorMax();
+			thisWeight = this.getStaminaModifier();
+			otherWeight = _compareItem.getStaminaModifier();
+			if (compareEfficiency) {
+				thisEfficiency = this.getArmorMax() / (1.0 * ::Math.abs(this.getStaminaModifier()));
+				otherEfficiency = _compareItem.getArmorMax() / (1.0 * ::Math.abs(_compareItem.getStaminaModifier()));
+			}
+		} else {
+			// Compare base armors
+			itemText = "base armor layer";
+			thisArmor = this.getConditionMax();
+			otherArmor = _compareItem.getConditionMax();
+			thisWeight = this.getBaseStaminaModifier();
+			otherWeight = _compareItem.getBaseStaminaModifier();
+			if (compareEfficiency) {
+				thisEfficiency = this.getConditionMax() / (1.0 * ::Math.abs(this.getBaseStaminaModifier()));
+				otherEfficiency = _compareItem.getConditionMax() / (1.0 * ::Math.abs(_compareItem.getBaseStaminaModifier()));
+			}
+		}
+
+		armorDiff = thisArmor - otherArmor;
+		weightDiff = thisWeight - otherWeight;
+		efficiencyDiff = thisEfficiency - otherEfficiency;
+
+		_tooltipList.push({
+			id = 20,
+			type = "hint",
+			text = ::Legends.Text.highlightForLightBackground("Changes if you equip this %itemText%:"),
+			param = [
+				["itemText", itemText]
+			]
+		});
+
+		if (armorDiff != 0) {
+			hasStatDiff = true;
+			_tooltipList.push({
+				id = 20,
+				type = "hint",
+				icon = "ui/icons/armor_body.png",
+				text = "%_diff% Armor (%_this_armor% vs %_compared_armor%)"
+				param = [
+					["_diff", ::Legends.Text.addSignAndColorize(armorDiff, false)],
+					["_this_armor", thisArmor],
+					["_compared_armor", otherArmor]
+				]
+			});
+		}
+
+		if (weightDiff != 0) {
+			hasStatDiff = true;
+			_tooltipList.push({
+				id = 20,
+				type = "hint",
+				icon = "ui/icons/fatigue.png",
+				text = "%_diff% Fatigue Weight Penalty (%_this_weight% vs %_compared_weight%)",
+				param = [
+					["_diff", ::Legends.Text.addSignAndColorize(weightDiff, false)],
+					["_this_weight", thisWeight],
+					["_compared_weight", otherWeight]
+				]
+			});
+		}
+
+		if (compareEfficiency && efficiencyDiff != 0) {
+			hasStatDiff = true;
+			_tooltipList.push({
+				id = 20,
+				type = "hint",
+				icon = "ui/icons/fatigue.png",
+				text = "%_diff% Armor per 1 Weight (%_this_efficiency% vs %_other_efficiency%)",
+				param = [
+					["_diff", ::Legends.Text.colorize((efficiencyDiff > 0 ? "+" : "") + format("%.1f", efficiencyDiff), efficiencyDiff)],
+					["_this_efficiency", format("%.1f", thisEfficiency)],
+					["_other_efficiency", format("%.1f", otherEfficiency)]
+				]
+			});
+		}
+
+		local length = _tooltipList.len();
+
+		// TODO: compare standardised effects
+		// TODO: compare runes
+
+		if (!hasStatDiff && _tooltipList.len() == length) {
+			_tooltipList.push({
+				id = 20,
+				type = "hint",
+				icon = "ui/tooltips/money_sw.png",
+				text = "No difference",
+			});
+		}
+	}
+
 	function onAddedToStash( _stashID ) {
 		foreach (u in this.m.Upgrades) {
 			if (u != null && u.isNamed()) {
