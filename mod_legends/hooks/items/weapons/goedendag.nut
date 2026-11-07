@@ -18,9 +18,9 @@
 	}
 
 	o.addSkill <- function (_skill) {
-		this.weapon.addSkill(_skill);
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Thrust)) {
 			_skill.m.IsGoedendagThrust = true;
-		}		
+		}
+		this.weapon.addSkill(_skill);
 	}
 });

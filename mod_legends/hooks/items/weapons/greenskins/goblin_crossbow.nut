@@ -31,10 +31,10 @@
 	}
 
 	o.addSkill <- function (_skill) {
-		this.weapon.addSkill(_skill);
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.ShootStake)) {
 			_skill.m.Name = "Shoot Stake";
 		}
+		this.weapon.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;
