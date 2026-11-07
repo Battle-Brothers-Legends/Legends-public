@@ -1,18 +1,12 @@
-::mods_hookExactClass("items/weapons/legendary/lightbringer_sword", function(o) {
+::mods_hookExactClass("items/weapons/legendary/lightbringer_sword", function (o) {
+	o.m.SoundOnLightning <- ::Legends.S.setSounds("sounds/combat/dlc2/legendary_lightning", 2);
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
 	}
 
-	o.m.SoundOnLightning <- [
-		"sounds/combat/dlc2/legendary_lightning_01.wav",
-		"sounds/combat/dlc2/legendary_lightning_02.wav"
-	];
-	o.m.TargetTile <- null;
-
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local result = this.weapon.getTooltip();
 		result.push({
 			id = 6,
@@ -23,20 +17,16 @@
 		return result;
 	}
 
-	o.addSkill <- function( _skill )
-	{
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SlashLightning))
-		{
+	o.addSkill <- function (_skill) {
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SlashLightning)) {
 			::Legends.Actives.grant(this, ::Legends.Active.Slash);
 			return;
 		}
-
 		this.weapon.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHalfsword);
 		::Legends.Actives.grant(this, ::Legends.Active.Hammer, function (_skill) {
@@ -44,67 +34,67 @@
 		}.bindenv(this));
 	}
 
-	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill.getItem() != null && _skill.getItem().getID() == this.getID() && _targetEntity != null)
-			this.m.TargetTile = _targetEntity.getTile();
-	}
-
-	o.applyEffect <- function ( _data, _delay )
-	{
-		::Time.scheduleEvent(::TimeUnit.Virtual, _delay, function ( _data )
-		{
-			for( local i = 0; i < ::Const.Tactical.LightningParticles.len(); i = ++i )
-			{
+	o.applyEffect <- function (_data, _delay) {
+		::Time.scheduleEvent(::TimeUnit.Virtual, _delay, function (_data) {
+			for (local i = 0; i < ::Const.Tactical.LightningParticles.len(); i++) {
 				::Tactical.spawnParticleEffect(true, ::Const.Tactical.LightningParticles[i].Brushes, _data.TargetTile, ::Const.Tactical.LightningParticles[i].Delay, ::Const.Tactical.LightningParticles[i].Quantity, ::Const.Tactical.LightningParticles[i].LifeTimeQuantity, ::Const.Tactical.LightningParticles[i].SpawnRate, ::Const.Tactical.LightningParticles[i].Stages);
 			}
 		}, _data);
 
-		if (_data.Target == null)
-			return;
-
-		if (!_data.Target.isAlive())
-			return;
-
-		if (_data.Target.isDying())
-			return;
-
-		::Time.scheduleEvent(::TimeUnit.Virtual, _delay + 200, function ( _data )
-		{
-			local hitInfo = clone ::Const.Tactical.HitInfo;
-			hitInfo.DamageRegular = ::Math.rand(10, 20);
-			hitInfo.DamageDirect = 1.0;
-			hitInfo.BodyPart = ::Const.BodyPart.Body;
-			hitInfo.BodyDamageMult = 1.0;
-			hitInfo.FatalityChanceMult = 0.0;
-			_data.Target.onDamageReceived(_data.User, _data.Skill, hitInfo);
-		}, _data);
+		if (!::Legends.S.isEntityNullOrDead(_data.Target)) {
+			::Time.scheduleEvent(::TimeUnit.Virtual, _delay + 200, function (_data) {
+				local hitInfo = clone ::Const.Tactical.HitInfo;
+				hitInfo.DamageRegular = ::Math.rand(10, 20);
+				hitInfo.DamageDirect = 1.0;
+				hitInfo.BodyPart = ::Const.BodyPart.Body;
+				hitInfo.BodyDamageMult = 1.0;
+				hitInfo.FatalityChanceMult = 0.0;
+				_data.Target.onDamageReceived(_data.User, _data.Skill, hitInfo);
+			}, _data);
+		}
 	}
 
-	o.onDamageDealt <- function ( _target, _skill, _hitInfo )
-	{
+	o.findTargets <- function (_user, _targetTile, _selectedTargets) {
+		local targets = {
+			EntityTiles = [],
+			Tiles = []
+		}
+		for (local i = 0; i < 6; i++) {
+			if (_targetTile.hasNextTile(i)) {
+				local tile = _targetTile.getNextTile(i);
+
+				if (tile.ID != _user.getTile().ID) {
+					targets.Tiles.push(tile);
+				}
+
+				if (tile.IsOccupiedByActor && tile.getEntity().isAttackable() && !tile.getEntity().isAlliedWith(_user) && _selectedTargets.find(tile.getEntity().getID()) == null) {
+					targets.EntityTiles.push(tile);
+				}
+			}
+		}
+		return targets;
+	}
+
+	o.onDamageDealt <- function (_target, _skill, _hitInfo) {
+		local targetTile = _hitInfo.Tile;
 		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
-		if (_skill == null || _skill.isGarbage())
+		if (_skill == null || _skill.isGarbage()) {
 			return;
-		local item = _skill.getItem();
-		if (item == null)
-			return;
-		if (_skill.getItem().getID() != this.getID())
-			return;
-		local selectedTargets = [];
-		local potentialTargets = [];
-		local potentialTiles = [];
-		local target = null;
-		local targetTile = this.m.TargetTile != null ? this.m.TargetTile : _target.getTile();
-		local user = this.getContainer().getActor();
-		local myTile = user.getTile();
-		if (this.m.SoundOnLightning.len() != 0)
-		{
-			::Sound.play(this.m.SoundOnLightning[::Math.rand(0, this.m.SoundOnLightning.len() - 1)], ::Const.Sound.Volume.Skill * 2.0, user.getPos());
 		}
 
-		if (targetTile != null && _target != null && _target.isAlive() && !_target.isDying())
-		{
+		local item = _skill.getItem();
+		if (item == null || _skill.getItem().getID() != this.getID()) {
+			return;
+		}
+
+		local user = this.getContainer().getActor();
+		if (this.m.SoundOnLightning.len() != 0) {
+			::Sound.play(::Legends.Array.rand(this.m.SoundOnLightning), ::Const.Sound.Volume.Skill * 2.0, user.getPos());
+		}
+
+		local selectedTargets = [];
+		local target = null;
+		if (targetTile != null && !::Legends.S.isEntityNullOrDead(_target)) {
 			target = targetTile.getEntity();
 			selectedTargets.push(target.getID());
 		}
@@ -116,99 +106,27 @@
 			Target = target
 		};
 		this.applyEffect(data, 100);
-		potentialTargets = [];
-		potentialTiles = [];
 
-		for( local i = 0; i < 6; i = ++i )
-		{
-			if (!targetTile.hasNextTile(i))
-			{
+		local _delay = 350;
+		for (local i = 0; i < 2; i++) {
+			local targets = this.findTargets(user, targetTile, selectedTargets);
+			if (targets.EntityTiles.len() != 0) {
+				target = ::Legends.Array.rand(targets.EntityTiles).getEntity();
+				selectedTargets.push(target.getID());
+				targetTile = target.getTile();
+			} else {
+				target = null;
+				targetTile = ::Legends.Array.rand(targets.Tiles);
 			}
-			else
-			{
-				local tile = targetTile.getNextTile(i);
 
-				if (tile.ID != myTile.ID)
-				{
-					potentialTiles.push(tile);
-				}
-
-				if (!tile.IsOccupiedByActor || !tile.getEntity().isAttackable() || tile.getEntity().isAlliedWith(user) || selectedTargets.find(tile.getEntity().getID()) != null)
-				{
-					continue;
-				}
-				else
-				{
-					potentialTargets.push(tile);
-				}
-			}
+			local data = {
+				Skill = _skill,
+				User = user,
+				TargetTile = targetTile,
+				Target = target
+			};
+			this.applyEffect(data, _delay);
+			_delay += 200;
 		}
-
-		if (potentialTargets.len() != 0)
-		{
-			target = potentialTargets[::Math.rand(0, potentialTargets.len() - 1)].getEntity();
-			selectedTargets.push(target.getID());
-			targetTile = target.getTile();
-		}
-		else
-		{
-			target = null;
-			targetTile = potentialTiles[::Math.rand(0, potentialTiles.len() - 1)];
-		}
-
-		local data = {
-			Skill = _skill,
-			User = user,
-			TargetTile = targetTile,
-			Target = target
-		};
-		this.applyEffect(data, 350);
-		potentialTargets = [];
-		potentialTiles = [];
-
-		for( local i = 0; i < 6; i = ++i )
-		{
-			if (!targetTile.hasNextTile(i))
-			{
-				continue;
-			}
-			else
-			{
-				local tile = targetTile.getNextTile(i);
-
-				if (tile.ID != myTile.ID)
-				{
-					potentialTiles.push(tile);
-				}
-
-				if (!tile.IsOccupiedByActor || !tile.getEntity().isAttackable() || tile.getEntity().isAlliedWith(user) || selectedTargets.find(tile.getEntity().getID()) != null)
-				{
-				}
-				else
-				{
-					potentialTargets.push(tile);
-				}
-			}
-		}
-
-		if (potentialTargets.len() != 0)
-		{
-			target = potentialTargets[::Math.rand(0, potentialTargets.len() - 1)].getEntity();
-			selectedTargets.push(target.getID());
-			targetTile = target.getTile();
-		}
-		else
-		{
-			target = null;
-			targetTile = potentialTiles[::Math.rand(0, potentialTiles.len() - 1)];
-		}
-
-		local data = {
-			Skill = _skill,
-			User = user,
-			TargetTile = targetTile,
-			Target = target
-		};
-		this.applyEffect(data, 550);
 	}
 });
