@@ -710,6 +710,7 @@
 - fixed single throw spears and bolas not getting extra hit chance from Bloody Harvest
 - item skills should now properly reappear instantly on the bro after consuming an oblivion potion
 - fixed a bug with stray stake shots targeting vampires dealing extra dmg to other targets
+- holy fire's consecrated effect now properly renders undead vulnerable to poisons
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

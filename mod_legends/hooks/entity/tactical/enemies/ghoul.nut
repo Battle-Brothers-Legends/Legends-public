@@ -2,6 +2,7 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
+		this.m.BaseProperties.IsImmuneToPoison = true;
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);

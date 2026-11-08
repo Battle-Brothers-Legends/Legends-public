@@ -4,7 +4,7 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
-		
+		b.IsImmuneToPoison = true;
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBoneBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);

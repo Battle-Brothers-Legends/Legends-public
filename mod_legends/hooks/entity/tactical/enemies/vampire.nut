@@ -64,6 +64,7 @@
 		b.setValues(::Const.Tactical.Actor.Vampire);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
+		b.IsImmuneToPoison = true;
 		b.IsSpecializedInSwords = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;

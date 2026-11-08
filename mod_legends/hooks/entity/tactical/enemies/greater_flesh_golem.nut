@@ -1,11 +1,9 @@
-::mods_hookExactClass("entity/tactical/enemies/greater_flesh_golem", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/greater_flesh_golem", function (o) {
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
-		
+		b.IsImmuneToPoison = true;
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBoneBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
@@ -23,8 +21,8 @@
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
-		this.legend_flesh_golem.onDeath( _killer, _skill, _tile, _fatalityType );
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
+		this.legend_flesh_golem.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
 	o.makeMiniboss <- function () {

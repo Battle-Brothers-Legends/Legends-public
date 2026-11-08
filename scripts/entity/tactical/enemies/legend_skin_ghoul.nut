@@ -164,6 +164,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		b.setValues(::Const.Tactical.Actor.LegendSkinGhoul);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
+		b.IsImmuneToPoison = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;

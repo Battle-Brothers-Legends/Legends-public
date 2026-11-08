@@ -74,10 +74,6 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 			return;
 		}
 
-		if (_targetEntity.getFlags().has("undead")) {
-			return;
-		}
-
 		if (!_targetEntity.isHiddenToPlayer()) {
 			if (this.m.SoundOnUse.len() != 0) {
 				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());

@@ -26,9 +26,6 @@ this.legend_rsw_poison_effect <- this.inherit("scripts/skills/skill", {
 		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
 			return;
 
-		if (_targetEntity.getFlags().has("undead"))
-			return;
-
 		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _targetEntity.getHitpoints() <= 0)
 			return;
 

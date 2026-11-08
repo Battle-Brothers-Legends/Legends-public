@@ -7,6 +7,7 @@
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
+		b.IsImmuneToPoison = true;
 
 		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Undead.WiedergangerDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;

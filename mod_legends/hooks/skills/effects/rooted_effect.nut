@@ -81,10 +81,6 @@
 			}
 		}
 
-		if (actor.getFlags().has("undead")) {
-			return;
-		}
-
 		if (actor.getCurrentProperties().IsImmuneToPoison || (hp - actor.getHitpoints()) < ::Const.Combat.PoisonEffectMinDamage || actor.getHitpoints() <= 0) {
 			return;
 		}

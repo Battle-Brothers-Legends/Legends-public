@@ -99,9 +99,6 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		if (!_target.isAlive())
 			return;
 
-		if (_target.getFlags().has("undead"))
-			return;
-
 		if (!_target.isHiddenToPlayer())
 		{
 			if (this.m.SoundOnUse.len() != 0)
