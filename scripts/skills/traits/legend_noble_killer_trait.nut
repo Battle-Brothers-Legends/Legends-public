@@ -1,7 +1,7 @@
 this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
 		::Legends.Traits.onCreate(this, ::Legends.Trait.LegendNobleKiller);
 		this.m.Description = "This character has learned from birth how to fight noble houses";
@@ -14,8 +14,7 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -42,10 +41,8 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 		];
 	}
 
-	function onUpdate( _properties )
-	{
-		if (!this.getContainer().getActor().isPlacedOnMap())
-		{
+	function onUpdate(_properties) {
+		if (!this.getContainer().getActor().isPlacedOnMap()) {
 			// If not in battle, then this should be a trait and not a status effect
 			this.m.Type = ::Const.SkillType.Trait;
 			return;
@@ -54,21 +51,18 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 		local fightingNobles = false;
 		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
-		foreach( enemy in enemies )
-		{
-			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.NobleHouse)
-			{
+		foreach (enemy in enemies) {
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.NobleHouse) {
 				fightingNobles = true;
 				break;
 			}
 		}
 
-		if (fightingNobles)
-		{
+		if (fightingNobles) {
 			_properties.MeleeSkill += 10;
 			_properties.RangedSkill += 10;
 			// Make this a status effect so it will be visible for the battle
-			this.m.Type = ::Const.SkillType.StatusEffect;
+			this.m.Type = ::Const.SkillType.Trait | ::Const.SkillType.StatusEffect;
 		} else {
 			// Make this a trait so it will not be visible for the battle
 			this.m.Type = ::Const.SkillType.Trait;

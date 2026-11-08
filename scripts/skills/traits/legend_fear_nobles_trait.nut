@@ -74,7 +74,7 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 			_properties.MeleeSkillMult *= 0.95;
 			_properties.RangedSkillMult *= 0.95;
 			// Make this a status effect so it will be visible for the battle
-			this.m.Type = ::Const.SkillType.StatusEffect;
+			this.m.Type = ::Const.SkillType.Trait | ::Const.SkillType.StatusEffect;
 		} else {
 			// Make this a trait so it will not be visible for the battle
 			this.m.Type = ::Const.SkillType.Trait;

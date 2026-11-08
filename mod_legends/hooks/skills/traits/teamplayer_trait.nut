@@ -75,7 +75,7 @@
 
 		if (isSupported) {
 			this.m.IsBonusActive = true;
-			this.m.Type = ::Const.SkillType.StatusEffect;
+			this.m.Type = ::Const.SkillType.Trait | ::Const.SkillType.StatusEffect;
 			_properties.MeleeSkillMult *= 1.05;
 			_properties.RangedSkillMult *= 1.05;
 		} else {

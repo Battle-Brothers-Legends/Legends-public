@@ -3,11 +3,11 @@ this.perk_legend_big_game_hunter <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBigGameHunter);
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function onUpdate(_properties) {
-		this.m.Type = !this.getContainer().getActor().isPlacedOnMap() ? ::Const.SkillType.Trait : ::Const.SkillType.StatusEffect;
+		this.m.Type = !this.getContainer().getActor().isPlacedOnMap() ? ::Const.SkillType.Perk : (::Const.SkillType.Perk | ::Const.SkillType.StatusEffect);
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {

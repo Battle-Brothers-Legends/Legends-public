@@ -64,7 +64,7 @@ this.legend_natural_order_trait <- this.inherit("scripts/skills/traits/character
 			_properties.MeleeDamageMult *= 1.1;
 			_properties.RangedDamageMult *= 1.1;
 			// Make this a status effect so it will be visible for the battle
-			this.m.Type = ::Const.SkillType.StatusEffect;
+			this.m.Type = ::Const.SkillType.Trait | ::Const.SkillType.StatusEffect;
 		} else {
 			// Make this a trait so it will not be visible for the battle
 			this.m.Type = ::Const.SkillType.Trait;

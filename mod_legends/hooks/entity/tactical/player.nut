@@ -1525,74 +1525,11 @@
 		this.m.LastCampTime = _t;
 	}
 
-	o.getDeadTraits <- function () {
-		local skills = this.getSkills().query(::Const.SkillType.Trait, false, true);
+	o.getDeadTraits <- @() this.getSkills().query(::Const.SkillType.Trait, false, true).filter(@(_, _skill)(!_skill.isType(::Const.SkillType.Special))).map(@(_skill) {id = ::IO.scriptFilenameByHash(_skill.ClassNameHash), icon = _skill.getIcon()});
 
-		local list_traits = [];
-
-		local Trait = ::Const.SkillType.Trait;
-		local Background = ::Const.SkillType.Background;
-		local StatusEffect = ::Const.SkillType.StatusEffect;
-		local Special = ::Const.SkillType.Special;
-
-		foreach (_, s in skills) {
-			if ((s.isType(Trait) || s.isType(Background)) && !s.isType(StatusEffect) && !s.isType(Special)) {
-				local trait_data = {
-					id = ::IO.scriptFilenameByHash(s.ClassNameHash),
-					icon = s.getIcon()
-				};
-				list_traits.append(trait_data);
-			}
-		}
-
-		return list_traits;
-	};
-
-	o.getDeadPerks <- function () {
-		local all_perks = ::Const.Perks.PerkDefObjects;
-
-		local list_perks = [];
-		local PerkType = ::Const.SkillType.Perk;
-
-		foreach (_, skill in this.getSkills().query(PerkType, true, true)) {
-			if (!skill.isType(PerkType)) {
-				continue;
-			}
-
-			local scriptPath = ::IO.scriptFilenameByHash(skill.ClassNameHash);
-
-			// Find matching perk definition
-			local matches = ::MSU.Table.filter(all_perks, @(_, perk) perk.Script == scriptPath);
-
-			if (matches.len() > 0) {
-				local def = ::MSU.Table.values(matches)[0];  // first match (should only be one)
-				list_perks.append({
-					id = scriptPath,
-					icon = def.Icon
-				});
-			}
-		}
-
-		return list_perks;
-	};
-
-	o.getDeadPermanentInjury <- function () {
-		local PermanentInjury = ::Const.SkillType.PermanentInjury;
-		local skills = this.getSkills().query(PermanentInjury);
-		local list_perminjuries = [];
-
-		foreach (_, s in skills) {
-			if (s.isType(::Const.SkillType.PermanentInjury)) {
-				local injury_data = {
-					id = ::IO.scriptFilenameByHash(s.ClassNameHash),
-					icon = s.getIcon()
-				};
-				list_perminjuries.append(injury_data);
-			}
-		}
-
-		return list_perminjuries;
-	};
+	o.getDeadPerks <- @() this.getSkills().query(::Const.SkillType.Perk, true, true).map(@(_skill) {id = ::IO.scriptFilenameByHash(_skill.ClassNameHash), icon = _skill.getIcon()});
+	
+	o.getDeadPermanentInjury <- @() this.getSkills().query(::Const.SkillType.PermanentInjury, true, true).map(@(_skill) {id = ::IO.scriptFilenameByHash(_skill.ClassNameHash), icon = _skill.getIcon()});
 
 	o.playSound <- function (_type, _volume, _pitch = 1.0) {
 		if (this.m.Sound[_type].len() == 0) {
