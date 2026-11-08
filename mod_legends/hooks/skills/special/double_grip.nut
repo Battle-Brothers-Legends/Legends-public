@@ -26,7 +26,7 @@
 	}
 
 	o.onUpdate = function (_properties) {
-		this.m.DirectDamageAdd += ::Math.floor(_properties.MeleeSkill * 0.25) * 0.01;
+		this.m.DirectDamageAdd = ::Math.floor(_properties.MeleeSkill * 0.25) * 0.01;
 	}
 
 	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
