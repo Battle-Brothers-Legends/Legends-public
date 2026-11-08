@@ -763,6 +763,7 @@
 - added `isEngagedInMelee()` and `getOpponentsInRange(_maxrange, _minrange = 1)` functions to actor and `getAllItemsAtSlots(_array)` and `getStaminaModifier(_array)` to item container (behavior of the funcs known from msu should be unchanged)
 - added `canDoubleGrip()` to actor and `allowsDoubleGrip()` to weapons, the latter allowing offhand weapons like the Hand Crossbow to allow Double Grip
 - changed the way Double Grip is calculated to only apply to melee weapon attacks
+- Perk Duelist now lists exact item ids rather than arbitrary strings in Allowed Items
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

@@ -1,45 +1,35 @@
 ::mods_hookExactClass("skills/perks/perk_duelist", function (o) {
 	o.m.AllowedWeapons <- [
-		//"_parrying_dagger",
-		// "_hand_crossbow",
-		"buckler",
-		"legend_mummy_shield"
+		"shield.buckler",
+		"shield.named_buckler",
+		"shield.legend_mummy_shield"
 	];
-	local create = o.create;
+
 	o.create = function () {
-		create();
-		this.m.Icon = "ui/perks/perk_41.png";
-		this.m.Type = ::Const.SkillType.Perk;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.Duelist);
 	}
 
-	// o.getDescription <- function ()
-	// {
-	// 	return "Become one with your weapon and go for the weak spots!";
-	// }
+	o.getDynamicTooltip <- function (_actor = null) {
+		local tooltip = this.skill.getTooltip();
+		local bonus = this.getBonus(_actor) * 100;
+		if (bonus == 0) {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]You do not have the right equipment to receive Duelist's passive effect[/color]"
+			});
+			return tooltip;
+		}
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/direct_damage.png",
+			text = "[color=%positive%]+" + bonus + "%[/color] of any damage ignores armor"
+		});
 
-	// o.getTooltip <- function ()
-	// {
-	// 	local tooltip = this.skill.getTooltip();
-	// 	local bonus = this.getBonus() * 100;
-	// 	if (bonus == 0)
-	// 	{
-	// 		tooltip.push({
-	// 			id = 6,
-	// 			type = "text",
-	// 			icon = "ui/tooltips/warning.png",
-	// 			text = "[color=%negative%]You do not have the right equipment to receive Duelist's effect[/color]"
-	// 		});
-	// 		return tooltip;
-	// 	}
-	// 	tooltip.push({
-	// 		id = 6,
-	// 		type = "text",
-	// 		icon = "ui/icons/direct_damage.png",
-	// 		text = "[color=%positive%]"+ bonus + "%[/color] of any damage ignores armor"
-	// 	});
-
-	// 	return tooltip;
-	// }
+		return tooltip;
+	}
 
 	o.onAdded <- function () {
 		if (!this.m.Container.hasActive(::Legends.Active.LegendFlourish)) {
@@ -51,48 +41,22 @@
 		::Legends.Actives.remove(this, ::Legends.Active.LegendFlourish);
 	}
 
-	o.isValid <- function (_mainhand, _offhand) {
-		if (_mainhand == null && _offhand == null) {
-			return false;
-		}
+	o.isValid <- @(_mainhand, _offhand)(_mainhand != null || _offhand != null);
 
-		return true;
-	}
-
-	o.isValidOffhand <- function (_mainhand, _offhand) {
-		if (_offhand == null) {
-			return false;
-		}
-
-		foreach (valid in this.m.AllowedWeapons) {
-			if (::MSU.String.endsWith(_offhand.getID(), valid)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
+	o.isValidOffhand <- @(_mainhand, _offhand)(_offhand != null && this.m.AllowedWeapons.find(_offhand.getID()) != null);
 
 	// you can just hook this or isValid/isFullEffect/isPartialEffect and the tooltip will auto calculate without needing to replace anything
-	o.getBonus <- function () {
-		local main = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local off = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		if (!this.isValid(main, off)) {
-			return 0;
-		}
-
-		if (this.isValidOffhand(main, off)) {
-			return 0.25;
-		}
-
-		return 0;
+	o.getBonus <- function (_actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+		local main = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local off = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		return (this.isValid(main, off) && (this.isValidOffhand(main, off)) ? 0.25 : 0);
 	}
 
 	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
-		if (_skill.isRanged()) {
-			return;
+		if (!_skill.isRanged()) {
+			_properties.DamageDirectAdd += this.getBonus();
 		}
-		_properties.DamageDirectAdd += this.getBonus();
 	}
 
 	o.onUpdate = function (_properties) {}

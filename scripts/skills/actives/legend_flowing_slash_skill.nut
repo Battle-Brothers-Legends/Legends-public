@@ -13,7 +13,7 @@ this.legend_flowing_slash_skill <- this.inherit("scripts/skills/actives/slash", 
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=%positive%]%chance%%[/color] chance to reroll a missed attack",
+			text = "Has a [color=%positive%]%_chance%%[/color] chance to reroll a missed attack",
 			param = [["_chance", chance]]
 		});
 		return ret;

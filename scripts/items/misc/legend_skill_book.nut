@@ -61,12 +61,12 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 			}
 		];
 
-		if (::MSU.String.endsWith(this.m.ID, "skill_book")) {
+		if (this.m.ID != "misc.legend_ancient_scroll") {
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "You can only read one skill book per character, so choose wisely"
+				text = "Every character can only read one skill book, so choose wisely"
 			});
 		}
 

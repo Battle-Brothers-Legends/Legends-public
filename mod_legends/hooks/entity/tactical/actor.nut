@@ -346,7 +346,7 @@
 		this.m.PerkPoints = 0;
 		this.m.PerkPointsSpent = 0;
 
-		local skillsToRemove = this.getSkills().query(::Const.SkillType.Perk, true).filter(@(_, _skill) (_skill.m.IsSerialized && nonRefundable.find(_skill.getID()) == null));
+		local skillsToRemove = this.getSkills().query(::Const.SkillType.Perk, true).filter(@(_, _skill)(_skill.m.IsSerialized && nonRefundable.find(_skill.getID()) == null));
 		foreach (s in skillsToRemove) {
 			this.getSkills().removeByID(s.getID());
 		}
