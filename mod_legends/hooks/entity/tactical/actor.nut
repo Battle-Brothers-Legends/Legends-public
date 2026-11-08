@@ -306,7 +306,7 @@
 
 		// Get all items that are adding skills to this character and unequip them to remove those skills
 		// Necessary, as some items may add perks
-		local items = this.getItems().getAllItems();
+		local items = this.getItems().getAllItemsAtSlots([::Const.ItemSlot.Body, ::Const.ItemSlot.Head, ::Const.ItemSlot.Mainhand, ::Const.ItemSlot.Offhand, ::Const.ItemSlot.Accessory]);
 		foreach (item in items) {
 			this.getItems().unequip(item);
 		}

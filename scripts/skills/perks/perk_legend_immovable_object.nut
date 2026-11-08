@@ -9,14 +9,8 @@ this.perk_legend_immovable_object <- this.inherit("scripts/skills/skill", {
 
 	function getBonus(_actor = null) {
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
-		return -0.1 * actor.getItems().getStaminaModifier([
-			::Const.ItemSlot.Body,
-			::Const.ItemSlot.Head,
-			::Const.ItemSlot.Mainhand,
-			::Const.ItemSlot.Offhand,
-			::Const.ItemSlot.Bag,
-			::Const.ItemSlot.Accessory
-		]);
+		local fat = actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head, ::Const.ItemSlot.Mainhand, ::Const.ItemSlot.Offhand, ::Const.ItemSlot.Bag, ::Const.ItemSlot.Accessory]);
+		return fat < 0 ? -0.1 * fat : 0;
 	}
 
 	function onUpdate(_properties) {

@@ -409,9 +409,7 @@
 		}
 	}
 
-	o.getStaminaModifier <- function (_array) {
-		local self = this;
-		local res = _array.map(@(_itemSlot) self.getAllItemsAtSlot(_itemSlot).map(@(_item)(_item.getStaminaModifier())).reduce(@(p, c) p + c)).filter(@(_, _v)(_v != null)).reduce(@(p, c) p + c);
-		return res != null ? res : 0;
-	};
+	o.getAllItemsAtSlots <- @(_array) _array.map((@(_itemSlot) this.getAllItemsAtSlot(_itemSlot)).bindenv(this)).reduce(@(p, c)(p.extend(c), p));
+
+	o.getStaminaModifier <- @(_array) this.getAllItemsAtSlots(_array).map(@(_item) _item.getStaminaModifier()).reduce(@(p, c) p + c) || 0;
 });
