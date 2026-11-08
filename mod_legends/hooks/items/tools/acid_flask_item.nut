@@ -1,10 +1,9 @@
-::mods_hookExactClass("items/tools/acid_flask_item", function(o) {
+::mods_hookExactClass("items/tools/acid_flask_item", function (o) {
 	o.m.OriginalValue <- null;
 	o.m.OriginalDescription <- null;
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "A flask filled with the concentrate of a Lindwurm\'s acidic blood. It is highly corrosive to many materials and burns through armor quickly. Can be thrown at short ranges. If the company has Alchemy Tools, this item is refilled after each battle, consuming 30 ammunition per use.";
 		this.m.OriginalDescription = this.m.Description;
@@ -17,8 +16,7 @@
 		this.m.RangeMax = 3;
 	}
 
-	o.getTooltip = function()
-	{
+	o.getTooltip = function () {
 		local result = [
 			{
 				id = 1,
@@ -32,17 +30,14 @@
 			}
 		];
 
-		if (this.getIconLarge() != null)
-		{
+		if (this.getIconLarge() != null) {
 			result.push({
 				id = 3,
 				type = "image",
 				image = this.getIconLarge(),
 				isLarge = true
 			});
-		}
-		else
-		{
+		} else {
 			result.push({
 				id = 3,
 				type = "image",
@@ -51,34 +46,35 @@
 		}
 
 		result.extend([
-		{
-			id = 66,
-			type = "text",
-			text = this.getValueString()
-		},
-		{
-			id = 64,
-			type = "text",
-			text = "Worn in Offhand"
-		},
-		{
-			id = 7,
-			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
-		},
-		{
-			id = 4,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Reduces the target\'s armor by [color=%damage%]20%[/color] each turn for 3 turns"
-		},
-		{
-			id = 5,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well"
-		}]);
+			{
+				id = 66,
+				type = "text",
+				text = this.getValueString()
+			},
+			{
+				id = 64,
+				type = "text",
+				text = "Worn in Offhand"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
+			},
+			{
+				id = 4,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Reduces the target\'s armor by [color=%damage%]20%[/color] each turn for 3 turns"
+			},
+			{
+				id = 5,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well"
+			}
+		]);
 		if (::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0) {
 			result.push({
 				id = 6,
@@ -94,46 +90,48 @@
 				text = "Costs [color=%negative%]" + this.m.AmmoCost + "[/color] Ammo to refill"
 			});
 		}
+		local grantedSkills = this.getGrantedSkills();
+		foreach (skill in grantedSkills) {
+			result.push({
+				id = 23,
+				type = "text",
+				icon = skill.m.Icon,
+				text = skill.getName() + (skill.isActive() ? " (" + skill.m.ActionPointCost + ::Legends.Text.inlineIcons("action_points") + ", " + skill.m.FatigueCost + ::Legends.Text.inlineIcons("fatigue") + ")" : "")
+			});
+		}
 		return result;
 	}
 
-	o.consumeAmmo <- function()
-	{
+	o.consumeAmmo <- function () {
 		this.m.AmmoCost = 0;
 		this.weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
 		this.m.AmmoCost = 30;
 	}
 
-	o.isAmountShown <- function ()
-	{
+	o.isAmountShown <- function () {
 		return true;
 	}
 
-	o.getAmountString <- function ()
-	{
+	o.getAmountString <- function () {
 		return this.m.Ammo + "/" + this.m.AmmoMax;
 	}
 
-	o.getAmmo <- function() // prevent item from being refilled without the retinue
+	o.getAmmo <- function () // prevent item from being refilled without the retinue
 	{
-		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0 ? this.m.AmmoMax + 1 : this.m.Ammo;
+		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0 ? this.m.AmmoMax + 1: this.m.Ammo;
 	}
 
-	o.setAmmo <- function ( _a )
-	{
-		this.weapon.setAmmo( _a );
+	o.setAmmo <- function (_a) {
+		this.weapon.setAmmo(_a);
 
-		if (this.m.Ammo > 0)
-		{
+		if (this.m.Ammo > 0) {
 			this.m.Name = "Acid Flask";
 			this.m.IconLarge = "tools/acid_flask_01.png";
 			this.m.Icon = "tools/acid_flask_01_70x70.png";
 			this.m.ShowArmamentIcon = true;
 			this.m.Description = this.m.OriginalDescription;
 			this.m.Value = this.m.OriginalValue;
-		}
-		else
-		{
+		} else {
 			this.m.Name = "Acid Flask (Used)";
 			this.m.IconLarge = "tools/acid_flask_01.png";
 			this.m.Icon = "tools/acid_flask_01_70x70.png";
@@ -145,23 +143,22 @@
 		this.updateAppearance();
 	}
 
-	o.onPutIntoBag <- function ()
-	{
+	o.onPutIntoBag <- function () {
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchAcidFlask);
-		if (skill != null && this.getAmmo() > 0)
+		if (skill != null && this.getAmmo() > 0) {
 			skill.setItem(this);
+		}
 	}
 
-	o.onSlingUpdateProperties <- function ()
-	{
+	o.onSlingUpdateProperties <- function () {
 		this.onPutIntoBag();
 	}
 
-	o.onRemovedFromBag <- function()
-	{
+	o.onRemovedFromBag <- function () {
 		this.item.onRemovedFromBag();
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchAcidFlask);
-		if (skill != null)
+		if (skill != null) {
 			skill.setItem(null);
+		}
 	}
 });

@@ -84,6 +84,15 @@
 				text = "Costs [color=%negative%]" + this.m.AmmoCost + "[/color] Ammo to refill"
 			});
 		}
+		local grantedSkills = this.getGrantedSkills();
+		foreach (skill in grantedSkills) {
+			result.push({
+				id = 23,
+				type = "text",
+				icon = skill.m.Icon,
+				text = skill.getName() + (skill.isActive() ? " (" + skill.m.ActionPointCost + ::Legends.Text.inlineIcons("action_points") + ", " + skill.m.FatigueCost + ::Legends.Text.inlineIcons("fatigue") + ")" : "")
+			});
+		}
 		return result;
 	}
 
