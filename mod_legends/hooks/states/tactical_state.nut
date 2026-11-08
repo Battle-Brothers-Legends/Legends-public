@@ -459,15 +459,11 @@
 					for (local i = tile.Items.len() - 1; i >= 0; --i) {
 						local item = tile.Items[i];
 
-						if (!item.isItemType(::Const.Items.ItemType.Net) || item.m.OwnerID == null) {
-							continue;
-						}
-						if (!(item.m.OwnerID in bros)) {
+						if (!item.isItemType(::Const.Items.ItemType.Net) || !("OwnerID" in item.m) || item.m.OwnerID == null || !(item.m.OwnerID in bros)) {
 							continue;
 						}
 
 						local bro = bros[item.m.OwnerID];
-
 						if (bro.getItems().equip(item) || bro.getItems().addToBag(item)) {
 							tile.Items.remove(i).m.OwnerID = null;
 						}

@@ -154,7 +154,7 @@
 		}
 
 		foreach (item in this.getStash().getItems()) {
-			if (item != null && item.isItemType(::Const.Items.ItemType.Net)) {
+			if (item != null && item.isItemType(::Const.Items.ItemType.Net) && ("OwnerID" in item.m)) {
 				allItems.push(item);
 			}
 		}

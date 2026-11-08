@@ -18,14 +18,13 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function () {
 		local ret = getTooltip();
-		if (::Legends.Effects.has(this, ::Legends.Effect.DoubleGrip)
-			&& ::Legends.Effects.get(this, ::Legends.Effect.DoubleGrip).canDoubleGrip())
-		{
+		local actor = this.getContainer().getActor();
+		if (actor.canDoubleGrip()) {
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/shield_damage.png",
-				text = "[color=%positive%]25%[/color] bonus damage to shields from Double Grip"
+				text = "[color=%positive%]+25%[/color] Damage to shields from Double Grip"
 			});
 		}
 
@@ -36,7 +35,7 @@
 			text = "Any positive damage difference between the skill\'s shield damage and the target\'s shield condition will be dealt as damage to the body"
 		});
 
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields)) {
+		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendSmashingShields)) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -44,7 +43,6 @@
 				text = "Destroying the shield will refund [color=%positive%]4[/color] Action Points"
 			});
 
-			local actor = this.getContainer().getActor();
 			if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Axe)) {
 				local oh = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 				if (oh != null) {
@@ -66,9 +64,7 @@
 		local damage = this.getItem().getShieldDamage();
 		local shield = _target.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendSmashingShields)
-			&& ::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Axe))
-		{
+		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendSmashingShields) && ::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Axe)) {
 			local oh = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (oh != null) {
 				damage += oh.getShieldDamage();
@@ -79,9 +75,7 @@
 			damage += ::Math.max(1, damage / 2);
 		}
 
-		if (shield.getID() == "shield.legend_parrying_dagger"
-			|| shield.getID() == "shield.legend_named_parrying_dagger")
-		{
+		if (shield.getID() == "shield.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger") {
 			damage *= 0.20;
 		}
 
@@ -170,10 +164,7 @@
 		}
 
 		if (this.m.MaxRange > 1) {
-			if (_targetEntity != null
-				&& !this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes
-				&& this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
-			{
+			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus -= 15;
 			}

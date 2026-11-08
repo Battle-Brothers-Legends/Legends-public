@@ -6,9 +6,7 @@
 	}
 
 	o.isHidden <- function () {
-		local dg = this.getContainer().getActor().getSkills().getSkillByID("special.double_grip");
-		local canDoubleGrip = dg != null && ("canDoubleGrip" in dg) && dg.canDoubleGrip();
-		return this.m.IsOrcWeapon && !canDoubleGrip;
+		return this.m.IsOrcWeapon && !this.getContainer().getActor().canDoubleGrip();
 	}
 
 	o.getTooltip = function () {

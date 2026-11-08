@@ -3,6 +3,7 @@
 	o.m.OriginalValue <- 0;
 	o.m.OwnerID <- null;
 	o.m.OriginalAmmoCost <- 0;
+	o.m.AllowsDoubleGrip <- false;
 
 	o.isAmountShown <- function () {
 		return true;
@@ -18,7 +19,7 @@
 
 	o.getAmmoCost <- function () {
 		return ::World.Statistics.getFlags().get("LegendsCanRepairNet") ? 10 : this.m.OriginalAmmoCost;
-    }
+	}
 
 	local create = o.create;
 	o.create = function () {
@@ -46,6 +47,15 @@
 			}
 		}
 
+		if (this.allowsDoubleGrip()) {
+			result.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Doesn't prevent Double Gripping a melee weapon"
+			});
+		}
+
 		if (this.m.Ammo <= 0) {
 			result.push({
 				id = 10,
@@ -61,6 +71,16 @@
 			icon = "ui/icons/special.png",
 			text = "Requires " + (::World.Statistics.getFlags().get("LegendsCanRepairNet") ? 10 : this.m.OriginalAmmoCost) + " Ammo to repair after battle"
 		});
+
+		local grantedSkills = this.getGrantedSkills();
+		foreach (skill in grantedSkills) {
+			result.push({
+				id = 23,
+				type = "text",
+				icon = skill.m.Icon,
+				text = skill.getName() + (skill.isActive() ? " (" + skill.m.ActionPointCost + ::Legends.Text.inlineIcons("action_points") + ", " + skill.m.FatigueCost + ::Legends.Text.inlineIcons("fatigue") + ")" : "")
+			});
+		}
 		return result;
 	}
 
@@ -82,11 +102,7 @@
 
 	// Bag fatigue uses getStaminaModifier
 	o.getStaminaModifier <- function () {
-		if (!::Legends.S.isNull(this.getContainer()) && !::Legends.S.isNull(this.getContainer().getActor()) && this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair)) {
-			return 0;
-		} else {
-			return this.m.StaminaModifier;
-		}
+		return ((::Legends.S.isNull(this.getContainer()) || ::Legends.S.isNull(this.getContainer().getActor()) || !::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendNetRepair)) ? this.m.StaminaModifier : 0);
 	}
 
 	local onEquip = o.onEquip;
@@ -125,6 +141,8 @@
 
 		this.updateAppearance();
 	}
+
+	o.allowsDoubleGrip <- @() this.getContainer() != null && this.getContainer().getActor().getCurrentProperties().IsSpecializedInNets;
 
 	o.onDeserialize <- function (_in) {
 		this.weapon.onDeserialize(_in);

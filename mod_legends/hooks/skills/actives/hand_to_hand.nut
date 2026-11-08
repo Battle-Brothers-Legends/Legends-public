@@ -98,14 +98,6 @@
 		local actor = this.getContainer().getActor();
 		_properties.FatigueDealtPerHitMult += 1.0; // Increase fatigue damage from 5 to 10
 
-		if (::Legends.Perks.has(this, ::Legends.Perk.LegendAmbidextrous))
-		{
-			if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
-			{
-				_properties.MeleeDamageMult /= 1.25; // Attempt to undo double grip damage bonus for just this skill. Might not work for missing hand.
-			}
-		}
-
 		if (("IsSpecializedInFists" in _properties) && _properties.IsSpecializedInFists)
 		{
 			_properties.FatigueDealtPerHitMult += 1.0; // If you have mastery, increase from 10 to 15 fat damage.

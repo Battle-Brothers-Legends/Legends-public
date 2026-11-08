@@ -1,17 +1,18 @@
 this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", {
-	m = {},
+	m = {
+		AllowsDoubleGrip = false
+	},
 
-	function create()
-	{
+	function create() {
 		this.weapon.create();
 		this.m.ID = "tool.legend_unhold_throwing_net";
 		this.m.Name = "Unhold bindings";
-		this.m.Description = "A net provided by barbarian tribe, used to bind unholds. Tainted with secret poison, it makes [color=%negative%]dazed[/color], [color=%negative%]baffled[/color] or with less than 25% Healthpoints Unholds docile when trapped.";
+		this.m.Description = "A net provided by barbarian tribe infused with a special poison, used to bind unholds.";
 		this.m.IconLarge = "tools/inventory_throwing_net_unhold.png";
 		this.m.Icon = "tools/throwing_net_unhold_70x70.png";
 		this.m.ArmamentIcon = "icon_throwing_net_02";
 		this.m.SlotType = ::Const.ItemSlot.Offhand;
-		this.m.ItemType = ::Const.Items.ItemType.Tool | ::Const.Items.ItemType.Defensive;
+		this.m.ItemType = ::Const.Items.ItemType.Tool | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.Net;
 		this.m.AddGenericSkill = true;
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_throwing_net_02";
@@ -23,8 +24,7 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 		this.m.IsDroppedAsLoot = false;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = [
 			{
 				id = 1,
@@ -38,17 +38,14 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 			}
 		];
 
-		if (this.getIconLarge() != null)
-		{
+		if (this.getIconLarge() != null) {
 			result.push({
 				id = 3,
 				type = "image",
 				image = this.getIconLarge(),
 				isLarge = true
 			});
-		}
-		else
-		{
+		} else {
 			result.push({
 				id = 3,
 				type = "image",
@@ -71,8 +68,7 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 			icon = "ui/icons/vision.png",
 			text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
 		});
-		if (this.m.StaminaModifier < 0)
-		{
+		if (this.m.StaminaModifier < 0) {
 			result.push({
 				id = 8,
 				type = "text",
@@ -80,11 +76,19 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 				text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
+		if (this.allowsDoubleGrip()) {
+			result.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Doesn't prevent Double Gripping a melee weapon"
+			});
+		}
 		result.push({
 			id = 4,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Will root a [color=%negative%]dazed[/color], [color=%negative%]baffled[/color] or with less than 25% Healthpoints Unhold in place and make it docile"
+			text = "Will root a [color=%effect%]Dazed[/color], [color=%effect%]Baffled[/color] or damaged below 25% Healthpoints Unhold in place and make it docile"
 		});
 		result.push({
 			id = 4,
@@ -92,14 +96,46 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 			icon = "ui/icons/special.png",
 			text = "Is destroyed on use"
 		});
+		local grantedSkills = this.getGrantedSkills();
+		foreach (skill in grantedSkills) {
+			result.push({
+				id = 23,
+				type = "text",
+				icon = skill.m.Icon,
+				text = skill.getName() + (skill.isActive() ? " (" + skill.m.ActionPointCost + ::Legends.Text.inlineIcons("action_points") + ", " + skill.m.FatigueCost + ::Legends.Text.inlineIcons("fatigue") + ")" : "")
+			});
+		}
 		return result;
 	}
 
-	function onEquip()
-	{
+	function addSkill(_skill) {
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowNet) && ::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendNetCasting)) {
+			_skill.m.MaxRange = 5;
+		}
+
+		this.weapon.addSkill(_skill);
+	}
+
+	function onEquip() {
 		this.weapon.onEquip();
-		local skill = this.new("scripts/skills/actives/throw_net");
-		skill.makeUnholdNet();
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.ThrowNet, function (_skill) {
+			_skill.makeUnholdNet();
+		}.bindenv(this));
+	}
+
+	function onUpdateProperties(_properties) {
+		this.weapon.onUpdateProperties(_properties);
+		// Net Repair Perk negates the weight
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair)) {
+			_properties.Stamina -= this.m.StaminaModifier;
+		}
+	}
+
+	function getStaminaModifier() {
+		return ((::Legends.S.isNull(this.getContainer()) || ::Legends.S.isNull(this.getContainer().getActor()) || !::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendNetRepair)) ? this.m.StaminaModifier : 0);
+	}
+
+	function allowsDoubleGrip() {
+		return this.getContainer() != null && this.getContainer().getActor().getCurrentProperties().IsSpecializedInNets;
 	}
 });

@@ -711,6 +711,8 @@
 - item skills should now properly reappear instantly on the bro after consuming an oblivion potion
 - fixed a bug with stray stake shots targeting vampires dealing extra dmg to other targets
 - holy fire's consecrated effect now properly renders undead vulnerable to poisons
+- Unhold nets are now treated as nets for all perk purposes
+- Double Grip no longer mistakenly affects Direct Damage multiplier of Ambidextrous followup attacks and Zombie Bite
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
@@ -759,6 +761,8 @@
 - a bunch of `::Legends.S` functions were moved to separate files, check depreciation messages
 - added some useful functions to `::Legends.Array`, `::Legends.Text`, `::Legends.Items` etc., check the helper directory
 - added `isEngagedInMelee` and `getOpponentsInRange(_maxrange, _minrange = 1)` functions to actor and `getStaminaModifier` to item container (behavior of the funcs known from msu should be unchanged)
+- added `canDoubleGrip` to actor and `allowsDoubleGrip` to weapons, the latter allowing offhand weapons like the Hand Crossbow to allow Double Grip
+- changed the way Double Grip is calculated to only apply to melee weapon attacks
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

@@ -7,9 +7,8 @@
 			return this.m.ShieldDamage;
 		}
 		local perk = ::Legends.Perks.get(this, ::Legends.Perk.LegendSmashingShields);
-		local doubleGrip = ::Legends.Effects.has(this, ::Legends.Effect.DoubleGrip) && ::Legends.Effects.get(this, ::Legends.Effect.DoubleGrip).canDoubleGrip() ? true : false;
 		local shieldDamage = perk == null ? this.m.ShieldDamage : this.m.ShieldDamage * perk.getModifier();
-		return doubleGrip ? ::Math.floor(shieldDamage * 1.25) : ::Math.floor(shieldDamage);
+		return ::Math.floor(this.getContainer().getActor().canDoubleGrip() ? shieldDamage * 1.25 : shieldDamage);
 	}
 
 	local onDamageDealt = o.onDamageDealt;
@@ -249,6 +248,8 @@
 		::World.getTemporaryRoster().clear();
 		return skillsGranted;
 	}
+
+	o.allowsDoubleGrip <- @() this.m.AllowsDoubleGrip;
 
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function (_in) {

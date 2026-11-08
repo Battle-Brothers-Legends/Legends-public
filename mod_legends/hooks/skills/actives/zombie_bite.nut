@@ -27,23 +27,19 @@
 
 	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			local items = this.m.Container.getActor().getItems();
-			local mhand = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+			local actor = this.getContainer().getActor();
+			local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-			if (mhand != null) {
-				_properties.DamageRegularMin -= mhand.m.RegularDamage;
-				_properties.DamageRegularMax -= mhand.m.RegularDamageMax;
-				_properties.DamageDirectAdd -= mhand.m.DirectDamageAdd;
+			if (mainhand != null) {
+				_properties.DamageRegularMin -= mainhand.m.RegularDamage;
+				_properties.DamageRegularMax -= mainhand.m.RegularDamageMax;
+				_properties.DamageDirectAdd -= mainhand.m.DirectDamageAdd;
 			}
 
 			_properties.DamageRegularMin += 15;
 			_properties.DamageRegularMax += 35;
 			_properties.DamageArmorMult = 0.5;
 			_properties.HitChance[::Const.BodyPart.Head] += 15;
-
-			if (this.canDoubleGrip()) {
-				_properties.DamageTotalMult /= 1.25;
-			}
 		}
 	}
 
@@ -71,12 +67,6 @@
 			corpse.IsResurrectable = false;
 			::Time.scheduleEvent(::TimeUnit.Rounds, ::Math.rand(1, 1), ::Tactical.Entities.resurrect, corpse);
 		}
-	}
-
-	o.canDoubleGrip <- function () {
-		local main = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local off = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		return main != null && off == null && main.isDoubleGrippable();
 	}
 
 	o.isUsable = function () {

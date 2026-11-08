@@ -4,7 +4,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "Throw a net on your target in order to prevent them from moving or defending themself effectively.";
+		this.m.Description = "Throw a net on your target in order to prevent them from moving or defending themselves effectively.";
 		this.m.IsRanged = true;
 	}
 
@@ -15,7 +15,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Can be used on dazed or baffled unholds only"
+				text = "Can be used on [color=%effect%]Dazed[/color] or [color=%effect%]Baffled[/color] Unholds only"
 			});
 		} else {
 			tooltip.push({
@@ -30,7 +30,7 @@
 	}
 
 	o.onAfterUpdate = function (_properties) {
-		this.m.IsHidden = !::Legends.S.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0;
+		this.m.IsHidden = !::Legends.S.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0 && this.getItem().m.AmmoMax > 0;
 
 		if (_properties.IsSpecializedInNets) {
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
@@ -60,23 +60,18 @@
 		this.m.Item.consumeAmmo();
 		local ret = onUse(_user, _targetTile); // this returns `null` or `false`, bruh
 		this.m.Item.drop(_targetTile); // just drop the spent net there
-		if (_user.getCurrentProperties().IsSpecializedInNetCasting && ret != false) {
-			local targetTiles = [];
-			local chance = _user.getCurrentProperties().getRangedSkill() + _user.getCurrentProperties().getRangedDefense();
-			local successes = 1.0;
-			local newRet;
-			for (local i = 0; i != 6; i = ++i) {
-				for (local i = 0; i != 6; i = ++i) {
-					if (_targetTile.hasNextTile(i)) {
-						local next = _targetTile.getNextTile(i);
 
-						if (next.IsOccupiedByActor && ::Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer()) {
-							if (::Math.rand(1, 100) < ::Math.floor(chance / (successes + 1.0))) {
-								newRet = onUse(_user, next);
-								if (newRet != false) {
-									successes += 1.0;
-								}
-							}
+		local properties = _user.getCurrentProperties();
+		if (properties.IsSpecializedInNetCasting && ret != false) {
+			local chance = properties.getRangedSkill() + properties.getRangedDefense();
+			local successes = 1.0;
+			for (local i = 0; i < 6; i++) {
+				if (_targetTile.hasNextTile(i)) {
+					local next = _targetTile.getNextTile(i);
+
+					if (next.IsOccupiedByActor && ::Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer()) {
+						if (::Math.rand(1, 100) < ::Math.floor(chance / (successes + 1.0))) {
+							successes += (onUse(_user, next) != false ? 1.0 : 0.0);
 						}
 					}
 				}

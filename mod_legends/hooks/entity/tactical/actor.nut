@@ -691,4 +691,11 @@
 		::Tactical.queryActorsInRange(this.getTile(), _minRange, _maxRange, @(_actor, _tag) (!_actor.isAlliedWithPlayer()) ? _tag.Opponents++ : "", result);
 		return result.Opponents;
 	}
+
+	o.canDoubleGrip <- function () {
+		local hasBothHands = this.getSkills().getSkillByID("injury.missing_hand") == null || ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand) != null;
+		local main = this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local off = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		return hasBothHands && (off == null || ("AllowsDoubleGrip" in off.m && off.allowsDoubleGrip())) && main != null && main.isDoubleGrippable();
+	}
 });

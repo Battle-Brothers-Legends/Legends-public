@@ -1,28 +1,27 @@
 this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 	m = {
-		IsLoaded = true
+		IsLoaded = true,
+		AllowsDoubleGrip = true
 	},
-	function isLoaded()
-	{
+
+	function isLoaded() {
 		return this.m.IsLoaded;
 	}
 
-	function setLoaded( _l )
-	{
+	function setLoaded(_l) {
 		this.m.IsLoaded = _l;
 	}
 
-	function create()
-	{
+	function create() {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_hand_crossbow";
 		this.m.Name = "Hand Crossbow";
-		this.m.Description = "A miniature pull-lever crossbow that can propel bolts over medium distances attached to the wrist. The small size reduces power, but doesn't impede the hands so a melee weapon can be held in both hands. Requires almost a full turn to reload.";
+		this.m.Description = "A miniature pull-lever crossbow that can propel bolts over medium distances attached to the wrist. The small size reduces power, but doesn't impede the hands. Requires almost a full turn to reload.";
 		this.m.IconLarge = "weapons/ranged/legend_hand_crossbow_01.png";
 		this.m.Icon = "weapons/ranged/legend_hand_crossbow_01_70x70.png";
 		this.m.WeaponType = ::Const.Items.WeaponType.Crossbow;
 		this.m.SlotType = ::Const.ItemSlot.Offhand;
-		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Defensive| ::Const.Items.ItemType.OneHanded;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.OneHanded;
 		this.m.EquipSound = ::Const.Sound.ArmorLeatherImpact;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = true;
@@ -41,17 +40,13 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageMult = 0.5;
 	}
 
-	function getAmmoID()
-	{
+	function getAmmoID() {
 		return "ammo.bolts";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = this.weapon.getTooltip();
-
-		if (!this.m.IsLoaded)
-		{
+		if (!this.m.IsLoaded) {
 			result.push({
 				id = 10,
 				type = "text",
@@ -59,28 +54,28 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 				text = "[color=%negative%]Must be reloaded before firing again[/color]"
 			});
 		}
-
+		result.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Doesn't prevent Double Gripping a melee weapon"
+		});
 		return result;
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.weapon.onEquip();
 
 		::Legends.Actives.grant(this, ::Legends.Active.ShootBolt);
 
-		if (!this.m.IsLoaded)
-		{
+		if (!this.m.IsLoaded) {
 			::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 		}
 		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.weapon.onCombatFinished();
 		this.setLoaded(true);
 	}
-
 });
-
