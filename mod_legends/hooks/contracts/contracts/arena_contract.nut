@@ -119,7 +119,7 @@
 				local start = s.start;
 				s.start <- function () {
 					start();
-					this.Text = ::MSU.String.replace(this.Text, "The arena master", " The arena master");
+					this.Text = ::String.replace(this.Text, "The arena master", " The arena master");
 				}
 
 			}

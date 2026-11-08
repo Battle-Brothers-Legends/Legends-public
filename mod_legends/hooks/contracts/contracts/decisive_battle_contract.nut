@@ -180,7 +180,7 @@
 		local commander = ::World.getTemporaryRoster().create("scripts/entity/tactical/humans/knight");
 		local name = ::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)];
 		if (commander.getGender() == 1) {
-			name = ::MSU.String.replace(name, "Sir", "Dame");
+			name = ::String.replace(name, "Sir", "Dame");
 		}
 		this.m.Commander.Name = name;
 		this.m.Commander.Gender = commander.getGender();

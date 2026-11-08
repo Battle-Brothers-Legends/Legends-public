@@ -294,7 +294,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		this.m.Enemy.ID = enemy.getType();
 		local name = ::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)];
 		if (enemy.getGender() == 1) {
-			name = ::MSU.String.replace(name, "Sir", "Dame");
+			name = ::String.replace(name, "Sir", "Dame");
 		}
 		this.m.Enemy.Name = name;
 		this.m.Enemy.Gender = enemy.getGender();

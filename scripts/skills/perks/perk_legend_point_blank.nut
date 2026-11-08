@@ -34,7 +34,7 @@ this.perk_legend_point_blank <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		if (_targetEntity == null || !_skill.isRanged() || !_skill.IsWeaponSkill || this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) > 4) {
+		if (_targetEntity == null || !_skill.isRanged() || !_skill.m.IsWeaponSkill || this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) > 4) {
 			return;
 		}
 

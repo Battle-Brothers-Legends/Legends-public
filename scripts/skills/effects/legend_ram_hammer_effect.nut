@@ -44,7 +44,7 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		if (_skill.IsWeaponSkill) {
+		if (_skill.m.IsWeaponSkill) {
 			_properties.DamageTotalMult *= 1.0 + (0.5 * this.m.Stacks);
 		}
 	}
@@ -58,7 +58,7 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		if (_skill.isAttack() && _skill.IsWeaponSkill) {
+		if (_skill.isAttack() && _skill.m.IsWeaponSkill) {
 			// still needs to check for instance? or is it supposed to stack faster on AoE?
 			this.m.Stacks += 1;
 		}
