@@ -20,7 +20,7 @@
 		// search for more poison bottles if the one under this.m.Item is empty
 		if (this.m.Item.m.Ammo <= 0) {
 			local self = this;
-			local filledPoisons = this.getContainer().getActor().getItems().getAllItems().filter(@(_, _item)(_item.getID() == self.m.Item.getID()
+			local filledPoisons = this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag).filter(@(_, _item)(_item.getID() == self.m.Item.getID()
 				&& _item.m.Ammo > 0));
 			foreach (item in filledPoisons) {
 				this.setItem(item);
