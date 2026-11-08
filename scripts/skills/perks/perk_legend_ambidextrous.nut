@@ -19,23 +19,10 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden() {
-		local actor = this.getContainer().getActor();
-		local items = this.getContainer().getActor().getItems();
-		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && off != null && off.getID().find("throwing_net") != null;
-
-		if (hasNet) {
-			return false;
-		}
-		return !(off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand));
+		return !this.getContainer().getActor().isOffhandFree();
 	}
 
 	function getTooltip() {
-		local actor = this.getContainer().getActor();
-		local items = actor.getItems();
-		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-		local main = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
-
 		local ret = [
 			{
 				id = 1,
@@ -49,14 +36,14 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			},
 			{
 				id = 3,
-				type = "special",
+				type = "text",
+				icon = "ui/icons/special.png"
 				text = "Will follow up any attack with a punch from their off hand"
 			}
 		];
 
-		local blockedOffhand = items.hasBlockedSlot(::Const.ItemSlot.Offhand);
 		// Unarmed bonuses
-		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && off == null && !blockedOffhand) {
+		if (this.getContainer().getActor().isMainhandFree()) {
 			ret.extend([
 				{
 					id = 4,
@@ -78,77 +65,45 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted(_skill, _targetTile, _targetEntity, _forFree) {
 		local actor = this.getContainer().getActor();
-		if (::Legends.Weapons.isDualWielding(actor)) {
+		if (!actor.isOffhandFree() || !_skill.isAttack()) {
 			return;
 		}
 
-		if (!_skill.m.IsAttack) {
-			return; // Don't execute a follow up attack if the first skill is not an attack
-		}
-
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand) && actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null) {
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand) && !actor.isMainhandFree()) {
 			return; // or if you are using hand to hand while the mainhand is holding a weapon
 		}
 
-		if (::Legends.S.isEntityNullOrDead(actor, _targetEntity)) {
-			return;
-		}
-
-		if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > 1) {
-			return; // no gomu gomu h2h attacks
-		}
-
-		local items = actor.getItems();
-		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && off != null && off.getID().find("throwing_net") != null;
-		// Don't trigger follow-up if the attack came from the offhand
-		if (::Legends.Weapons.isOffHandSkill(actor, _skill)) {
-			return;
-		}
-
-		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand)) || hasNet)) {
-			if (!_forFree) {
-				local skillToUse = this.getHandToHandSkill();
-				if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
-					return;
-				}
-
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
-					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
+		if (!_forFree) {
+			::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
+				if (!::Legends.S.isEntityNullOrDead(actor, _targetEntity) && _targetEntity.isPlacedOnMap()) {
+					local skillToUse = this.getHandToHandSkill();
+					if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
 						return;
 					}
-					::Const.SkillCounter++;
+
 					_skill.executeFollowUpAttack({
 						TargetTile = _targetEntity.getTile(),
 						Skill = skillToUse
 					});
-				}.bindenv(this), this);
-			}
+				}
+			}.bindenv(this), this);
 		}
 	}
 
 	function executeFollowUpAttack(_info) {
-		local actor = this.getContainer().getActor();
-		local entity = _info.TargetTile.getEntity();
-		if (::Legends.S.isEntityNullOrDead(entity) || ::Legends.S.isEntityNullOrDead(actor)) {
-			return;
-		}
 		if (::Legends.S.isNull(_info.Skill)) {
 			::logWarning("legend_ambidextrous: offhand skill is null, cannot execute follow-up attack");
 			return;
 		}
 
+		::Const.SkillCounter++;
 		_info.Skill.m.IsExecutingOffhand = true;
 		_info.Skill.useForFree(_info.TargetTile);
 	}
 
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		local items = actor.getItems();
-		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-		local main = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local hasNet = actor.getCurrentProperties && off != null && off.getID().find("throwing_net") != null;
-		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && (off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand) || hasNet)) {
+		if (actor.isMainhandFree() && actor.isOffhandFree()) {
 			_properties.MeleeDefense += 10;
 			_properties.MeleeSkill += 5;
 		}
@@ -156,8 +111,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
 		local result = "Follows up attacks with off-hand";
-		local main = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed))) {
+		if (this.getContainer().getActor().isMainhandFree()) {
 			result += ", [color=%positive%]+5[/color] " + ::Legends.Text.inlineIcons("melee_skill") + "[color=%positive%]+10[/color] " + ::Legends.Text.inlineIcons("melee_defense");
 		}
 		return result;

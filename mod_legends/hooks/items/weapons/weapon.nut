@@ -249,7 +249,7 @@
 		return skillsGranted;
 	}
 
-	o.allowsDoubleGrip <- @() this.m.AllowsDoubleGrip;
+	o.allowsOffhandActions <- @() this.m.AllowsOffhandActions;
 
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function (_in) {

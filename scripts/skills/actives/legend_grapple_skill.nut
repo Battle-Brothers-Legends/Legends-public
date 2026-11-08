@@ -9,7 +9,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.OffensiveTargeted+5;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted + 5;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -29,9 +29,9 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDisembowel = 0;
 	}
 
-
 	function getTooltip() {
-		local ret = [{
+		local ret = [
+			{
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -77,8 +77,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 				text = "Has [color=%positive%]+10%[/color] chance to hit due to unarmed mastery"
 			});
 
-		}
-		else {
+		} else {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -89,11 +88,11 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties ) {
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile ) {
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		if (this.m.SoundOnUse.len() != 0) {
 			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
@@ -118,27 +117,15 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
-		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
-		if (hasNet)
-			return true;
-		return ((offhand == null || mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
+		return this.skill.isUsable();
 	}
 
 	function isHidden() {
 		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
-		if (hasNet)
-			return false;
-
-		return mainhand != null && offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.getContainer().getActor().getItems().hasBlockedSlot(::Const.ItemSlot.Offhand) || this.skill.isHidden() || actor.isStabled();
+		return (!actor.isMainhandFree() && !actor.isOffhandFree()) || actor.isStabled() || this.skill.isHidden();
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageTotalMult = 0;
 			this.m.HitChanceBonus += _properties.IsSpecializedInFists ? 10 : 0;
@@ -149,4 +136,3 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

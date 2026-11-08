@@ -3,8 +3,8 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		SoundsA = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3),
 		SoundsB = ::Legends.S.setSounds("sounds/combat/chop_hit", 3)
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBearClaws);
 		this.m.Description = "Tear into flesh across multiple opponents and leave them bleading with very long, sharp claws.";
 		this.m.KilledString = "Ripped to shreds";
@@ -30,30 +30,26 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceSmash = 0;
 	}
 
-	function getTooltip()
-	{
-	local actor = this.getContainer().getActor();
+	function getTooltip() {
+		local actor = this.getContainer().getActor();
 		local p = actor.getCurrentProperties();
 		local mult = p.MeleeDamageMult;
 		local bodyHealth = actor.getHitpointsMax();
-		local average = (actor.getInitiative() +  bodyHealth) / 4;
+		local average = (actor.getInitiative() + bodyHealth) / 4;
 		local damageMin = 5;
 		local damageMax = 10;
 		local avgMin = average - 100;
 		local avgMax = average - 90;
 
-		if ((average - 100) > 0)
-		{
+		if ((average - 100) > 0) {
 			damageMin += avgMin;
 		}
 
-		if ((average - 90) > 0)
-		{
+		if ((average - 90) > 0) {
 			damageMax += avgMax;
 		}
 
-		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Brawler)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker)) )
-		{
+		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Brawler)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker))) {
 			damageMin = damageMin * 1.25;
 			damageMax = damageMax * 1.25;
 		}
@@ -64,16 +60,14 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		local damage_Armor_max = ::Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_direct_max = ::Math.floor(damageMax * this.m.DirectDamageMult);
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
-		{
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity)) {
 			local muscularity = ::Math.floor(bodyHealth * 0.1);
-			 damage_regular_max += muscularity;
-			 damage_Armor_max += muscularity;
-			 damage_direct_max += muscularity;
+			damage_regular_max += muscularity;
+			damage_Armor_max += muscularity;
+			damage_direct_max += muscularity;
 		}
 
-		if (mult != 1.0)
-		{
+		if (mult != 1.0) {
 			damage_regular_min = ::Math.floor(damage_regular_min * mult);
 			damage_regular_max = ::Math.floor(damage_regular_max * mult);
 			damage_Armor_min = ::Math.floor(damage_Armor_min * mult);
@@ -105,8 +99,7 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 			text = "Inflicts damage based on hitpoints and initiative [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage, up to [color=%damage%]" + damage_direct_max + "[/color] damage can ignore armor"
 		});
 
-		if (damage_Armor_max > 0)
-		{
+		if (damage_Armor_max > 0) {
 			ret.push({
 				id = 5,
 				type = "text",
@@ -125,20 +118,12 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
-		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		return (mainhand == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
+	function isHidden() {
+		local actor = this.getContainer().getActor();
+		return !actor.isMainhandFree() || actor.isStabled() || this.skill.isHidden();
 	}
 
-	function isHidden()
-	{
-		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		return mainhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
-	}
-
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectClaws);
 		local ret = false;
 		local myTile = _user.getTile();
@@ -155,29 +140,23 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		::Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
 		local tiles = [];
 
-
-		if (!_user.isAlive() || _user.isDying())
-		{
+		if (!_user.isAlive() || _user.isDying()) {
 			return;
 		}
 
-		for( local i = 0; i != result.Tiles.len(); i = ++i )
-		{
-			if (result.Tiles[i].ID == _targetTile.ID)
-			{
+		for (local i = 0; i != result.Tiles.len(); i = ++i) {
+			if (result.Tiles[i].ID == _targetTile.ID) {
 				tiles.push(result.Tiles[i]);
 				local idx = i - 1;
 
-				if (idx < 0)
-				{
+				if (idx < 0) {
 					idx = idx + result.Tiles.len();
 				}
 
 				tiles.push(result.Tiles[idx]);
 				idx = i - 2;
 
-				if (idx < 0)
-				{
+				if (idx < 0) {
 					idx = idx + result.Tiles.len();
 				}
 
@@ -186,49 +165,37 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		foreach( t in tiles )
-		{
-			if (!t.IsVisibleForEntity)
-			{
+		foreach (t in tiles) {
+			if (!t.IsVisibleForEntity) {
 				continue;
 			}
 
-			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1)
-			{
+			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1) {
 				continue;
 			}
 
-			if (!t.IsEmpty && t.getEntity().isAttackable())
-			{
+			if (!t.IsEmpty && t.getEntity().isAttackable()) {
 				ret = this.attackEntity(_user, t.getEntity()) || ret;
-				if (!target.isAlive() || target.isDying())
-				{
-					if (target.getFlags().has("tail") || !target.getCurrentProperties().IsImmuneToBleeding)
-					{
+				if (!target.isAlive() || target.isDying()) {
+					if (target.getFlags().has("tail") || !target.getCurrentProperties().IsImmuneToBleeding) {
 						::Sound.play(this.m.SoundsA[::Math.rand(0, this.m.SoundsA.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
-					}
-					else
-					{
+					} else {
 						::Sound.play(this.m.SoundsB[::Math.rand(0, this.m.SoundsB.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 					}
-				}
-				else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= ::Const.Combat.MinDamageToApplyBleeding)
-				{
-					::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function(_effect) {
-						if (_user.getFaction() == ::Const.Faction.Player )
+				} else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= ::Const.Combat.MinDamageToApplyBleeding) {
+					::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function (_effect) {
+						if (_user.getFaction() == ::Const.Faction.Player) {
 							_effect.setActor(this.getContainer().getActor());
+						}
 						_effect.setDamage(5);
 					}.bindenv(this));
 					::Sound.play(this.m.SoundsA[::Math.rand(0, this.m.SoundsA.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
-				}
-				else
-				{
+				} else {
 					::Sound.play(this.m.SoundsB[::Math.rand(0, this.m.SoundsB.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 				}
 			}
 
-			if (!_user.isAlive() || _user.isDying())
-			{
+			if (!_user.isAlive() || _user.isDying()) {
 				break;
 			}
 		}
@@ -236,54 +203,42 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			local actor = this.getContainer().getActor();
 			local bodyHealth = actor.getHitpointsMax();
-			local average = (actor.getInitiative() +  bodyHealth) / 4;
+			local average = (actor.getInitiative() + bodyHealth) / 4;
 			local damageMin = 5;
 			local damageMax = 10;
 			local avgMin = average - 100;
 			local avgMax = average - 90;
 
-			if ((average - 100) > 0)
-			{
+			if ((average - 100) > 0) {
 				damageMin += avgMin;
 			}
 
-			if ((average - 90) > 0)
-			{
+			if ((average - 90) > 0) {
 				damageMax += avgMax;
 			}
 
-
-			if (damageMin > 50)
-			{
-			local minMod = (damageMin - 50);
-			local minFalloff = ::Math.pow(minMod, 0.5);
-			damageMin = 50 + minFalloff;
+			if (damageMin > 50) {
+				local minMod = (damageMin - 50);
+				local minFalloff = ::Math.pow(minMod, 0.5);
+				damageMin = 50 + minFalloff;
 			}
 
-			if (damageMax > 50)
-			{
-			local maxMod = (damageMax - 50);
-			local maxFalloff = ::Math.pow(maxMod, 0.5);
-			damageMax = 50 + maxFalloff;
+			if (damageMax > 50) {
+				local maxMod = (damageMax - 50);
+				local maxFalloff = ::Math.pow(maxMod, 0.5);
+				damageMax = 50 + maxFalloff;
 			}
 
-
-
-
-			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
-			{
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity)) {
 				local muscularity = ::Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;
 			}
 
-			if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Brawler)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker))) )
-			{
+			if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Brawler)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker)))) {
 				damageMin = damageMin * 1.25;
 				damageMax = damageMax * 1.25;
 			}
@@ -291,18 +246,15 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax += ::Math.floor(damageMax);
 			_properties.MeleeSkill += _properties.IsSpecializedInFists ? 10 : -10;
 
-
 			this.m.DirectDamageMult = _properties.IsSpecializedInFists ? 0.5 : 0.1;
 		}
 	}
 
-	function onQueryTilesHit( _tile, _result )
-	{
+	function onQueryTilesHit(_tile, _result) {
 		_result.Tiles.push(_tile);
 	}
 
-	function onTargetSelected( _targetTile )
-	{
+	function onTargetSelected(_targetTile) {
 		local myTile = this.m.Container.getActor().getTile();
 		local d = myTile.getDistanceTo(_targetTile);
 		local result = {
@@ -314,23 +266,19 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		::Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
 		local tiles = [];
 
-		for( local i = 0; i != result.Tiles.len(); i = ++i )
-		{
-			if (result.Tiles[i].ID == _targetTile.ID)
-			{
+		for (local i = 0; i != result.Tiles.len(); i = ++i) {
+			if (result.Tiles[i].ID == _targetTile.ID) {
 				tiles.push(result.Tiles[i]);
 				local idx = i - 1;
 
-				if (idx < 0)
-				{
+				if (idx < 0) {
 					idx = idx + result.Tiles.len();
 				}
 
 				tiles.push(result.Tiles[idx]);
 				idx = i - 2;
 
-				if (idx < 0)
-				{
+				if (idx < 0) {
 					idx = idx + result.Tiles.len();
 				}
 
@@ -339,24 +287,19 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		foreach( t in tiles )
-		{
-			if (!t.IsVisibleForEntity)
-			{
+		foreach (t in tiles) {
+			if (!t.IsVisibleForEntity) {
 				continue;
 			}
 
-			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1)
-			{
+			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1) {
 				continue;
 			}
 
-			if (!t.IsEmpty && t.getEntity().isAttackable())
-			{
+			if (!t.IsEmpty && t.getEntity().isAttackable()) {
 				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, t, t.Pos.X, t.Pos.Y);
 			}
 		}
 	}
 
 });
-

@@ -761,7 +761,7 @@
 - a bunch of `::Legends.S` functions were moved to separate files, check depreciation messages
 - added some useful functions to `::Legends.Array`, `::Legends.Text`, `::Legends.Items` etc., check the helper directory
 - added `isEngagedInMelee()` and `getOpponentsInRange(_maxrange, _minrange = 1)` functions to actor and `getAllItemsAtSlots(_array)` and `getStaminaModifier(_array)` to item container (behavior of the funcs known from msu should be unchanged)
-- added `canDoubleGrip()` to actor and `allowsDoubleGrip()` to weapons, the latter allowing offhand weapons like the Hand Crossbow to allow Double Grip
+- added `isMainhandFree()`, `isOffhandFree()` and `canDoubleGrip()` to actor and `allowsOffhandActions()` to weapons, the latter allowing offhand weapons like the Hand Crossbow to allow Double Grip (together with a property)
 - changed the way Double Grip is calculated to only apply to melee weapon attacks
 - Perk Duelist now lists exact item ids rather than arbitrary strings in Allowed Items
 

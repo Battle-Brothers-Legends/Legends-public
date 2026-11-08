@@ -53,25 +53,12 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
-		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
-		if (hasNet && mainhand == null && this.skill.isUsable()) {
-			return true;
-		}
-		return ((offhand == null && mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
+		return this.skill.isUsable();
 	}
 
 	function isHidden() {
 		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
-		if (hasNet && mainhand == null) {
-			return false;
-		}
-		return mainhand != null || offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || actor.isStabled();
+		return !actor.isMainhandFree() || !actor.isOffhandFree() || actor.isStabled() || this.skill.isHidden();
 	}
 
 	function getHitChance(_targetEntity) {

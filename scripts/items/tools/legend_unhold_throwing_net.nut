@@ -1,6 +1,6 @@
 this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", {
 	m = {
-		AllowsDoubleGrip = false
+		AllowsOffhandActions = false
 	},
 
 	function create() {
@@ -76,12 +76,12 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 				text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
-		if (this.allowsDoubleGrip()) {
+		if (this.allowsOffhandActions()) {
 			result.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Doesn't prevent Double Gripping a melee weapon"
+				text = "Doesn't prevent Double Gripping or unarmed followups"
 			});
 		}
 		result.push({
@@ -135,7 +135,7 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 		return ((::Legends.S.isNull(this.getContainer()) || ::Legends.S.isNull(this.getContainer().getActor()) || !::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendNetRepair)) ? this.m.StaminaModifier : 0);
 	}
 
-	function allowsDoubleGrip() {
+	function allowsOffhandActions() {
 		return this.getContainer() != null && this.getContainer().getActor().getCurrentProperties().IsSpecializedInNets;
 	}
 });

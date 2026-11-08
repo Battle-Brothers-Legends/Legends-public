@@ -3,7 +3,7 @@
 	o.m.OriginalValue <- 0;
 	o.m.OwnerID <- null;
 	o.m.OriginalAmmoCost <- 0;
-	o.m.AllowsDoubleGrip <- false;
+	o.m.AllowsOffhandActions <- false;
 
 	o.isAmountShown <- function () {
 		return true;
@@ -47,12 +47,12 @@
 			}
 		}
 
-		if (this.allowsDoubleGrip()) {
+		if (this.allowsOffhandActions()) {
 			result.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Doesn't prevent Double Gripping a melee weapon"
+				text = "Doesn't prevent Double Gripping or unarmed followups"
 			});
 		}
 
@@ -142,7 +142,7 @@
 		this.updateAppearance();
 	}
 
-	o.allowsDoubleGrip <- @() this.getContainer() != null && this.getContainer().getActor().getCurrentProperties().IsSpecializedInNets;
+	o.allowsOffhandActions <- @() this.getContainer() != null && this.getContainer().getActor().getCurrentProperties().IsSpecializedInNets;
 
 	o.onDeserialize <- function (_in) {
 		this.weapon.onDeserialize(_in);

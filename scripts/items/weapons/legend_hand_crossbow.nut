@@ -1,7 +1,7 @@
 this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 	m = {
 		IsLoaded = true,
-		AllowsDoubleGrip = true
+		AllowsOffhandActions = true
 	},
 
 	function isLoaded() {

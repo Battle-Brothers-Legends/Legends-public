@@ -5,6 +5,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		FatigueDamage = 5,
 		SkillsUsed = 0
 	},
+
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendKick);
 		this.m.Description = "Kick a target to break their balance. The blow will inflict additional fatigue, stagger the target, and has a chance to inflict daze as well. Shieldwall, Spearwall, Return Favor, and Riposte will be canceled for a target that is successfully hit.";
@@ -28,7 +29,8 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local ret = ::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
-		ret.extend([{
+		ret.extend([
+			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
@@ -39,73 +41,48 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Has a [color=%positive%]%_dazeChance%[/color] chance to daze on a hit",
-				param = [["_dazeChance", this.m.DazeChance]]
+				param = [
+					["_dazeChance", this.m.DazeChance]
+				]
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Inflicts [color=%damage%]%_fatigueDamage%[/color] fatigue on hit",
-				param = [["_fatigueDamage", this.m.FatigueDamage]]
+				param = [
+					["_fatigueDamage", this.m.FatigueDamage]
+				]
 			}
 		]);
 		return ret;
 	}
 
 	function isUsable() {
-		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
-			return true;
-		}
-		
-		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
-		if (hasNet && this.skill.isUsable()) {
-			return true;
-		}
-
-		return ((offhand == null || mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
+		return this.skill.isUsable();
 	}
 
-	function isHidden()
-	{
-		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
-			return false;
-		}
-
+	function isHidden() {
 		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
-		if (hasNet) {
-			return false;
-		}
-
-		if ((offhand == null && !actor.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand)) || mainhand == null) {
-			return false;
-		}
-		
-		return !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || actor.isStabled();
+		return (!::Legends.Perks.has(actor, ::Legends.Perk.LegendPugilist) && !actor.isMainhandFree() && !actor.isOffhandFree()) || actor.isStabled() || this.skill.isHidden();
 	}
 
-
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 
-		if (this.m.SoundOnUse.len() != 0)
-		{
+		if (this.m.SoundOnUse.len() != 0) {
 			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 		}
 
 		local success = this.attackEntity(_user, target);
 
-		if (::Legends.S.isEntityNullOrDead(_user, target))
+		if (::Legends.S.isEntityNullOrDead(_user, target)) {
 			return success;
+		}
 
-		if (!success)
+		if (!success) {
 			return success;
+		}
 
 		this.m.SkillsUsed = 0;
 
@@ -116,15 +93,14 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 
 		::Legends.Effects.grant(target, ::Legends.Effect.Staggered); // Always stagger, sometimes daze
 		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has staggered " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
-		if (::Math.rand(1, 100) <= this.m.DazeChance && !target.getCurrentProperties().IsImmuneToDaze)
-		{
+		if (::Math.rand(1, 100) <= this.m.DazeChance && !target.getCurrentProperties().IsImmuneToDaze) {
 			::Legends.Effects.grant(target, ::Legends.Effect.Dazed);
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(target) + " dazed");
 		}
 		return success;
 	}
 
-	function onAfterUpdate( _properties ) {
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.DazeChance = _properties.IsSpecializedInFists ? 50 : 25;
 		this.m.FatigueDamage = _properties.IsSpecializedInFists ? 10 : 5;
@@ -134,7 +110,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageRegularMin = 0;
 			_properties.DamageRegularMax = 0;
@@ -171,4 +147,3 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

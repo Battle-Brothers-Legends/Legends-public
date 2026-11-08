@@ -688,14 +688,17 @@
 		local result = {
 			Opponents = 0
 		}
-		::Tactical.queryActorsInRange(this.getTile(), _minRange, _maxRange, @(_actor, _tag) (!_actor.isAlliedWithPlayer()) ? _tag.Opponents++ : "", result);
+		::Tactical.queryActorsInRange(this.getTile(), _minRange, _maxRange, @(_actor, _tag)(!_actor.isAlliedWithPlayer()) ? _tag.Opponents++ : "", result);
 		return result.Opponents;
 	}
 
-	o.canDoubleGrip <- function () {
+	o.isMainhandFree <- @() this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) == null || ::Legends.Effects.has(this, ::Legends.Effect.Disarmed);
+
+	o.isOffhandFree <- function () {
 		local hasBothHands = this.getSkills().getSkillByID("injury.missing_hand") == null || ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand) != null;
-		local main = this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		local off = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		return hasBothHands && (off == null || ("AllowsDoubleGrip" in off.m && off.allowsDoubleGrip())) && main != null && main.isDoubleGrippable();
+		local offhand = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		return hasBothHands && !this.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand) && (offhand == null || ("AllowsOffhandActions" in offhand.m && offhand.allowsOffhandActions()));
 	}
+
+	o.canDoubleGrip <- @() this.isOffhandFree() && !this.isMainhandFree() && this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isDoubleGrippable();
 });
