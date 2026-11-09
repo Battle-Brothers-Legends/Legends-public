@@ -27,13 +27,12 @@ this.legend_vala_warden_pale_touch_skill <- this.inherit("scripts/skills/skill",
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			local warden = this.getContainer().getActor();
-			local scaling = warden.getVala().get().getBravery() * warden.getDamageScaling();
-			local fury = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFury);
-			local bonus1 = (scaling != null) ? scaling.getDamageBonus() : 0;
-			local bonus2 = (fury != null) ? fury.getWardenDamage() : 0;
+			local vala = warden.getVala().get();
+			local spiritualBond = ::Legends.Perks.has(vala, ::Legend.Perk.LegendValaSpiritualBond) ? vala.getBravery() * ::Legends.Perks.get(vala, ::Legend.Perk.LegendValaSpiritualBond).getDamageScaling() : 0;
+			local fury = ::Legends.Effects.has(vala, ::Legend.Effect.LegendValaChantFury) ? ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFury).getWardenDamage() : 0;
 
-			_properties.DamageRegularMin += 10 + ::Math.round(bonus1 * 0.67) + ::Math.round(bonus2 * 0.67);
-			_properties.DamageRegularMax += 15 + ::Math.round(bonus1) + ::Math.round(bonus2);
+			_properties.DamageRegularMin += 10 + ::Math.round(spiritualBond * 0.67) + ::Math.round(fury * 0.67);
+			_properties.DamageRegularMax += 15 + ::Math.round(spiritualBond) + ::Math.round(fury);
 			_properties.IsIgnoringArmorOnAttack = true;
 		}
 	}

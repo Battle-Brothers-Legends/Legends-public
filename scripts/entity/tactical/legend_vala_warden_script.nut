@@ -1,7 +1,6 @@
 this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", {
 	m = {
 		Vala = null,
-		DamageScaling = 0.05 // Vala bravery damage scaling factor
 	},
 
 	function create() {
@@ -31,10 +30,6 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 			return null;
 		}
 		return (this.m.Vala == null ? null : ::Legends.Perks.get(this.m.Vala, ::Legends.Perk.LegendValaWarden).getWarden());
-	}
-
-	function getDamageScaling() {
-		return this.m.DamageScaling;
 	}
 
 	function setName(_n) {
@@ -108,7 +103,7 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		}
 
 		if (this.m.Vala != null) {
-			this.m.Vala.m.WardenEntity = null;
+			::Legends.Perks.get(this.m.Vala, ::Legends.Perk.LegendValaWarden).m.WardenEntity = null;
 			this.m.Vala = null;
 		}
 

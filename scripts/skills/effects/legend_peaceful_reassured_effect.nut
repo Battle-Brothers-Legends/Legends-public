@@ -38,7 +38,7 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function countPeaceful() {
-		return (::Tactical.isActive() ? ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _entity)(_entity.getFaction() == ::Const.Faction.Player && ::Legends.Perks.has(_entity, ::Legends.Perk.LegendPeaceful))) : 0);
+		return (::Tactical.isActive() ? ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _entity)(_entity.getFaction() == ::Const.Faction.Player && ::Legends.Perks.has(_entity, ::Legends.Perk.LegendPeaceful))).len() : 0);
 	}
 
 	function onUpdate(_properties) {

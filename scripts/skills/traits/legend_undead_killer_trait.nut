@@ -62,7 +62,7 @@ this.legend_undead_killer_trait <- this.inherit("scripts/skills/traits/character
 			_properties.MeleeSkill += 10;
 			_properties.RangedSkill += 10;
 			// Make this a status effect so it will be visible for the battle
-			this.m.Type = ::Const.SkillType.StatusEffect;
+			this.m.Type = ::Const.SkillType.Trait | ::Const.SkillType.StatusEffect;
 		} else {
 			// Make this a trait so it will not be visible for the battle
 			this.m.Type = ::Const.SkillType.Trait;

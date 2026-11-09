@@ -4,7 +4,7 @@ this.legend_named_whip_feint_effect <- this.inherit("scripts/skills/skill", {
 	},
 
 	function create() {
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWhipFeint);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedWhipFeint);
 		this.m.Order = ::Const.SkillOrder.Item;
 		this.m.IsStacking = true;
 		this.m.IsWeaponSkill = true;
