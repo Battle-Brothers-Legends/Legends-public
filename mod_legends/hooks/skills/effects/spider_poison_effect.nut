@@ -23,7 +23,7 @@
 	}
 
 	o.setActor <- function (_a) {
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
+		this.m.Actor = ::WeakTableRef(_a);
 	}
 
 	o.applyDamage = function () {

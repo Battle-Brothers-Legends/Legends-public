@@ -37,7 +37,7 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function setActor(_a) {
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
+		this.m.Actor = ::WeakTableRef(_a);
 	}
 
 	function applyDamage() {

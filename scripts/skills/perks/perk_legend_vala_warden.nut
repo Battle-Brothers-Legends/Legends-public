@@ -110,7 +110,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 				entity.setFaction(::Const.Faction.PlayerAnimals);
 				entity.setVala(this.getContainer().getActor());
 				entity.setWardenStats(this.getContainer().getActor().getBravery());
-				this.m.WardenEntity = ::MSU.asWeakTableRef(entity);
+				this.m.WardenEntity = ::WeakTableRef(entity);
 				this.m.WardenSummonSpent = true;
 
 				if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendValaSpiritualBond)) {

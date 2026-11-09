@@ -344,7 +344,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					}
 					if (!::Legends.S.isNull(poacher))
 					{
-						this.Contract.m.Poacher = ::MSU.asWeakTableRef(poacher);
+						this.Contract.m.Poacher = ::WeakTableRef(poacher);
 						this.Options.push({
 							Text = "(Poacher) " + poacher.getName() + " can help us.",
 							function getResult()
@@ -367,7 +367,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				local expert = ::Legends.Array.rand(candidates);
 				if (candidates.len() > 0)
 				{
-					this.Contract.m.ExpertHunter = ::MSU.asWeakTableRef(expert);
+					this.Contract.m.ExpertHunter = ::WeakTableRef(expert);
 					this.Options.push({
 						Text = "(Expert Hunter) " + expert.getName() + " has something to say.",
 						function getResult()
@@ -656,7 +656,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				{
 					if (peddlerBackgrounds.find(bro.getBackground().getID()) != null)
 					{
-						this.Contract.m.Peddler = ::MSU.asWeakTableRef(bro);
+						this.Contract.m.Peddler = ::WeakTableRef(bro);
 						// this.Contract.m.Peddler = bro;
 						break;
 					}

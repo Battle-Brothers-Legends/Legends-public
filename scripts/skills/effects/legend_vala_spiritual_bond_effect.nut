@@ -5,7 +5,7 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 	},
 
 	function setVala(_v) {
-		this.m.Vala = ::MSU.asWeakTableRef(_v);
+		this.m.Vala = ::WeakTableRef(_v);
 	}
 
 	function create() {

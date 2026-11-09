@@ -42,7 +42,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 	}
 
 	function setActor(_a) {
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
+		this.m.Actor = ::WeakTableRef(_a);
 	}
 
 	function resetTime() {
