@@ -495,7 +495,6 @@ if (!("Perks" in ::Legends))
 		Icon = "ui/perks/perk_32.png", // todo is that correct icon?
 		IconDisabled = "ui/perks/perk_32_sw.png",
 	},
-	LegendQuickStep = {},
 	LegendRaiseUndead = {},
 	LegendRebound = {},
 	LegendRecuperation = {},

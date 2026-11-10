@@ -1130,15 +1130,6 @@ The question isn't who is going to let me - it's who is going to stop me.
 • Also grants [color=%positive%]+10%[/color] damage on hits to the head and chance to hit the head against targets who suffer from any of the following effects: [color=%status%]Baffled[/color], [color=%status%]Dazed[/color], [color=%status%]Distracted[/color], [color=%status%]Grappled[/color], [color=%status%]Netted[/color], [color=%status%]Rooted[/color], [color=%status%]Shellshocked[/color], [color=%status%]Sleeping[/color], [color=%status%]Staggered[/color], [color=%status%]Stunned[/color], [color=%status%]Vulnerable[/color], [color=%status%]Webbed[/color], or [color=%status%]Withered[/color].
 ";
 
-::Const.Strings.PerkDescription.LegendQuickStep <- @"
-If only walking the walk was the entirety of the job.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlock the [color=%skill%]Quick Step[/color] skill which allows you to move one tile for only [color=%negative%]1[/color] AP and [color=%negative%]7[/color] Fatigue.
-
-• Only can be used once per turn.
-";
-
 ::Const.Strings.PerkDescription.LegendRaiseUndead <- @"
 Working with fresh corpses takes much less work than carefully preparing carrion for later use.
 

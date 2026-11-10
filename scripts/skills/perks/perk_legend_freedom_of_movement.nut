@@ -7,7 +7,6 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 			::Legends.Actives.getID(::Legends.Active.Rotation),
 			::Legends.Actives.getID(::Legends.Active.LegendLeap),
 			::Legends.Actives.getID(::Legends.Active.LegendHorsePirouette),
-			::Legends.Actives.getID(::Legends.Active.LegendQuickStep),
 			::Legends.Actives.getID(::Legends.Active.LegendEvasion)
 		]
 	},
@@ -75,8 +74,8 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 		if (!this.getContainer().hasPerk(::Legends.Perk.LegendTacticalManeuvers)) {
 			addPerk(::Const.Perks.PerkDefs.LegendTacticalManeuvers, 5);
 		}
-		if (!this.getContainer().hasPerk(::Legends.Perk.LegendQuickStep)) {
-			addPerk(::Const.Perks.PerkDefs.LegendQuickStep, 2);
+		if (!this.getContainer().hasPerk(::Legends.Perk.Footwork)) {
+			addPerk(::Const.Perks.PerkDefs.Footwork, 2);
 		}
 	}
 });

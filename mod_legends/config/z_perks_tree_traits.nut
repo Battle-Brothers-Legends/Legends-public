@@ -209,7 +209,7 @@ if (!("Perks" in ::Const)) {
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[::Legends.Perk.FastAdaption, ::Legends.Perk.Adrenaline],
-		[::Legends.Perk.LegendQuickStep],
+		[::Legends.Perk.Footwork],
 		[],
 		[],
 		[],

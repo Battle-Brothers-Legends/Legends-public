@@ -1402,11 +1402,6 @@ if (!("Actives" in ::Legends)) {
 	LegendPrayerOfHope = {},
 	LegendPryArmor = {},
 	LegendPushForward = {},
-	LegendQuickStep = {
-		Icon = "skills/unarmed_lunge_square.png", // needs icons
-		IconDisabled = "skills/unarmed_lunge_square_bw.png",
-		Overlay = "unarmed_lunge_square"
-	},
 	LegendRedbackSpiderBite = {
 		Icon = "skills/active_115.png",
 		IconDisabled = "skills/active_115.png",
