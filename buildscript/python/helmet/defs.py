@@ -456,22 +456,22 @@ class Defs:
  "desc" :  "A short skullcap with a pair of rondels affixed to the sides, providing extra protection to the wearer's head.",
  "adesc" : "Includes a skullcap with protective side rondels."
  },
-{"name" : "deep_cervelliere"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 1000, "con" : 100, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "deep_cervelliere"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 1000, "con" : 100, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Reinforced Deep Cervelliere",
  "desc" :  "A metal cervelliere with a deep, rounded bowl and bolted cheek guards, providing good protection.",
  "adesc" : "Includes a deep steel cervelliere."
  },
-{"name" : "deep_cervelliere_named"                     , "layer" : "helm", "min" : 1, "max" : 8, "value" : 3200, "con" : 105, "stam" : -6, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 105, "max" : 125 }, "fat": { "min" : 6, "max" : 5 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
+{"name" : "deep_cervelliere_named"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 8, "value" : 3200, "con" : 105, "stam" : -6, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 105, "max" : 125 }, "fat": { "min" : 6, "max" : 5 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
  "title" :  "Reinforced Deep Cervelliere",
  "desc" :  "A decorated deep cervelliere with bolted cheek guards. It bears a gilded trim with decorative leaf plates pinned to the front ridge.",
  "adesc" : "Includes an intricately decorated deep cervelliere."
  },
-{"name" : "cervelliere"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 1500, "con" : 105, "stam" : -7, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "cervelliere"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 1500, "con" : 105, "stam" : -7, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Reinforced Cervelliere",
  "desc" :  "A heavy steel helm with added bolted cheek guards that offers extensive coverage for the jaw and the temples.",
  "adesc" : "Includes a steel cervelliere with bolted cheek guards."
  },
-{"name" : "cervelliere_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 2500, "con" : 110, "stam" : -6, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 110, "max" : 135 }, "fat": { "min" : 6, "max" : 5 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
+{"name" : "cervelliere_named"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 1, "value" : 2500, "con" : 110, "stam" : -6, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 110, "max" : 135 }, "fat": { "min" : 6, "max" : 5 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
  "title" :  "Reinforced Cervelliere",
  "desc" :  "A skillfully painted cervelliere with added bolted cheek guards. Made of strong steel capable of protecting one's skull from all kinds of trauma.",
  "adesc" : "Includes a skillfully painted cervelliere with bolted cheek guards."
