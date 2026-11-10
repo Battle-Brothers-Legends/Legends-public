@@ -555,9 +555,9 @@ enemies = r"""
 <sprite id="bust_unhold_head_05" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF39455B" width="174" height="214" img="entity\beasts\bust_unhold_head_05.png" left="-69" right="21" top="-24" bottom="68" />
 <sprite id="bust_unhold_head_05_dead" offsetY="30" f="64F6" f1="40" f2="-20" ic="FF343E56" width="169" height="139" img="entity\beasts\bust_unhold_head_05_dead.png" left="4" right="76" top="-62" bottom="8" />
 <sprite id="bust_unhold_head_05_dead_bloodpool" offsetY="30" f="6420" f1="40" f2="-20" width="169" height="139" img="entity\beasts\bust_unhold_head_04_dead_bloodpool.png" left="-9" right="85" top="-64" bottom="16" />
-<sprite id="bust_unhold_head_06" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF39455B" width="174" height="214" img="entity\beasts\bust_unhold_head_06.png" left="-69" right="21" top="-24" bottom="68" />
-<sprite id="bust_unhold_head_06_dead" offsetY="30" f1="40" f2="-20" ic="FF343E56" width="169" height="139" img="entity\beasts\bust_unhold_head_06_dead.png" left="4" right="76" top="-62" bottom="8" />
-<sprite id="bust_unhold_head_06_dead_bloodpool" offsetY="30" f="6420" f1="40" f2="-20" width="169" height="139" img="entity\beasts\bust_unhold_head_04_dead_bloodpool.png" left="-9" right="85" top="-64" bottom="16" />
+<sprite id="bust_unhold_head_06" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF636C75" width="174" height="214" img="entity\beasts\bust_unhold_head_06.png" left="-68" right="26" top="-43" bottom="81" />
+<sprite id="bust_unhold_head_06_dead" offsetY="30" f1="40" f2="-20" ic="FF5B636F" width="169" height="139" img="entity\beasts\bust_unhold_head_06_dead.png" left="-17" right="85" top="-70" bottom="14" />
+<sprite id="bust_unhold_head_06_dead_bloodpool" offsetY="30" f="6420" f1="40" f2="-20" width="169" height="139" img="entity\beasts\bust_unhold_head_04_dead_bloodpool.png" left="-20" right="82" top="-62" bottom="16" />
 
 <sprite id="bust_skeleton_body_01_injured" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\bust_skeleton_body_injured.png" left="-37" right="33" top="-45" bottom="3" />
 <sprite id="bust_skeleton_body_02_injured" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\bust_skeleton_body_injured.png" left="-37" right="33" top="-45" bottom="3" />
