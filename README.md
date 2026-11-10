@@ -21,7 +21,10 @@
 - *Koltira* - programming
 - *Breaky* - programming, support
 - *chopeks* - programming, support
+- *Narkh* - programming, support, art
 - *Son of Satan* - programming
+- *Stukov* - programming
+- *Misha* - art
 - *Olve* - art
 - *Shiro* - art
 - *Evie Nekomancer* ꜀(^. .^꜀ )꜆੭ - art
