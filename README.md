@@ -23,7 +23,7 @@
 - *chopeks* - programming, support
 - *Narkh* - programming, support, art
 - *Son of Satan* - programming
-- *Stukov* - programming
+- *stukov81* - programming
 - *Misha* - art
 - *Olve* - art
 - *Shiro* - art
