@@ -713,6 +713,7 @@
 - holy fire's consecrated effect now properly renders undead vulnerable to poisons
 - Unhold nets are now treated as nets for all perk purposes
 - Double Grip no longer mistakenly affects Direct Damage multiplier of Ambidextrous followup attacks and Zombie Bite
+- Net repair Melee Defense bonus no longer works with broken nets
 
 ### For modders:
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

@@ -79,18 +79,16 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 				text = "Reading this will allow the user to learn [color=%negative%]" + selection + "[/color] perk group. Following perks will be added if not already in the tree:"
 			});
 
-			local tree = ::MSU.deepClone(this.m.PerkGroups.filter(function (_, _it) {
-				return _it.Name == this.m.PerkGroupSelection;
-			}.bindenv(this)).top().Tree);
-			foreach (perk in tree.reduce(function (a, b) {
-				a.extend(b);
-				return a;
-			}).map(@(_def) ::Const.Perks.PerkDefObjects[_def])) {
+			local perkTreeDefArray = [];
+			foreach (row in this.m.PerkGroups.filter((@(_, _perkGroup)(_perkGroup.Name == this.m.PerkGroupSelection)).bindenv(this))[0].Tree) {
+				perkTreeDefArray.extend(row);
+			}
+			foreach (def in perkTreeDefArray.map(@(_def) ::Const.Perks.PerkDefObjects[_def])) {
 				result.push({
 					id = 10,
 					type = "text",
-					icon = perk.Icon
-					text = "[color=%perk%]" + perk.Name + "[/color]"
+					icon = def.Icon
+					text = "[color=%perk%]" + def.Name + "[/color]"
 				});
 			}
 		} else {

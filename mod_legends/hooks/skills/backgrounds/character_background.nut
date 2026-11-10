@@ -1085,7 +1085,7 @@
 
 		local a = clone ::Legends.Backgrounds.BaseAttr.resolve(_tag);
 		// Modify the stats if being female carries a gameplay effect
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Enabled") {
+		if (::Legends.Mod.ModSettings.getSetting("GenderStatDifference").getValue() == "Enabled") {
 			if (this.getContainer().getActor().getGender() == 1) {
 				a = sum(a, ::Legends.Backgrounds.BaseAttr.Female);
 			}

@@ -1,26 +1,23 @@
 this.perk_legend_net_repair <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNetRepair);
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		getContainer().getActor().getFlags().set("LegendsCanRepairNet", true);
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		getContainer().getActor().getFlags().remove("LegendsCanRepairNet");
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local item = getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (item != null && item.isItemType(::Const.Items.ItemType.Net))
+		if (item != null && item.isItemType(::Const.Items.ItemType.Net) && (item.getAmmoMax() == 0 || item.getAmmo() > 0)) {
 			_properties.MeleeDefense += 10;
+		}
 	}
-
 });

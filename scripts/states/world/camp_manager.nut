@@ -7,16 +7,7 @@ this.camp_manager <- {
 		StopTime = 0,
 		LastCampTime = 0,
 		Tents = [],
-		PresetNames = [
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false
-		], // CAUTION: the length of this array is tightly coupled with mSaveSlotNum in camp_screen_commander_dialog_module.js
+		PresetNames = array(8, "") // CAUTION: the length of this array is tightly coupled with mSaveSlotNum in camp_screen_commander_dialog_module.js (number of buttons drawn)
 		StartedWhileEscorting = false,
 		LastCampingUpdateText = [],
 		CampEncountersCooldownUntil = 0.0,
