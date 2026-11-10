@@ -1,11 +1,4 @@
 ::mods_hookExactClass("skills/traits/bloodthirsty_trait", function(o) {	
-	o.m.ApplicableSkills = [
-		::Legends.Effect.Poison,
-		::Legends.Effect.LegendRedbackSpiderPoison,
-		::Legends.Effect.LegendGrazed,
-		::Legends.Effect.Bleeding
-	];
-
 	local create = o.create;
 	o.create = function () {
 		create();
@@ -16,43 +9,29 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function () {
 		local ret = getTooltip();
-		ret.extend([
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = "Restore [color=%positive%]1[/color] Fatigue when an enemy dies from [color=%status%]Bleed[/color], [color=%status%]Graze[/color] or damaging [color=%status%]Poison[/color]"
-			},
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				icon = "ui/icons/health.png",
-				text = "Restore [color=%positive%]1[/color] Hitpoints when an enemy dies from [color=%status%]Bleed[/color], [color=%status%]Graze[/color] or damaging [color=%status%]Poison[/color]"
-			}
-		]);
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/health.png",
+			text = "Restore [color=%positive%]2[/color] Hitpoints when you kill an enemy with a fatality"
+		});
 
 		return ret;
 	}
 
-	o.onOtherActorDeath = function( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType ) {
-		local valid = false;
-		local targetStatus = _victim.getSkills();
-		foreach (skill in this.m.ApplicableSkills) {
-			if (_skill != null && _skill.getID() == ::Legends.Effects.getID(skill)) {
-				valid = true;
-				break;
-			}
+	o.onOtherActorDeath <- function( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType ) {
+		local actor = this.getContainer().getActor();
+		if (::Legends.S.isEntityNullOrDead(actor)) {
+			return;
 		}
 
-		if (_skill.getID() == "injury.cut_artery") {
-			valid = true;
+		if (_killer != actor ) {
+			return;
 		}
 
-		if (valid) {
-			local actor = this.getContainer().getActor();
-			actor.setFatigue(::Math.max(0, actor.getFatigue() - 1));
-			actor.setHitpoints(::Math.max(actor.getHitpointsMax(), actor.getHitpoints() + 1));
+		if (_fatalityType == this.Const.FatalityType.None) {
+			return;
 		}
+		actor.setHitpoints(::Math.max(actor.getHitpointsMax(), actor.getHitpoints() + 2));
 	}
 });
