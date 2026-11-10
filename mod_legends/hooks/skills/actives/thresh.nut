@@ -76,7 +76,7 @@
 
 							if (!_user.isHiddenToPlayer() && tile.IsVisibleForPlayer)
 							{
-								this.Tactical.EventLog.log(effect.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(_user), this.Const.UI.getColorizedEntityName(_targetTile.getEntity())));
+								this.Tactical.EventLog.log(effect.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(_user), this.Const.UI.getColorizedEntityName(tile.getEntity())));
 							}
 						}
 					}
