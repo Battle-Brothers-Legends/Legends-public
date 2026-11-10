@@ -764,6 +764,7 @@
 - added `isMainhandFree()`, `isOffhandFree()` and `canDoubleGrip()` to actor and `allowsOffhandActions()` to weapons, the latter allowing offhand weapons like the Hand Crossbow to allow Double Grip (together with a property)
 - changed the way Double Grip is calculated to only apply to melee weapon attacks
 - Perk Duelist now lists exact item ids rather than arbitrary strings in Allowed Items
+- `GenderEquality` setting renamed to `GenderStatDifference` to avoid issues with values saved in MSU
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

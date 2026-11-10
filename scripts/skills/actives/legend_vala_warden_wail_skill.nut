@@ -39,8 +39,8 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 			_properties.RangedAttackBlockedChanceMult = 0.0;
 			local warden = this.getContainer().getActor();
 			local vala = warden.getVala().get();
-			local spiritualBond = ::Legends.Perks.has(vala, ::Legend.Perk.LegendValaSpiritualBond) ? vala.getBravery() * ::Legends.Perks.get(vala, ::Legend.Perk.LegendValaSpiritualBond).getDamageScaling() : 0;
-			local fury = ::Legends.Effects.has(vala, ::Legend.Effect.LegendValaChantFury) ? ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFury).getWardenDamage() : 0;
+			local spiritualBond = ::Legends.Perks.has(vala, ::Legends.Perk.LegendValaSpiritualBond) ? vala.getBravery() * ::Legends.Perks.get(vala, ::Legends.Perk.LegendValaSpiritualBond).getDamageScaling() : 0;
+			local fury = ::Legends.Effects.has(vala, ::Legends.Effect.LegendValaChantFury) ? ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFury).getWardenDamage() : 0;
 
 			_properties.DamageRegularMin += 10 + ::Math.round(spiritualBond * 0.67) + ::Math.round(fury * 0.67);
 			_properties.DamageRegularMax += 15 + ::Math.round(spiritualBond) + ::Math.round(fury);

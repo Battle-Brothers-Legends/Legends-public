@@ -52,12 +52,16 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 		_targetTile.spawnDetail("mortar_target_02", ::Const.Tactical.DetailFlag.SpecialOverlay, false, true);
 		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " draws the bow to it's maximum and prepares a shot");
 		local actor = this.getContainer().getActor();
-		if (actor.getCurrentProperties().IsSpecializedInBows && ::Tactical.TurnSequenceBar.canEntityWait(actor)) {
-			::Tactical.TurnSequenceBar.entityWaitTurn(actor);
+		if (actor.isPlayerControlled()) {
+			if (actor.getCurrentProperties().IsSpecializedInBows && ::Tactical.TurnSequenceBar.canEntityWait(actor)) {
+				::Tactical.TurnSequenceBar.entityWaitTurn(actor);
+			} else {
+				actor.m.IsTurnDone = true;
+			}
+			::Tactical.State.updateCurrentEntity();
 		} else {
-			actor.m.IsTurnDone = true;
+			actor.setActionPoints(0);
 		}
-		::Tactical.State.updateCurrentEntity();
 		return true;
 	}
 
@@ -71,8 +75,12 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 		local actor = this.getContainer().getActor();
 		if (this.m.Prepared && actor.getCurrentProperties().IsSpecializedInBows) {
 			this.onResumeUse();
-			actor.m.IsTurnDone = true;
-			::Tactical.State.updateCurrentEntity();
+			if (actor.isPlayerControlled()) {
+				actor.m.IsTurnDone = true;
+				::Tactical.State.updateCurrentEntity();
+			} else {
+				actor.setActionPoints(0);
+			}
 		}
 	}
 

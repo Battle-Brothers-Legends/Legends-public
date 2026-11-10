@@ -51,9 +51,8 @@
 	o.getActionPointCost <- function () {
 		return this.getContainer().getActor().getActionPoints();
 	}
-	
-	o.onAnySkillExecuted <- function(_skill, _targetTile, _targetEntity, _forFree)
-	{
+
+	o.onAnySkillExecuted <- function (_skill, _targetTile, _targetEntity, _forFree) {
 		this.m.IsFirstSkill = false;
 	}
 
@@ -70,21 +69,24 @@
 		}
 
 		this.m.UsedAP = 0;
-		this.getContainer().getActor().m.IsTurnDone = true;
-		::Tactical.State.updateCurrentEntity();
+		if (_user.isPlayerControlled()) {
+			_user.m.IsTurnDone = true;
+			::Tactical.State.updateCurrentEntity();
+		} else {
+			_user.setActionPoints(0);
+		}
 		return true;
 	}
 
 	o.getRecoveredFat <- function (_usedAP) {
 		return _usedAP * this.m.FatPerAP * this.getContainer().getActor().getFatigueMax();
 	}
-	
-	o.onCombatFinished <- function()
-	{
+
+	o.onCombatFinished <- function () {
 		this.m.IsFirstSkill = true;
 	}
 
-	o.isFirstSkillBeUsed <- function() {
+	o.isFirstSkillBeUsed <- function () {
 		return this.m.IsFirstSkill;
 	}
 });

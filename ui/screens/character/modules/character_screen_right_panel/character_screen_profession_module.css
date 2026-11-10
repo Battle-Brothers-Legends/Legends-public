@@ -98,6 +98,7 @@
     position: absolute;
     margin: auto;
     z-index: 2;
+    pointer-events: none;
 }
 
 /* Unlock Popup Dialog */

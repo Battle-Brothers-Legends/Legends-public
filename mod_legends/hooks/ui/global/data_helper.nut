@@ -215,7 +215,13 @@
         		if (state == 1) plannedCount++;
         		else if (state == 2) tentativeCount++;
     		}
-			result.PlannedLevelRequired <- plannedCount + _entity.getLevel() - _entity.getPerkPoints();
+			
+			local currentLevel = _entity.getLevel();
+			local vetLevelsPerPerk = _entity.getVeteranPerks();
+			local perksFromLevels = ((currentLevel <= ::Const.XP.MaxLevelWithPerkpoints) ? currentLevel : (::Const.XP.MaxLevelWithPerkpoints + ::Math.floor((currentLevel - ::Const.XP.MaxLevelWithPerkpoints) / vetLevelsPerPerk)));
+			local pointsRequired = perksFromLevels - _entity.getPerkPoints() + plannedCount;
+			local requiredLevel = (pointsRequired <= ::Const.XP.MaxLevelWithPerkpoints) ? pointsRequired : ::Const.XP.MaxLevelWithPerkpoints + ((pointsRequired - ::Const.XP.MaxLevelWithPerkpoints) * vetLevelsPerPerk);
+			result.PlannedLevelRequired <- ::Math.max(1, requiredLevel);
     		result.TentativePerksCount <- tentativeCount;
 			result.BooksRead <- _entity.getFlags().getAsInt("LegendsSkillBookCount") + " / 1";
 			result.ScrollsRead <- _entity.getFlags().getAsInt("LegendsScrollCount") + " / " + (::Legends.Traits.has(_entity, ::Legends.Trait.Bright) ? 2 : (::Legends.Traits.has(_entity, ::Legends.Trait.Dumb) ? 0 : 1));

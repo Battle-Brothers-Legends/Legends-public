@@ -10,7 +10,7 @@
 	}
 
 	o.getDynamicTooltip <- function (_actor = null) {
-		local tooltip = this.skill.getTooltip();
+		local tooltip = [];
 		local bonus = this.getBonus(_actor) * 100;
 		if (bonus == 0) {
 			tooltip.push({
