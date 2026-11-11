@@ -1,6 +1,6 @@
 this.legend_improvised_strike_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		EffectChance = 25;
+		EffectChance = 25
 	}
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendImprovisedStrike);
@@ -50,7 +50,7 @@ this.legend_improvised_strike_skill <- this.inherit("scripts/skills/skill", {
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Has a [color=%positive%]%_chance%%[/color] chance to [color=%effect%]Daze[/color] or [color=%effect%]Stagger[/color] on a hit and [color=%effect%]Stun[/color] on a hit to the head",
-			param
+			param = param
 		}]);
 
 		return ret;

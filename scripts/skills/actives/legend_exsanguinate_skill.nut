@@ -1,7 +1,7 @@
 this.legend_exsanguinate_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		ApplicableSkills = [
-			::Legends.Effect.Poison,
+			::Legends.Effect.SpiderPoison,
 			::Legends.Effect.LegendRedbackSpiderPoison,
 			::Legends.Effect.LegendGrazed,
 			::Legends.Effect.Bleeding
