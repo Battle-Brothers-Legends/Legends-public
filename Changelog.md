@@ -67,6 +67,10 @@
 - Anatomists can no longer be scared of the dark
 - Anatomist origin has an additional chance of finding anatomists (~1 in 4 chance per refresh)
 
+## Contracts ## 
+- `Taking Action` now takes you to hunt in a location instead of roamers
+> credit to Stukov
+
 ## Backgrounds
 
 ### Background stats
