@@ -697,14 +697,12 @@ Knights would do well to fear your heavy blows.
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Taunt].Tooltip = ::Const.Strings.PerkDescription.Taunt;
 
 ::Const.Strings.PerkDescription.Underdog <- @"
-I'm used to it.
+Steel your heart and dodge blades from the front, behind and above in the thick of battle.
 
 [color=%passive%][u]Passive:[/u][/color]
 • The defense malus due to being surrounded by opponents is reduced by [color=%negative%]5[/color].
 
 • If an attacker has the [color=%perk%]Strength In Numbers[/color] perk, the effect of that perk is negated, and the normal defense malus due to being surrounded is applied instead.
-
-• Gain an additional stacking [color=%positive%]+5%[/color] chance to hit each time you dodge an attack.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Underdog].Tooltip = ::Const.Strings.PerkDescription.Underdog;
 

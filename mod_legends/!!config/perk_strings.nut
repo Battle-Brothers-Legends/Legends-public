@@ -582,15 +582,6 @@ Absolute focus tolerates no distractions.
 • If your Initiative is higher than twice your armor's weight (penalty to Maximum Fatigue), you start the battle with stacks equal to your armor's weight above 15.
 ";
 
-::Const.Strings.PerkDescription.LegendIronside <- @"
-All damage received is reduced.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Reduced by [color=%negative%]-5%[/color] for every opponent adjacent and in melee range.
-
-• Up to a [color=%negative%]-30%[/color] total damage reduction.
-";
-
 ::Const.Strings.PerkDescription.LegendKeenEyesight <- @"
 The more you see, the more you know.
 
@@ -1724,6 +1715,13 @@ True berserkers prefer fighting without the burden of armor, relying purely on t
 
 [color=%passive%][u]Passive:[/u][/color]
 • Gain another stack of nimble while wearing no armor and helmet.
+";
+
+::Const.Strings.PerkDescription.LegendUnderdog <- @"
+I'm used to it.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Gain an additional stacking [color=%positive%]+10%[/color] chance to hit each time you dodge an attack.
 ";
 
 ::Const.Strings.PerkDescription.LegendValaChantDisharmony <- @"

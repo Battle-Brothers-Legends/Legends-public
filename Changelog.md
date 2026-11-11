@@ -157,11 +157,13 @@
 > Confers an experience point bonus based on Hitpoints lost and Injuries gained during combat. Gain 1 XP per Hitpoint and 10 per Injuries. Experience gain is reduced by 90% at level 12 and above.
 > Hitpoint damage taken is reduced by 5% and Resolve is increased by 3 for each Injury you have up to a maximum of 30% and [color=%positive%]15 achieved at 6 Injuries. Counts both regular and permanent Injuries.
 - `Wide Swings` - Large Trait Tree
-> Gain a 50% chance upon missing an attack execute the skill again on the target you missed.
-> The follow up will deal 50% less damage and gain 30% hitchance.
+> Once per turn upon killing an enemy execute an attack of opportunity on an enemy on an adjacent tile for 50% damage.
 - `Hammer the Gap` - Grants a stacking +5% to hit as long as you attack the same tile. The bonus is capped at 10%.
+- `Underdog` - new perk sharing the vanilla name as that one has been renamed to `Ironside`
+> increases hitchance by 10% each time an enemy misses you
 
 ### Perk Changes
+- `Underdog` - vanilla underdog has been renamed to `Ironside` and will do the vanilla effect of +5 surround mdef
 - `Headhunter` - Hitting the head of a target will give you a guaranteed hit to the head with your next attack. Killing an enemy with a hit to the head will increase chance to hit the head and Damage on a hit to the head by +10% for each kill until the end of combat
 - `Pugilist` - additionally each successful attack reduces the ap cost of `Kick` by 1 until the end of your turn. 
 - `Reach Advantage` - stacks will now decay by 2 at the start of your turn instead of losing all of them

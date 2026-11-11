@@ -356,6 +356,7 @@ if (!("Perks" in ::Legends))
 	},
 	SunderingStrikes = {},
 	Underdog = {
+		Name = "Ironside",
 		Icon = "ui/perks/perk_60.png",
 		IconDisabled = "ui/perks/perk_60_sw.png"
 	},
@@ -595,6 +596,10 @@ if (!("Perks" in ::Legends))
 	LegendTwirl = {},
 	LegendTumble = {},
 	LegendUnburdened = {},
+	LegendUnderdog = {
+		Icon = "ui/perks/perk_60.png",
+		IconDisabled = "ui/perks/perk_60_sw.png"
+	},
 	LegendValaChantDisharmony = {
 		Name = "Disharmony (Chant)"
 	},
@@ -649,8 +654,6 @@ if (!("Perks" in ::Legends))
 		Icon = "ui/perks/miasma_circle.png",
 		IconDisabled = "ui/perks/miasma_circle_bw.png",
 	},
-	// to be added
-	LegendIronside = {},
 	// unused other than donkeys, to be deleted but might be harvested for the effect before?
 	LegendPacifist = {
 		Icon = "ui/perks/pacifist_circle.png",

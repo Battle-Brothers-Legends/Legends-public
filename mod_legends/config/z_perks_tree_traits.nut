@@ -327,9 +327,9 @@ if (!("Perks" in ::Const)) {
 	],
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.LegendBackToBasics],
-		[],
-		[::Legends.Perk.LegendTacticalManeuvers, ::Legends.Perk.Underdog],
+		[::Legends.Perk.Underdog], // this is called ironside if it's confusing
+		[::Legends.Perk.LegendUnderdog],
+		[::Legends.Perk.Footwork],
 		[],
 		[::Legends.Perk.LegendPrepared],
 		[],
