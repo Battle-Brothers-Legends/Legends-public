@@ -106,6 +106,9 @@
 ### Crusaders
 - can no longer be `Sureshot`
 
+### Hedgeknight
+- loses the basic background bonus but gains 1 more weapon tree and 1 more defense tree
+
 ### Oathtakers
 - oathtakers stats aligned with vanilla with a bumped up initiative
 - cannot roll hitpoints and ranged skill

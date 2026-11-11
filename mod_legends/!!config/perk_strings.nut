@@ -1883,7 +1883,7 @@ Corrupt the force sustaining one of your fashioned thralls
 Be broad enough and it will stick eventually.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain a [color=%positive%]50%[/color] chance upon missing an attack execute the skill again on the target you missed. The follow up will deal [color=%negative%]50%[/color] less damage and gain [color=%positive%]+30%[/color] hitchance.
+• Once per turn upon killing an enemy execute an attack of opportunity on an enemy on an adjacent tile for [color=%damage%]50%[/color] damage.
 ";
 
 ::Const.Strings.PerkDescription.LegendWindReader <- @"
