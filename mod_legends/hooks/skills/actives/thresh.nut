@@ -71,7 +71,7 @@
 						if (!::Legends.S.isEntityNullOrDead(_user) && !::Legends.S.isEntityNullOrDead(_user)) {
 							if (success && nextTile.IsOccupiedByActor && ::Math.rand(1, 100) <= this.m.StunChance && !target.getCurrentProperties().IsImmuneToBleeding && !target.getSkills().hasEffect(skillToApply)) {
 								if (!_user.isHiddenToPlayer() && nextTile.IsVisibleForPlayer) {
-									::Tactical.EventLog.log(::Legends.Effects.grant(target, ::Legends.Effect.Dazed).getLogEntryOnAdded(::Const.UI.getColorizedEntityName(_user), ::Const.UI.getColorizedEntityName(target)));
+									::Tactical.EventLog.log(::Legends.Effects.grant(target, skillToApply).getLogEntryOnAdded(::Const.UI.getColorizedEntityName(_user), ::Const.UI.getColorizedEntityName(target)));
 								}
 							}
 						}
