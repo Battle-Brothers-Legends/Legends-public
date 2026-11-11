@@ -29,6 +29,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamageMax = 52;
 		this.m.ArmorDamageMult = 0.7;
 		this.m.DirectDamageMult = 0.2;
+		this.m.StaminaModifier = 1;
 	}
 
 	function getAmmo() {

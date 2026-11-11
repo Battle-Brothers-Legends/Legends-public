@@ -8,6 +8,7 @@
 		this.m.Ammo = 8;
 		this.m.AmmoMax = 8;
 		this.m.AmmoCost = 1;
+		this.m.StaminaModifier = 1;
 		this.m.WeaponType = ::Const.Items.WeaponType.Dagger;
 	}
 

@@ -27,6 +27,7 @@ this.legend_shiv <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 0.3;
 		this.m.DirectDamageMult = 0.2;
 		this.m.DirectDamageAdd = -0.05;
+		this.m.StaminaModifier = 1;
 	}
 
 	function onEquip()

@@ -311,6 +311,9 @@
 - `Piercing Javelin` - if the attack is successful also attack the target behind them for 75% damage
 > 5 ap, 20 fat
 
+**Daggers**
+- all daggers now have a bit of weight for dual wield balancing
+
 **Puncture Daggers**
 - `Backstab` - replaces `Stab` on puncture daggers
 > additional 5% damage and 3% armor penetration based on surround count
@@ -322,6 +325,9 @@
 - `Deathblow` - unchanged
 - `Gut`
 > attacks repeatedly the body of the enemy depending on how many injuries they have
+
+**Katar Dagger**
+- damage reduced to 25-40, armor damage lowered to 70%
 
 **Obsidian Dagger**
 - `Backstab`

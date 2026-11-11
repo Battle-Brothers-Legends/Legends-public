@@ -9,6 +9,7 @@
 		this.m.RegularDamageMax = 60;
 		this.m.ArmorDamageMult = 1.15;
 		this.m.DirectDamageAdd = 0.1;
+		this.m.StaminaModifier = 1;
 	}
 
 	o.addSkill <- function( _skill )

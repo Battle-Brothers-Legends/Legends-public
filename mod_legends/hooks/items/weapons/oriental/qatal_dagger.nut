@@ -5,6 +5,7 @@
 		create();
 		this.m.Value = 750;
 		this.m.Variants = [0, 1, 2];
+		this.m.StaminaModifier = 2;
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
