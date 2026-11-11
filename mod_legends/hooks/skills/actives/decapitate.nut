@@ -25,21 +25,18 @@
 		local p = this.getContainer().buildPropertiesForUse(this, null);
 		local damage_regular_min = ::Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
 		local damage_regular_max = ::Math.floor(p.DamageRegularMax * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_Armor_min = ::Math.floor(p.DamageRegularMin * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_Armor_max = ::Math.floor(p.DamageRegularMax * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
 		local damage_direct_max = ::Math.floor(damage_regular_max * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
 
 		local damageParams = [
-			["damage_regular_min", damage_regular_min],
-			["damage_regular_max", damage_regular_max],
-			["damage_regular_max_double", damage_regular_max * 2],
-			["damage_direct_max", damage_direct_max]
+			["_damage_regular_min", damage_regular_min],
+			["_damage_regular_max", damage_regular_max * 2],
+			["_damage_direct_max", damage_direct_max]
 		];
 		ret.insert(3, {
 			id = 4,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts [color=%damage%]%damage_regular_min%[/color] - [color=%damage%]%damage_regular_max_double%[/color] damage depending on how wounded the target already is, of which [color=%damage%]0[/color] - [color=%damage%]%damage_direct_max%[/color] can ignore armor",
+			text = "Inflicts [color=%damage%]%_damage_regular_min%[/color] - [color=%damage%]%_damage_regular_max%[/color] damage depending on how wounded the target already is, of which [color=%damage%]0[/color] - [color=%damage%]%_damage_direct_max%[/color] can ignore armor",
 			param = damageParams
 		});
 		if (!this.m.IsScytheDecapitate)
