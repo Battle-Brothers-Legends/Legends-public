@@ -21,6 +21,7 @@
 			[1, ::Legends.Armor.Ancient.ancient_priest_attire]
 		];
 		local item = ::Legends.Items.pickArmor(armor);
+		item.m.Icon = "";
 		this.m.Items.equip(item);
 
 		local item = ::Legends.Items.pickHelmet([

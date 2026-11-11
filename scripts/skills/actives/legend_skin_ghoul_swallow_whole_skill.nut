@@ -1,6 +1,6 @@
 this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/actives/swallow_whole_skill", {
 	function create() {
-		this.swallow_whole_skill.onCreate();
+		this.swallow_whole_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSkinGhoulSwallowWhole);
 	}
 

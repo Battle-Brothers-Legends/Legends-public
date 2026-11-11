@@ -25,9 +25,11 @@
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
-			this.m.Items.equip(::Legends.Items.pickArmor([
+			local item = ::Legends.Items.pickArmor([
 				[1, ::Legends.Armor.Barbarian.barbarian_ritual_armor]
-			]));
+			]);
+			item.m.Icon = "";
+			this.m.Items.equip(item);
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {

@@ -23,6 +23,7 @@
 			[1, ::Legends.Armor.Ancient.ancient_lich_attire]
 		];
 		local item = ::Legends.Items.pickArmor(armor);
+		item.m.Icon = "";
 		this.m.Items.equip(item);
 
 		local item = ::Legends.Items.pickHelmet([
