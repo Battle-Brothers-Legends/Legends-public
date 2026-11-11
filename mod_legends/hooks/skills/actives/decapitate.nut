@@ -32,7 +32,8 @@
 		local damageParams = [
 			["damage_regular_min", damage_regular_min],
 			["damage_regular_max", damage_regular_max],
-			["damage_regular_max_double", damage_regular_max * 2]
+			["damage_regular_max_double", damage_regular_max * 2],
+			["damage_direct_max", damage_direct_max]
 		];
 		ret.insert(3, {
 			id = 4,
@@ -43,13 +44,6 @@
 		});
 		if (!this.m.IsScytheDecapitate)
 			return ret;
-
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=%positive%]2[/color] tiles"
-		});
 		if (!::Legends.Weapons.isCharacterWeaponSpecialized(p, this.getItem())) {
 			ret.push({
 				id = 6,

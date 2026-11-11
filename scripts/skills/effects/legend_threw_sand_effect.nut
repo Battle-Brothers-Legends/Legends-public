@@ -8,6 +8,6 @@ this.legend_threw_sand_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "Already thrown sand.";
+		return "Already thrown sand";
 	}
 });

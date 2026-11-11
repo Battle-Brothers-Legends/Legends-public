@@ -1,4 +1,23 @@
 ::mods_hookExactClass("skills/perks/perk_reach_advantage", function (o) {
+	o.getDescription = @() "This character is using the superior reach of their melee weapon to keep opponents at bay.";
+
+	o.getTooltip <- function () {
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend(this.getDynamicTooltip());
+		return tooltip;
+	}
+
+	o.getDynamicTooltip <- function (_actor = null) {
+		return [
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=%positive%]+" + this.m.Stacks * 5 + "[/color] Melee Defense"
+			}
+		];
+	}
+
 	local onUpdate = o.onUpdate;
 	o.onUpdate = function (_properties) {
 		onUpdate(_properties);
@@ -22,6 +41,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.m.Stacks * 5 + "[/color] Melee " + ::Legends.Text.inlineIcons(["melee_defense"]);
+		return "[color=%positive%]+" + this.m.Stacks * 5 + "[/color] " + ::Legends.Text.inlineIcons(["melee_defense"]);
 	}
 });
