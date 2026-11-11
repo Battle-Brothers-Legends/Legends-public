@@ -49,13 +49,17 @@
 		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield) && shield.getCondition() > 0) {
 			_properties.Block += this.calculateBlock(); // no bonus in real calc since its added onBeingAttacked
 		}
+		else {
+			this.removeSelf();
+		}
 	}
 
 	o.calculateBlock <- function (_bonus = 0) {
 		local actor = this.getContainer().getActor();
+		local shield = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local mult = actor.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0;
 		local proficiencyBonus = actor.getCurrentProperties().IsProficientWithShieldSkills ? 5 : 0;
-		return ::Math.floor(actor.getBlock() * mult + _bonus + proficiencyBonus);
+		return ::Math.floor(shield.getBlock() * mult + _bonus + proficiencyBonus);
 	}
 
 	o.onDamageReceived <- function (_attacker, _skill, _hitInfo) {

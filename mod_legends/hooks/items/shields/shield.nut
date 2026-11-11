@@ -153,7 +153,7 @@
 	o.onUpdateProperties = function (_properties) {
 		onUpdateProperties(_properties);
 		local mult = this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields ? 2 : 1;
-		_properties.Block = this.getBlock() * mult;
+		_properties.Block += this.getBlock() * mult;
 	}
 
 	o.getGrantedSkills <- function () {
