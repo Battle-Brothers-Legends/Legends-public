@@ -1,4 +1,4 @@
- 19.5.0 - Name Pending
+19.5.0 - Name Pending
 
 ## Blazing Desert Plus and OFF+
 - added a patch for BD+ by Sato
@@ -163,6 +163,9 @@
 > increases hitchance by 10% each time an enemy misses you
 
 ### Perk Changes
+- `Crossbow Mastery` - now increases armor penetration by 10% down from 20%
+- `Ballistics` - now increases armor penetration for crossbows by 5% and an additional 15% if the target is 3 or less tiles away
+> xbows got a bit overbuffed but this also nerfs goblins 
 - `Strength in Numbers` - has been removed from enemies and players
 - `Backstabber` - returns to vanilla effect of double surround bonuses
 - `Underdog` - vanilla underdog has been renamed to `Ironside` and will do the vanilla effect of +5 surround mdef

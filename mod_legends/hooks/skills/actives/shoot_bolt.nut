@@ -34,7 +34,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "Up to [color=%positive%]+20%[/color] of any damage ignores armor depending on the distance to the target, with the highest bonus in melee and lowest at maximum range"
+				text = "[color=%positive%]+20%[/color] of any damage ignores armor when attacking a target at "
 			});
 		}
 
@@ -52,7 +52,7 @@
 
 	o.onAfterUpdate = function ( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInCrossbows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.DirectDamageMult = _properties.IsSpecializedInCrossbows ? 0.7 : 0.5;
+		this.m.DirectDamageMult = _properties.IsSpecializedInCrossbows ? 0.6 : 0.5;
 	}
 
 	o.onUse = function( _user, _targetTile ) {
@@ -71,13 +71,5 @@
 		this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
 		_properties.RangedSkill += this.m.HitChanceBonus;
 		_properties.HitChanceAdditionalWithEachTile -= 3;
-		if (_properties.IsSharpshooter) {
-			_properties.DamageDirectMult += 0.05;
-		}
-
-		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics)) {
-			local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
-			_properties.DamageDirectAdd += 0.25 - (distance * 0.05);
-		}
 	}
 });

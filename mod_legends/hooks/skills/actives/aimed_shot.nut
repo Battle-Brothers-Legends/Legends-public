@@ -53,9 +53,6 @@
 			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
 			_properties.RangedSkill += this.m.HitChanceBonus;
 			_properties.HitChanceAdditionalWithEachTile -= 2;
-			if (_properties.IsSharpshooter) {
-				_properties.DamageDirectMult += 0.05;
-			}
 		}
 	}
 });

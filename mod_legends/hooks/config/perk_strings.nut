@@ -487,7 +487,7 @@ Master crossbows and firearms, and learn where to aim best.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• An additional [color=%positive%]20%[/color] of damage inflicted with crossbows ignores armor.
+• An additional [color=%positive%]10%[/color] of damage inflicted with crossbows ignores armor.
 
 • Handgonnes now require [color=%negative%]6[/color] Action Points to reload and can be fired every turn instead of every other turn.
 ";

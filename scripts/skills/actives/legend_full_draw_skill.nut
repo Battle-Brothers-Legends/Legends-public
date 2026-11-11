@@ -98,10 +98,6 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 			_properties.RangedSkill += this.m.HitChanceBonus;
 			_properties.HitChanceAdditionalWithEachTile -= 2;
 			_properties.DamageRegularMult *= 1.3;
-
-			if (_properties.IsSharpshooter) {
-				_properties.DamageDirectMult += 0.05;
-			}
 		}
 	}
 

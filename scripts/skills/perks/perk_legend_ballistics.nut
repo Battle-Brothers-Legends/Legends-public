@@ -1,6 +1,10 @@
 this.perk_legend_ballistics <- this.inherit("scripts/skills/skill", {
 	m = {
 		BonusRange = 1,
+		ApplicableSkills = [
+			::Legends.Active.ShootBolt,
+			::Legends.Active.ShootStake
+		]
 	},
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBallistics);
@@ -19,6 +23,11 @@ this.perk_legend_ballistics <- this.inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			local difference = actor.getTile().getDistanceTo(_targetEntity.getTile());
 			_properties.DamageAdditionalWithEachTile += 2;
+			foreach (skill in this.m.ApplicableSkills) {
+				if (_skill.getID() == ::Legends.Actives.getID(skill)) {
+					_properties.DamageDirectAdd += actor.getTile().getDistanceTo(_targetEntity.getTile()) <= 3 ? 0.15 : 5;
+				}
+			}
 		}
 	}
 

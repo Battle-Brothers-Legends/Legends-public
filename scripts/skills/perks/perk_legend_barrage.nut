@@ -30,6 +30,10 @@ this.perk_legend_barrage <- this.inherit("scripts/skills/skill", {
 
 		}
 
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.ShootStake) && !_targetEntity.getCurrentProperties().IsImmuneToStun) {
+			this.grantEffect(::Legends.Effect.Staggered, "staggered", _targetEntity, user);
+		}
+
 		if (!headshot) {
 			return;
 		}

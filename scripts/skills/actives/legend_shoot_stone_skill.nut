@@ -115,10 +115,6 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill == this) {
 			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
 
-			if (this.getContainer().getActor().getCurrentProperties().IsSharpshooter) {
-				_properties.DamageDirectMult += 0.05;
-			}
-
 			if (_properties.IsSpecializedInSlings) {
 				_properties.HitChanceAdditionalWithEachTile += 2;
 			}

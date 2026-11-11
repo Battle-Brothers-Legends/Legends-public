@@ -52,7 +52,7 @@
 
 	o.onAfterUpdate = function ( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInCrossbows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.DirectDamageMult = _properties.IsSpecializedInCrossbows ? 0.7 : 0.5;
+		this.m.DirectDamageMult = _properties.IsSpecializedInCrossbows ? 0.6 : 0.5;
 	}
 
 	local onTargetHit = o.onTargetHit;
@@ -90,13 +90,5 @@
 		this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
 		_properties.RangedSkill += this.m.HitChanceBonus;
 		_properties.HitChanceAdditionalWithEachTile -= 3;
-		if (_properties.IsSharpshooter) {
-			_properties.DamageDirectMult += 0.05;
-		}
-
-		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics)) {
-			local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
-			_properties.DamageDirectAdd += 0.35 - (distance * 0.05);
-		}
 	}
 });

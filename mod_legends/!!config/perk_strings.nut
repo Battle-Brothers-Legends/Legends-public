@@ -83,7 +83,7 @@ Balance in all things, especially armor.
 Be it wind, a moving target or rain - a practiced archer knows just how the projectiles will fly.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Crossbows gain a scaling bonus to armor penetration depending on the distance to the target with the highest bonus in melee and the lowest at maximum range for the relevant skill. [color=%skill%]Shoot Bolt[/color] gains up to 20%, while [color=%skill%]Shoot Heavy Bolt[/color] and [color=%skill%]Shoot Stake[/color] gain up to [color=%positive%]+30%[/color] instead.
+• An additional [color=%positive%]5%[/color] of damage inflicted with crossbows ignores armor and an additional [color=%positive%]15%[/color] if the target is 3 or less tiles away.
 
 • Gain [color=%positive%]2[/color] Ranged Damage per tile of distance between you and your target.
 

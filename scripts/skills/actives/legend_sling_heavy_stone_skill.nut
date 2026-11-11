@@ -124,9 +124,6 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			if (_properties.IsSpecializedInSlings) {
 				_properties.HitChanceAdditionalWithEachTile += 2;
 			}
-			if (_properties.IsSharpshooter) {
-				_properties.DamageDirectMult += 0.05;
-			}
 
 			_properties.RangedSkill += this.m.HitChanceBonus;
 			_properties.HitChanceAdditionalWithEachTile -= 6;
