@@ -34,13 +34,13 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]100%[/color] chance to stagger on a hit"
+				text = "Has a [color=%positive%]100%[/color] chance to Stagger on a hit"
 			},
 			{
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]%_dazeChance%[/color] chance to daze on a hit",
+				text = "Has a [color=%positive%]%_dazeChance%[/color] chance to Daze on a hit",
 				param = [
 					["_dazeChance", this.m.DazeChance]
 				]
@@ -49,7 +49,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflicts [color=%damage%]%_fatigueDamage%[/color] fatigue on hit",
+				text = "Inflicts [color=%damage%]%_fatigueDamage%[/color] Fatigue on hit",
 				param = [
 					["_fatigueDamage", this.m.FatigueDamage]
 				]

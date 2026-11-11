@@ -118,6 +118,8 @@
 	<sprite id="legend_second_wind_effect" ic="FF23165B" img="skills\legend_second_wind_effect.png" />
 	<sprite id="legend_skin_ghoul_blood_effect" ic="724543FF" img="skills\legend_skin_ghoul_blood_effect.png" />
 	<sprite id="legend_song_of_life_effect" ic="FF23165B" img="skills\legend_song_of_life_effect.png" />
+	<sprite id="legend_spearwall_royal_lance_effect" ic="FF23165B" img="skills\legend_spearwall_royal_lance_effect.png" />
+	<sprite id="legend_spearwall_royal_lance_named_effect" ic="FF23165B" img="skills\legend_spearwall_royal_lance_named_effect.png" />
 	<sprite id="legend_stollwurm_vigor_effect" ic="724543FF" img="skills\legend_stollwurm_vigor_effect.png" />
 	<sprite id="legend_stupefied_effect" ic="FF23165B" img="skills\legend_stupefied_effect.png" />
 	<sprite id="legend_summoned_bear_effect" ic="FF23165B" img="skills\legend_summoned_bear_effect.png" />
@@ -172,6 +174,8 @@
 	<sprite id="legend_safeguarded_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_safeguarded_effect.png" />
 	<sprite id="legend_second_wind_effect_mini" ic="4D3315FF" img="skills\mini\legend_second_wind_effect.png" />
 	<sprite id="legend_skin_ghoul_blood_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_skin_ghoul_blood_effect.png" />
+	<sprite id="legend_spearwall_royal_lance_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_spearwall_royal_lance_effect.png" />
+	<sprite id="legend_spearwall_royal_lance_named_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_spearwall_royal_lance_named_effect.png" />
 	<sprite id="legend_stollwurm_vigor_effect_mini" offsetY="35" ic="FF223041" img="skills\mini\legend_stollwurm_vigor_effect.png" />
 	<sprite id="legend_stupefied_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_stupefied_effect.png" />
 	<sprite id="legend_summoned_bear_effect_mini" offsetY="35" ic="FF344955" img="skills\mini\legend_summoned_bear_effect.png" />

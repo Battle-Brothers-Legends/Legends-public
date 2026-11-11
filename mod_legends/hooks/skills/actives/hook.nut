@@ -15,7 +15,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to Stagger on a hit"
 		});
 		ret.push({
 			id = 6,

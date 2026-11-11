@@ -12,7 +12,7 @@
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=%positive%]33%[/color] chance to stagger on a hit"
+			text = "Has a [color=%positive%]33%[/color] chance to Stagger on a hit"
 		},
 		{
 			id = 9,

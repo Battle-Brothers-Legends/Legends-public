@@ -1,21 +1,17 @@
-::mods_hookExactClass("skills/actives/reap_skill", function(o)
-{
+::mods_hookExactClass("skills/actives/reap_skill", function (o) {
 	o.m.SoundsA <- ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3);
 	o.m.SoundsB <- ::Legends.S.setSounds("sounds/combat/chop_hit", 3);
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.HitChanceBonus = 0;
 	}
 
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function ()
-	{
-		local tooltip = getTooltip();
-		if (::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
-		{
+	o.getTooltip = function () {
+		local tooltip = this.getDefaultTooltip();
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(properties, this.getItem())) {
 			tooltip.push({
 				id = 8,
 				type = "text",
@@ -23,44 +19,50 @@
 				text = "Inflicts additional stacking [color=%damage%]5[/color] bleeding damage per turn, for 2 turns"
 			});
 		}
-
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Can hit up to 3 targets"
+		});
+		if (!::Legends.Weapons.isCharacterWeaponSpecialized(properties, this.getItem())) {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
+			});
+		}
 		return tooltip;
 	}
 
-	o.addResources <- function ()
-	{
-		foreach( r in this.m.SoundsA )
-		{
+	o.addResources <- function () {
+		foreach (r in this.m.SoundsA) {
 			::Tactical.addResource(r);
 		}
 
-		foreach( r in this.m.SoundsB )
-		{
+		foreach (r in this.m.SoundsB) {
 			::Tactical.addResource(r);
 		}
 	}
 
-	o.onAfterUpdate = function ( _properties ) {
+	o.onAfterUpdate = function (_properties) {
 		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
-			{
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
+		if (_skill == this) {
+			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus = -15;
 			}
 		}
 	}
 
-	o.onUse = function ( _user, _targetTile )
-	{
+	o.onUse = function (_user, _targetTile) {
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSwing);
 		local ret = false;
 		local myTile = _user.getTile();
@@ -75,23 +77,19 @@
 		::Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
 		local tiles = [];
 
-		for( local i = 0; i != result.Tiles.len(); i = ++i )
-		{
-			if (result.Tiles[i].ID == _targetTile.ID)
-			{
+		for (local i = 0; i != result.Tiles.len(); i = ++i) {
+			if (result.Tiles[i].ID == _targetTile.ID) {
 				tiles.push(result.Tiles[i]);
 				local idx = i - 1;
 
-				if (idx < 0)
-				{
+				if (idx < 0) {
 					idx = idx + result.Tiles.len();
 				}
 
 				tiles.push(result.Tiles[idx]);
 				idx = i - 2;
 
-				if (idx < 0)
-				{
+				if (idx < 0) {
 					idx = idx + result.Tiles.len();
 				}
 
@@ -100,38 +98,35 @@
 			}
 		}
 
-		foreach( t in tiles )
-		{
-			if (!t.IsVisibleForEntity)
-			{
+		foreach (t in tiles) {
+			if (!t.IsVisibleForEntity) {
 				continue;
 			}
 
-			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1)
-			{
+			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1) {
 				continue;
 			}
 
-			if (!t.IsEmpty && t.getEntity().isAttackable())
-			{
-				ret = this.applyBleed( _user, t) || ret;
+			if (!t.IsEmpty && t.getEntity().isAttackable()) {
+				ret = this.applyBleed(_user, t) || ret;
 			}
 
-			if (::Legends.S.isEntityNullOrDead(_user))
+			if (::Legends.S.isEntityNullOrDead(_user)) {
 				break;
+			}
 		}
 
 		return ret;
 	}
 
-	o.applyBleed <- function( _user, _targetTile )
-	{
+	o.applyBleed <- function (_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		local hp = target.getHitpoints();
 		local success = this.attackEntity(_user, _targetTile.getEntity());
 
-		if (::Legends.S.isEntityNullOrDead(_user))
+		if (::Legends.S.isEntityNullOrDead(_user)) {
 			return success;
+		}
 
 		if (success && ::Legends.Weapons.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem())) {
 			local damage = 5;

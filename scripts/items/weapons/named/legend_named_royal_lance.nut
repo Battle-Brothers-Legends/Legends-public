@@ -1,7 +1,7 @@
 this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named_weapon", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_royal_lance";
 		this.m.NameList = ::Const.Strings.SpetumNames;
@@ -30,38 +30,27 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 		this.randomizeValues();
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		this.m.IconLarge = "weapons/melee/legend_mummy_lance_named_0" + this.m.Variant + ".png";
 		this.m.Icon = "weapons/melee/legend_mummy_lance_named_0" + this.m.Variant + "_70x70.png";
 		this.m.ArmamentIcon = "icon_mummy_lance_named_0" + this.m.Variant;
 	}
 
-	function createRandomName()
-	{
-		if (!this.m.UseRandomName || ::Math.rand(1, 100) <= 60)
-		{
-			if (this.m.SuffixList.len() == 0 || ::Math.rand(1, 100) <= 70)
-			{
+	function createRandomName() {
+		if (!this.m.UseRandomName || ::Math.rand(1, 100) <= 60) {
+			if (this.m.SuffixList.len() == 0 || ::Math.rand(1, 100) <= 70) {
 				return this.m.PrefixList[::Math.rand(0, this.m.PrefixList.len() - 1)] + " " + this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)];
-			}
-			else
-			{
+			} else {
 				return this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)] + " " + this.m.SuffixList[::Math.rand(0, this.m.SuffixList.len() - 1)];
 			}
-		}
-		else if (::Math.rand(1, 2) == 1)
-		{
+		} else if (::Math.rand(1, 2) == 1) {
 			return this.getRandomCharacterName(::Const.Strings.SouthernNamesLast) + "\'s " + this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)];
-		}
-		else
-		{
+		} else {
 			return this.getRandomCharacterName(::Const.Strings.NomadChampionStandalone) + "\'s " + this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)];
 		}
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Prong, function (_skill) {
 			_skill.m.Icon = "skills/active_54.png";
@@ -71,16 +60,15 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseeker, function (_skill) {
 			_skill.m.IsTwoHanded = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough, function (_skill)
-		{
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough, function (_skill) {
 			_skill.m.Icon = "skills/skewer_spetum.png";
 			_skill.m.IconDisabled = "skills/skewer_spetum_bw.png";
 			_skill.m.Overlay = "skewer_spetum";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
-			_skill.m.Icon = "skills/active_54.png";
-			_skill.m.IconDisabled = "skills/active_54_sw.png";
-			_skill.m.Overlay = "active_54";
+			_skill.m.Icon = "skills/legend_spearwall_royal_lance_named.png";
+			_skill.m.IconDisabled = "skills/legend_spearwall_royal_lance_named_bw.png";
+			_skill.m.Overlay = "legend_spearwall_royal_lance_named_effect";
 			_skill.m.BaseAttackName = "Prong";
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 			_skill.m.ActionPointCost = 6;

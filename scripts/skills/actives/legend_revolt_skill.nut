@@ -28,7 +28,7 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=%positive%]100%[/color] chance to stagger on a hit"
+			text = "Has a [color=%positive%]100%[/color] chance to Stagger on a hit"
 		});
 		ret.push({
 			id = 6,
@@ -42,7 +42,7 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent, unless specialised in staves"
+				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent, unless specialized in staves"
 			});
 		}
 

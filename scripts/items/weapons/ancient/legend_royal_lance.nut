@@ -52,9 +52,9 @@ this.legend_royal_lance <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.Overlay = "skewer_spetum";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
-			_skill.m.Icon = "skills/active_54.png";
-			_skill.m.IconDisabled = "skills/active_54_sw.png";
-			_skill.m.Overlay = "active_54";
+			_skill.m.Icon = "skills/legend_spearwall_royal_lance.png";
+			_skill.m.IconDisabled = "skills/legend_spearwall_royal_lance_bw.png";
+			_skill.m.Overlay = "legend_spearwall_royal_lance_effect";
 			_skill.m.BaseAttackName = "Prong";
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 			_skill.m.ActionPointCost = 6;
