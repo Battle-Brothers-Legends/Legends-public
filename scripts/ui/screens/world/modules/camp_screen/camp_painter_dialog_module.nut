@@ -130,10 +130,10 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 
 			// add upgrades arrays to check visibility for combined draws
 			if (armorBase != null) {
-				armorObject.Upgrades <- armorObject.getUpgrades();
+				armorObject.Upgrades <- armorBase.getUpgrades();
 			}
 			if (helmetBase != null) {
-				helmetObject.Upgrades <- helmetObject.getUpgrades();
+				helmetObject.Upgrades <- helmetBase.getUpgrades();
 			}
 
 			local e = {

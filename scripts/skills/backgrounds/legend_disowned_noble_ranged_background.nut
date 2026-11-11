@@ -1,12 +1,10 @@
 this.legend_disowned_noble_ranged_background <- this.inherit("scripts/skills/backgrounds/disowned_noble_background", {
-	function create () {
+	function create() {
 		this.disowned_noble_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendDisownedNobleRanged);
-		this.setBodyCharacteristics(1);
-		this.m.BackgroundDescription = "Disowned Ladies often have profited from some training in ranged warfare at court and know the weaknesses of noble armies.";
 	}
 
-	function onChangeAttributes () {
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendDisownedNobleRanged);
 	}
 

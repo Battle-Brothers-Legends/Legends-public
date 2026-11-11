@@ -13,6 +13,7 @@ this.legend_debilitate_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsTargeted = true;
 		this.m.IsStacking = false;
 		this.m.IsAttack = true;
+		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
 		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
 		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;

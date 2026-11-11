@@ -1,11 +1,10 @@
 this.legend_adventurous_noble_ranged_background <- this.inherit("scripts/skills/backgrounds/adventurous_noble_background", {
-	function create () {
+	function create() {
 		this.adventurous_noble_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendAdventurousNobleRanged);
-		this.m.Names = ::Const.Strings.LadyNames;
 	}
 
-	function onChangeAttributes () {
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendAdventurousNobleRanged);
 	}
 
