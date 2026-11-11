@@ -52,7 +52,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);

@@ -16,13 +16,13 @@
 		b.SurroundedBonus = 5; // resetting from vanilla
 		if (::Legends.isLegendaryDifficulty()) {
 			b.Hitpoints *= 1.5;
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		}
 		::Legends.S.scaleBaseProperties(b);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 	}
 
 	local onResurrected = o.onResurrected;

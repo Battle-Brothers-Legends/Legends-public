@@ -50,7 +50,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			::Legends.Actives.grant(this, ::Legends.Active.RallyTheTroops);

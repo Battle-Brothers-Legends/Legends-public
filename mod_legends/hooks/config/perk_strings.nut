@@ -24,8 +24,8 @@ Who saw that one com-, uh who saw where that came from?
 Honor doesn't win you fights, stabbing the enemy where it hurts does.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increase damage to Hitpoints by [color=%positive%]5%[/color] and armor penetration by [color=%positive%]3%[/color] for each ally surrounding and distracting your target. Works with any weapon and skill.
-";
+• The bonus to hitchance in melee is doubled to [color=%positive%]+10%[/color] for each ally surrounding and distracting your target."
+;
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Backstabber].Tooltip = ::Const.Strings.PerkDescription.Backstabber;
 
 ::Const.Strings.PerkDescription.BagsAndBelts <- @"

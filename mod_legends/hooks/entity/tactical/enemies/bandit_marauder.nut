@@ -52,7 +52,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		}
 	}

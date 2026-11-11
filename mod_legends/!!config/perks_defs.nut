@@ -577,7 +577,6 @@ if (!("Perks" in ::Legends))
 		Name = "Woodsman\'s Cuts"
 	},
 	LegendStaffSpins = {},
-	LegendStrengthInNumbers = {},
 	LegendStupefy = {},
 	LegendSummonBear = {},
 	LegendSummonFalcon = {},

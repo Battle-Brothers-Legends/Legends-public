@@ -62,7 +62,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.setSpriteOffset("arrow", this.createVec(0, 20));
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialSerpent);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_serpent_hook_skill"));
 		::Legends.Actives.grant(this, ::Legends.Active.SerpentBite);

@@ -3,7 +3,7 @@
 	o.onInit = function () {
 		onInit();
 		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendWerewolf);
 		}

@@ -75,7 +75,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		}
 
@@ -117,7 +117,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 
 					if (::Legends.isLegendaryDifficulty()) {
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+						::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 					}
 				} else if (r == 3) {
 					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
@@ -131,7 +131,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 
 					if (::Legends.isLegendaryDifficulty()) {
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+						::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 					}
 				} else if (r == 5) {
 					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));

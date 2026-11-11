@@ -4,8 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.remove(this, ::Legends.Perk.Backstabber); // remove vanilla backstabber
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);

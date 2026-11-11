@@ -4,7 +4,7 @@
 		onInit();
 		local b = this.m.BaseProperties;
 		b.SurroundedBonus = 5; // resetting from vanilla
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		this.m.Skills.update();
 	}
 

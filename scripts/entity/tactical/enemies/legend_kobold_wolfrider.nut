@@ -125,7 +125,7 @@
 // 		});
 
 // 		::Legends.Traits.grant(this, ::Legends.Trait.RacialGoblinAmbusher);
-// 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+// 		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 // 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 
 // 		if(::Legends.isLegendaryDifficulty())

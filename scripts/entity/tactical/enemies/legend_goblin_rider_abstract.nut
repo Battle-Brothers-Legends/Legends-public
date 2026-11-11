@@ -99,8 +99,7 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 			_skill.setRestrained(true);
 			_skill.m.ActionPointCost = 0;
 		}.bindenv(this));
-		::Legends.Perks.remove(this, ::Legends.Perk.Backstabber); // remove vanilla backstabber
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);

@@ -10,7 +10,7 @@ if (!("Perks" in ::Const)) {
 	IsForEnemies = true,
 	Tree = [
 		[::Legends.Perk.LegendFeint],
-		[::Legends.Perk.LegendStrengthInNumbers, ::Legends.Perk.CoupDeGrace],
+		[::Legends.Perk.Backstabber, ::Legends.Perk.CoupDeGrace],
 		[],
 		[],
 		[],

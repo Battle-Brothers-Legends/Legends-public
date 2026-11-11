@@ -177,7 +177,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.SpiderBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendClusterSpider);

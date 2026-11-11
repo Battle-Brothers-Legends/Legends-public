@@ -121,10 +121,10 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 
 		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		}
 	}

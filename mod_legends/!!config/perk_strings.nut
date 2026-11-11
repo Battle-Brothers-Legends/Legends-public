@@ -1551,6 +1551,7 @@ Spin to win.
 • Any strike with a staff that would normally [color=%status%]Daze[/color], also [color=%status%]Stuns[/color] and [color=%status%]Staggers[/color].
 ";
 
+// currently not in use
 ::Const.Strings.PerkDescription.LegendStrengthInNumbers <- @"
 Surround, distract and strike true.
 

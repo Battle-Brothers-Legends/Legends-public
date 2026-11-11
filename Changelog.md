@@ -163,6 +163,8 @@
 > increases hitchance by 10% each time an enemy misses you
 
 ### Perk Changes
+- `Strength in Numbers` - has been removed from enemies and players
+- `Backstabber` - returns to vanilla effect of double surround bonuses
 - `Underdog` - vanilla underdog has been renamed to `Ironside` and will do the vanilla effect of +5 surround mdef
 - `Headhunter` - Hitting the head of a target will give you a guaranteed hit to the head with your next attack. Killing an enemy with a hit to the head will increase chance to hit the head and Damage on a hit to the head by +10% for each kill until the end of combat
 - `Pugilist` - additionally each successful attack reduces the ap cost of `Kick` by 1 until the end of your turn. 

@@ -126,7 +126,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		this.addDefaultStatusSprites();
 		this.getSprite("arms_icon").setBrightness(0.85);
 		this.getSprite("status_rooted").Scale = 0.55;
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 	}
