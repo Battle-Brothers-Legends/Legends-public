@@ -97,11 +97,8 @@ this.tactical_legend_beast_den <- this.inherit("scripts/mapgen/tactical_template
 					}, _properties);
 				}
 
-				if (wall)
-				{
-					tile.Level = 0;
-					tile.clear();
-					tile.spawnObject(this.rock());
+				if (wall) {
+					::Legends.Tactical.Tiles.spawnWall(tile)
 				}
 			}
 		}
@@ -129,15 +126,9 @@ this.tactical_legend_beast_den <- this.inherit("scripts/mapgen/tactical_template
 				local x = _rect.X + px + (k == 1 ? 1 : 0);
 				local y = _rect.Y + py + (k == 2 ? 1 : 0);
 
-				if (!this.Tactical.isValidTileSquare(x, y))
-				{
-					continue;
+				if (::Tactical.isValidTileSquare(x, y))	{
+					::Legends.Tactical.Tiles.spawnWall(::Tactical.getTileSquare(x, y));
 				}
-
-				local tile = this.Tactical.getTileSquare(x, y);
-				tile.Level = 0;
-				tile.clear();
-				tile.spawnObject(this.rock());
 			}
 		}
 
