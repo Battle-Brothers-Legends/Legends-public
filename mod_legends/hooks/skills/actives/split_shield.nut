@@ -33,7 +33,8 @@
 			icon = "ui/icons/damage_dealt.png",
 			text = "Upon destroying the shield, any damage exceeding the shield condition will be used for a follow up attack against the target"
 		});
-
+		
+		local actor = this.getContainer().getActor();
 		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendSmashingShields)) {
 			ret.push({
 				id = 9,
@@ -42,7 +43,7 @@
 				text = "Destroying the shield will refund [color=%positive%]4[/color] Action Points"
 			});
 		}
-		local actor = this.getContainer().getActor();
+		
 		if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Axe)) {
 			local oh = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (oh != null) {
