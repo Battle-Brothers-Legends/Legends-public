@@ -162,7 +162,7 @@
 		}
 
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1;
-		if (this.m.MaxRange > 1 && _targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && distance) {
+		if (this.m.MaxRange > 1 && _targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && distance) {
 			_properties.MeleeSkill += -15;
 			this.m.HitChanceBonus -= 15;
 		}

@@ -64,8 +64,8 @@ this.legend_improvised_strike_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate( _properties ) {
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.EffectChance = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 50 : 25;
+		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.EffectChance = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 50 : 25;
 	}
 
 	function onTargetHit (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {

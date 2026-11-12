@@ -29,7 +29,7 @@
 		}
 
 		local ret = this.skill.getDefaultTooltip();
-		local specialized = ::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem());
+		local specialized = ::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem());
 		local param = [
 			["_stunChance", this.m.StunChance],
 			["_effect", (specialized ? "daze, stagger and stun" : "daze")]
