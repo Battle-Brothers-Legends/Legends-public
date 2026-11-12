@@ -593,12 +593,6 @@
 - modified the faction window to include traits
 - added short description to noble house traits available upon mouseover in faction window
 
-## Other
-- current `Fatigue` modifiers won't affect `Initiative` automatically anymore
-> this means skills like `Fat`, `Old`, `Talented`, `Promised Potential` etc. won't apply a hidden `Initiative` offset through `Fatigue` changes
-> armor weight still affects `Initiative` as before
-> skills that have an effect on that offset now mention it directly in tooltips (`Brawny`, `Oathtaker`, `Strong`)
-
 ## Quality of life
 - added speed settings to combat and world expanding on vanilla systems
 > use 1-4 in the World, F1-F4 in combat to change the speed

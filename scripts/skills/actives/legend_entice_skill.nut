@@ -138,7 +138,7 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 	function isUsable() {
-		return this.skill.isUsable() && !this.getContainer.getActor().isEngagedInMelee();
+		return this.skill.isUsable() && !this.getContainer().getActor().isEngagedInMelee();
 	}
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {

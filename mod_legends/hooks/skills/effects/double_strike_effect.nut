@@ -13,16 +13,8 @@
 	}
 
 	o.getTooltip <- function () {
-		local ret = [{
-			id = 1,
-			type = "title",
-			text = this.getName()
-		},
-		{
-			id = 2,
-			type = "description",
-			text = this.getDescription()
-		},
+		local tooltip = this.skill.getTooltip();
+		tooltip.extend([
 		{
 			id = 3,
 			type = "text",
@@ -35,8 +27,8 @@
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Recover [color=%positive%]1-2[/color] fatigue with each hit"
-		}];
-		return ret;
+		}]);
+		return tooltip;
 	}
 
 	o.onAdded = function () {}

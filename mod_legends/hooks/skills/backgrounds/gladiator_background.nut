@@ -1,6 +1,6 @@
-::mods_hookExactClass("skills/backgrounds/gladiator_background", function(o) {
+::mods_hookExactClass("skills/backgrounds/gladiator_background", function (o) {
 	o.m.LoneWolfHidden <- true;
-	o.create = function() {
+	o.create = function () {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Gladiator);
 		this.m.BackgroundDescription = "Gladiators are expensive, but a life in the arena has forged them into skilled fighters. Always a show off, gladiators fight better if there are no allies nearby.";
@@ -37,7 +37,7 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat;
 	}
 
-	o.getTooltip = function() {
+	o.getTooltip = function () {
 		local ret = this.character_background.getTooltip();
 		if (!this.m.LoneWolfHidden) {
 			ret.push({
@@ -50,15 +50,18 @@
 		return ret;
 	}
 
-	o.setGender <- function(_gender = -1) {
-		if (_gender == -1) _gender = this.randomizeHumanGender();
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) {
+			_gender = this.randomizeHumanGender();
+		}
 		if (this.m.Ethnicity == 1) {
 			this.setBodyCharacteristics(_gender, _gender ? {
 				Bodies = ::Const.Bodies.SouthernFemaleMuscular,
 				Faces = ::Const.Faces.SouthernFemale,
 				Hairs = ::Const.Hair.SouthernFemale,
 				HairColors = ::Const.HairColors.Young
-			} : {
+			}
+			 : {
 				Bodies = ::Const.Bodies.Gladiator,
 				Faces = ::Const.Faces.SouthernMale,
 				Hairs = ::Const.Hair.SouthernMale,
@@ -66,12 +69,14 @@
 				Beards = ::Const.Beards.Southern
 			}, 60);
 		} else if (this.m.Ethnicity == 2) {
-			this.setBodyCharacteristics(_gender, _gender ? {
+			this.setBodyCharacteristics(_gender, _gender
+				? {
 				Bodies = ::Const.Bodies.AfricanFemaleMuscular,
 				Faces = ::Const.Faces.AfricanFemale,
 				Hairs = ::Const.Hair.SouthernFemale,
 				HairColors = ::Const.HairColors.African
-			} : {
+			}
+			 : {
 				Bodies = ::Const.Bodies.AfricanGladiator,
 				Faces = ::Const.Faces.AfricanMale,
 				Hairs = ::Const.Hair.SouthernMale,
@@ -81,11 +86,11 @@
 		}
 	}
 
-	o.onBuildDescription <- function() {
+	o.onBuildDescription <- function () {
 		return "{The South is littered with slaves of all sorts, called the indebted for their debt to the Gilder. While most find themselves in the fields, a select few are taken to the fighting pits to battle it out. | While northerners do partake in combat tournaments, nothing gets close to the violence and gore of a southern gladiatorial pit. | In the South, rich and poor alike enjoy cheering on the gladiators of the fighting pits. | Southern gladiatorial pits are filled with indebted and voluntary killers alike. | A bloody house of combat and betting, a gladiatorial pit is the one place in the South one may find rich and poor crowded together.} {It was from these ranks %name% came. %They% rapidly grew through the ranks and managed to buy %their% way out of the pits and into whatever \'freedom\' one could find after such a life. | A crowd-favorite, %name%\'s time as a gladiator ended after a \'pardon\' by %their% wealthy sponsors. But in early retirement %they% found %their% life unfulfilled. | Successful killers such as %name% can buy their way to freedom, though the bloodlust has yet to leave the %person%. | %name% was involved in a \'diving\' incident and received a year long ban from the pits. | But gladiators like %name% are not just popular with the public, but particularly with lusty folk. A raunchy tryst with a noble led to the fighter being spirited away under the cover of night lest %they% be mutilated. | A pit\'s most popular fighter is usually a blend of murderous handsomeness, and a %person% such as %name% was only the former. Dispirited by the lack of fame %they% thought %they% had earned, %they% purchased %their% freedom and departed the blood sport.} {Gladiators usually cross from fighting pit to fighting pit, so a sturdy, well skilled fighter such as %name% is rare to find in the wild. Yet here %they% stands, albeit with enough scars to make a flagellant blush. | You\'ve met many a warrior, but rarely one with the particular skillsets of a pit fighter such as %name%. All the clashing in the arenas has made %them% a clever warrior indeed, and also one with many a scar and injury to match %their% time there. | There\'s many pairings in this world, and a gladiator with an untouched body is not one of them. %name% is a skilled fighter, but %they% earned those experiences with %their% own blood and body. | An impressive gladiatorial resume such as the one %name% brings hints at a %person% well versed in killing. The many scars, however, flatly state that %their% time in the pits came with an irreversible price of their own. | Gladiators such as %name% could be the most skilled fighters in all the land, but the fighting pits are full of games and are designed to bring harm to all who partake. The %person% is a talented warrior, but %they% wears the scars and wounds of a career in the arena.}";
 	}
 
-	o.onSetAppearance = function() {
+	o.onSetAppearance = function () {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
@@ -102,7 +107,7 @@
 		}
 	}
 
-	o.updateAppearance = function() {
+	o.updateAppearance = function () {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
@@ -112,7 +117,7 @@
 		}
 	}
 
-	o.onUpdate <- function(_properties) {
+	o.onUpdate <- function (_properties) {
 		this.character_background.onUpdate(_properties);
 		if (!this.getContainer().getActor().isPlacedOnMap()) {
 			this.m.LoneWolfHidden = true;
@@ -143,12 +148,11 @@
 		}
 	}
 
-
-	o.onChangeAttributes = function() {
+	o.onChangeAttributes = function () {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Gladiator);
 	}
 
-	o.onAdded = function() {
+	o.onAdded = function () {
 		this.character_background.onAdded();
 
 		if (::Math.rand(1, 2) == 2) {
@@ -157,7 +161,7 @@
 		}
 	}
 
-	o.onAddEquipment = function() {
+	o.onAddEquipment = function () {
 		local actor = this.getContainer().getActor();
 		actor.setVeteranPerks(3);
 		local items = actor.getItems();
@@ -184,14 +188,13 @@
 			], "scripts/items/"));
 		}
 
-
 		local a = ::Legends.Items.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
 		if (::Math.rand(0, 1)) {
 			a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
-		} else if (r == 2) {
+		} else {
 			a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
 		}
 		items.equip(a);

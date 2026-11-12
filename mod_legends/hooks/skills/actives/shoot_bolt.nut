@@ -34,7 +34,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "[color=%positive%]+20%[/color] of any damage ignores armor when attacking a target at "
+				text = "[color=%positive%]+5%[/color] of any damage ignores armor ([color=%positive%]+20%[/color] when attacking a target at distance of 3 tiles or less)"
 			});
 		}
 

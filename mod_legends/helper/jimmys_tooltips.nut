@@ -505,13 +505,12 @@ local function addStats(_tooltip, _entity) {
 			type = "hint",
 			icon = "ui/icons/fatigue.png",
 			text = "[color=%positive%]" + properties.FatigueRecoveryRate + "[/color] Fatigue Recovery per Turn"
-			divider = "bottom" // add a divider
 		});
 		_tooltip.push({
 			id = 607,
 			type = "hint",
 			icon = "ui/icons/block.png",
-			text = "[color=%positive%]" + _entity.getBlock() + "[/color] Fatigue Recovery per Turn"
+			text = "[color=%positive%]" + _entity.getBlock() + "[/color] Block"
 			divider = "bottom" // add a divider
 		});
 	}
