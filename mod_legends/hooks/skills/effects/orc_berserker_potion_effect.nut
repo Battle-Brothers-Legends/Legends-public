@@ -56,7 +56,7 @@
 
 		if (!actor.isHiddenToPlayer()) {
 			this.spawnIcon("status_effect_143", actor.getTile());
-			this.Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gains rage!");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gains rage!");
 		}
 	}
 
@@ -69,7 +69,7 @@
 	}
 
 	o.onTurnEnd = function () {
-		this.m.Stacks = this.Math.max(0, this.m.Stacks - 1);
+		this.m.Stacks = ::Math.max(0, this.m.Stacks - 1);
 	}
 
 	o.onCombatStarted = function () {

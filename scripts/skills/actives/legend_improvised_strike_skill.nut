@@ -7,8 +7,8 @@ this.legend_improvised_strike_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Use the butt of your ranged weapon to hit the target. Not particularly damaging, but might get you out of a tricky situation.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/bash", 3);
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/bash_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -16,8 +16,8 @@ this.legend_improvised_strike_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.4;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 25;
@@ -64,7 +64,7 @@ this.legend_improvised_strike_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate( _properties ) {
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.EffectChance = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 50 : 25;
 	}
 

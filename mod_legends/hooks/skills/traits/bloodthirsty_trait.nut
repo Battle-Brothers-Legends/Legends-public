@@ -29,7 +29,7 @@
 			return;
 		}
 
-		if (_fatalityType == this.Const.FatalityType.None) {
+		if (_fatalityType == ::Const.FatalityType.None) {
 			return;
 		}
 		actor.setHitpoints(::Math.max(actor.getHitpointsMax(), actor.getHitpoints() + 2));

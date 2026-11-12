@@ -35,7 +35,7 @@
 	}
 
 	o.onTargetKilled <- function ( _targetEntity, _skill ) {
-		if (this.m.HeadHit && this.m.SkillCount == this.Const.SkillCounter) {
+		if (this.m.HeadHit && this.m.SkillCount == ::Const.SkillCounter) {
 			this.m.HeadHunterStacks += 1;
 		}
 	}
@@ -55,7 +55,7 @@
 	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		onAnySkillUsed(_skill, _targetEntity, _properties);
-		_properties.DamageAgainstMult[this.Const.BodyPart.Head] += this.m.HeadHunterStacks * 0.1;
+		_properties.DamageAgainstMult[::Const.BodyPart.Head] += this.m.HeadHunterStacks * 0.1;
 		_properties.HitChance[::Const.BodyPart.Head] += this.m.HeadHunterStacks * 10;
 	}
 

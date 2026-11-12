@@ -62,7 +62,7 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.grant(target, ::Legends.Effect.LegendLevitating);
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " levitated " + ::Const.UI.getColorizedEntityName(target) + " leaving them free to move");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " levitated " + ::Const.UI.getColorizedEntityName(target) + " leaving them free to move");
 		}
 	}
 });

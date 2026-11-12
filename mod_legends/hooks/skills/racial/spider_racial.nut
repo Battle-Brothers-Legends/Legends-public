@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/racial/spider_racial", function (o) {
 	o.onTargetHit = function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		if (::Legends.S.isEntityNullOrDead(_targetEntity) || _targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < this.Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0) {
+		if (::Legends.S.isEntityNullOrDead(_targetEntity) || _targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < ::Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0) {
 			return;
 		}
 

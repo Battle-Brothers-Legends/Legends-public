@@ -25,9 +25,8 @@
 		return -1;
 	}
 
-	local getInitiative = o.getInitiative;
 	o.getInitiative = function () {
-		return this.Math.round(this.m.CurrentProperties.Initiative * (this.m.CurrentProperties.InitiativeMult >= 0 ? this.m.CurrentProperties.InitiativeMult : 1.0 / this.m.CurrentProperties.InitiativeMult) - this.m.Fatigue * this.m.CurrentProperties.FatigueToInitiativeRate - this.Math.max(0, this.m.BaseProperties.Stamina - this.m.CurrentProperties.Stamina + this.m.CurrentProperties.InitiativeFatigueOffset));
+		return ::Math.round(this.m.CurrentProperties.Initiative * (this.m.CurrentProperties.InitiativeMult >= 0 ? this.m.CurrentProperties.InitiativeMult : 1.0 / this.m.CurrentProperties.InitiativeMult) - this.m.Fatigue * this.m.CurrentProperties.FatigueToInitiativeRate - ::Math.max(0, this.m.BaseProperties.Stamina - this.m.CurrentProperties.Stamina + this.m.CurrentProperties.InitiativeFatigueOffset));
 	}
 
 	local setCurrentMovementType = o.setCurrentMovementType;

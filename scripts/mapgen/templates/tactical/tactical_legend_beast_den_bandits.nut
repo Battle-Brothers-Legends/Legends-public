@@ -9,7 +9,7 @@ this.tactical_legend_beast_den_bandits <- this.inherit("scripts/mapgen/templates
 
 	function furnish( _rect )
 	{
-		local tile = this.Tactical.getTileSquare(_rect.X + 20, _rect.Y + this.Math.rand(14, 18));
+		local tile = ::Tactical.getTileSquare(_rect.X + 20, _rect.Y + ::Math.rand(14, 18));
 		tile.Level = 0;
 		tile.clear();
 
@@ -18,7 +18,7 @@ this.tactical_legend_beast_den_bandits <- this.inherit("scripts/mapgen/templates
 			tile.removeObject();
 		}
 
-		tile.spawnObject(this.Math.rand(1, 3) == 1 ? "entity/tactical/objects/human_camp_small_fireplace" : "entity/tactical/objects/human_camp_large_fireplace");
+		tile.spawnObject(::Math.rand(1, 3) == 1 ? "entity/tactical/objects/human_camp_small_fireplace" : "entity/tactical/objects/human_camp_large_fireplace");
 	}
 
 });

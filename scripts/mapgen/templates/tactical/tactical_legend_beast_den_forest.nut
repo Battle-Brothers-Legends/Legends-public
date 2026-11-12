@@ -27,9 +27,9 @@ this.tactical_legend_beast_den_forest <- this.inherit("scripts/mapgen/tactical_t
 
 	function getTheme( _properties )
 	{
-		local type = _properties != null && _properties.Tile != null ? _properties.Tile.Type : this.Const.World.TerrainType.Forest;
+		local type = _properties != null && _properties.Tile != null ? _properties.Tile.Type : ::Const.World.TerrainType.Forest;
 
-		if (type == this.Const.World.TerrainType.AutumnForest)
+		if (type == ::Const.World.TerrainType.AutumnForest)
 		{
 			return {
 				Floor = [ "tactical.tile.autumn1", "tactical.tile.autumn2", "tactical.tile.autumn3", "tactical.tile.autumn4" ],
@@ -38,7 +38,7 @@ this.tactical_legend_beast_den_forest <- this.inherit("scripts/mapgen/tactical_t
 				Small = [ "entity/tactical/objects/autumn_tree1", "entity/tactical/objects/autumn_tree2" ]
 			};
 		}
-		else if (type == this.Const.World.TerrainType.LeaveForest)
+		else if (type == ::Const.World.TerrainType.LeaveForest)
 		{
 			return {
 				Floor = [ "tactical.tile.moss2" ],
@@ -58,7 +58,7 @@ this.tactical_legend_beast_den_forest <- this.inherit("scripts/mapgen/tactical_t
 
 	function pick( _list )
 	{
-		return _list[this.Math.rand(0, _list.len() - 1)];
+		return _list[::Math.rand(0, _list.len() - 1)];
 	}
 
 	function plant( _tile, _object, _webChance = 0 )
@@ -73,7 +73,7 @@ this.tactical_legend_beast_den_forest <- this.inherit("scripts/mapgen/tactical_t
 
 		local tree = _tile.spawnObject(_object);
 
-		if (tree.hasSprite("web") && this.Math.rand(1, 100) <= _webChance)
+		if (tree.hasSprite("web") && ::Math.rand(1, 100) <= _webChance)
 		{
 			tree.getSprite("web").Visible = true;
 		}
@@ -91,10 +91,10 @@ this.tactical_legend_beast_den_forest <- this.inherit("scripts/mapgen/tactical_t
 			local margin = 4;
 			for( local i = 0; i < 7; i = ++i )
 			{
-				local sx = this.Math.rand(4, 8);
-				local sy = this.Math.rand(4, 8);
-				local px = this.Math.rand(_rect.X + margin, _rect.X + W - sx - margin);
-				local py = this.Math.rand(_rect.Y + margin, _rect.Y + H - sy - margin);
+				local sx = ::Math.rand(4, 8);
+				local sy = ::Math.rand(4, 8);
+				local px = ::Math.rand(_rect.X + margin, _rect.X + W - sx - margin);
+				local py = ::Math.rand(_rect.Y + margin, _rect.Y + H - sy - margin);
 				for( local x = px; x < px + sx; x = ++x )
 				{
 					for( local y = py; y < py + sy; y = ++y )
@@ -111,15 +111,15 @@ this.tactical_legend_beast_den_forest <- this.inherit("scripts/mapgen/tactical_t
 			}
 		}
 
-		local centre = this.Tactical.getTileSquare(_rect.X + W / 2, _rect.Y + H / 2);
+		local centre = ::Tactical.getTileSquare(_rect.X + W / 2, _rect.Y + H / 2);
 		for( local x = _rect.X; x < _rect.X + W; x = ++x )
 		{
 			for( local y = _rect.Y; y < _rect.Y + H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 				local rx = x - _rect.X;
 				local ry = y - _rect.Y;
-				local wall = rx >= 6 && !this.inField(rx, ry) && (rx >= W - 4 || ry <= 2 || ry >= H - 3 || centre.getDistanceTo(tile) > 12 + this.Math.rand(0, 3));
+				local wall = rx >= 6 && !this.inField(rx, ry) && (rx >= W - 4 || ry <= 2 || ry >= H - 3 || centre.getDistanceTo(tile) > 12 + ::Math.rand(0, 3));
 
 				if (tile.Type == 0)
 				{
@@ -140,44 +140,44 @@ this.tactical_legend_beast_den_forest <- this.inherit("scripts/mapgen/tactical_t
 			}
 		}
 
-		local thickets = this.Math.rand(5, 9);
+		local thickets = ::Math.rand(5, 9);
 		for( local i = 0; i < thickets; i = ++i )
 		{
 			local px = 0;
 			local py = 0;
 
-			if (this.Math.rand(1, 100) <= 30)
+			if (::Math.rand(1, 100) <= 30)
 			{
-				px = this.Math.rand(16, 17);
-				py = this.Math.rand(10, 21);
+				px = ::Math.rand(16, 17);
+				py = ::Math.rand(10, 21);
 			}
 			else
 			{
-				px = this.Math.rand(6, 26);
-				py = this.Math.rand(0, 1) == 0 ? this.Math.rand(3, 6) : this.Math.rand(26, 28);
+				px = ::Math.rand(6, 26);
+				py = ::Math.rand(0, 1) == 0 ? ::Math.rand(3, 6) : ::Math.rand(26, 28);
 			}
 
-			local n = this.Math.rand(1, 3);
+			local n = ::Math.rand(1, 3);
 			for( local k = 0; k < n; k = ++k )
 			{
 				local x = _rect.X + px + (k == 1 ? 1 : 0);
 				local y = _rect.Y + py + (k == 2 ? 1 : 0);
 
-				if (this.Tactical.isValidTileSquare(x, y))
+				if (::Tactical.isValidTileSquare(x, y))
 				{
-					this.plant(this.Tactical.getTileSquare(x, y), this.pick(this.Math.rand(0, 1) == 0 ? theme.Tall : theme.Small), 100);
+					this.plant(::Tactical.getTileSquare(x, y), this.pick(::Math.rand(0, 1) == 0 ? theme.Tall : theme.Small), 100);
 				}
 			}
 		}
 
-		local bones = this.Math.rand(2, 4);
+		local bones = ::Math.rand(2, 4);
 		for( local i = 0; i < bones; i = ++i )
 		{
 			this.fillBones({
-				X = _rect.X + this.Math.rand(6, 22),
-				Y = _rect.Y + this.Math.rand(6, 22),
-				W = this.Math.rand(3, 5),
-				H = this.Math.rand(3, 5)
+				X = _rect.X + ::Math.rand(6, 22),
+				Y = _rect.Y + ::Math.rand(6, 22),
+				W = ::Math.rand(3, 5),
+				H = ::Math.rand(3, 5)
 			});
 		}
 
@@ -186,23 +186,23 @@ this.tactical_legend_beast_den_forest <- this.inherit("scripts/mapgen/tactical_t
 
 	function fillBones( _rect )
 	{
-		local bones = this.Const.BloodDecals[this.Const.BloodType.Bones];
+		local bones = ::Const.BloodDecals[::Const.BloodType.Bones];
 		for( local x = _rect.X; x < _rect.X + _rect.W; x = ++x )
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (!tile.IsEmpty)
 				{
 					continue;
 				}
 
-				local r = this.Math.rand(1, 100);
+				local r = ::Math.rand(1, 100);
 				if (r < 10) tile.spawnDetail("bust_skeleton_head_03_dead");
-				if (r < 30) tile.spawnDetail(bones[this.Math.rand(0, bones.len() - 1)]);
-				if (r < 60) tile.spawnDetail(bones[this.Math.rand(0, bones.len() - 1)]);
-				if (r < 80) tile.spawnDetail(bones[this.Math.rand(0, bones.len() - 1)]);
+				if (r < 30) tile.spawnDetail(bones[::Math.rand(0, bones.len() - 1)]);
+				if (r < 60) tile.spawnDetail(bones[::Math.rand(0, bones.len() - 1)]);
+				if (r < 80) tile.spawnDetail(bones[::Math.rand(0, bones.len() - 1)]);
 				tile.IsHidingEntity = false;
 			}
 		}

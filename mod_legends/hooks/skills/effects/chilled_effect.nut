@@ -10,13 +10,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + (1 + this.m.TurnsLeft) + "[/color] Action Points"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + (1 + this.m.TurnsLeft) + "[/color] Action Points"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + (10 + 20 * this.m.TurnsLeft) + "[/color] Initiative"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + (10 + 20 * this.m.TurnsLeft) + "[/color] Initiative"
 			}
 		]);
 		return tooltip;

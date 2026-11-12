@@ -4,18 +4,10 @@ this.legend_cull_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCull);
 		this.m.Description = "A heavy axe to the back when your enemy's morale is broken and they're at their most vulnerable.";
 		this.m.KilledString = "Culled";
-		this.m.SoundOnUse = [
-			"sounds/combat/chop_01.wav",
-			"sounds/combat/chop_02.wav",
-			"sounds/combat/chop_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/chop_hit_01.wav",
-			"sounds/combat/chop_hit_02.wav",
-			"sounds/combat/chop_hit_03.wav"
-		];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/chop", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/chop_hit", 3);
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -23,8 +15,8 @@ this.legend_cull_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = false;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 20;
@@ -63,7 +55,7 @@ this.legend_cull_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onUse( _user, _targetTile ) {
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectChop);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectChop);
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 

@@ -74,7 +74,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onShieldHitSkills (_skill, _attacker, _shield) {
-		if (!::Legends.S.isEntityNullOrDead(_attacker) && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
+		if (!::Legends.S.isEntityNullOrDead(_attacker) && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && ::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
 			local skill = null;
 			foreach (s in this.m.ShieldSkills) {
 				if (::Legends.Actives.has(this, s)) {
@@ -93,7 +93,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 					Skill = skill,
 					TargetTile = _attacker.getTile()
 				};
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onShieldRiposte.bindenv(this), info);
+				::Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onShieldRiposte.bindenv(this), info);
 			}
 		}
 	}
@@ -103,11 +103,11 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (this.m.ShieldRiposteSkillCounter == this.Const.SkillCounter) {
+		if (this.m.ShieldRiposteSkillCounter == ::Const.SkillCounter) {
 			return;
 		}
 
-		this.m.ShieldRiposteSkillCounter = this.Const.SkillCounter;
+		this.m.ShieldRiposteSkillCounter = ::Const.SkillCounter;
 		_info.Skill.useForFree(_info.TargetTile);
 	}
 

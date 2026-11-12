@@ -17,7 +17,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "An additional [color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] of damage ignores armor when using bows, slings or crossbows"
+				text = "An additional [color=" + ::Const.UI.Color.PositiveValue + "]5%[/color] of damage ignores armor when using bows, slings or crossbows"
 			},
 			{
 				id = 12,
