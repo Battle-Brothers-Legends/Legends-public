@@ -820,7 +820,8 @@ if (!("Backgrounds" in ::Legends)) {
         Name = "Gladiator"
     },
     LegendLegionHonourGuard = {
-        Name = "Honour Guard"
+        Name = "Honour Guard",
+        Icon = "ui/backgrounds/legend_legion_honourguard.png"
     },
     LegendLegionLegate = {
         Name = "Legate"

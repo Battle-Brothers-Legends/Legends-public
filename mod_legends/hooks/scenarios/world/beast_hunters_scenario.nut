@@ -109,7 +109,9 @@
 		::World.Assets.getStash().add(this.new("scripts/items/misc/witch_hair_item"));
 		::World.Assets.getStash().add(this.new("scripts/items/misc/spider_silk_item"));
 		::World.Assets.getStash().add(this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak"));
-		::World.Assets.getStash().add(this.new("scripts/items/tools/legend_broken_throwing_net"));
+		local net = this.new("scripts/items/tools/throwing_net");
+		net.setAmmo(0); // starts broken, repaired with ammo like any other net
+		::World.Assets.getStash().add(net);
 		::World.Assets.getStash().add(this.new("scripts/items/accessory/night_vision_elixir_item"));
 		::World.Assets.m.Money = ::Math.round(::World.Assets.m.Money * 0.75);
 	}

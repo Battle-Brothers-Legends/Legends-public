@@ -747,6 +747,8 @@
 - Fortified outposts now sell the Legends armored wardog instead of the vanilla one
 - fixed the icon paths of seashells, coal, gem shards, resin, stone and petrified wood
 - added placeholder icons for silver ore and petrified wood
+- Beast Slayers now start with a broken Throwing Net (no ammo) instead of the old Broken Throwing Net item
+- fixed the missing Honour Guard background icon
 
 ### For modders:
 - you can now offset fatigue bonuses via `InitiativeFatigueOffset`. In vanilla if you add fatigue to `currentProperties` it'll give back initiative that you've lost from equipping armor and gear
