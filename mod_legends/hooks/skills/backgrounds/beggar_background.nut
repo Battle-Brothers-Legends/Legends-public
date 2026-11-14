@@ -66,7 +66,7 @@
 		ret.push({
 			id = 13,
 			type = "text",
-			icon = "ui/icons/xp_received.png",
+			icon = "ui/icons/special.png",
 			text = "[color=%positive%]50% less likely[/color] to be targeted by an enemy."
 		});
 		return ret;
