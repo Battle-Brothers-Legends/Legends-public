@@ -129,6 +129,9 @@
 
 		foreach (s in this.m.Skills.m.Skills) {
 			if (s.getType() == ::Const.SkillType.Trait && !s.isHidden()) {
+				if (!(s.getID() in this.m.Hiring.Traits)) { // trait was granted after setStartValuesEx, e.g. by a scenario in onGenerateBro
+					this.m.Hiring.Traits[s.getID()] <- ::Math.rand(1, 100);
+				}
 				ret.push({
 					id = s.getID(),
 					icon = s.getIconColored(),

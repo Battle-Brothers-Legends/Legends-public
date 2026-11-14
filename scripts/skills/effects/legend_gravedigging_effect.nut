@@ -64,7 +64,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		this.m.Stacks = (item != null && item.isWeaponType(::Const.Items.WeaponType.Mace) && item.isItemType(::Const.Items.ItemType.TwoHanded) ? getCorpses() : 0);
 
-		if (!(item.getID() == "weapon.legend_shovel")) {
+		if (item == null || item.getID() != "weapon.legend_shovel") {
 			this.m.Stacks = ::Math.min(5, this.m.Stacks);
 		}
 

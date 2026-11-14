@@ -1,5 +1,10 @@
 this.perk_legend_escape_artist <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		AffectedSkills = [
+			::Legends.Active.BreakAllyFree,
+			::Legends.Active.BreakFree
+		]
+	},
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendEscapeArtist);

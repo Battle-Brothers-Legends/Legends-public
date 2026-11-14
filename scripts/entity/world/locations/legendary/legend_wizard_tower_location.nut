@@ -38,7 +38,7 @@ this.legend_wizard_tower_location <- this.inherit("scripts/entity/world/location
 	{
 		this.location.onInit();
 		local body = this.addSprite("body");
-		body.setBrush("seer_tower");
+		body.setBrush("legend_seer_tower");
 	}
 
 });

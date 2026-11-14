@@ -69,7 +69,7 @@ this.legend_improvised_strike_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		if (!this.m.IsRangedKnockOut || _skill != this) {
+		if (_skill != this) {
 			return;
 		}
 
@@ -96,7 +96,7 @@ this.legend_improvised_strike_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
+		if (effect != null && !user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
 			::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(user), ::Const.UI.getColorizedEntityName(_targetEntity)));
 		}
 
