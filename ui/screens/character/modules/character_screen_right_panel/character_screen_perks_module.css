@@ -13,8 +13,8 @@
 .character-screen-container .perks-module
 {
     top: 3.5rem;
-	left: 1.0rem;
-	right: 1.5rem;
+	left: 0;
+	right: 0;
 	bottom: -0.8rem;
 	position: absolute;
 
@@ -22,6 +22,16 @@
 
 
     /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+/* Holds the perk list and ends above the perk plan status bar, so the horizontal scrollbar is not drawn inside it */
+.character-screen-container .perks-module .perk-list-container
+{
+	top: 0;
+	left: 0.5rem;
+	right: 0.2rem;
+	bottom: 3.2rem;
+	position: absolute;
 }
 
 .character-screen-container .perks-module .scroll-container
@@ -44,6 +54,12 @@
 
 	/*width: 22.8rem;*/
     /*height: 48.0rem;*/
+}
+
+/* The list starts 0.5rem further left than it used to, this keeps the perk rows where they were */
+.character-screen-container .perks-module .scroll-container .column
+{
+	left: 1.5rem;
 }
 
 .character-screen-container .scroll-container .column .row
@@ -205,8 +221,8 @@
 .character-screen-container .perks-module .perk-plan-status-bar {
     position: absolute;
     bottom: 0.0rem;
-    left: 8.0rem;
-    width: 60%;
+    left: 9.0rem;
+    width: 58%;
     height: 3.2rem;
     display: flex;
     justify-content: space-between;

@@ -48,7 +48,9 @@ CharacterScreenPerksModule.prototype.createDIV = function (_parentDiv)
 	this.mListContainer = $('<div class="ui-control list has-frame"/>');
 	var scrollContainer = $('<div class="scroll-container"/>');
     this.mListContainer.append(scrollContainer);
-	this.mContainer.append(this.mListContainer);
+	var listContainer = $('<div class="perk-list-container"/>');
+	this.mContainer.append(listContainer);
+	listContainer.append(this.mListContainer);
     this.mListContainer.aciScrollBar({
          delta: 1.0,
          lineDelay: 0,
