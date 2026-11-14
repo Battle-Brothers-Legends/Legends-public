@@ -6,6 +6,8 @@
 ::Legends.Buildings.Replacement <- {
 	["accessory/wardog_item"] = "accessory/legend_wardog_item",
 	["accessory/warhound_item"] = "accessory/legend_warhound_item",
+	["accessory/armored_wardog_item"] = "accessory/legend_armored_wardog_item",
+	["accessory/armored_warhound_item"] = "accessory/legend_armored_warhound_item",
 	["misc/paint_set_item"] = "misc/legend_paint_set_item",
 	["misc/paint_remover_item"] = "misc/legend_paint_remover_item",
 	["misc/paint_black_item"] = "misc/legend_paint_black_item",
