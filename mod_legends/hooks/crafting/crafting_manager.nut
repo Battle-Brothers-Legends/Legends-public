@@ -10,6 +10,7 @@
 		::Legends.Profession.LegendTrophyCarving,
 		::Legends.Profession.LegendWoodworking
 	];
+	o.m.ItemCrafts <- null;
 
 	o.getQualifiedBlueprintsForUI <- function (_filter = "All", _type = "Crafting") {
 		local ret = [];
@@ -33,11 +34,47 @@
 		return ret;
 	}
 
+	// Skibidis your toilet
+	o.getCraftsUsingItem <- function (_itemID) {
+		if (this.m.ItemCrafts == null) {
+			this.m.ItemCrafts = {};
+
+			foreach (b in this.m.Blueprints) {
+				if (b.m.PreviewCraftable == null) {
+					continue;
+				}
+
+				local name = b.getName();
+				if (name == null || name.len() == 0) {
+					continue;
+				}
+
+				foreach (c in b.m.PreviewComponents) {
+					local id = c.Instance.getID();
+					if (!(id in this.m.ItemCrafts)) {
+						this.m.ItemCrafts[id] <- [];
+					}
+
+					if (this.m.ItemCrafts[id].find(name) == null) {
+						this.m.ItemCrafts[id].push(name);
+					}
+				}
+			}
+
+			foreach (crafts in this.m.ItemCrafts) {
+				crafts.sort();
+			}
+		}
+
+		return _itemID in this.m.ItemCrafts ? this.m.ItemCrafts[_itemID] : [];
+	}
+
 	o.deleteAllBlueprints <- function () {
 		foreach (bp in this.m.Blueprints) {
 			bp = null;
 		}
 		this.m.Blueprints = [];
+		this.m.ItemCrafts = null;
 	}
 
 	o.resetAllBlueprints <- function () {

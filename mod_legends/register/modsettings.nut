@@ -76,6 +76,7 @@ tooltip.addTitle("TooltipInventory", "Tooltips - Inventory");
 tooltip.addElement(::MSU.Class.BooleanSetting("ShowArmorPerFatigueValue", true, "Show Armor/Fatigue Efficiency", "Show the Armor value gained per unit of Fatigue cost of an Armor/Helmet Piece/Layer in the Tooltip when the player mouses over an individual Armor/Helmet Piece/Layer.\n\nUseful for people who like to buy their groceries based on price per unit weight"));
 tooltip.addElement(::MSU.Class.BooleanSetting("ShowExpandedArmorLayerTooltip", true, "Expanded Armor Layer Tooltips", "Show the Armor value and Fatigue cost of each Armor/Helmet layer in the Tooltip when the player mouses over a combined Armor/Helmet set.\n\nDisabling this may help reduce the Tooltip length to fit better on lower resolution screens"));
 tooltip.addElement(::MSU.Class.BooleanSetting("ShowItemTradeHistory", true, "Show Item Trade History", "Show the trade history of items, such as where they were produced or imported from.\n\nHas no effect if World Economy is disabled"));
+tooltip.addElement(::MSU.Class.BooleanSetting("ShowItemCrafts", true, "Show Crafting Uses", "Show on an item's tooltip what it can be crafted into."));
 tooltip.addDivider("TooltipDivider2");
 tooltip.addTitle("TooltipCharacter", "Tooltips - Character");
 tooltip.addElement(::MSU.Class.BooleanSetting("ShowFatalityChance", true, "Show fatality on skill tooltip", "Shows the fatality chance for each skill when hovering.\n\nUseful to understand if you can Decapitate or Smash an enemy's head to in example prevent resurrection."));

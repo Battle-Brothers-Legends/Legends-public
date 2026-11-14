@@ -652,6 +652,8 @@
 - enemy tooltips reworked to include turns left, non-stacking effect stacks
 - added skill icons to weapons and shields
 - added simple values to stats in character screen on mouseover
+- item tooltips now list what the item can be crafted into, which replaces the `Items and Recipes` mod
+> can be turned off with `Show Crafting Uses` in the Legends Tooltips mod settings tab
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover

@@ -152,7 +152,7 @@
 ::Legends.Compat.HardIncompat.add("mod_hitpoint_injury", "1");
 ::Legends.Compat.HardIncompat.add("mod_Drakes_Improved_Ambitions", "1.4.1");
 ::Legends.Compat.HardIncompat.add("mod_IMBAvani");
-::Legends.Compat.HardIncompat.add("mod_items_recipes", "2.0.0");
+::Legends.Compat.HardIncompat.add("mod_items_recipes", "2.0.0", "Legends shows crafting uses on item tooltips itself now, see the Tooltips settings.");
 ::Legends.Compat.HardIncompat.add("mod_jin", "1.0"); // Jurchen mod
 ::Legends.Compat.HardIncompat.add("mod_lifetime_stats", "1");
 ::Legends.Compat.HardIncompat.add("mod_lima_tactics"); // overhauls mods don't mix

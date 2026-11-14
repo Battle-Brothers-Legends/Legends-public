@@ -162,6 +162,37 @@
 		return null;
 	}
 
+	o.helper_addCraftsToItemTooltip <- function (_item, _tooltip) {
+		if (!::Legends.Mod.ModSettings.getSetting("ShowItemCrafts").getValue()) {
+			return;
+		}
+
+		if (!("Crafting" in ::World) || ::World.Crafting == null) {
+			return;
+		}
+
+		local crafts = ::World.Crafting.getCraftsUsingItem(_item.getID());
+		if (crafts.len() == 0) {
+			return;
+		}
+
+		local text = "Used to craft " + crafts.reduce(@(_a, _b) _a + ", " + _b);
+
+		foreach (entry in _tooltip) {
+			if ("text" in entry && entry.text == "Can be used to craft items") {
+				entry.text = text;
+				return;
+			}
+		}
+
+		_tooltip.push({
+			id = 51,
+			type = "hint",
+			icon = "ui/icons/plus.png",
+			text = text
+		});
+	}
+
 	o.tactical_helper_addHintsToTooltip = function (_activeEntity, _entity, _item, _itemOwner, _ignoreStashLocked = false) {
 		local stashLocked = true;
 
@@ -233,6 +264,7 @@
 		}
 
 		tooltip.extend(_item.getTooltip());
+		this.helper_addCraftsToItemTooltip(_item, tooltip);
 
 		if (stashLocked == true && _ignoreStashLocked == false) {
 			if (_item.isChangeableInBattle() == false) {
