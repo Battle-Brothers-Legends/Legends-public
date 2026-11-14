@@ -744,6 +744,9 @@
 - Unhold nets are now treated as nets for all perk purposes
 - Double Grip no longer mistakenly affects Direct Damage multiplier of Ambidextrous followup attacks and Zombie Bite
 - Net repair Melee Defense bonus no longer works with broken nets
+- Fortified outposts now sell the Legends armored wardog instead of the vanilla one
+- fixed the icon paths of seashells, coal, gem shards, resin, stone and petrified wood
+- added placeholder icons for silver ore and petrified wood
 
 ### For modders:
 - you can now offset fatigue bonuses via `InitiativeFatigueOffset`. In vanilla if you add fatigue to `currentProperties` it'll give back initiative that you've lost from equipping armor and gear
