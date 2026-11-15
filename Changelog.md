@@ -598,6 +598,7 @@
 > use 1-4 in the World, F1-F4 in combat to change the speed
 > alternatively use the buttons on the top of the respective screens
 > buttons are fully functional during caravan and camp activities
+> the combat speed you pick now carries over to the next battle
 - added expanded settlement situation tooltips to support new situations natively
 > settlement situations displayed similarly to a popular mod
 > new modifiers are supported

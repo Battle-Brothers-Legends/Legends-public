@@ -3,7 +3,12 @@
 	local update = o.update;
 	o.update = function (){
 		update();
-		this.updateSpeedButtons(::Const.Tactical.Settings.AnimationSpeed);
+		// a new battle starts at normal speed, this brings back the speed picked in the last one
+		if (::Legends.S.isNull(::Tactical.State)) {
+			this.updateSpeedButtons(::Const.Tactical.Settings.AnimationSpeed);
+		} else {
+			::Tactical.State.setTacticalSpeed(::Const.Tactical.Settings.AnimationSpeed);
+		}
 	}
 
 	o.onSpeedButtonClicked <- function(_speed) {
