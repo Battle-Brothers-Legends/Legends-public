@@ -90,7 +90,7 @@
 					foreach (it in items) {
 						if (_allowDamagedEquipment && it.getConditionMax() > 1) {
 							if (::Math.rand(1, 100) <= 50) {
-								local condition = ::Math.rand(it.getConditionMax() * 0.4, it.getConditionMax() * 0.9);
+								local condition = ::Math.max(1, ::Math.rand(it.getConditionMax() * 0.4, it.getConditionMax() * 0.9)); // never 0, low durability items like the wooden stake rolled broken
 								it.setCondition(condition);
 							}
 						}

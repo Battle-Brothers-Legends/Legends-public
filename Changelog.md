@@ -753,7 +753,8 @@
 - Fortified outposts now sell the Legends armored wardog instead of the vanilla one
 - Beast Slayers now start with a broken Throwing Net (no ammo) instead of the old Broken Throwing Net item
 - Net Casting no longer mistakenly lowers the cost of equipping nets (was supposed to be removed in the previous rework)
-- Fixed loot dragged onto something that is not a slot on the combat result screen throwing a UI error and leaving the dragged icon stuck on screen
+- Fixed dragging loot on the combat result screen, the dragged icon was attached to the town screen so drops failed and the icon could stay stuck there
+- Shops no longer sell low durability items such as Wooden Stakes already broken
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true
