@@ -230,7 +230,17 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function assignRandomEquipment() {
-		this.getItems().equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
+		this.getItems().equip(this.new("scripts/items/weapons/goblin_staff"));
+	}
+
+	function makeMiniboss () {
+		if (!this.actor.makeMiniboss()) {
+			return false;
+		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+		this.getItems().equip(this.new("scripts/items/weapons/named/legend_named_goblin_staff"));
+		return true;
 	}
 
 	function setCharming(_f) {

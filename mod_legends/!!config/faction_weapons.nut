@@ -341,7 +341,6 @@
 ::Const.SpecialMeleeWeapons2h <- [
 	"weapon.legend_staff_vala",
 	"weapon.legend_named_staff_vala",
-	"weapon.legend_staff_gnarled",
 	"weapon.legend_mystic_staff",
 	"weapon.legend_grisly_scythe",
 	"weapon.legend_drum",

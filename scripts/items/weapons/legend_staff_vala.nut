@@ -6,8 +6,8 @@ this.legend_staff_vala <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ID = "weapon.legend_staff_vala";
 		this.m.Name = "Vala Staff";
 		this.m.Description = "A beautiful staff with the distinctive twisted design of a vala.";
-		this.m.IconLarge = "weapons/melee/legend_staff_05.png";
-		this.m.Icon = "weapons/melee/legend_staff_05_70x70.png";
+		this.m.IconLarge = "weapons/melee/legend_staff_04.png";
+		this.m.Icon = "weapons/melee/legend_staff_04_70x70.png";
 		this.m.WeaponType = ::Const.Items.WeaponType.Polearm | ::Const.Items.WeaponType.Staff | ::Const.Items.WeaponType.MagicStaff;
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
@@ -15,7 +15,7 @@ this.legend_staff_vala <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.ArmamentIcon = "icon_legend_staff_05";
+		this.m.ArmamentIcon = "icon_legend_staff_04";
 		this.m.Value = 1000;
 		this.m.ShieldDamage = 0;
 		this.m.Condition = 80.0;

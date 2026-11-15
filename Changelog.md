@@ -277,7 +277,7 @@
 > Has 30% more damage, 20% more penetration and 20% more chance to hit against enemies that are fleeing, has a 20% more damage, 10% more penetration and 10% more hitchance against enemies that are fleeing 
 
 **Staves**
-- `Gnarled Staff` - loses `Hex`
+- `Gnarled Staff` - removed
 - `Riposte` is now available to all staves
 
 **Flails**
@@ -494,6 +494,8 @@
 - revamped art for `Demon Alp` from Misha
 - `Schrat` shield gains 10 block
 - `Greenwood Schrat` shield gains 15 block but now has 30 Melee Defense and Ranged Defense down from 40, condition is down to 64 from 128
+- `Hexe Coven Leader` - can now be champions and can drop named gnarly staves
+- `Hexe` - now always have a `Gnarly Staff`
 
 ### Bandits
 - `Bandit Executioner` - new enemy that will appear in bandit comps, dressed to impress and armed with cleavers - including the new executioner sword

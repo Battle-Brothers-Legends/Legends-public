@@ -322,7 +322,7 @@
 
 ::Const.World.Spawn.Troops.LegendHexeLeader <- {
 	ID = ::Const.EntityType.LegendHexeLeader,
-	Variant = 0,
+	Variant = 1,
 	Strength = 200,
 	Cost = 200,
 	Row = 2,

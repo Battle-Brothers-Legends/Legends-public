@@ -61,11 +61,6 @@
 				S = "weapons/legend_staff"
 			});
 			_list.push({
-				R = 95,
-				P = 1.0,
-				S = "weapons/legend_staff_gnarled"
-			});
-			_list.push({
 				R = 15,
 				P = 1.0,
 				S = "weapons/legend_saw"

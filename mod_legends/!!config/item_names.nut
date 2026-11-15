@@ -1,3 +1,11 @@
+::Const.Strings.StaffNames <- [
+	"Sybil's Walking Stick",
+	"Seeress Staff",
+	"Rod of Prophets",
+	"Adorned Staff",
+	"Cane of the Clairvoyant"
+];
+
 ::Const.Strings.EstocNames <- [
 	"Estoc",
 	"Blade",

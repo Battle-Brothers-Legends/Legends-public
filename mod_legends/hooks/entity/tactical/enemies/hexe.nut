@@ -40,8 +40,6 @@
 	}
 
 	o.assignRandomEquipment = function () {
-		if (::Legends.isLegendaryDifficulty()) {
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
-		}
+		this.m.Items.equip(this.new("scripts/items/weapons/goblin_staff"));
 	}
 });

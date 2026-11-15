@@ -430,7 +430,6 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"legend_dilapidated_sling",
 			"legend_northern_sling",
 			"legend_staff",
-			"legend_staff_gnarled",
 			"legend_staff_vala",
 			"legend_swordstaff",
 			"legend_tipstaff",

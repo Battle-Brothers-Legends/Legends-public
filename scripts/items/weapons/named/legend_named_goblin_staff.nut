@@ -7,8 +7,8 @@ this.legend_named_goblin_staff <- this.inherit("scripts/items/weapons/named/name
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_goblin_staff";
-		this.m.Name = "Adorned Gnarly Staff";
-		this.m.Description = "A gnarly staff carved from old and hard wood, decorated with a menacing skull, feathers and small bones. The runes on the head are intricate and tell a story that only the goblins can read.";
+		this.m.NameList = ::Const.Strings.StaffNames;
+		this.m.Description = "A gnarly staff carved from old and hard wood, decorated with a menacing skull, feathers and small bones. The runes on the head are intricate and tell a story that only it's carver can read.";
 		this.m.WeaponType = ::Const.Items.WeaponType.Staff | ::Const.Items.WeaponType.MagicStaff | ::Const.Items.WeaponType.Polearm;
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
@@ -30,6 +30,10 @@ this.legend_named_goblin_staff <- this.inherit("scripts/items/weapons/named/name
 		this.m.ArmorDamageMult = 0.7;
 		this.m.DirectDamageMult = 0.4;
 		this.randomizeValues();
+	}
+
+	function createRandomName() {
+		return this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)];
 	}
 
 	function updateVariant()
