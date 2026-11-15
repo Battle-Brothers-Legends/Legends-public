@@ -749,10 +749,7 @@
 - Double Grip no longer mistakenly affects Direct Damage multiplier of Ambidextrous followup attacks and Zombie Bite
 - Net Mastery (formerly on Net Repair) Melee Defense bonus no longer works with broken nets
 - Fortified outposts now sell the Legends armored wardog instead of the vanilla one
-- fixed the icon paths of seashells, coal, gem shards, resin, stone and petrified wood
-- added placeholder icons for silver ore and petrified wood
 - Beast Slayers now start with a broken Throwing Net (no ammo) instead of the old Broken Throwing Net item
-- fixed the missing Honour Guard background icon
 - Net Casting no longer mistakenly lowers the cost of equipping nets (was supposed to be removed in the previous rework)
 
 ### For modders:
