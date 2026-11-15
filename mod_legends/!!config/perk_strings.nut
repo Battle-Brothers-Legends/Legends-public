@@ -437,6 +437,10 @@ Stand your ground, but be ready to leave if necessary.
 • The Action Point cost of [color=%skill%]Climb[/color], [color=%skill%]Footwork[/color] and [color=%skill%]Rotation[/color] is reduced by [color=%negative%]1[/color], [color=%skill%]Leap[/color] by [color=%negative%]3[/color] and [color=%skill%]Evasion[/color] by [color=%negative%]2[/color].
 
 • Picking this perk will also add [color=%perk%]Tactical Maneuvers[/color] and [color=%perk%]Quick Step[/color] to your perk tree.
+
+• When freeing yourself or allies gain a baseline [color=%positive%]99%[/color] chance to succeed in removing rooting effects, such as nets, vines, webs, and ensnarement by some beasts.
+
+• Reduces Fatigue cost of freeing yourself or allies by [color=%negative%]66%[/color] and AP cost by [color=%negative%]1[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendGrappler <- @"
@@ -736,11 +740,9 @@ Life seems to go on without effort when you're filled with music.
 It's always good to have a safety net.
 
 [color=%passive%][u]Passive:[/u][/color]
-• When throwing nets reduce Fatigue cost by [color=%negative%]25%[/color] and AP cost to [color=%negative%]3[/color].
+• Reduce Fatigue cost of [color=%skill%]Throw Net[/color] by [color=%negative%]25%[/color] and AP cost by [color=%negative%]1[/color].
 
-• When freeing yourself or allies gain a baseline [color=%positive%]99%[/color] chance to succeed in removing rooting effects, such as nets, vines, webs, and ensnarement by some beasts.
-
-• Reduces Fatigue cost of freeing yourself or allies by [color=%negative%]66%[/color] and AP cost to [color=%negative%]3[/color].
+• Grants[color=%positive%]+10[/color] Melee Defense while holding a net.
 
 • Can now double grip with a net in your offhand and unlocks Hand to Hand abilities that might be locked from holding a net in offhand.
 ";
@@ -870,20 +872,9 @@ Once you experience near-death you simply know what to expect.
 If wishes were fishes then the catch would be great.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increases the throwing range of nets and reinforced nets by [color=%positive%]2[/color] and the throwing range of bombs by [color=%positive%]1[/color].
+• Increases the throwing range of nets and reinforced nets by [color=%positive%]2[/color] and the throwing range of bombs and flasks by [color=%positive%]1[/color].
 
-• Chance based on your Ranged Skill and Ranged Defense to trap additional adjacent targets when throwing a net. The chance decreases with each target you ensnare.
-";
-
-::Const.Strings.PerkDescription.LegendNetRepair <- @"
-Better be ready for the time when they just won't kindly come along.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Reduces the refill cost of nets to 10.
-
-• Grants[color=%positive%]+10[/color] Melee Defense while holding a net.
-
-• Ignore the weight of nets, both when equipped or in your bag.
+• Chance based on your Ranged Skill and Ranged Defense to trap additional adjacent targets when using [color=%skill%]Throw Net[/color]. The chance decreases with each target you ensnare.
 ";
 
 ::Const.Strings.PerkDescription.LegendNightRaider <- @"

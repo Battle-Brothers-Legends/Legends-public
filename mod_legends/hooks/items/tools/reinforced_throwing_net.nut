@@ -17,9 +17,7 @@
 		return this.item.isDroppedAsLoot();
 	}
 
-	o.getAmmoCost <- function () {
-		return ::World.Statistics.getFlags().get("LegendsCanRepairNet") ? 10 : this.m.OriginalAmmoCost;
-	}
+	o.getAmmoCost <- @() (::World.Assets.m.ProfessionEffect.LegendNetRepair > 0 ? ::Math.round(this.m.OriginalAmmoCost / ::World.Assets.m.ProfessionEffect.LegendNetRepair) : this.m.OriginalAmmoCost);
 
 	local create = o.create;
 	o.create = function () {
@@ -69,7 +67,7 @@
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Requires " + (::World.Statistics.getFlags().get("LegendsCanRepairNet") ? 10 : 15) + " Ammo to repair after battle"
+			text = "Requires " + this.getAmmoCost() + " Ammo to repair after battle"
 		});
 
 		local grantedSkills = this.getGrantedSkills();
@@ -90,19 +88,6 @@
 		}
 
 		this.weapon.addSkill(_skill);
-	}
-
-	o.onUpdateProperties <- function (_properties) {
-		this.weapon.onUpdateProperties(_properties);
-		// Net Repair Perk negates the weight
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair)) {
-			_properties.Stamina -= this.m.StaminaModifier;
-		}
-	}
-
-	// Bag fatigue uses getStaminaModifier
-	o.getStaminaModifier <- function () {
-		return ((::Legends.S.isNull(this.getContainer()) || ::Legends.S.isNull(this.getContainer().getActor()) || !::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendNetRepair)) ? this.m.StaminaModifier : 0);
 	}
 
 	local onEquip = o.onEquip;

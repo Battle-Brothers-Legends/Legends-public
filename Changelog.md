@@ -205,6 +205,8 @@
 - `Lone Wolf` - bonus to movement reworked into a single free move if starting engaged (once per turn)
 - `Cacophony` - added new sounds
 - `Recover` - the active now automatically ends the bros turn
+- `Net Mastery` - gains the Melee Defense bonus that used to be on Net Repair, loses Break Free / Break Ally Free bonuses
+- `Freedom of Movement` - gains Break Free / Break Free Ally bonuses that used to be on Net Mastery
 
 ### Removed Perks
 - `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters
@@ -237,6 +239,7 @@
 - `Ore Hunter` - effect moved to a profession
 - `Wheel Maintenance` - effect moved to a profession
 - `Whip Them In Shape` - effect moved to a profession
+- `Net Repair` - effect moved to a profession
 - `Master Trainer` - removed
 - `Greed` - removed
 - `Pacifist` - removed
@@ -744,12 +747,13 @@
 - holy fire's consecrated effect now properly renders undead vulnerable to poisons
 - Unhold nets are now treated as nets for all perk purposes
 - Double Grip no longer mistakenly affects Direct Damage multiplier of Ambidextrous followup attacks and Zombie Bite
-- Net repair Melee Defense bonus no longer works with broken nets
+- Net Mastery (formerly on Net Repair) Melee Defense bonus no longer works with broken nets
 - Fortified outposts now sell the Legends armored wardog instead of the vanilla one
 - fixed the icon paths of seashells, coal, gem shards, resin, stone and petrified wood
 - added placeholder icons for silver ore and petrified wood
 - Beast Slayers now start with a broken Throwing Net (no ammo) instead of the old Broken Throwing Net item
 - fixed the missing Honour Guard background icon
+- Net Casting no longer mistakenly lowers the cost of equipping nets (was supposed to be removed in the previous rework)
 
 ### For modders:
 - you can now offset fatigue bonuses via `InitiativeFatigueOffset`. In vanilla if you add fatigue to `currentProperties` it'll give back initiative that you've lost from equipping armor and gear

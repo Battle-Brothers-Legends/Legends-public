@@ -146,7 +146,6 @@
 		}
 
 		local roster = ::World.getPlayerRoster().getAll();
-		::World.Statistics.getFlags().set("LegendsCanRepairNet", roster.filter(@(_, _bro)(_bro.getFlags().get("LegendsCanRepairNet"))).len() > 0);
 
 		local allItems = [];
 		foreach (bro in roster) {

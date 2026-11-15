@@ -292,6 +292,10 @@ if (!("Professions" in ::Legends)) {
         ScalingArray = [0, 1.2, 1.4, 1.6], // improves effect of asking for more money during negotiation
         ScalingFactor = 0.05
     },
+    LegendNetRepair = {
+        ScalingArray = [0, 1.25, 1.5], // reduces the cost of repairing nets (divider, 15/x)
+        ScalingFactor = 0.1
+    },
     LegendOffBookDeal = {
         ScalingArray = [0, 1], // improves off book deal prices
         ScalingFactor = 0.03

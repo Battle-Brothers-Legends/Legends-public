@@ -465,6 +465,13 @@ Getting paid more for doing less is what one calls a successful negotiation.
 • Negotiation has a smaller effect on relations.
 ";
 
+::Const.Strings.ProfessionDescription.LegendNetRepair <- @"
+Better be ready for the time when they just won't kindly come along.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Reduces the cost of repairing nets.
+";
+
 ::Const.Strings.ProfessionDescription.LegendOffBookDeal <- @"
 There is no such thing as 'not for sale' provided one names the right price.
 

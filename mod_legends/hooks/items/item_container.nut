@@ -32,59 +32,6 @@
 		return _item == null ? false : addToBag(_item, _slot);
 	}
 
-	local isActionAffordable = o.isActionAffordable;
-	o.isActionAffordable = function (_items) {
-		local ret = isActionAffordable(_items);
-		if (!::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting)) {
-			return ret;
-		} else if (::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting) && _items.len() == 1 && _items[0].getID().find("throwing_net") != null) {
-			return true;
-		}
-		local nets = 0;
-		local notNets = 0;
-		foreach (item in _items) {
-			if (item != null) {
-				if (item.getID().find("throwing_net") != null) {
-					nets += 1;
-				} else {
-					notNets += 1;
-				}
-			}
-		}
-
-		// Equipping a net into a free offhand (whether from the bag or from the ground) is always free
-		if (_items.len() == 3 && nets == 1 && notNets == 0) {
-			return true;
-		}
-		return ret;
-	}
-
-	local getActionCost = o.getActionCost;
-	o.getActionCost = function (_items) {
-		local ret = getActionCost(_items);
-		if (!::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting)) {
-			return ret;
-		} else if (::Legends.Perks.has(this.m.Actor, ::Legends.Perk.LegendNetCasting) && _items.len() == 1 && _items[0].getID().find("throwing_net") != null) {
-			return 0;
-		}
-		local nets = 0;
-		local notNets = 0;
-		foreach (item in _items) {
-			if (item != null) {
-				if (item.getID().find("throwing_net") != null) {
-					nets += 1;
-				} else {
-					notNets += 1;
-				}
-			}
-		}
-
-		if (_items.len() == 3 && nets == 1 && notNets == 0) {
-			return 0;
-		}
-		return ret;
-	}
-
 	o.drop <- function (item) {
 		if (!this.m.Actor.isPlacedOnMap()) {
 			return;

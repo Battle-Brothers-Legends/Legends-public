@@ -642,7 +642,7 @@ if (!("Perks" in ::Legends))
 		Icon = "ui/perks/legend_mold_carrion.png", //todo
 		IconDisabled = "ui/perks/legend_mold_carrion_bw.png",
 	},
-	//purgatory, stuff left to do
+	//tbd purgatory, stuff left to do
 	// necro, to be decided
 	LegendRust = {
 		Icon = "ui/perks/rust56_circle.png",
@@ -675,11 +675,6 @@ if (!("Perks" in ::Legends))
 	},
 	// slightly weird implementation as its looking at all PIERCING DMG TYPE skills which aren't coming from daggers, are we sure its ok?
 	LegendThrustMaster = {},
-	// could be made into a profession, but it will be hard to find a tree for it
-	LegendNetRepair = {
-		Icon = "ui/perks/net_repair.png",
-		IconDisabled = "ui/perks/net_repair_bw.png"
-	},
 	// Horses below
 	LegendHorseCharge = {
 		Name = "Mounted Charge"

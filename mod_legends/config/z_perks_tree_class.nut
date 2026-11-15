@@ -30,7 +30,7 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[::Legends.Perk.LegendNetRepair, ::Legends.Perk.QuickHands],
+		[::Legends.Perk.QuickHands],
 		[::Legends.Perk.LegendNetCasting],
 		[::Legends.Perk.LegendMasteryNets],
 		[],

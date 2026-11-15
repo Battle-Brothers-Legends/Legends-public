@@ -1,10 +1,5 @@
 this.perk_legend_mastery_nets <- this.inherit("scripts/skills/skill", {
-	m = {
-		AffectedSkills = [
-			::Legends.Active.BreakAllyFree,
-			::Legends.Active.BreakFree
-		]
-	},
+	m = {},
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMasteryNets);
@@ -12,14 +7,9 @@ this.perk_legend_mastery_nets <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties) {
 		_properties.IsSpecializedInNets = true;
-	}
-
-	function onAfterUpdate(_properties) {
-		local actor = this.getContainer().getActor();
-		foreach (skillDef in this.m.AffectedSkills.filter(@(_, _skillDef)(::Legends.Actives.has(actor, _skillDef)))) {
-			local skill = ::Legends.Actives.get(actor, skillDef);
-			skill.m.ActionPointCost -= 1;
-			skill.m.FatigueCostMult *= 0.33;
+		local item = getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		if (item != null && item.isItemType(::Const.Items.ItemType.Net) && (item.getAmmoMax() == 0 || item.getAmmo() > 0)) {
+			_properties.MeleeDefense += 10;
 		}
 	}
 });

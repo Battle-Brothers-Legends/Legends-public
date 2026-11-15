@@ -123,18 +123,6 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 		}.bindenv(this));
 	}
 
-	function onUpdateProperties(_properties) {
-		this.weapon.onUpdateProperties(_properties);
-		// Net Repair Perk negates the weight
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair)) {
-			_properties.Stamina -= this.m.StaminaModifier;
-		}
-	}
-
-	function getStaminaModifier() {
-		return ((::Legends.S.isNull(this.getContainer()) || ::Legends.S.isNull(this.getContainer().getActor()) || !::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendNetRepair)) ? this.m.StaminaModifier : 0);
-	}
-
 	function allowsOffhandActions() {
 		return this.getContainer() != null && this.getContainer().getActor().getCurrentProperties().IsSpecializedInNets;
 	}
