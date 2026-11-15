@@ -517,3 +517,4 @@ local VanillaTree = [
 }
 
 ::Const.Perks.PerksTreeTemplate <- ::Const.Perks.BuildCustomPerkTree(VanillaTree)
+::Const.Perks.AllowRearrangement <- false;
