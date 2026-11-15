@@ -316,8 +316,8 @@ TacticalCombatResultScreenLootPanel.prototype.createItemSlot = function (_owner,
 
     // add event handler
     var dropHandler = function (_source, _target, _proxy, _dd, _event) {
-        var sourceData = _source.data('item');
-        var targetData = _target.data('item');
+        var sourceData = _source.data('item') || {};
+        var targetData = _target.data('item') || {};
 
         var sourceOwner = (sourceData !== null && 'owner' in sourceData) ? sourceData.owner : null;
         var targetOwner = (targetData !== null && 'owner' in targetData) ? targetData.owner : null;
@@ -367,8 +367,8 @@ TacticalCombatResultScreenLootPanel.prototype.createItemSlot = function (_owner,
             return false;
         }
 
-        var sourceData = _source.data('item');
-        var targetData = _target.data('item');
+        var sourceData = _source.data('item') || {};
+        var targetData = _target.data('item') || {};
 
         var sourceOwner = (sourceData !== null && 'owner' in sourceData) ? sourceData.owner : null;
         var targetOwner = (targetData !== null && 'owner' in targetData) ? targetData.owner : null;
