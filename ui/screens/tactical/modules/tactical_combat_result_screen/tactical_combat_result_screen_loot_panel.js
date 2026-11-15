@@ -477,7 +477,7 @@ TacticalCombatResultScreenLootPanel.prototype.assignItems = function (_owner, _i
     }
 
     var self = this;
-    var screen = $('.world-town-screen');
+    var screen = $('.tactical-combat-result-screen');
     
     var currentIndex = 0;
     var chunkSize = 35;
