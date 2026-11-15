@@ -1,4 +1,6 @@
 <brush name="gfx/legend_objects.png" version="17"> 
+	<sprite id="legend_stalagmite" offsetX="1" offsetY="26" ic="FF404448" img="objects\legend_stalagmite.png" bottom="119" top="-70"/>
+
 	<sprite id="camp_test_01" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_01.png" left="-85" right="85" />
 	<sprite id="camp_test_02" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_02.png" left="-85" right="85" />
 	<sprite id="camp_test_03" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_03.png" left="-85" right="85" />

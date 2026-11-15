@@ -127,7 +127,10 @@ this.tactical_legend_beast_den <- this.inherit("scripts/mapgen/tactical_template
 				local y = _rect.Y + py + (k == 2 ? 1 : 0);
 
 				if (::Tactical.isValidTileSquare(x, y))	{
-					::Legends.Tactical.Tiles.spawnWall(::Tactical.getTileSquare(x, y));
+					local tile = ::Tactical.getTileSquare(x, y);
+					tile.Level = 0;
+					tile.clear();
+					tile.spawnObject("entity/tactical/objects/legend_stalagmite");
 				}
 			}
 		}
