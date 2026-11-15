@@ -753,6 +753,7 @@
 - Net Casting no longer mistakenly lowers the cost of equipping nets (was supposed to be removed in the previous rework)
 
 ### For modders:
+- you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true
 - you can now offset fatigue bonuses via `InitiativeFatigueOffset`. In vanilla if you add fatigue to `currentProperties` it'll give back initiative that you've lost from equipping armor and gear
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
 - added color templates to event lists, instead of vanilla way, you can specify colors as `[color=%positive%]` now
