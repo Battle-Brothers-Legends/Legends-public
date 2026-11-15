@@ -1,24 +1,19 @@
 this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create() {
-		this.character_background.create();
+		this.legend_legion_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionLegate);
 		this.m.BackgroundDescription = "A military figure of great experience and prowess, the legate has risen through the ranks with bloody blade in hand.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
-		this.m.Excluded = ::Legends.Legion.excludedTraits();
-
 		this.m.ExcludedTalents = [
 			// ::Const.Attributes.RangedSkill,
 			//::Const.Attributes.Hitpoints,
 			// ::Const.Attributes.Bravery,
 			::Const.Attributes.Fatigue
 		];
-		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
 		this.m.LastNames = ::Const.Strings.AncientDeadTitles;
 		this.m.Level = ::Math.rand(5, 7);
-		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function getTooltip() {

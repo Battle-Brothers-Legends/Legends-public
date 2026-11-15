@@ -1,39 +1,53 @@
 this.legend_legion_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 
+	function create() {
+		this.character_background.create();
+		this.m.Excluded = ::Legends.Legion.excludedTraits();
+		this.m.BackgroundType = ::Const.BackgroundType.Untalented;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
+	}
+
 	function getTooltip() {
 		local ret = this.character_background.getTooltip();
-		ret.extend([{
-			id = 7,
-			type = "text",
-			icon = "ui/icons/immunity.png",
-			text = "Immune to Bleeding, poison and most fresh injuries"
-		}, {
-			id = 7,
-			type = "text",
-			icon = "ui/icons/days_wounded.png",
-			text = "Recovers hitpoints at only 20% of the normal rate and requires no food. and has resistance to piercing type attacks"
-		}, {
-			id = 7,
-			type = "text",
-			icon = "ui/icons/direct_damage.png",
-			text = "Has resistance to piercing type attacks"
-		}, {
-			id = 7,
-			type = "text",
-			icon = "ui/icons/fatigue.png",
-			text = "Effected by fatigue at 10% normal rate"
-		}, {
-			id = 7,
-			type = "text",
-			icon = "ui/icons/morale.png",
-			text = "Not affected by morale checks or allies fleeing and dying"
-		}, {
-			id = 7,
-			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "Not affected by nighttime penalties"
-		}
+		ret.extend([
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/immunity.png",
+				text = "Immune to Bleeding, poison and most fresh injuries"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/days_wounded.png",
+				text = "Recovers hitpoints at only 20% of the normal rate and requires no food. and has resistance to piercing type attacks"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/direct_damage.png",
+				text = "Has resistance to piercing type attacks"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = "Effected by fatigue at 10% normal rate"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/morale.png",
+				text = "Not affected by morale checks or allies fleeing and dying"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Not affected by nighttime penalties"
+			}
 		]);
 		return ret;
 	}
@@ -43,8 +57,8 @@ this.legend_legion_background <- this.inherit("scripts/skills/backgrounds/charac
 		local actor = this.getContainer().getActor();
 
 		if (::isKindOf(actor, "player")) {
-			actor.get().improveMood = function(_change, _text = "") {};
-			actor.get().worsenMood = function(_change, _text = "") {};
+			actor.get().improveMood = function (_change, _text = "") {};
+			actor.get().worsenMood = function (_change, _text = "") {};
 		}
 
 		this.onApplyAppearance();

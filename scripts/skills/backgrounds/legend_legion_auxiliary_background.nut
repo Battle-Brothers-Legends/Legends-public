@@ -1,23 +1,18 @@
 this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create() {
-		this.character_background.create();
+		this.legend_legion_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionAuxiliary);
 		this.m.BackgroundDescription = "Pressed onto service by some means or another, the Auxiliary serves their masters in exchange for a promise of a better life.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.Excluded = ::Legends.Legion.excludedTraits();
-
 		this.m.ExcludedTalents = [
 			// ::Const.Attributes.RangedSkill,
 			//::Const.Attributes.Hitpoints,
 			::Const.Attributes.Fatigue,
 			::Const.Attributes.Bravery
 		];
-		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
 		this.m.Level = ::Math.rand(1, 2);
-		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {

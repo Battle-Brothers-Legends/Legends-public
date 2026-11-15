@@ -1,24 +1,18 @@
 this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create() {
-		this.character_background.create();
+		this.legend_legion_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionHonourGuard); //I don't care who they send, im not spelling it 'honor'.
 		this.m.BackgroundDescription = "A veteran of hundreds of battles, the honour guard is rewarded for their luck and prowess with ever increasing danger.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.Excluded = ::Legends.Legion.excludedTraits();
-
 		this.m.ExcludedTalents = [
 			//::Const.Attributes.RangedSkill,
 			//::Const.Attributes.Hitpoints,
 			::Const.Attributes.Fatigue,
 			::Const.Attributes.Bravery
 		];
-
-		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
 		this.m.Level = ::Math.rand(2, 4);
-		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {

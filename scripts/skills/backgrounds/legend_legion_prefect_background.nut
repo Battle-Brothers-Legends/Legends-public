@@ -1,23 +1,18 @@
 this.legend_legion_prefect_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create() {
-		this.character_background.create();
+		this.legend_legion_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionPrefect);
 		this.m.BackgroundDescription = "An official or administrator with some standing to someone who\'s name and title is unknown to you.";
 		this.m.GoodEnding = ""; //to do
 		this.m.BadEnding = ""; //to do
-		this.m.Excluded = ::Legends.Legion.excludedTraits();
-
 		this.m.ExcludedTalents = [
 			//::Const.Attributes.Hitpoints,
 			::Const.Attributes.Bravery,
 			::Const.Attributes.Fatigue
 		];
-		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
 		this.m.LastNames = ::Const.Strings.AncientDeadTitles;
 		this.m.Level = ::Math.rand(1, 3);
-		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {

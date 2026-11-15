@@ -1,24 +1,19 @@
 this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create() {
-		this.character_background.create();
+		this.legend_legion_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionCenturion);
 		this.m.BackgroundDescription = "A leader of many, a slave to a few.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.Excluded = ::Legends.Legion.excludedTraits();
-
 		this.m.ExcludedTalents = [
 			// ::Const.Attributes.RangedSkill,
 			//::Const.Attributes.Hitpoints,
 			// ::Const.Attributes.Bravery,
 			::Const.Attributes.Fatigue
 		];
-		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
 		this.m.LastNames = ::Const.Strings.AncientDeadTitles;
 		this.m.Level = ::Math.rand(3, 5);
-		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {

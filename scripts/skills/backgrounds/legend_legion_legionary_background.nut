@@ -1,23 +1,18 @@
 this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create() {
-		this.character_background.create();
+		this.legend_legion_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionLegionary);
 		this.m.BackgroundDescription = "The backbone of the Empire, the legionary sees horrors far and wide — and now travels those lands as one.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
-		this.m.Excluded = ::Legends.Legion.excludedTraits();
-
 		this.m.ExcludedTalents = [
 			// ::Const.Attributes.RangedSkill,
 			//::Const.Attributes.Hitpoints,
 			::Const.Attributes.Fatigue,
 			::Const.Attributes.Bravery
 		];
-		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
 		this.m.Level = ::Math.rand(2, 3);
-		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {

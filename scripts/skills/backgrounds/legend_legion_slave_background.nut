@@ -1,23 +1,16 @@
 this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create() {
-		this.character_background.create();
+		this.legend_legion_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionSlave);
 		this.m.BackgroundDescription = "Taken from a distant land lost to time, this slave still fights for their master.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.Excluded = ::Legends.Legion.excludedTraits();
-
 		this.m.ExcludedTalents = [
 			::Const.Attributes.Hitpoints,
 			::Const.Attributes.Fatigue,
 			::Const.Attributes.Bravery
 		];
-		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
-		// this.m.LastNames = ::Const.Strings.AncientDeadTitles;
-		// this.m.Level = ::Math.rand(2, 4);
-		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {
