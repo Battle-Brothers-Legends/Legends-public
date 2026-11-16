@@ -22,7 +22,8 @@ this.perk_legend_keen_eyesight <- this.inherit("scripts/skills/skill", {
 		this.m.RangedDefenseBonus = 0;
 
 		if (helmet != null) {
-			local positiveVision = helmet.m.Upgrades.filter(@(_, _layer) _layer != null && _layer.getVision() > 0).map(@(_layer) _layer.getVision()).reduce(@(a, b) a + b);
+			// old helmets that are not layered have no upgrades
+			local positiveVision = "Upgrades" in helmet.m ? helmet.m.Upgrades.filter(@(_, _layer) _layer != null && _layer.getVision() > 0).map(@(_layer) _layer.getVision()).reduce(@(a, b) a + b) : null;
 			if (positiveVision == null) {
 				positiveVision = 0;
 			}

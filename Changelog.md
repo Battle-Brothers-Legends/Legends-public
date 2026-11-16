@@ -755,6 +755,9 @@
 - Net Casting no longer mistakenly lowers the cost of equipping nets (was supposed to be removed in the previous rework)
 - Fixed dragging loot on the combat result screen, the dragged icon was attached to the town screen so drops failed and the icon could stay stuck there
 - Shops no longer sell low durability items such as Wooden Stakes already broken
+- Fixed a script error when hovering the Company Name field on the new campaign screen
+- Master Archers now wear the layered hood and headscarf instead of the old vanilla helmets
+- Keen Eyesight no longer throws an error on a character wearing a helmet that is not layered
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

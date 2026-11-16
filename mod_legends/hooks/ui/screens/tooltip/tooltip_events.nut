@@ -862,7 +862,7 @@
 			entity = ::Tactical.getEntityByID(_entityId);
 		}
 
-		local selectedEntity = ::Tactical.isActive() ? ::Tactical.TurnSequenceBar.getActiveEntity() : (("State" in ::World && ::World.State != null) ? ::World.State.m.CharacterScreen.getSelectedActor() : null);
+		local selectedEntity = ::Tactical.isActive() && ::Tactical.TurnSequenceBar != null ? ::Tactical.TurnSequenceBar.getActiveEntity() : (("State" in ::World && ::World.State != null) ? ::World.State.m.CharacterScreen.getSelectedActor() : null);
 		local b, c;
 		if (selectedEntity != null) {
 			b = selectedEntity.getBaseProperties();

@@ -67,10 +67,10 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) <= 50)
 		{
 			local helmet = [
-				"helmets/hood",
-				"helmets/headscarf"
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.headscarf]
 			];
-			this.m.Items.equip(this.new("scripts/items/" + helmet[::Math.rand(0, helmet.len() - 1)]));
+			this.m.Items.equip(::Legends.Items.pickHelmet(helmet));
 		}
 	}
 
