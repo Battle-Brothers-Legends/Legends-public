@@ -63,7 +63,7 @@
 
 .character-screen-container .inventory-list-module .slot-count-panel .slot-count-container
 {
-	top: 2.2rem;
+	top: 1.6rem;
 	right: 9.7rem;
 	bottom: 0;
 	width: 12.6rem;
@@ -74,7 +74,7 @@
 
 .character-screen-container .inventory-list-module .slot-count-panel .slot-count-container img
 {
-	top: 0;
+	top: 0.2rem;
 	left: 0;
 	bottom: 0;
 	width: 2.4rem;
