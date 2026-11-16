@@ -126,7 +126,7 @@
 	left: 5.0rem;
 }
 
-.character-screen-container .inventory-list-module .filter-panel .l-button.is-weapons-filter
+/*.character-screen-container .inventory-list-module .filter-panel .l-button.is-weapons-filter
 {
 	left: 10.0rem;
 }
@@ -144,21 +144,18 @@
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-misc-filter
 {
 	left: 25.0rem;
+}*/
+
+.character-screen-container .inventory-list-module .filter-panel .l-button.is-mood-filter {
+	left: 10.0rem;
 }
 
-.character-screen-container .inventory-list-module .filter-panel .l-button.is-mood-filter
-{
-	left: 30.0rem;
+.character-screen-container .inventory-list-module .filter-panel .l-button.is-organize-layers {
+	left: 15.0rem;
 }
 
-.character-screen-container .inventory-list-module .filter-panel .l-button.is-organize-layers
-{
-	left: 35.0rem;
-}
-
-.character-screen-container .inventory-list-module .filter-panel .l-button.is-organize-layers-strip
-{
-	left: 40.0rem;
+.character-screen-container .inventory-list-module .filter-panel .l-button.is-organize-layers-strip {
+	left: 20.0rem;
 }
 
 

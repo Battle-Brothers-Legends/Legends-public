@@ -14,8 +14,8 @@ CharacterScreenInventoryListModule.prototype.createDIV = function(_parentDiv) {
 
 	var layout;
 	while(true) {
-		layout = this.mFilterArmorButton.parent();
-		if (layout.hasClass('is-armor-filter')) // move up to find the parent div with this class
+		layout = this.mFilterButton.parent();
+		if (layout.hasClass('is-all-filter')) // move up to find the parent div with this class
 			break;
 	}
 
@@ -159,8 +159,9 @@ CharacterScreenInventoryListModule.prototype.createDIV = function(_parentDiv) {
 			applyButton.mouseenter(this, function(_event) { $(this).css('border', '3px solid black') });
 			applyButton.mouseleave(this, function(_event) { $(this).css('border', '1px solid black') });
 			applyButton.click(this, function(_event) {
-				if (self.mFilterArmorButton.hasClass('is-active')) { self.mDataSource.notifyBackendFilterArmorButtonClicked() }
-    			else { self.mFilterArmorButton.click() }
+				self.mDataSource.mSelectedFilterIndex = 2;
+				self.cycleFilterImage();
+				self.mDataSource.notifyBackendFilterArmorButtonClicked();
 			});
 
 		var closeButton = $('<div class="flex-image-button"/>')
@@ -171,8 +172,6 @@ CharacterScreenInventoryListModule.prototype.createDIV = function(_parentDiv) {
 			closeButton.click(this, function(_event) {
             	self.mIsArmorFilterShow = false;
     			self.mArmorFilterPanel.addClass('display-none').removeClass('display-block');
-    			if (self.mFilterArmorButton.hasClass('is-active'))
-    				self.mDataSource.notifyBackendFilterArmorButtonClicked();
 		    });
 	}
 }

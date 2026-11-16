@@ -88,6 +88,11 @@ var CharacterScreenDatasource = function(_isTacticalMode)
 
 	this.mMaxBrothers = 25;
 	this.mFrontlineData = [25, 25];
+
+	// filters in 1 button
+	this.mFiltersList = ['onFilterAll', 'onFilterWeapons', 'onFilterArmor', 'onFilterMisc', 'onFilterUsable'];
+	this.mSelectedFilterIndex = 0;
+
 	// init the datasource
 	this.init();
 };
@@ -2098,24 +2103,12 @@ CharacterScreenDatasource.prototype.notifyBackendToggleReservesCharacter = funct
 	});
 };
 
-CharacterScreenDatasource.prototype.notifyBackendFilterAllButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterAll');
+CharacterScreenDatasource.prototype.notifyBackendFilterButtonClicked = function () {
+	SQ.call(this.mSQHandle, this.mFiltersList[this.mSelectedFilterIndex]);
 };
 
-CharacterScreenDatasource.prototype.notifyBackendFilterWeaponsButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterWeapons');
-};
-
-CharacterScreenDatasource.prototype.notifyBackendFilterArmorButtonClicked = function ()
-{
+CharacterScreenDatasource.prototype.notifyBackendFilterArmorButtonClicked = function () {
 	SQ.call(this.mSQHandle, 'onFilterArmor');
-};
-
-CharacterScreenDatasource.prototype.notifyBackendFilterMiscButtonClicked = function ()
-{
-	SQ.call(this.mSQHandle, 'onFilterMisc');
 };
 
 CharacterScreenDatasource.prototype.notifyBackendOrganizeLayeredItemsClicked = function (_stripMismatched) {

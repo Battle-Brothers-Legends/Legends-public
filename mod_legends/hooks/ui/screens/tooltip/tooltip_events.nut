@@ -3346,6 +3346,32 @@
 					}
 				];
 
+			case "character-screen.right-panel-header-module.FilterButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Cycle filtering by type"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "- all items\n- weapons, offensive tools and accessories\n- armor, helmets and shields\n- supplies, food, treasure and miscellaneous\n- items usable in inventory mode"
+					},
+					{
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/mouse_left_button.png",
+						text = "Cycle filtering modes"
+					},
+					{
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button.png",
+						text = "Show advanced armor and helmet filtering settings"
+					},
+				];
+
 			case "character-screen.right-panel-header-module.FilterAllButton":
 				return [
 					{
