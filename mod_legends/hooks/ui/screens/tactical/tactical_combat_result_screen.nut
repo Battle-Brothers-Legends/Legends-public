@@ -60,6 +60,16 @@
 	o.onLootAllItemsButtonPressed = function () {
 		local loot = ::Tactical.CombatResultLoot.getItems();
 
+		// eat supplies
+		::World.Assets.refillAmmo();
+		for (local i = 0; i < loot.len(); i++) {
+			local item = loot[i];
+			if (item != null && item.isItemType(::Const.Items.ItemType.Supply)) {
+				item.consume();
+				loot[i] = null;
+			}
+		}
+
 		foreach (idx, _ in loot) {
 			this.applyAutomationStateEffectsOnLoot(::Tactical.CombatResultLoot.getItemAtIndex(idx));
 		}
@@ -71,9 +81,43 @@
 		local sourceItemOwner = _data[1];
 		local targetItemOwner = _data[3];
 		local ownerPlayer = "tactical-combat-result-screen.stash";
+		local ownerLoot = "tactical-combat-result-screen.found-loot";
+		local sourceItemIdx = _data[0];
+		local targetItemIdx = _data[2];
 
 		if (_data[4] && sourceItemOwner == ownerPlayer && targetItemOwner == ownerPlayer) {
 			return this.general_onUpgradeInventoryItem(_data);
+		}
+
+		// eat supplies
+		if (sourceItemOwner == ownerLoot && (targetItemIdx == null || targetItemOwner == ownerPlayer)) {
+			local sourceItem = ::Tactical.CombatResultLoot.getItemAtIndex(sourceItemIdx).item;
+			if (sourceItem.isItemType(::Const.Items.ItemType.Supply)) {
+				::World.Assets.refillAmmo();
+				sourceItem.consume();
+				::Tactical.CombatResultLoot.removeByIndex(sourceItemIdx);
+				if (sourceItem.getID() != "supplies.money") {
+					sourceItem.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+				}
+				return {
+					stash = ::UIDataHelper.convertStashToUIData(true),
+					foundLoot = ::UIDataHelper.convertCombatResultLootToUIData()
+				};
+			}
+		} else if (targetItemOwner == ownerLoot && targetItemIdx != null && sourceItemOwner == ownerPlayer) {
+			local targetItem = ::Tactical.CombatResultLoot.getItemAtIndex(targetItemIdx).item;
+			if (targetItem.isItemType(::Const.Items.ItemType.Supply)) {
+				::World.Assets.refillAmmo();
+				targetItem.consume();
+				local sourceItem = ::Stash.getItemAtIndex(sourceItemIdx).item;
+				::Tactical.CombatResultLoot.insert(sourceItem, targetItemIdx);
+				::Stash.removeByIndex(sourceItemIdx);
+				sourceItem.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+				return {
+					stash = ::UIDataHelper.convertStashToUIData(true),
+					foundLoot = ::UIDataHelper.convertCombatResultLootToUIData()
+				};
+			}
 		}
 
 		return onSwapItem(_data);
