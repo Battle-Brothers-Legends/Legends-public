@@ -36,11 +36,7 @@ var CharacterScreenInventoryListModule = function(_parent, _dataSource)
 	this.mFilterPanel = null;
 	this.mFilterMoodButton = null;
 	this.mSortInventoryButton = null;
-	this.mFilterAllButton = null;
-	this.mFilterWeaponsButton = null;
-	this.mFilterArmorButton = null;
-	this.mFilterMiscButton = null;
-	this.mFilterUsableButton = null;
+	this.mFilterButton = null;
 	this.mOrganizeLayersButton = null;
 	this.mOrganizeLayersStripButton = null;
 
@@ -100,63 +96,10 @@ CharacterScreenInventoryListModule.prototype.createDIV = function (_parentDiv)
 
 	var layout = $('<div class="l-button is-all-filter"/>');
 	this.mFilterPanel.append(layout);
-	this.mFilterAllButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ALL_FILTER, function ()
-	{
-		self.mFilterAllButton.addClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.mDataSource.notifyBackendFilterAllButtonClicked();
-	}, '', 3);
-	this.mFilterAllButton.addClass('is-active');
-
-	var layout = $('<div class="l-button is-weapons-filter"/>');
-	this.mFilterPanel.append(layout);
-	this.mFilterWeaponsButton = layout.createImageButton(Path.GFX + Asset.BUTTON_WEAPONS_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.addClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.mDataSource.notifyBackendFilterWeaponsButtonClicked();
-	}, '', 3);
-
-	var layout = $('<div class="l-button is-armor-filter"/>');
-	this.mFilterPanel.append(layout);
-	this.mFilterArmorButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ARMOR_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.addClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.mDataSource.notifyBackendFilterArmorButtonClicked();
-	}, '', 3);
-
-	var layout = $('<div class="l-button is-misc-filter"/>');
-	this.mFilterPanel.append(layout);
-	this.mFilterMiscButton = layout.createImageButton(Path.GFX + Asset.BUTTON_MISC_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.addClass('is-active');
-		self.mFilterUsableButton.removeClass('is-active');
-		self.mDataSource.notifyBackendFilterMiscButtonClicked();
-	}, '', 3);
-
-	var layout = $('<div class="l-button is-usable-filter"/>');
-	this.mFilterPanel.append(layout);
-	this.mFilterUsableButton = layout.createImageButton(Path.GFX + Asset.BUTTON_USABLE_FILTER, function ()
-	{
-		self.mFilterAllButton.removeClass('is-active');
-		self.mFilterWeaponsButton.removeClass('is-active');
-		self.mFilterArmorButton.removeClass('is-active');
-		self.mFilterMiscButton.removeClass('is-active');
-		self.mFilterUsableButton.addClass('is-active');
-		self.mDataSource.notifyBackendFilterUsableButtonClicked();
+	this.mFilterButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ALL_FILTER, function () {
+		self.mDataSource.mSelectedFilterIndex = ++self.mDataSource.mSelectedFilterIndex % 5;
+		self.cycleFilterImage()
+		self.mDataSource.notifyBackendFilterButtonClicked();
 	}, '', 3);
 
 	var layout = $('<div class="l-button is-organize-layers"/>');
@@ -868,11 +811,7 @@ CharacterScreenInventoryListModule.prototype.destroy = function()
 CharacterScreenInventoryListModule.prototype.bindTooltips = function ()
 {
 	this.mSortInventoryButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.SortButton });
-	this.mFilterAllButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterAllButton });
-	this.mFilterWeaponsButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterWeaponsButton });
-	this.mFilterArmorButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterArmorButton });
-	this.mFilterMiscButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMiscButton });
-	this.mFilterUsableButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterUsableButton });
+	this.mFilterButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterButton });
 	this.mFilterMoodButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMoodButton });
 	this.mOrganizeLayersButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.OrganizeLayersButton });
 	this.mOrganizeLayersStripButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.OrganizeLayersStripButton });
@@ -881,11 +820,7 @@ CharacterScreenInventoryListModule.prototype.bindTooltips = function ()
 CharacterScreenInventoryListModule.prototype.unbindTooltips = function ()
 {
 	this.mSortInventoryButton.unbindTooltip();
-	this.mFilterAllButton.unbindTooltip();
-	this.mFilterWeaponsButton.unbindTooltip();
-	this.mFilterArmorButton.unbindTooltip();
-	this.mFilterMiscButton.unbindTooltip();
-	this.mFilterUsableButton.unbindTooltip();
+	this.mFilterButton.unbindTooltip();
 	this.mFilterMoodButton.unbindTooltip();
 	this.mOrganizeLayersButton.unbindTooltip();
 	this.mOrganizeLayersStripButton.unbindTooltip();
@@ -1118,4 +1053,23 @@ CharacterScreenInventoryListModule.prototype.onDataSourceError  = function (_dat
 	console.info('CharacterScreenInventoryListModule::onDataSourceError(' + _data + ')');
 };
 
+CharacterScreenInventoryListModule.prototype.cycleFilterImage = function () {
+	switch (this.mDataSource.mSelectedFilterIndex) {
+		case 0:
+			this.mFilterButton.changeButtonImage(Path.GFX + Asset.BUTTON_ALL_FILTER);
+			break
+		case 1:
+			this.mFilterButton.changeButtonImage(Path.GFX + Asset.BUTTON_WEAPONS_FILTER);
+			break
+		case 2:
+			this.mFilterButton.changeButtonImage(Path.GFX + Asset.BUTTON_ARMOR_FILTER);
+			break
+		case 3:
+			this.mFilterButton.changeButtonImage(Path.GFX + Asset.BUTTON_MISC_FILTER);
+			break
+		case 4:
+			this.mFilterButton.changeButtonImage(Path.GFX + Asset.BUTTON_USABLE_FILTER);
+			break
+	}
+};
 

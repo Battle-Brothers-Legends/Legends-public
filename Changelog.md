@@ -628,6 +628,7 @@
 > newly acquired items with flags will automatically start be added to repair/salvage queue
 > flags are now visible in shop and loot screens
 > quickly loot items based on value (new button; ignores legendary, named, quest, food)
+> looting supplies (money, tools, ammo, medicine) now automatically consumes them adding to the company totals
 > combine items to save inventory space with a single click with respect to automation state
 - sped up inventory load times by loading items in batches
 - added a simple perk planning system
@@ -660,6 +661,7 @@
 - added simple values to stats in character screen on mouseover
 - item tooltips now list what the item can be crafted into, which replaces the `Items and Recipes` mod
 > can be turned off with `Show Crafting Uses` in the Legends Tooltips mod settings tab
+- replaced 5 different filter buttons in the character screen with a single one that cycles through the 5
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover

@@ -345,6 +345,7 @@ var TooltipIdentifier =
 			ProfessionsButton: 'character-screen.right-panel-header-module.ProfessionsButton',
 			CloseButton: 'character-screen.right-panel-header-module.CloseButton',
 			SortButton: 'character-screen.right-panel-header-module.SortButton',
+			FilterButton: 'character-screen.right-panel-header-module.FilterButton',
 			FilterAllButton: 'character-screen.right-panel-header-module.FilterAllButton',
 			FilterWeaponsButton: 'character-screen.right-panel-header-module.FilterWeaponsButton',
 			FilterArmorButton: 'character-screen.right-panel-header-module.FilterArmorButton',
