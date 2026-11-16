@@ -721,7 +721,6 @@ if (!("Effects" in ::Legends)) {
 	},
 	LegendCoordinatingVolleys = {},
 	LegendDualWielding = {
-		Icon = "skills/status_effect_75.png",
 		IconMini = "",
 		Overlay = ""
 	},
