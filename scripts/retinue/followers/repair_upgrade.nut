@@ -10,7 +10,7 @@ this.repair_upgrade <- this.inherit("scripts/retinue/follower", {
 		this.m.Cost = 5000;
 		this.m.Effects = [
 			"Increases repairing speed by 33%",
-			"Increases tool efficiency by 33%"
+			"Increases tool efficiency while repairing by 33%"
 		];
 	}
 });
