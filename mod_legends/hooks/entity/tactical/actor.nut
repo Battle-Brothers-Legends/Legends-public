@@ -266,10 +266,10 @@
 			local ohRiposteSkill = null;
 			if (mh == riposteItem) {
 				riposteSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, mh);
-				ohRiposteSkill = oh != null ? ::Legends.Weapons.findPrimaryAttackSkill(this, oh) : null;
+				ohRiposteSkill = oh != null && oh.isItemType(::Const.Items.ItemType.Weapon) ? ::Legends.Weapons.findPrimaryAttackSkill(this, oh) : null;
 			} else {
 				riposteSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
-				ohRiposteSkill = mh != null ? ::Legends.Weapons.findPrimaryAttackSkill(this, mh) : null;
+				ohRiposteSkill = mh != null && mh.isItemType(::Const.Items.ItemType.Weapon) ? ::Legends.Weapons.findPrimaryAttackSkill(this, mh) : null;
 			}
 
 			local info = {

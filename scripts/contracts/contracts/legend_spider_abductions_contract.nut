@@ -76,7 +76,6 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				this.Contract.m.Destination.onSpawned();
 				this.Contract.m.Destination.setAttackable(false);
 				this.Contract.m.Destination.setFaction(::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
-				this.Contract.m.Destination.setBanner(::World.FactionManager.getFaction(::Const.FactionType.Beasts).getPartyBanner());
 				this.Contract.m.Destination.setDiscovered(true);
 				::World.uncoverFogOfWar(this.Contract.m.Destination.getTile().Pos, 500.0);
 				this.Contract.setScreen("Overview");

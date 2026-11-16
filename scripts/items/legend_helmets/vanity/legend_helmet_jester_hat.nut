@@ -85,9 +85,10 @@ this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/lege
 	}
 
 	function onUnequip() {
-		local actor = this.getContainer().getActor();
+		local container = this.getContainer();
+		local actor = container == null ? null : container.getActor();
 		this.legend_helmet_upgrade.onUnequip();
-		if (::Legends.Perks.has(actor, ::Legends.Perk.Taunt) && !::Legends.Actives.has(actor, ::Legends.Active.Taunt)) {
+		if (actor != null && ::Legends.Perks.has(actor, ::Legends.Perk.Taunt) && !::Legends.Actives.has(actor, ::Legends.Active.Taunt)) {
 			::Legends.Actives.grant(actor, ::Legends.Active.Taunt);
 		}
 	}

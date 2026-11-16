@@ -20,7 +20,6 @@
 		if (this.m.Settlement.getSize() >= 2) {
 			list.extend([
 				item(50, 1.0, "misc/legend_weapon_skill_book_item"),
-				item(50, 1.0, "misc/legend_profession_skill_book_item"),
 				item(50, 1.0, "misc/legend_class_skill_book_item"),
 				item(50, 1.0, "misc/legend_armor_skill_book_item"),
 				item(50, 1.0, "misc/legend_trait_skill_book_item"),
@@ -31,7 +30,6 @@
 		if (this.m.Settlement.getSize() >= 3) {
 			list.extend([
 				item(50, 1.0, "misc/legend_weapon_skill_book_item"),
-				item(50, 1.0, "misc/legend_profession_skill_book_item"),
 				item(50, 1.0, "misc/legend_class_skill_book_item"),
 				item(50, 1.0, "misc/legend_armor_skill_book_item"),
 				item(50, 1.0, "misc/legend_trait_skill_book_item"),

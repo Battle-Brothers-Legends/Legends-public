@@ -760,6 +760,11 @@
 - Fixed a script error when hovering the Company Name field on the new campaign screen
 - Master Archers now wear the layered hood and headscarf instead of the old vanilla helmets
 - Keen Eyesight no longer throws an error on a character wearing a helmet that is not layered
+- Fixed Alps breaking the AI turn with a script error when they tried to use Sleep
+- Fixed an error when taking the Jester Hat off a helmet that is not worn
+- Fixed the tooltip error of the profession skill book, and marketplaces no longer sell it while it has no perk group to teach
+- Riposte no longer logs a warning when the other hand holds a shield
+- The spider nest of the Horror In The Woods contract no longer asks for a banner that does not exist
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

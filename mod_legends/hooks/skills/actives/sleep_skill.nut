@@ -51,6 +51,6 @@
 
 	o.isUsable = function () {
 		local actor = this.getContainer().getActor();
-		return this.skill.isUsable() && (!this.isEngagedInMelee() || actor.getFlags().has("alp"));
+		return this.skill.isUsable() && (!actor.isEngagedInMelee() || actor.getFlags().has("alp"));
 	}
 });
