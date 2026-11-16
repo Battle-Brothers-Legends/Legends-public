@@ -765,6 +765,9 @@
 - Fixed the tooltip error of the profession skill book, and marketplaces no longer sell it while it has no perk group to teach
 - Riposte no longer logs a warning when the other hand holds a shield
 - The spider nest of the Horror In The Woods contract no longer asks for a banner that does not exist
+- Fixed stacks of Bleeding and other stacking effects sharing one instance, so several stacks only dealt the damage of one
+- Anticipation no longer keeps reducing damage after its stacks are used up
+- Fixed a UI error when Alt + right-clicking an item in a shop that can not be repaired
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

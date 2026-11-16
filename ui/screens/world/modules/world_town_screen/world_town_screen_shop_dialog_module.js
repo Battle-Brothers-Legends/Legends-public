@@ -1041,6 +1041,10 @@ WorldTownScreenShopDialogModule.prototype.createItemSlot = function (_owner, _in
 WorldTownScreenShopDialogModule.prototype.repairItem = function (_itemIdx) {
     var self = this;
     this.notifyBackendRepairItem(_itemIdx, function (_result) {
+        if (_result === undefined || _result === null) {
+            return;
+        }
+
         if (_result.Item != null) {
             self.updateSlotItem(WorldTownScreenShop.ItemOwner.Stash, self.mStashSlots, _result.Item, _itemIdx, WorldTownScreenShop.ItemFlag.Updated);
         }

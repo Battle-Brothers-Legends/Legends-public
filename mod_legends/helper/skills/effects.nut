@@ -51,6 +51,10 @@ if (!("Effects" in ::Legends)) {
 	if (skill == null) {
 		return null;
 	}
+	// A stacking effect needs a new instance for every stack, otherwise all stacks share one state
+	if (skill.m.IsStacking && skill.getContainer() != null) {
+		skill = ::new(effectDef.Script);
+	}
 	if (_applyFn != null) {
 		_applyFn(skill);
 	}

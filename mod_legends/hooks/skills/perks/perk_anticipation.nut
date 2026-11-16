@@ -37,7 +37,7 @@
 	}
 
 	o.onAfterDamageReceived <- function () {
-		this.m.Stacks -= 1;
+		this.m.Stacks = ::Math.max(0, this.m.Stacks - 1);
 	}
 
 	o.onBeingAttacked = function (_attacker, _skill, _properties) {}
