@@ -376,7 +376,9 @@ local function addPerks(_tooltip, _entity, _shownPerks) {
 		local perksText = "";
 		foreach (_, perk in perks) {
 			local name = perk.m.Name;
-			perksText += (perksText.len() ? ", " : "") + ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1));
+			if (name.len()) { // some racials have no names
+				perksText += (perksText.len() ? ", " : "") + ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1));
+			}
 		}
 
 		_tooltip.push({

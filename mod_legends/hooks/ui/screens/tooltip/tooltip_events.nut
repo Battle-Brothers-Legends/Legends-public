@@ -4377,7 +4377,7 @@
 
 			case "world-town-screen.main-dialog-module.Taxidermist":
 				local town = ::World.State.getCurrentTown();
-				local building = town.hasBuilding("building.taxidermist") ? town.getBuilding("building.taxidermist") : town.getBuilding("building.taxidermist_oriental");
+				local building = (town != null && town.hasBuilding("building.taxidermist")) ? town.getBuilding("building.taxidermist") : town.getBuilding("building.taxidermist_oriental");
 				return [
 					{
 						id = 1,

@@ -2,11 +2,11 @@ if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
 
-local category = "Enemy";
+local category = "Enemy"; //tbd to be deleted along with enemy, profession books and enemy perk category
 ::Const.Perks.SwordmastersTree <- {
 	ID = "SwordmastersTree",
 	Name = "Swordmasters",
-	Icon = "ui/perks/legend_favoured_enemy_swordmaster.png",
+	Icon = "ui/professions/legend_favoured_enemy_swordmaster.png",
 	Category = category,
 	Descriptions = [
 		"swordmasters"
