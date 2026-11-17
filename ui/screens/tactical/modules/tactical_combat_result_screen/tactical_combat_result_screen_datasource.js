@@ -476,6 +476,14 @@ TacticalCombatResultScreenDatasource.prototype.notifyBackendValueLootItemsButton
         self.loadFromData(_data);
     });
 }
+
+TacticalCombatResultScreenDatasource.prototype.notifyBackendPotentialValueLootItemsButtonPressed = function (_callback) {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onPotentialValueLootItemsButtonPressed', null, function (_data) {
+        self.loadFromData(_data);
+    });
+}
+
 TacticalCombatResultScreenDatasource.prototype.notifyBackendOrganizeLayeredItemsClicked = function () {
     var self = this;
     SQ.call(this.mSQHandle, 'onOrganizeLayeredItems', null, function (_data) {

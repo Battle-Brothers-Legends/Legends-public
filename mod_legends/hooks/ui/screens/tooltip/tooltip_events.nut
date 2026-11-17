@@ -3179,6 +3179,21 @@
 						text = "Pick the items with the highest current value from both current and looted items."
 					}
 				];
+
+			case "tactical-combat-result-screen.loot-panel.PotentialValueLootItemsButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Loot Items by Potential Value"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Pick the items with the highest potential value from both current and looted items based on the thresholds set in character screen.\n\nWARNING: this will reorder the items in the inventory and sort and layer items by value"
+					}
+				];
+
 			case "tactical-combat-result-screen.loot-panel.OrganizeLayersButton":
 				return [
 					{

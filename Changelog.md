@@ -636,7 +636,8 @@
 > marked items can be sold with a single click in shops and new items acquired will respect these flags
 > newly acquired items with flags will automatically start be added to repair/salvage queue
 > flags are now visible in shop and loot screens
-> quickly loot items based on value (new button; ignores legendary, named, quest, food)
+> quickly loot items based on current value (new button; ignores legendary, named, quest, food)
+> quickly loot items based on potential value, also sorts and layers/unlayers items to maximize value
 > looting supplies (money, tools, ammo, medicine) now automatically consumes them adding to the company totals
 > combine items to save inventory space with a single click with respect to automation state
 - sped up inventory load times by loading items in batches

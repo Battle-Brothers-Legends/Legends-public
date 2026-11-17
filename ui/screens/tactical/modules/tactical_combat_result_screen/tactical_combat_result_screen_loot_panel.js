@@ -26,6 +26,7 @@ var TacticalCombatResultScreenLootPanel = function (_dataSource) {
     // buttons
     this.mLootAllItemsButton = null;
     this.mValueLootItemsButton = null;
+    this.mPotentialValueLootItemsButton = null;
 	this.mOrganizeLayersButton = null;
 
     // labels
@@ -88,6 +89,13 @@ TacticalCombatResultScreenLootPanel.prototype.createDIV = function (_parentDiv) 
     this.mValueLootItemsButton = buttonLayout.createImageButton(Path.GFX + Asset.ICON_ASSET_MONEY_UP, function () {
         self.mDataSource.notifyBackendValueLootItemsButtonPressed();
     }, '', 3);
+
+    buttonLayout = $('<div class="l-potential-value-loot-items-button"/>');
+    contentRow.append(buttonLayout);
+    this.mPotentialValueLootItemsButton = buttonLayout.createImageButton(Path.GFX + Asset.BUTTON_AUTOMATION_POTENTIAL_VALUE_LOOT, function () {
+        self.mDataSource.notifyBackendPotentialValueLootItemsButtonPressed();
+    }, '', 3);
+
     buttonLayout = $('<div class="l-organize-layers-button"/>');
     contentRow.append(buttonLayout);
     this.mOrganizeLayersButton = buttonLayout.createImageButton(Path.GFX + Asset.BUTTON_ORGANIZE_LAYERS, function () {
@@ -221,6 +229,7 @@ TacticalCombatResultScreenLootPanel.prototype.bindTooltips = function () {
     this.mStashSlotSizeContainer.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.Stash.FreeSlots });
     this.mLootAllItemsButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalCombatResultScreen.LootPanel.LootAllItemsButton });
     this.mValueLootItemsButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalCombatResultScreen.LootPanel.ValueLootItemsButton });
+    this.mPotentialValueLootItemsButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalCombatResultScreen.LootPanel.PotentialValueLootItemsButton });
     this.mOrganizeLayersButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalCombatResultScreen.LootPanel.OrganizeLayersButton });
 };
 
@@ -228,6 +237,7 @@ TacticalCombatResultScreenLootPanel.prototype.unbindTooltips = function () {
     this.mStashSlotSizeContainer.unbindTooltip();
     this.mLootAllItemsButton.unbindTooltip();
     this.mValueLootItemsButton.unbindTooltip();
+    this.mPotentialValueLootItemsButton.unbindTooltip();
     this.mOrganizeLayersButton.unbindTooltip();
 };
 

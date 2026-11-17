@@ -216,6 +216,7 @@ var TooltipIdentifier =
 		{
 			LootAllItemsButton: 'tactical-combat-result-screen.loot-panel.LootAllItemsButton',
 			ValueLootItemsButton: 'tactical-combat-result-screen.loot-panel.ValueLootItemsButton',
+			PotentialValueLootItemsButton: 'tactical-combat-result-screen.loot-panel.PotentialValueLootItemsButton',
 			OrganizeLayersButton: 'tactical-combat-result-screen.loot-panel.OrganizeLayersButton'
 		}
 	},
@@ -355,6 +356,8 @@ var TooltipIdentifier =
 			FilterMoodButton: 'character-screen.right-panel-header-module.FilterMoodButton',
 			OrganizeLayersButton: 'character-screen.right-panel-header-module.OrganizeLayersButton',
 			OrganizeLayersStripButton: 'character-screen.right-panel-header-module.OrganizeLayersStripButton',
+			MarkForRepairButton: 'character-screen.right-panel-header-module.MarkForRepairButton',
+			MarkForSalvageButton: 'character-screen.right-panel-header-module.MarkForSalvageButton',
 			SellAllButton: 'character-screen.right-panel-header-module.SellAllButton',
 			FormationButton: 'character-screen.right-panel-header-module.FormationButton',
 			ChangeFormationButton: 'character-screen.right-panel-header-module.ChangeFormation',

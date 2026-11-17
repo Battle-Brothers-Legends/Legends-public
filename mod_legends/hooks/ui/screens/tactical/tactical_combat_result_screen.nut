@@ -222,4 +222,133 @@
 			foundLoot = ::UIDataHelper.convertCombatResultLootToUIData()
 		};
 	}
+
+	// unlocks the inventory temporarily, dumps the loot inside, unlayers, sorts by named and value potential, layers most expensive on most expensive, removes surplus back to loot, locks inventory back | owned food and quest stuff stays untouched
+	o.onPotentialValueLootItemsButtonPressed <- function () {
+		::Sound.play("sounds/combat/armor_leather_impact_01.wav", ::Const.Sound.Volume.Inventory);
+
+		local loot = ::Tactical.CombatResultLoot.getItems();
+		local stash = ::Stash.getItems();
+
+		// eat supplies
+		::World.Assets.refillAmmo();
+		for (local i = 0; i < loot.len(); i++) {
+			local item = loot[i];
+			if (item != null && item.isItemType(::Const.Items.ItemType.Supply)) {
+				item.consume();
+				loot[i] = null;
+			}
+		}
+
+		::Stash.setResizable(true);
+
+		// dump all but food into stash
+		for (local i = 0; i < loot.len(); i++) {
+			local item = loot[i];
+			if (item != null && !item.isItemType(::Const.Items.ItemType.Food)) {
+				::Stash.add(item);
+				loot[i] = null;
+			}
+		}
+		::Tactical.CombatResultLoot.shrink();
+
+		// unlayer everything
+		for (local i = 0; i < stash.len(); i++) {
+			local item = stash[i];
+			if (item != null && ::Legends.Inventory.isItemLayered(item)) {
+				foreach (slotIdx, upg in item.m.Upgrades) {
+					if (upg != null) {
+						local removed = item.removeUpgrade(slotIdx, true);
+						if (removed != null) {
+							::Stash.add(removed);
+						}
+					}
+				}
+			}
+		}
+
+		// food and quest into illegal, the rest into the pool
+		local illegal = [];
+		local pool = [];
+
+		for (local i = 0; i < stash.len(); i++) {
+			local item = stash[i];
+			if (item == null) {
+				continue;
+			}
+
+			if (item.isItemType(::Const.Items.ItemType.Food) || item.isItemType(::Const.Items.ItemType.Quest)) {
+				illegal.push(item);
+			} else {
+				pool.push({
+					item = item,
+					isNamed = item.isNamed(),
+					val = ::Legends.Inventory.getItemValuePotential(item)
+				});
+			}
+			stash[i] = null;
+		}
+
+		// put illegal on top, the rest below ordered by value for loot, then layer (the most expensive on the most expensive)
+		this.sortByValueForLoot(pool);
+		foreach (item in illegal) {
+			::Stash.add(item);
+		}
+		foreach (item in pool) {
+			::Stash.add(item.item);
+		}
+		::Legends.Inventory.organizeLayeredItems(false, true);
+
+		// sort by value again now that stuff was combined to see what's what fr
+		local finalPool = [];
+		for (local i = 0; i < stash.len(); i++) {
+			local item = stash[i];
+			if (item == null || item.isItemType(::Const.Items.ItemType.Food) || item.isNamed() || item.isItemType(::Const.Items.ItemType.Quest)) {
+				continue;
+			}
+
+			finalPool.push({
+				item = item,
+				isNamed = false,
+				val = ::Legends.Inventory.getItemValuePotential(item)
+			});
+
+			stash[i] = null;
+		}
+
+		this.sortByValueForLoot(finalPool);
+
+		local stashCount = 0;
+		foreach (item in stash) {
+			if (item != null) {
+				stashCount++;
+			}
+		}
+		local availableSlots = ::Legends.Stash.getSize() - stashCount;
+
+		for (local i = 0; i < finalPool.len(); i++) {
+			if (i < availableSlots) {
+				::Stash.add(finalPool[i].item);
+			} else {
+				::Tactical.CombatResultLoot.add(finalPool[i].item);
+			}
+		}
+
+		::Stash.setResizable(false);
+		::Legends.Stash.resize();
+
+		return {
+			stash = ::UIDataHelper.convertStashToUIData(true),
+			foundLoot = ::UIDataHelper.convertCombatResultLootToUIData()
+		};
+	}
+
+	o.onOrganizeLayeredItems <- function () {
+		::Legends.Inventory.organizeLayeredItems();
+
+		return {
+			stash = ::UIDataHelper.convertStashToUIData(true),
+			foundLoot = ::UIDataHelper.convertCombatResultLootToUIData()
+		};
+	}
 });

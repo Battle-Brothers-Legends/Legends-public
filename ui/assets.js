@@ -164,6 +164,7 @@ var Asset =
 	ICON_AUTOMATION_REPAIR_SELL_ITEM:       'ui/icons/automation_repair_sell_item.png',
 	ICON_AUTOMATION_REPAIR_ITEM:            'ui/icons/automation_repair_item.png',
 	ICON_AUTOMATION_SALVAGE_ITEM:           'ui/icons/automation_salvage_item.png',
+	BUTTON_AUTOMATION_POTENTIAL_VALUE_LOOT:	'ui/buttons/automation_potential_value_loot.png',
 
     // UI Perk Images
     PERK_SELECTION_FRAME:                   'ui/perks/selection_frame.png',

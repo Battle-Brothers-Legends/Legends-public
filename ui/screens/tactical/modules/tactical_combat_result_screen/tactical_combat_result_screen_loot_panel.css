@@ -164,6 +164,16 @@
     margin: auto;
 }
 
+.tactical-combat-result-screen .loot-panel .row .l-potential-value-loot-items-button {
+    top: 36.5rem;
+    left: 0;
+    right: 0;
+    width: 5.2rem;
+    height: 4.1rem;
+    position: absolute;
+    margin: auto;
+}
+
 .tactical-combat-result-screen .loot-panel .row .l-organize-layers-button {
     top: 40.0rem;
     left: 0;

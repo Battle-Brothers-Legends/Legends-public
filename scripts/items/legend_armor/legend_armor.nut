@@ -520,9 +520,9 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		return result;
 	}
 
-	function removeUpgrade( _slot )
+	function removeUpgrade( _slot, _ignoreSpace = false )
 	{
-		if (this.m.Upgrades[_slot] == null || ::Stash.getNumberOfEmptySlots() == 0) return null;
+		if (this.m.Upgrades[_slot] == null || (!_ignoreSpace && ::Stash.getNumberOfEmptySlots() == 0)) return null;
 
 		local app = this.getContainer() == null ? null : this.getContainer().getAppearance();
 		local item = this.m.Upgrades[_slot];
