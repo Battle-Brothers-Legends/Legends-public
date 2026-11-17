@@ -89,6 +89,9 @@ var CharacterScreenDatasource = function(_isTacticalMode)
 	this.mMaxBrothers = 25;
 	this.mFrontlineData = [25, 25];
 
+	this.mAutomationRepairThreshold = 9;
+	this.mAutomationSalvageThreshold = 9;
+
 	// filters in 1 button
 	this.mFiltersList = ['onFilterAll', 'onFilterWeapons', 'onFilterArmor', 'onFilterMisc', 'onFilterUsable'];
 	this.mSelectedFilterIndex = 0;
@@ -554,7 +557,6 @@ CharacterScreenDatasource.prototype.getBrotherProfessionPointsSpent = function (
 
 	return 0;
 };
-
 
 CharacterScreenDatasource.prototype.isSelectedBrother = function(_brother)
 {
@@ -2134,8 +2136,30 @@ CharacterScreenDatasource.prototype.notifyBackendOrganizeLayeredItemsClicked = f
     });
 };
 
-CharacterScreenDatasource.prototype.notifyBackendFilterUsableButtonClicked = function () {
-	SQ.call(this.mSQHandle, 'onFilterUsable');
+CharacterScreenDatasource.prototype.notifyBackendMarkForRepairClicked = function () {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onMarkForRepair', null, function (data) {
+        if (data === undefined || data === null || typeof (data) !== 'object') {
+            return;
+        }
+
+        if (CharacterScreenIdentifier.QueryResult.Stash in data) {
+			self.loadStashList(data[CharacterScreenIdentifier.QueryResult.Stash]);
+		}
+    });
+};
+
+CharacterScreenDatasource.prototype.notifyBackendMarkForSalvageClicked = function () {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onMarkForSalvage', null, function (data) {
+        if (data === undefined || data === null || typeof (data) !== 'object') {
+            return;
+        }
+
+        if (CharacterScreenIdentifier.QueryResult.Stash in data) {
+			self.loadStashList(data[CharacterScreenIdentifier.QueryResult.Stash]);
+		}
+    });
 };
 
 CharacterScreenDatasource.prototype.notifyBackendDiceThrow = function ()

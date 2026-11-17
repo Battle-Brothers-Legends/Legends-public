@@ -158,6 +158,13 @@
 	left: 20.0rem;
 }
 
+.character-screen-container .inventory-list-module .filter-panel .l-button.is-mark-for-repair {
+	left: 25.0rem;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .l-button.is-mark-for-salvage {
+	left: 30.0rem;
+}
 
 .character-screen-container .inventory-list-module .formations-panel
 {

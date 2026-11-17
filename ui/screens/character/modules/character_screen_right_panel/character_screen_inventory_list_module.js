@@ -39,6 +39,8 @@ var CharacterScreenInventoryListModule = function(_parent, _dataSource)
 	this.mFilterButton = null;
 	this.mOrganizeLayersButton = null;
 	this.mOrganizeLayersStripButton = null;
+	this.mMarkForRepairButton = null;
+	this.mMarkForSalvageButton = null;
 
 	this.mCurrentPopupDialog = null;
 
@@ -112,6 +114,18 @@ CharacterScreenInventoryListModule.prototype.createDIV = function (_parentDiv)
 	this.mFilterPanel.append(layout);
 	this.mOrganizeLayersStripButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ORGANIZE_LAYERS_STRIP, function () {
 		self.mDataSource.notifyBackendOrganizeLayeredItemsClicked(true);
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-mark-for-repair"/>');
+	this.mFilterPanel.append(layout);
+	this.mMarkForRepairButton = layout.createImageButton(Path.GFX + Asset.BUTTON_MARK_FOR_REPAIR, function () {
+		self.mDataSource.notifyBackendMarkForRepairClicked();
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-mark-for-salvage"/>');
+	this.mFilterPanel.append(layout);
+	this.mMarkForSalvageButton = layout.createImageButton(Path.GFX + Asset.BUTTON_MARK_FOR_SALVAGE, function () {
+		self.mDataSource.notifyBackendMarkForSalvageClicked();
 	}, '', 3);
 };
 
@@ -815,6 +829,8 @@ CharacterScreenInventoryListModule.prototype.bindTooltips = function ()
 	this.mFilterMoodButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMoodButton });
 	this.mOrganizeLayersButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.OrganizeLayersButton });
 	this.mOrganizeLayersStripButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.OrganizeLayersStripButton });
+	this.mMarkForRepairButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.MarkForRepairButton });
+	this.mMarkForSalvageButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.MarkForSalvageButton });
 };
 
 CharacterScreenInventoryListModule.prototype.unbindTooltips = function ()
@@ -824,6 +840,8 @@ CharacterScreenInventoryListModule.prototype.unbindTooltips = function ()
 	this.mFilterMoodButton.unbindTooltip();
 	this.mOrganizeLayersButton.unbindTooltip();
 	this.mOrganizeLayersStripButton.unbindTooltip();
+	this.mMarkForRepairButton.unbindTooltip();
+	this.mMarkForSalvageButton.unbindTooltip();
 };
 
 CharacterScreenInventoryListModule.prototype.register = function (_parentDiv)

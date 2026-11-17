@@ -59,6 +59,8 @@ var Asset =
 	BUTTON_MOOD_FILTER_OFF:					'ui/buttons/filter_mood_sw.png',
 	BUTTON_ORGANIZE_LAYERS:					'ui/buttons/organize_layers_button.png',
 	BUTTON_ORGANIZE_LAYERS_STRIP:			'ui/buttons/organize_layers_strip_button.png',
+	BUTTON_MARK_FOR_REPAIR:					'ui/buttons/automation_repair_item_gold_button.png',
+	BUTTON_MARK_FOR_SALVAGE:				'ui/buttons/automation_salvage_item_gold_button.png',
 	BUTTON_FLEE:                            'ui/skin/icon_retreat.png',
 
 	BUTTON_TAILORING_FILTER:				'ui/buttons/filter_tailoring.png',

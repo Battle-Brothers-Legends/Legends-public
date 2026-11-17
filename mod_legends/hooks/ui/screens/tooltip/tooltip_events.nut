@@ -3547,6 +3547,58 @@
 					}
 				];
 
+			case "character-screen.right-panel-header-module.MarkForRepairButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Mark items for repair"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Marks items for repair if their repaired value is greater than the threshold"
+					},
+					{
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/mouse_left_button.png",
+						text = "Set items for repair"
+					},
+					{
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button.png",
+						text = "Set repair threshold"
+					},
+				];
+
+			case "character-screen.right-panel-header-module.MarkForSalvageButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Mark items for salvage"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Marks items for repair if their salvaged value is greater than the threshold"
+					},
+					{
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/mouse_left_button.png",
+						text = "Set items for salvage"
+					},
+					{
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button.png",
+						text = "Set salvage threshold"
+					},
+				];
+
 			case "character-screen.right-panel-header-module.ChangeFormation":
 				return [
 					{

@@ -9,6 +9,8 @@
 	o.m.FormationIndex <- 0;
 	o.m.FormationNames <- [];
 	o.m.LastRosterSize <- 0;
+	o.m.RepairPotentialValue <- 9;
+	o.m.SalvagePotentialValue <- 9;
 
 	o.m.IsArenaTooled <- false;
 
@@ -1106,6 +1108,8 @@
 		}
 		_out.writeU16(this.m.LastDayResourcesUpdated);
 		_out.writeString("" + this.m.Look);
+		_out.writeU16(this.m.RepairPotentialValue);
+		_out.writeU16(this.m.SalvagePotentialValue);
 	}
 
 	local onDeserialize = o.onDeserialize;
@@ -1117,5 +1121,7 @@
 		}
 		this.m.LastDayResourcesUpdated = _in.readU16();
 		this.m.Look = _in.readString();
+		this.m.RepairPotentialValue = _in.readU16();
+		this.m.SalvagePotentialValue = _in.readU16();
 	}
 });

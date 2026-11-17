@@ -52,7 +52,6 @@
 	line-height: 2.0rem;
 }
 
-
 .character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .flexbox-button-row {
 	right: 0;
 	bottom: 1.0rem;
@@ -69,21 +68,8 @@
 	width: 5.2rem;
 	height: 4.1rem;
 	line-height: 2.6rem;
-	display: flex;
-	align-content: center;
-	text-align: center;
-	justify-content: center;
 }
 
 .character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .flex-image-button img {
 	margin-left: 1.2rem;
-}
-
-.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .flex-select-all-button {
-	width: 4.0rem;
-	height: 100%;
-	line-height: 3.0rem;
-	text-align: center;
-	flex: 0 0 auto;
-	border: 1px solid black;
 }

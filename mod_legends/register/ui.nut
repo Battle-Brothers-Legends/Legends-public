@@ -72,6 +72,8 @@
 ::mods_registerJS("legends/hooks/encounters.js");
 ::mods_registerCSS("legends/hooks/encounters.css");
 
+::mods_registerJS("legends/hooks/character_screen_automation_threshold_settings.js");
+::mods_registerCSS("legends/hooks/character_screen_automation_threshold_settings.css");
 // please make sure these two to be last
 ::mods_registerJS("legends/hooks/armor_filter.js");
 ::mods_registerCSS("legends/hooks/armor_filter.css");

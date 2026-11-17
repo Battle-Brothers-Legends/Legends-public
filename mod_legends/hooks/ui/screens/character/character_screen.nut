@@ -181,6 +181,9 @@
 			this.logDebug("Generating stash list info :" + result.stashSpaceUsed + " : " + result.stashSpaceMax);
 		}
 
+		result.AutomationRepairThreshold <- ::World.Assets.m.RepairPotentialValue;
+		result.AutomationSalvageThreshold <- ::World.Assets.m.SalvagePotentialValue;
+
 		return result;
 	}
 
@@ -1044,6 +1047,52 @@
 			stashSpaceUsed = ::Stash.getNumberOfFilledSlots(),
 			stashSpaceMax = ::Stash.getCapacity()
 		};
+	}
+
+	o.onMarkForRepair <- function () {
+		::Sound.play("sounds/inventory/armor_upgrade_use_01.wav", ::Const.Sound.Volume.Inventory);
+
+		local stash = ::Stash.getItems();
+		for (local i = 0; i < stash.len(); i++) {
+			local item = stash[i];
+			if (item != null) {
+				if (::Legends.Inventory.isItemWorthRepairing(item)) {
+					item.setToBeRepaired(true, i);
+					item.setToBeSalvaged(false, 0);
+				}
+			}
+		}
+
+		return {
+			stash = ::UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter),
+		};
+	}
+
+	o.onMarkForSalvage <- function () {
+		::Sound.play("sounds/inventory/armor_upgrade_use_01.wav", ::Const.Sound.Volume.Inventory);
+
+		local stash = ::Stash.getItems();
+		for (local i = 0; i < stash.len(); i++) {
+			local item = stash[i];
+			if (item != null) {
+				if (::Legends.Inventory.isItemWorthSalvaging(item)) {
+					item.setToBeRepaired(false, 0);
+					item.setToBeSalvaged(true, i);
+				}
+			}
+		}
+
+		return {
+			stash = ::UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter),
+		};
+	}
+
+	o.onApplyRepairCostThreshold <- function (_value) {
+		::World.Assets.m.RepairPotentialValue = _value;
+	}
+
+	o.onApplySalvageCostThreshold <- function (_value) {
+		::World.Assets.m.SalvagePotentialValue = _value;
 	}
 
 	// horse

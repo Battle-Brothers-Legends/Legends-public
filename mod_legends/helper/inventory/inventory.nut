@@ -256,7 +256,7 @@
 
 ::Legends.Inventory.getItemSalvageValuePotential <- @(_item) ::Legends.Inventory.getItemSalvageToolsRecovered(_item) * ::Legends.Inventory.getCurrentPricePerDurability() / ::World.Assets.m.ArmorPartsPerArmor;
 
-::Legends.Inventory.isItemWorthRepairing <- @(_item) ::Legends.Inventory.getMissingDurability(_item) != 0 && (::Legends.Inventory.getItemRepairGoldPerDurability(_item) >= ::World.Assets.m.RepairPotentialValue);
+::Legends.Inventory.isItemWorthRepairing <- @(_item) ::Legends.Inventory.getMissingDurability(_item) != 0 && (::Legends.Inventory.getItemRepairGoldPerDurability(_item) >= ::World.Assets.m.RepairPotentialValue / 10);
 
 ::Legends.Inventory.isItemWorthSalvaging <- @(_item) _item.canBeSalvaged() && _item.getRepair() != 0 && ((::Legends.Inventory.getItemPredictedSalePrice(_item, _item.getValue()) / ::Legends.Inventory.getItemSalvageToolsRecovered(_item)) < ::World.Assets.m.SalvagePotentialValue);
 

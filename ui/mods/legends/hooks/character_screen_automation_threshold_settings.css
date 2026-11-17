@@ -1,0 +1,81 @@
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel {
+	top: 4.1rem;
+	left: 15.0rem;
+	width: 36.0rem;
+	height: 12.0rem;
+	position: absolute;
+	background-image: url("coui://gfx/ui/skin/dialog_panel_automation_threshold.png");
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .panel-content {
+	width: 100%;
+	height: 100%;
+	padding-top: 1.0rem;
+	padding-left: 1.2rem;
+	padding-right: 1.2rem;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .row {
+	width: 100%;
+	float: left;
+	position: relative;
+	margin-bottom: 0.8rem;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .row .title {
+	width: 100%;
+	height: 2.0rem;
+	line-height: 2.0rem;
+	float: left;
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 0.5rem 0;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .slider-row {
+	height: 3.0rem;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .value-control {
+	position: relative;
+	width: 100%;
+	height: 3.0rem;
+	padding: 2.0rem 0;
+	display: flex;
+	align-items: center;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .value-slider {
+	width: 100%;
+	position: relative;
+	float: left;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .value-label {
+	position: relative;
+	line-height: 3.0rem;
+	width: 2.0rem;
+	text-align: right;
+	margin-right: 1.0rem;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .flexbox-button-row {
+	right: 1.0rem;
+	bottom: 1.0rem;
+	height: 3.0rem;
+	display: flex;
+	justify-content: flex-end;
+	position: absolute;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .flex-image-button {
+	width: 5.2rem;
+	height: 4.1rem;
+	line-height: 2.6rem;
+}
+
+.character-screen-container .inventory-list-module .automation-threshold-settings-panel .flex-image-button img {
+	margin-left: 1.4rem;
+	width: auto;
+}
