@@ -2,7 +2,9 @@ if (!("Professions" in ::Legends)) {
 	::Legends.Professions <- {};
 }
 
-::Legends.Professions.DefaultProfessionTree <- [
+::Legends.Professions.Trees <- {};
+
+::Legends.Professions.Trees.DefaultProfessionTree <- [
 	[
 		::Legends.Profession.LegendCooking,
 		::Legends.Profession.LegendCrafting,
@@ -26,7 +28,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.ScavengerProfessionTree <- [
+::Legends.Professions.Trees.ScavengerProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendScrapping],
 	[::Legends.Profession.LegendAmmoScrounger],
@@ -40,7 +42,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.BardProfessionTree <- [
+::Legends.Professions.Trees.BardProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendBalladeInTheMaking],
@@ -54,7 +56,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.ScavengerProfessionTree <- [
+::Legends.Professions.Trees.ScavengerProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendScrapping],
 	[::Legends.Profession.LegendAmmoScrounger],
@@ -68,7 +70,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.ChiurgeonProfessionTree <- [
+::Legends.Professions.Trees.ChirurgeonProfessionTree <- [
 	[::Legends.Profession.LegendHealing],
 	[::Legends.Profession.LegendBandageBales],
 	[],
@@ -82,7 +84,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.FletcherProfessionTree <- [
+::Legends.Professions.Trees.FletcherProfessionTree <- [
 	[::Legends.Profession.LegendEfficientPacking],
 	[::Legends.Profession.LegendReserveBundles],
 	[::Legends.Profession.LegendAmmoScrounger],
@@ -96,7 +98,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.OrganizedProfessionTree <- [
+::Legends.Professions.Trees.OrganizedProfessionTree <- [
 	[],
 	[
 		::Legends.Profession.LegendEfficientPacking,
@@ -115,7 +117,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.TrapperProfessionTree <- [
+::Legends.Professions.Trees.TrapperProfessionTree <- [
 	[::Legends.Profession.LegendHunting],
 	[],
 	[],
@@ -129,7 +131,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.TannerProfessionTree <- [
+::Legends.Professions.Trees.TannerProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendLeatherworking],
@@ -143,7 +145,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.CaravaneeringProfessionTree <- [
+::Legends.Professions.Trees.CaravaneeringProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendWheelMaintenance, ::Legends.Profession.LegendHippology],
@@ -157,7 +159,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.TrainerProfessionTree <- [
+::Legends.Professions.Trees.TrainerProfessionTree <- [
 	[::Legends.Profession.LegendTraining],
 	[],
 	[::Legends.Profession.LegendDrillSergeant],
@@ -171,7 +173,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.WoodworkingProfessionTree <- [
+::Legends.Professions.Trees.WoodworkingProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendWoodcutting],
 	[::Legends.Profession.LegendWoodworking],
@@ -185,7 +187,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.WoodsmanProfessionTree <- [
+::Legends.Professions.Trees.WoodsmanProfessionTree <- [
 	[::Legends.Profession.LegendForaging, ::Legends.Profession.LegendHunting],
 	[],
 	[],
@@ -199,7 +201,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.PennypincherProfessionTree <- [
+::Legends.Professions.Trees.PennypincherProfessionTree <- [
 	[],
 	[],
 	[],
@@ -213,7 +215,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.InventorProfessionTree <- [
+::Legends.Professions.Trees.InventorProfessionTree <- [
 	[::Legends.Profession.LegendScholar],
 	[],
 	[::Legends.Profession.LegendProsthetics],
@@ -227,7 +229,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.BlacksmithProfessionTree <- [
+::Legends.Professions.Trees.BlacksmithProfessionTree <- [
 	[::Legends.Profession.LegendCrafting, ::Legends.Profession.LegendRepairing],
 	[::Legends.Profession.LegendToolsDrawers, ::Legends.Profession.LegendMetalworking],
 	[::Legends.Profession.LegendSpareParts, ::Legends.Profession.LegendMaterialist],
@@ -241,7 +243,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.HighwaymanProfessionTree <- [
+::Legends.Professions.Trees.HighwaymanProfessionTree <- [
 	[],
 	[],
 	[],
@@ -255,7 +257,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.SweetTalkerProfessionTree <- [
+::Legends.Professions.Trees.SweetTalkerProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendBraggart],
 	[::Legends.Profession.LegendCarouser, ::Legends.Profession.LegendSilverTongued],
@@ -269,7 +271,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.NegotiatorProfessionTree <- [
+::Legends.Professions.Trees.NegotiatorProfessionTree <- [
 	[],
 	[],
 	[],
@@ -283,7 +285,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.TradesmanProfessionTree <- [
+::Legends.Professions.Trees.TradesmanProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendFriendsInRightPlaces],
@@ -297,7 +299,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.BeastSlayerProfessionTree <- [
+::Legends.Professions.Trees.BeastSlayerProfessionTree <- [
 	[::Legends.Profession.LegendHunting],
 	[::Legends.Profession.LegendTrophyCarving],
 	[],
@@ -311,7 +313,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.EnchanterProfessionTree <- [
+::Legends.Professions.Trees.EnchanterProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendEnchantersAssistant],
 	[],
@@ -325,7 +327,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.SpyProfessionTree <- [
+::Legends.Professions.Trees.SpyProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendShadyDeals, ::Legends.Profession.LegendLookout],
 	[],
@@ -339,7 +341,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.RecruiterProfessionTree <- [
+::Legends.Professions.Trees.RecruiterProfessionTree <- [
 	[::Legends.Profession.LegendSpotTheTells],
 	[::Legends.Profession.LegendSizeThemUp],
 	[::Legends.Profession.LegendEyeForTalent],
@@ -353,7 +355,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.GladiatorProfessionTree <- [
+::Legends.Professions.Trees.GladiatorProfessionTree <- [
 	[],
 	[],
 	[],
@@ -367,7 +369,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.ScribeProfessionTree <- [
+::Legends.Professions.Trees.ScribeProfessionTree <- [
 	[::Legends.Profession.LegendScholar],
 	[],
 	[],
@@ -381,7 +383,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.AlchemistProfessionTree <- [
+::Legends.Professions.Trees.AlchemistProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendHerbcraft],
 	[::Legends.Profession.LegendCharlatan],
@@ -395,7 +397,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.CartographyProfessionTree <- [
+::Legends.Professions.Trees.CartographyProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendCartographer],
@@ -409,7 +411,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.MiningProfessionTree <- [
+::Legends.Professions.Trees.MiningProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendMining],
 	[],
@@ -423,7 +425,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.PathfinderProfessionTree <- [
+::Legends.Professions.Trees.PathfinderProfessionTree <- [
 	[::Legends.Profession.LegendScouting],
 	[::Legends.Profession.LegendLookout, ::Legends.Profession.LegendTrailblazer],
 	[],
@@ -437,7 +439,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.CookingProfessionTree <- [
+::Legends.Professions.Trees.CookingProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendMealPreparation],
 	[::Legends.Profession.LegendFoodPreservation],
@@ -451,7 +453,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.DogBreedingProfessionTree <- [
+::Legends.Professions.Trees.DogBreedingProfessionTree <- [
 	[],
 	[],//[::Legends.Profession.LegendDogBreeder],
 	[::Legends.Profession.LegendHippology],
@@ -465,7 +467,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.BountyHunterProfessionTree <- [
+::Legends.Professions.Trees.BountyHunterProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendBlackBook],
@@ -479,7 +481,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.TailorProfessionTree <- [
+::Legends.Professions.Trees.TailorProfessionTree <- [
 	[],
 	[],
 	[::Legends.Profession.LegendLeatherworking, ::Legends.Profession.LegendTailoring],
@@ -493,7 +495,7 @@ if (!("Professions" in ::Legends)) {
 	[]
 ];
 
-::Legends.Professions.GuildsmanProfessionTree <- [
+::Legends.Professions.Trees.GuildsmanProfessionTree <- [
 	[],
 	[::Legends.Profession.LegendToolsDrawers],
 	[],
@@ -542,7 +544,7 @@ if (!("Professions" in ::Legends)) {
 	return pT;
 };
 
-::Legends.Professions.ProfessionsTreeTemplate <- ::Legends.Professions.BuildCustomProfessionTree(::Legends.Professions.DefaultProfessionTree);
+::Legends.Professions.ProfessionsTreeTemplate <- ::Legends.Professions.BuildCustomProfessionTree(::Legends.Professions.Trees.DefaultProfessionTree);
 
 /**
  * Take a profession tree like character_background.m.ProfessionTree

@@ -909,7 +909,7 @@
 	o.addProfessionTree <- function (_treeDef) {
 		if (this.m.CustomProfessionTree == null) {
 			local baseTree = [];
-			foreach (row in ::Legends.Professions.DefaultProfessionTree) {
+			foreach (row in ::Legends.Professions.Trees.DefaultProfessionTree) {
 				local newRow = [];
 				foreach (p in row) newRow.push(p);
 				baseTree.push(newRow);

@@ -1,18 +1,28 @@
 // Adds from the *** profession tree to the profession tooltip
 (function () {
-	local professionToTreeMap = {};
-	local trees = [];
-	if ("ProfessionTrees" in ::Legends.Professions && "Tree" in ::Legends.Professions.ProfessionTrees) {
+    local professionToTreeMap = {};
+    local trees = [];
+    if ("ProfessionTrees" in ::Legends.Professions && "Tree" in ::Legends.Professions.ProfessionTrees) {
         trees.extend(::Legends.Professions.ProfessionTrees.Tree);
     }
-	if ("DefaultProfessionTree" in ::Legends.Professions) {
+    if ("DefaultProfessionTree" in ::Legends.Professions.Trees) {
         trees.push({
             Name = "Core",
-            Tree = ::Legends.Professions.DefaultProfessionTree
+            Tree = ::Legends.Professions.Trees.DefaultProfessionTree
         });
     }
 
-	foreach (treeDefinition in trees) {
+    foreach (key, tree in ::Legends.Professions.Trees) {
+        local name = ::Legends.DefsHelpers.tokenizeConst(key)[0];
+        if (name != "Default") {
+            trees.push({
+                Name = ::Legends.DefsHelpers.tokenizeConst(key)[0],
+                Tree = tree
+            });
+        }
+    }
+
+    foreach (treeDefinition in trees) {
         local treeName = "Name" in treeDefinition ? treeDefinition.Name : "Default";
         foreach (row in treeDefinition.Tree) {
             foreach (professionDef in row) {
@@ -27,10 +37,12 @@
         }
     }
 
-	local pre = "[color=#0b0084]From the ";
+    local pre = "[color=#0b0084]From the ";
 
     foreach (professionDef, treeNames in professionToTreeMap) {
-        if (treeNames.len() == 0) continue;
+        if (treeNames.len() == 0) {
+            continue;
+        }
 
         local defObject = ::Legends.Professions.ProfessionDefObjects[professionDef];
 
