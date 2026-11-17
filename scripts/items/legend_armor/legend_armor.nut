@@ -930,8 +930,11 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 		local length = _tooltipList.len();
 
-		// TODO: compare standardised effects
-		// TODO: compare runes
+		if (this.hasUpgrades()) {
+			// Compare standardised and additional effects
+			::Legends.Items.Effects.applySetCompareHints(_tooltipList, this, _compareItem);
+			// TODO: compare runes
+		}
 
 		if (!hasStatDiff && _tooltipList.len() == length) {
 			_tooltipList.push({

@@ -215,12 +215,72 @@ if (!("Items" in ::Legends)) {
 		}
 	}
 
+	::Legends.Items.Effects.applyLayerCompareCustomEffectHints(_tooltipList, _selectedItem, _equippedItem);
+};
+
+::Legends.Items.Effects.applySetCompareHints <- function (_tooltipList, _selectedSet, _equippedSet) {
+	// Compare standardised effects
+	// (assumes only upgrade layers have standardised hints; base armor is assumed to not have standardised effects to compare)
+	foreach ( _, effect in ::Legends.Items.Effects.ItemEffectDefs) {
+		local selectedVal = 0;
+		local equippedVal = 0;
+		foreach (u in _selectedSet.m.Upgrades) {
+			if (u == null || u.m.Type == ::Const.Items.ArmorUpgrades.Rune) continue;
+			if (effect.isApplicable(u)) selectedVal += effect.getValue(u);
+		}
+		foreach (u in _equippedSet.m.Upgrades) {
+			if (u == null || u.m.Type == ::Const.Items.ArmorUpgrades.Rune) continue;
+			if (effect.isApplicable(u)) equippedVal += effect.getValue(u);
+		}
+		
+		local diff = selectedVal - equippedVal;
+		if (diff != 0) {
+			local data = effect.getTooltipData(diff, _selectedSet);
+			local paramArr = [];
+			if ("Param" in data) {
+				paramArr = data.Param;
+			}
+			local compareText = ::Legends.tooltip(data.Text, paramArr);
+			_tooltipList.push({
+				id = 20,
+				type = "hint",
+				icon = data.Icon,
+				text = "%compareText% (%after% vs %before%)",
+				param = [
+					["compareText", compareText],
+					["after", selectedVal],
+					["before", equippedVal]
+				]
+			});
+		}
+	}
+
+	// Compare custom effects
+	::Legends.Items.Effects.applySetCompareCustomEffectHints(_tooltipList, _selectedSet, _equippedSet);
+};
+
+::Legends.Items.Effects.extractAdditionalTooltips <- function (_item) {
+	local ret = [];
+	local tooltipList = [];
+	local super = _item.SuperName;
+	local regularTooltipsLength = _item[super].getTooltip().len();
+	tooltipList = _item.getTooltip();
+
+	// If an item adds additional tooltips (ie in child's getTooltips function) describing custom effects, we want to get those
+	if (tooltipList.len() > regularTooltipsLength) {
+		local additionalTooltips = tooltipList.slice(regularTooltipsLength);
+		foreach (t in additionalTooltips) {
+			ret.push(t);
+		}
+	}
+	return ret;
+};
+
+::Legends.Items.Effects.applyCompareCustomEffectHints <- function (_tooltipList, _selectedTooltips, _equippedTooltips) {
 	// Compare custom effects tooltips
-	local customS = ::Legends.Items.Effects.extractAdditionalTooltips(_selectedItem);
-	local customE = ::Legends.Items.Effects.extractAdditionalTooltips(_equippedItem);
 	local freq = {}; // A hash table to help weed out duplicate tooltips
 
-	foreach (tooltip in customS) {
+	foreach (tooltip in _selectedTooltips) {
 		local paramArr = [];
 		local textStr = "";
 		if ("text" in tooltip) {
@@ -235,7 +295,7 @@ if (!("Items" in ::Legends)) {
 		}
 	}
 
-	foreach (tooltip in customE) {
+	foreach (tooltip in _equippedTooltips) {
 		local paramArr = [];
 		local textStr = "";
 		if ("text" in tooltip) {
@@ -264,19 +324,22 @@ if (!("Items" in ::Legends)) {
 	}
 };
 
-::Legends.Items.Effects.extractAdditionalTooltips <- function (_item) {
-	local ret = [];
-	local tooltipList = [];
-	local super = _item.SuperName;
-	local regularTooltipsLength = _item[super].getTooltip().len();
-	tooltipList = _item.getTooltip();
+::Legends.Items.Effects.applyLayerCompareCustomEffectHints <- function (_tooltipList, _selectedItem, _equippedItem) {
+	local customS = ::Legends.Items.Effects.extractAdditionalTooltips(_selectedItem);
+	local customE = ::Legends.Items.Effects.extractAdditionalTooltips(_equippedItem);
+	::Legends.Items.Effects.applyCompareCustomEffectHints(_tooltipList, customS, customE);
+};
 
-	// If an item adds additional tooltips (ie in child's getTooltips function) describing custom effects, we want to get those
-	if (tooltipList.len() > regularTooltipsLength) {
-		local additionalTooltips = tooltipList.slice(regularTooltipsLength);
-		foreach (t in additionalTooltips) {
-			ret.push(t);
-		}
+::Legends.Items.Effects.applySetCompareCustomEffectHints <- function (_tooltipList, _selectedItem, _equippedItem) {
+	local customS = [];
+	local customE = [];
+	foreach (u in _selectedItem.m.Upgrades) {
+		if (u == null || u.m.Type == ::Const.Items.ArmorUpgrades.Rune) continue;
+		customS.extend(::Legends.Items.Effects.extractAdditionalTooltips(u));
 	}
-	return ret;
-}
+	foreach (u in _equippedItem.m.Upgrades) {
+		if (u == null || u.m.Type == ::Const.Items.ArmorUpgrades.Rune) continue;
+		customE.extend(::Legends.Items.Effects.extractAdditionalTooltips(u));
+	}
+	::Legends.Items.Effects.applyCompareCustomEffectHints(_tooltipList, customS, customE);
+};

@@ -648,6 +648,8 @@
 - recruit scaling now always off; option removed from new campaign settings - recruitment progression now reflected in professions
 - brothers that weren't with the company for at least 1 day can no longer get compensated while dismissing
 - tooltips in the character screen now compare armor layers with the currently selected character's equipped layer
+> if the selected item is a base armor (no layers attached), the tooltip will compare against the currently equipped base armor (as if no layers are attached)
+> if the selected item is an armor set (base armor with at least 1 layer attached), the tooltip will compare against the entire currently equipped armor set
 - buckler bash skill now uses the buckler bash overlay in battle (the icon that plays over the character's head) instead of mace overlay
 - added a functionality allowing various weapon swapping with 1h weapons with tooltips
 - divided and reorganized the starting scenarios thematically; slowed scrolling speed so its easier to navigate
