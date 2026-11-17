@@ -27,6 +27,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDecapitate = 0;
 		this.m.ChanceDisembowel = 0;
 		this.m.ChanceSmash = 33;
+		this.m.HitChanceBonus = 10;
 	}
 
 	function getTooltip() {
@@ -36,24 +37,20 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
+			text = "Inflicts [color=%damage%]%_fatPerHit%[/color] extra fatigue",
+			param = [["_fatPerHit", fatPerHit]]
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=%positive%]100%[/color] chance to baffle on a hit"
+			text = "Has a [color=%positive%]100%[/color] chance to apply [color=%status%]Baffled[/color] on a hit"
 		});
 		return ret;
 	}
 
 	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-
-		if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash)) {
-			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
-			this.m.ActionPointCost = 3;
-		}
 	}
 
 	function onUse(_user, _targetTile) {
@@ -82,9 +79,12 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
 			_properties.DamageArmorMult = 0.5;
 			_properties.FatigueDealtPerHitMult += 1.0;
-			if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash)) {
-				_properties.DamageRegularMin += 3;
-				_properties.DamageRegularMax += 5;
+			this.m.HitChanceBonus += _properties.IsSpecializedInShields ? 15 : 0;
+			_properties.MeleeSkill += this.m.HitChanceBonus;
+			if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
+				_properties.DamageArmorMult = 1.0
+				_properties.DamageDirectAdd += 0.1;
+				_properties.DamageTotalMult *= 1.25;
 			}
 		}
 	}

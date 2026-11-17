@@ -3,23 +3,34 @@
 	o.create = function () {
 		create();
 		this.m.HitChanceBonus = 10;
+		this.m.DirectDamageMult = 0.3;
 	}
 
 	o.getTooltip = function () {
-		local tooltip = this.getDefaultUtilityTooltip();
+		local tooltip = this.getDefaultTooltip();
+		local actor = this.getContainer().getActor();
 		tooltip.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=%positive%]100%[/color] chance to Stagger on a hit"
+			text = "Has a [color=%positive%]100%[/color] chance to apply [color=%status%]Staggered[/color] on a hit"
 		});
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Has [color=%positive%]+" + this.getHitChanceModifier() + "%[/color] chance to hit"
-		});
-		if (!::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
+
+		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
+			tooltip.push({
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=%positive%]100%[/color] chance to apply [color=%status%]Knocked Over[/color] on a hit against enemies that are [color=%status%]Netted[/color], [color=%status%]Rooted[/color] or [color=%status%]Webbed[/color]"
+			});
+			tooltip.push({
+				id = 9,
+				type = "text",
+				icon = "ui/icons/damage_dealt.png",
+				text = "Inflicts [color=%positive%]50%[/color] more Damage against enemies that are [color=%status%]Netted[/color], [color=%status%]Rooted[/color] or [color=%status%]Webbed[/color]"
+			});
+		}
+		if (!::Legends.Weapons.isCharacterWeaponSpecialized(actor.getCurrentProperties(), this.getItem())) {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -38,21 +49,51 @@
 		return result;
 	}
 
-	local onUse = o.onUse;
-	o.onUse = function (_user, _targetTile) {
+	o.onUse = function( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
+		local success = false;
+		if (!target.isAlliedWith(_user)) {
+			success = this.attackEntity(_user, _targetTile.getEntity());
+			if (success && !::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(_user)) {
+				local knockToTile = this.skill.getForcedMovementDestinationTile(_user.getTile(), _targetTile);
+				if (knockToTile != null && !target.getCurrentProperties().IsImmuneToKnockBackAndGrab && !target.getCurrentProperties().IsRooted) {
+					::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, null, null);
+				}
+			}
+		}
+		else {
+			success = true;
+			local knockToTile = this.skill.getForcedMovementDestinationTile(_user.getTile(), _targetTile);
+			if (knockToTile != null && !target.getCurrentProperties().IsImmuneToKnockBackAndGrab && !target.getCurrentProperties().IsRooted) {
+				::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, null, null);
+			}
+		}
+		return success;
+	}
 
-		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && target.isAlliedWith(_user)) {
-			target.getFlags().set("CanNotBeStaggered", true);
+	o.onTargetHit <- function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (_skill != this)
+			return;
+
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+			return;
+
+		local actor = this.getContainer().getActor();
+		if (actor.isAlliedWith(_targetEntity) && !::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) && !::Legends.Perks.has(this, ::Legends.Perk.Taunt)) {
+			return false;
+		}
+		local effect = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
+		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
+			::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
 		}
 
-		local ret = onUse(_user, _targetTile);
-
-		if (!ret) {
-			target.getFlags().remove("CanNotBeStaggered");
+		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash) && _targetEntity.getCurrentProperties().IsRooted) {
+			local effect = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendKnockedOver);
+			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
+				::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
+			}
 		}
-
-		return ret;
 	}
 
 	o.onAfterUpdate = function (_properties) {
@@ -82,12 +123,14 @@
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			_properties.MeleeSkill += 10;
-
-			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
-				_properties.MeleeSkill -= 15;
-				this.m.HitChanceBonus -= 5;
+			_properties.DamageTotalMult *= 0.6;
+			if (_targetEntity.getCurrentProperties().IsRooted) {
+				_properties.DamageTotalMult *= 1.5;
 			}
+			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+				this.m.HitChanceBonus -= 15;
+			}
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
 	}
 });

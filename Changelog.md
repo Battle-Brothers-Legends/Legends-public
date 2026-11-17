@@ -155,7 +155,7 @@
 - `Manipulative` - grants `Entice` and `Revolt`, replaces the perks as a single one
 - `Near Death Experience` - Martyr Trait Tree
 > Confers an experience point bonus based on Hitpoints lost and Injuries gained during combat. Gain 1 XP per Hitpoint and 10 per Injuries. Experience gain is reduced by 90% at level 12 and above.
-> Hitpoint damage taken is reduced by 5% and Resolve is increased by 3 for each Injury you have up to a maximum of 30% and [color=%positive%]15 achieved at 6 Injuries. Counts both regular and permanent Injuries.
+> Hitpoint damage taken is reduced by 5% and Resolve is increased by 3 for each Injury you have up to a maximum of 30% and 15 achieved at 6 Injuries. Counts both regular and permanent Injuries.
 - `Wide Swings` - Large Trait Tree
 > Once per turn upon killing an enemy execute an attack of opportunity on an enemy on an adjacent tile for 50% damage.
 - `Hammer the Gap` - Grants a stacking +5% to hit as long as you attack the same tile. The bonus is capped at 10%.
@@ -163,6 +163,8 @@
 > increases hitchance by 10% each time an enemy misses you
 
 ### Perk Changes
+- `Shield Bash` - `Knock Back` and `Buckler Bash` now deals an additional 25% Damage, +50% Armor Damage and +10% Armor Penetration.
+> `Knock Back`, `Hook` and `Repel` now have a 100% chance to apply `Knocked Over` against targets that are `Netted`, `Rooted` or `Webbed`.
 - `Crossbow Mastery` - now increases armor penetration by 10% down from 20%
 - `Ballistics` - now increases armor penetration for crossbows by 5% and an additional 15% if the target is 3 or less tiles away
 > xbows got a bit overbuffed but this also nerfs goblins 
@@ -272,7 +274,13 @@
 - added 5 more variations of Face Mask, art by Ivan
 
 ### Weapons
-** One Handed Axes**
+**Billhooks**
+- `Hook` now deals damage and additional damage against targets that are rooted
+
+**Pikes**
+- `Repel` now deals damage and additional damage against targets that are rooted
+
+**One Handed Axes**
 - `Cull` - an expensive attack that is effective against fleeing and wavering enemies
 > Has 30% more damage, 20% more penetration and 20% more chance to hit against enemies that are fleeing, has a 20% more damage, 10% more penetration and 10% more hitchance against enemies that are fleeing 
 
@@ -393,6 +401,7 @@
 ### Shields
 - Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
 - Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
+- `Knock Back` - now always does damage and can knock back on your turn, will deal additional damage against targets that are rooted
 - `Fortify` - removed
 - `Safeguard` - now transfers your block value to an ally until the start of your next turn
 - `Buckler Effect` - now grants 5% of Initiative as Defense and Block
@@ -776,7 +785,7 @@
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true
 - you can now offset fatigue bonuses via `InitiativeFatigueOffset`. In vanilla if you add fatigue to `currentProperties` it'll give back initiative that you've lost from equipping armor and gear
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode
-- added color templates to event lists, instead of vanilla way, you can specify colors as `[color=%positive%]` now
+- added color templates to event lists, instead of vanilla way, you can specify colors as `` now
 - defs created for backgrounds
 - background_stats created for background stat rolls and migrated them from bgs
 - background modifiers moved to character properties

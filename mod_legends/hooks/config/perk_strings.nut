@@ -409,13 +409,9 @@ Just like dancing with your nan when you were young.
 'Tell me how the grass tastes, little man!'
 
 [color=%passive%][u]Passive:[/u][/color]
-• The [color=%skill%]Knock Back[/color] skill now inflicts [color=%positive%]10-25[/color] Damage (50% effective against armor) and [color=%damage%]10[/color] Fatigue Damage.
+• The [color=%skill%]Knock Back[/color] and [color=%skill%]Buckler Bash[/color] now deals an additional [color=%positive%]25%[/color] Damage, [color=%positive%]+50%[/color] Armor Damage and [color=%positive%]+10%[/color] Armor Penetration.
 
-• Additionally damage will also scale by [color=%positive%]10%[/color] of your shield's maximum condition with a maximum bonus of 10.
-
-• [color=%skill%]Buckler Bash[/color] will do [color=%positive%]8-15[/color] damage.
-
-• Both skills will also cost [color=%negative%]-25%[/color] less Fatigue and [color=%negative%]1[/color] less Action Point to use.
+• [color=%skill%]Knock Back[/color], [color=%skill%]Hook[/color] and [color=%skill%]Repel[/color] now have a [color=%positive%]100%[/color] chance to apply [color=%status%]Knocked Over[/color] against targets that are [color=%status%]Netted[/color], [color=%status%]Rooted[/color] or [color=%status%]Webbed[/color].
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.ShieldBash].Tooltip = ::Const.Strings.PerkDescription.ShieldBash;
 
@@ -427,7 +423,7 @@ Learn to better deflect hits to the side instead of blocking them head on.
 
 • Shield damage received is reduced by [color=%negative%]-50%[/color] to a minimum of 1.
 
-• [color=%skill%]Knock Back[/color] gains [color=%positive%]+15%[/color] chance to hit.
+• [color=%skill%]Knock Back[/color] and [color=%skill%]Buckler Bash[/color] gains [color=%positive%]+15%[/color] chance to hit.
 
 • [color=%skill%]Buckler Bash[/color] will now automatically attack after any other attack.
 

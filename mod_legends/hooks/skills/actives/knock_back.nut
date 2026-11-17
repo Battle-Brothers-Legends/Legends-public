@@ -5,13 +5,33 @@
 		create();
 		this.m.Name = "Shield Bash";
 		this.m.Description = "Use the shield to bash the target dealing some damage.";
-		this.m.HitChanceBonus = 25;
+		this.m.HitChanceBonus = 10;
 		this.m.FatigueCost = 15;
 		this.m.DirectDamageMult = 0.2;
 	}
 
 	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=%positive%]100%[/color] to knock a target away by one tile if you attack on your turn"
+		});
+		tooltip.push({
+			id = 8,
+			type = "text",
+			icon = "ui/icons/damage_dealt.png",
+			text = "Inflicts [color=%positive%]50%[/color] more Damage against enemies that are [color=%status%]Netted[/color], [color=%status%]Rooted[/color] or [color=%status%]Webbed[/color]"
+		});
+		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
+			tooltip.push({
+				id = 9,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=%positive%]100%[/color] chance to apply [color=%status%]Knocked Over[/color] on a hit against enemies that are [color=%status%]Netted[/color], [color=%status%]Rooted[/color] or [color=%status%]Webbed[/color]"
+			});
+		}
 
 		if (this.getContainer().hasTrait(::Legends.Trait.OathOfFortification)) {
 			ret.push({
@@ -32,46 +52,32 @@
 		return result;
 	}
 
-	local onUse = o.onUse;
-	o.onUse = function ( _user, _targetTile ) {
+	o.onUse = function( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
-		local shouldNotHarmAlly = (::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && target.isAlliedWith(_user);
-
-		if (!::Legends.Perks.has(this, ::Legends.Perk.ShieldBash) || shouldNotHarmAlly) {
-			if (shouldNotHarmAlly)
-				target.getFlags().set("CanNotBeStaggered", true);
-
-			local ret = onUse(_user, _targetTile);
-
-			if (!ret)
-				target.getFlags().remove("CanNotBeStaggered");
-
-			return ret;
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
+		local success = false;
+		if (!target.isAlliedWith(_user)) {
+			success = this.attackEntity(_user, _targetTile.getEntity());
+			local currentEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
+			if (success && !::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(_user) && currentEntity != null && currentEntity.getID() == _user.getID()) {
+				local knockToTile = this.skill.getForcedMovementDestinationTile(_user.getTile(), _targetTile);
+				if (knockToTile != null && !target.getCurrentProperties().IsImmuneToKnockBackAndGrab && !target.getCurrentProperties().IsRooted) {
+					::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, null, null);
+				}
+			}
 		}
-
-		local success = this.attackEntity(_user, target);
-
-		if (!success || !_user.isAlive() || _user.isDying()) return false;
-
-		if (!target.isAlive() || target.isDying()) return success;
-
-		local current = [];
-		current.extend(this.m.SoundOnUse);
-		this.m.SoundOnUse = []; // put this to zero so sound on use doesn't get trigger twice
-		this.m.IsUsingHitchance = false;
-		onUse(_user, _targetTile); // let the onUse to handle the knock back
-		this.m.IsUsingHitchance = true;
-		this.m.SoundOnUse.extend(current);
+		else {
+			success = true;
+			local knockToTile = this.skill.getForcedMovementDestinationTile(_user.getTile(), _targetTile);
+			if (knockToTile != null && !target.getCurrentProperties().IsImmuneToKnockBackAndGrab && !target.getCurrentProperties().IsRooted) {
+				::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, null, null);
+			}
+		}
 		return success;
 	}
 
 	o.onAfterUpdate <- function ( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-
-		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
-			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
-			this.m.ActionPointCost = 3;
-		}
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
@@ -87,6 +93,13 @@
 		_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
 		_properties.DamageArmorMult = 0.5;
 		_properties.FatigueDealtPerHitMult += 1.0;
+		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
+			_properties.DamageArmorMult = 1.0;
+			_properties.DamageDirectAdd += 0.1;
+		}
+		if (_targetEntity.getCurrentProperties().IsRooted) {
+			_properties.DamageTotalMult *= 1.5;
+		}
 	}
 
 	o.onTargetHit <- function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
@@ -97,12 +110,21 @@
 			return;
 
 		local actor = this.getContainer().getActor();
+
+		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash) && _targetEntity.getCurrentProperties().IsRooted) {
+			local effect = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendKnockedOver);
+			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
+				::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
+			}
+		}
+
 		if (actor.isAlliedWith(_targetEntity))
 			return false;
 
 		local skill = ::Legends.Actives.get(actor, ::Legends.Active.Taunt);
-		if (skill != null && ::Legends.Perks.has(actor, ::Legends.Perk.Taunt))
+		if (skill != null && ::Legends.Perks.has(actor, ::Legends.Perk.Taunt)) {
 			skill.onUse(actor, _targetEntity.getTile());
+		}
 	}
 
 	o.onTargetSelected <- function ( _targetTile ) {

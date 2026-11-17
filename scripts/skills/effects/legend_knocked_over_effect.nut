@@ -43,6 +43,23 @@ this.legend_knocked_over_effect <- this.inherit("scripts/skills/skill", {
 		this.spawnIcon("status_effect_87", this.getContainer().getActor().getTile());
 	}
 
+	function getLogEntryOnAdded( _user, _victim ) {
+		return _user + " has knocked over " + _victim + " for " + this.getEffectDurationString();
+	}
+
+	function getEffectDurationString() {
+		local ret = "";
+
+		if (this.m.TurnsLeft == 2) {
+			ret = "two turns";
+		}
+		else {
+			ret = "one turn";
+		}
+
+		return ret;
+	}
+
 	function onRemoved() {
 		local actor = this.getContainer().getActor();
 

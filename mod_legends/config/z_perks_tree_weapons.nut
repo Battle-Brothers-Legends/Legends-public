@@ -262,7 +262,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.ShieldBash],
 		[],
 		[::Legends.Perk.ShieldExpert],
-		[::Legends.Perk.LegendReturnFavor, ::Legends.Perk.LegendMasteryShields],
+		[::Legends.Perk.LegendReturnFavor],
 		[],
 		[]
 	]

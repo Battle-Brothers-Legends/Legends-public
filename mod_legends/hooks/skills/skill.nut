@@ -376,6 +376,40 @@
 		return ret;
 	}
 
+	o.getForcedMovementDestinationTile <- function ( _userTile, _targetTile, _push = true, _distance = 1) {
+		local dir = _targetTile.getDirectionTo(_userTile);
+		local result = null;
+		local maxDist = _distance;
+		if (_push) {
+			dir = _userTile.getDirectionTo(_targetTile);
+			maxDist = 10;
+		}
+		if (_targetTile.hasNextTile(dir)) {
+			local tile = _targetTile.getNextTile(dir);
+			if (tile.getDistanceTo(_userTile) <= maxDist && tile.IsEmpty && tile.Level - _targetTile.Level <= 1) {
+				result = tile;
+			}
+		}
+
+		local altdir = dir - 1 >= 0 ? dir - 1 : 5;
+		if (_targetTile.hasNextTile(altdir) && result == null) {
+			local tile = _targetTile.getNextTile(altdir);
+			if (tile.getDistanceTo(_userTile) <= maxDist && tile.IsEmpty && tile.Level - _targetTile.Level <= 1) {
+				result = tile;
+			}
+		}
+
+		altdir = dir + 1 <= 5 ? dir + 1 : 0;
+		if (_targetTile.hasNextTile(altdir) && result == null) {
+			local tile = _targetTile.getNextTile(altdir);
+			if (tile.getDistanceTo(_userTile) <= maxDist && tile.IsEmpty && tile.Level - _targetTile.Level <= 1) {
+				result = tile;
+			}
+		}
+
+		return result;
+	}
+
 	o.onUnlocked <- function () {}
 
 	o.factoringOffhand <- function (_properties) {
