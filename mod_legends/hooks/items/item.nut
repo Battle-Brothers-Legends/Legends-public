@@ -58,7 +58,7 @@
 			result.push({
                 id = 100,
                 type = "text",
-                icon = "ui/professions/off_book_deal.png"
+                icon = "ui/professions/legend_off_book_deal.png"
                 text = "Off Book Deal"
 			});
 		}

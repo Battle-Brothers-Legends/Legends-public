@@ -4376,13 +4376,17 @@
 				];
 
 			case "world-town-screen.main-dialog-module.Taxidermist":
+				// there is no current town when this is asked for from outside a town, the specialization is left out then
 				local town = ::World.State.getCurrentTown();
-				local building = (town != null && town.hasBuilding("building.taxidermist")) ? town.getBuilding("building.taxidermist") : town.getBuilding("building.taxidermist_oriental");
+				local building = null;
+				if (town != null) {
+					building = town.hasBuilding("building.taxidermist") ? town.getBuilding("building.taxidermist") : town.getBuilding("building.taxidermist_oriental");
+				}
 				return [
 					{
 						id = 1,
 						type = "title",
-						text = "Taxidermist (" + ::Legends.Professions.ProfessionDefObjects[building.m.TaxidermistSpecialization].Name + ")"
+						text = building == null ? "Taxidermist" : "Taxidermist (" + ::Legends.Professions.ProfessionDefObjects[building.m.TaxidermistSpecialization].Name + ")"
 					},
 					{
 						id = 2,
