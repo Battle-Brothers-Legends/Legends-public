@@ -835,6 +835,7 @@
 - Perk Duelist now lists exact item ids rather than arbitrary strings in Allowed Items
 - `GenderEquality` setting renamed to `GenderStatDifference` to avoid issues with values saved in MSU
 - `::Legends.Tactical.Tiles.spawnWall(_tile)` spawns an impassable wall on the tile
+- added `::Legends.Inventory` functions that allow calculating item's potential value (current / repaired / salvage), found in `inventory.nut`
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

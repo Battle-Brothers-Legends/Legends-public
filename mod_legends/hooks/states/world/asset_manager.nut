@@ -359,7 +359,10 @@
 		foreach (profession in ::Legends.Professions.ProfessionDefObjects) {
 			this.m.ProfessionEffect[profession.Const] <- 0;
 		}
+		local tools = ::new("scripts/items/supplies/armor_parts_item");
+		::Legends.Inventory.BasePricePerDurability = (tools.m.Value / tools.m.Amount * this.m.ArmorPartsPerArmor);
 	}
+
 	o.consumeFood = function () {
 		local items = this.m.Stash.getItems();
 		local food = [];

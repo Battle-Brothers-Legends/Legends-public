@@ -149,7 +149,6 @@
 		} else if (::isKindOf(item, "legend_armor_upgrade") || ::isKindOf(item, "legend_helmet_upgrade")) {
 			upgrades.push({
 				item = item,
-				idx = i,
 				state = ::World.Flags.getAsInt("AutoState_" + item.getID())
 			});
 		}
@@ -227,3 +226,38 @@
 		}
 	}
 }
+
+// note that the functions below do not take reputation or situations into account
+::Legends.Inventory.BasePricePerDurability <- 0.67; // the actual formula is armor_parts_item (m.Value * ::World.Assets.m.ArmorPartsPerArmor / m.Amount); and is set in asset_manager's create
+
+::Legends.Inventory.getCurrentPricePerDurability <- @() ::Legends.Inventory.BasePricePerDurability * ::Const.Difficulty.BuyPriceMult[::World.Assets.getEconomicDifficulty()] * (1.0 - ::World.State.getPlayer().getHaggleMult()) * ::Legends.S.getToolEfficiency();
+
+::Legends.Inventory.getMissingDurability <- @(_item)(_item.getRepairMax() - _item.getRepair());
+
+::Legends.Inventory.getItemRepairCost <- @(_item) ::Legends.Inventory.getMissingDurability(_item) * ::Legends.Inventory.getCurrentPricePerDurability();
+
+::Legends.Inventory.getItemPredictedSalePrice <- function (_item, _value) {
+	local value = _value * ::Const.Difficulty.SellPriceMult[::World.Assets.getEconomicDifficulty()] * (1.0 + ::World.State.getPlayer().getHaggleMult());
+
+	if (_item.isItemType(::Const.Items.ItemType.TradeGood)) {
+		return value;
+	} else if (_item.isItemType(::Const.Items.ItemType.Loot)) {
+		return value * ::Const.World.Assets.BaseLootSellPrice;
+	}
+
+	return ::Math.floor(value * ::Const.World.Assets.BaseSellPrice);
+}
+
+::Legends.Inventory.getItemRepairValuePotential <- @(_item) ::Legends.Inventory.getItemPredictedSalePrice(_item, _item.getRawValue()) - ::Legends.Inventory.getItemRepairCost(_item);
+
+::Legends.Inventory.getItemRepairGoldPerDurability <- @(_item) ::Legends.Inventory.getItemRepairValuePotential(_item) / ::Legends.Inventory.getMissingDurability(_item);
+
+::Legends.Inventory.getItemSalvageToolsRecovered <- @(_item) _item.getRepair() / (::World.Retinue.hasFollower(::Legends.Camp.Upgrades[::Legends.Camp.CampBuildings.Workshop]) ? 10 : 20);
+
+::Legends.Inventory.getItemSalvageValuePotential <- @(_item) ::Legends.Inventory.getItemSalvageToolsRecovered(_item) * ::Legends.Inventory.getCurrentPricePerDurability() / ::World.Assets.m.ArmorPartsPerArmor;
+
+::Legends.Inventory.isItemWorthRepairing <- @(_item) ::Legends.Inventory.getMissingDurability(_item) != 0 && (::Legends.Inventory.getItemRepairGoldPerDurability(_item) >= ::World.Assets.m.RepairPotentialValue);
+
+::Legends.Inventory.isItemWorthSalvaging <- @(_item) _item.canBeSalvaged() && _item.getRepair() != 0 && ((::Legends.Inventory.getItemPredictedSalePrice(_item, _item.getValue()) / ::Legends.Inventory.getItemSalvageToolsRecovered(_item)) < ::World.Assets.m.SalvagePotentialValue);
+
+::Legends.Inventory.getItemValuePotential <- @(_item) (::Legends.Inventory.isItemWorthRepairing(_item) ? ::Legends.Inventory.getItemRepairValuePotential(_item) : (::Legends.Inventory.isItemWorthSalvaging(_item) ? ::Legends.Inventory.getItemSalvageValuePotential(_item) : ::Legends.Inventory.getItemPredictedSalePrice(_item, _item.getValue())));
