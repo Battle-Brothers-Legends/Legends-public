@@ -374,7 +374,7 @@ if (!("Professions" in ::Legends)) {
         ScalingFactor = 0.5
     },
     LegendThrifty = {
-        ScalingArray = [0, 20], // chance to save ingredients while crafting
+        ScalingArray = [0, 0.2], // chance to save ingredients while crafting
         ScalingFactor = 0.05
     },
     LegendToolsDrawers = {
