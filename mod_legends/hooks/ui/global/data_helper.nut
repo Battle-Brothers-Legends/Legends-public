@@ -203,7 +203,7 @@
 		if (_entity.getBackground() != null) {
 			this.addProfessionsToUIData(_entity, _entity.getSkills().query(::Const.SkillType.Profession, true), result.professions);
 			result.perkTree = _entity.getBackground().getPerkTree();
-			result.professionTree = _entity.getBackground().getProfessionTree();
+			result.professionTree = ::Legends.Professions.Branches.getTree(_entity);
 			local perkPlan = _entity.getPerkPlan();
 			result.PerksPlan <- perkPlan;
 			local professionPlan = _entity.getProfessionPlan();
@@ -245,7 +245,7 @@
 		local result = convertEntityHireInformationToUIData(_entity);
 		result.Talents <- _entity.getHiringTalents();
 		result.perkTree <- _entity.getBackground().getPerkTree();
-		result.professionTree <- _entity.getBackground().getProfessionTree();
+		result.professionTree <- ::Legends.Professions.Branches.getTree(_entity);
 		result.Attributes <- _entity.getHiringAttributes();
 		return result;
 	}

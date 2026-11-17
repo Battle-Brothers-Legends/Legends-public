@@ -770,6 +770,10 @@
 			return false;
 		}
 
+		if (::Legends.Professions.Branches.isLocked(this, ::Legends.Professions.Branches.getDef(_id))) {
+			return false;
+		}
+
 		if (this.m.ProfessionPoints > 0) {
 			--this.m.ProfessionPoints;
 		}
@@ -785,6 +789,26 @@
 		}
 
 		return true;
+	}
+
+	o.resetProfessions <- function () {
+		local known = ::Legends.Professions.Branches.getBackgroundList(this, "Known");
+		local refunded = 0;
+
+		foreach (skill in this.getSkills().query(::Const.SkillType.Profession, true)) {
+			local profession = ::Legends.Professions.Branches.getDef(skill.getID());
+			if (profession == null || known.find(profession) != null) {
+				continue;
+			}
+
+			this.getSkills().removeByID(skill.getID());
+			++refunded;
+		}
+
+		this.m.ProfessionPoints += refunded;
+		this.m.ProfessionPointsSpent = ::Math.max(0, this.m.ProfessionPointsSpent - refunded);
+		this.getSkills().update();
+		::Legends.Professions.Branches.prunePlan(this);
 	}
 
 	o.updateLevel = function () {
@@ -843,6 +867,10 @@
 
 		local profession = this.getBackground().getProfession(_id);
 		if (profession == null) {
+			return false;
+		}
+
+		if (::Legends.Professions.Branches.isLocked(this, ::Legends.Professions.Branches.getDef(_id))) {
 			return false;
 		}
 
@@ -1161,6 +1189,7 @@
 		}
 
 		background.buildProfessionTree();
+		::Legends.Professions.Branches.setupBro(this);
 		background.buildDescription();
 
 		::Legends.Traits.grant(this, ::Legends.Trait.LegendIntensiveTraining);

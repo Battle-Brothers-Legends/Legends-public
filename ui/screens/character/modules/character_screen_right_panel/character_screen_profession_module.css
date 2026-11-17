@@ -52,6 +52,10 @@
 	opacity: 0.33;
 }
 
+.character-screen-container .scroll-container .is-row-unlocked .is-profession-locked .profession-image-layer {
+	opacity: 0.33;
+}
+
 
 .character-screen-container .scroll-container .row .l-profession-container,
 .independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .row .l-profession-container {

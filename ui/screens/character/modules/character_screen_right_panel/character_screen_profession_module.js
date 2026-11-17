@@ -25,6 +25,7 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
         Tentative: null
     };
 	this.mSelectedBrotherId = null;
+	this.mProfessionTreeSignature = null;
 
 	this.mIsIndependent = false;
 
@@ -99,6 +100,7 @@ CharacterScreenProfessionModule.prototype.destroyDIV = function () {
 	this.mContainer = null;
 
 	this.mSelectedBrotherId = null;
+	this.mProfessionTreeSignature = null;
 };
 
 
@@ -202,6 +204,13 @@ CharacterScreenProfessionModule.prototype.initProfessionTree = function (_profes
 				}
 			}
 
+			if (profession.IsLocked === true && !profession.Unlocked) {
+				profession.Container.addClass('is-profession-locked');
+			}
+			else {
+				profession.Container.removeClass('is-profession-locked');
+			}
+
 			/*if(profession.Row <= professionPointsSpent)
 			{
 				var selectionLayer = profession.Container.find('.selection-image-layer:first');
@@ -211,12 +220,7 @@ CharacterScreenProfessionModule.prototype.initProfessionTree = function (_profes
 	}
 
 	for (var row = 0; row < this.mProfessionRows.length; ++row) {
-		if (row <= professionPointsSpent) {
-			this.mProfessionRows[row].addClass('is-row-unlocked').removeClass('is-row-locked');
-		}
-		else {
-			break;
-		}
+		this.mProfessionRows[row].addClass('is-row-unlocked').removeClass('is-row-locked');
 	}
 };
 
@@ -236,6 +240,7 @@ CharacterScreenProfessionModule.prototype.setupProfessionTree = function (_profe
 	}
 	this.mLeftColumn.empty();
 	this.mProfessionTree = _professionTree;
+	this.mProfessionRows = [];
 	this.createProfessionTreeDIV(this.mProfessionTree, this.mLeftColumn);
 
 	if (!this.mIsIndependent) {
@@ -251,10 +256,15 @@ CharacterScreenProfessionModule.prototype.updateProfessionTreeLayout = function 
 
 CharacterScreenProfessionModule.prototype.loadProfessionTreesWithBrotherData = function (_brother) {
 	var brotherId = _brother[CharacterScreenIdentifier.Entity.Id];
-    var fullSetup = (this.mSelectedBrotherId !== brotherId);
+	var signature = this.mProfessionTreeSignature;
+	if (CharacterScreenIdentifier.Profession.Tree in _brother) {
+		signature = this.getProfessionTreeSignature(_brother[CharacterScreenIdentifier.Profession.Tree]);
+	}
+    var fullSetup = (this.mSelectedBrotherId !== brotherId || this.mProfessionTreeSignature !== signature);
 
 	if (this.mProfessionTree === null || fullSetup) {
         this.mSelectedBrotherId = brotherId;
+        this.mProfessionTreeSignature = signature;
         this.setupProfessionTree(_brother[CharacterScreenIdentifier.Profession.Tree]);
     } else {
         this.resetProfessionTree(this.mProfessionTree);
@@ -271,6 +281,19 @@ CharacterScreenProfessionModule.prototype.loadProfessionTreesWithBrotherData = f
 	this.updateProfessionPlanVisuals(_brother);
 };
 
+CharacterScreenProfessionModule.prototype.getProfessionTreeSignature = function (_professionTree) {
+	var signature = '';
+
+	for (var row = 0; row < _professionTree.length; ++row) {
+		for (var i = 0; i < _professionTree[row].length; ++i) {
+			signature += _professionTree[row][i].ID + (_professionTree[row][i].IsLocked === true ? '-,' : '+,');
+		}
+		signature += '/';
+	}
+
+	return signature;
+};
+
 CharacterScreenProfessionModule.prototype.loadProfessionTreesWithProfessionTreeAndBrotherID = function (_professionTree, _brotherId) {
 	this.setupProfessionTree(_professionTree);
 	this.setupProfessionTreeTooltips(_professionTree, _brotherId);
@@ -283,7 +306,7 @@ CharacterScreenProfessionModule.prototype.isProfessionUnlockable = function (_pr
 	var professionPoints = this.mDataSource.getBrotherProfessionPoints(_brother);
 	var professionPointsSpent = this.mDataSource.getBrotherProfessionPointsSpent(_brother);
 
-	return professionPoints > 0 && professionPointsSpent >= _profession.Unlocks;
+	return professionPoints > 0 && professionPointsSpent >= _profession.Unlocks && _profession.IsLocked !== true;
 };
 
 CharacterScreenProfessionModule.prototype.updateProfessionPlanVisuals = function (_brother) {

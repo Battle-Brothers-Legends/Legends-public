@@ -862,7 +862,8 @@
 		if (id in this.m.ProfessionTreeMap) {
 			return this.m.ProfessionTreeMap[id];
 		}
-		return null;
+
+		return ::Legends.Professions.Branches.getProfession(id);
 	}
 
 	o.addProfession <- function (_profession, _preferredRow = 0) {

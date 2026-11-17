@@ -677,6 +677,8 @@
 			professionPlan[professionID] <- nextState;
 		}
 
+		::Legends.Professions.Branches.prunePlan(bro);
+
 		return ::UIDataHelper.convertEntityToUIData(bro, null);
 	}
 

@@ -25,8 +25,16 @@
 				}
 			];
 
+			local branch = ::Legends.Professions.Branches.getTooltip(player, _professionId);
+			local isLocked = ::Legends.Professions.Branches.isLocked(player, ::Legends.Professions.Branches.getDef(_professionId));
+
 			if (!player.hasProfession(_professionId)) {
 				ret.extend(::new(profession.Script).getDynamicTooltip(profession, false));
+				ret.extend(branch);
+
+				if (isLocked) {
+					return ret; // the hint for it is one of the branch rows
+				}
 
 				if (player.getProfessionPointsSpent() >= profession.Unlocks) {
 					if (player.getProfessionPoints() == 0) {
@@ -54,6 +62,7 @@
 				}
 			} else {
 				ret.extend(::new(profession.Script).getDynamicTooltip(profession, true));
+				ret.extend(branch);
 			}
 
 			return ret;

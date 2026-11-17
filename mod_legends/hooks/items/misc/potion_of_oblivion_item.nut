@@ -4,6 +4,7 @@
 		::Sound.play("sounds/combat/drink_03.wav", ::Const.Sound.Volume.Inventory);
 
 		_actor.resetPerks();
+		_actor.resetProfessions();
 
 		::Const.Tactical.Common.checkDrugEffect(_actor);
 		this.updateAchievement("MemoryLoss", 1, 1);
