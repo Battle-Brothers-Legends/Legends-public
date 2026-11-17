@@ -11,7 +11,7 @@
 	}
 
 	o.getTooltip = function() {
-		local ret = this.getDefaultTooltip();
+		local tooltip = this.getDefaultTooltip();
 		tooltip.push({
 			id = 7,
 			type = "text",
@@ -34,7 +34,7 @@
 			});
 		}
 
-		return ret;
+		return tooltip;
 	}
 
 	o.setItem <- function (_item)

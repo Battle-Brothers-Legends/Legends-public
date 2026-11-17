@@ -11,7 +11,7 @@
 	}
 
 	o.getTooltip = function () {
-		local ret = this.getDefaultTooltip();
+		local tooltip = this.getDefaultTooltip();
 		tooltip.push({
 			id = 7,
 			type = "text",
@@ -34,14 +34,14 @@
 		}
 
 		if (this.getContainer().hasTrait(::Legends.Trait.OathOfFortification)) {
-			ret.push({
+			tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Has a [color=%positive%]100%[/color] chance to Stagger on a hit"
 			});
 		}
-		return ret;
+		return tooltip;
 	}
 
 	local onVerifyTarget = o.onVerifyTarget;
