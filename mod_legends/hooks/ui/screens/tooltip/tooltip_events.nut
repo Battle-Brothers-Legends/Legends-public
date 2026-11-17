@@ -3171,12 +3171,25 @@
 					{
 						id = 1,
 						type = "title",
-						text = "Loot Items by Value"
+						text = "Loot Items by Current Value"
 					},
 					{
 						id = 2,
 						type = "description",
-						text = "Pick the items with the highest value from both current and looted items."
+						text = "Pick the items with the highest current value from both current and looted items."
+					}
+				];
+			case "tactical-combat-result-screen.loot-panel.OrganizeLayersButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Organize Layers"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Join layered items based on chosen automation flags."
 					}
 				];
 

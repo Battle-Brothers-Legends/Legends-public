@@ -476,6 +476,12 @@ TacticalCombatResultScreenDatasource.prototype.notifyBackendValueLootItemsButton
         self.loadFromData(_data);
     });
 }
+TacticalCombatResultScreenDatasource.prototype.notifyBackendOrganizeLayeredItemsClicked = function () {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onOrganizeLayeredItems', null, function (_data) {
+        self.loadFromData(_data);
+    });
+};
 
 TacticalCombatResultScreenDatasource.prototype.notifyBackendRemoveInventoryItemUpgrades = function (_slot) {
     var self = this;

@@ -604,7 +604,7 @@
 			}
 
 			if (::Tactical.Entities.getArmorParts() > 0 && ::World.Assets.m.ProfessionEffect.LegendVulture > 0) {
-				local amount = ::Math.min(60, ::Math.max(1, ::Tactical.Entities.getArmorParts() * ::Const.World.Assets.ArmorPartsPerArmor * ::World.Assets.m.ProfessionEffect.LegendVulture));
+				local amount = ::Math.min(60, ::Math.max(1, ::Tactical.Entities.getArmorParts() * ::World.Assets.m.ArmorPartsPerArmor * ::World.Assets.m.ProfessionEffect.LegendVulture));
 				amount = ::Math.rand(amount / 2, amount);
 
 				if (amount > 0) {

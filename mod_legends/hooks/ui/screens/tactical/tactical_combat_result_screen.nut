@@ -130,6 +130,24 @@
 		}
 	}
 
+	o.sortByValueForLoot <- function (_array) {
+		_array.sort(function (a, b) {
+			if (a.isNamed && !b.isNamed) {
+				return -1;
+			}
+			if (!a.isNamed && b.isNamed) {
+				return 1;
+			}
+			if (a.val > b.val) {
+				return -1;
+			}
+			if (a.val < b.val) {
+				return 1;
+			}
+			return 0;
+		});
+	}
+
 	o.onValueLootItemsButtonPressed <- function () {
 		::Sound.play("sounds/combat/armor_leather_impact_01.wav", ::Const.Sound.Volume.Inventory);
 
@@ -179,21 +197,7 @@
 			}
 		}
 
-		pool.sort(function (a, b) {
-			if (a.isNamed && !b.isNamed) {
-				return -1;
-			}
-			if (!a.isNamed && b.isNamed) {
-				return 1;
-			}
-			if (a.val > b.val) {
-				return -1;
-			}
-			if (a.val < b.val) {
-				return 1;
-			}
-			return 0;
-		});
+		this.sortByValueForLoot(pool);
 
 		// move items
 		for (local i = pool.len() - 1; i >= 0; i--) {

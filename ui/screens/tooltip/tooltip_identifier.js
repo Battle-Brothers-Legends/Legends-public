@@ -215,7 +215,8 @@ var TooltipIdentifier =
 		LootPanel:
 		{
 			LootAllItemsButton: 'tactical-combat-result-screen.loot-panel.LootAllItemsButton',
-			ValueLootItemsButton: 'tactical-combat-result-screen.loot-panel.ValueLootItemsButton'
+			ValueLootItemsButton: 'tactical-combat-result-screen.loot-panel.ValueLootItemsButton',
+			OrganizeLayersButton: 'tactical-combat-result-screen.loot-panel.OrganizeLayersButton'
 		}
 	},
 
