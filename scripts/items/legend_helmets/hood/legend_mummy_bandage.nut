@@ -28,6 +28,7 @@ this.legend_mummy_bandage <- this.inherit("scripts/items/legend_helmets/legend_h
 		this.m.Sprite = "mummy_bandage_" + variant;
 		this.m.SpriteDamaged = "mummy_bandage_" + variant + "_damaged";
 		this.m.SpriteCorpse = "mummy_bandage_" + variant + "_dead";
-		this.m.IconLarge = "armor/inventory_mummy_bandage_" + variant + ".png";
+		this.m.Icon = "legend_helmets/inventory_mummy_bandage_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
 	}
 });

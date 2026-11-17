@@ -603,7 +603,7 @@
 > use 1-4 in the World, F1-F4 in combat to change the speed
 > alternatively use the buttons on the top of the respective screens
 > buttons are fully functional during caravan and camp activities
-> the combat speed you pick now carries over to the next battle
+> the combat speed you pick now carries over to the next battle and to later sessions
 - added expanded settlement situation tooltips to support new situations natively
 > settlement situations displayed similarly to a popular mod
 > new modifiers are supported
@@ -770,6 +770,7 @@
 - Fixed stacks of Bleeding and other stacking effects sharing one instance, so several stacks only dealt the damage of one
 - Anticipation no longer keeps reducing damage after its stacks are used up
 - Fixed a UI error when Alt + right-clicking an item in a shop that can not be repaired
+- Fixed the missing inventory icons of the layered mummy bandage hood
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

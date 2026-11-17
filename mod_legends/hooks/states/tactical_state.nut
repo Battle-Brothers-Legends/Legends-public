@@ -795,6 +795,10 @@
 	}
 
 	o.setTacticalSpeed <- function (_speed) {
+		if (_speed != ::Const.Tactical.Settings.AnimationSpeed) {
+			// kept for later sessions, read back in root_state
+			::Legends.Mod.PersistentData.createFile("CombatSpeed", _speed);
+		}
 		::Const.Tactical.Settings.AnimationSpeed = _speed;
 		this.m.TacticalScreen.getTurnSequenceBarModule().m.JSHandle.asyncCall("updateAnimationSpeed", ::Math.maxf(1.0, ::Const.Tactical.Settings.AnimationSpeed / 2));
 		::Tactical.TopbarRoundInformation.updateSpeedButtons(_speed);
