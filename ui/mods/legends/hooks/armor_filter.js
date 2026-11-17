@@ -13,8 +13,6 @@ CharacterScreenInventoryListModule.prototype.createDIV = function (_parentDiv) {
 		return; // not for the inventory screen in battle
 
 	var layout = this.mFilterButton.parent();
-		if (layout.hasClass('is-all-filter')) // move up to find the parent div with this class
-
 	if (layout === undefined || layout === null) {
 		console.error("layout is undefined or null. Can\'t find the right layout");
 		return;
