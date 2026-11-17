@@ -12,7 +12,7 @@ this.legend_basilisk_trophy_item <- this.inherit("scripts/items/accessory/access
 		this.m.IconLarge = "";
 		this.m.Icon = "accessory/basilisk_trophy.png";
 		this.m.Sprite = "basilisk_trophy"; //pulled from XML file under entity -> details
-		this.m.Value = 1125;
+		this.m.Value = 1500;
 	}
 
 	function getTooltip() //necklace gives a headhunter effect when taking hp damage

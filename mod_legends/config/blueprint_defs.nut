@@ -96,7 +96,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     AlpTrophy = {
         ItemScript = "scripts/items/accessory/alp_trophy_item",
@@ -116,7 +116,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTrophyCarving,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     Antidote = {
         ItemScript = "scripts/items/accessory/antidote_item",
@@ -144,7 +144,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTrophyCarving,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     CatPotion = {
         ItemScript = "scripts/items/accessory/cat_potion_item",
@@ -188,7 +188,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     FireBomb = {
         ItemScript = "scripts/items/tools/fire_bomb_item",
@@ -220,7 +220,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTrophyCarving,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     HappyPowder = {
         ItemScript = "scripts/items/misc/happy_powder_item",
@@ -248,7 +248,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     HexenTrophy = {
         ItemScript = "scripts/items/accessory/hexen_trophy_item",
@@ -268,7 +268,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTrophyCarving,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     HyenaFurUpgrade = {
         ItemScript = "scripts/items/legend_armor/cloak/legend_hyena_fur_cloak",
@@ -280,7 +280,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     IronWillPotion = {
         ItemScript = "scripts/items/accessory/iron_will_potion_item",
@@ -328,18 +328,18 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LargeQuiverOfArrows = {
         ItemScript = "scripts/items/ammo/large_quiver_of_arrows",
         Cost = 250,
         Ingredients = [
             {
-                Script = "scripts/items/misc/ancient_wood_item",
+                Script = "scripts/items/misc/unhold_hide_item",
                 Num = 1
             }
         ],
-        Category = ::Legends.Profession.LegendWoodworking,
+        Category = ::Legends.Profession.LegendLeatherworking,
         ProfessionRequired = true
     },
     LargeQuiverOfBolts = {
@@ -347,12 +347,12 @@ if (!("Blueprints" in ::Legends)) {
         Cost = 250,
         Ingredients = [
             {
-                Script = "scripts/items/misc/ancient_wood_item",
+                Script = "scripts/items/misc/unhold_hide_item",
                 Num = 1
             }
         ],
-        Category = ::Legends.Profession.LegendWoodworking,
-        ProfessionRequired = true
+        Category = ::Legends.Profession.LegendLeatherworking,
+        ProfessionRequired = false
     },
     LightPaddingUpgrade = {
         ItemScript = "scripts/items/legend_armor/armor_upgrades/legend_light_padding_replacement_upgrade",
@@ -368,11 +368,11 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LindwurmShield = {
         ItemScript = "scripts/items/shields/named/named_lindwurm_shield",
-        Cost = 500,
+        Cost = 800,
         Ingredients = [
             {
                 Script = "scripts/items/misc/lindwurm_scales_item",
@@ -384,7 +384,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LionheartPotion = {
         ItemScript = "scripts/items/accessory/lionheart_potion_item",
@@ -448,7 +448,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendAlchemy,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     PotionOfKnowledge = {
         ItemScript = "scripts/items/misc/potion_of_knowledge_item",
@@ -556,11 +556,11 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     SchratShield = {
         ItemScript = "scripts/items/shields/special/legend_craftable_schrat_shield",
-        Cost = 650,
+        Cost = 800,
         Ingredients = [
             {
                 Script = "scripts/items/misc/ancient_wood_item",
@@ -572,7 +572,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendWoodworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     SmokeBomb = {
         ItemScript = "scripts/items/tools/smoke_bomb_item",
@@ -844,7 +844,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendAntidote = {
         ItemScript = "scripts/items/accessory/antidote_item",
@@ -872,7 +872,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendHerbcraft,
-        ProfessionRequired = true,
+        ProfessionRequired = false,
         Crafts = 2
     },
     LegendBandageTunic = {
@@ -889,11 +889,11 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendHerbcraft,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendBasiliskCloak = {
         ItemScript = "scripts/items/legend_armor/cloak/legend_basilisk_cloak",
-        Cost = 2500,
+        Cost = 350,
         Ingredients = [
             {
                 Script = "scripts/items/misc/legend_basilisk_feathers_item",
@@ -901,11 +901,11 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendBasiliskTrophy = {
         ItemScript = "scripts/items/accessory/legend_basilisk_trophy_item",
-        Cost = 1500,
+        Cost = 1100,
         Ingredients = [
             {
                 Script = "scripts/items/misc/legend_basilisk_eye_item",
@@ -917,7 +917,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTrophyCarving,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendBerserkerMushrooms = {
         ItemScript = "scripts/items/accessory/berserker_mushrooms_item",
@@ -941,7 +941,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTrophyCarving,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendCatPotion = {
         ItemScript = "scripts/items/accessory/cat_potion_item",
@@ -977,7 +977,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendCloakHeavy = {
         ItemScript = "scripts/items/legend_armor/cloak/legend_armor_cloak_heavy",
@@ -1061,7 +1061,7 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendDemonBansheeTrophy = {
         ItemScript = "scripts/items/accessory/legend_demon_banshee_trophy_item",
-        Cost = 1000,
+        Cost = 1500,
         Ingredients = [
             {
                 Script = "scripts/items/misc/legend_demon_hound_bones_item",
@@ -1209,7 +1209,7 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendGreenwoodSchratShield = {
         ItemScript = "scripts/items/shields/special/legend_craftable_greenwood_schrat_shield",
-        Cost = 450,
+        Cost = 2500,
         Ingredients = [
             {
                 Script = "scripts/items/misc/legend_ancient_green_wood_item",
@@ -1249,7 +1249,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendWoodworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendHelmetFullMask = {
         ItemScript = "scripts/items/legend_helmets/hood/legend_helmet_full_mask",
@@ -1270,10 +1270,6 @@ if (!("Blueprints" in ::Legends)) {
             {
                 Script = "scripts/items/trade/cloth_rolls_item",
                 Num = 1
-            },
-            {
-                Script = "scripts/items/misc/legend_mistletoe_item",
-                Num = 2
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
@@ -1313,7 +1309,7 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendHornPlate = {
         ItemScript = "scripts/items/legend_armor/plate/legend_armor_horn_plate_named",
-        Cost = 2000,
+        Cost = 2500,
         Ingredients = [
             {
                 Script = "scripts/items/misc/kraken_horn_plate_item",
@@ -1481,7 +1477,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendMetalworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendLindwurmScaleArmor = {
         ItemScript = "scripts/items/legend_armor/named/legend_lindwurm_scale_armor",
@@ -1497,11 +1493,11 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendLindwurmScalesCloak = {
         ItemScript = "scripts/items/legend_armor/cloak/legend_lindwurm_scales_cloak",
-        Cost = 350,
+        Cost = 500,
         Ingredients = [
             {
                 Script = "scripts/items/misc/lindwurm_scales_item",
@@ -1513,7 +1509,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendMiracleDrug = {
         ItemScript = "scripts/items/misc/miracle_drug_item",
@@ -1609,7 +1605,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true,
+        ProfessionRequired = false,
         Crafts = 2
     },
     LegendOblivionPotion = {
@@ -1658,7 +1654,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendPackSmall = {
         ItemScript = "scripts/items/accessory/legend_pack_small",
@@ -1670,7 +1666,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendPauldronsKraken = {
         ItemScript = "scripts/items/legend_armor/armor_upgrades/legend_armor_pauldrons_kraken",
@@ -1698,7 +1694,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendHerbcraft,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendProstheticEar = {
         ItemScript = "scripts/items/misc/legend_prosthetic_ear_item",
@@ -2050,7 +2046,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendSilk = {
         ItemScript = "scripts/items/trade/silk_item",
@@ -2343,7 +2339,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendTabardNoble = {
         ItemScript = "scripts/items/legend_armor/tabard/legend_armor_tabard_noble",
@@ -2399,7 +2395,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     },
     LegendWardogArmorUpgrade = {
         ItemScript = "scripts/items/misc/wardog_armor_upgrade_item",
@@ -2411,7 +2407,7 @@ if (!("Blueprints" in ::Legends)) {
             }
         ],
         Category = ::Legends.Profession.LegendLeatherworking,
-        ProfessionRequired = true
+        ProfessionRequired = false
     }
     LegendWarlockCloak = {
         ItemScript = "scripts/items/legend_armor/legendary/legend_armor_named_warlock_cloak",

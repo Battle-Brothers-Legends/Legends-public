@@ -12,7 +12,7 @@ this.legend_demon_banshee_trophy_item <- this.inherit("scripts/items/accessory/a
 		this.m.IconLarge = "";
 		this.m.Icon = "accessory/demon_banshee_trophy.png";
 		this.m.Sprite = "demon_banshee_trophy";
-		this.m.Value = 1000;
+		this.m.Value = 2500;
 	}
 
 	function getTooltip()

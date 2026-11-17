@@ -13,7 +13,7 @@ this.legend_basilisk_cloak <- this.inherit("scripts/items/legend_armor/legend_ar
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
 		this.m.InventorySound = this.Const.Sound.ClothEquip;
-		this.m.Value = 2800;
+		this.m.Value = 800;
 		this.m.Condition = 30;
 		this.m.ConditionMax = 30;
 		this.m.StaminaModifier = -3;

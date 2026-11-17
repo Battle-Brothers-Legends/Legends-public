@@ -14,7 +14,7 @@ this.legend_craftable_schrat_shield <- this.inherit("scripts/items/shields/named
 		this.m.Variants = [8];
 		this.m.Variant = 8;
 		this.updateVariant();
-		this.m.Value = 1000;
+		this.m.Value = 1500;
 		this.m.MeleeDefense = 20;
 		this.m.RangedDefense = 17;
 		this.m.StaminaModifier = -8;
