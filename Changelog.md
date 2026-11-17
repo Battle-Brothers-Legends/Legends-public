@@ -673,6 +673,7 @@
 - item tooltips now list what the item can be crafted into, which replaces the `Items and Recipes` mod
 > can be turned off with `Show Crafting Uses` in the Legends Tooltips mod settings tab
 - replaced 5 different filter buttons in the character screen with a single one that cycles through the 5
+- redesigned the advanced armor filtering to better fit the game's graphical style
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
