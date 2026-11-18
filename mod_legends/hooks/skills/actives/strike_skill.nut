@@ -1,8 +1,8 @@
-::mods_hookExactClass("skills/actives/strike_skill", function(o) {
+::mods_hookExactClass("skills/actives/strike_skill", function (o) {
 	o.m.IsGlaiveStrike <- false;
 	o.m.IsStaffStrike <- false;
 
-	o.setItem <- function(_item) {
+	o.setItem <- function (_item) {
 		this.skill.setItem(_item);
 		if (this.m.IsGlaiveStrike) {
 			this.m.Description = "A thrusting or sweeping strike that can cover the distance of 2 tiles and can be used from behind the frontline, outside the range of most other melee weapons.";
@@ -23,12 +23,6 @@
 
 	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=%positive%]2[/color] tiles"
-		});
 
 		if (!::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 			ret.push({
@@ -42,16 +36,15 @@
 		return ret;
 	}
 
-	o.onAfterUpdate = function ( _properties ) {
+	o.onAfterUpdate = function (_properties) {
 		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
-		if (_skill == this)
-		{
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			this.m.HitChanceBonus += !this.m.ApplyAxeMastery ? 5 : 0;
 			this.m.HitChanceBonus += this.m.IsStaffStrike && ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 5 : 0;
 

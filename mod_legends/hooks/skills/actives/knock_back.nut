@@ -97,7 +97,7 @@
 			_properties.DamageArmorMult = 1.0;
 			_properties.DamageDirectAdd += 0.1;
 		}
-		if (_targetEntity.getCurrentProperties().IsRooted) {
+		if (!::Legends.S.isEntityNullOrDead(_targetEntity) && _targetEntity.getCurrentProperties().IsRooted) {
 			_properties.DamageTotalMult *= 1.5;
 		}
 	}

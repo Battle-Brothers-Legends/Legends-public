@@ -135,7 +135,7 @@
 		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.6;
 			_properties.MeleeSkill += this.m.HitChanceBonus;
-			if (_targetEntity.getCurrentProperties().IsRooted) {
+			if (!::Legends.S.isEntityNullOrDead(_targetEntity) &&  _targetEntity.getCurrentProperties().IsRooted) {
 				_properties.DamageTotalMult *= 1.5;
 			}
 		}

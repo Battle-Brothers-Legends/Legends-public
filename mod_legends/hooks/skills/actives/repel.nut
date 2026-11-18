@@ -124,7 +124,7 @@
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.6;
-			if (_targetEntity.getCurrentProperties().IsRooted) {
+			if (!::Legends.S.isEntityNullOrDead(_targetEntity) && _targetEntity.getCurrentProperties().IsRooted) {
 				_properties.DamageTotalMult *= 1.5;
 			}
 			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
