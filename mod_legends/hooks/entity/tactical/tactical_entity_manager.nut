@@ -704,6 +704,29 @@
 		}
 	}
 
+	local setupAmbience = o.setupAmbience;
+	o.setupAmbience = function( _worldTile ) {
+		setupAmbience(_worldTile);
+
+		if (!::Tactical.getWeather().IsRaining) {
+			return;
+		}
+
+		// snowfall and falling leaves are built as rain as well for some weird reason
+		local type = _worldTile.TacticalType;
+		if (_worldTile.Type == ::Const.World.TerrainType.AutumnForest || type == ::Const.World.TerrainTacticalType.AutumnForest || type == ::Const.World.TerrainTacticalType.Snow || type == ::Const.World.TerrainTacticalType.SnowyForest || type == ::Const.World.TerrainTacticalType.SnowyHills) {
+			return;
+		}
+
+		foreach (instances in this.getAllInstances()) {
+			foreach (e in instances) {
+				if (e.getBaseProperties().IsAffectedByRain) {
+					::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
+				}
+			}
+		}
+	}
+
 	local getHostilesNum = o.getHostilesNum;
 	o.getHostilesNum = function() {
 		/** Part of lindwurm fix, that makes them count as one enemy in battle by ignoring entities with 'tail' flag */
