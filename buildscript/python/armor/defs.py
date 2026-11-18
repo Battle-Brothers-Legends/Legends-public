@@ -207,23 +207,23 @@ class Defs:
  "desc" :  "A dark, heavy cloth tunic. Bulky, but offering additional protection.",
  "adesc" :""
 },
-{"name": "tunic_noble",                            "layer": "cloth", "min": 1, "max": 10, "value" : 500, "con" : 20, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "tunic_noble",                            "layer": "cloth", "min": 1, "max": 10, "value" : 500, "con" : 30, "stam" : -1, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Noble Tunic",
  "desc" :  "A thin, linen tunic of exquisite material, embroidered with pleasing patterns. Fashionable, but offering little protection.",
  "adesc" :""
 },
-{"name": "tunic_noble_named",                      "layer": "cloth", "min": 1, "max": 3, "value" : 1500, "con" : 40, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "tunic_noble_named",                      "layer": "cloth", "min": 1, "max": 3, "value" : 1500, "con" : 45, "stam" : -1, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "",
  "desc" :  "A fine, linen tunic of exquisite material, embroidered with pleasing patterns. Light and sturdy.",
  "adesc" :"",
- "named" : { "con": { "min" : 46, "max" : 56 }, "names" : ['Heraldic Tunic', "Splendor", "Grandiosity", "Pageantry", "Swank", "Duty", "Honor", "Noble"]  }
+ "named" : { "con": { "min" : 42, "max" : 52 }, "names" : ['Heraldic Tunic', "Splendor", "Grandiosity", "Pageantry", "Swank", "Duty", "Honor", "Noble"]  }
 },
 {"name": "southern_robe",                 "layer": "cloth", "min": 1, "max": 6, "value" : 35, "con" : 25, "stam" : -1, "impactSound" : "leather", "invSound" : "cloth",
  "title" : "Southern Wool Robe",
  "desc" :  "A dense wool wrap to protect against blunt hits.",
  "adesc" : ""
 },
-{"name": "knightly_robe",                 "layer": "cloth", "min": 1, "max": 9, "value" : 450, "con" : 60, "stam" : -2, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "knightly_robe",                 "layer": "cloth", "min": 1, "max": 9, "value" : 450, "con" : 50, "stam" : -3, "impactSound" : "leather", "invSound" : "cloth",
  "title" : "Knight\'s Robe",
  "desc" :  "A padded robe of superior quality designed to go under armor and absorb blows.",
  "adesc" : ""
