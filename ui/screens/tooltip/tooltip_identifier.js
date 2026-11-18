@@ -359,6 +359,7 @@ var TooltipIdentifier =
 			MarkForRepairButton: 'character-screen.right-panel-header-module.MarkForRepairButton',
 			MarkForSalvageButton: 'character-screen.right-panel-header-module.MarkForSalvageButton',
 			SellAllButton: 'character-screen.right-panel-header-module.SellAllButton',
+			ToggleShowItemStatesInShopButton: 'character-screen.right-panel-header-module.ToggleShowItemStatesInShopButton',
 			FormationButton: 'character-screen.right-panel-header-module.FormationButton',
 			ChangeFormationButton: 'character-screen.right-panel-header-module.ChangeFormation',
 			ClearFormationButton: 'character-screen.right-panel-header-module.ClearFormation',

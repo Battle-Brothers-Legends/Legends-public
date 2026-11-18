@@ -355,4 +355,20 @@
 
 		return result;
 	}
+
+	o.onToggleShowItemStatesInShopButtonClicked <- function () {
+		::World.Assets.m.ShowItemStatesInShop = !::World.Assets.m.ShowItemStatesInShop;
+		local result = {
+			Shop = []
+		}
+		::UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, ::Const.UI.ItemOwner.Shop);
+		return result;
+	}
+
+	local queryShopInformation = o.queryShopInformation;
+	o.queryShopInformation = function () {
+		local result = queryShopInformation();
+		result.ShowItemStatesInShop <- ::World.Assets.m.ShowItemStatesInShop;
+		return result;
+	}
 });

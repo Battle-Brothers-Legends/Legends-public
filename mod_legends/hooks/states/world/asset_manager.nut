@@ -11,6 +11,7 @@
 	o.m.LastRosterSize <- 0;
 	o.m.RepairPotentialValue <- 9;
 	o.m.SalvagePotentialValue <- 9;
+	o.m.ShowItemStatesInShop <- true;
 
 	o.m.IsArenaTooled <- false;
 
@@ -1110,6 +1111,7 @@
 		_out.writeString("" + this.m.Look);
 		_out.writeU16(this.m.RepairPotentialValue);
 		_out.writeU16(this.m.SalvagePotentialValue);
+		_out.writeBool(this.m.ShowItemStatesInShop);
 	}
 
 	local onDeserialize = o.onDeserialize;
@@ -1123,5 +1125,6 @@
 		this.m.Look = _in.readString();
 		this.m.RepairPotentialValue = _in.readU16();
 		this.m.SalvagePotentialValue = _in.readU16();
+		this.m.ShowItemStatesInShop = _in.readBool();
 	}
 });

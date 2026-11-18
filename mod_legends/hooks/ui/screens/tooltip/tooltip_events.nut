@@ -3505,6 +3505,20 @@
 					}
 				];
 
+			case "character-screen.right-panel-header-module.ToggleShowItemStatesInShopButton":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Toggle item state visibility"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Toggles item state visibility in shop view."
+					}
+				];
+
 			case "character-screen.right-panel-header-module.FilterMoodButton":
 				return [
 					{

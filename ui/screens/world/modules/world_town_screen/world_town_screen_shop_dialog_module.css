@@ -217,6 +217,13 @@
     top: 26.0rem; 
 }
 
+.world-town-screen > .l-shop-dialog-container .content .row.is-content .l-button.is-toggle-show-item-states-in-shop-button {
+    position: absolute;
+    width: 5.2rem;
+    height: 4.1rem;
+    top: 30.0rem; 
+}
+
 .world-town-screen > .l-shop-dialog-container .content .row.is-content .slot-count-container
 {
     position: absolute;

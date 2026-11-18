@@ -163,6 +163,8 @@ var Asset =
 	ICON_SALVAGE_ITEM:                      'ui/icons/salvage_item.png',
 
 	ICON_AUTOMATION_SELL_ITEM:              'ui/icons/automation_sell_item.png',
+	ICON_AUTOMATION_SHOW_STATES:			'ui/icons/automation_show_states.png',
+	ICON_AUTOMATION_HIDE_STATES:			'ui/icons/automation_hide_states.png',
 	ICON_AUTOMATION_REPAIR_SELL_ITEM:       'ui/icons/automation_repair_sell_item.png',
 	ICON_AUTOMATION_REPAIR_ITEM:            'ui/icons/automation_repair_item.png',
 	ICON_AUTOMATION_SALVAGE_ITEM:           'ui/icons/automation_salvage_item.png',

@@ -72,8 +72,11 @@ var WorldTownScreenShopDialogModule = function (_parent) {
     this.mFilterMiscButton = null;
     this.mFilterUsableButton = null;
     this.mSellAllButton = null;
+    this.mToggleShowItemStatesInShopButton = null;
 
     this.mIsRepairOffered = false;
+
+    this.mShowItemStatesInShop = true;
 
     // generics
     this.mIsVisible = false;
@@ -237,6 +240,23 @@ WorldTownScreenShopDialogModule.prototype.createDIV = function (_parentDiv) {
 
             if ('Shop' in data) {
                 self.updateShopList(data.Shop);
+            }
+        });
+    }, '', 3);
+
+    var layout = $('<div class="l-button is-toggle-show-item-states-in-shop-button"/>').appendTo(buttonContainer);
+    this.mToggleShowItemStatesInShopButton = layout.createImageButton(Path.GFX + Asset.ICON_AUTOMATION_SHOW_STATES, function () {
+        self.mShowItemStatesInShop = !self.mShowItemStatesInShop;
+        self.notifyBackendToggleShowItemStatesInShopButtonClicked(function (data) {
+            if (data === undefined || data == null || typeof (data) !== 'object') {
+                console.error("ERROR: Failed to toggle item states. Reason: Invalid data result.");
+                return;
+            }
+
+            self.toggleShowItemButtonsIcon();
+
+            if ('Shop' in data) {
+                self.loadShopData(data.Shop);
             }
         });
     }, '', 3);
@@ -470,6 +490,7 @@ WorldTownScreenShopDialogModule.prototype.bindTooltips = function () {
     this.mFilterMiscButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMiscButton });
     this.mFilterUsableButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterUsableButton });
     this.mSellAllButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.SellAllButton });
+    this.mToggleShowItemStatesInShopButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ToggleShowItemStatesInShopButton });
 };
 
 WorldTownScreenShopDialogModule.prototype.unbindTooltips = function () {
@@ -484,6 +505,7 @@ WorldTownScreenShopDialogModule.prototype.unbindTooltips = function () {
     this.mFilterMiscButton.unbindTooltip();
     this.mFilterUsableButton.unbindTooltip();
     this.mSellAllButton.unbindTooltip();
+    this.mToggleShowItemStatesInShopButton.unbindTooltip();
 };
 
 WorldTownScreenShopDialogModule.prototype.create = function (_parentDiv) {
@@ -699,6 +721,11 @@ WorldTownScreenShopDialogModule.prototype.loadFromData = function (_data) {
         this.loadStashData(_data.Stash);
     }
 
+    if ('ShowItemStatesInShop' in _data && _data.ShowItemStatesInShop !== null) {
+        this.mShowItemStatesInShop = _data.ShowItemStatesInShop;
+        this.toggleShowItemButtonsIcon();
+    }
+
     if ('Shop' in _data && _data.Shop !== null) {
         this.loadShopData(_data.Shop);
     }
@@ -761,7 +788,18 @@ WorldTownScreenShopDialogModule.prototype.loadShopData = function (_data) {
     }
 };*/
 
-WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items, _itemArray, _itemContainer) { 
+WorldTownScreenShopDialogModule.prototype.toggleShowItemButtonsIcon = function () {
+    switch (this.mShowItemStatesInShop) {
+        case false:
+            this.mToggleShowItemStatesInShopButton.changeButtonImage(Path.GFX + Asset.ICON_AUTOMATION_HIDE_STATES);
+            break
+        case true:
+            this.mToggleShowItemStatesInShopButton.changeButtonImage(Path.GFX + Asset.ICON_AUTOMATION_SHOW_STATES);
+            break
+    }
+}
+
+WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items, _itemArray, _itemContainer) {
     if (_items.length === 0) {
         this.destroyItemSlots(_itemArray, _itemContainer);
         return;
@@ -769,7 +807,7 @@ WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items
 
     var self = this;
     var screen = $('.world-town-screen');
-    
+
     var currentIndex = 0;
     var chunkSize = 35;
 
@@ -777,7 +815,7 @@ WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items
         if (currentIndex < _items.length) {
             for (; currentIndex < Math.min(currentIndex + chunkSize, _items.length); currentIndex++) {
                 var slot;
-                
+
                 if (currentIndex < _itemArray.length) {
                     slot = _itemArray[currentIndex];
                 } else {
@@ -786,18 +824,18 @@ WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items
                 }
 
                 if (_items[currentIndex] !== undefined && _items[currentIndex] !== null) {
-					slot.assignListItemImage();
+                    slot.assignListItemImage();
                     self.assignItemToInventorySlot(_owner, slot, _items[currentIndex]);
                 } else {
                     self.removeItemFromSlot(slot);
                 }
             }
-            
+
             setTimeout(processInventoryBatches, 5);
             return;
         }
 
-       if (_itemArray.length > _items.length) {
+        if (_itemArray.length > _items.length) {
             var elementsToRemove = Math.min(chunkSize, _itemArray.length - _items.length);
             for (var i = 0; i < elementsToRemove; i++) {
                 var surplusSlot = _itemArray.pop();
@@ -815,7 +853,7 @@ WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items
             self.updateStashFreeSlotsLabel();
         }
     }
-	
+
     processInventoryBatches();
 };
 
@@ -831,7 +869,7 @@ WorldTownScreenShopDialogModule.prototype.removeItemFromSlot = function (_slot) 
     _slot.assignListItemImage();
     _slot.assignListItemOverlayImage();
     _slot.setAutomationImageVisible(0);
-	_slot.setRepairImageVisible(false, false);
+    _slot.setRepairImageVisible(false, false);
     _slot.assignListItemTooltip();
 };
 
@@ -858,10 +896,15 @@ WorldTownScreenShopDialogModule.prototype.assignItemToInventorySlot = function (
         _slot.assignListItemOverlayImage(_item['imageOverlayPath'], _item);
 
         itemData.automationState = _item['automationState'];
-		itemData.repair = _item['repair'];
-		itemData.salvage = _item['salvage'];
-		_slot.setAutomationImageVisible(_item['automationState']);
-		_slot.setRepairImageVisible(_item['repair'], _item['salvage']);
+        itemData.repair = _item['repair'];
+        itemData.salvage = _item['salvage'];
+        if (_owner != WorldTownScreenShop.ItemOwner.Shop || this.mShowItemStatesInShop) {
+            _slot.setAutomationImageVisible(_item['automationState']);
+        } else {
+            _slot.setAutomationImageVisible(0);
+        }
+        _slot.setRepairImageVisible(_item['repair'], _item['salvage']);
+
 
         // show amount
         if (_item.showAmount === true && _item.amount != '') {
@@ -1410,6 +1453,10 @@ WorldTownScreenShopDialogModule.prototype.notifyBackendFilterUsableButtonClicked
 
 WorldTownScreenShopDialogModule.prototype.notifyBackendSellAllButtonClicked = function (_callback) {
     SQ.call(this.mSQHandle, 'onSellAllButtonClicked', [], _callback);
+}
+
+WorldTownScreenShopDialogModule.prototype.notifyBackendToggleShowItemStatesInShopButtonClicked = function (_callback) {
+    SQ.call(this.mSQHandle, 'onToggleShowItemStatesInShopButtonClicked', null, _callback);
 }
 
 WorldTownScreenShopDialogModule.prototype.notifyBackendRemoveInventoryItemUpgrades = function (_slot) {
