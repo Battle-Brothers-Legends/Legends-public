@@ -357,8 +357,8 @@ if (!("Perks" in ::Legends))
 	SunderingStrikes = {},
 	Underdog = {
 		Name = "Ironside",
-		Icon = "ui/perks/perk_60.png",
-		IconDisabled = "ui/perks/perk_60_sw.png"
+		Icon = "ui/perks/legend_ironside.png",
+		IconDisabled = "ui/perks/legend_ironside_bw.png"
 	},
 	Taunt = {
 		Name = "Battlefield Control",
