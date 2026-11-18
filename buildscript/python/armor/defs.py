@@ -207,16 +207,16 @@ class Defs:
  "desc" :  "A dark, heavy cloth tunic. Bulky, but offering additional protection.",
  "adesc" :""
 },
-{"name": "tunic_noble",                            "layer": "cloth", "min": 1, "max": 10, "value" : 500, "con" : 10, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "tunic_noble",                            "layer": "cloth", "min": 1, "max": 10, "value" : 500, "con" : 20, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Noble Tunic",
  "desc" :  "A thin, linen tunic of exquisite material, embroidered with pleasing patterns. Fashionable, but offering little protection.",
  "adesc" :""
 },
-{"name": "tunic_noble_named",                      "layer": "cloth", "min": 1, "max": 3, "value" : 1500, "con" : 40, "stam" : -2, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "tunic_noble_named",                      "layer": "cloth", "min": 1, "max": 3, "value" : 1500, "con" : 40, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "",
  "desc" :  "A fine, linen tunic of exquisite material, embroidered with pleasing patterns. Light and sturdy.",
  "adesc" :"",
- "named" : { "con": { "min" : 46, "max" : 56 }, "fat": { "min" : 2, "max" : 0 }, "names" : ['Heraldic Tunic', "Splendor", "Grandiosity", "Pageantry", "Swank", "Duty", "Honor", "Noble"]  }
+ "named" : { "con": { "min" : 46, "max" : 56 }, "names" : ['Heraldic Tunic', "Splendor", "Grandiosity", "Pageantry", "Swank", "Duty", "Honor", "Noble"]  }
 },
 {"name": "southern_robe",                 "layer": "cloth", "min": 1, "max": 6, "value" : 35, "con" : 25, "stam" : -1, "impactSound" : "leather", "invSound" : "cloth",
  "title" : "Southern Wool Robe",
