@@ -778,6 +778,7 @@
 - Fixed stacks of Bleeding and other stacking effects sharing one instance, so several stacks only dealt the damage of one
 - Fixed a UI error when Alt + right-clicking an item in a shop that can not be repaired
 - Fixed the missing inventory icons of the layered mummy bandage hood
+- Fixed an error in the events where a wildman trashes a shop and where the company asks for a raise when letting a peddler work out the payment
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

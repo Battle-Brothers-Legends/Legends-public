@@ -53,9 +53,9 @@
 						function getResult( _event )
 						{
 							if (_event.m.Berserker != null)
-								this.m.Compensation = ::Math.round(400 + 0.03 * ::World.Assets.getMoney());
+								_event.m.Compensation = ::Math.round(400 + 0.03 * ::World.Assets.getMoney());
 							else
-								this.m.Compensation = ::Math.round(300 + 0.02 * ::World.Assets.getMoney());
+								_event.m.Compensation = ::Math.round(300 + 0.02 * ::World.Assets.getMoney());
 							return "T";
 						}
 
