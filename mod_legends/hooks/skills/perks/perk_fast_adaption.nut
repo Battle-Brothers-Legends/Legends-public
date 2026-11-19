@@ -24,4 +24,8 @@
 			_skill.m.HitChanceBonus += bonus;
 		}
 	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "[color=%positive%]+" + (this.m.Stacks * 10) + "%[/color] " + ::Legends.Text.inlineIcons("hitchance");
+	}
 });

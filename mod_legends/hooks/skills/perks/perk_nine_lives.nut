@@ -42,4 +42,8 @@
 		onUpdate(_properties);
 		_properties.SurviveWithInjuryChanceMult *= 1.11;
 	}
+
+	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
+		return "Survive the next lethal hit";
+	}
 });
