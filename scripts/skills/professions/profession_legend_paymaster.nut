@@ -17,7 +17,7 @@ this.profession_legend_paymaster <- this.inherit("scripts/skills/legend_professi
 				id = 11,
 				type = "text",
 				icon = "ui/icons/plus.png"
-				text = "Current: [color=%positive%]" + (::Legends.Professions.getProfessionEffect(_def, 0) == 0 ? 1 : ::Math.round(100 / ::Legends.Professions.getProfessionEffect(_def, 0))) + "%[/color]"
+				text = "Current: [color=%positive%]" + (::Legends.Professions.getProfessionEffect(_def, 0) == 0 ? 100 : ::Math.round(100 / ::Legends.Professions.getProfessionEffect(_def, 0))) + "%[/color]"
 			},
 		];
 
