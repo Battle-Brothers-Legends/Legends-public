@@ -12,7 +12,7 @@
 	local onShieldHit = o.onShieldHit;
 	o.onShieldHit = function (_info) {
 		onShieldHit(_info);
-		_info.TargetEntity.m.Skills.onShieldHitSkills(this, _info.TargetEntity, _info.Shield);
+		_info.TargetEntity.m.Skills.onShieldHitSkills(this, _info.User, _info.Shield);
 	}
 
 	o.getTooltip = function () {

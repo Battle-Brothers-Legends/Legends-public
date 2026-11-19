@@ -46,7 +46,7 @@ this.legend_curse_of_the_mummy_effect <- this.inherit("scripts/skills/skill", {
 
 	function onRefresh() {
 		this.m.Stacks++;
-		this.spawnIcon("mummy_curse", this.getContainer().getActor().getTile());
+		this.spawnIcon(this.m.Overlay, this.getContainer().getActor().getTile());
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {

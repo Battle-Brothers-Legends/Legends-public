@@ -782,6 +782,7 @@
 - Fixed natural rain never applying the Raining effect or reducing the cost of skills that needed 'Rain'
 - Fixed Marked, Compromised Armor, Skin Ghoul Blood and the drink effects not having their duration reset when applied again while still active
 - Fixed a possible crash when the follow-up attack of Ambidextrous killed the target an AI character was planning around
+- The arena overview no longer shows two options called 'I'll have to think it over', the one that gives up the fight and uses up an attempt now says so
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

@@ -127,7 +127,7 @@
 			{
 				s.Options.push(
 				{
-					Text = "{I\'ll have to think it over.}",
+					Text = "I\'ll pass on this fight. (Uses up one of today\'s arena attempts)",
 					function getResult()
 					{
 						this.Contract.getHome().getBuilding("building.arena").registerAttempt();

@@ -74,7 +74,8 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onShieldHitSkills (_skill, _attacker, _shield) {
-		if (!::Legends.S.isEntityNullOrDead(_attacker) && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && ::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
+		local actor = this.getContainer().getActor();
+		if (!::Legends.S.isEntityNullOrDead(_attacker, actor) && !_attacker.isAlliedWith(actor) && _attacker.getTile().getDistanceTo(actor.getTile()) == 1 && ::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
 			local skill = null;
 			foreach (s in this.m.ShieldSkills) {
 				if (::Legends.Actives.has(this, s)) {
@@ -89,17 +90,17 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 
 			if (skill != null) {
 				local info = {
-					User = this,
+					User = actor,
 					Skill = skill,
 					TargetTile = _attacker.getTile()
 				};
-				::Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onShieldRiposte.bindenv(this), info);
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onShieldRiposte.bindenv(this), info);
 			}
 		}
 	}
 
 	function onShieldRiposte( _info ) {
-		if (!::Legends.S.isEntityNullOrDead(_info.User)) {
+		if (::Legends.S.isEntityNullOrDead(_info.User)) {
 			return;
 		}
 
