@@ -16,7 +16,7 @@
 	}
 
 	o.onEquip = function () {
-		this.weapon.onEquip();
+		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.EstocStab);
 		::Legends.Actives.grant(this, ::Legends.Active.Perforate);
 		::Legends.Actives.grant(this, ::Legends.Active.Skewer);
