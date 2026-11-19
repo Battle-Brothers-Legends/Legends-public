@@ -193,14 +193,15 @@ this.legend_dual_wielding_effect <- this.inherit("scripts/skills/skill", {
 				}
 
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
-					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
-						return;
+					if (!::Legends.S.isEntityNullOrDead(actor, _targetEntity) && _targetEntity.isPlacedOnMap()) {
+						if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
+							return;
+						}
+						_skill.executeFollowUpAttack({
+							TargetTile = _targetEntity.getTile(),
+							Skill = skillToUse
+						});
 					}
-					::Const.SkillCounter++;
-					_skill.executeFollowUpAttack({
-						TargetTile = _targetEntity.getTile(),
-						Skill = skillToUse
-					});
 				}.bindenv(this), this);
 				//::Const.SkillCounter++;
 				/*::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
@@ -212,17 +213,11 @@ this.legend_dual_wielding_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function executeFollowUpAttack(_info) {
-		local actor = this.getContainer().getActor();
-		if (::Legends.S.isEntityNullOrDead(actor)) {
-			return;
-		}
-		local entity = _info.TargetTile.getEntity();
-		if (::Legends.S.isEntityNullOrDead(entity)) {
-			return;
-		}
 		if (::Legends.S.isNull(_info.Skill)) {
 			return;
 		}
+
+		::Const.SkillCounter++;
 		this.m.IsExecutingOffhand = true;
 		_info.Skill.m.IsExecutingOffhand = true;
 		_info.Skill.useForFree(_info.TargetTile);
