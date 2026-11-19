@@ -32,6 +32,19 @@
 	return false;
 }
 
+// Call this whenever a follow-up attack is scheduled for later (Dual Wielding, Ambidextrous, Buckler Bash, etc.)
+// It stops the AI from planning its next action before the follow-up has landed, otherwise it can plan around a target that is dead by then, which crashes the game
+::Legends.S.delayEvaluationForFollowUp <- function (_actor, _skill = null) {
+	if (::Legends.S.isEntityNullOrDead(_actor) || _actor.getAIAgent() == null) {
+		return;
+	}
+	local delay = ::Const.Combat.RiposteDelay + 100;
+	if (_skill != null) {
+		delay += _skill.getDelay();
+	}
+	_actor.getAIAgent().declareEvaluationDelay(delay);
+}
+
 ::Legends.S.scaleBaseProperties <- function (_properties) {
 	if (::Tactical.State.isScenarioMode()) {
 		return;

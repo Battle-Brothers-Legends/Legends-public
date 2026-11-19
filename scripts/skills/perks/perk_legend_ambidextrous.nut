@@ -74,6 +74,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (!_forFree) {
+			::Legends.S.delayEvaluationForFollowUp(actor);
 			::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
 				if (!::Legends.S.isEntityNullOrDead(actor, _targetEntity) && _targetEntity.isPlacedOnMap()) {
 					local skillToUse = this.getHandToHandSkill();

@@ -781,6 +781,7 @@
 - Fixed an error in the events where a wildman trashes a shop and where the company asks for a raise when letting a peddler work out the payment
 - Fixed natural rain never applying the Raining effect or reducing the cost of skills that needed 'Rain'
 - Fixed Marked, Compromised Armor, Skin Ghoul Blood and the drink effects not having their duration reset when applied again while still active
+- Fixed a possible crash when the follow-up attack of Ambidextrous killed the target an AI character was planning around
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

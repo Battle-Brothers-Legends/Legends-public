@@ -100,6 +100,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (!_forFree) {
+			::Legends.S.delayEvaluationForFollowUp(actor, this);
 			::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
 				if (!::Legends.S.isEntityNullOrDead(actor, _targetEntity) && _targetEntity.isPlacedOnMap()) {
 					if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > this.getMaxRange()) {
