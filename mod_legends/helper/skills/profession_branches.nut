@@ -33,7 +33,14 @@
 
 ::Legends.Professions.Branches.isAllowed <- function (_bro, _profession) {
 
-	return !(_profession in this.Special) || this.getBackgroundList(_bro, "Special").find(_profession) != null;
+	if (!(_profession in this.Special) || this.getBackgroundList(_bro, "Special").find(_profession) != null)
+	{
+		return true;
+	}
+
+	// a special profession the bro rolled or was given is in his stored tree
+	local background = _bro.getBackground();
+	return background != null && background.m.ProfessionTreeMap != null && background.hasProfession(_profession);
 }
 
 ::Legends.Professions.Branches.isLearned <- function (_bro, _profession) {
@@ -308,6 +315,18 @@
 	for (local i = 0; i < this.RandomRoots && candidates.len() != 0; ++i)
 	{
 		tree[0].push(candidates.remove(::Math.rand(0, candidates.len() - 1)));
+	}
+
+	// and now and then into a favoured enemy his background does not give
+	if (::Math.rand(1, 100) <= this.RandomFavouredEnemyChance)
+	{
+		local special = this.getBackgroundList(_bro, "Special");
+		local enemies = this.FavouredEnemies.filter(@(_, _p) special.find(_p) == null);
+
+		if (enemies.len() != 0)
+		{
+			tree[0].push(enemies[::Math.rand(0, enemies.len() - 1)]);
+		}
 	}
 
 	background.rebuildProfessionTree(tree);
