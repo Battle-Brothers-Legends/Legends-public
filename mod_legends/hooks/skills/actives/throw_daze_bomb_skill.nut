@@ -13,14 +13,15 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "If the target is already [color=%status%]Dazed[/color] targets will be [color=%status%]Stunend[/color] for 1 turn"
+			text = "If the target is already [color=%status%]Dazed[/color] targets will be [color=%status%]Stunned[/color] for 1 turn"
 		});
 		if (ammo > 0) {
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=%positive%]" + ammo + "[/color] use left"
+				text = "Has [color=%positive%]%_ammo%[/color] use left",
+				param = [["_ammo", ammo]]
 			});
 		}
 		else {
@@ -106,7 +107,7 @@
 					::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
 					if (!_data.User.isHiddenToPlayer() && tile.IsVisibleForPlayer) {
-						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_data.User) + " was already dazed, so the flash pot has stunned " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
+						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " was already dazed, so the flash pot has stunned " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 					}
 				}
 
