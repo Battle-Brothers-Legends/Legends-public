@@ -187,6 +187,11 @@ this.legend_dual_wielding_effect <- this.inherit("scripts/skills/skill", {
 
 			// Schedule follow-up attack
 			if (!_forFree) {
+				// gotta check if target is dead or game go bye-bye
+				if (actor.getAIAgent() != null) {
+					actor.getAIAgent().declareEvaluationDelay(::Const.Combat.RiposteDelay + skillToUse.getDelay() + 100);
+				}
+
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
 					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
 						return;

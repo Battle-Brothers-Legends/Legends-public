@@ -348,7 +348,7 @@
 		{
 			foreach( t in targets )
 			{
-				if (t.Actor.isNull())
+				if (t.Actor.isNull() || !t.Actor.isAlive() || !t.Actor.isPlacedOnMap())
 				{
 					continue;
 				}
