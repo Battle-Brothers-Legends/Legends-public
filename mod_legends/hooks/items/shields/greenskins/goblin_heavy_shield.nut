@@ -1,14 +1,11 @@
-::mods_hookExactClass("items/shields/greenskins/goblin_heavy_shield", function(o) {
+::mods_hookExactClass("items/shields/greenskins/goblin_heavy_shield", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.Variants = [
-			1,
-			2
-		];
+		this.m.Variants = [1, 2];
 		this.m.Description += " Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
 		this.m.MeleeDefense = 5;
 		this.m.RangedDefense = 10;
 		this.m.Block = 5;
@@ -19,6 +16,7 @@
 	}
 
 	o.onEquip = function () {
+		this.shield.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBucklerDefense);
 	}
