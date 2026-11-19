@@ -1396,7 +1396,7 @@ if (!("Blueprints" in ::Legends)) {
                 Num = 1
             },
             {
-                Script = "scripts/items/misc/quality_wood_item",
+                Script = "scripts/items/trade/quality_wood_item",
                 Num = 1
             }
         ],
@@ -1412,7 +1412,7 @@ if (!("Blueprints" in ::Legends)) {
                 Num = 1
             },
             {
-                Script = "scripts/items/misc/quality_wood_item",
+                Script = "scripts/items/trade/quality_wood_item",
                 Num = 1
             }
         ],
@@ -1428,7 +1428,7 @@ if (!("Blueprints" in ::Legends)) {
                 Num = 1
             },
             {
-                Script = "scripts/items/misc/quality_wood_item",
+                Script = "scripts/items/trade/quality_wood_item",
                 Num = 1
             }
         ],
@@ -1444,7 +1444,7 @@ if (!("Blueprints" in ::Legends)) {
                 Num = 1
             },
             {
-                Script = "scripts/items/misc/quality_wood_item",
+                Script = "scripts/items/trade/quality_wood_item",
                 Num = 1
             }
         ],
