@@ -348,7 +348,7 @@
 		{
 			foreach( t in targets )
 			{
-				if (t.Actor.isNull() || !t.Actor.isAlive() || !t.Actor.isPlacedOnMap())
+				if (::Legends.S.isEntityNullOrDead(t.Actor))
 				{
 					continue;
 				}
