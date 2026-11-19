@@ -45,9 +45,7 @@ this.legend_broken_decorated_sword <- this.inherit("scripts/items/weapons/weapon
 			_skill.m.IconDisabled = "skills/active_198_sw.png";
 			_skill.m.Overlay = "active_198";
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Deathblow, function (_skill) {
-			_skill.m.DeathblowBonus = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
 	}
 });
 

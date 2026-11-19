@@ -32,9 +32,7 @@ this.legend_sica <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash);
-		::Legends.Actives.grant(this, ::Legends.Active.Deathblow, function (_skill) {
-			_skill.m.DeathblowBonus = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
 	}
 
 	function onUpdateProperties( _properties )

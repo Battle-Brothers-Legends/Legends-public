@@ -1454,13 +1454,11 @@ From small game to big bounties.
 Life on the streets has shown you how to properly bury a knife in another person.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain [color=%positive%]+12[/color] chance to hit while using any Knife.
+• Gain [color=%positive%]+12[/color] chance to hit and an additional [color=%positive%]20%[/color] of damage will ignore armor while using any Knife.
 
 • When taking [color=%perk%]Dagger Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
 • For other weapons classified as Daggers, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
-
-• You will also receive the Deathblow skill and Daggers that already have Deathblow, like Qatal Daggers, will have a buffed version.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistRaider <- @"

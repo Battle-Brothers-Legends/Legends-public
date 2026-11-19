@@ -1,5 +1,4 @@
 ::mods_hookExactClass("skills/actives/deathblow_skill", function (o) {
-	o.m.DeathblowBonus <- false;
 	o.m.ApplicableSkills <- [
 		::Legends.Effect.Dazed,
 		::Legends.Effect.LegendStupefied,
@@ -15,39 +14,16 @@
 		::Legends.Effect.Stunned,
 	];
 
-	o.setItem <- function (_item) {
-		this.m.IsHidden = !this.m.DeathblowBonus;
-		this.skill.setItem(_item);
-	}
-
 	o.getTooltip = function () {
 		local tooltip = this.getDefaultTooltip();
-		if (this.m.DeathblowBonus && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner)) {
-			tooltip.push({
-				id = 8,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Inflicts [color=%damage%]50%[/color] more damage against and ignores additional [color=%damage%]33%[/color] armor of targets that have the Baffled, Dazed, Stunned, Sleeping, Rooted, Distracted, Webbed, Trapped in Net, Staggered, Shellshocked, Tackled, Debilitated or Grappled status effects."
+		tooltip.push({
+			id = 8,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Inflicts [color=%damage%]33%[/color] more damage against and ignores additional [color=%damage%]20%[/color] armor of targets that have the Baffled, Dazed, Stunned, Sleeping, Rooted, Distracted, Webbed, Trapped in Net, Staggered, Shellshocked, Tackled, Debilitated or Grappled status effects."
 
-			});
-		} else {
-			tooltip.push({
-				id = 8,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Inflicts [color=%damage%]33%[/color] more damage against and ignores additional [color=%damage%]20%[/color] armor of targets that have the Baffled, Dazed, Stunned, Sleeping, Rooted, Distracted, Webbed, Trapped in Net, Staggered, Shellshocked, Tackled, Debilitated or Grappled status effects."
-
-			});
-		}
+		});
 		return tooltip;
-	}
-
-	o.isHidden <- function () {
-		if (this.m.DeathblowBonus || this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner)) {
-			return false;
-		}
-
-		return this.skill.isHidden();
 	}
 
 	o.onAfterUpdate = function (_properties) {
@@ -72,10 +48,7 @@
 				}
 			}
 
-			if (bonus && this.m.DeathblowBonus && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner)) {
-				_properties.DamageTotalMult *= 1.5;
-				_properties.DamageDirectAdd += 0.3;
-			} else if (bonus) {
+			if (bonus) {
 				_properties.DamageTotalMult *= 1.33;
 				_properties.DamageDirectAdd += 0.2;
 			}

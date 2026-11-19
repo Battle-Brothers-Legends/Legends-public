@@ -163,6 +163,7 @@
 > increases hitchance by 10% each time an enemy misses you
 
 ### Perk Changes
+- `Prisoner's rush` - no longer grants deathblow to regular daggers and a deathblow bonus, now grants a passive 20% armor penetration
 - `Shield Bash` - `Knock Back` and `Buckler Bash` now deals an additional 25% Damage, +50% Armor Damage and +10% Armor Penetration.
 > `Knock Back`, `Hook` and `Repel` now have a 100% chance to apply `Knocked Over` against targets that are `Netted`, `Rooted` or `Webbed`.
 - `Crossbow Mastery` - now increases armor penetration by 10% down from 20%

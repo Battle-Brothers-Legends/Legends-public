@@ -28,9 +28,7 @@
 	}
 
 	o.addSkill <- function (_skill) {
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Deathblow)) {
-			_skill.m.DeathblowBonus = true;
-		}
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab)) {
 			_skill.m.IsQatalStab = true;
 		}
