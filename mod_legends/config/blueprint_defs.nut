@@ -1325,26 +1325,34 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendHugeQuiverOfArrows = {
         ItemScript = "scripts/items/ammo/legend_huge_quiver_of_arrows",
-        Cost = 3000,
+        Cost = 350,
         Ingredients = [
             {
-                Script = "scripts/items/misc/legend_ancient_green_wood_item",
+                Script = "scripts/items/ammo/large_quiver_of_arrows",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/misc/unhold_hide_item",
                 Num = 1
             }
         ],
-        Category = ::Legends.Profession.LegendWoodworking,
+        Category = ::Legends.Profession.LegendLeatherworking,
         ProfessionRequired = true
     },
     LegendHugeQuiverOfBolts = {
         ItemScript = "scripts/items/ammo/legend_huge_quiver_of_bolts",
-        Cost = 3000,
+        Cost = 350,
         Ingredients = [
             {
-                Script = "scripts/items/misc/legend_ancient_green_wood_item",
+                Script = "scripts/items/ammo/large_quiver_of_bolts",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/misc/unhold_hide_item",
                 Num = 1
             }
         ],
-        Category = ::Legends.Profession.LegendWoodworking,
+        Category = ::Legends.Profession.LegendLeatherworking,
         ProfessionRequired = true
     },
     LegendIronWillPotion = {
@@ -1381,10 +1389,14 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendLargeQuiverOfBroadArrows = {
         ItemScript = "scripts/items/ammo/legend_large_broad_head_arrows",
-        Cost = 250,
+        Cost = 350,
         Ingredients = [
             {
-                Script = "scripts/items/misc/ancient_wood_item",
+                Script = "scripts/items/ammo/large_quiver_of_arrows",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/misc/quality_wood_item",
                 Num = 1
             }
         ],
@@ -1393,10 +1405,14 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendLargeQuiverOfBroadBolts = {
         ItemScript = "scripts/items/ammo/legend_large_broad_head_bolts",
-        Cost = 250,
+        Cost = 350,
         Ingredients = [
             {
-                Script = "scripts/items/misc/ancient_wood_item",
+                Script = "scripts/items/ammo/large_quiver_of_arrows",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/misc/quality_wood_item",
                 Num = 1
             }
         ],
@@ -1405,10 +1421,14 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendLargeQuiverOfPiercingArrows = {
         ItemScript = "scripts/items/ammo/legend_large_armor_piercing_arrows",
-        Cost = 250,
+        Cost = 350,
         Ingredients = [
             {
-                Script = "scripts/items/misc/ancient_wood_item",
+                Script = "scripts/items/ammo/large_quiver_of_bolts",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/misc/quality_wood_item",
                 Num = 1
             }
         ],
@@ -1420,7 +1440,11 @@ if (!("Blueprints" in ::Legends)) {
         Cost = 250,
         Ingredients = [
             {
-                Script = "scripts/items/misc/ancient_wood_item",
+                Script = "scripts/items/ammo/large_quiver_of_bolts",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/misc/quality_wood_item",
                 Num = 1
             }
         ],
@@ -1810,10 +1834,14 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendQuiverOfBroadArrows = {
         ItemScript = "scripts/items/ammo/legend_broad_head_arrows",
-        Cost = 130,
+        Cost = 100,
         Ingredients = [
             {
                 Script = "scripts/items/trade/quality_wood_item",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/ammo/quiver_of_arrows",
                 Num = 1
             }
         ],
@@ -1822,10 +1850,14 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendQuiverOfBroadBolts = {
         ItemScript = "scripts/items/ammo/legend_broad_head_bolts",
-        Cost = 130,
+        Cost = 100,
         Ingredients = [
             {
                 Script = "scripts/items/trade/quality_wood_item",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/ammo/quiver_of_bolts",
                 Num = 1
             }
         ],
@@ -1834,10 +1866,14 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendQuiverOfPiercingArrows = {
         ItemScript = "scripts/items/ammo/legend_armor_piercing_arrows",
-        Cost = 130,
+        Cost = 100,
         Ingredients = [
             {
                 Script = "scripts/items/trade/quality_wood_item",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/ammo/quiver_of_arrows",
                 Num = 1
             }
         ],
@@ -1846,12 +1882,17 @@ if (!("Blueprints" in ::Legends)) {
     },
     LegendQuiverOfPiercingBolts = {
         ItemScript = "scripts/items/ammo/legend_armor_piercing_bolts",
-        Cost = 130,
+        Cost = 100,
         Ingredients = [
             {
                 Script = "scripts/items/trade/quality_wood_item",
                 Num = 1
+            },
+            {
+                Script = "scripts/items/ammo/quiver_of_bolts",
+                Num = 1
             }
+
         ],
         Category = ::Legends.Profession.LegendWoodworking,
         ProfessionRequired = true

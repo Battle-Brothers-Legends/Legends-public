@@ -263,6 +263,9 @@
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
 - bandages now replenish up to 10 HP (only fresh wounds)
 
+## Quivers
+- quiver recipes have been revamped and the prices adjusted
+
 ### Armors
 - added Segmented Breastplate
 - added Nomad Mail
@@ -571,7 +574,7 @@
 - cooking tent (station) added
 - cleaned up cooking and enchanting ui
 - cooking and enchanting now work similarly to regular crafting (allows crafting forever and preselecting recipes)
-- all crafting and cooking recipes now require professions
+- most crafting and cooking recipes now require professions
 - professions affect the crafting process
 - crafted item types reassigned in some cases to make it more intuitive
 - small visual reorganization to make the stations easier to click
