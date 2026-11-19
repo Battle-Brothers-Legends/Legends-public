@@ -784,6 +784,9 @@
 - Fixed Marked, Compromised Armor, Skin Ghoul Blood and the drink effects not having their duration reset when applied again while still active
 - Fixed a possible crash when the follow-up attack of Ambidextrous killed the target an AI character was planning around
 - The arena overview no longer shows two options called 'I'll have to think it over', the one that gives up the fight and uses up an attempt now says so
+- Fixed the arena staying open after an arena tournament, a tournament now counts as one of the day's fights
+- Fixed the roots from Root never dealing damage each turn when cast while holding a named goblin staff
+- Fixed the Vala staff crafting encounter not using up the staff it was made from
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

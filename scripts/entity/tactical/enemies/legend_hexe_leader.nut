@@ -230,7 +230,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function assignRandomEquipment() {
-		this.getItems().equip(this.new("scripts/items/weapons/goblin_staff"));
+		this.getItems().equip(this.new("scripts/items/weapons/greenskins/goblin_staff"));
 	}
 
 	function makeMiniboss () {

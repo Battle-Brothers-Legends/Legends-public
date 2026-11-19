@@ -98,8 +98,9 @@ if (!("Professions" in ::Legends))
 	_profession.m.IsHidden = false;
 }
 
-::Legends.Professions.getProfessionEffect <- function (_def, _additionalBros = 0) {
-    local count = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getSkills().hasSkill(_def.ID)).len();
+// _excludedBro is a bro that is about to leave the company or lose the profession, but still counts at the time this is called
+::Legends.Professions.getProfessionEffect <- function (_def, _additionalBros = 0, _excludedBro = null) {
+    local count = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getSkills().hasSkill(_def.ID) && (_excludedBro == null || _bro.getID() != _excludedBro.getID())).len();
     count += _additionalBros;
     local effect = 0.0;
     if (count > 0 && "ScalingArray" in _def) {
@@ -109,8 +110,8 @@ if (!("Professions" in ::Legends))
     return effect;
 }
 
-::Legends.Professions.setProfessionEffect <- function (_def) {
-	::World.Assets.m.ProfessionEffect[_def.Const] = ::Legends.Professions.getProfessionEffect(_def);
+::Legends.Professions.setProfessionEffect <- function (_def, _excludedBro = null) {
+	::World.Assets.m.ProfessionEffect[_def.Const] = ::Legends.Professions.getProfessionEffect(_def, 0, _excludedBro);
 }
 
 ::Legends.Professions.recalculateAllProfessions <- function() {

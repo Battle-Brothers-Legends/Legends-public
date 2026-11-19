@@ -496,6 +496,9 @@
 
 		onHired();
 
+		// a recruit can already know professions, they only count once the recruit is in the company
+		::Legends.Professions.recalculateAllProfessions();
+
 		if (!this.isStabled() && this.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining) && this.getLevel() > 1) {
 			local inTraining = ::Legends.Traits.get(this, ::Legends.Trait.LegendIntensiveTraining);
 			local addSkills = ::Math.rand(0, this.getLevel() + 2);

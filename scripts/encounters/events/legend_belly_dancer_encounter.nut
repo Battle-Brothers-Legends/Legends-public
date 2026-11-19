@@ -70,7 +70,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 					getResult = @(_event) ::Math.rand(1, 100) <= 75 ? "E" : "D"
 				},
 				{
-					Text = "I\'ll pay you 500 crowns right now if you join us.",
+					Text = "I\'ll pay you 1000 crowns right now if you join us.",
 					getResult = @(_event) "F"
 				}
 			],
@@ -155,7 +155,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 		this.m.Screens.push({
 			ID = "F",
 			Title = "The Dancing Woman",
-			Text = "[img]gfx/ui/events/event_163.png[/img]{You offer five hundred crowns to the dancer. She keeps picking up the coins from her performance- one at a time - and putting them in her clay pot. It is almost a silent affair, coins clapping loudly as they fall into a nearly empty barrel of clay. She looks up, looks down. She puts in one more crown then gets to her feet. She strips off her clothes and holds out her hand.%SPEECH_ON%The Gilded One must be gleaming upon us both, for you to have earned such keep, and no doubt He has guided your purse here to bring it to me.%SPEECH_OFF%You nod and shake her hand. The dancer asks that she take a look at your inventory.%SPEECH_ON%A body like mine, anything will fit, inside or out, I\'ll make it work.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_163.png[/img]{You offer a thousand crowns to the dancer. She keeps picking up the coins from her performance- one at a time - and putting them in her clay pot. It is almost a silent affair, coins clapping loudly as they fall into a nearly empty barrel of clay. She looks up, looks down. She puts in one more crown then gets to her feet. She strips off her clothes and holds out her hand.%SPEECH_ON%The Gilded One must be gleaming upon us both, for you to have earned such keep, and no doubt He has guided your purse here to bring it to me.%SPEECH_OFF%You nod and shake her hand. The dancer asks that she take a look at your inventory.%SPEECH_ON%A body like mine, anything will fit, inside or out, I\'ll make it work.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],

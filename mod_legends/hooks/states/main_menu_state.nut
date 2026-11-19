@@ -79,11 +79,11 @@
 					break;
 
 				case 21:
-					tacticalState.setScenario(this.new("scripts/scenarios/tactical/scenario_test_bed_orc"));
+					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_test_bed_orc"));
 					break;
 
 				case 22:
-					tacticalState.setScenario(this.new("scripts/scenarios/tactical/scenario_test_bed_human"));
+					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_test_bed_human"));
 					break;
 
 				case 30:
@@ -139,7 +139,7 @@
 					break;
 
 				default:
-					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_combat_basics"));
+					tacticalState.setScenario(this.new("scripts/scenarios/tactical/scenario_combat_basics"));
 					break;
 				}
 			}

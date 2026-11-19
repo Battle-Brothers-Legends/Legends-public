@@ -78,7 +78,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.isViableTarget(_user, target)) {
 			local item = _user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-			local hasStaff = item != null && item.getID() == "legend_named_goblin_staff";
+			local hasStaff = item != null && item.getID() == "weapon.legend_named_goblin_staff";
 			if (!hasStaff) {
 				::Legends.Effects.grant(target, ::Legends.Effect.Rooted);
 			} else {

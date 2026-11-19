@@ -430,6 +430,11 @@
 	local onClear = o.onClear;
 	o.onClear = function ()
 	{
+		// a tournament counts as one of the day's arena fights, otherwise the arena never closes after it
+		if (this.m.Home != null && this.m.IsActive) {
+			this.m.Home.getBuilding("building.arena").registerAttempt();
+		}
+
 		foreach (bro in this.m.WasInReserves) {
 			bro.setInReserves(true);
 		}

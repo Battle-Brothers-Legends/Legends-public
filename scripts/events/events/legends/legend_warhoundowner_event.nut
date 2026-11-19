@@ -288,7 +288,7 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 
 			function start(_event) {
 				this.List.push(::Legends.EventList.changeMood(_event.m.Merchant, 2.0, "Traded a dog for an exceptional set of axes."));
-				local item = this.new("scripts/items/weapons/named/named_weapon/legend_named_heavy_throwing_axe");
+				local item = this.new("scripts/items/weapons/named/legend_named_heavy_throwing_axe");
 				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,

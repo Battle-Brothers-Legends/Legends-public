@@ -33,7 +33,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 
 				foreach( i, item in stash )
 				{
-					if (item != null && item.getID() == "misc.goblin_staff")
+					if (item != null && item.getID() == "weapon.goblin_staff")
 					{
 						stash[i] = null;
 						this.List.push({

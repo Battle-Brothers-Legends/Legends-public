@@ -40,6 +40,6 @@
 	}
 
 	o.assignRandomEquipment = function () {
-		this.m.Items.equip(this.new("scripts/items/weapons/goblin_staff"));
+		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_staff"));
 	}
 });

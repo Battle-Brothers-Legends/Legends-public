@@ -2,7 +2,18 @@
 {
 	o.m.Attempts <- [];
 
-	o.getMaxAttempts <- @() (1 + ::Legends.S.randomizeFractionToInt(::World.Assets.m.ProfessionEffect.LegendBreadAndGames));
+	o.m.AttemptsRoll <- 0;
+	o.m.AttemptsRollDay <- -1;
+
+	// the fraction of Bread and Games is the chance for one more fight, it is rolled once per day so the limit doesn't change every time it is asked for
+	o.getMaxAttempts <- function () {
+		if (this.m.AttemptsRollDay != ::World.getTime().Days) {
+			this.m.AttemptsRollDay = ::World.getTime().Days;
+			this.m.AttemptsRoll = ::Math.rand(0, 99);
+		}
+		return 1 + ((::World.Assets.m.ProfessionEffect.LegendBreadAndGames * 100).tointeger() + this.m.AttemptsRoll) / 100;
+	}
+
 	o.getCurrentAttempts <- @() this.m.Attempts.len();
 
 	o.registerAttempt <- function() {
@@ -16,7 +27,7 @@
 	local refreshCooldown = o.refreshCooldown;
 	o.refreshCooldown = function () {
 		this.m.Attempts = this.m.Attempts.filter(@(_, _it) _it == ::World.getTime().Days);
-		if (this.getCurrentAttempts() == this.getMaxAttempts())
+		if (this.getCurrentAttempts() >= this.getMaxAttempts())
 			refreshCooldown();
 	}
 

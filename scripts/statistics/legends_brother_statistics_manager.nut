@@ -69,7 +69,7 @@ this.legends_brother_statistics_manager <- {
 		{
 			if (idExists(i))
 			{
-				this.m.ActorInteractions[_id - 1][i] = this.new("scripts/statistics/legends_actor_interaction");
+				this.m.ActorInteractions[_id - 1][i] = this.new("scripts/statistics/legends_actor_interactions");
 			}
 
 		}
@@ -77,7 +77,7 @@ this.legends_brother_statistics_manager <- {
 		{
 			if (idExists(i))
 			{
-				this.m.ActorInteractions[i][_id - 1] = this.new("scripts/statistics/legends_actor_interaction");
+				this.m.ActorInteractions[i][_id - 1] = this.new("scripts/statistics/legends_actor_interactions");
 			}
 		}
 	}

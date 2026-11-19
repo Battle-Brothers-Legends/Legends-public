@@ -92,7 +92,7 @@ this.legend_allied_city_states_ambition <- this.inherit("scripts/ambitions/ambit
 			icon = "ui/items/" + item.getIcon(),
 			text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 		});
-		item = this.new("scripts/items/ammo/special/large_powder_bag");
+		item = this.new("scripts/items/ammo/large_powder_bag");
 		stash.add(item);
 		this.m.SuccessList.push({
 			id = 10,

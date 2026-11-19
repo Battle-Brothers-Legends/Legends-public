@@ -319,10 +319,10 @@ For some - a staff is something to lean on, for others - something to trust thei
 ::Const.Strings.PerkDescription.LegendDogHandling <- @"
 A well trained animal can feel the master's needs instinctively.
 
-[color=%active%][u]Active:[/u][/color]
-• In the heat of battle your hounds will respond and react to your commands, order them to attack or defend allies.
+[color=%passive%][u]Passive:[/u][/color]
+• Dogs and wolves you unleash pick their fights more carefully, preferring targets they are more likely to hit.
 
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]0[/color] Fatigue.
+• They also become wary of charging into enemies using Spearwall.
 ";
 
 ::Const.Strings.PerkDescription.LegendDogWhisperer <- @"
