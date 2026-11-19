@@ -56,8 +56,9 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			return;
 		}
 
-		if (this.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) {
+		if (this.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(this)) {
 			if (_retries > 20) {
+				::logDebug("legend_demon_hound: " + this.getName() + " was still being moved after 20 retries (involuntary: " + (this.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) + ", travelling: " + ::Tactical.getNavigator().isTravelling(this) + "), teleporting anyway");
 				this.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
 			} else {
 				::Time.scheduleEvent(::TimeUnit.Virtual, 50, this.teleport.bindenv(this), _retries + 1);

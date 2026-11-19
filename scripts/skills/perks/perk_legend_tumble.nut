@@ -70,11 +70,18 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			OnRepelled = this.onRepelled
 		};
 
-		if (_user.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) {
+		if (_user.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(_user)) {
 			if (_retries > 20) {
+				::logDebug("perk_legend_tumble: " + _user.getName() + " was still being moved after 20 retries (involuntary: " + (_user.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) + ", travelling: " + ::Tactical.getNavigator().isTravelling(_user) + ")");
 				_user.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
 			} else {
-				::Time.scheduleEvent(::TimeUnit.Virtual, 50, this.teleport.bindenv(this), tag);
+				::Time.scheduleEvent(::TimeUnit.Virtual, 50, function (_tag) {
+					this.teleport(_tag.User, _tag.TargetTile, _tag.Retries);
+				}.bindenv(this), {
+					User = _user,
+					TargetTile = _targetTile,
+					Retries = _retries + 1
+				});
 				return;
 			}
 		}

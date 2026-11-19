@@ -41,6 +41,7 @@ this.perk_legend_wide_swings <- this.inherit("scripts/skills/skill", {
 						local entity = next.getEntity();
 						if (entity.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
 							if (_retries > 20) {
+								::logDebug("perk_legend_wide_swings: " + entity.getName() + " was still being moved after 20 retries (involuntary: " + (entity.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) + ", travelling: " + ::Tactical.getNavigator().isTravelling(entity) + ")");
 								entity.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
 							} else {
 								targetsAreMovingInvoluntarily = true;
