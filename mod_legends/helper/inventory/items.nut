@@ -8,6 +8,45 @@ if (!("Items" in ::Legends)) {
 
 ::Legends.Items.extraLootChance <- @(_baseLootAmount = 0)(_baseLootAmount + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= (::World.Assets.getExtraLootChance() + ::World.Assets.m.ProfessionEffect.LegendSkinning) ? 1 : 0));
 
+local ItemImagePaths = [];
+local items_directory = "gfx/";
+foreach (_, directory in ::IO.enumerateFiles(items_directory + "ui/items/")) {
+	ItemImagePaths.push(directory.slice(items_directory.len()) + ".png");
+}
+
+::Legends.Items.checkForIcon <- function (toAdd, _item) {
+	if (_item.getIcon() == "" || _item == "ui/items/" && ItemImagePaths.find(toAdd + _item.getIcon()) == null) {
+		local slot = _item.getSlotType();
+		if (slot == ::Const.ItemSlot.Body) {
+			return "ui/icons/armor_body.png";
+		} else if (slot == ::Const.ItemSlot.Head) {
+			return "ui/icons/armor_head.png";
+		} else {
+			return "ui/items/supplies/legend_placeholder.png";
+		}
+	} else {
+		return toAdd + _item.getIcon();
+	}
+}
+
+::Legends.Items.getItemIconPaths <- function (_item) {
+	local paths = [];
+	local baseIcon = ::Legends.Items.checkForIcon("ui/items/", _item);
+	paths.push(baseIcon);
+
+	local slot = _item.getSlotType();
+	if (slot == ::Const.ItemSlot.Body || slot == ::Const.ItemSlot.Head) {
+		if (_item.getUpgrades().len() > 0) {
+			foreach (u in _item.m.Upgrades) {
+				if (u != null && u.getIcon() != "" && u.getIcon().find("rune_sigils") == null) {
+					paths.push("ui/items/" + u.getIcon());
+				}
+			}
+		}
+	}
+	return paths;
+}
+
 ::Legends.Items.logArmor <- function (_armor) {
 	if (!_armor.isEquipped()) {
 		return;

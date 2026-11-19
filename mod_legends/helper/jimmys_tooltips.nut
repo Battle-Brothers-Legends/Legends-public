@@ -1,47 +1,7 @@
 ::Legends.JimmysTooltips <- {};
 
-local ItemImagePaths = [];
-
-local items_directory = "gfx/";
-foreach (_, directory in ::IO.enumerateFiles(items_directory + "ui/items/")) {
-	ItemImagePaths.push(directory.slice(items_directory.len()) + ".png");
-}
-
 local function colorizeLootChance(_value) {
 	return (_value > 0 ? "[color=%positive%]" : "[color=%negative%]") + "(" + _value + "%)[/color]";
-}
-
-local function checkForIcon(toAdd, _item) {
-	if (_item.getIcon() == "" || _item == "ui/items/" && ItemImagePaths.find(toAdd + _item.getIcon()) == null) {
-		local slot = _item.getSlotType();
-		if (slot == ::Const.ItemSlot.Body) {
-			return "ui/icons/armor_body.png";
-		} else if (slot == ::Const.ItemSlot.Head) {
-			return "ui/icons/armor_head.png";
-		} else {
-			return "ui/items/supplies/legend_placeholder.png";
-		}
-	} else {
-		return toAdd + _item.getIcon();
-	}
-}
-
-local function getItemIconPaths(_item) {
-	local paths = [];
-	local baseIcon = checkForIcon("ui/items/", _item);
-	paths.push(baseIcon);
-
-	local slot = _item.getSlotType();
-	if (slot == ::Const.ItemSlot.Body || slot == ::Const.ItemSlot.Head) {
-		if (_item.getUpgrades().len() > 0) {
-			foreach (u in _item.m.Upgrades) {
-				if (u != null && u.getIcon() != "" && u.getIcon().find("rune_sigils") == null) {
-					paths.push("ui/items/" + u.getIcon());
-				}
-			}
-		}
-	}
-	return paths;
 }
 
 local function getExpectedArmorDamage(_skill, _target) {
@@ -250,7 +210,7 @@ local function pushSection(_tooltip, _entity, _shownPerks, _items, _title, _star
 		local itemRow = {
 			id = _startID + i,
 			type = "text",
-			icon = checkForIcon(_prependIcon, item),
+			icon = ::Legends.Items.checkForIcon(_prependIcon, item),
 			text = text
 		};
 
@@ -376,7 +336,8 @@ local function addPerks(_tooltip, _entity, _shownPerks) {
 		local perksText = "";
 		foreach (_, perk in perks) {
 			local name = perk.m.Name;
-			if (name.len()) { // some racials have no names
+			if (name.len()) {
+				// some racials have no names
 				perksText += (perksText.len() ? ", " : "") + ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1));
 			}
 		}
@@ -410,7 +371,7 @@ local function addItems(_tooltip, _entity, _shownPerks, _targetedWithSkill) {
 			}
 		}
 
-		local iconPaths = getItemIconPaths(_item);
+		local iconPaths = ::Legends.Items.getItemIconPaths(_item);
 		return {
 			id = _id,
 			type = "text",
