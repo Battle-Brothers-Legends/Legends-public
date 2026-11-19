@@ -790,6 +790,7 @@
 - Fixed the arena staying open after an arena tournament, a tournament now counts as one of the day's fights
 - Fixed the roots from Root never dealing damage each turn when cast while holding a named goblin staff
 - Fixed the Vala staff crafting encounter not using up the staff it was made from
+- Arena traits now go by the number of arena wins alone, a character who missed a step no longer stays stuck on a lower trait like Pit Fighter
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

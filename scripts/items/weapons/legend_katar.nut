@@ -30,7 +30,6 @@ this.legend_katar <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Deathblow, function (_skill) {
-			_skill.m.DeathblowBonus = true;
 			_skill.m.IsIgnoredAsAOO = false;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendGut);

@@ -3,7 +3,8 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		LastFrameApplied = 0,
 		LastEnemyAppliedTo = 0,
 		SkillCount = 0,
-		TurnsLeft = 1
+		TurnsLeft = 1,
+		IsRemoved = true // false keeps it for the whole battle
 	},
 
 	function create() {
@@ -133,7 +134,9 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTurnStart() {
-		this.removeSelf();
+		if (this.m.IsRemoved) {
+			this.removeSelf();
+		}
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {

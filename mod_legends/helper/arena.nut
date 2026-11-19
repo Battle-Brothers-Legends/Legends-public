@@ -77,50 +77,46 @@ if (!("Arena" in ::Legends))
 	}
 }
 
+// wins needed for each arena trait, lowest first
+::Legends.Arena.TraitTiers <- [
+	[1, ::Legends.Trait.PitFighter],
+	[5, ::Legends.Trait.ArenaFighter],
+	[12, ::Legends.Trait.ArenaVeteran],
+	[25, ::Legends.Trait.LegendArenaChampion],
+	[50, ::Legends.Trait.LegendArenaInvictus]
+];
+
 ::Legends.Arena.updateTraits <- function (_list, _bro) {
-	if (_bro.getFlags().getAsInt("ArenaFightsWon") == 1) {
-		::Legends.Traits.grant(_bro, ::Legends.Trait.PitFighter, function(skill) {
-			_list.push({
-				id = 10,
-				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
-			});
-		});
-	} else if (_bro.getFlags().getAsInt("ArenaFightsWon") == 5 && _bro.getSkills().hasTrait(::Legends.Trait.PitFighter)) {
-		::Legends.Traits.remove(_bro, ::Legends.Trait.PitFighter);
-		::Legends.Traits.grant(_bro, ::Legends.Trait.ArenaFighter, function(skill) {
-			_list.push({
-				id = 10,
-				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
-			});
-		});
-	} else if (_bro.getFlags().getAsInt("ArenaFightsWon") >= 12 && _bro.getSkills().hasTrait(::Legends.Trait.ArenaFighter)) {
-		::Legends.Traits.remove(_bro, ::Legends.Trait.ArenaFighter);
-		::Legends.Traits.grant(_bro, ::Legends.Trait.ArenaVeteran, function(skill) {
-			_list.push({
-				id = 10,
-				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
-			});
-		});
-	} else if (_bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && (_bro.getSkills().hasTrait(::Legends.Trait.ArenaVeteran))) {
-		::Legends.Traits.remove(_bro, ::Legends.Trait.ArenaVeteran);
-		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendArenaChampion, function(skill) {
-			_list.push({
-				id = 10,
-				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
-			});
-		});
-	} else if (_bro.getFlags().getAsInt("ArenaFightsWon") >= 50 && _bro.getSkills().hasTrait(::Legends.Trait.LegendArenaChampion)) {
-		::Legends.Traits.remove(_bro, ::Legends.Trait.LegendArenaChampion);
-		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendArenaInvictus, function(skill) {
-			_list.push({
-				id = 10,
-				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
-			});
-		});
+	local won = _bro.getFlags().getAsInt("ArenaFightsWon");
+	local earned = -1;
+	local current = -1;
+
+	foreach (i, tier in ::Legends.Arena.TraitTiers) {
+		if (won >= tier[0]) {
+			earned = i;
+		}
+
+		if (_bro.getSkills().hasTrait(tier[1])) {
+			current = i;
+		}
 	}
+
+	// goes by the wins alone so a character who missed a step catches up, and never takes away a higher trait he already has
+	if (earned <= current) {
+		return;
+	}
+
+	foreach (i, tier in ::Legends.Arena.TraitTiers) {
+		if (i < earned) {
+			::Legends.Traits.remove(_bro, tier[1]);
+		}
+	}
+
+	::Legends.Traits.grant(_bro, ::Legends.Arena.TraitTiers[earned][1], function(skill) {
+		_list.push({
+			id = 10,
+			icon = skill.getIcon(),
+			text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
+		});
+	});
 }
