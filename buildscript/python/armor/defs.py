@@ -749,10 +749,10 @@ class Defs:
  "desc" :  "A leather nomad armor stitched together from various hides and scraps.",
  "adesc" : "Includes a stitched armor of leather hide and scraps."
 },
-{"name": "southern_leather_scale",           "layer": "plate", "min": 1, "max": 4, "value" : 300, "con" : 70, "stam" : -10, "impactSound" : "chain", "invSound" : "chain",
- "title" :  "Rusted Nomad Mail",
- "desc" :  "A worn-down, light mail shirt with rusted metal plates grafted onto it.",
- "adesc" : "Includes a light mail shirt with rusted metal plates grafted onto it."
+{"name": "southern_leather_scale",           "layer": "plate", "min": 1, "max": 4, "value" : 300, "con" : 70, "stam" : -10, "impactSound" : "leather", "invSound" : "leather",
+ "title" :  "Nomad Leather Scale Armor",
+ "desc" :  "A worn-down, heavy armor made of leather scales grafted onto a tunic.",
+ "adesc" : "Includes a heavy leather scale armor."
 },
 {"name": "southern_scale",                  "layer": "plate", "min": 1, "max": 6, "value" : 1500, "con" : 155, "stam" : -26, "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Heavy Southern Lamellar",
