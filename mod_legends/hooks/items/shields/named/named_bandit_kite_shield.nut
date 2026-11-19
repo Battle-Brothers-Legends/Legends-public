@@ -14,7 +14,7 @@
 	}
 
 	o.getTooltip <- function () {
-		local result = this.shield.getTooltip();
+		local result = this.named_shield.getTooltip();
 		result.push({
 			id = 11,
 			type = "text",
