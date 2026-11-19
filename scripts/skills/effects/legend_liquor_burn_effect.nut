@@ -82,6 +82,10 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 		this.m.TurnsLeft = 2;
 	}
 
+	function onRefresh() {
+		this.m.TurnsLeft = 2;
+	}
+
 	function onTurnEnd() {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();

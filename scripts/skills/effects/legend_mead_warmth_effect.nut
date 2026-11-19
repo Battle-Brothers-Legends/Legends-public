@@ -82,6 +82,10 @@ this.legend_mead_warmth_effect <- this.inherit("scripts/skills/skill", {
 		this.m.TurnsLeft = 3;
 	}
 
+	function onRefresh() {
+		this.m.TurnsLeft = 3;
+	}
+
 	function onTurnEnd() {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();

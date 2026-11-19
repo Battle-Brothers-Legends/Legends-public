@@ -53,6 +53,10 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 		this.m.TurnsLeft = 4;
 	}
 
+	function onRefresh() {
+		this.m.TurnsLeft = 4;
+	}
+
 	function onTurnEnd() {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();

@@ -28,6 +28,10 @@ this.legend_heartwood_focus_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onRefresh() {
+		this.m.TurnsLeft = 3;
+	}
+
 	function onTurnEnd() {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();

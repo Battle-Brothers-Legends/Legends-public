@@ -44,6 +44,10 @@ this.legend_marked_effect <- this.inherit("scripts/skills/skill", {
 		_properties.DamageReceivedTotalMult *= this.getBonus();
 	}
 
+	function onRefresh() {
+		this.m.TurnsLeft = 2;
+	}
+
 	function onTurnEnd() {
 		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
