@@ -14,7 +14,7 @@ this.legend_broad_head_arrows <- this.inherit("scripts/items/ammo/ammo", {
 		this.m.ShowOnCharacter = true;
 		this.m.ShowQuiver = true;
 		this.m.Sprite = "bust_quiver_01";
-		this.m.Value = 350;
+		this.m.Value = 650;
 		this.m.Ammo = 10;
 		this.m.AmmoMax = 10;
 		this.m.IsDroppedAsLoot = true;

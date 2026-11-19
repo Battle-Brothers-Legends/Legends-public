@@ -14,7 +14,7 @@ this.legend_huge_quiver_of_arrows <- this.inherit("scripts/items/ammo/ammo", {
 		this.m.ShowOnCharacter = true;
 		this.m.ShowQuiver = true;
 		this.m.Sprite = "bust_quiver_01";
-		this.m.Value = 4000;
+		this.m.Value = 1000;
 		this.m.Ammo = 20;
 		this.m.AmmoMax = 20;
 		this.m.StaminaModifier = -4;

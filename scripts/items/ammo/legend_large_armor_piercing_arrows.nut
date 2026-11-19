@@ -14,7 +14,7 @@ this.legend_large_armor_piercing_arrows <- this.inherit("scripts/items/ammo/ammo
 		this.m.ShowOnCharacter = true;
 		this.m.ShowQuiver = true;
 		this.m.Sprite = "bust_quiver_01";
-		this.m.Value = 3500;
+		this.m.Value = 2100;
 		this.m.Ammo = 14;
 		this.m.AmmoMax = 14;
 		this.m.StaminaModifier = -2;
