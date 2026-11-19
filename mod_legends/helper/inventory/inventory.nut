@@ -24,7 +24,7 @@
 	} else {
 		return {
 			error = "Failed to acquire stash."
-			code = ::Const.CharacterScreen.Error.FailedToAcquireStash
+			code = ::Const.CharacterScreen.ErrorCode.FailedToAcquireStash
 		};
 	}
 	return null;
@@ -67,7 +67,7 @@
 	if (stash == null) {
 		return {
 			error = "Failed to acquire stash."
-			code = ::Const.CharacterScreen.Error.FailedToAcquireStash
+			code = ::Const.CharacterScreen.ErrorCode.FailedToAcquireStash
 		};
 	}
 
@@ -75,7 +75,7 @@
 	if (sourceItem == null) {
 		return {
 			error = "Failed to equip stash item."
-			code = ::Const.CharacterScreen.Error.FailedToEquipStashItem
+			code = ::Const.CharacterScreen.ErrorCode.FailedToEquipStashItem
 		};
 	}
 
