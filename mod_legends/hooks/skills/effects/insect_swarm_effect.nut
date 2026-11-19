@@ -41,6 +41,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		"[color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "initiative"]);
+		return "[color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "initiative"]);
 	}
 });

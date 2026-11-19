@@ -66,7 +66,7 @@ if (!("Items" in ::Legends)) {
 		},
 		getTooltipData = function(_value, _item) {
 			local armorType = "Armor";
-			local modifier = _item.getCurrentFatigueModifier(); // the resultant fatigue modifier if the item is equipped
+			local modifier = ::MSU.isIn("getCurrentFatigueModifier", _item, true) ? _item.getCurrentFatigueModifier() : 0; // the resultant fatigue modifier if the item is equipped
 			local optionalModifierText = modifier == 0 ? "" : " (" + ::Legends.Text.addSignAndColorize(modifier, false) + ")";
 
 			if (_item.m.ItemType == ::Const.Items.ItemType.Armor) {

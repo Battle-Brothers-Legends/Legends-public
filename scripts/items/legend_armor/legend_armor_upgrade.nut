@@ -162,8 +162,8 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function getCurrentFatigueModifier()	// a positive value is good and is added to the available stamina of the character
 	{
-		if (this.m.Armor == null || this.m.Armor.getContainer() == null) return 0.0;
-		return -1 * ::Math.floor(::Math.abs(this.m.Armor.getStaminaModifier()) / 100.0 * getFatiguePenaltyMultiplier());
+		if (this.m.Armor == null) return 0.0;
+		return ::Math.floor(1.0 * ::Math.abs(this.m.Armor.getStaminaModifier()) / ((100.0 + getFatiguePenaltyMultiplier()) / 100) - ::Math.abs(this.m.Armor.getStaminaModifier()));
 	}
 
 	function getIconOverlay()
