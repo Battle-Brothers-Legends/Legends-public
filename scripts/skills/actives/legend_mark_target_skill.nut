@@ -21,12 +21,18 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 3;
 		this.m.IsUsingHitchance = false;
 		this.m.MinRange = 1;
-		this.m.MaxRange = 4;
+		this.m.MaxRange = 99; // as far as this character can see, the target tile still has to be visible to him
 	}
 
 	function getTooltip() {
-		local ret = this.getDefaultUtilityTooltip();
+		local ret = this.getDefaultUtilityTooltip().filter(@(_, _row) _row.id != 7); // without the range line, it would say 99 tiles
 		ret.extend([
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Can be used on any enemy this character can see"
+			},
 			{
 				id = 10,
 				type = "text",

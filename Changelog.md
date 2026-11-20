@@ -304,6 +304,7 @@
 
 **War Bow, Named War Bow, Hunting Bow**
 - gain `Full Draw` and `Mark Target`
+> `Mark Target` can now be used on any enemy the character can see, up from a range of 4
 > Full draw has a base 50% armor penetration, 9 max range and 3 min range, an extra 30% damage but costs 9 ap without mastery and 8 with mastery
 > additionally it's a delayed fire skill that will only do damage on the start of your next turn or after wait with mastery
 - art adjustments for war bow because the vanilla one was too small
