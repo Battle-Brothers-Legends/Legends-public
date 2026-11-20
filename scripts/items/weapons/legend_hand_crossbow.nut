@@ -58,7 +58,7 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Doesn't prevent Double Gripping a melee weapon"
+			text = "Doesn't prevent Double Gripping or unarmed followups"
 		});
 		return result;
 	}
