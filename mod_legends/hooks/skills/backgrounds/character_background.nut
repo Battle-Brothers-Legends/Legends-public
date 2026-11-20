@@ -200,6 +200,42 @@
 		return text;
 	}
 
+	// the perk groups for the description above
+	o.getDescribedPerkTrees <- function () {
+		if (this.m.PerkTreeDynamic == null || this.m.PerkTreeMap == null) {
+			return this.m.PerkTreeDynamic;
+		}
+
+		local ret = {
+			Weapon = [],
+			Defense = [],
+			Enemy = [],
+			Class = [],
+			Traits = []
+		};
+		local complete = this.getPerkGroups().CompleteGroupsIDs;
+
+		foreach (category, groups in ret) {
+			if (category in this.m.PerkTreeDynamic) {
+				groups.extend(this.m.PerkTreeDynamic[category]);
+			}
+
+			if (!(category in complete)) {
+				continue;
+			}
+
+			foreach (id in complete[category]) {
+				local group = ::Const.Perks[id];
+
+				if (groups.find(group) == null && "Descriptions" in group && group.Descriptions.len() != 0) {
+					groups.push(group);
+				}
+			}
+		}
+
+		return ret;
+	}
+
 	// Deprecated. New approach uses getBackgroundDescriptionTooltip
 	/*o.getBackgroundDescription = function ( _desc )
 	{
@@ -311,7 +347,7 @@
 				{
 					id = 3,
 					type = "text",
-					text = this.getPerkBackgroundDescription(this.m.PerkTreeDynamic)
+					text = this.getPerkBackgroundDescription(this.getDescribedPerkTrees())
 				}
 			]);
 		}
