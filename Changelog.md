@@ -799,6 +799,7 @@
 - Ambidextrous no longer lowers AP of throw knife
 - Throw Knife no longer consumes a 2nd dagger if its not thrown
 - Throw Knife now allows using the skill when on 1 ammo and double gripping (throws 1 knife)
+- Fixed an error when a character under the Fury chant died right after their payback attack was triggered
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

@@ -144,16 +144,27 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	}
 
 	function onPerformPaypack(_attackinfo) {
+		// this runs a moment after the hit, the character can be dead and this effect gone by then
+		if (::Legends.S.isNull(_attackinfo.Container)) {
+			return;
+		}
+
 		_attackinfo.Container.setBusy(false);
+
+		if (this == null || ::Legends.S.isEntityNullOrDead(_attackinfo.User) || !_attackinfo.User.isPlacedOnMap()) {
+			return;
+		}
 
 		if (_attackinfo.User.getTile().ID != _attackinfo.StartingTile.ID) {
 			return;
 		}
 
+		local target = _attackinfo.TargetTile.IsOccupiedByActor ? _attackinfo.TargetTile.getEntity() : null;
+
 		this.m.isPerformingPayback = true;
-		if (_attackinfo.User.isAlive() && _attackinfo.TargetTile.getEntity().isAlive()) {
-			_attackinfo.Skill.attackEntity(_attackinfo.User, _attackinfo.TargetTile.getEntity());
-			this.getContainer().getActor().setDirty(true);
+		if (!::Legends.S.isEntityNullOrDead(target)) {
+			_attackinfo.Skill.attackEntity(_attackinfo.User, target);
+			_attackinfo.User.setDirty(true);
 		}
 		this.m.isPerformingPayback = false;
 	}
