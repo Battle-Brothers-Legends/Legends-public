@@ -23,13 +23,14 @@
 		local time = ::Time.getExactTime();
 
 		foreach (target in _targets) {
-			if (::Legends.S.isEntityNullOrDead(target.Actor) || !target.Actor.isPlacedOnMap()) {
-				continue;
-			}
-
 			if (this.isAllottedTimeReached(time)) {
 				yield null;
 				time = ::Time.getExactTime();
+			}
+
+			// checked after the yield, the target can die while this waits for the next frame
+			if (::Legends.S.isEntityNullOrDead(target.Actor) || !target.Actor.isPlacedOnMap()) {
+				continue;
 			}
 
 			local targetTile = target.Actor.getTile();
@@ -88,5 +89,15 @@
 		}
 
 		return true;
+	}
+
+	// selectBestTargetTile() thinks over several frames, someone on its danger list can be dead by the time it asks about him and his getTile() crashes the game
+	local getDangerFromActor = o.getDangerFromActor;
+	o.getDangerFromActor = function (_actor, _target, _entity) {
+		if (::Legends.S.isEntityNullOrDead(_actor) || !_actor.isPlacedOnMap()) {
+			return 0.0;
+		}
+
+		return getDangerFromActor(_actor, _target, _entity);
 	}
 });
