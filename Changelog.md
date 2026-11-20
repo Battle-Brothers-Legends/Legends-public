@@ -801,6 +801,7 @@
 - Throw Knife now allows using the skill when on 1 ammo and double gripping (throws 1 knife)
 - Fixed an error when a character under the Fury chant died right after their payback attack was triggered
 - Fixed a crash when a character died while a ranged AI unit was still deciding where to move
+- Fixed Line Them Up with Crossbow Mastery hitting the third tile twice instead of reaching a fourth tile
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

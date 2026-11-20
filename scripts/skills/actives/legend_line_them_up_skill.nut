@@ -158,30 +158,11 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local ownTile = actor.getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
-		local forwardTile;
+		local targets = actor.getCurrentProperties().IsSpecializedInCrossbows ? 4 : 3;
+		local forwardTile = _targetTile;
 
-		if (_targetTile.hasNextTile(dir)) {
-			forwardTile = _targetTile.getNextTile(dir);
-
-			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
-				ret.push(forwardTile);
-			}
-		}
-
-		if (forwardTile.hasNextTile(dir)) {
-			local forwardTile = forwardTile.getNextTile(dir);
-
-			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
-				ret.push(forwardTile);
-			}
-		}
-
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInCrossbows) {
-			return ret;
-		}
-
-		if (forwardTile.hasNextTile(dir)) {
-			local forwardTile = forwardTile.getNextTile(dir);
+		for (local i = 1; i < targets && forwardTile.hasNextTile(dir); i = ++i) {
+			forwardTile = forwardTile.getNextTile(dir);
 
 			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
 				ret.push(forwardTile);
