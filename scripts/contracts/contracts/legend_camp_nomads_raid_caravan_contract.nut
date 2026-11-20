@@ -20,7 +20,6 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 			"A trade caravan is coming from the south, lightly protected and high in value.",
 		];
 		this.m.Payment.ItemPool = [
-			[50, "misc/legend_enemy_skill_book_item"],
 			[50, "misc/legend_class_skill_book_item"],
 			[50, "misc/legend_weapon_skill_book_item"],
 			[50, "misc/legend_trait_skill_book_item"]

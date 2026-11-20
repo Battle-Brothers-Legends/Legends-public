@@ -165,14 +165,12 @@ local VanillaTree = [
 	// 	WeaponTrees = 6,
 	// 	DefenseTrees = 2,
 	// 	TraitsTrees = 8,
-	// 	EnemyTrees = 3,
 	// 	ClassTrees = 0
 	// },
 	// _map = {
 	// 	WeaponTrees = [],
 	// 	DefenseTrees = [],
 	// 	TraitsTrees = [],
-	// 	EnemyTrees = [],
 	// 	ClassTrees = []
 	// }
 	//this.logInfo("Getting dynamic perk tree")
@@ -183,9 +181,7 @@ local VanillaTree = [
 		Weapon = [],
 		Defense = [],
 		Traits = [],
-		Enemy = [],
 		Class = [],
-		Profession = [],
 		Magic = []
 	};
 
@@ -208,22 +204,10 @@ local VanillaTree = [
 			_localMap.Traits.push(p);
 		}
 	}
-	if ("Enemy" in _map) {
-		foreach (p in _map.Enemy)
-		{
-			_localMap.Enemy.push(p);
-		}
-	}
 	if ("Class" in _map) {
 		foreach (p in _map.Class)
 		{
 			_localMap.Class.push(p);
-		}
-	}
-	if ("Profession" in _map) {
-		foreach (p in _map.Profession)
-		{
-			_localMap.Profession.push(p);
 		}
 	}
 	if ("Magic" in _map) {
@@ -276,25 +260,6 @@ local VanillaTree = [
 		_localMap.Traits.push(t);
 	}
 
-	//Add Enemy
-	local count = _mins.Enemy - _localMap.Enemy.len();
-	for (local i = 0; i <= count; i = ++i)
-	{
-		local r = ::Math.rand(0, 100);
-		if (r > (_mins.EnemyChance * 100.0))
-		{
-			continue;
-		}
-		local _exclude = [];
-		foreach (tt in _localMap.Enemy)
-		{
-			_exclude.push(tt.ID);
-		}
-		local t = ::Const.Perks.EnemyTrees.getRandom(_exclude);
-		//this.logInfo("Adding Enemy perk tree " + t.ID);
-		_localMap.Enemy.push(t);
-	}
-
 	local weaponClassMap = [
 		[::Const.Perks.ShovelClassTree, ::Const.Perks.MaceTree],
 		[::Const.Perks.KnifeClassTree, ::Const.Perks.DaggerTree],
@@ -344,25 +309,6 @@ local VanillaTree = [
 		//this.logInfo("Adding Class perk tree " + t.ID);
 		_localMap.Class.push(t);
 	}
-
-	//Add Profession
-	/*local count = _mins.Profession - _localMap.Profession.len();
-	for (local i = 0; i <= count; i = ++i)
-	{
-		local r = ::Math.rand(0, 100);
-		if (r > (_mins.ProfessionChance * 100.0))
-		{
-			continue;
-		}
-		local _exclude = toExclude;
-		foreach (tt in _localMap.Profession)
-		{
-			_exclude.push(tt.ID);
-		}
-		local t = ::Const.Perks.ProfessionTrees.getRandom(_exclude);
-		//this.logInfo("Adding Profession perk tree " + t.ID);
-		_localMap.Profession.push(t);
-	}*/
 
 	//Add Magic
 	local count = _mins.Magic - _localMap.Magic.len();

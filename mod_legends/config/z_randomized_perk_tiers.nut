@@ -31,7 +31,6 @@
         ::Const.Perks.CalmTree,
         ::Const.Perks.FastTree,
         ::Const.Perks.LargeTree,
-        ::Const.Perks.OrganisedTree,
         ::Const.Perks.SturdyTree,
         ::Const.Perks.FitTree,
         ::Const.Perks.TrainedTree
@@ -70,7 +69,6 @@
         ::Const.Perks.IndestructibleTree,
         ::Const.Perks.CalmTree,
         ::Const.Perks.LargeTree,
-        ::Const.Perks.OrganisedTree,
         ::Const.Perks.SturdyTree,
         ::Const.Perks.FitTree,
         ::Const.Perks.TrainedTree
@@ -104,7 +102,6 @@
         ::Const.Perks.IndestructibleTree,
         ::Const.Perks.CalmTree,
         ::Const.Perks.LargeTree,
-        ::Const.Perks.OrganisedTree,
         ::Const.Perks.SturdyTree,
         ::Const.Perks.FitTree,
         ::Const.Perks.TrainedTree
@@ -434,7 +431,6 @@
         ::Const.Perks.CalmTree,
         ::Const.Perks.FastTree,
         ::Const.Perks.LargeTree,
-        ::Const.Perks.OrganisedTree,
         ::Const.Perks.SturdyTree,
         ::Const.Perks.FitTree
     ],

@@ -12,8 +12,6 @@
 		EnemyChance = 0.01,
 		Class = 1,
 		ClassChance = 0.01,
-		Profession = 1,
-		ProfessionChance = 0.01,
 		Magic = 1,
 		MagicChance = 0
 	};

@@ -23,7 +23,6 @@
 				item(50, 1.0, "misc/legend_class_skill_book_item"),
 				item(50, 1.0, "misc/legend_armor_skill_book_item"),
 				item(50, 1.0, "misc/legend_trait_skill_book_item"),
-				item(50, 1.0, "misc/legend_enemy_skill_book_item"),
 			]);
 		}
 
@@ -33,7 +32,6 @@
 				item(50, 1.0, "misc/legend_class_skill_book_item"),
 				item(50, 1.0, "misc/legend_armor_skill_book_item"),
 				item(50, 1.0, "misc/legend_trait_skill_book_item"),
-				item(50, 1.0, "misc/legend_enemy_skill_book_item"),
 				item(95, 2.0, "misc/legend_masterwork_fabric"),
 				item(95, 2.0, "misc/legend_masterwork_tools"),
 				item(95, 2.0, "misc/legend_masterwork_metal"),

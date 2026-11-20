@@ -241,30 +241,6 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendMuscularity]
 	]
 };
-::Const.Perks.OrganisedTree <- {
-	ID = "OrganisedTree",
-	Name = "Organized",
-	Icon = "ui/perks/perk_20.png",
-	Descriptions = [
-		"is organized",
-		"coordinates activities effectively",
-		"formulates detailed plans",
-		"tabulates company expenses",
-		"already classified your inventory",
-		"alphabetizes the supplies",
-		"is fastidiously organised"
-	],
-	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendPrepared],
-		[],
-		[]
-	]
-};
 ::Const.Perks.SturdyTree <- {
 	ID = "SturdyTree",
 	Name = "Sturdy",
@@ -349,7 +325,6 @@ if (!("Perks" in ::Const)) {
 		::Const.Perks.CalmTree,
 		::Const.Perks.FastTree,
 		::Const.Perks.LargeTree,
-		::Const.Perks.OrganisedTree,
 		::Const.Perks.SturdyTree,
 		::Const.Perks.FitTree,
 		::Const.Perks.TrainedTree
