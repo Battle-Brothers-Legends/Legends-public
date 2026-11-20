@@ -77,56 +77,41 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		local hasBothHands = this.getContainer().getSkillByID("injury.missing_hand") == null || ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand) != null;
 		local main = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local off = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-		return hasBothHands && off == null && main != null && main.isDoubleGrippable();
+		return hasBothHands && off == null && main != null && main.isDoubleGrippable() && this.isUsable();
 	}
 
 	function isUsable() {
 		local actor = this.getContainer().getActor();
-		local ammoNeeded = this.canDoubleThrow() ? 2 : 1;
-		return this.skill.isUsable() && !actor.isEngagedInMelee() && this.getAmmo() > ammoNeeded;
+		return this.skill.isUsable() && !actor.isEngagedInMelee() && this.getAmmo() >= 1;
 	}
 
 	function getAmmo() {
 		local item = this.getItem();
-
-		if (item == null) {
-			return 0;
-		}
-
-		return item.getAmmo();
-	}
-
-	function consumeAmmo() {
-		local item = this.getItem();
-
-		if (item != null) {
-			item.consumeAmmo();
-			if (this.canDoubleThrow()) {
-				item.consumeAmmo();
-			}
-		}
+		return (item != null ? item.getAmmo() : 0);
 	}
 
 	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		local success = this.attackEntity(_user, target);
-		this.consumeAmmo();
+		local dagger = this.getItem();
+		dagger.consumeAmmo();
+		if (!this.canDoubleThrow()) {
+			return success;
+		}
 		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer) {
 			this.m.IsDoingAttackMove = false;
 			this.getContainer().setBusy(true);
 
-			if (!this.canDoubleThrow()) {
-				return success;
-			}
-
 			::Time.scheduleEvent(::TimeUnit.Virtual, 150, function (_skill) {
 				if (!::Legends.S.isEntityNullOrDead(target)) {
 					success = _skill.attackEntity(_user, target) || success;
+					dagger.consumeAmmo();
 					_skill.m.IsDoingAttackMove = true;
 					_skill.getContainer().setBusy(false);
 				}
 			}.bindenv(this), this);
 		} else if (!::Legends.S.isEntityNullOrDead(target)) {
+			dagger.consumeAmmo();
 			return this.attackEntity(_user, target) || success;
 		}
 
@@ -134,15 +119,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		if (_skill != this) {
-			return;
-		}
-
-		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
-			return;
-		}
-
-		if (!_bodyPart == ::Const.BodyPart.Head) {
+		if (_skill != this || ::Legends.S.isEntityNullOrDead(_targetEntity) || _bodyPart != ::Const.BodyPart.Head) {
 			return;
 		}
 
@@ -160,7 +137,6 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.ActionPointCost = this.getContainer().hasPerk(::Legends.Perk.LegendAmbidextrous) ? 3 : 4;
 		this.m.DistractedChance = _properties.IsSpecializedInDaggers ? 50 : 25;
 	}
 
@@ -172,5 +148,4 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 			_properties.HitChanceAdditionalWithEachTile -= 10;
 		}
 	}
-
 });

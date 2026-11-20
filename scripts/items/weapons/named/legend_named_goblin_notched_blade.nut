@@ -1,7 +1,7 @@
 this.legend_named_goblin_notched_blade <- this.inherit("scripts/items/weapons/named/named_weapon", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_goblin_notched_blade";
 		this.m.NameList = ::Const.Strings.DaggerNames;
@@ -25,19 +25,28 @@ this.legend_named_goblin_notched_blade <- this.inherit("scripts/items/weapons/na
 		this.m.RegularDamageMax = 30;
 		this.m.ArmorDamageMult = 0.6;
 		this.m.DirectDamageMult = 0.2;
+		this.m.Ammo = 8;
+		this.m.AmmoMax = 8;
+		this.m.AmmoCost = 1;
 		this.randomizeValues();
 	}
 
-	function onEquip()
-	{
+	function getAmmo() {
+		return this.m.Ammo;
+	}
+
+	function getAmmoMax() {
+		return this.m.AmmoMax;
+	}
+
+	function onEquip() {
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill)
-		{
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
 			_skill.m.Icon = "skills/active_77.png";
 			_skill.m.IconDisabled = "skills/active_77_sw.png";
 			_skill.m.Overlay = "active_77";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendThrowKnife);
 	}
 });
-

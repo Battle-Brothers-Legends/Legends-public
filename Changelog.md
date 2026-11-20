@@ -794,6 +794,10 @@
 - Fixed the roots from Root never dealing damage each turn when cast while holding a named goblin staff
 - Fixed the Vala staff crafting encounter not using up the staff it was made from
 - Arena traits now go by the number of arena wins alone, a character who missed a step no longer stays stuck on a lower trait like Pit Fighter
+- Named goblin notched blades now correctly have throw knife
+- Ambidextrous no longer lowers AP of throw knife
+- Throw Knife no longer consumes a 2nd dagger if its not thrown
+- Throw Knife now allows using the skill when on 1 ammo and double gripping (throws 1 knife)
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true
