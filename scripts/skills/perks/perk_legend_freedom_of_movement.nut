@@ -34,7 +34,7 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 			if (this.m.Skills.find(id) != null) {
 				if (::Legends.S.oneOf(id, ::Legends.Actives.getID(::Legends.Active.LegendEvasion), ::Legends.Actives.getID(::Legends.Active.LegendLeap))) {
 					skill.m.ActionPointCost /= 2;
-				} else if (!::Legends.S.oneOf(id, ::Legends.Actives.getID(::Legends.Active.Lunge), ::Legends.Actives.getID(::Legends.Active.LegendQuickStep))) {
+				} else if (id != ::Legends.Actives.getID(::Legends.Active.Lunge)) {
 					if (id != ::Legends.Actives.getID(::Legends.Active.Footwork) || !::Legends.Actives.get(actor, ::Legends.Active.Footwork).m.IsFootwork) {
 						skill.m.ActionPointCost -= 1; //LegendClimb, Footwork, Rotation, LegendHorsePirouette
 					}
