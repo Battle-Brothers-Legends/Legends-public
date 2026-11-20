@@ -106,6 +106,26 @@
 		}
 	};
 
+	// what actor.onMovementStep() charges for the step onto _tile
+	o.getFreeMoveCosts <- function (_activeEntity, _tile) {
+		local actionPoints = _activeEntity.getActionPointCosts()[_tile.Type];
+		local fatigue = _activeEntity.getFatigueCosts()[_tile.Type];
+		local levelDifference = _tile.Level - _activeEntity.getTile().Level;
+
+		if (levelDifference != 0) {
+			actionPoints += _activeEntity.getLevelActionPointCost();
+			fatigue += _activeEntity.getLevelFatigueCost();
+			if (levelDifference > 0) {
+				fatigue += ::Const.Movement.LevelClimbingFatigueCost;
+			}
+		}
+
+		return {
+			ActionPoints = actionPoints,
+			Fatigue = ::Math.round(fatigue * _activeEntity.getCurrentProperties().FatigueEffectMult)
+		};
+	}
+
 	o.computeEntityPath = function (_activeEntity, _mouseEvent) {
 		if (this.m.IsGameFinishable && this.isBattleEnded() || this.wasInCameraMovementMode()) {
 			return;
@@ -147,14 +167,15 @@
 
 		local freeMove = this.getFreeMoveSkills(_activeEntity);
 
-		local targetTileType = _activeEntity.getTile().Type;
+		local firstTile = null;
 		if (::Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, settings, 0)) {
-			targetTileType = ::Tactical.getNavigator().getCostForPath(_activeEntity, settings, 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
+			firstTile = ::Tactical.getNavigator().getCostForPath(_activeEntity, settings, 0, 0).First; // mockup movement test only to determine the first tile
 		}
 
-		if (freeMove.IsActive) {
-			freeMove.BonusAP = ::Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
-			freeMove.BonusFat = ::Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
+		if (freeMove.IsActive && firstTile != null) {
+			local costs = this.getFreeMoveCosts(_activeEntity, firstTile);
+			freeMove.BonusAP = costs.ActionPoints;
+			freeMove.BonusFat = costs.Fatigue;
 			if (_activeEntity.getFatigue() - freeMove.BonusFat < 0) {
 				freeMove.BonusFat += _activeEntity.getFatigue() - freeMove.BonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
 			}
@@ -201,11 +222,10 @@
 			local lastSettings = ::Tactical.getNavigator().getLastSettings();
 
 			if (freeMove.IsActive) {
-				local targetTileType = ::Tactical.getNavigator().getCostForPath(_activeEntity, lastSettings, 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
+				local costs = this.getFreeMoveCosts(_activeEntity, ::Tactical.getNavigator().getCostForPath(_activeEntity, lastSettings, 0, 0).First); // mockup movement test only to determine the first tile
 
-				local properties = _activeEntity.getCurrentProperties();
-				freeMove.BonusAP = ::Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
-				freeMove.BonusFat = ::Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
+				freeMove.BonusAP = costs.ActionPoints;
+				freeMove.BonusFat = costs.Fatigue;
 				if (_activeEntity.getFatigue() - freeMove.BonusFat < 0) {
 					freeMove.BonusFat += _activeEntity.getFatigue() - freeMove.BonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
 				}
@@ -229,13 +249,12 @@
 				}
 
 				if (freeMove.BuffApplied) {
-					if (this.m.CurrentActionState == ::Const.Tactical.ActionState.TravelPath) {
-						this.disableAllFreeMoveSkills(_activeEntity);
-					} else {
-						_activeEntity.setActionPoints(_activeEntity.getActionPoints() - freeMove.BonusAP); // most likely unnecessary, but just in case the move didn't happen
-						_activeEntity.setFatigue(_activeEntity.getFatigue() + freeMove.BonusFat);
-					}
+					this.disableAllFreeMoveSkills(_activeEntity);
 				}
+			} else if (freeMove.BuffApplied) {
+				// the move is not happening, take the free tile back
+				_activeEntity.setActionPoints(_activeEntity.getActionPoints() - freeMove.BonusAP);
+				_activeEntity.setFatigue(_activeEntity.getFatigue() + freeMove.BonusFat);
 			}
 		} else {
 			this.computeEntityPath(_activeEntity, _mouseEvent);
