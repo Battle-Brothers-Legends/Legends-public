@@ -16,6 +16,11 @@ foreach (_, directory in ::IO.enumerateFiles(items_directory + "ui/items/")) {
 
 ::Legends.Items.checkForIcon <- function (toAdd, _item) {
 	if (_item.getIcon() == "" || _item == "ui/items/" && ItemImagePaths.find(toAdd + _item.getIcon()) == null) {
+		// the entity tooltip sends status effects and perks through here too, a skill has no slot
+		if (!::isKindOf(_item, "item")) {
+			return "ui/icons/special.png";
+		}
+
 		local slot = _item.getSlotType();
 		if (slot == ::Const.ItemSlot.Body) {
 			return "ui/icons/armor_body.png";

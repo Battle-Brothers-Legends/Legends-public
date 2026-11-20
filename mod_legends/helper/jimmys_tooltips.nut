@@ -191,6 +191,11 @@ local function pushSection(_tooltip, _entity, _shownPerks, _items, _title, _star
 			continue;
 		}
 
+		// a Vala chant blanks its name and icon while it does nothing, there is nothing to show then
+		if (name == "") {
+			continue;
+		}
+
 		if (_filter != 0) {
 			_shownPerks[name] <- 1;
 		}
