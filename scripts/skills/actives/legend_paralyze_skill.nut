@@ -24,6 +24,14 @@ this.legend_paralyze_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsUsingHitchance = false;
 	}
 
+	function onAfterUpdate(_properties) {
+		if (_properties.IsSpecializedInStaves) {
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+			this.m.MaxRange += 1;
+		}
+	}
+
 	function getHitchance(_targetEntity) {
 		return 100;
 	}

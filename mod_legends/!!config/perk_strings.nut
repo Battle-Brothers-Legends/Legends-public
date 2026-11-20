@@ -718,11 +718,11 @@ Playing one note enough times is what makes one a master.
 It's good to have something to lean on while focusing. Especially when that thing is a catalyst.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Build up [color=%negative%]25%[/color] less Fatigue when using [color=%skill%]Chain Lightning[/color], [color=%skill%]Firefield[/color], [color=%skill%]Magic Missile[/color] or [color=%skill%]Root[/color].
+• Build up [color=%negative%]25%[/color] less Fatigue when using spells and reduce their AP cost by [color=%negative%]1[/color].
 
-• Reduces AP cost of [color=%skill%]Chain Lightning[/color], [color=%skill%]Firefield[/color], [color=%skill%]Magic Missile[/color] or [color=%skill%]Root[/color] by [color=%negative%]1[/color].
+• Increases their maximum range by [color=%positive%]1[/color].
 
-• Increases the maximum range of [color=%skill%]Magic Missile[/color] by [color=%negative%]1[/color].
+• Works with [color=%skill%]Chain Lightning[/color], [color=%skill%]Draining Touch[/color], [color=%skill%]Firefield[/color], [color=%skill%]Insect Swarm[/color], [color=%skill%]Levitate[/color], [color=%skill%]Magic Missile[/color], [color=%skill%]Miasma[/color], [color=%skill%]Paralyze[/color], [color=%skill%]Root[/color], [color=%skill%]Rust[/color], [color=%skill%]Scry[/color], [color=%skill%]Slumber[/color], [color=%skill%]Stupefy[/color], [color=%skill%]Summon Storm[/color], [color=%skill%]Terrifying Visage[/color] and [color=%skill%]Wither[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryMusic <- @"
@@ -1592,7 +1592,7 @@ I'm bringing home the rain.
 
 • The first cast brings on light rain, the second cast brings a heavy storm.
 
-• Must have empty hands.
+• Must have an empty main hand or hold a magic staff.
 
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";

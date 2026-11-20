@@ -163,6 +163,9 @@
 > increases hitchance by 10% each time an enemy misses you
 
 ### Perk Changes
+- `Magic Staff Mastery` - now also lowers the cost of `Draining Touch`, `Insect Swarm`, `Levitate`, `Miasma`, `Paralyze`, `Rust`, `Scry`, `Slumber`, `Stupefy`, `Summon Storm`, `Terrifying Visage` and `Wither`
+> also increases the maximum range of every spell it covers by 1, not only `Magic Missile`
+- `Summon Storm` - can now also be cast while holding a magic staff, not only with an empty main hand
 - `Prisoner's rush` - no longer grants deathblow to regular daggers and a deathblow bonus, now grants a passive 20% armor penetration
 - `Shield Bash` - `Knock Back` and `Buckler Bash` now deals an additional 25% Damage, +50% Armor Damage and +10% Armor Penetration.
 > `Knock Back`, `Hook` and `Repel` now have a 100% chance to apply `Knocked Over` against targets that are `Netted`, `Rooted` or `Webbed`.

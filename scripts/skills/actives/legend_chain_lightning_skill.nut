@@ -112,6 +112,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 		if (_properties.IsSpecializedInStaves) {
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost -= 1;
+			this.m.MaxRange += 1;
 		}
 		//		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain))
 		//		{

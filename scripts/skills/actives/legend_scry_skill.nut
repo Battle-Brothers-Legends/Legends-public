@@ -19,6 +19,15 @@ this.legend_scry_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
+	function onAfterUpdate( _properties )
+	{
+		if (_properties.IsSpecializedInStaves)
+		{
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+		}
+	}
+
 	function getTooltip()
 	{
 		local ret = [

@@ -27,6 +27,13 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
+	function onAfterUpdate(_properties) {
+		if (_properties.IsSpecializedInStaves) {
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+		}
+	}
+
 	function getTooltip() {
 		return [
 			{
@@ -48,7 +55,8 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden() {
-		return this.m.IsHidden || !this.getContainer().getActor().getItems().hasEmptySlot(::Const.ItemSlot.Mainhand);
+		local actor = this.getContainer().getActor();
+		return this.m.IsHidden || (!actor.getItems().hasEmptySlot(::Const.ItemSlot.Mainhand) && !actor.isArmedWithMagicStaff());
 	}
 
 	function onUse(_user, _targetTile) {

@@ -25,6 +25,14 @@ this.legend_draining_touch_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 5;
 	}
 
+	function onAfterUpdate(_properties) {
+		if (_properties.IsSpecializedInStaves) {
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+			this.m.MaxRange += 1;
+		}
+	}
+
 	function getTooltip() {
 		return [
 			{

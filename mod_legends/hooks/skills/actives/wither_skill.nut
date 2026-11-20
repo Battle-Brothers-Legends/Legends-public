@@ -10,4 +10,12 @@
 	o.getTooltip <- function () {
 		return this.skill.getDefaultUtilityTooltip();
 	}
+
+	o.onAfterUpdate <- function (_properties) {
+		if (_properties.IsSpecializedInStaves) {
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+			this.m.MaxRange += 1;
+		}
+	}
 });

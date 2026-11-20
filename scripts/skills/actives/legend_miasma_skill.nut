@@ -27,6 +27,16 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 8;
 	}
 
+	function onAfterUpdate( _properties )
+	{
+		if (_properties.IsSpecializedInStaves)
+		{
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+			this.m.MaxRange += 1;
+		}
+	}
+
 	function getTooltip()
 	{
 		return [

@@ -28,6 +28,14 @@ this.legend_slumber_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 70;
 	}
 
+	function onAfterUpdate(_properties) {
+		if (_properties.IsSpecializedInStaves) {
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+			this.m.MaxRange += 1;
+		}
+	}
+
 	function isUsable() {
 		local actor = this.getContainer().getActor();
 		return this.skill.isUsable() && !actor.isEngagedInMelee() && actor.isArmedWithMagicStaff();

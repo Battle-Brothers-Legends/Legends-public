@@ -33,6 +33,14 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		this.m.HitChanceBonus = 10;
 	}
 
+	function onAfterUpdate(_properties) {
+		if (_properties.IsSpecializedInStaves) {
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+			this.m.MaxRange += 1;
+		}
+	}
+
 	function getTooltip() {
 		local p = this.getContainer().getActor().getCurrentProperties();
 		local damage_armor_min = ::Math.floor(p.getInitiativeMinDamage());
