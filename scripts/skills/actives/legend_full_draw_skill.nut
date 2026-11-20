@@ -46,6 +46,20 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 		}
 	}
 
+	function onPerformAttack(_tag) {
+		if (::Legends.S.isEntityNullOrDead(_tag.User)) {
+			return false;
+		}
+
+		_tag.User.getSkills().setBusy(false);
+
+		if (::Legends.S.isNull(_tag.Skill.getContainer()) || !_tag.TargetTile.IsOccupiedByActor) {
+			return false;
+		}
+
+		return _tag.Skill.attackEntity(_tag.User, _tag.TargetTile.getEntity());
+	}
+
 	function onUse(_user, _targetTile) {
 		this.m.Prepared = true;
 		this.m.TargetTile = _targetTile;
