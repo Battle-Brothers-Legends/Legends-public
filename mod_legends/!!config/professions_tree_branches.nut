@@ -168,7 +168,7 @@ local P = ::Legends.Profession;
 		graverobber = { Known = [P.LegendScrapping], Special = [P.LegendFavouredEnemyBeast, P.LegendFavouredEnemyUndead] },
 
 		// soldiers
-		retired_soldier = { Known = [P.LegendTraining], Special = [P.LegendFavouredEnemyOutlaw] },
+		retired_soldier = { Known = [P.LegendTraining], Special = [P.LegendFavouredEnemyOutlaw], FavouredEnemyChance = 20 },
 		swordmaster = { Known = [P.LegendTraining], Special = [P.LegendFavouredEnemySwordmaster] },
 		squire = { Known = [P.LegendTraining] },
 		gladiator = { Known = [P.LegendTraining], Roots = [P.LegendBalladeInTheMaking] },

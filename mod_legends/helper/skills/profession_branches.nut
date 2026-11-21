@@ -318,7 +318,13 @@
 	}
 
 	// and now and then into a favoured enemy his background does not give
-	if (::Math.rand(1, 100) <= this.RandomFavouredEnemyChance)
+	local chance = this.getBackgroundList(_bro, "FavouredEnemyChance");
+	if (typeof chance != "integer")
+	{
+		chance = this.RandomFavouredEnemyChance;
+	}
+
+	if (::Math.rand(1, 100) <= chance)
 	{
 		local special = this.getBackgroundList(_bro, "Special");
 		local enemies = this.FavouredEnemies.filter(@(_, _p) special.find(_p) == null);
