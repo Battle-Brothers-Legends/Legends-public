@@ -246,7 +246,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		local maxStrength = 0;
 
 		local self = this;
-		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (::Legends.Professions.has(_bro, self.m.Profession) && _bro.getLevel >= 12))) {
+		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (::Legends.Professions.has(_bro, self.m.Profession) && _bro.getLevel() >= 12))) {
 			local stats = ::Legends.FavoriteEnemy.getFavoriteEnemyStats(bro, this.m.Category);
 			if (stats.Strength > maxStrength) {
 				maxStrength = stats.Strength;
