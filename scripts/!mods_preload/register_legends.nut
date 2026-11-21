@@ -39,6 +39,12 @@
 		foreach (file in ::IO.enumerateFiles("mod_legends/patch/offplus/"))
 			::include(file);
 	}
+
+	if (::mods_getRegisteredMod("mod_stronghold") != null) {
+		::logInfo("Stronghold detected, loading compatibility patch");
+		foreach (file in ::IO.enumerateFiles("mod_legends/patch/stronghold/"))
+			::include(file);
+	}
 });
 
 // some mods can be easily 'fixed' by loading after legends, that what it is for

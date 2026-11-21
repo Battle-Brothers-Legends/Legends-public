@@ -1,8 +1,9 @@
 19.5.0 - Name Pending
 
-## Blazing Desert Plus and OFF+
+## Mod Compatibility Patches
 - added a patch for BD+ by Sato
 - added a patch for OFF+ by Sato
+- added a patch for Stronghold by TaroEld
 
 ## Origins
 ### Legion
