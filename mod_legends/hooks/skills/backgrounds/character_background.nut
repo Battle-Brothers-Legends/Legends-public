@@ -51,6 +51,7 @@
 	o.m.PerkTreeMap <- null;
 	o.m.PerkTree <- null;
 	o.m.IsGuaranteed <- [];
+	o.m.ProfessionTreeBranches <- null;
 	o.m.CustomProfessionTree <- null;
 	o.m.ProfessionTreeMap <- null;
 	o.m.ProfessionTree <- null;

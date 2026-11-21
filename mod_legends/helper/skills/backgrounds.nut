@@ -127,6 +127,8 @@ if (!("Backgrounds" in ::Legends)) {
 		_target.m.HiringCost = defs.HiringCost();
 	_target.m.DailyCost = defs.DailyCost;
 	_target.m.PerkTreeDynamic = ::Legends.Backgrounds.getPerkTrees(defs.Const);
+	_target.m.ProfessionTreeBranches = ::Legends.Backgrounds.getProfessionBranches(defs.Const);
+	_target.m.CustomProfessionTree = ::Legends.Backgrounds.getCustomProfessionTree(defs.Const);
 	_target.m.Icon = defs.Icon;
 }
 
@@ -137,13 +139,31 @@ if (!("Backgrounds" in ::Legends)) {
 			Weapon = [],
 			Defense = [],
 			Traits = [],
-			Enemy = [],
 			Class = [],
-			Profession = [],
 			Magic = []
 		};
 	}
 	return ::Legends.BackgroundPerkTrees[_name];
+}
+
+::Legends.Backgrounds.getProfessionBranches <- function(_name) {
+	if (!(_name in ::Legends.BackgroundProfessionTrees)) {
+		::logError(_name + " missing in ::Legends.BackgroundProfessionTrees, using default");
+		return {
+			Roots = [],
+			Known = [],
+			Special = []	
+		};
+	}
+	return ::Legends.BackgroundProfessionTrees[_name].Profession;
+}
+
+::Legends.Backgrounds.getCustomProfessionTree <- function(_name) {
+	if (!(_name in ::Legends.BackgroundProfessionTrees)) {
+		::logError(_name + " missing in ::Legends.BackgroundProfessionTrees, using default");
+		return null;
+	}
+	return ::Legends.BackgroundProfessionTrees[_name].CustomProfessionTree;
 }
 
 ::Legends.Backgrounds.getStats <- function(_def) {

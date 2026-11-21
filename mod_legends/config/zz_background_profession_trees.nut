@@ -3,6 +3,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 }
 
 ::Legends.BackgroundProfessionTrees.AdventurousNoble <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
@@ -11,6 +12,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Anatomist <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendHealing],
@@ -19,6 +21,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Apprentice <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendCrafting]
@@ -27,6 +30,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Assassin <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendShadyDeals],
 		Known = [],
@@ -35,6 +39,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.AssassinSouthern <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendShadyDeals]
 		Known = [],
@@ -43,6 +48,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Barbarian <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -51,6 +57,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Bastard <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -59,6 +66,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.BeastSlayer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendGathering, ::Legends.Profession.LegendHunting],
@@ -67,6 +75,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Beggar <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -77,6 +86,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.BeggarSouthern <- clone ::Legends.BackgroundProfessionTrees.Beggar;
 
 ::Legends.BackgroundProfessionTrees.BellyDancer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -85,6 +95,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Bowyer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendFletching]
@@ -93,6 +104,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Brawler <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -101,6 +113,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Butcher <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendCooking],
@@ -111,6 +124,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.ButcherSouthern <- clone ::Legends.BackgroundProfessionTrees.Butcher;
 
 ::Legends.BackgroundProfessionTrees.CaravanHand <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendFriendsInRightPlaces],
 		Known = [::Legends.Profession.LegendScouting],
@@ -121,6 +135,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.CaravanHandSouthern <- clone ::Legends.BackgroundProfessionTrees.CaravanHand;
 
 ::Legends.BackgroundProfessionTrees.Companion <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -131,6 +146,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.CompanionSouthern <- clone ::Legends.BackgroundProfessionTrees.Companion;
 
 ::Legends.BackgroundProfessionTrees.Companion2h <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -141,6 +157,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.CompanionSouthern2h <- clone ::Legends.BackgroundProfessionTrees.Companion2h;
 
 ::Legends.BackgroundProfessionTrees.CompanionRanged <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -151,6 +168,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.CompanionSouthernRanged <- clone ::Legends.BackgroundProfessionTrees.CompanionRanged;
 
 ::Legends.BackgroundProfessionTrees.Cripple <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -161,6 +179,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.CrippleSouthern <- clone ::Legends.BackgroundProfessionTrees.Cripple;
 
 ::Legends.BackgroundProfessionTrees.Crucified <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -169,6 +188,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Crusader <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -177,6 +197,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Cultist <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -185,6 +206,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.ConvertedCultist <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -193,6 +215,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Daytaler <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendGathering],
@@ -203,6 +226,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.DaytalerSouthern <- clone ::Legends.BackgroundProfessionTrees.Daytaler;
 
 ::Legends.BackgroundProfessionTrees.Deserter <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendScrapping],
@@ -211,6 +235,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.DisownedNoble <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
@@ -219,6 +244,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Eunuch <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendFriendsInRightPlaces],
@@ -229,6 +255,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.EunuchSouthern <- clone ::Legends.BackgroundProfessionTrees.Eunuch;
 
 ::Legends.BackgroundProfessionTrees.Executioner <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -239,6 +266,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.ExecutionerSouthern <- clone ::Legends.BackgroundProfessionTrees.Executioner;
 
 ::Legends.BackgroundProfessionTrees.Farmhand <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendForaging],
@@ -247,6 +275,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Fisherman <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -257,6 +286,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.FishermanSouthern <- clone ::Legends.BackgroundProfessionTrees.Fisherman;
 
 ::Legends.BackgroundProfessionTrees.Flagellant <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -265,6 +295,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Gambler <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
@@ -275,6 +306,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.GamblerSouthern <- clone ::Legends.BackgroundProfessionTrees.Gambler;
 
 ::Legends.BackgroundProfessionTrees.Gladiator <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBalladeInTheMaking],
 		Known = [::Legends.Profession.LegendTraining],
@@ -285,6 +317,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.GladiatorOrigin <- clone ::Legends.BackgroundProfessionTrees.Gladiator;
 
 ::Legends.BackgroundProfessionTrees.Gravedigger <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -293,6 +326,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Graverobber <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendScrapping],
@@ -301,6 +335,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.HedgeKnight <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -309,6 +344,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Historian <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendScholar],
@@ -319,6 +355,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.HistorianSouthern <- clone ::Legends.BackgroundProfessionTrees.Historian;
 
 ::Legends.BackgroundProfessionTrees.Houndmaster <- {
+	CustomProfessionTree = null,
 	
 	Profession = {
 		Roots = [],
@@ -328,6 +365,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Hunter <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendHunting],
@@ -336,6 +374,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Juggler <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -346,6 +385,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.JugglerSouthern <- clone ::Legends.BackgroundProfessionTrees.Juggler;
 
 ::Legends.BackgroundProfessionTrees.KillerOnTheRun <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendShadyDeals],
 		Known = [],
@@ -354,6 +394,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.KingsGuard <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -362,6 +403,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LindwurmSlayer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendHunting],
@@ -370,6 +412,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Lumberjack <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendWoodcutting],
@@ -378,6 +421,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Manhunter <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendBlackBook],
@@ -386,6 +430,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Mason <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendCrafting],
@@ -394,6 +439,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Messenger <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendScouting],
@@ -402,6 +448,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Militia <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -410,6 +457,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Miller <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendCooking],
@@ -418,6 +466,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Miner <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendMining],
@@ -426,6 +475,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Minstrel <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Known = [::Legends.Profession.LegendBalladeInTheMaking],
 		Known = [],
@@ -434,6 +484,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Monk <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Known = [::Legends.Profession.LegendHealing],
 		Roots = [::Legends.Profession.LegendScholar],
@@ -442,6 +493,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.MonkTurnedFlagellant <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -450,6 +502,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Nomad <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -458,6 +511,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.NomadRanged <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -466,6 +520,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.OrcSlayer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -474,6 +529,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.PacifiedFlagellant <- {
+	CustomProfessionTree = null,
 	
 	Profession = {
 		Roots = [],
@@ -483,6 +539,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Paladin <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -491,6 +548,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.PaladinOld <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -499,6 +557,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Peddler <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [::Legends.Profession.LegendFriendsInRightPlaces],
@@ -509,6 +568,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.PeddlerSouthern <- clone ::Legends.BackgroundProfessionTrees.Peddler;
 
 ::Legends.BackgroundProfessionTrees.Pimp <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendBraggart],
@@ -517,6 +577,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Poacher <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendHunting],
@@ -525,6 +586,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Raider <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -533,6 +595,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Ratcatcher <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -541,6 +604,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Refugee <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -549,6 +613,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.RegentInAbsentia <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -557,6 +622,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.RetiredSoldier <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendTraining],
@@ -565,6 +631,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Sellsword <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
@@ -573,6 +640,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Servant <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendCooking],
 		Known = [],
@@ -583,6 +651,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.ServantSouthern <- clone ::Legends.BackgroundProfessionTrees.Servant;
 
 ::Legends.BackgroundProfessionTrees.Shepherd <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendGathering],
@@ -593,6 +662,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.ShepherdSouthern <- clone ::Legends.BackgroundProfessionTrees.Shepherd;
 
 ::Legends.BackgroundProfessionTrees.Slave <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -601,6 +671,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.SlaveBarbarian <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -611,6 +682,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.SlaveSouthern <- clone ::Legends.BackgroundProfessionTrees.Slave;
 
 ::Legends.BackgroundProfessionTrees.Squire <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendTraining],
@@ -619,6 +691,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Swordmaster <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendTraining],
@@ -627,6 +700,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Tailor <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendTailoring],
@@ -637,6 +711,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.TailorSouthern <- clone ::Legends.BackgroundProfessionTrees.Tailor;
 
 ::Legends.BackgroundProfessionTrees.Thief <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendShadyDeals],
@@ -647,6 +722,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.ThiefSouthern <- clone ::Legends.BackgroundProfessionTrees.Thief;
 
 ::Legends.BackgroundProfessionTrees.Vagabond <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendScouting],
@@ -655,6 +731,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Wildman <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -663,6 +740,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.Witchhunter <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendBlackBook],
@@ -671,6 +749,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendAdventurousNobleRanged <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
@@ -679,6 +758,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendAlchemist <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
@@ -687,6 +767,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendArbalester <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -695,6 +776,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendBattleSister <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -703,6 +785,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendBellyDancer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -711,6 +794,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendBerserker <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -719,6 +803,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendBlacksmith <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendRepairing, ::Legends.Profession.LegendMetalworking],
@@ -727,6 +812,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendBladedancer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -735,6 +821,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendBountyHunter <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendBlackBook],
@@ -743,6 +830,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCommanderAssassin <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendShadyDeals],
 		Known = [],
@@ -751,6 +839,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCommanderBeggar <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -761,6 +850,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundProfessionTrees.LegendCommanderBeggar;
 
 ::Legends.BackgroundProfessionTrees.LegendCommanderBerserker <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -769,6 +859,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCommanderCrusader <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -777,6 +868,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCommanderNecro <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -785,6 +877,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCommanderNoble <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
@@ -793,6 +886,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCommanderPeddler <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [::Legends.Profession.LegendFriendsInRightPlaces],
@@ -801,6 +895,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCommanderRanger <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -809,6 +904,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCompanionMelee <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -817,6 +913,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendCompanionRanged <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -825,6 +922,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendConscript <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -833,6 +931,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendConscriptRanged <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -841,6 +940,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendDervish <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -849,6 +949,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendDisownedNobleRanged <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
@@ -857,6 +958,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendDonkey <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -865,6 +967,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendDruid <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendHerbcraft],
@@ -873,6 +976,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendFootSoldier <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -881,6 +985,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendGladiatorPrizefighter <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendBalladeInTheMaking],
 		Known = [::Legends.Profession.LegendTraining],
@@ -889,6 +994,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendGuildMaster <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendFriendsInRightPlaces],
 		Known = [::Legends.Profession.LegendThrifty],
@@ -897,6 +1003,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendHerbalist <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendForaging, ::Legends.Profession.LegendHerbcraft],
@@ -905,6 +1012,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendHouseGuard <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -913,6 +1021,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendHusk <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -921,6 +1030,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendIllusionist <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -929,6 +1039,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendInventor <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendScholar],
@@ -937,6 +1048,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendIronmonger <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendCrafting],
@@ -945,6 +1057,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLeechPeddler <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -953,6 +1066,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLegionAuxiliary <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -961,6 +1075,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLegionCenturion <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -969,6 +1084,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLegionGladiator <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -977,6 +1093,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 }
 
 ::Legends.BackgroundProfessionTrees.LegendLegionHonourGuard <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -985,6 +1102,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 }
 
 ::Legends.BackgroundProfessionTrees.LegendLegionLegate <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -993,6 +1111,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLegionLegionary <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1001,6 +1120,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLegionPrefect <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1009,6 +1129,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLegionSlave <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1017,6 +1138,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLoneWolf <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1025,6 +1147,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendLurker <- {
+	CustomProfessionTree = null,
 	
 	Profession = {
 		Roots = [],
@@ -1034,6 +1157,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendMagister <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1042,6 +1166,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendManAtArms <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1050,6 +1175,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendMasterArcher <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1058,6 +1184,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendMuladi <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1066,6 +1193,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendNecromancer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1074,6 +1202,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendNecrosavant <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1082,6 +1211,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendNightwatch <- {
+	CustomProfessionTree = null,
 	
 	Profession = {
 		Roots = [],
@@ -1091,6 +1221,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendPilgrim <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1099,6 +1230,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendPreserver <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1107,6 +1239,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendPuppet <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1115,6 +1248,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendPuppetMaster <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1123,6 +1257,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendReanimator <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1131,6 +1266,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendSeer <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendScholar],
 		Known = [],
@@ -1139,6 +1275,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendShieldmaiden <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1147,6 +1284,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendSurgeon <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendHealing],
@@ -1155,6 +1293,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendTaxidermist <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [::Legends.Profession.LegendSkinning],
@@ -1163,6 +1302,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendVala <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [::Legends.Profession.LegendScholar],
 		Known = [],
@@ -1171,6 +1311,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendWarden <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1179,6 +1320,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendWarlock <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1187,6 +1329,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 };
 
 ::Legends.BackgroundProfessionTrees.LegendYoungblood <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1197,6 +1340,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 // Horses
 
 ::Legends.BackgroundProfessionTrees.LegendHorse <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1205,6 +1349,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 }
 
 ::Legends.BackgroundProfessionTrees.LegendHorseCourser <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1213,6 +1358,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 }
 
 ::Legends.BackgroundProfessionTrees.LegendHorseDestrier <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1221,6 +1367,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 }
 
 ::Legends.BackgroundProfessionTrees.LegendHorseRouncey <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
@@ -1229,6 +1376,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 }
 
 ::Legends.BackgroundProfessionTrees.LegendHorserider <- {
+	CustomProfessionTree = null,
 	Profession = {
 		Roots = [],
 		Known = [],
