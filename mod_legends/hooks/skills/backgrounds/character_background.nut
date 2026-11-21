@@ -8,8 +8,6 @@
 		Weapon = 8,
 		Defense = 2,
 		Traits = 7,
-		Enemy = 1,
-		EnemyChance = 0.01,
 		Class = 1,
 		ClassChance = 0.01,
 		Magic = 1,
@@ -20,8 +18,6 @@
 		Weapon = 0,
 		Defense = 0,
 		Traits = 0,
-		Enemy = 0,
-		EnemyChance = 0.00,
 		Class = 0,
 		ClassChance = 0.00,
 		Magic = 0,
@@ -42,7 +38,6 @@
 			::Const.Perks.FastTree,
 			::Const.Perks.AgileTree
 		],
-		Enemy = [],
 		Class = [],
 		Magic = []
 	};
@@ -193,7 +188,6 @@
 		}
 		text += this.getPerkTreeGroupDescription(_tree.Weapon, "Has an aptitude for");
 		text += this.getPerkTreeGroupDescription(_tree.Defense, "Likes wearing");
-		text += this.getPerkTreeGroupDescription(_tree.Enemy, "Prefers fighting");
 		text += this.getPerkTreeGroupDescription(_tree.Class, "Is skilled in");
 		text += this.getPerkTreeGroupDescription(_tree.Traits, "");
 		return text;
@@ -208,7 +202,6 @@
 		local ret = {
 			Weapon = [],
 			Defense = [],
-			Enemy = [],
 			Class = [],
 			Traits = []
 		};
