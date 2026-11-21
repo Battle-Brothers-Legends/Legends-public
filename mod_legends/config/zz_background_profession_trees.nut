@@ -5,6 +5,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.AdventurousNoble <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -14,6 +15,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Anatomist <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendHealing],
 		Special = [::Legends.Profession.LegendFieldSurgery]	
@@ -23,6 +25,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Apprentice <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendCrafting]
 		Special = []	
@@ -32,6 +35,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Assassin <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendShadyDeals],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw, ::Legends.Profession.LegendFavouredEnemySwordmaster]
@@ -41,6 +45,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.AssassinSouthern <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendShadyDeals]
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -50,6 +55,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Barbarian <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -59,6 +65,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Bastard <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -68,6 +75,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.BeastSlayer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendGathering, ::Legends.Profession.LegendHunting],
 		Special = [::Legends.Profession.LegendBigGameHunter, ::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyOccult]
@@ -77,6 +85,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Beggar <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -88,6 +97,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.BellyDancer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemySwordmaster]
@@ -97,6 +107,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Bowyer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendFletching]
 		Special = []	
@@ -106,6 +117,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Brawler <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -115,6 +127,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Butcher <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendCooking],
 		Special = []	
@@ -126,6 +139,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.CaravanHand <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendFriendsInRightPlaces],
 		Known = [::Legends.Profession.LegendScouting],
 		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -137,6 +151,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Companion <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -148,6 +163,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Companion2h <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -159,6 +175,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.CompanionRanged <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -170,6 +187,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Cripple <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -181,6 +199,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Crucified <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -190,6 +209,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Crusader <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyUndead]
@@ -199,6 +219,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Cultist <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -208,6 +229,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.ConvertedCultist <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -217,6 +239,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Daytaler <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendGathering],
 		Special = []	
@@ -228,6 +251,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Deserter <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendScrapping],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -237,6 +261,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.DisownedNoble <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]	
@@ -246,6 +271,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Eunuch <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendFriendsInRightPlaces],
 		Special = []	
@@ -257,6 +283,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Executioner <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -268,6 +295,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Farmhand <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendForaging],
 		Special = []	
@@ -277,6 +305,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Fisherman <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast]
@@ -288,6 +317,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Flagellant <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -297,6 +327,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Gambler <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
 		Special = []	
@@ -308,6 +339,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Gladiator <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBalladeInTheMaking],
 		Known = [::Legends.Profession.LegendTraining],
 		Special = []	
@@ -319,6 +351,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Gravedigger <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyUndead]
@@ -328,6 +361,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Graverobber <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendScrapping],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyUndead]	
@@ -337,6 +371,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.HedgeKnight <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemySwordmaster]
@@ -346,6 +381,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Historian <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendScholar],
 		Special = [::Legends.Profession.LegendAncientKnowledge]
@@ -358,6 +394,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 	CustomProfessionTree = null,
 	
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendDogBreeder],
 		Special = []	
@@ -367,6 +404,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Hunter <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendHunting],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyOccult]	
@@ -376,6 +414,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Juggler <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -387,6 +426,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.KillerOnTheRun <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendShadyDeals],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -396,6 +436,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.KingsGuard <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemySwordmaster]
@@ -405,6 +446,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LindwurmSlayer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendHunting],
 		Special = [::Legends.Profession.LegendBigGameHunter, ::Legends.Profession.LegendFavouredEnemyBeast]	
@@ -414,6 +456,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Lumberjack <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendWoodcutting],
 		Special = []	
@@ -423,6 +466,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Manhunter <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendBlackBook],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -432,6 +476,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Mason <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendCrafting],
 		Special = []	
@@ -441,6 +486,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Messenger <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendScouting],
 		Special = []	
@@ -450,6 +496,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Militia <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -459,6 +506,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Miller <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendCooking],
 		Special = []	
@@ -468,6 +516,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Miner <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendMining],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyGreenskin]
@@ -487,6 +536,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 	CustomProfessionTree = null,
 	Profession = {
 		Known = [::Legends.Profession.LegendHealing],
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendScholar],
 		Special = [::Legends.Profession.LegendFavouredEnemyUndead]	
 	}
@@ -495,6 +545,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.MonkTurnedFlagellant <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -504,6 +555,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Nomad <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -513,6 +565,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.NomadRanged <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -522,6 +575,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.OrcSlayer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyGreenskin]
@@ -532,6 +586,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 	CustomProfessionTree = null,
 	
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -541,6 +596,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Paladin <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyUndead]
@@ -550,6 +606,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.PaladinOld <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyUndead]
@@ -559,6 +616,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Peddler <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [::Legends.Profession.LegendFriendsInRightPlaces],
 		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -570,6 +628,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Pimp <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendBraggart],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -579,6 +638,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Poacher <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendHunting],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyGreenskin]
@@ -588,6 +648,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Raider <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -597,6 +658,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Ratcatcher <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -606,6 +668,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Refugee <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -615,6 +678,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.RegentInAbsentia <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -624,6 +688,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.RetiredSoldier <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 20,
 		Roots = [],
 		Known = [::Legends.Profession.LegendTraining],
 		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -633,6 +698,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Sellsword <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -642,6 +708,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Servant <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendCooking],
 		Known = [],
 		Special = []
@@ -653,6 +720,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Shepherd <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendGathering],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast]	
@@ -664,6 +732,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Slave <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -673,6 +742,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.SlaveBarbarian <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -684,6 +754,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Squire <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendTraining],
 		Special = []	
@@ -693,6 +764,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Swordmaster <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendTraining],
 		Special = [::Legends.Profession.LegendFavouredEnemySwordmaster]	
@@ -702,6 +774,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Tailor <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendTailoring],
 		Special = []	
@@ -713,6 +786,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Thief <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendShadyDeals],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -724,6 +798,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Vagabond <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendScouting],
 		Special = []	
@@ -733,6 +808,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Wildman <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyGreenskin]
@@ -742,6 +818,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Witchhunter <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendBlackBook],
 		Special = [::Legends.Profession.LegendFavouredEnemyOccult, ::Legends.Profession.LegendFavouredEnemyUndead]
@@ -751,6 +828,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendAdventurousNobleRanged <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]	
@@ -760,6 +838,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendAlchemist <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]	
@@ -769,6 +848,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendArbalester <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -778,6 +858,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendBattleSister <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -787,6 +868,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendBellyDancer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -796,6 +878,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendBerserker <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyGreenskin]
@@ -805,6 +888,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendBlacksmith <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendRepairing, ::Legends.Profession.LegendMetalworking],
 		Special = [::Legends.Profession.LegendHammerThemOut]
@@ -814,6 +898,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendBladedancer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw, ::Legends.Profession.LegendFavouredEnemySwordmaster]
@@ -823,6 +908,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendBountyHunter <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendBlackBook],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw, ::Legends.Profession.LegendFavouredEnemySwordmaster]	
@@ -832,6 +918,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderAssassin <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendShadyDeals],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -841,6 +928,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderBeggar <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -852,6 +940,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderBerserker <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyGreenskin]
@@ -861,6 +950,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderCrusader <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyOccult, ::Legends.Profession.LegendFavouredEnemyUndead]
@@ -870,6 +960,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderNecro <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOccult]
@@ -879,6 +970,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderNoble <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -888,6 +980,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderPeddler <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [::Legends.Profession.LegendFriendsInRightPlaces],
 		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -897,6 +990,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCommanderRanger <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyGreenskin, ::Legends.Profession.LegendFavouredEnemyOccult]
@@ -906,6 +1000,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCompanionMelee <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -915,6 +1010,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendCompanionRanged <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -924,6 +1020,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendConscript <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -933,6 +1030,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendConscriptRanged <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -942,6 +1040,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendDervish <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -951,6 +1050,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendDisownedNobleRanged <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]	
@@ -960,6 +1060,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendDonkey <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -969,6 +1070,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendDruid <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendHerbcraft],
 		Special = []	
@@ -978,6 +1080,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendFootSoldier <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -987,6 +1090,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendGladiatorPrizefighter <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBalladeInTheMaking],
 		Known = [::Legends.Profession.LegendTraining],
 		Special = []	
@@ -996,6 +1100,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendGuildMaster <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendFriendsInRightPlaces],
 		Known = [::Legends.Profession.LegendThrifty],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyOccult]
@@ -1005,6 +1110,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendHerbalist <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendForaging, ::Legends.Profession.LegendHerbcraft],
 		Special = [::Legends.Profession.LegendFavouredEnemyOccult]	
@@ -1014,6 +1120,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendHouseGuard <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1023,6 +1130,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendHusk <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -1032,6 +1140,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendIllusionist <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyOccult]
@@ -1041,6 +1150,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendInventor <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendScholar],
 		Special = [::Legends.Profession.LegendPetardry]
@@ -1050,6 +1160,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendIronmonger <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendCrafting],
 		Special = [::Legends.Profession.LegendHammerThemOut]
@@ -1059,6 +1170,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLeechPeddler <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast]
@@ -1068,6 +1180,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLegionAuxiliary <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1077,6 +1190,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLegionCenturion <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1086,6 +1200,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLegionGladiator <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1095,6 +1210,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLegionHonourGuard <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1104,6 +1220,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLegionLegate <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1113,6 +1230,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLegionLegionary <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1122,6 +1240,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLegionPrefect <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1131,6 +1250,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLegionSlave <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1140,6 +1260,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendLoneWolf <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemySwordmaster]
@@ -1148,8 +1269,8 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 
 ::Legends.BackgroundProfessionTrees.LegendLurker <- {
 	CustomProfessionTree = null,
-	
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -1159,6 +1280,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendMagister <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -1168,6 +1290,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendManAtArms <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1177,6 +1300,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendMasterArcher <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1186,6 +1310,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendMuladi <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
@@ -1195,6 +1320,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendNecromancer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1204,6 +1330,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendNecrosavant <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1214,6 +1341,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 	CustomProfessionTree = null,
 	
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyOccult]
@@ -1223,6 +1351,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendPilgrim <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyUndead]
@@ -1232,6 +1361,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendPreserver <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOccult]
@@ -1241,6 +1371,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendPuppet <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []
@@ -1250,6 +1381,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendPuppetMaster <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOccult]
@@ -1259,6 +1391,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendReanimator <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyCivilization, ::Legends.Profession.LegendFavouredEnemyOccult]
@@ -1268,6 +1401,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendSeer <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendScholar],
 		Known = [],
 		Special = [::Legends.Profession.LegendAncientKnowledge, ::Legends.Profession.LegendFavouredEnemyOccult]	
@@ -1277,6 +1411,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendShieldmaiden <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw]
@@ -1286,6 +1421,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendSurgeon <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendHealing],
 		Special = [::Legends.Profession.LegendFieldSurgery]
@@ -1295,6 +1431,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendTaxidermist <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [::Legends.Profession.LegendSkinning],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyOccult]	
@@ -1304,6 +1441,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendVala <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendScholar],
 		Known = [],
 		Special = [::Legends.Profession.LegendAncientKnowledge]
@@ -1313,6 +1451,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendWarden <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyOccult]
@@ -1322,6 +1461,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendWarlock <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1331,6 +1471,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendYoungblood <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyOccult, ::Legends.Profession.LegendFavouredEnemyUndead]	
@@ -1342,6 +1483,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendHorse <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1351,6 +1493,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendHorseCourser <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1360,6 +1503,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendHorseDestrier <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1369,6 +1513,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendHorseRouncey <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	
@@ -1378,6 +1523,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.LegendHorserider <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
 		Special = []	

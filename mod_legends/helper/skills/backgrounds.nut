@@ -150,6 +150,7 @@ if (!("Backgrounds" in ::Legends)) {
 	if (!(_name in ::Legends.BackgroundProfessionTrees)) {
 		::logError(_name + " missing in ::Legends.BackgroundProfessionTrees, using default");
 		return {
+			FavouredEnemyChance = 2,
 			Roots = [],
 			Known = [],
 			Special = []	
