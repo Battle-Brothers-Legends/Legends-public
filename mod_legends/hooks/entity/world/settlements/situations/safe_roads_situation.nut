@@ -16,7 +16,7 @@
 		_draftList.push(::Legends.Background.Tailor);
 		_draftList.push(::Legends.Background.Minstrel);
 		_draftList.push(::Legends.Background.Historian);
-		_draftList.push(::Legends.Background.LegendDonkey);
+		// _draftList.push(::Legends.Background.LegendDonkey);
 
 		if (::World.Assets.getOrigin().getID() == "scenario.legends_crusader") {
 			::Legends.Array.extend(_draftList, ::Legends.Background.LegendPilgrim, 6);

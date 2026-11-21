@@ -9,7 +9,7 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 		this.m.Cooldown = 50.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_158.png[/img]{A merchant comes into view, but this one seems to travel alone with various boxes and baggage gently jostling in the back of her cart. The wagon rocks back and fourth along the road like an uneasy animal finding it\'s feet, while two donkeys — one much more worse for wear than the other, pull the cart along.\n The woman is dressed in a mix of southern and northern silks, leather, mail and other parts that are stitched togeather to make something very memorable.%SPEECH_ON%Crownlings, Mercenaries, yes? You look like one or the other but I\'d rather know which i\'m talkin\' to before I tell you what I have — one has more of an urge for robbery than the other. I\'ll let you guess which.%SPEECH_OFF%Before you can muster a reply, she stands on the wagon seat — the whole contrapion rocks and wakes gently as the merchant finds her footing.%SPEECH_ON%I carry some of the finest cloths, silks and rare items you might find. As you can tell from what I wear — the best parts are not for sale. However, there is much more that could be yours. Tell me, are you of the gambling sort?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_158.png[/img]{A merchant comes into view, but this one seems to travel alone with various boxes and baggage gently jostling in the back of her cart. The wagon rocks back and fourth along the road like an uneasy animal finding it\'s feet, while two donkeys — one much more worse for wear than the other, pull the cart along.\n The woman is dressed in a mix of southern and northern silks, leather, mail and other parts that are stitched togeather to make something very memorable.%SPEECH_ON%Crownlings, Mercenaries, yes? You look like one or the other but I\'d rather know which I\'m talkin\' to before I tell you what I have — one has more of an urge for robbery than the other. I\'ll let you guess which.%SPEECH_OFF%Before you can muster a reply, she stands on the wagon seat — the whole contrapion rocks and wakes gently as the merchant finds her footing.%SPEECH_ON%I carry some of the finest cloths, silks and rare items you might find. As you can tell from what I wear — the best parts are not for sale. However, there is much more that could be yours. Tell me, are you of the gambling sort?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -34,13 +34,15 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 					_event.m.Bought = 1;
 					return "C";
 				}
-			}, {
-				Text = "I'll take the mule instead, lets say for 3000 crowns?",
-				function getResult(_event) {
-					_event.m.Bought = 2;
-					return "C";
-				}
-			}, {
+			},
+			// {
+			// 	Text = "I'll take the mule instead, lets say for 3000 crowns?",
+			// 	function getResult(_event) {
+			// 		_event.m.Bought = 2;
+			// 		return "C";
+			// 	}
+			// },
+			{
 				Text = "Not interested.",
 				getResult = @(_event) "D"
 			}],
@@ -135,11 +137,11 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 		if (!currentTile.HasRoad)
 			return;
 
-		if (::World.Assets.getMoney() < 3500)
+		if (::World.Assets.getMoney() < 250)
 			return;
 
-		if (::World.Assets.getStash().getNumberOfEmptySlots() < 1)
-			return;
+		// if (::World.Assets.getStash().getNumberOfEmptySlots() < 1)
+		// 	return;
 
 		this.m.Score = 7;
 	}

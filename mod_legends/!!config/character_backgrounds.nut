@@ -230,7 +230,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendCommanderCrusader,
 	::Legends.Background.LegendBerserker,
 	::Legends.Background.LegendBlacksmith,
-	::Legends.Background.LegendDonkey,
 	::Legends.Background.LegendArbalester,
 	::Legends.Background.LegendHouseGuard,
 	::Legends.Background.LegendFootSoldier,

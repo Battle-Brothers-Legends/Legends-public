@@ -19,9 +19,10 @@
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 
-		if (::Const.World.Buildings.Stables == 0) {
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		} else if (::Const.World.Buildings.Fletchers == 0) {
+		// if (::Const.World.Buildings.Stables == 0) {
+		// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		// } else
+		if (::Const.World.Buildings.Fletchers == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));
 		} else if (::Math.rand(1, 100) <= 50) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));

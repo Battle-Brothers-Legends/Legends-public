@@ -407,13 +407,13 @@ this.legends_forest_fort <- this.inherit("scripts/entity/world/settlements/legen
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}
-		else if (::Const.World.Buildings.Stables == 0)
-		{
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
+		// else if (::Const.World.Buildings.Stables == 0)
+		// {
+		// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		// }
 		else
 		{
-			local r = ::Math.rand(1, 4);
+			local r = ::Math.rand(1, 3);
 
 			if (r == 1 || ::Const.World.Buildings.Fletchers == 0)
 			{
@@ -427,10 +427,10 @@ this.legends_forest_fort <- this.inherit("scripts/entity/world/settlements/legen
 			{
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 			}
-			else if (r == 4)
-			{
-				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-			}
+			// else if (r == 4)
+			// {
+			// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+			// }
 		}
 
 		if (::Math.rand(1, 100) <= 50)
@@ -558,13 +558,13 @@ this.legends_forest_fort <- this.inherit("scripts/entity/world/settlements/legen
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}
-		else if (::Const.World.Buildings.Stables == 0)
-		{
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
+		// else if (::Const.World.Buildings.Stables == 0)
+		// {
+		// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		// }
 		else
 		{
-			local r = ::Math.rand(1, 4);
+			local r = ::Math.rand(1, 3);
 
 			if (r == 1)
 			{
@@ -578,10 +578,10 @@ this.legends_forest_fort <- this.inherit("scripts/entity/world/settlements/legen
 			{
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 			}
-			else if (r == 4)
-			{
-				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-			}
+			// else if (r == 4)
+			// {
+			// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+			// }
 		}
 
 		if (::Math.rand(1, 100) <= 70)

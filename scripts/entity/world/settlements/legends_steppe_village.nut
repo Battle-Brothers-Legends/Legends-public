@@ -553,7 +553,7 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
-		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		// this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 
 		if (::Math.rand(1, 100) <= 50)
 		{

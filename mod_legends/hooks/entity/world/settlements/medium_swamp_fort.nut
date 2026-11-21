@@ -29,9 +29,10 @@
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-			} else if (r == 4) {
-				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 			}
+			// else if (r == 4) {
+			// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+			// }
 		}
 
 		if (::Math.rand(1, 100) <= 40) {

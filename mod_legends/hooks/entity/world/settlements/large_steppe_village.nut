@@ -31,11 +31,10 @@
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
-		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/training_hall_building"));
+		// this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 
 		if (::Math.rand(1, 100) <= 50) {
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/training_hall_building"));
-		} else if (::Math.rand(1, 100) <= 50) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));

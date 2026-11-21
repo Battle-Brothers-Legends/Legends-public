@@ -437,7 +437,7 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
-		local r = ::Math.rand(1, 3);
+		local r = ::Math.rand(1, 2);
 
 		if (r == 1 || ::Const.World.Buildings.Blackmarket == 0)
 		{
@@ -447,10 +447,10 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		}
-		else if (r == 3)
-		{
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
+		// else if (r == 3)
+		// {
+		// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		// }
 
 		if (::Math.rand(1, 100) <= 70)
 		{
@@ -512,11 +512,11 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
 
-		if (::Const.World.Buildings.Stables == 0)
-		{
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
-		else if (::Const.World.Buildings.Fletchers == 0)
+		// if (::Const.World.Buildings.Stables == 0)
+		// {
+		// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		// }
+		if (::Const.World.Buildings.Fletchers == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));
 		}

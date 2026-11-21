@@ -506,17 +506,17 @@ this.legends_steppe_fort <- this.inherit("scripts/entity/world/settlements/legen
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 
-		if (::Const.World.Buildings.Stables == 0)
-		{
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
-		else if (::Const.World.Buildings.Kennels == 0)
+		// if (::Const.World.Buildings.Stables == 0)
+		// {
+		// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		// }
+		if (::Const.World.Buildings.Kennels == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}
 		else
 		{
-			local r = ::Math.rand(1, 4);
+			local r = ::Math.rand(1, 3);
 
 			if (r == 1)
 			{
@@ -530,10 +530,10 @@ this.legends_steppe_fort <- this.inherit("scripts/entity/world/settlements/legen
 			{
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 			}
-			else if (r == 4)
-			{
-				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-			}
+			// else if (r == 4)
+			// {
+			// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+			// }
 		}
 
 		if (::Math.rand(1, 100) <= 50)
@@ -608,7 +608,7 @@ this.legends_steppe_fort <- this.inherit("scripts/entity/world/settlements/legen
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
-		local r = ::Math.rand(1, 4);
+		local r = ::Math.rand(1, 3);
 
 		if (r == 1 || ::Const.World.Buildings.Fletchers == 0)
 		{
@@ -618,11 +618,11 @@ this.legends_steppe_fort <- this.inherit("scripts/entity/world/settlements/legen
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}
-		else if (r == 3 || ::Const.World.Buildings.Stables == 0)
-		{
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
-		else if (r == 4)
+		// else if (r == 3 || ::Const.World.Buildings.Stables == 0)
+		// {
+		// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		// }
+		else if (r == 3)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		}
