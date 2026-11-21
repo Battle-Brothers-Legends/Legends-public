@@ -46,7 +46,7 @@
 	o.m.PerkTreeMap <- null;
 	o.m.PerkTree <- null;
 	o.m.IsGuaranteed <- [];
-	o.m.ProfessionTreeBranches <- null;
+	o.m.ProfessionTreeBranches <- { FavouredEnemyChance = 2, Roots = [], Known = [], Special = [] }; // read only, ::Legends.Backgrounds.onCreate points it at the entry in ::Legends.BackgroundProfessionTrees
 	o.m.CustomProfessionTree <- null;
 	o.m.ProfessionTreeMap <- null;
 	o.m.ProfessionTree <- null;
@@ -873,6 +873,11 @@
 			}
 		}
 		return text;
+	}
+
+	// what the background brings to the profession tree, its entry in ::Legends.BackgroundProfessionTrees
+	o.getProfessionBranches <- function () {
+		return this.m.ProfessionTreeBranches;
 	}
 
 	o.getProfessionTree <- function () {

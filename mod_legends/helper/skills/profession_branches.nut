@@ -9,38 +9,39 @@
 	return ::Legends.Professions.ProfessionDefs[::Legends.Professions.LookupMap[_id].Const];
 }
 
-::Legends.Professions.Branches.getBackgroundList <- function (_bro, _list) {
+::Legends.Professions.Branches.isSpecial <- function (_profession) {
 
-	local background = _bro.getBackground();
-	if (background == null)
+	if (!("Special" in this))
 	{
-		return [];
+		this.Special <- {};
+
+		foreach (profession in this.FavouredEnemies)
+		{
+			this.Special[profession] <- true;
+		}
+
+		foreach (background in ::Legends.BackgroundProfessionTrees)
+		{
+			foreach (profession in background.Profession.Special)
+			{
+				this.Special[profession] <- true;
+			}
+		}
 	}
 
-	local key = background.getID();
-	if (key.len() > 11)
-	{
-		key = key.slice(11);
-	}
-
-	if (!(key in this.Backgrounds) || !(_list in this.Backgrounds[key]))
-	{
-		return [];
-	}
-
-	return this.Backgrounds[key][_list];
+	return _profession in this.Special;
 }
 
 ::Legends.Professions.Branches.isAllowed <- function (_bro, _profession) {
 
-	if (!(_profession in this.Special) || this.getBackgroundList(_bro, "Special").find(_profession) != null)
+	if (!this.isSpecial(_profession) || _bro.getBackground().getProfessionBranches().Special.find(_profession) != null)
 	{
 		return true;
 	}
 
 	// a special profession the bro rolled or was given is in his stored tree
 	local background = _bro.getBackground();
-	return background != null && background.m.ProfessionTreeMap != null && background.hasProfession(_profession);
+	return background.m.ProfessionTreeMap != null && background.hasProfession(_profession);
 }
 
 ::Legends.Professions.Branches.isLearned <- function (_bro, _profession) {
@@ -85,12 +86,12 @@
 		}
 	}
 
-	foreach (profession in this.getBackgroundList(_bro, "Roots"))
+	foreach (profession in _bro.getBackground().getProfessionBranches().Roots)
 	{
 		visible[profession] <- true;
 	}
 
-	foreach (profession in this.getBackgroundList(_bro, "Special"))
+	foreach (profession in _bro.getBackground().getProfessionBranches().Special)
 	{
 		visible[profession] <- true;
 	}
@@ -286,7 +287,9 @@
 		return;
 	}
 
-	foreach (profession in this.getBackgroundList(_bro, "Known"))
+	local branches = background.getProfessionBranches();
+
+	foreach (profession in branches.Known)
 	{
 		::Legends.Professions.grant(_bro, profession);
 	}
@@ -295,7 +298,7 @@
 	local candidates = [];
 	foreach (profession in this.ExtraRoots)
 	{
-		if (!this.isLearned(_bro, profession) && this.getBackgroundList(_bro, "Roots").find(profession) == null)
+		if (!this.isLearned(_bro, profession) && branches.Roots.find(profession) == null)
 		{
 			candidates.push(profession);
 		}
@@ -318,16 +321,9 @@
 	}
 
 	// and now and then into a favoured enemy his background does not give
-	local chance = this.getBackgroundList(_bro, "FavouredEnemyChance");
-	if (typeof chance != "integer")
+	if (::Math.rand(1, 100) <= branches.FavouredEnemyChance)
 	{
-		chance = this.RandomFavouredEnemyChance;
-	}
-
-	if (::Math.rand(1, 100) <= chance)
-	{
-		local special = this.getBackgroundList(_bro, "Special");
-		local enemies = this.FavouredEnemies.filter(@(_, _p) special.find(_p) == null);
+		local enemies = this.FavouredEnemies.filter(@(_, _p) branches.Special.find(_p) == null);
 
 		if (enemies.len() != 0)
 		{
@@ -360,7 +356,7 @@
 		return ret;
 	}
 
-	if (profession in this.Special) {
+	if (this.isSpecial(profession)) {
 		ret.push({
 			id = 20,
 			type = "text",
