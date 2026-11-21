@@ -337,6 +337,7 @@
 
 **Daggers**
 - all daggers now have a bit of weight for dual wield balancing
+- `Redback Dagger` - its poison now stuns like the bite of a Redback Spider, as the stun is part of redback poison itself. This also goes for every other source of redback poison
 
 **Puncture Daggers**
 - `Backstab` - replaces `Stab` on puncture daggers

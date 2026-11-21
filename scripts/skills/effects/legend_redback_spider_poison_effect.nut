@@ -51,6 +51,22 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
 			++this.m.TurnsLeft;
 		}
+
+		this.stun();
+	}
+
+	function stun() {
+		local actor = this.getContainer().getActor();
+
+		if (actor.getSkills().hasEffect(::Legends.Effect.Stunned) || actor.getCurrentProperties().IsImmuneToStun) {
+			return;
+		}
+
+		::Legends.Effects.grant(this.getContainer(), ::Legends.Effect.Stunned);
+
+		if (!actor.isHiddenToPlayer()) {
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " is stunned");
+		}
 	}
 
 	function applyDamage() {
@@ -89,6 +105,8 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		if (this.getContainer().hasTrait(::Legends.Trait.Ailing)) {
 			++this.m.TurnsLeft;
 		}
+
+		this.stun();
 	}
 
 	function onTurnEnd() {

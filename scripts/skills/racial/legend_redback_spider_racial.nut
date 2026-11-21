@@ -33,11 +33,7 @@ this.legend_redback_spider_racial <- this.inherit("scripts/skills/skill", {
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
 		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison);
 
-		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned) && !_targetEntity.getCurrentProperties().IsImmuneToStun) {
-			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Stunned);
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetEntity) + " is stunned");
-		}
-
+		// the poison itself stuns now
 		if (poison == null) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison);
 		} else {
