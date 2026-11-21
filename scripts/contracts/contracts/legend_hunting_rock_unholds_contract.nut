@@ -526,6 +526,20 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 		party.setAttackableByAI(false);
 		party.setFootprintSizeOverride(0.85);
 		party.getFlags().set("IsUnholds", true);
+
+		// the pack takes the look of the region the contract comes from, legend_hunting_rock_unholds_action has the settlements behind each type
+		local looks = [
+			::Const.World.Spawn.Troops.LegendRockUnholdBog.Script, // 0: swamp and lumber villages
+			::Const.World.Spawn.Troops.LegendRockUnholdFrost.Script // 1: snow villages
+		]; // 2: mining and tundra villages keep the plain look
+		if (this.m.Flags.has("EnemyType") && this.m.Flags.get("EnemyType") < looks.len()) {
+			foreach (troop in party.getTroops()) {
+				if (troop.Script == ::Const.World.Spawn.Troops.LegendRockUnhold.Script) {
+					troop.Script = looks[this.m.Flags.get("EnemyType")];
+				}
+			}
+		}
+
 		::Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), ::Const.BeastFootprints, 0.85);
 		this.m.Target = this.WeakTableRef(party);
 		party.getSprite("banner").setBrush("banner_beasts_01");

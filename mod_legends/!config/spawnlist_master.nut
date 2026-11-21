@@ -293,6 +293,24 @@
 	Script = "scripts/entity/tactical/enemies/legend_rock_unhold"
 };
 
+::Const.World.Spawn.Troops.LegendRockUnholdFrost <- {
+	ID = ::Const.EntityType.LegendRockUnhold,
+	Variant = 0,
+	Strength = 180,
+	Cost = 180,
+	Row = 1,
+	Script = "scripts/entity/tactical/enemies/legend_rock_unhold_frost"
+};
+
+::Const.World.Spawn.Troops.LegendRockUnholdBog <- {
+	ID = ::Const.EntityType.LegendRockUnhold,
+	Variant = 0,
+	Strength = 180,
+	Cost = 180,
+	Row = 1,
+	Script = "scripts/entity/tactical/enemies/legend_rock_unhold_bog"
+};
+
 ::Const.World.Spawn.Troops.LegendRedbackSpider <- {
 	ID = ::Const.EntityType.LegendRedbackSpider,
 	Variant = 0,

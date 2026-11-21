@@ -281,6 +281,8 @@ gt.tnf_debug.actors <- {
     "LegendDemonAlp",
     "LegendRedbackSpider",
     "LegendRockUnhold",
+    "LegendRockUnholdFrost",
+    "LegendRockUnholdBog",
     "LegendStollwurm",
     "LegendWhiteDirewolf",
   ],

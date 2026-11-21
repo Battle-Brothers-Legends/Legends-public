@@ -1,5 +1,7 @@
 this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
-	m = {},
+	m = {
+		Biome = "grass" // the look: grass, swamp or winter, set by legend_rock_unhold_bog and legend_rock_unhold_frost
+	},
 
 	function create() {
 		this.m.Type = ::Const.EntityType.LegendRockUnhold;
@@ -169,18 +171,21 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.CurrentProperties = clone b;
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
-		this.m.Items.getAppearance().Body = "bust_unhold_rock_body_02";
+		// body and head share a variant: 01 is bare rock, 02 has the growth or snow of its region on it
+		local brush = "bust_" + this.m.Biome + "_rockhold";
+		local variant = "_0" + ::Math.rand(1, 2);
+		this.m.Items.getAppearance().Body = brush + "_body" + variant;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		body.setBrush("bust_unhold_rock_body_02");
+		body.setBrush(brush + "_body" + variant);
 		body.varySaturation(0.1);
 		body.varyColor(0.09, 0.09, 0.09);
 		local injury_body = this.addSprite("injury");
 		injury_body.Visible = false;
-		injury_body.setBrush("bust_unhold_rock_02_injured");
+		injury_body.setBrush(brush + "_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		head.setBrush("bust_unhold_rock_head_02");
+		head.setBrush(brush + "_head" + variant);
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		this.addSprite("helmet");

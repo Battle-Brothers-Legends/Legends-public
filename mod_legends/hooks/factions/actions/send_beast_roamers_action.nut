@@ -513,32 +513,6 @@
 				}
 			},
 			{
-				Name = "Rock Unhold",
-				MinDays = 25,
-				Lists = [this.m.BeastsHigh],
-				AllowedTerrainTypes = [::Const.World.TerrainType.Mountains],
-				MinDistToSettlements = function(_nearTile) { return 18 - (_nearTile == null ? 0 : 10); },
-				MaxDistToSettlements = 100,
-				DistanceScalingMult = 2.0,
-				Spawn = ::Const.World.Spawn.LegendRockUnhold,
-				Description = "One or more lumbering giants whose skin is as hard as rock and virtually impenetrable save for the best weapons.",
-				Footprints = ::Const.World.FootprintsType.Unholds,
-				SetRoam = function(_roam) {
-					_roam.setNoTerrainAvailable();
-					_roam.setTerrain(::Const.World.TerrainType.Mountains, true);
-					local r = ::Math.rand(1, 20);
-					if (r == 1) {
-						_roam.setTerrain(::Const.World.TerrainType.Hills, true);
-					} else if (r == 2) {
-						_roam.setTerrain(::Const.World.TerrainType.Hills, true);
-						_roam.setTerrain(::Const.World.TerrainType.Steppe, true);
-					} else if (r == 3) {
-						_roam.setTerrain(::Const.World.TerrainType.Tundra, true);
-						_roam.setTerrain(::Const.World.TerrainType.Hills, true);
-					}
-				}
-			},
-			{
 				Name = "Redback Spider",
 				MinDays = 25,
 				Lists = [this.m.BeastsHigh],

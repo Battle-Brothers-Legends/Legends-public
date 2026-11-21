@@ -167,6 +167,20 @@
 					Cost = 50
 				}
 			]
+		},
+		{
+			Weight = 5,
+			MinR = 250,
+			// no more than two to a party
+			function Roll(_num) {
+				return _num < 2;
+			},
+			Types = [
+				{
+					Type = ::Const.World.Spawn.Troops.LegendRockUnhold,
+					Cost = 240
+				}
+			]
 		}
 	]
 }
@@ -192,10 +206,14 @@
 		},
 		{
 			Weight = 5,
-			MinR = 1.0 * 4000,
+			MinR = 250,
+			// no more than two to a party
+			function Roll(_num) {
+				return _num < 2;
+			},
 			Types = [
 				{
-					Type = ::Const.World.Spawn.Troops.LegendRockUnhold,
+					Type = ::Const.World.Spawn.Troops.LegendRockUnholdFrost,
 					Cost = 240
 				}
 			]
@@ -219,6 +237,20 @@
 				{
 					Type = ::Const.World.Spawn.Troops.UnholdBog,
 					Cost = 50
+				}
+			]
+		},
+		{
+			Weight = 5,
+			MinR = 250,
+			// no more than two to a party
+			function Roll(_num) {
+				return _num < 2;
+			},
+			Types = [
+				{
+					Type = ::Const.World.Spawn.Troops.LegendRockUnholdBog,
+					Cost = 240
 				}
 			]
 		}
