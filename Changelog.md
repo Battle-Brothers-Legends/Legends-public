@@ -280,6 +280,7 @@
 
 ### Helmets
 - added 5 more variations of Face Mask, art by Ivan
+- `Mountain Helm` and `Demon Alp Helm` are now full helmets of four layers (hood, helm, top and vanity) with new art, the craft makes the whole helmet and the effect sits on the helm layer, art by Misha
 
 ### Weapons
 **Billhooks**
@@ -1250,4 +1251,6 @@ Refactors/deletions:
 - `scripts/skills/effects/legend_web_at_start_effect` -> deleted, functionality changed to use Web active's onUse
 - `scripts/skills/effects/legend_freedom_of_movement_effect` -> `scripts/skills/effects/legend_lightning_reflexes_effect`
 - `legend_holyflame` -> `legend_holy_flame`
+- `legend_helmet_mountain_helm` (vanity) -> `legend_helmet_mountain_helmet` (helm)
+- `legend_helmet_demon_alp_helm` (vanity) -> `legend_helmet_demon_alp_helmet` (helm)
 - `perk_battering_ram` and `perk_stalwart` are no longer used, instead entities are granted immunities directly (for tooltip clarity)

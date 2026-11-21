@@ -149,19 +149,20 @@
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Named.legend_frogmouth_helm_decorated);
 
 ::Legends.Helmet.Named.legend_mountain_helmet_named <- {
-	ID = "named/legend_mountain_helmet_named", // 235 -15 -2 2650
+	ID = "named/legend_mountain_helmet_named", // the four mountain layers, the same helmet the Mountain Helm blueprint crafts
 	Script = "",
 	Sets = [{
 		Hoods = [
-			[1, "hood/legend_helmet_aventail"], // 60 -3 -0 150
+			[1, "hood/legend_helmet_mountain_hood"]
 		],
 		Helms = [
-			[1, "helm/legend_helmet_great_helm"] // 175 -12 -2 2500
+			[1, "helm/legend_helmet_mountain_helmet"] // the piece that mends the helmet
 		],
 		Tops = [
+			[1, "top/legend_helmet_mountain_mask"]
 		],
 		Vanity = [
-			[1, "vanity/legend_helmet_mountain_helm"] //10
+			[1, "vanity/legend_helmet_mountain_horns"]
 		]
 	}]
 };

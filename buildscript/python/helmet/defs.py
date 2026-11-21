@@ -6,15 +6,15 @@ class Defs:
         ### Helm
         #{"name": "helm_emperor_named", "min" : 1, "max" : 1, "layer": "helm", "impactSound" : "plate", "invSound" : "plate"},
         #{"name": "helm_ijirok_named", "min" : 1, "max" : 1, "layer": "helm", "impactSound" : "plate", "invSound" : "plate"},
+        {"name": "demon_alp_helmet", "min" : 1, "max" : 2, "layer": "helm", "impactSound" : "leather", "invSound" : "cloth"},
+        {"name": "mountain_helmet", "min" : 1, "max" : 5, "layer": "helm", "impactSound" : "plate", "invSound" : "plate"},
         {"name": "wild_helmet", "min" : 1, "max" : 4, "layer": "helm", "impactSound" : "chain", "invSound" : "chain"},
         ### Top
         {"name": "warlock_skull", "min" : 1, "max" : 3, "layer": "top", "impactSound" : "bone", "invSound" : "bone"},
         ### Vanity
-        {"name": "demon_alp_helm", "min" : 1, "max" : 1, "layer": "vanity", "impactSound" : "leather", "invSound" : "cloth"},
         {"name": "hunter_cap", "min" : 1, "max" : 17, "layer": "vanity", "impactSound" : "leather", "invSound" : "cloth"},
         {"name": "jester_hat", "min" : 1, "max" : 66, "layer": "vanity", "impactSound" : "leather", "invSound" : "cloth"},
         {"name": "lindwurm_helm", "min" : 1, "max" : 1, "layer": "vanity", "impactSound" : "leather", "invSound" : "leather"},
-        {"name": "mountain_helm", "min" : 1, "max" : 2, "layer": "vanity", "impactSound" : "plate", "invSound" : "plate"},
         {"name": "nach_helm", "min" : 1, "max" : 1, "layer": "vanity", "impactSound" : "leather", "invSound" : "cloth"},
         {"name": "pimp_hat", "min" : 1, "max" : 2, "layer": "vanity", "impactSound" : "leather", "invSound" : "cloth"},
         {"name": "redback_helm", "min" : 1, "max" : 1, "layer": "vanity", "impactSound" : "leather", "invSound" : "cloth"},
@@ -199,6 +199,16 @@ class Defs:
   "desc" :  "The headwear of The Diviner, despite not having any way to see through the fabric, once it sits on your face you can see through it as if it was never there at all.",
   "adesc" : "Includes the head wrap of The Diviner."
 },
+{"name" : "mountain_hood"                     , "layer" : "hood", "min" : 1, "max" : 2, "base" : True, "value" : 1500, "con" : 110, "stam" : -7, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+ "title" :  "Mountain Hood",
+ "desc" :  "A hood cut from the hide and jaw of a rock unhold.",
+ "adesc" : "Includes a hood of rock unhold hide."
+ },
+{"name" : "demon_alp_hood"                     , "layer" : "hood", "min" : 1, "max" : 1, "base" : True, "value" : 750, "con" : 65, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
+ "title" :  "Demon Alp Hood",
+ "desc" :  "A hood stitched from the skin of a demon that hunts in the night.",
+ "adesc" : "Includes a hood of demon skin."
+ },
 # {"name" : "mummy_bandage"                     , "layer" : "hood", "min" : 1, "max" : 4, "base" : True, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "true",
 #  "title" :  "Ancient Southern Facemask",
 #  "desc" :  "Wrappings from a long dead embalmed corpse."
@@ -972,6 +982,16 @@ class Defs:
   "desc" :  "A tattered mask that once belonged to a twisted flesh cultist.",
   "adesc" : "Includes a tattered mask."
 },
+{"name" : "mountain_mask"                     , "layer" : "top", "min" : 1, "max" : 3, "value" : 750, "con" : 90, "stam" : -5, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+ "title" :  "Mountain Mask",
+ "desc" :  "A face plate carved from the stone-like skull of a rock unhold.",
+ "adesc" : "Includes a stone-like face plate."
+ },
+{"name" : "demon_alp_mask"                     , "layer" : "top", "min" : 1, "max" : 2, "value" : 500, "con" : 40, "stam" : -1, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "leather", "invSound" : "cloth",
+ "title" :  "Demon Alp Mask",
+ "desc" :  "A mask made from the grinning face of a demon that hunts in the night.",
+ "adesc" : "Includes a grinning demon mask."
+ },
 
 ### Vanity
 
@@ -1329,14 +1349,6 @@ class Defs:
 #  "title" :  "Nacho Helm", \
 #  "desc" :  "A trophy made from the face of a skin ghoul." \
 # },
-# {"name" : "mountain_helm"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 200, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",  \
-#  "title" :  "Mountain Helm", \
-#  "desc" :  "A helm crafted from the skin and skull of a mighty rock unhold, the beast may be dead, but it continues to mend itself even after death" \
-# },
-# {"name" : "demon_alp_helm"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 200, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",  \
-#  "title" :  "Demon Alp Helm", \
-#  "desc" :  "A trophy made from the face of a demon" \
-# },
 {"name" : "warlock_hood"                     ,"itemType" : "::Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 5, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Warlock's Hood",
  "desc" :  "A tattered hood of discolored fabric. Counts as a cultist item.",
@@ -1377,6 +1389,16 @@ class Defs:
   "desc" :  "A spattering of supple leather straps that once belonged to a twisted flesh cultist.",
   "adesc" : "Includes some leather straps."
 },
+{"name" : "mountain_horns"                     , "layer" : "vanity", "min" : 1, "max" : 2, "value" : 200, "con" : 20, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false", "impactSound" : "bone", "invSound" : "bone",
+ "title" :  "Mountain Horns",
+ "desc" :  "The horns and tusks of a rock unhold, mounted as a crest.",
+ "adesc" : "Includes a crest of rock unhold horns."
+ },
+{"name" : "demon_alp_crest"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 200, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
+ "title" :  "Demon Alp Crest",
+ "desc" :  "A crest of flesh taken from a demon that hunts in the night.",
+ "adesc" : "Includes a crest of demon flesh."
+ },
 
 ### Vanity - lower
 

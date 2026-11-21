@@ -1016,7 +1016,7 @@ if (!("Blueprints" in ::Legends)) {
         ProfessionRequired = true
     },
     LegendDemonAlpHelmet = {
-        ItemScript = "scripts/items/legend_helmets/vanity/legend_helmet_demon_alp_helm",
+        ItemScript = "scripts/items/legend_helmets/helm/legend_helmet_demon_alp_helmet", // the blueprint crafts the whole helmet, see its script
         Cost = 2500,
         Ingredients = [
             {
@@ -1580,7 +1580,7 @@ if (!("Blueprints" in ::Legends)) {
         ProfessionRequired = true
     },
     LegendMountainHelmet = {
-        ItemScript = "scripts/items/legend_helmets/vanity/legend_helmet_mountain_helm",
+        ItemScript = "scripts/items/legend_helmets/helm/legend_helmet_mountain_helmet", // the blueprint crafts the whole helmet, see its script
         Cost = 2500,
         Ingredients = [
             {

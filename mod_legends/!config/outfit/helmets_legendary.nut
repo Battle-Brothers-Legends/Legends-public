@@ -22,16 +22,42 @@
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Legendary.legend_ijirok_helmet);
 
 ::Legends.Helmet.Legendary.legend_demonalp_helmet <- {
-	ID = "legendary/legend_demonalp_helmet", //160
-	Script = "scripts/items/legend_helmets/legendary/legend_demonalp_helmet",
-	Sets = []
+	ID = "legendary/legend_demonalp_helmet", // what the Demon Alp Helm blueprint crafts
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_demon_alp_hood"]
+		],
+		Helms = [
+			[1, "helm/legend_helmet_demon_alp_helmet"] // the piece with Horrific Scream
+		],
+		Tops = [
+			[1, "top/legend_helmet_demon_alp_mask"]
+		],
+		Vanity = [
+			[1, "vanity/legend_helmet_demon_alp_crest"]
+		]
+	}]
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Legendary.legend_demonalp_helmet);
 
 ::Legends.Helmet.Legendary.legend_mountain_helmet <- {
-	ID = "legendary/legend_mountain_helmet", //300.0
-	Script = "scripts/items/legend_helmets/legendary/legend_mountain_helmet",
-	Sets = []
+	ID = "legendary/legend_mountain_helmet", // what the Mountain Helm blueprint crafts
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_mountain_hood"]
+		],
+		Helms = [
+			[1, "helm/legend_helmet_mountain_helmet"] // the piece that mends the helmet
+		],
+		Tops = [
+			[1, "top/legend_helmet_mountain_mask"]
+		],
+		Vanity = [
+			[1, "vanity/legend_helmet_mountain_horns"]
+		]
+	}]
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Legendary.legend_mountain_helmet);
 
