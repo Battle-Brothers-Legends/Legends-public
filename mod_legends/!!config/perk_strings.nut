@@ -246,9 +246,7 @@ A well honed mind can perceive more in each moment, making time appear slower in
 [color=%passive%][u]Passive:[/u][/color]
 • An additional [color=%positive%]+10%[/color] of any damage ignores armor.
 
-• Does not work if you are [color=%status%]Dazed[/color], [color=%status%]Drunk[/color], [color=%status%]Hungover[/color], [color=%status%]Taunted[/color], [color=%status%]Staggered[/color], [color=%status%]Horrified[/color], [color=%status%]Concussed[/color] or [color=%status%]Wavering[/color].
-
-• Doubles the armor ignore bonus if under the effect of the following potions: Iron Will, Lionheart, Cat, Second Wind or Hexen Ichor.
+• Grants immunity to being [color=%status%]Dazed[/color] or [color=%status%]Taunted[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendConservation <- @"

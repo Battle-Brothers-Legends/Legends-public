@@ -14,29 +14,25 @@ this.perk_legend_clarity <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "[color=%positive%]+" + this.calculateBonus() + "%[/color] of any damage ignores armor"
+				text = "[color=%positive%]+10%[/color] of any damage ignores armor"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being [color=%status%]Dazed[/color] or [color=%status%]Taunted[/color]"
 			}
 		]);
 		return tooltip;
 	}
 
 	function onUpdate(_properties) {
-		_properties.DamageDirectAdd += this.calculateBonus();
-	}
-
-	function calculateBonus() {
-		local actor = this.getContainer().getActor();
-		local bonus = 0;
-		if (!actor.getSkills().hasEffect(::Legends.Effect.Dazed) && !actor.getSkills().hasEffect(::Legends.Effect.Drunk) && !actor.getSkills().hasEffect(::Legends.Effect.Taunted) && !actor.getSkills().hasEffect(::Legends.Effect.Hangover) && !actor.getSkills().hasEffect(::Legends.Effect.Staggered) && !actor.getSkills().hasEffect(::Legends.Effect.Horrified) && !actor.getSkills().hasSkill("injury.severe_concussion") && this.getContainer().getActor().getMoraleState() >= ::Const.MoraleState.Wavering) {
-			bonus += 0.1;
-		}
-		if (actor.getSkills().hasEffect(::Legends.Effect.IronWill) || actor.getSkills().hasEffect(::Legends.Effect.RecoveryPotion) || actor.getSkills().hasEffect(::Legends.Effect.LionheartPotion) || actor.getSkills().hasEffect(::Legends.Effect.CatPotion) || actor.getSkills().hasEffect(::Legends.Effect.LegendHexeIchor)) {
-			bonus += 0.1;
-		}
-		return bonus;
+		_properties.DamageDirectAdd += 0.1;
+		_properties.IsImmuneToDaze = true;
+		_properties.IsImmuneToTaunt = true;
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
-		return "[color=%positive%]+" + this.calculateBonus() * 100 + "%[/color] " + ::Legends.Text.inlineIcons("direct_damage");
+		return "[color=%positive%]+10%[/color] " + ::Legends.Text.inlineIcons("direct_damage") + ", immune to Daze and Taunt";
 	}
 });

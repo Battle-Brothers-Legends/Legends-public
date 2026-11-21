@@ -217,6 +217,7 @@
 - `Recover` - the active now automatically ends the bros turn
 - `Net Mastery` - gains the Melee Defense bonus that used to be on Net Repair, loses Break Free / Break Ally Free bonuses
 - `Freedom of Movement` - gains Break Free / Break Free Ally bonuses that used to be on Net Mastery
+- `Clarity` - the 10% armor ignore now always applies and no longer doubles with potions, and the perk grants immunity to being Dazed or Taunted
 
 ### Removed Perks
 - `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters
@@ -826,6 +827,7 @@
 - world generation with `All Trade Locations` no longer hangs forever when a trade location can not be placed at any settlement
 
 ### For modders:
+- new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true
 - you can now offset fatigue bonuses via `InitiativeFatigueOffset`. In vanilla if you add fatigue to `currentProperties` it'll give back initiative that you've lost from equipping armor and gear
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

@@ -120,4 +120,5 @@ if (!("Effects" in ::Legends)) {
 	IsImmuneToRotation = "Rotation",
 	IsImmuneToStun = "Stun",
 	IsImmuneToSurrounding = "Surrounding",
+	IsImmuneToTaunt = "Taunt",
 }
