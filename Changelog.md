@@ -259,6 +259,8 @@
 - introduced a new system connecting the camping system to brothers - profession tree
 - the tree is accessible via character screen, next to the perk tree
 - uses separate points, independent to regular perks and conveys bonuses for the whole company
+- you start with a very basic tree and gradually unlock more perks down the tree
+- certain perks will be locked unless of a certain background and certain perks will be unlocked on some of the backgrounds
 
 ## Effects
 - `Redback Poison` - will now apply varying effects for each turn afflicted, first turn Baffled, second turn Dazed, third turn Stunned
