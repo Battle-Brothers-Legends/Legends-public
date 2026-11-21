@@ -337,7 +337,7 @@
 
 **Daggers**
 - all daggers now have a bit of weight for dual wield balancing
-- `Redback Dagger` - its poison now stuns like the bite of a Redback Spider, as the stun is part of redback poison itself. This also goes for every other source of redback poison
+- `Redback Dagger` - its poison now works like the bite of a Redback Spider, as the status effects are part of redback poison itself. This also goes for every other source of redback poison
 
 **Puncture Daggers**
 - `Backstab` - replaces `Stab` on puncture daggers
@@ -515,6 +515,7 @@
 - revamped art for `Rock Unhold`, with a look for each of plains, swamp and snow from Misha
 - `Rock Unhold` - no longer roam as a party of their own, one or two can now join large parties of regular, bog, and frost unholds
 - `Rock Unhold` hunting contract - the pack takes the look of the region the contract comes from
+- `Redback Spider` - redback poison now lasts 3 turns and deals 10 damage each turn. It leaves the victim Dazed on the first turn, Staggered on the second and Stunned on the third, instead of stunning on every bite. A new dose makes it last its full time again without starting over. Resilient victims are only ever Dazed and are rid of it after a turn, Ailing ones are one step ahead and suffer it a turn longer
 - `Schrat` shield gains 10 block
 - `Greenwood Schrat` shield gains 15 block but now has 30 Melee Defense and Ranged Defense down from 40, condition is down to 64 from 128
 - `Hexe Coven Leader` - can now be champions and can drop named gnarly staves

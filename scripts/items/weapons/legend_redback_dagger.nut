@@ -47,7 +47,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Applies redback poison to the target on any successful attack, dealing [color=%damage%]55[/color] damage over [color=%damage%]10[/color] turns, stunning any target that is already poisoned."
+			text = "Applies redback poison to the target on any successful attack, dealing [color=%damage%]10[/color] damage a turn for [color=%damage%]3[/color] turns. The poison leaves the target Dazed on the first turn, Staggered on the second and Stunned on the third."
 		});
 		result.push({
 			id = 7,

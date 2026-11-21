@@ -33,7 +33,7 @@ this.legend_redback_spider_racial <- this.inherit("scripts/skills/skill", {
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
 		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison);
 
-		// the poison itself stuns now
+		// the poison itself dazes, staggers, then stuns
 		if (poison == null) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison);
 		} else {
