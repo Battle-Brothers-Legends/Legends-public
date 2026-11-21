@@ -508,6 +508,7 @@
 - added more trade items to support the expanded gathering system
 
 ## Enemies
+- champions now have the `Clarity` perk, as do the `Ijirok`, the `Kraken`, the `Lich`, the `Conqueror`, the `Grand Diviner` and the `Mummy Queen`. They can no longer be Dazed or Taunted
 ### Dynamic Troops Day To Skip
 - `Dynamic Troops Day To Skip` in the start campaign settings has now been disabled, enemies of varying difficulty will naturally appear as your company becomes stronger
 

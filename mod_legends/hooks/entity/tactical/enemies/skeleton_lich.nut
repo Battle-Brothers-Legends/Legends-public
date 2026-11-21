@@ -6,6 +6,7 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity);
 		this.addSprite("armor_layer_chain");
 		this.addSprite("armor_layer_plate");
 		this.addSprite("armor_layer_tabard");

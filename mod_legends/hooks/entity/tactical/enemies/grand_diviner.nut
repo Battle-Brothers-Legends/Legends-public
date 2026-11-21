@@ -5,6 +5,7 @@
 		onInit();
 		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);

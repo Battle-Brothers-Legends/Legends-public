@@ -17,6 +17,7 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity);
 		if (::Legends.isLegendaryDifficulty()) {
 			this.m.BaseProperties.IsImmuneToStun = true;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);

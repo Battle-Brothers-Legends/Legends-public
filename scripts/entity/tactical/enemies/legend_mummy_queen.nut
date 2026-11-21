@@ -35,6 +35,7 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity);
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialVampire);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialAlp);

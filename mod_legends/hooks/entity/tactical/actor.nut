@@ -517,6 +517,7 @@
 	o.makeMiniboss = function () {
 		local ret = makeMiniboss();
 		if (ret) {
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity); // champions can't be taunted anymore :3
 			this.m.OnDeathLootTable.extend([
 				[5, "scripts/items/misc/legend_masterwork_fabric"],
 				[5, "scripts/items/misc/legend_masterwork_metal"],

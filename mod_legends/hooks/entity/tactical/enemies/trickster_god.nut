@@ -22,6 +22,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
