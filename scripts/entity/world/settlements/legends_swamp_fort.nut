@@ -457,7 +457,7 @@ this.legends_swamp_fort <- this.inherit("scripts/entity/world/settlements/legend
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 
-		if (!::Const.World.Buildings.Kennels == 0)
+		if (::Const.World.Buildings.Kennels == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}
@@ -704,6 +704,7 @@ this.legends_swamp_fort <- this.inherit("scripts/entity/world/settlements/legend
 
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
+		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/training_hall_building"));
 
 		if (::Const.World.Buildings.Kennels == 0)
 		{

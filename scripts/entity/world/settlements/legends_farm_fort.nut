@@ -213,7 +213,9 @@ this.legends_farm_fort <- this.inherit("scripts/entity/world/settlements/legends
 			::Legends.Background.Sellsword,
 			::Legends.Background.Squire,
 			::Legends.Background.Squire,
-			::Legends.Background.Swordmaster
+			::Legends.Background.Swordmaster,
+			::Legends.Background.LegendIronmonger,
+			::Legends.Background.LegendFootSoldier
 		]];
 
 		this.m.StablesLists = [[

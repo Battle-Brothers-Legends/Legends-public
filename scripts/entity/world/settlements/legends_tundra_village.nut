@@ -165,7 +165,8 @@ this.legends_tundra_village <- this.inherit("scripts/entity/world/settlements/le
 			::Legends.Background.Peddler,
 			::Legends.Background.Poacher,
 			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman
+			::Legends.Background.Wildman,
+			::Legends.Background.LegendDisownedNobleRanged
 		],[
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
@@ -410,7 +411,7 @@ this.legends_tundra_village <- this.inherit("scripts/entity/world/settlements/le
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		}
-		else if (::Const.DLC.Unhold && (::Const.World.Buildings.Taxidermists == 0 || ::Math.rand(1, 100)))
+		else if (::Const.DLC.Unhold && (::Const.World.Buildings.Taxidermists == 0 || ::Math.rand(1, 100) <= 33))
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/taxidermist_building"));
 		}

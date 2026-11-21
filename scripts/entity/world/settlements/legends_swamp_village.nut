@@ -215,7 +215,8 @@ this.legends_swamp_village <- this.inherit("scripts/entity/world/settlements/leg
 			::Legends.Background.Swordmaster,
 			::Legends.Background.Cripple,
 			::Legends.Background.Eunuch,
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendDisownedNobleRanged
 		]];
 
 		this.m.StablesLists = [[],[],[]];

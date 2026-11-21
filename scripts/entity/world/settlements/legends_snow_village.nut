@@ -213,7 +213,10 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 			::Legends.Background.Raider,
 			::Legends.Background.Sellsword,
 			::Legends.Background.Swordmaster,
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged
 		]];
 		this.m.FemaleDraftLists = [
 		[
@@ -221,6 +224,7 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 		],[
 			// nothing at lvl 2
 		],[
+			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden
 		]];
 

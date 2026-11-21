@@ -525,116 +525,29 @@
 	}
 
 	o.guaranteeAllBuildingsInSettlements = function () {
-
 		local settlements = ::World.EntityManager.getSettlements();
 
-		if (::Const.World.Buildings.Fletchers < 2) {
-			local candidates = [];
-
-			foreach (s in settlements) {
-				if (s.getSize() >= 2 && s.hasFreeBuildingSlot()	&& !s.hasBuilding("building.fletcher"))	{
-					candidates.push(s);
-				}
+		// A world with fewer than two of a building gets it added to random suitable settlements until there are three or until no settlement is left that can take one
+		local guarantee = function (_count, _building, _isSuitable) {
+			if (_count >= 2) {
+				return;
 			}
 
-			for (local i = ::Const.World.Buildings.Fletchers; i <= 2; i = ++i) {
-				local r = ::Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));
+			local candidates = settlements.filter(@(_, _s) _s.hasFreeBuildingSlot() && !_s.hasBuilding("building." + _building) && _isSuitable(_s));
 
-				if (candidates.len() == 0) {
-					break;
-				}
+			for (local i = _count; i <= 2 && candidates.len() != 0; ++i) {
+				local s = candidates.remove(::Math.rand(0, candidates.len() - 1));
+				s.addBuilding(::new("scripts/entity/world/settlements/buildings/" + _building + "_building"));
 			}
 		}
 
-		if (::Const.World.Buildings.Temples < 2) {
-			local candidates = [];
+		guarantee(::Const.World.Buildings.Fletchers, "fletcher", @(_s) _s.getSize() >= 2);
+		guarantee(::Const.World.Buildings.Temples, "temple", @(_s) _s.getSize() >= 2);
+		guarantee(::Const.World.Buildings.Blackmarket, "blackmarket", @(_s) _s.getSize() >= 2 && !_s.isMilitary());
+		guarantee(::Const.World.Buildings.Kennels, "kennel", @(_s) _s.isMilitary());
 
-			foreach (s in settlements) {
-				if (s.getSize() >= 2 && s.hasFreeBuildingSlot() && !s.hasBuilding("building.temple"))
-				{
-					candidates.push(s);
-				}
-			}
-
-			for (local i = ::Const.World.Buildings.Temples; i <= 2; i = ++i) {
-				local r = ::Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-
-				if (candidates.len() == 0) {
-					break;
-				}
-			}
-		}
-
-		if (::Const.World.Buildings.Blackmarket < 2) {
-			local candidates = [];
-
-			foreach (s in settlements) {
-				if (s.getSize() >= 2 && !s.isMilitary()	&& s.hasFreeBuildingSlot() && !s.hasBuilding("building.blackmarket"))
-				{
-					candidates.push(s);
-				}
-			}
-
-			for (local i = ::Const.World.Buildings.Blackmarket; i <= 2; i = ++i) {
-				local r = ::Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
-
-				if (candidates.len() == 0) {
-					break;
-				}
-			}
-		}
-
-		if (::Const.World.Buildings.Kennels < 2) {
-			local candidates = [];
-
-			foreach (s in settlements) {
-				if (s.isMilitary() && s.hasFreeBuildingSlot() && !s.hasBuilding("building.kennel"))
-				{
-					candidates.push(s);
-				}
-			}
-
-			for (local i = ::Const.World.Buildings.Kennels; i <= 2; i = ++i) {
-				local r = ::Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-
-				if (candidates.len() == 0) {
-					break;
-				}
-			}
-		}
-
-		if (::Const.DLC.Unhold && ::Const.World.Buildings.Taxidermists < 2) {
-			local candidates = [];
-
-			foreach (s in settlements) {
-				if (!s.isMilitary()	&& s.hasFreeBuildingSlot() && !s.hasBuilding("building.taxidermist"))
-				{
-					candidates.push(s);
-				}
-			}
-
-			for (local i = ::Const.World.Buildings.Taxidermists; i <= 2; i = ++i) {
-				local r = ::Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/taxidermist_building"));
-
-				if (candidates.len() == 0) {
-					break;
-				}
-			}
+		if (::Const.DLC.Unhold) {
+			guarantee(::Const.World.Buildings.Taxidermists, "taxidermist", @(_s) !_s.isMilitary());
 		}
 
 		// if (::Const.World.Buildings.Stables < 1) {
@@ -658,7 +571,6 @@
 		// 		}
 		// 	}
 		// }
-
 	}
 
 	local buildAdditionalRoads = o.buildAdditionalRoads;
@@ -799,14 +711,13 @@
 				::Const.World.TerrainType.LeaveForest
 			];
 			local tries = 0;
-			while (tries++ < 1000) {
+			while (settlements.len() != 0 && tries++ < 1000) {
 				local index = ::Math.rand(0, settlements.len() - 1);
 				settlements[index].buildAttachedLocation(1, v.Script, ALL, [], 2, false, true, true);
 				if (settlements[index].hasAttachedLocation(k)) {
 					//this.logInfo("Added " + k)
 					break;
 				}
-				tries = --tries;
 			}
 		}
 	}

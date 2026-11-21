@@ -613,6 +613,9 @@
 - generated maps should be more consistent with the chosen setting and generate much quicker in some cases
 - added a bridging function to map generation to ensure connections between bigger islands and continents and the mainland
 - cleaned up the option dialogs
+- large mining villages now have a temple next to their tavern and either an armorsmith or a weaponsmith, instead of the same buildings as a medium one
+- large swamp forts now have a training hall
+- large steppe villages now have a black market
 
 ## Gender settings and changes
 - added a mod setting allowing the player to choose the gender of the commander avatar
@@ -815,6 +818,12 @@
 - Fixed an error when a character under the Fury chant died right after their payback attack was triggered
 - Fixed a crash when a character died while a ranged AI unit was still deciding where to move
 - Fixed Line Them Up with Crossbow Mastery hitting the third tile twice instead of reaching a fourth tile
+- backgrounds that had been added to the recruit lists of the vanilla settlement types now actually turn up, they were on scripts world generation no longer uses. Among them the ranged nobles, blacksmiths, ironmongers, butchers in fishing villages and the extra nomads of the Nomad origin on the steppe
+- small tundra villages no longer always get a taxidermist when they do not roll a weaponsmith, and can have a temple again
+- medium steppe villages can have a temple again and no longer end up without their extra building one time in three
+- the first medium coast fort, small swamp fort and small tundra fort of a world get a kennel if there is none yet, as the other forts already did
+- world generation no longer errors when no settlement is left to place a guaranteed building in
+- world generation with `All Trade Locations` no longer hangs forever when a trade location can not be placed at any settlement
 
 ### For modders:
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true

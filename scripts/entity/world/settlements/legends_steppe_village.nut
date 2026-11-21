@@ -181,7 +181,10 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 			::Legends.Background.Swordmaster,
 			::Legends.Background.Cripple,
 			::Legends.Background.Eunuch,
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged
 		]];
 		this.m.StablesLists = [[
 			::Legends.Background.LegendDonkey,
@@ -376,6 +379,35 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
+	function getDraftList()
+	{
+		local L = this.legends_village.getDraftList();
+		local nomads = [
+			[
+				::Legends.Background.Nomad,
+				::Legends.Background.NomadRanged
+			],
+			[],
+			[
+				::Legends.Background.Nomad,
+				::Legends.Background.Nomad,
+				::Legends.Background.Nomad,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.LegendBladedancer,
+				::Legends.Background.LegendBladedancer
+			]
+		];
+
+		if (::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.legends_nomad")
+		{
+			L.extend(nomads[this.m.Size - 1]);
+		}
+
+		return L;
+	}
+
 	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
@@ -469,7 +501,7 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
 		}
-		else if (r == 2)
+		else if (r == 3)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		}
@@ -554,6 +586,7 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 		// this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
 
 		if (::Math.rand(1, 100) <= 50)
 		{

@@ -245,7 +245,10 @@ this.legends_mountains_fort <- this.inherit("scripts/entity/world/settlements/le
 			::Legends.Background.Swordmaster,
 			::Legends.Background.Cripple,
 			::Legends.Background.HedgeKnight,
-			::Legends.Background.HedgeKnight
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.LegendIronmonger,
+			::Legends.Background.LegendBlacksmith,
+			::Legends.Background.Assassin
 		]];
 
 		this.m.StablesLists = [[

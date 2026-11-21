@@ -604,17 +604,13 @@ this.legends_mining_village <- this.inherit("scripts/entity/world/settlements/le
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
-		local r = ::Math.rand(1, 3);
+		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 
-		if (r <= 1)
-		{
-			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-		}
-		else if (r <= 2)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		}
-		else if (r == 3)
+		else
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		}

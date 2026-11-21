@@ -244,7 +244,12 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			::Legends.Background.Squire,
 			::Legends.Background.Swordmaster,
 			::Legends.Background.Cripple,
-			::Legends.Background.Eunuch
+			::Legends.Background.Eunuch,
+			::Legends.Background.BeastSlayer,
+			::Legends.Background.Manhunter,
+			::Legends.Background.LegendTaxidermist,
+			::Legends.Background.LegendBlacksmith,
+			::Legends.Background.LegendArbalester
 		]];
 
 		this.m.StablesLists = [[
@@ -587,7 +592,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		}
 
-		if (!::Const.World.Buildings.Kennels == 0)
+		if (::Const.World.Buildings.Kennels == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}

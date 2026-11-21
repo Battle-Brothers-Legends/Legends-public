@@ -132,7 +132,8 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 			::Legends.Background.Raider,
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Sellsword
+			::Legends.Background.Sellsword,
+			::Legends.Background.LegendDisownedNobleRanged
 		],[
 			::Legends.Background.Apprentice,
 			::Legends.Background.Brawler,
@@ -168,7 +169,10 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 			::Legends.Background.Cripple,
 			::Legends.Background.Eunuch,
 			::Legends.Background.HedgeKnight,
-			::Legends.Background.HedgeKnight
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.LegendBlacksmith,
+			::Legends.Background.LegendHouseGuard,
+			::Legends.Background.LegendDisownedNobleRanged
 		]];
 
 		this.m.FemaleDraftLists = [[
@@ -182,6 +186,8 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.Witchhunter,
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden
 		]];
 
 		this.m.StablesLists = [[
@@ -464,7 +470,7 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 
-		if (!::Const.World.Buildings.Kennels == 0)
+		if (::Const.World.Buildings.Kennels == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}

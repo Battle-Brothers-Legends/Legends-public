@@ -141,7 +141,9 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 			::Legends.Background.Witchhunter,
 			::Legends.Background.Deserter,
 			::Legends.Background.Raider,
-			::Legends.Background.RetiredSoldier
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged
 		],[
 			::Legends.Background.Apprentice,
 			::Legends.Background.Brawler,
@@ -172,12 +174,21 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 			::Legends.Background.Sellsword,
 			::Legends.Background.Squire,
 			::Legends.Background.Cripple,
+			::Legends.Background.LegendBlacksmith,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged
 		]];
 		this.m.FemaleDraftLists = [[
-			// nothing at lvl 1
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden
 		],[
-			// nothing at lvl 2
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden
 		],[
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden
 		]];
 
@@ -585,7 +596,7 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 		// }
 		else
 		{
-			local r = ::Math.rand(1, 4);
+			local r = ::Math.rand(1, 3);
 
 			if (r == 1)
 			{
@@ -599,10 +610,10 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 			{
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 			}
-			else if (r == 4)
-			{
-				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-			}
+			// else if (r == 4)
+			// {
+			// 	this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
+			// }
 		}
 
 		if (::Math.rand(1, 100) <= 70)

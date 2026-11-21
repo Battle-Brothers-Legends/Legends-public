@@ -116,7 +116,9 @@ this.legends_fishing_village <- this.inherit("scripts/entity/world/settlements/l
 			::Legends.Background.Gravedigger,
 			::Legends.Background.Peddler,
 			::Legends.Background.Vagabond,
-			::Legends.Background.Vagabond
+			::Legends.Background.Vagabond,
+			::Legends.Background.Butcher,
+			::Legends.Background.Butcher
 		],[
 			::Legends.Background.Apprentice,
 			::Legends.Background.Beggar,
@@ -205,7 +207,11 @@ this.legends_fishing_village <- this.inherit("scripts/entity/world/settlements/l
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.Sellsword,
 			::Legends.Background.Swordmaster,
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.Butcher,
+			::Legends.Background.Butcher,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged
 		]];
 
 		this.m.StablesLists = [[],[],[]];

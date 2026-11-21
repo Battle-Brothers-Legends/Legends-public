@@ -239,7 +239,9 @@ this.legends_steppe_fort <- this.inherit("scripts/entity/world/settlements/legen
 			::Legends.Background.Sellsword,
 			::Legends.Background.Sellsword,
 			::Legends.Background.Swordmaster,
-			::Legends.Background.HedgeKnight
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.LegendIronmonger,
+			::Legends.Background.LegendHouseGuard
 		]];
 		this.m.StablesLists = [[
 			::Legends.Background.LegendDonkey,
@@ -499,6 +501,41 @@ this.legends_steppe_fort <- this.inherit("scripts/entity/world/settlements/legen
 		items = this.filterNewLocation(items);
 		local item = ::Legends.Items.pickItem(items);
 		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
+	}
+
+	// a company of nomads finds more of its own kind looking for work on the steppe, by settlement size
+	function getDraftList()
+	{
+		local L = this.legends_fort.getDraftList();
+		local nomads = [
+			[
+				::Legends.Background.Nomad,
+				::Legends.Background.Nomad,
+				::Legends.Background.Nomad,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.LegendBladedancer
+			],
+			[],
+			[
+				::Legends.Background.Nomad,
+				::Legends.Background.Nomad,
+				::Legends.Background.Nomad,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.NomadRanged,
+				::Legends.Background.LegendBladedancer,
+				::Legends.Background.LegendBladedancer
+			]
+		];
+
+		if (::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.legends_nomad")
+		{
+			L.extend(nomads[this.m.Size - 1]);
+		}
+
+		return L;
 	}
 
 	function onBuildOne( )

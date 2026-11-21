@@ -154,6 +154,10 @@ this.legends_forest_fort <- this.inherit("scripts/entity/world/settlements/legen
 			::Legends.Background.Squire,
 			::Legends.Background.Swordmaster,
 			::Legends.Background.Cripple,
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.LegendBlacksmith,
+			::Legends.Background.LegendDisownedNobleRanged
 		]];
 		this.m.FemaleDraftLists = [[
 			::Legends.Background.LegendShieldmaiden,

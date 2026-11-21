@@ -200,7 +200,8 @@ this.legends_lumber_village <- this.inherit("scripts/entity/world/settlements/le
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.Cripple,
 			::Legends.Background.Eunuch,
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendDisownedNobleRanged
 		]];
 		this.m.FemaleDraftLists = [[
 		// 	nothing at lvl 1

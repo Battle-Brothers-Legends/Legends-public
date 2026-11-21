@@ -188,7 +188,8 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 			::Legends.Background.Sellsword,
 			::Legends.Background.Squire,
 			::Legends.Background.Swordmaster,
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendAdventurousNobleRanged
 		]];
 
 		this.m.StablesLists = [[
