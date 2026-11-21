@@ -795,7 +795,7 @@
 	}
 
 	o.resetProfessions <- function () {
-		local known = ::Legends.Professions.Branches.getBackgroundList(this, "Known");
+		local known = this.getBackground().getProfessionBranches().Known;
 		local refunded = 0;
 
 		foreach (skill in this.getSkills().query(::Const.SkillType.Profession, true)) {
