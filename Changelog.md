@@ -104,6 +104,9 @@
 > RangedDefense -6 - -1
 > Initiative 65 - 75
 
+### Donkeys
+- donkeys and stables have been removed until we figure out what to do with them with the profession rework
+
 ### Crusaders
 - can no longer be `Sureshot`
 
@@ -251,11 +254,14 @@
 - `Greed` - removed
 - `Pacifist` - removed
 
-
 ## Professions
 - introduced a new system connecting the camping system to brothers - profession tree
 - the tree is accessible via character screen, next to the perk tree
 - uses separate points, independent to regular perks and conveys bonuses for the whole company
+
+## Effects
+- `Redback Poison` - will now apply varying effects for each turn afflicted, first turn Daze, second turn Stagger, third turn Stun
+> does 10 damage per turn
 
 ## Traits
 - `Lucky` - now additionally gives 10% chance to reroll a missed attack

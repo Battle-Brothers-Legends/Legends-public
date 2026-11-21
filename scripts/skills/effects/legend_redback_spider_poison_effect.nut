@@ -19,33 +19,38 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
+		local param = [
+			["_damage", this.getDamage()],
+			["_stage", this.getStage().Name],
+			["_turnsLeft", this.m.TurnsLeft]
+		];
 		tooltip.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/damage_received.png",
-				text = "[color=%negative%]" + this.getDamage() + "[/color] Hitpoints Damage Received every turn"
+				text = "[color=%negative%]%_damage%[/color] Hitpoints Damage Received every turn",
+				param = param
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Will leave this character [color=%status%]" + this.getStage().Name + "[/color] at the start of their next turn"
+				text = "Will leave this character [color=%status%]%_stage%[/color] at the start of their next turn",
+				param = param
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "Wears off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s)"
+				text = "Wears off in [color=%negative%]%turnsLeft%[/color] turn(s)",
+				param = param
 			}
 		]);
 		return tooltip;
 	}
 
 	function getDamage() {
-		if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
-			return this.m.Damage * 2;
-		}
 		return this.m.Damage;
 	}
 
