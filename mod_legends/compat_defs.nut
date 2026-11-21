@@ -162,6 +162,7 @@
 ::Legends.Compat.HardIncompat.add("mod_mbpause", null, "Use Legends pause options instead");
 ::Legends.Compat.HardIncompat.add("mod_plan_perks", null, "Use Legends perk/profession planning instead");
 ::Legends.Compat.HardIncompat.add("mod_menace", "0.03");
+::Legends.Compat.HardIncompat.add("mod_mentor_rookie"); // slop
 ::Legends.Compat.HardIncompat.add("mod_more_buildings", "0.5");
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x5");
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x10");
