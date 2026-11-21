@@ -415,9 +415,9 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 	CustomProfessionTree = null,
 	Profession = {
 		FavouredEnemyChance = 2,
-		Roots = [],
+		Roots = [::Legends.Profession.LegendBalladeInTheMaking],
 		Known = [],
-		Special = []	
+		Special = []
 	}
 };
 
@@ -526,8 +526,9 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 ::Legends.BackgroundProfessionTrees.Minstrel <- {
 	CustomProfessionTree = null,
 	Profession = {
+		FavouredEnemyChance = 2,
+		Roots = [],
 		Known = [::Legends.Profession.LegendBalladeInTheMaking],
-		Known = [],
 		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
 	}
 };
@@ -831,7 +832,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
-		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]	
+		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw]
 	}
 };
 
@@ -839,9 +840,9 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 	CustomProfessionTree = null,
 	Profession = {
 		FavouredEnemyChance = 2,
-		Roots = [::Legends.Profession.LegendBraggart],
-		Known = [],
-		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]	
+		Roots = [],
+		Known = [::Legends.Profession.LegendHerbcraft],
+		Special = [::Legends.Profession.LegendPetardry]
 	}
 };
 
@@ -861,7 +862,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
-		Special = []	
+		Special = [::Legends.Profession.LegendFavouredEnemyUndead]
 	}
 };
 
@@ -1053,7 +1054,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBraggart],
 		Known = [],
-		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]	
+		Special = [::Legends.Profession.LegendFavouredEnemyOutlaw]
 	}
 };
 
@@ -1293,7 +1294,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 		FavouredEnemyChance = 2,
 		Roots = [],
 		Known = [],
-		Special = []	
+		Special = [::Legends.Profession.LegendFavouredEnemyBeast, ::Legends.Profession.LegendFavouredEnemyOutlaw]
 	}
 };
 
