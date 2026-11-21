@@ -529,13 +529,14 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 
 		// the pack takes the look of the region the contract comes from, legend_hunting_rock_unholds_action has the settlements behind each type
 		local looks = [
-			::Const.World.Spawn.Troops.LegendRockUnholdBog.Script, // 0: swamp and lumber villages
-			::Const.World.Spawn.Troops.LegendRockUnholdFrost.Script // 1: snow villages
+			::Const.World.Spawn.Troops.LegendRockUnholdBog, // 0: swamp and lumber villages
+			::Const.World.Spawn.Troops.LegendRockUnholdFrost // 1: snow villages
 		]; // 2: mining and tundra villages keep the plain look
 		if (this.m.Flags.has("EnemyType") && this.m.Flags.get("EnemyType") < looks.len()) {
 			foreach (troop in party.getTroops()) {
 				if (troop.Script == ::Const.World.Spawn.Troops.LegendRockUnhold.Script) {
-					troop.Script = looks[this.m.Flags.get("EnemyType")];
+					troop.ID = looks[this.m.Flags.get("EnemyType")].ID;
+					troop.Script = looks[this.m.Flags.get("EnemyType")].Script;
 				}
 			}
 		}

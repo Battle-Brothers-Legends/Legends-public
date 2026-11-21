@@ -261,6 +261,8 @@
 	<sprite id="rabble_orientation"  ic="FF22200A" img="orientation\rabble_orientation.png" />
 	<sprite id="rabble_poacher_orientation"  ic="FF22200A" img="orientation\rabble_poacher_orientation.png" />
 	<sprite id="redback_spider_orientation"  ic="FF22200A" img="orientation\redback_spider_orientation.png" />
+	<sprite id="rock_unhold_bog_orientation"  ic="FF22200A" img="orientation\rock_unhold_bog_orientation.png" />
+	<sprite id="rock_unhold_frost_orientation"  ic="FF22200A" img="orientation\rock_unhold_frost_orientation.png" />
 	<sprite id="rock_unhold_orientation"  ic="FF22200A" img="orientation\rock_unhold_orientation.png" />
 	<sprite id="slinger_orientation"  ic="FF22200A" img="orientation\slinger_orientation.png" />
 	<sprite id="skin_ghoul_orientation"  ic="FF22200A" img="orientation\skin_ghoul_orientation.png" />

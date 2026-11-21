@@ -294,7 +294,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendRockUnholdFrost <- {
-	ID = ::Const.EntityType.LegendRockUnhold,
+	ID = ::Const.EntityType.addNew("rock_unhold_frost_orientation", "Rock Unhold", "Rock Unholds", ::Const.FactionType.Beasts),
 	Variant = 0,
 	Strength = 180,
 	Cost = 180,
@@ -303,7 +303,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendRockUnholdBog <- {
-	ID = ::Const.EntityType.LegendRockUnhold,
+	ID = ::Const.EntityType.addNew("rock_unhold_bog_orientation", "Rock Unhold", "Rock Unholds", ::Const.FactionType.Beasts),
 	Variant = 0,
 	Strength = 180,
 	Cost = 180,

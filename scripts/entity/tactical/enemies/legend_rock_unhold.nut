@@ -37,6 +37,16 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
+	// the orientation icon follows the look
+	function getOverlayImage() {
+		local icons = {
+			grass = "rock_unhold_orientation",
+			swamp = "rock_unhold_bog_orientation",
+			winter = "rock_unhold_frost_orientation"
+		};
+		return icons[this.m.Biome];
+	}
+
 	function playSound(_type, _volume, _pitch = 1.0) {
 		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50) {
 			return;
