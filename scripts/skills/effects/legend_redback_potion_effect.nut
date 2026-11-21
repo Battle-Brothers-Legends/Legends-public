@@ -23,7 +23,7 @@ this.legend_redback_potion_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Attacks always apply redback poison, dealing 10 damage a turn for 3 turns and leaving the target Dazed, then Staggered, then Stunned"
+				text = "Attacks always apply redback poison, dealing 10 damage a turn for 3 turns and leaving the target Baffled, then Dazed, then Stunned"
 			},
 			{
 				id = 12,

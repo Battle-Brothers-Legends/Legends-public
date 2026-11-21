@@ -1,7 +1,7 @@
 this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.weapon.create();
 		this.m.SoundOnUse <- ::Legends.S.setSounds("sounds/combat/puncture", 3);
 		this.m.SoundOnHit <- ::Legends.S.setSounds("sounds/combat/puncture_hit", 3);
@@ -40,69 +40,60 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		return this.m.AmmoMax;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = this.weapon.getTooltip();
 		result.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Applies redback poison to the target on any successful attack, dealing [color=%damage%]10[/color] damage a turn for [color=%damage%]3[/color] turns. The poison leaves the target Dazed on the first turn, Staggered on the second and Stunned on the third."
+			text = "Applies redback poison to the target on any successful attack, dealing [color=%damage%]10[/color] damage a turn for [color=%damage%]3[/color] turns. The poison leaves the target Baffled on the first turn, Dazed on the second and Stunned on the third."
 		});
 		result.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Puncture damage is increased by [color=%positive%]33%[/color] vs rooted targets"
+			text = "Puncture damage is increased by [color=%positive%]33%[/color] vs Rooted targets"
 		});
 		return result;
 	}
 
-
-	function onEquip()
-	{
+	function onEquip() {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBackstab);
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendThrowKnife);
 	}
 
-	function onUpdateProperties( _properties )
-	{
+	function onUpdateProperties(_properties) {
 		this.weapon.onUpdateProperties(_properties);
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill != null && _skill.getID() == ::Legends.Actives.getID(::Legends.Active.Puncture) && _targetEntity != null && _targetEntity.getCurrentProperties().IsRooted)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill != null && _skill.getID() == ::Legends.Actives.getID(::Legends.Active.Puncture) && _targetEntity != null && _targetEntity.getCurrentProperties().IsRooted) {
 			_properties.DamageRegularMult *= 1.33;
 		}
 	}
 
-	function spawnIcon( _brush, _tile )
-	{
-		if (!_tile.IsVisibleForPlayer)
-		{
+	function spawnIcon(_brush, _tile) {
+		if (!_tile.IsVisibleForPlayer) {
 			return;
 		}
 
 		::Tactical.spawnIconEffect(_brush, _tile, ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
 	}
 
-	function onDamageDealt( _target, _skill, _hitInfo )
-	{
+	function onDamageDealt(_target, _skill, _hitInfo) {
 		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
-		if (_target.getCurrentProperties().IsImmuneToPoison || _hitInfo.DamageInflictedHitpoints <= ::Const.Combat.PoisonEffectMinDamage || _target.getHitpoints() <= 0)
+		if (_target.getCurrentProperties().IsImmuneToPoison || _hitInfo.DamageInflictedHitpoints <= ::Const.Combat.PoisonEffectMinDamage || _target.getHitpoints() <= 0) {
 			return;
+		}
 
-		if (!_target.isAlive())
+		if (!_target.isAlive()) {
 			return;
+		}
 
-		if (!_target.isHiddenToPlayer())
-		{
-			if (this.m.SoundOnUse.len() != 0)
-			{
+		if (!_target.isHiddenToPlayer()) {
+			if (this.m.SoundOnUse.len() != 0) {
 				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, _target.getPos());
 			}
 
@@ -113,21 +104,18 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		local poison = ::Legends.Effects.get(_target, ::Legends.Effect.LegendRedbackSpiderPoison);
 		local actor = this.getContainer().getActor();
 
-		if (poison == null)
-		{
-			::Legends.Effects.grant(_target, ::Legends.Effect.LegendRedbackSpiderPoison, function(_effect) {
-				if (actor.getFaction() == ::Const.Faction.Player )
+		if (poison == null) {
+			::Legends.Effects.grant(_target, ::Legends.Effect.LegendRedbackSpiderPoison, function (_effect) {
+				if (actor.getFaction() == ::Const.Faction.Player) {
 					_effect.setActor(actor);
+				}
 			}.bindenv(this));
-		}
-		else
-		{
-			if (actor.getFaction() == ::Const.Faction.Player )
+		} else {
+			if (actor.getFaction() == ::Const.Faction.Player) {
 				poison.setActor(actor);
+			}
 
 			poison.resetTime();
 		}
 	}
-
 });
-

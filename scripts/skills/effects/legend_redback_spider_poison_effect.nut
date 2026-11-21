@@ -9,7 +9,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRedbackSpiderPoison);
-		this.m.Description = "A vicious poison is running through %their% veins. It takes hold a little more every turn: first it leaves %them% Dazed, then Staggered, and finally Stunned.";
+		this.m.Description = "A vicious poison is running through %their% veins. It takes hold a little more every turn: first it leaves %them% Baffled, then Dazed, and finally Stunned.";
 		this.m.KilledString = "Died from redback poison";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_poison", 2);
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
@@ -76,11 +76,11 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		this.m.TurnsLeft = this.getDuration();
 	}
 
-	// What the poison does at the start of the next turn: Dazed on the first turn of being poisoned, Staggered on the second, Stunned from the third
+	// What the poison does at the start of the next turn: Baffled on the first turn of being poisoned, Dazed on the second, Stunned from the third
 	function getStage() {
 		local stages = [
+			{ Name = "Baffled", Effect = ::Legends.Effect.Baffled, IsImmune = @(_p) _p.IsImmuneToDaze },
 			{ Name = "Dazed", Effect = ::Legends.Effect.Dazed, IsImmune = @(_p) _p.IsImmuneToDaze },
-			{ Name = "Staggered", Effect = ::Legends.Effect.Staggered, IsImmune = @(_p) false },
 			{ Name = "Stunned", Effect = ::Legends.Effect.Stunned, IsImmune = @(_p) _p.IsImmuneToStun }
 		];
 		local stage = this.m.TurnsApplied;

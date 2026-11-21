@@ -260,7 +260,7 @@
 - uses separate points, independent to regular perks and conveys bonuses for the whole company
 
 ## Effects
-- `Redback Poison` - will now apply varying effects for each turn afflicted, first turn Daze, second turn Stagger, third turn Stun
+- `Redback Poison` - will now apply varying effects for each turn afflicted, first turn Baffled, second turn Dazed, third turn Stunned
 > does 10 damage per turn
 
 ## Traits
