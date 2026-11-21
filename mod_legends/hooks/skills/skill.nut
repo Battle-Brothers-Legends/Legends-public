@@ -1684,20 +1684,31 @@
 			return ret;
 		}
 
+		local damageParams = [
+			["regular_min", damage_regular_min],
+			["regular_max", damage_regular_max],
+			["direct_min", damage_direct_min],
+			["direct_max", damage_direct_max],
+			["armor_min", damage_armor_min],
+			["armor_max", damage_armor_max],
+		];
+
 		if (this.isAttack()) {
 			if (this.m.DirectDamageMult == 1.0) {
 				ret.push({
 					id = startID,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "Inflicts [color=%damage%]" + damage_direct_min + "[/color] - [color=%damage%]" + damage_direct_max + "[/color] damage that ignores armor"
+					text = "Inflicts [color=%damage%]%direct_min%[/color] - [color=%damage%]%direct_max%[/color] damage that ignores armor",
+					param = damageParams
 				});
 			} else if (this.m.DirectDamageMult > 0.0) {
 				ret.push({
 					id = startID + 1,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage to hitpoints, of which [color=%damage%]0[/color] - [color=%damage%]" + damage_direct_max + "[/color] can ignore armor"
+					text = "Inflicts [color=%damage%]%damage_regular_min%[/color] - [color=%damage%]%regular_max%[/color] damage to hitpoints, of which [color=%damage%]0[/color] - [color=%damage%]%direct_max%[/color] can ignore armor",
+					param = damageParams
 				});
 			} else {
 				if (damage_regular_max > 0) {
@@ -1705,7 +1716,8 @@
 						id = startID + 2,
 						type = "text",
 						icon = "ui/icons/regular_damage.png",
-						text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage to hitpoints"
+						text = "Inflicts [color=%damage%]%regular_min%[/color] - [color=%damage%]%regular_max%[/color] damage to hitpoints",
+						param = damageParams
 					});
 				}
 			}
@@ -1715,7 +1727,8 @@
 					id = startID + 3,
 					type = "text",
 					icon = "ui/icons/armor_damage.png",
-					text = "Inflicts [color=%damage%]" + damage_armor_min + "[/color] - [color=%damage%]" + damage_armor_max + "[/color] damage to armor"
+					text = "Inflicts [color=%damage%]%armor_min%[/color] - [color=%damage%]%armor_max%[/color] damage to armor",
+					param = damageParams
 				});
 			}
 		}
