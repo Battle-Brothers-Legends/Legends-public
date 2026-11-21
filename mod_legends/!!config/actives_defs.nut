@@ -1506,9 +1506,6 @@ if (!("Actives" in ::Legends)) {
 		IconDisabled = "skills/active_43_sw.png",
 		Overlay = "active_43"
 	},
-	LegendUnleashBear = {
-		Overlay = "active_165"
-	},
 	LegendUnleashHound = {
 		// perk summoning, to be remade?
 		Name = "Summon Hound",

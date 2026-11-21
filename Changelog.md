@@ -1219,6 +1219,7 @@ Refactors/deletions:
 - `scripts/skills/actives/legend_spawn_zombie_high_xbow_skill` -> deleted
 - `scripts/skills/actives/legend_unleash_catapult_skill` -> deleted
 - `scripts/skills/actives/legend_use_catapult_skill` -> deleted
+- `scripts/skills/actives/legend_summon_bear_skill` -> deleted
 - `scripts/skills/actives/legend_banshee_scream` -> `scripts/skills/actives/legend_banshee_scream_skill`
 - `scripts/skills/actives/legend_command_legion_skill` -> `scripts/skills/actives/legend_command_legionary_skill`
 - `scripts/skills/actives/legend_deathtouch_skill` -> `scripts/skills/actives/legend_death_touch_skill`
