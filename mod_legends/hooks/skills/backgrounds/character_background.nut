@@ -1185,9 +1185,6 @@
 
 	o.getPerkTreeDynamicMins <- function () {
 		local mins = this.m.PerkTreeDynamicMins;
-		if (this.isBackgroundType(::Const.BackgroundType.Educated)) {
-			mins.ProfessionChance += 0.09;
-		}
 		if (this.isBackgroundType(::Const.BackgroundType.Lowborn)) {
 			mins.ClassChance += 0.09;
 		}
