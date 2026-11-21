@@ -243,12 +243,12 @@ class Defs:
  "desc" :  "A light and well made checkered tunic of southern origin.",
  "adesc" : ""
 },
-{"name": "southern_noble_aketon",           "layer": "cloth", "min": 1, "max": 10, "value" : 350, "con" : 55, "stam" : -6, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "southern_noble_aketon",           "layer": "cloth", "min": 1, "max": 10, "value" : 350, "con" : 55, "stam" : -5, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Southern Noble Aketon",
  "desc" :  "A bright, decorated coat that offers decent protection.",
  "adesc" : ""
 },
-{"name": "fleshcultist_tunic",           "layer": "cloth", "min": 1, "max": 12, "value" : 350, "con" : 55, "stam" : -4, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "fleshcultist_tunic",           "layer": "cloth", "min": 1, "max": 12, "value" : 350, "con" : 55, "stam" : -5, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Fleshcultist Tunic",
  "desc" :  "An elaborate leather tunic.",
  "adesc" : ""
@@ -464,12 +464,12 @@ class Defs:
  "desc" :  "Dark, heavy leather armor adorned with occult symbols. It offers sturdy protection and was likely used in grim rituals.",
  "adesc" : "Includes leather armor adorned with occult symbols."
 },
-{"name": "leather_lamellar_harness_heavy",   "layer": "plate", "min": 1, "max": 5, "value" : 1750, "con" : 130, "stam" : -20, "impactSound" : "plate", "invSound" : "plate",
+{"name": "leather_lamellar_harness_heavy",   "layer": "plate", "min": 1, "max": 5, "value" : 1750, "con" : 130, "stam" : -18, "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Lamellar Harness",
  "desc" :  "A rugged body harness made of thick overlapping metal plates that cover most of the upper body, but is exceptionally heavy.",
  "adesc" : "Includes a heavy lamellar harness made of thick overlapping metal plates."
 },
-{"name": "leather_lamellar_harness_reinforced", "layer": "plate", "min": 1, "max": 5, "value" : 350, "con" : 55, "stam" : -7, "impactSound" : "plate", "invSound" : "plate",
+{"name": "leather_lamellar_harness_reinforced", "layer": "plate", "min": 1, "max": 5, "value" : 350, "con" : 145, "stam" : -20, "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Reinforced Lamellar Harness",
  "desc" :  "A body armor made of thick overlapping metal plates that cover most of the upper body.",
  "adesc" : "Includes body armor made of thick overlapping metal plates that cover most of the upper body."
@@ -798,7 +798,7 @@ class Defs:
  "desc" :  "A rustic cloak of strong, warm wool that provides protection from the weather if nothing else.",
  "adesc" : "Includes a rustic wool cloak."
 },
-{"name": "cloak_cowl_ragged",           "layer": "cloak", "min": 1, "max": 4, "value" : 20, "con" : 10, "stam" : -1, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "cloak_cowl_ragged",           "layer": "cloak", "min": 1, "max": 4, "value" : 40, "con" : 10, "stam" : -1, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Ragged Cowl",
  "desc" :  "A ragged cowl weathered by the elements throughout the years.",
  "adesc" : "Includes a ragged cowl."
@@ -858,7 +858,7 @@ class Defs:
  "desc" :  "A simple scarf that wraps around the shoulders.",
  "adesc" : "Includes a simple scarf."
 },
-{"name": "religious_scarf",           "layer": "cloak", "min": 1, "max": 4, "value" : 60, "con" : 10, "stam" : 0, "bravery" : 1, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "religious_scarf",           "layer": "cloak", "min": 1, "max": 4, "value" : 150, "con" : 10, "stam" : 0, "bravery" : 1, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Religious Scarf",
  "desc" :  "A plain scarf that wraps around the shoulders with a beaded religious icon.",
  "adesc" : "Includes a plain scarf with a religious icon attached."
@@ -868,7 +868,7 @@ class Defs:
  "desc" :  "A pelt of spotted fur that wraps around the shoulders.",
  "adesc" : "Includes a pelt of spotted fur."
 },
-{"name": "southern_scarf_wrap",           "layer": "cloak", "min": 1, "max": 18, "value" : 150, "con" : 15, "stam" : -1, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "southern_scarf_wrap",           "layer": "cloak", "min": 1, "max": 18, "value" : 50, "con" : 15, "stam" : -1, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Southern Scarf Wrap",
  "desc" :  "A simple scarf that wraps around the neck and shoulders.",
  "adesc" : "Includes a simple scarf."

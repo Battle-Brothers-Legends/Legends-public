@@ -169,7 +169,7 @@ class Defs:
  "desc" :  "A mail hood of southern design with a reinforced circular face opening.",
   "adesc" : "Includes a southern mail hood."
  },
-{"name" : "southern_open_chain_hood"                     , "layer" : "hood", "min" : 1, "max" : 3, "base" : True, "value" : 200, "con" : 65, "stam" : -3, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "chain", "invSound" : "chain",
+{"name" : "southern_open_chain_hood"                     , "layer" : "hood", "min" : 1, "max" : 3, "base" : True, "value" : 225, "con" : 65, "stam" : -3, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Southern Chain Mail Hood",
  "desc" :  "A hood made of chain mail of southern design. Offers good protection and while leaving the face unobstructed.",
   "adesc" : "Includes a southern chain mail hood."
@@ -291,7 +291,7 @@ class Defs:
  "desc" :  "Although crudely made and rusty, this metal helm is a durable and sturdy piece of armor.",
  "adesc" : "Includes a crude metal helm."
  },
-{"name" : "crude_cylinder_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 2, "value" : 600, "con" : 155, "stam" : -12, "vis" : -2, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "crude_cylinder_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 2, "value" : 700, "con" : 155, "stam" : -12, "vis" : -2, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Crude Cylinder Helm",
  "desc" :  "This heavy metal helm also protects the wearers face, albeit at the cost of visibility.",
  "adesc" : "Includes a crude cylinder helm."
@@ -361,7 +361,7 @@ class Defs:
  "desc" :  "A rusted and dented helm with a flat top, a telling sign of a negligent owner.",
  "adesc" : "Includes a rusted flat metal helm."
  },
-{"name" : "flat_top_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 325, "con" : 85, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "flat_top_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 400, "con" : 85, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Flat Top Helm",
  "desc" :  "A flat metal helm with a nose guard, popular among the soldiers.",
  "adesc" : "Includes a flat metal helm."
@@ -446,12 +446,12 @@ class Defs:
  "desc" :  "A simple, light steel cap that covers the head.",
  "adesc" : "Includes a steel cap."
  },
-{"name" : "scale_helm"                     , "layer" : "helm", "min" : 1, "max" : 3, "value" : 725, "con" : 75, "stam" : -5, "vis" : -1, "hair" : "false", "beard" : "false", "impactSound" : "chain", "invSound" : "chain",
+{"name" : "scale_helm"                     , "layer" : "helm", "min" : 1, "max" : 3, "value" : 425, "con" : 75, "stam" : -4, "vis" : -1, "hair" : "false", "beard" : "false", "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Scale Skullcap",
  "desc" :  "A skullcap composed of overlapping metal scales.",
  "adesc" : "Includes a scale skullcap."
  },
-{"name" : "rondel_helm"                     , "layer" : "helm", "min" : 1, "max" : 3, "value" : 775, "con" : 85, "stam" : -6, "vis" : -1, "hair" : "false", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "rondel_helm"                     , "layer" : "helm", "min" : 1, "max" : 3, "value" : 625, "con" : 85, "stam" : -5, "vis" : -1, "hair" : "false", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Rondel Helm",
  "desc" :  "A short skullcap with a pair of rondels affixed to the sides, providing extra protection to the wearer's head.",
  "adesc" : "Includes a skullcap with protective side rondels."
@@ -521,7 +521,7 @@ class Defs:
  "desc" :  "A heavy, cylindrical helm reinforced with a cross-plate and a perforated breath, offering near-total head protection at the cost of peripheral vision.",
  "adesc" : "Includes a heavy, cylindrical helm."
  },
-{"name" : "full_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 4, "value" : 3000, "con" : 180, "stam" : -13, "vis" : -2, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "full_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 4, "value" : 2800, "con" : 180, "stam" : -13, "vis" : -2, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Full Helm",
  "desc" :  "A sturdy, pointed helm of heavy steel with a perforated breath, offering great protection.",
  "adesc" : "Includes a sturdy full helm."
@@ -646,7 +646,7 @@ class Defs:
  "desc" :  "A decayed flat-topped helm with a pitted faceplate, now little more than a crumbling shell of its former self.",
  "adesc" : "Includes a decayed flat-topped helm."
  },
-{"name" : "rotten_great_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 5, "value" : 750, "con" : 150, "stam" : -14, "vis" : -3, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "rotten_great_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 5, "value" : 750, "con" : 150, "stam" : -14, "vis" : -2, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Rotten Great Helm",
  "desc" :  "A heavy, cylindrical helm choked with rust and mold, marred by deep corrosion.",
  "adesc" : "Includes a decayed great helm."
@@ -729,7 +729,7 @@ class Defs:
  "desc" :  "The distinctive spiked helm of a goblin overseer, designed to instill a greater fear of the master than of the enemy in the ranks below.",
  "adesc" : "Includes a cruel helm with several iron spikes."
  },
-{"name" : "ancient_beard_mask"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 5, "value" : 200, "con" : 45, "stam" : -2, "vis" : -1, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "ancient_beard_mask"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 5, "value" : 500, "con" : 45, "stam" : -2, "vis" : -1, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Ancient Bearded Mask",
  "desc" :  "A heavy, weathered faceplate depicting a stern, bearded visage from another time.",
  "adesc" : "Includes a heavy, weathered faceplate."
@@ -742,7 +742,7 @@ class Defs:
 # "title" :  "Ancient Cheek Plate",
 # "desc" :  "A Cheek Plate of an ancient honor guard."
 # },
-{"name" : "ancient_lion_mask"                     , "layer" : "top", "min" : 1, "max" : 5, "value" : 150, "con" : 40, "stam" : -2, "vis" : -1, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "ancient_lion_mask"                     , "layer" : "top", "min" : 1, "max" : 5, "value" : 300, "con" : 40, "stam" : -2, "vis" : -1, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Ancient Lion Mask",
  "desc" :  "An dilapidated helm featuring a noble lion crest, worn by the elite guardians of a forgotten empire.",
  "adesc" : "Includes a dilapidated helm with a noble lion crest."
@@ -862,7 +862,7 @@ class Defs:
  "desc" :  "A reinforced iron faceplate with a singular visor slit, providing ample air volume.",
  "adesc" : "Includes a reinforced hounskull faceplate."
  },
- {"name" : "faceplate_pointed"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 6, "value" : 500, "con" : 50, "stam" : -4, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+ {"name" : "faceplate_pointed"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 6, "value" : 600, "con" : 50, "stam" : -4, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Sharp Hounskull Faceplate",
  "desc" :  "A long nosed iron faceplate assuring great ventilation.",
  "adesc" : "Includes a long nosed hounskull faceplate."
@@ -932,7 +932,7 @@ class Defs:
  "desc" :  "An exquisite golden faceplate forged into the likeness of a bearded patriarch.",
  "adesc" : "Includes an exquisite golden faceplate."
  },
-{"name" : "mummy_mask"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 7, "value" : 450, "con" : 40, "stam" : -3, "vis" : -2, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "mummy_mask"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 7, "value" : 350, "con" : 40, "stam" : -3, "vis" : -2, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Ancient Southern Face Mask",
  "desc" :  "A weathered golden visage recovered from a forgotten tomb of a long dead civilization.",
  "adesc" : "Includes a weathered golden faceplate."
