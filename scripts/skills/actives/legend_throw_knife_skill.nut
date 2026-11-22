@@ -12,7 +12,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/throw_axe_hit", 3);
 		this.m.SoundOnHitDelay = -150;
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
+		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 750;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
