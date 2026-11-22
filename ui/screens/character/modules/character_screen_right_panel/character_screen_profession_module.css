@@ -207,19 +207,19 @@
 
 .character-screen-container .professions-module .profession-camp-panel .banner {
     position: absolute;
-    top: 1.5rem;
+    top: 3.7rem;
     left: 0.5rem;
-    width: 3.1rem;
-    height: 9.4rem;
+    width: 2.6rem;
+    height: 7.9rem;
 }
 
-.character-screen-container .professions-module .profession-camp-panel .assignment {
+.character-screen-container .camp-background {
     position: absolute;
-    top: 0;
-    left: 5.0rem;
+    bottom: 3.0rem;
+    left: 0;
     right: 0;
-    height: 2.4rem;
-    line-height: 2.4rem;
+    height: 9.2rem;
+    width: 100%;
 }
 
 .character-screen-container .professions-module .profession-camp-panel .stations {

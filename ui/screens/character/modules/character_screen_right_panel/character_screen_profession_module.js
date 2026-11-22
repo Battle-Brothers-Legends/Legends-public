@@ -25,6 +25,7 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
         Planned: null,
         Tentative: null
     };
+	this.mCampPanelFrame = null;
 	this.mCampPanel = null;
 	this.mSelectedBrotherId = null;
 	this.mProfessionTreeSignature = null;
@@ -38,6 +39,8 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
 CharacterScreenProfessionModule.prototype.createDIV = function (_parentDiv) {
 	this.mContainer = $('<div class="professions-module opacity-none"/>');
 	_parentDiv.append(this.mContainer);
+	this.mCampPanelFrame = $('<img class="camp-background opacity-none"/>').attr('src', Path.GFX + "ui/skin/inventory_profession_camp_panel.png");
+	_parentDiv.append(this.mCampPanelFrame);
 
 	this.mListContainer = $('<div class="ui-control list has-frame"/>');
 	var scrollContainer = $('<div class="scroll-container"/>');
@@ -107,6 +110,7 @@ CharacterScreenProfessionModule.prototype.destroyDIV = function () {
 	this.mContainer.empty();
 	this.mContainer.remove();
 	this.mContainer = null;
+	this.mCampPanelFrame = null;
 	this.mCampPanel = null;
 
 	this.mSelectedBrotherId = null;
@@ -358,7 +362,6 @@ CharacterScreenProfessionModule.prototype.updateCampPanel = function (_brother) 
 
 	if (_brother.CampAssignment) {
 		this.mCampPanel.append($('<img class="banner"/>').attr('src', Path.GFX + _brother.CampAssignment.Banner));
-		this.mCampPanel.append($('<div class="assignment title-font-small font-bold font-color-title"/>').text('Assigned to: ' + _brother.CampAssignment.Name));
 	}
 
 	var stations = $('<div class="stations"/>');
@@ -367,7 +370,7 @@ CharacterScreenProfessionModule.prototype.updateCampPanel = function (_brother) 
 	for (var i = 0; i < _brother.CampWorkSpeeds.length; ++i) {
 		var station = _brother.CampWorkSpeeds[i];
 		var cell = $('<div class="station"/>');
-		var speedColor = station.Speed > 100 ? 'font-color-positive-value' : (station.Speed < 100 ? 'font-color-negative-value' : 'font-color-label');
+		var speedColor = station.Speed > 100 ? 'font-color-positive-value' : (station.Speed < 100 ? 'font-color-negative-value' : 'font-color-description');
 
 		if (station.IsAssigned) {
 			cell.addClass('is-assigned');
@@ -556,10 +559,12 @@ CharacterScreenProfessionModule.prototype.isRegistered = function () {
 
 CharacterScreenProfessionModule.prototype.show = function () {
 	this.mContainer.removeClass('opacity-none').addClass('opacity-full');
+	this.mCampPanelFrame.removeClass('opacity-none').addClass('opacity-full');
 };
 
 CharacterScreenProfessionModule.prototype.hide = function () {
 	this.mContainer.removeClass('opacity-full is-top').addClass('opacity-none');
+	this.mCampPanelFrame.removeClass('opacity-full').addClass('opacity-none');
 };
 
 CharacterScreenProfessionModule.prototype.isVisible = function () {
