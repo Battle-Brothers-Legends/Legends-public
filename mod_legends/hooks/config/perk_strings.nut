@@ -409,7 +409,7 @@ Just like dancing with your nan when you were young.
 'Tell me how the grass tastes, little man!'
 
 [color=%passive%][u]Passive:[/u][/color]
-• The [color=%skill%]Knock Back[/color] and [color=%skill%]Buckler Bash[/color] now deals an additional [color=%positive%]25%[/color] Damage, [color=%positive%]+50%[/color] Armor Damage and [color=%positive%]+10%[/color] Armor Penetration.
+• The [color=%skill%]Shield Bash[/color] and [color=%skill%]Buckler Bash[/color] now deals an additional [color=%positive%]25%[/color] Damage, [color=%positive%]+50%[/color] Armor Damage and [color=%positive%]+10%[/color] Armor Penetration.
 
 • [color=%skill%]Knock Back[/color], [color=%skill%]Hook[/color] and [color=%skill%]Repel[/color] now have a [color=%positive%]100%[/color] chance to apply [color=%status%]Knocked Over[/color] against targets that are [color=%status%]Netted[/color], [color=%status%]Rooted[/color] or [color=%status%]Webbed[/color].
 ";

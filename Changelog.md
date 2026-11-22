@@ -171,7 +171,7 @@
 > also increases the maximum range of every spell it covers by 1, not only `Magic Missile`
 - `Summon Storm` - can now also be cast while holding a magic staff, not only with an empty main hand
 - `Prisoner's rush` - no longer grants deathblow to regular daggers and a deathblow bonus, now grants a passive 20% armor penetration
-- `Shield Bash` - `Knock Back` and `Buckler Bash` now deals an additional 25% Damage, +50% Armor Damage and +10% Armor Penetration.
+- `Shield Bash` - `Shield Bash` and `Buckler Bash` now deals an additional 25% Damage, +50% Armor Damage and +10% Armor Penetration.
 > `Knock Back`, `Hook` and `Repel` now have a 100% chance to apply `Knocked Over` against targets that are `Netted`, `Rooted` or `Webbed`.
 - `Crossbow Mastery` - now increases armor penetration by 10% down from 20%
 - `Ballistics` - now increases armor penetration for crossbows by 5% and an additional 15% if the target is 3 or less tiles away
@@ -428,7 +428,7 @@
 ### Shields
 - Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
 - Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
-- `Knock Back` - now always does damage and can knock back on your turn, will deal additional damage against targets that are rooted
+- `Knock Back` - renamed to `Shield Bash`, now always does damage and can knock back on your turn, will deal additional damage against targets that are rooted
 - `Fortify` - removed
 - `Safeguard` - now transfers your block value to an ally until the start of your next turn
 - `Buckler Effect` - now grants 5% of Initiative as Defense and Block

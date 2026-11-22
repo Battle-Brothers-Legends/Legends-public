@@ -96,6 +96,7 @@
 		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
 			_properties.DamageArmorMult = 1.0;
 			_properties.DamageDirectAdd += 0.1;
+			_properties.DamageTotalMult += 1.25;
 		}
 		if (!::Legends.S.isEntityNullOrDead(_targetEntity) && _targetEntity.getCurrentProperties().IsRooted) {
 			_properties.DamageTotalMult *= 1.5;
