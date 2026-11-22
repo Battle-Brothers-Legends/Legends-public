@@ -35,4 +35,11 @@
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
 		::Legends.Text.inlineIcons("immunity") + " to Stun, Knockback and Grab, [color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("damage_received") + ", less likely to be targeted";
 	}
+
+	o.onUpdate = function (_properties) {
+		_properties.DamageReceivedTotalMult *= 0.5;
+		_properties.IsImmuneToStun = true;
+		_properties.IsImmuneToKnockBackAndGrab = true;
+		_properties.AggroMult *= 0.5;
+	}
 });

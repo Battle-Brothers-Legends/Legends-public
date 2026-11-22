@@ -41,7 +41,7 @@ this.legend_curse_of_the_mummy_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		local bonus = this.getBonus() * 0.01;
 		_properties.DamageReceivedTotalMult *= 1.0 + bonus;
-		_properties.TargetAttractionMult *= 1.0 + bonus;
+		_properties.AggroMult *= 1.0 + bonus;
 	}
 
 	function onRefresh() {

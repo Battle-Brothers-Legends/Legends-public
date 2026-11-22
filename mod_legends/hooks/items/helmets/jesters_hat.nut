@@ -11,22 +11,10 @@
 	o.getTooltip <- function() {
 		local result = this.helmet.getTooltip();
 		result.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Adds the \'Taunt\' skill"
-		});
-		result.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Makes enemies more likely to attack you"
-		});
-		result.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/melee_defense.png",
-			text = "[color=%negative%]-3[/color] Melee Defense per surrounding enemy"
+			text = "Makes enemies much more likely to attack you"
 		});
 
 		return result;
@@ -34,8 +22,7 @@
 
 	o.onUpdateProperties <- function ( _properties ) {
 		this.helmet.onUpdateProperties(_properties);
-		_properties.SurroundedDefense -= 3; // -3 defence per enemy surrounding this unit while equipped
-		_properties.TargetAttractionMult *= 1.2; // 1.0 = normal aggression, 0.1 = minimal aggression
+		_properties.AggroMult *= 1.8; // 1.0 = normal aggression, 0.1 = minimal aggression
 	}
 
 	o.updateVariant <- function () {
@@ -45,21 +32,5 @@
 		this.m.SpriteCorpse = "legendhelms_jester_hat_" + variant + "_dead";
 		this.m.IconLarge = "";
 		this.m.Icon = "helmets/inventory_jester_hat_" + variant + ".png";
-	}
-
-	o.onEquip <- function() {
-		this.helmet.onEquip();
-		if (!this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Taunt))
-		{
-			::Legends.Actives.grant(this, ::Legends.Active.Taunt);
-		}
-	}
-
-	o.onUnequip <- function() {
-		this.helmet.onUnequip();
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Taunt))
-		{
-			::Legends.Actives.grant(this, ::Legends.Active.Taunt);
-		}
 	}
 });

@@ -52,7 +52,7 @@ this.legend_armor_chain_and_mail_upgrade <- this.inherit("scripts/items/legend_a
 	function onUpdateProperties( _properties )
 	{
 		this.legend_armor_upgrade.onUpdateProperties(_properties);
-		_properties.TargetAttractionMult *= 2.0;
+		_properties.AggroMult *= 2.0;
 	}
 });
 

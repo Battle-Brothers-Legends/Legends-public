@@ -295,6 +295,7 @@
 ### Helmets
 - added 5 more variations of Face Mask, art by Ivan
 - `Mountain Helm` and `Demon Alp Helm` are now full helmets of four layers (hood, helm, top and vanity) with new art, the craft makes the whole helmet and the effect sits on the helm layer, art by Misha
+- `Jester's Hat` - no longer grants Taunt or lowers Melee Defense when surrounded, it now only makes enemies 80% more likely to attack the wearer (was 20%)
 
 ### Weapons
 **Billhooks**
@@ -837,6 +838,7 @@
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
+- new character property `AggroMult`, it multiplies how much enemies want to attack a character without the side effects of `TargetAttractionMult` (AI allies protecting the character, enemies always considering it for stuns)
 - you can turn back perk tree rearrangement via setting `::Const.Perks.AllowRearrangement` to true
 - you can now offset fatigue bonuses via `InitiativeFatigueOffset`. In vanilla if you add fatigue to `currentProperties` it'll give back initiative that you've lost from equipping armor and gear
 - it is now possible to use `[i][/i]` and `[size=18px][/size]` to customize ui text size easily with xbbcode

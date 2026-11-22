@@ -206,6 +206,7 @@
 ::Const.CharacterProperties.BlockMult <- 1.0;
 ::Const.CharacterProperties.RerollAttackChance <- 0;
 ::Const.CharacterProperties.IsImmuneToTaunt <- false;
+::Const.CharacterProperties.AggroMult <- 1.0;
 ::Const.CharacterProperties.DamageInitiativeMin <- 0;
 ::Const.CharacterProperties.DamageInitiativeMax <- 0;
 ::Const.CharacterProperties.DamageInitiativeCutoff <- 100;

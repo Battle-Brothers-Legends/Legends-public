@@ -49,22 +49,10 @@ this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/lege
 	function onArmorTooltip( _result )
 	{
 		_result.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Adds the \'Taunt\' skill"
-		});
-		_result.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/chance_to_hit_head.png",
-			text = "Makes enemies more likely to attack you"
-		});
-		_result.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/melee_defense.png",
-			text = "[color=%negative%]-3[/color] Melee Defense per surrounding enemy"
+			text = "Makes enemies much more likely to attack you"
 		});
 
 		return _result;
@@ -73,23 +61,6 @@ this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/lege
 	function onUpdateProperties(_properties)
 	{
 		this.legend_helmet_upgrade.onUpdateProperties(_properties);
-  		_properties.SurroundedDefense -= 3; // -3 defence per enemy surrounding this unit while equipped
-		_properties.TargetAttractionMult *= 1.2; // 1.0 = normal aggression, 0.1 = minimal aggression
-	}
-
-	function onEquip() {
-		this.legend_helmet_upgrade.onEquip();
-		if (!::Legends.Perks.has(this, ::Legends.Perk.Taunt)) {
-			::Legends.Actives.grant(this, ::Legends.Active.Taunt);
-		}
-	}
-
-	function onUnequip() {
-		local container = this.getContainer();
-		local actor = container == null ? null : container.getActor();
-		this.legend_helmet_upgrade.onUnequip();
-		if (actor != null && ::Legends.Perks.has(actor, ::Legends.Perk.Taunt) && !::Legends.Actives.has(actor, ::Legends.Active.Taunt)) {
-			::Legends.Actives.grant(actor, ::Legends.Active.Taunt);
-		}
+		_properties.AggroMult *= 1.8; // 1.0 = normal aggression, 0.1 = minimal aggression
 	}
 });

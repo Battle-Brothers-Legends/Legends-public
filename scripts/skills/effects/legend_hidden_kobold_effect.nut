@@ -144,7 +144,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		_properties.TargetAttractionMult *= 0.5;
+		_properties.AggroMult *= 0.5;
 		actor.setBrushAlpha(10);
 		actor.getSprite("body").Visible = false;
 		actor.getSprite("head").Visible = false;

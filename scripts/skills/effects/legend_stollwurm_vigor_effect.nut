@@ -44,7 +44,7 @@ this.legend_stollwurm_vigor_effect <- this.inherit("scripts/skills/skill", {
 		_properties.DamageReceivedTotalMult *= 0.5;
 		_properties.IsImmuneToStun = true;
 		_properties.IsImmuneToKnockBackAndGrab = true;
-		_properties.TargetAttractionMult *= 0.5;
+		_properties.AggroMult *= 0.5;
 	}
 
 	function onTurnEnd() {

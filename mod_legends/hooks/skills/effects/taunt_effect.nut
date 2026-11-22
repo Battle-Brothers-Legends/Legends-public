@@ -18,6 +18,10 @@
 		return tooltip;
 	}
 
+	o.onUpdate = function (_properties) {
+		_properties.AggroMult *= 1.0 + this.getBonus();
+	}
+
 	o.getBonus <- function () {
 		return ::Math.minf(1.5, this.getContainer().getActor().getCurrentProperties().Bravery * 0.015);
 	}

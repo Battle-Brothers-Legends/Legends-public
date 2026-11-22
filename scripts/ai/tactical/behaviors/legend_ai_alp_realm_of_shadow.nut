@@ -168,7 +168,7 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 				if (::Legends.S.isEntityMovementDisabled(target))
 					target_score -= ::Const.AI.Behavior.MiasmaStunnedBonus;
 
-				target_score *= target.getCurrentProperties().TargetAttractionMult;
+				target_score *= target.getCurrentProperties().TargetAttractionMult * target.getCurrentProperties().AggroMult;
 
 				if (targetTile.Properties.Effect != null && targetTile.Properties.Effect.Type == "legend_shadow_mist" && targetTile.Properties.Effect.Timeout - ::Time.getRound() == 1)
 					target_score *= ::Const.AI.Behavior.MiasmaOneTurnLeftMult;

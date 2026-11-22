@@ -55,4 +55,10 @@
 
 		return ret;
 	}
+
+	local queryTargetValue = o.queryTargetValue;
+	o.queryTargetValue = function( _entity, _target, _skill = null )
+	{
+		return queryTargetValue(_entity, _target, _skill) * _target.getCurrentProperties().AggroMult;
+	}
 });

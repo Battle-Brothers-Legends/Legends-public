@@ -45,6 +45,6 @@ this.perk_legend_vala_premonition <- this.inherit("scripts/skills/skill", {
 	{
 		local bonus = this.getBonus();
 		_properties.RerollDefenseChance += bonus;
-		_properties.TargetAttractionMult *= 1.0 - ((bonus + 0.0) / 100.0);
+		_properties.AggroMult *= 1.0 - ((bonus + 0.0) / 100.0);
 	}
 });

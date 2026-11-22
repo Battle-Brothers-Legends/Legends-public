@@ -58,6 +58,6 @@ this.legend_helmet_hunter_cap <- this.inherit("scripts/items/legend_helmets/lege
 	function onUpdateProperties(_properties)
 	{
 		this.legend_helmet_upgrade.onUpdateProperties(_properties);
-		_properties.TargetAttractionMult *= 1.4; // 1.0 = normal aggression, 0.1 = minimal aggression
+		_properties.AggroMult *= 1.4; // 1.0 = normal aggression, 0.1 = minimal aggression
 	}
 });

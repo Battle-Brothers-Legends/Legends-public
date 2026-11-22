@@ -111,6 +111,6 @@
 
 	o.onUpdate <- function(_properties) {
 		this.character_background.onUpdate(_properties);
-		_properties.TargetAttractionMult *= 0.5;
+		_properties.AggroMult *= 0.5;
 	}
 });

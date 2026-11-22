@@ -53,7 +53,7 @@
 				score = score * ::Const.AI.Behavior.HexNotAGoodTargetMult;
 			}
 
-			score = score * target.getCurrentProperties().TargetAttractionMult;
+			score = score * target.getCurrentProperties().TargetAttractionMult * target.getCurrentProperties().AggroMult;
 
 			if (score > bestScore) {
 				bestScore = score;
