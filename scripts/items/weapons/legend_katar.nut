@@ -23,7 +23,7 @@ this.legend_katar <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamageMax = 40;
 		this.m.ArmorDamageMult = 0.7;
 		this.m.DirectDamageMult = 0.2;
-		this.m.StaminaModifier = 2;
+		this.m.StaminaModifier = -2;
 	}
 
 	function onEquip()
