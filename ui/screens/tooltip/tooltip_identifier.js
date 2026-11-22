@@ -371,6 +371,7 @@ var TooltipIdentifier =
 			ProfessionPlanScreenExperience: 'character-screen.right-panel-header-module.ProfessionPlanScreenExperience',
 			ProfessionPlanScreenPlanned: 'character-screen.right-panel-header-module.ProfessionPlanScreenPlanned',
 			ProfessionPlanScreenTentative: 'character-screen.right-panel-header-module.ProfessionPlanScreenTentative',
+			ProfessionPlanScreenWorkSpeed: 'character-screen.right-panel-header-module.ProfessionPlanScreenWorkSpeed',
 		},
 
 		CampScreenCraftingDialogModule:{

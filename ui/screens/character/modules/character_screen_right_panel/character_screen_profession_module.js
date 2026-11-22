@@ -25,6 +25,7 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
         Planned: null,
         Tentative: null
     };
+	this.mCampPanel = null;
 	this.mSelectedBrotherId = null;
 	this.mProfessionTreeSignature = null;
 
@@ -84,6 +85,11 @@ CharacterScreenProfessionModule.prototype.createDIV = function (_parentDiv) {
 	    this.mStatusBar.append(this.mPlanLabels.Experience.container);
 	    this.mStatusBar.append(this.mPlanLabels.Planned.container);
 	    this.mStatusBar.append(this.mPlanLabels.Tentative.container);
+
+		// camp assignment and working speeds of the selected brother, in the free space below the tree
+		this.mCampPanel = $('<div class="profession-camp-panel"/>');
+		this.mCampPanel.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenWorkSpeed });
+		this.mContainer.append(this.mCampPanel);
 	}
 };
 
@@ -101,6 +107,7 @@ CharacterScreenProfessionModule.prototype.destroyDIV = function () {
 	this.mContainer.empty();
 	this.mContainer.remove();
 	this.mContainer = null;
+	this.mCampPanel = null;
 
 	this.mSelectedBrotherId = null;
 	this.mProfessionTreeSignature = null;
@@ -338,7 +345,39 @@ CharacterScreenProfessionModule.prototype.updateProfessionPlanVisuals = function
         this.mPlanLabels.Experience.container.bindTooltip({ contentType: 'ui-element', entityId: _brother[CharacterScreenIdentifier.Entity.Id], elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenExperience });
         this.mPlanLabels.Planned.label.text(_brother.PlannedProfessionLevelRequired || 0);
         this.mPlanLabels.Tentative.label.text(_brother.TentativeProfessionCount || 0);
+        this.updateCampPanel(_brother);
     }
+};
+
+CharacterScreenProfessionModule.prototype.updateCampPanel = function (_brother) {
+	this.mCampPanel.empty();
+
+	if (!('CampWorkSpeeds' in _brother)) {
+		return;
+	}
+
+	if (_brother.CampAssignment) {
+		this.mCampPanel.append($('<img class="banner"/>').attr('src', Path.GFX + _brother.CampAssignment.Banner));
+		this.mCampPanel.append($('<div class="assignment title-font-small font-bold font-color-title"/>').text('Assigned to: ' + _brother.CampAssignment.Name));
+	}
+
+	var stations = $('<div class="stations"/>');
+	this.mCampPanel.append(stations);
+
+	for (var i = 0; i < _brother.CampWorkSpeeds.length; ++i) {
+		var station = _brother.CampWorkSpeeds[i];
+		var cell = $('<div class="station"/>');
+		var speedColor = station.Speed > 100 ? 'font-color-positive-value' : (station.Speed < 100 ? 'font-color-negative-value' : 'font-color-label');
+
+		if (station.IsAssigned) {
+			cell.addClass('is-assigned');
+		}
+
+		cell.append($('<img/>').attr('src', Path.GFX + station.Icon));
+		cell.append($('<div class="name text-font-small font-bold font-color-label"/>').text(station.Name));
+		cell.append($('<div class="speed text-font-small font-bold"/>').addClass(speedColor).text(station.Speed + '%'));
+		stations.append(cell);
+	}
 };
 
 CharacterScreenProfessionModule.prototype.attachEventHandler = function (_profession) {

@@ -10,17 +10,17 @@ if (!("Professions" in ::Legends)) {
 	PassiveMult = 0.1,
 	// Bonus of the Scholar profession, applied after the experience is split between the workers
 	ScholarMult = 1.2,
-	// Camp stations that grant experience and the working speed that scales it
-	Stations = {
-		[::Legends.Camp.CampBuildings.Crafting] = "Crafting",
-		[::Legends.Camp.CampBuildings.Enchanter] = "Enchanting",
-		[::Legends.Camp.CampBuildings.Fletcher] = "Fletching",
-		[::Legends.Camp.CampBuildings.Gatherer] = "Gathering",
-		[::Legends.Camp.CampBuildings.Healer] = "Healing",
-		[::Legends.Camp.CampBuildings.Kitchen] = "Cooking",
-		[::Legends.Camp.CampBuildings.Repair] = "Repair",
-		[::Legends.Camp.CampBuildings.Scout] = "Scout",
-		[::Legends.Camp.CampBuildings.Training] = "Training",
-		[::Legends.Camp.CampBuildings.Workshop] = "Salvage"
-	}
+	// Camp stations that grant experience and the working speed that scales it, in the order they are listed in the Professions tab
+	Stations = [
+		{ ID = ::Legends.Camp.CampBuildings.Healer, Modifier = "Healing", Name = "Healing", Icon = "ui/icons/banner_heal_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Repair, Modifier = "Repair", Name = "Repairing", Icon = "ui/icons/banner_repair_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Workshop, Modifier = "Salvage", Name = "Salvaging", Icon = "ui/icons/banner_scrap_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Crafting, Modifier = "Crafting", Name = "Crafting", Icon = "ui/icons/banner_craft_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Scout, Modifier = "Scout", Name = "Scouting", Icon = "ui/icons/banner_scout_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Training, Modifier = "Training", Name = "Training", Icon = "ui/icons/banner_train_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Fletcher, Modifier = "Fletching", Name = "Fletching", Icon = "ui/icons/banner_fletch_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Gatherer, Modifier = "Gathering", Name = "Gathering", Icon = "ui/icons/banner_gather_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Kitchen, Modifier = "Cooking", Name = "Cooking", Icon = "ui/icons/banner_cook_icon.png" },
+		{ ID = ::Legends.Camp.CampBuildings.Enchanter, Modifier = "Enchanting", Name = "Enchanting", Icon = "ui/icons/banner_enchant_icon.png" }
+	]
 };

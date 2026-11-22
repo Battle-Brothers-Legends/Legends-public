@@ -127,16 +127,16 @@ if (!("Professions" in ::Legends))
 	local exp = ::Legends.Professions.Exp;
 	local roster = ::World.getPlayerRoster().getAll();
 
-	foreach (id, modifier in exp.Stations) {
-		local tent = ::World.Camp.getBuildingByID(id);
+	foreach (station in exp.Stations) {
+		local tent = ::World.Camp.getBuildingByID(station.ID);
 		if (tent == null) {
 			continue;
 		}
 
-		local workers = roster.filter(@(_, _bro) _bro.getCampAssignment() == id);
+		local workers = roster.filter(@(_, _bro) _bro.getCampAssignment() == station.ID);
 		local total = 0.0;
 		foreach (bro in workers) {
-			total += 1.0 + bro.getCurrentProperties().Modifiers[modifier];
+			total += 1.0 + bro.getCurrentProperties().Modifiers[station.Modifier];
 		}
 
 		// A station that is not at work, like on the march or a dangerous one while escorting, only grants the passive share

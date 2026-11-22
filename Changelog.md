@@ -264,6 +264,7 @@
 - each brother at a station adds 100% plus their working speed for it, the total is then split evenly between them
 - `Scholar` (Profession version) - grants 20% more profession experience
 - injured brothers at a dangerous station only gain 20% of their profession experience
+- the profession tab shows the camp assignment of the brother and his working speed at each camp station
 - you start with a very basic tree and gradually unlock more perks down the tree
 - certain perks will be locked unless of a certain background and certain perks will be unlocked on some of the backgrounds
 

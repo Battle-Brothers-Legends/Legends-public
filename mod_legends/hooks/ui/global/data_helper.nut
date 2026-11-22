@@ -237,6 +237,25 @@
 			result.PlannedProfessionLevelRequired <- plannedCount + professionLevel - _entity.getProfessionPoints();
 			result.ProfessionExperience <- professionLevel < professionLevels.len() ? professionLevel + " (" + ::Math.floor(_entity.getProfessionExp() * 100 / professionLevels[professionLevel]) + "%)" : professionLevel.tostring();
     		result.TentativeProfessionCount <- tentativeCount;
+
+			// Camp assignment and working speeds for the Professions tab, injuries slow the work at dangerous stations
+			if ("Camp" in ::World && ::World.Camp != null) {
+				local assignment = ::World.Camp.getBuildingByID(_entity.getCampAssignment());
+				result.CampAssignment <- assignment == null ? null : { Name = assignment.getName(), Banner = assignment.getBanner(_entity) };
+				result.CampWorkSpeeds <- [];
+				foreach (station in ::Legends.Professions.Exp.Stations) {
+					local tent = ::World.Camp.getBuildingByID(station.ID);
+					if (tent == null) {
+						continue;
+					}
+					result.CampWorkSpeeds.push({
+						Name = station.Name,
+						Icon = station.Icon,
+						Speed = ::Math.round((1.0 + _entity.getCurrentProperties().Modifiers[station.Modifier]) * tent.getWorkEfficiency(_entity) * 100),
+						IsAssigned = station.ID == _entity.getCampAssignment()
+					});
+				}
+			}
 		}
 
 		return result;

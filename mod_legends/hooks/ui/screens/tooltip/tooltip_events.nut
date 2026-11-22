@@ -3738,6 +3738,20 @@
 
 				return ret;
 
+			case "character-screen.right-panel-header-module.ProfessionPlanScreenWorkSpeed":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Camp Work"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "The camp station this character is assigned to and how fast they would work at each station. Injured characters only work at " + ::Math.round(::Legends.Camp.InjuredWorkMult * 100) + "% of their speed at dangerous stations."
+					}
+				];
+
 			case "character-screen.right-panel-header-module.ProfessionPlanScreenPlanned":
 				return [
 					{
