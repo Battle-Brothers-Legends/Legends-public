@@ -86,8 +86,8 @@
 			return;
 		}
 
-		this.m.HitChanceBonus += _properties.IsSpecializedInShields ? 15 : 0;
-		_properties.MeleeSkill += this.m.HitChanceBonus;
+		local bonus = _properties.IsSpecializedInShields ? 15 : 0;
+		_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 
 		_properties.DamageRegularMin = this.getItem().m.RegularDamage;
 		_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;

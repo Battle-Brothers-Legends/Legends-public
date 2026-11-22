@@ -87,8 +87,15 @@
 			return;
 		}
 
-		this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
-		_properties.RangedSkill += this.m.HitChanceBonus;
+		// Strafing Run shoots with the bonuses of this skill, which have to go to its own HitChanceBonus then
+		local bonus = this.m.Item.getAdditionalAccuracy();
+		if (_skill == this) {
+			_properties.RangedSkill += this.addHitChanceBonus(bonus);
+		} else {
+			bonus += this.getBaseValue("HitChanceBonus");
+			_skill.m.HitChanceBonus += bonus;
+			_properties.RangedSkill += bonus;
+		}
 		_properties.HitChanceAdditionalWithEachTile -= 3;
 	}
 });

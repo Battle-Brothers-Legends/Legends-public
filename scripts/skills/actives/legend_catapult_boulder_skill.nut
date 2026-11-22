@@ -107,8 +107,8 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
-			_properties.RangedSkill += this.m.HitChanceBonus;
+			local bonus = _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.addHitChanceBonus(bonus);
 			_properties.HitChanceAdditionalWithEachTile += _properties.IsSpecializedInSlings ? 10 : 5;
 		}
 	}

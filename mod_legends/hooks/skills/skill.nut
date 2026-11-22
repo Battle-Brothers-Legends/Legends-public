@@ -9,6 +9,14 @@
 
 	o.onShieldHitSkills <- function (_skill, _attacker, _shield) {}
 
+	// For onAnySkillUsed of an attack skill: adds _bonus to the HitChanceBonus of this skill and returns its own hit chance bonus,
+	// which is the one it was created with plus _bonus, to add to MeleeSkill or RangedSkill of the properties.
+	// Never add HitChanceBonus as a whole to them, as perks and effects add their bonuses to it too after applying them on their own
+	o.addHitChanceBonus <- function (_bonus = 0) {
+		this.m.HitChanceBonus += _bonus;
+		return (this.m.IsBaseValuesSaved ? this.getBaseValue("HitChanceBonus") : 0) + _bonus;
+	}
+
 	local onShieldHit = o.onShieldHit;
 	o.onShieldHit = function (_info) {
 		onShieldHit(_info);

@@ -12,10 +12,11 @@
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
+			local bonus = 0;
 			if (_properties.IsSpecializedInCleavers) {
-				this.m.HitChanceBonus += 15;
+				bonus += 15;
 			}
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 			_properties.DamageTotalMult = 0.0;
 			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		}

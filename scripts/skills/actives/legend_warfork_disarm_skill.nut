@@ -75,8 +75,8 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += _properties.IsSpecializedInPolearms ? 10 : 0;
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			local bonus = _properties.IsSpecializedInPolearms ? 10 : 0;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 			_properties.DamageTotalMult = 0.0;
 			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		}

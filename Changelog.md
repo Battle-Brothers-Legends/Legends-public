@@ -836,6 +836,10 @@
 - the first medium coast fort, small swamp fort and small tundra fort of a world get a kennel if there is none yet, as the other forts already did
 - world generation no longer errors when no settlement is left to place a guaranteed building in
 - world generation with `All Trade Locations` no longer hangs forever when a trade location can not be placed at any settlement
+- `Decapitate` of a scythe no longer lowers the hit chance of its other skills against adjacent targets
+- `Puncture`, `Choke` and `Obliterate` no longer count hit chance bonuses from perks twice
+- the penalty against adjacent targets of two-tile weapons with two weapon types is removed by the mastery of either type, like their tooltips say (`Cleave` of a scythe, `Heartseeker`, `Rupture`, `Smite`)
+- `Smite` of a halberd now has the penalty against adjacent targets its tooltip mentions
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
@@ -894,6 +898,7 @@
 - `GenderEquality` setting renamed to `GenderStatDifference` to avoid issues with values saved in MSU
 - `::Legends.Tactical.Tiles.spawnWall(_tile)` spawns an impassable wall on the tile
 - added `::Legends.Inventory` functions that allow calculating item's potential value (current / repaired / salvage), found in `inventory.nut`
+- added `addHitChanceBonus(_bonus = 0)` to skills, for `onAnySkillUsed` of attacks: adds `_bonus` to `HitChanceBonus` and returns the bonus of the skill itself to add to `MeleeSkill` or `RangedSkill`, as adding `HitChanceBonus` as a whole counts the bonuses of perks twice
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

@@ -89,7 +89,7 @@
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.RangedSkill += this.addHitChanceBonus();
 			_properties.HitChanceAdditionalWithEachTile -= 10;
 		}
 	}

@@ -79,8 +79,8 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
 			_properties.DamageArmorMult = 0.5;
 			_properties.FatigueDealtPerHitMult += 1.0;
-			this.m.HitChanceBonus += _properties.IsSpecializedInShields ? 15 : 0;
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			local bonus = _properties.IsSpecializedInShields ? 15 : 0;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 			if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
 				_properties.DamageArmorMult = 1.0
 				_properties.DamageDirectAdd += 0.1;

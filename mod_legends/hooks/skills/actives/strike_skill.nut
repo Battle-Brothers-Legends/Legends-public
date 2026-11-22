@@ -45,13 +45,13 @@
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += !this.m.ApplyAxeMastery ? 5 : 0;
-			this.m.HitChanceBonus += this.m.IsStaffStrike && ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 5 : 0;
+			local bonus = !this.m.ApplyAxeMastery ? 5 : 0;
+			bonus += this.m.IsStaffStrike && ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 5 : 0;
 
 			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
-				this.m.HitChanceBonus += -15;
+				bonus += -15;
 			}
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 		}
 	}
 });

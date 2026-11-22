@@ -113,13 +113,13 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
+			local bonus = _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
 
 			if (_properties.IsSpecializedInSlings) {
 				_properties.HitChanceAdditionalWithEachTile += 2;
 			}
 
-			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.RangedSkill += this.addHitChanceBonus(bonus);
 			_properties.HitChanceAdditionalWithEachTile -= 10;
 			_properties.FatigueDealtPerHitMult += 1.0;
 		}

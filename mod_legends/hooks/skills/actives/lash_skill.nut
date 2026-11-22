@@ -59,9 +59,10 @@
 			return;
 		}
 		_properties.HitChance[::Const.BodyPart.Head] += 100.0;
+		local bonus = 0;
 		if (this.m.IsRanged && _targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
-			this.m.HitChanceBonus += -15;
+			bonus += -15;
 		}
-		_properties.MeleeSkill += this.m.HitChanceBonus;
+		_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 	}
 });

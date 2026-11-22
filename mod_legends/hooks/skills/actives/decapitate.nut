@@ -62,19 +62,14 @@
 	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (!this.m.IsScytheDecapitate)
+		// only for Decapitate itself, its HitChanceBonus is not reset when another skill is used and would add up
+		if (_skill != this || _targetEntity == null)
 			return;
-		if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+		if (this.m.IsScytheDecapitate && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 			this.m.HitChanceBonus += -15;
+			_properties.MeleeSkill += -15;
 		}
-		_properties.MeleeSkill += this.m.HitChanceBonus;
-	}
-
-	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (_targetEntity != null && _skill == this && this.m.IsTwoHand)
+		if (this.m.IsTwoHand)
 			_properties.HitChance[::Const.BodyPart.Head] += ::Math.floor((1.0 - _targetEntity.getHitpoints() / (_targetEntity.getHitpointsMax() * 1.0)) * 100);
 	}
 });

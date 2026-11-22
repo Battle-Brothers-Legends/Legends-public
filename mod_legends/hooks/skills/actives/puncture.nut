@@ -59,11 +59,11 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += this.getHitChance(_targetEntity);
+			local bonus = this.getHitChance(_targetEntity);
 			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-				this.m.HitChanceBonus +=15;
+				bonus += 15;
 			}
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 			_properties.DamageArmorMult *= 0.0;
 			_properties.DamageDirectAdd = 0;
 			_properties.IsIgnoringArmorOnAttack = true;

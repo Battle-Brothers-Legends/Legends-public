@@ -128,10 +128,10 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageTotalMult = 0;
-			this.m.HitChanceBonus += _properties.IsSpecializedInFists ? 10 : 0;
+			local bonus = _properties.IsSpecializedInFists ? 10 : 0;
 
-			this.m.HitChanceBonus += ::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler) ? 20 : 0;
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			bonus += ::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler) ? 20 : 0;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 		}
 	}
 

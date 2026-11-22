@@ -143,8 +143,8 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.7;
-			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
-			_properties.RangedSkill += this.m.HitChanceBonus;
+			local bonus = this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.addHitChanceBonus(bonus);
 			_properties.HitChanceAdditionalWithEachTile -= 10;
 		}
 	}

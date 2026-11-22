@@ -32,7 +32,7 @@
 			icon = "ui/icons/vision.png",
 			text = "Has a range of [color=%positive%]2[/color] tiles"
 		});
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && !this.m.IsMeleeRupture) {
+		if (!::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()) && !this.m.IsMeleeRupture) {
 			tooltip.push({
 				id = 6,
 				type = "text",

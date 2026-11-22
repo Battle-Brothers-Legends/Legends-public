@@ -16,9 +16,9 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += _properties.IsSpecializedInSwords ? 5 : 0;
+			local bonus = _properties.IsSpecializedInSwords ? 5 : 0;
 			_properties.ThresholdToInflictInjuryMult *= _properties.IsSpecializedInSwords ? 0.5 : 0.66;
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 		}
 	}
 

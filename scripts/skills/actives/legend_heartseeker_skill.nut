@@ -91,7 +91,7 @@ this.legend_heartseeker_skill <- this.inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			if (actor.getTile().getDistanceTo(_targetEntity.getTile()) != 1)
 				return;
-			if ((this.m.IsPolearm && !_properties.IsSpecializedInPolearms) || (this.m.IsTwoHanded && !_properties.IsSpecializedInSpears)) {
+			if ((this.m.IsPolearm || this.m.IsTwoHanded) && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				_properties.MeleeSkill -= 15;
 				this.m.HitChanceBonus -= 15;
 			}

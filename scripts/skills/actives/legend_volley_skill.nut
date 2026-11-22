@@ -164,8 +164,8 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
-			_properties.RangedSkill += this.m.HitChanceBonus;
+			local bonus = this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.addHitChanceBonus(bonus);
 			_properties.HitChanceAdditionalWithEachTile -= 4;
 			_properties.DamageTotalMult *= 0.33333334;
 			_properties.DamageTooltipMaxMult *= 3.0;
