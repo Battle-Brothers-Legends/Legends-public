@@ -34,7 +34,8 @@
 					id = 3,
 					type = "text",
 					icon = "ui/icons/turns_left.png",
-					text = "Duration: " + this.m.TurnsLeft + " turns"
+					text = "Duration: %_turnsLeft% turns",
+					param = [["_turnsLeft", this.m.TurnsLeft]]
 				}
 			]);
 		}
@@ -89,7 +90,8 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color] tiles"
+				text = "Has a range of [color=%positive%]%_range%[/color] tiles",
+				param = [["_range", this.m.MaxRange]]
 			});
 		}
 		if (this.m.MaxLevelDifference > 0) {
@@ -97,7 +99,8 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has [color=%positive%]" + this.m.MaxLevelDifference + "[/color] max terrain level difference"
+				text = "Has [color=%positive%]%_levelDifference%[/color] max terrain level difference",
+				param = [["_levelDifference", this.m.MaxLevelDifference]]
 			});
 		}
 		return ret;
