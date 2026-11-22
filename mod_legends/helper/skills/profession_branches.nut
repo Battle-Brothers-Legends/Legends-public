@@ -334,6 +334,16 @@
 	background.rebuildProfessionTree(tree);
 }
 
+::Legends.Professions.Branches.addFavouredEnemy <- function (_bro) {
+
+	local enemies = this.FavouredEnemies.filter(@(_, _p) !::Legends.Professions.Branches.isAllowed(_bro, _p));
+
+	if (enemies.len() != 0)
+	{
+		_bro.getBackground().addProfession(enemies[::Math.rand(0, enemies.len() - 1)]);
+	}
+}
+
 ::Legends.Professions.Branches.getNames <- function (_professions, _last) {
 	local text = "";
 

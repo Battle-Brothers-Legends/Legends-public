@@ -39,7 +39,6 @@
 		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 		this.m.PerkTreeDynamicMins.Defense = 3;
-		this.m.PerkTreeDynamicMins.Enemy = 2;
 	}
 
 	o.setGender <- function(_gender = -1) {
