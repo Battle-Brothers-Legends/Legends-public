@@ -1105,11 +1105,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Class = [
 		::Const.Perks.JugglerClassTree
 	],
-	Profession = {
-		Known = [::Legends.Profession.LegendBalladeInTheMaking],
-		Known = [],
-		Special = [::Legends.Profession.LegendFavouredEnemyCivilization]
-	},
 	Magic = [
 		::Const.Perks.BardMagicTree,
 	]
@@ -1135,11 +1130,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FaithClassTree,
 		//::Const.Perks.HealerClassTree
 	],
-	Profession = {
-		Known = [::Legends.Profession.LegendHealing],
-		Roots = [::Legends.Profession.LegendScholar],
-		Special = [::Legends.Profession.LegendFavouredEnemyUndead]	
-	},
 	Magic = []
 };
 
@@ -1424,11 +1414,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = [
 		::Const.Perks.CaptainMagicTree
 	],
-	Profession = {
-		Roots = [],
-		Known = [],
-		Special = []	
-	},
 };
 
 ::Legends.BackgroundPerkTrees.RetiredSoldier <- {
