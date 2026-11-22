@@ -1628,9 +1628,9 @@ Every fight is like a dance, provided you have the right moves.
 [color=%passive%][u]Passive:[/u][/color]
 • Unlocks the [color=%skill%]Rotation[/color] skill which allows two characters to switch places while ignoring Zone of Control, as long as neither character is [color=%status%]Stunned[/color], [color=%status%]Rooted[/color] or otherwise disabled.
 
-• Unlocks the [color=%skill%]Footwork[/color] skill which allows you to leave a Zone of Control without triggering free attacks.
+• Unlocks the [color=%skill%]Footwork[/color] skill which allows you to leave a Zone of Control without triggering free attacks or quickly moving to an adjacent tile when not in Zone of Control.
 
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]20[/color] Fatigue.
+• Costs [color=%negative%]3[/color] AP and [color=%negative%]20[/color] Fatigue when in Zone of Control and [color=%negative%]1[/color] AP and [color=%negative%]15[/color] when out of it.
 ";
 
 ::Const.Strings.PerkDescription.LegendTerrifyingVisage <- @"
