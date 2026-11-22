@@ -55,6 +55,14 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 			icon = "ui/icons/special.png",
 			text = "Regenerates itself by up to [color=%positive%]" + ::Math.floor(this.getConditionMax() * 0.2) + "[/color] of maximum durability each turn."
 		});
+		if (this.m.Stack > 0) {
+			result.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Will regenerate itself to full upon being destroyed"
+			});
+		}
 		return result;
 	}
 

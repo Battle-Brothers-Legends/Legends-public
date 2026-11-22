@@ -33,6 +33,17 @@
 		this.m.Value = 1800;
 	}
 
+	o.getTooltip <- function () {
+		local result = this.named_shield.getTooltip();
+		result.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Soaks the attacker in acid on getting hit."
+		});
+		return result;
+	}
+
 	o.onShieldHit <- function (_attacker, _skill) {
 		if (::Legends.S.isEntityNullOrDead(_attacker)) {
 			if (_attacker.getFlags().has("lindwurm")) {
