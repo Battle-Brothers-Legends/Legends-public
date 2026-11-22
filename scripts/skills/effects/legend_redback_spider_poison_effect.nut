@@ -79,7 +79,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 	// What the poison does at the start of the next turn: Baffled on the first turn of being poisoned, Dazed on the second, Stunned from the third
 	function getStage() {
 		local stages = [
-			{ Name = "Baffled", Effect = ::Legends.Effect.Baffled, IsImmune = @(_p) _p.IsImmuneToDaze },
+			{ Name = "Baffled", Effect = ::Legends.Effect.LegendBaffled, IsImmune = @(_p) _p.IsImmuneToDaze },
 			{ Name = "Dazed", Effect = ::Legends.Effect.Dazed, IsImmune = @(_p) _p.IsImmuneToDaze },
 			{ Name = "Stunned", Effect = ::Legends.Effect.Stunned, IsImmune = @(_p) _p.IsImmuneToStun }
 		];
