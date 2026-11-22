@@ -373,9 +373,9 @@
 		_target.armorBody <- _entity.getArmor(::Const.BodyPart.Body);
 		_target.armorBodyMax <- _entity.getArmorMax(::Const.BodyPart.Body);
 		_target.armorBodyTalent <- 0;
-		_target.crushingDamage <- ::Math.floor(properties.getDamageArmorMult() * 100);
-		_target.crushingDamageMax <- ::Const.CharacterMaxValue.ArmorDamage;
-		_target.crushingDamageLabel <- ::Math.floor(properties.getDamageArmorMult() * 100) + "%";
+		_target.block <- properties.getBlock();
+		_target.blockMax <- ::Const.CharacterMaxValue.Block;
+		_target.blockLabel <- "" + properties.getBlock();
 		_target.chanceToHitHead <- properties.getHitchance(::Const.BodyPart.Head);
 		_target.chanceToHitHeadMax <- ::Const.CharacterMaxValue.Hitchance;
 		_target.chanceToHitHeadLabel <- properties.getHitchance(::Const.BodyPart.Head) + "%";

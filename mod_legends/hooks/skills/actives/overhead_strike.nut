@@ -1,11 +1,5 @@
 ::mods_hookExactClass("skills/actives/overhead_strike", function(o)
 {
-	local create = o.create;
-	o.create = function() {
-		create();
-		this.m.HitChanceBonus = 5;
-	}
-
 	o.getTooltip = function () {
 		local tooltip = this.getDefaultTooltip();
 
@@ -49,11 +43,7 @@
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		onAnySkillUsed( _skill, _targetEntity, _properties );
 		if (_skill == this) {
-			// the base bonus is already applied by the vanilla function
-			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords) {
-				this.m.HitChanceBonus += 5;
-				_properties.MeleeSkill += 5;
-			}
+			_properties.MeleeSkill -= 5;
 		}
 	}
 });

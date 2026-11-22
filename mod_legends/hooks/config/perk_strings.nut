@@ -593,11 +593,13 @@ Master fighting with spears and keeping the enemy at bay.
 Master the art of swordfighting and using your opponent's mistakes to your advantage.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Skills build up [color=%negative%]25%[/color] less Fatigue and [color=%positive%]+5%[/color] chance to hit.
+• Skills build up [color=%negative%]25%[/color] less Fatigue.
+
+• A Sword in the main hand gives [color=%positive%]+5[/color] more Block, or [color=%positive%]+10[/color] more if it is two-handed.
 
 • [color=%status%]Riposting[/color] no longer has a penalty to hitchance.
 
-• [color=%skill%]Swing[/color] and [color=%skill%]Swing[/color] no longer have a penalty to hitchance and gain and gain [color=%positive%]+10%[/color] chance to hit if using a Sword. [color=%skill%]Halfsword[/color] has a [color=%positive%]+15%[/color] chance to hit if using a Sword
+• [color=%skill%]Halfsword[/color] has a [color=%positive%]+15%[/color] chance to hit if using a Sword
 
 • [color=%skill%]Gash[/color] has a [color=%negative%]50%[/color] lower threshold to inflict [color=%status%]Injuries[/color].
 

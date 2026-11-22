@@ -1908,6 +1908,20 @@
 					}
 				];
 
+			case "character-stats.Block":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Block"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "The damage that is taken off every hit this character receives, before armor and hitpoints are damaged. A hit that loses all of its damage this way is blocked. Mostly granted by shields, and doubled for them by Shield Mastery. Some attacks ignore part of it."
+					}
+				];
+
 			case "character-stats.ChanceToHitHead":
 				return [
 					{

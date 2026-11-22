@@ -64,6 +64,7 @@ var TooltipIdentifier =
 		SightDistance:		'character-stats.SightDistance',
 		RegularDamage:		'character-stats.RegularDamage',
 		CrushingDamage:		'character-stats.CrushingDamage',
+		Block:				'character-stats.Block',
 		ChanceToHitHead:	'character-stats.ChanceToHitHead',
 		Initiative:			'character-stats.Initiative',
 		Bravery:			'character-stats.Bravery',

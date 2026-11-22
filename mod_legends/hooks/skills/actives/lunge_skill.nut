@@ -12,18 +12,6 @@
 		}
 	}
 
-	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
-		onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (_skill == this) {
-			local bonus = 0;
-			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-				bonus += 5;
-			}
-			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
-		}
-	}
-
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function (_properties) {
 		onAfterUpdate(_properties);

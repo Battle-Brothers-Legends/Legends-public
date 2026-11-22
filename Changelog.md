@@ -278,9 +278,12 @@
 - `Mad` - now has a chance to shift his morale up or down at the start of each turn in combat, cannot become fleeing from this effect but can rally from fleeing
 - `Deathwish` - now additionally increases damage done with up to 25% based on missing hitpoints with the maximum bonus achieved at 40% remaining hitpoints
 - `Bloodthirsty` - now heals 2 hp if you kill an enemy with a fatality
+- `Sure Footed` - now additionally gives 3 Block
+- `Huge` - now additionally gives 2 Block
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
+- swords now give 5 Block in the main hand instead of the chance to hit modifiers of `Slash`, `Gash`, `Overhead Strike`, `Split`, `Swing` and `Lunge`. With their mastery it is 10 Block, or 15 for two-handed swords
 - bandages now replenish up to 10 HP (only fresh wounds)
 
 ## Quivers
@@ -708,6 +711,7 @@
 - enemy tooltips reworked to include turns left, non-stacking effect stacks
 - added skill icons to weapons and shields
 - added simple values to stats in character screen on mouseover
+- the character screen shows Block in place of the effectiveness against armor
 - item tooltips now list what the item can be crafted into, which replaces the `Items and Recipes` mod
 > can be turned off with `Show Crafting Uses` in the Legends Tooltips mod settings tab
 - replaced 5 different filter buttons in the character screen with a single one that cycles through the 5

@@ -44,6 +44,20 @@
 			});
 		}
 
+		if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
+			local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
+			result.push({
+				id = 22,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "Block [color=%positive%]+%_block%[/color] in the main hand, [color=%positive%]+%_mastery%[/color] with its mastery",
+				param = [
+					["_block", block[0]],
+					["_mastery", block[1]]
+				]
+			});
+		}
+
 		foreach (tooltip in result) {
 			if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
 				continue;
@@ -219,6 +233,11 @@
 			_properties.DamageArmorMult *= this.m.ArmorDamageMult;
 			_properties.DamageDirectAdd += this.m.DirectDamageAdd;
 			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHead;
+
+			if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
+				local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
+				_properties.Block += block[::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this) ? 1 : 0];
+			}
 		}
 	}
 

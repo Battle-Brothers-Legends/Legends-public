@@ -3,12 +3,6 @@
 	o.m.TilesLeft <- 2;
 	o.m.TilesRight <- 0;
 
-	local create = o.create;
-	o.create = function () {
-		create();
-		this.m.HitChanceBonus = -5;
-	}
-
 	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
 		ret.push({
@@ -28,13 +22,8 @@
 	}
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
-		if (_skill == this) {
-			local bonus = 0;
-			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-				bonus += 15;
-			}
-
-			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
+		if (_skill == this && !this.getItem().isWeaponType(::Const.Items.WeaponType.Sword)) {
+			_properties.MeleeSkill += this.addHitChanceBonus(::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 10 : -5);
 		}
 	}
 });

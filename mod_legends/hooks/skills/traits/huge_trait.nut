@@ -47,6 +47,12 @@
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
 				text = "[color=%negative%]-5[/color] Ranged Defense"
+			},
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%positive%]+2[/color] Block"
 			}
 		];
 	}
@@ -57,5 +63,6 @@
 		_properties.RangedDamageMult *= 1.05;
 		_properties.MeleeDefense -= 5;
 		_properties.RangedDefense -= 5;
+		_properties.Block += 2;
 	}
 });
