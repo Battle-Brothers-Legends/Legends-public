@@ -59,6 +59,10 @@
 		return result;
 	}
 
+	o.findTileToKnockBackTo = function( _userTile, _targetTile ) {
+		return this.skill.getForcedMovementDestinationTile(_userTile, _targetTile, false);
+	}
+
 	o.onUse = function( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
@@ -113,12 +117,26 @@
 		}
 	}
 
-	o.onTargetSelected <- function ( _targetTile )
-	{
-		local knockToTile = this.getPulledToTile(this.getContainer().getActor().getTile(), _targetTile);
+	o.onTargetSelected <- function ( _targetTile ) {
+		local knockToTile = this.findTileToKnockBackTo(this.getContainer().getActor().getTile(), _targetTile);
 
-		if (knockToTile == null)
+		if (knockToTile == null) {
 			return;
+		}
+
+		local target = _targetTile.getEntity();
+		if (target == null) {
+			return;
+		}
+
+		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab || target.getCurrentProperties().IsRooted) {
+			return;
+		}
+
+		if (!_targetTile.IsEmpty) {
+			return
+		}
+
 		// to show where the target may be knocked back
 		::Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
 	}
