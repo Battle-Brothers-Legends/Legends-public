@@ -1499,7 +1499,8 @@
 			this.stunPartiesNearPlayer(_isPlayerInitiated);
 			this.setAutoPause(false);
 		}, function () {
-			return !this.m.CombatDialog.isAnimating();
+			// the world screen takes longer to hide than the dialog takes to show, and showing it again before that leaves it hidden
+			return !this.m.CombatDialog.isAnimating() && !this.m.WorldScreen.isAnimating();
 		}, _isPlayerInitiated);
 	}
 

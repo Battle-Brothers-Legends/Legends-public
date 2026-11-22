@@ -1,5 +1,8 @@
 ::Legends.FavoriteEnemy <- {};
 
+// XP from favourite enemies that each point of the bonus takes
+::Legends.FavoriteEnemy.XPPerBonus <- 1000;
+
 ::Legends.FavoriteEnemy.Types <- {
 	Beast = "Beast",
 	Civilization = "Civilization",
@@ -132,7 +135,7 @@
 	local kills = stats.Tags.get("Enemy_Kills_" + _category) || 0;
 	local xp = stats.Tags.get("Enemy_XP_" + _category) || 0;
 
-	local str = xp / 1000.0;
+	local str = xp / (::Legends.FavoriteEnemy.XPPerBonus * 1.0);
 	local hitChance = 5 + ::Math.min(::Math.floor(str), 20); // base bonus of 5 and cap total at 25
 	local hitMult = 1.0 + (0.01 * hitChance);
 	return {

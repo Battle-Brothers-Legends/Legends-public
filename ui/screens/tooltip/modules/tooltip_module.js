@@ -1245,6 +1245,15 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 
 			case 'progressbar':
 			{
+				// with isHint the bar is placed between the hints at the bottom, in the order of the entries
+				if ('isHint' in data && data.isHint)
+				{
+					hintContainer.find('#tooltip-module-content-progressbar-container-' + data.id).remove();
+					this.addContentProgressbarDiv(hintContainer, data);
+					hasHint = true;
+					break;
+				}
+
 				if (!shouldBeUpdated)
 				{
 					this.addContentProgressbarDiv(rightContentContainer, data);

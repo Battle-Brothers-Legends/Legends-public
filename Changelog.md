@@ -265,6 +265,7 @@
 - `Scholar` (Profession version) - grants 20% more profession experience
 - injured brothers at a dangerous station only gain 20% of their profession experience
 - the profession tab shows the camp assignment of the brother and his working speed at each camp station
+- favoured enemy professions show a bar with the experience towards the next point of their bonus
 - you start with a very basic tree and gradually unlock more perks down the tree
 - certain perks will be locked unless of a certain background and certain perks will be unlocked on some of the backgrounds
 
@@ -840,6 +841,7 @@
 - `Puncture`, `Choke` and `Obliterate` no longer count hit chance bonuses from perks twice
 - the penalty against adjacent targets of two-tile weapons with two weapon types is removed by the mastery of either type, like their tooltips say (`Cleave` of a scythe, `Heartseeker`, `Rupture`, `Smite`)
 - `Smite` of a halberd now has the penalty against adjacent targets its tooltip mentions
+- backing out of the combat dialog right as it opens no longer leaves the world map without its UI
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
