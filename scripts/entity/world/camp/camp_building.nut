@@ -236,14 +236,14 @@ this.camp_building <- {
 			Modifiers = [] // each element is [Craft value contributed by the character (including bonuses), Name of character, Background of character]
 		}
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in assignedBros) {
 			// Each character assigned will contribute the tent's BaseCraft plus any bonuses from their modifiers
 			// If the character does not have the relevant skill, they will contribute only the BaseCraft value
 			// If the character is skilled, they will contribute the BaseCraft value + the bonuses from their modifiers. The bonuses are further multiplied by the tent's ModMod value
 			// A higher ModMod value means that skilled characters will have a more significant impact on the output
 			++ret.Assigned;
-			ret.Modifiers.push([this.m.BaseCraft + this.m.BaseCraft * bro.getCurrentProperties().Modifiers[this.m.ModName] * this.m.ModMod, bro.getNameOnly(), bro.getBackground().getNameOnly()]);
+			ret.Modifiers.push([(this.m.BaseCraft + this.m.BaseCraft * bro.getCurrentProperties().Modifiers[this.m.ModName] * this.m.ModMod) * this.getWorkEfficiency(bro), bro.getNameOnly(), bro.getBackground().getNameOnly()]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);
@@ -305,8 +305,13 @@ this.camp_building <- {
 	function addRecoveryReasonToResults( _bro, cause ) {
 		this.m.Results.push({
 			Icon = "ui/icons/days_wounded.png",
-			Text = _bro.getName() + " was " + cause + " and has forgone " + this.m.ActivityName + "."
+			Text = _bro.getName() + " was " + cause + ", working at " + ::Math.round(::Legends.Camp.InjuredWorkMult * 100) + "% efficiency while " + this.m.ActivityName.tolower() + "."
 		});
+	}
+
+	// Injured characters still work at a dangerous tent, but at a fraction of their efficiency
+	function getWorkEfficiency(_bro, _addToResults = false) {
+		return this.isRecovering(_bro, _addToResults) ? ::Legends.Camp.InjuredWorkMult : 1.0;
 	}
 
 	function addNegativeSideEffects(_bro, _hours) {

@@ -551,7 +551,7 @@ Broadening one's perspective by reading at times gives better results than pract
 [color=%passive%][u]Passive:[/u][/color]
 • Education allows to understand certain things better.
 
-• Increases the rate at which the character learns new professions.
+• Gains [color=%positive%]20%[/color] more profession experience.
 
 • Adds an extra profession point (when?).
 ";

@@ -10,7 +10,7 @@ this.profession_legend_scholar <- this.inherit("scripts/skills/legend_profession
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png"
-				text = "TBD"
+				text = "[color=%positive%]20%[/color] more profession experience gained."
 			}];
 	}
 });

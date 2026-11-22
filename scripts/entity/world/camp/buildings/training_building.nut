@@ -78,11 +78,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		local self = this;
 
-		local trainingBros = roster.filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		local trainingBros = roster.filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in trainingBros) {
 			ret.Assigned++;
 			ret.Modifiers.push([
-				this.m.BaseCraft * (1 + bro.getCurrentProperties().Modifiers.Training),
+				this.m.BaseCraft * (1 + bro.getCurrentProperties().Modifiers.Training) * this.getWorkEfficiency(bro),
 				bro.getName(),
 				bro.getBackground().getNameOnly(),
 				bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining) ? ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining).isMaxReached() : false
@@ -101,7 +101,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function setModifiers() {
 		this.m.NumBros = this.getAssignedBros();
 		local self = this;
-		this.m.Untrained = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro))).len();
+		this.m.Untrained = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID)).len();
 	}
 
 	function getRandomBroName(broName, bros) {
@@ -319,12 +319,15 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local campHours = this.m.Camp.getCampTimeHours();
 		local mod = this.getUpgraded() ? this.getModifiers() : null;
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true)));
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in assignedBros) {
-			this.addNegativeSideEffects(bro, campHours);
+			local efficiency = this.getWorkEfficiency(bro, true);
+			if (!this.isRecovering(bro)) {
+				this.addNegativeSideEffects(bro, campHours);
+			}
 
 			local succeeded = false;
-			if (::Math.rand(1, 100) < ::Math.min(95, 100 * ::Math.pow(campHours / 12.0, 0.6 + 0.1 * bro.getLevel()))) {
+			if (::Math.rand(1, 100) < efficiency * ::Math.min(95, 100 * ::Math.pow(campHours / 12.0, 0.6 + 0.1 * bro.getLevel()))) {
 				succeeded = true;
 				if (bro.getLevel() < 12) {
 					this.getTrained(bro);
@@ -337,7 +340,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				for (local hours = campHours; hours > 0; ) {
 					local r = ::Math.rand(1, 100);
 
-					if (r <= hours + mod.Craft * hours) {
+					if (r <= (hours + mod.Craft * hours) * efficiency) {
 						succeeded = true;
 						this.getBonus(bro);
 						hours -= r;

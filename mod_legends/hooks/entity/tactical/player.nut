@@ -14,6 +14,8 @@
 	o.m.CompanyID <- 0;
 	o.m.ProfessionPoints <- 0;
 	o.m.ProfessionPointsSpent <- 0;
+	o.m.ProfessionLevel <- 0;
+	o.m.ProfessionExp <- 0.0;
 	o.m.CombatStartHP <- 0;
 
 	// recruitment
@@ -45,6 +47,26 @@
 
 	o.getProfessionPointsSpent <- function () {
 		return this.m.ProfessionPointsSpent;
+	}
+
+	o.getProfessionLevel <- function () {
+		return this.m.ProfessionLevel;
+	}
+
+	o.getProfessionExp <- function () {
+		return this.m.ProfessionExp;
+	}
+
+	// Profession experience is counted in hours of camp work, each level grants a profession point
+	o.addProfessionExp <- function (_exp) {
+		local levels = ::Legends.Professions.Exp.Levels;
+		this.m.ProfessionExp += _exp;
+
+		while (this.m.ProfessionLevel < levels.len() && this.m.ProfessionExp >= levels[this.m.ProfessionLevel]) {
+			this.m.ProfessionExp -= levels[this.m.ProfessionLevel];
+			++this.m.ProfessionLevel;
+			++this.m.ProfessionPoints;
+		}
 	}
 
 	o.getTryoutCost = function () {
@@ -818,7 +840,6 @@
 		while (this.m.Level < ::Const.LevelXP.len() && this.m.XP >= ::Const.LevelXP[this.m.Level]) {
 			++this.m.Level;
 			++this.m.LevelUps;
-			++this.m.ProfessionPoints;
 
 			if (this.m.Level <= ::Const.XP.MaxLevelWithPerkpoints) {
 				++this.m.PerkPoints;
@@ -1709,6 +1730,8 @@
 		_out.writeU8(this.m.CompanyID);
 		_out.writeU8(this.m.ProfessionPoints);
 		_out.writeU8(this.m.ProfessionPointsSpent);
+		_out.writeU8(this.m.ProfessionLevel);
+		_out.writeF32(this.m.ProfessionExp);
 
 		_out.writeU16(this.getPerkPlan().len());
 		foreach (perkID, state in this.getPerkPlan()) {
@@ -1765,6 +1788,8 @@
 		this.m.CompanyID = _in.readU8();
 		this.m.ProfessionPoints = _in.readU8();
 		this.m.ProfessionPointsSpent = _in.readU8();
+		this.m.ProfessionLevel = _in.readU8();
+		this.m.ProfessionExp = _in.readF32();
 
 		local planSize = _in.readU16();
 		for (local i = 0; i < planSize; i++) {

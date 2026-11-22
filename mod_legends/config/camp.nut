@@ -2,6 +2,9 @@ if (!("Camp" in ::Legends)) {
 	::Legends.Camp <- {};
 }
 
+// Efficiency of injured characters
+::Legends.Camp.InjuredWorkMult <- 0.2;
+
 ::Legends.Camp.CampBuildings <- {
 	Commander = "camp.commander",
 	Barber = "camp.barber",

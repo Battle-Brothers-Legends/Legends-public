@@ -175,8 +175,8 @@
 .character-screen-container .professions-module .profession-plan-status-bar {
     position: absolute;
     bottom: 0.0rem;
-    left: 24.0rem;
-    width: 30%;
+    left: 16.5rem;
+    width: 44%;
     height: 3.2rem;
     display: flex;
     justify-content: space-between;

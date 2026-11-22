@@ -232,7 +232,10 @@
         		if (state == 1) plannedCount++;
         		else if (state == 2) tentativeCount++;
     		}
-			result.PlannedProfessionLevelRequired <- plannedCount + _entity.getLevel() - _entity.getProfessionPoints();
+			local professionLevel = _entity.getProfessionLevel();
+			local professionLevels = ::Legends.Professions.Exp.Levels;
+			result.PlannedProfessionLevelRequired <- plannedCount + professionLevel - _entity.getProfessionPoints();
+			result.ProfessionExperience <- professionLevel < professionLevels.len() ? professionLevel + " (" + ::Math.floor(_entity.getProfessionExp() * 100 / professionLevels[professionLevel]) + "%)" : professionLevel.tostring();
     		result.TentativeProfessionCount <- tentativeCount;
 		}
 

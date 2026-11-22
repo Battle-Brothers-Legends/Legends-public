@@ -1,5 +1,6 @@
 ::mods_hookExactClass("states/world/asset_manager", function (o) {
 	o.m.FounderNames <- [];
+	o.m.Look = "01"; // looks are brush suffixes now, origins that set none keep the vanilla default
 	o.m.BusinessReputationMax <- 0;
 	o.m.BrothersMax <- 27;
 	o.m.BrothersMaxInCombat <- 27;
@@ -521,6 +522,7 @@
 		if (::World.getTime().Hours != this.m.LastHourUpdated && this.m.IsConsumingAssets) {
 			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.consumeFood();
+			::Legends.Professions.updateExp();
 			local roster = ::World.getPlayerRoster().getAll();
 			local campMultiplier = this.isCamping() ? this.m.CampingMult : 1.0;
 

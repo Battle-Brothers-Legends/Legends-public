@@ -21,6 +21,7 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
 
 	this.mStatusBar = null;
     this.mPlanLabels = {
+        Experience: null,
         Planned: null,
         Tentative: null
     };
@@ -76,9 +77,11 @@ CharacterScreenProfessionModule.prototype.createDIV = function (_parentDiv) {
 	        return { container: item, label: label, img: img };
 	    };
 
+	    this.mPlanLabels.Experience = createStatusItem(Asset.ICON_XP_RECEIVED, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenExperience);
 	    this.mPlanLabels.Planned = createStatusItem(Asset.PLAN_LEVEL_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenPlanned);
 	    this.mPlanLabels.Tentative = createStatusItem(Asset.PLAN_TENTATIVE_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenTentative); 
 
+	    this.mStatusBar.append(this.mPlanLabels.Experience.container);
 	    this.mStatusBar.append(this.mPlanLabels.Planned.container);
 	    this.mStatusBar.append(this.mPlanLabels.Tentative.container);
 	}
@@ -330,6 +333,9 @@ CharacterScreenProfessionModule.prototype.updateProfessionPlanVisuals = function
     }
     
     if (CharacterScreenIdentifier.Entity.Character.Level in _brother[CharacterScreenIdentifier.Entity.Character.Key]) {
+        this.mPlanLabels.Experience.label.text(_brother.ProfessionExperience || 0);
+        this.mPlanLabels.Experience.container.unbindTooltip();
+        this.mPlanLabels.Experience.container.bindTooltip({ contentType: 'ui-element', entityId: _brother[CharacterScreenIdentifier.Entity.Id], elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenExperience });
         this.mPlanLabels.Planned.label.text(_brother.PlannedProfessionLevelRequired || 0);
         this.mPlanLabels.Tentative.label.text(_brother.TentativeProfessionCount || 0);
     }

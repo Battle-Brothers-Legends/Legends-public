@@ -73,10 +73,10 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			Modifiers = []
 		}
 		local self = this;
-		local scoutingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		local scoutingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in scoutingBros) {
 			ret.Assigned++;
-			ret.Modifiers.push([this.m.BaseCraft * (1 + bro.getCurrentProperties().Modifiers.Scout), bro.getName(), bro.getBackground().getNameOnly()]);
+			ret.Modifiers.push([this.m.BaseCraft * (1 + bro.getCurrentProperties().Modifiers.Scout) * this.getWorkEfficiency(bro), bro.getName(), bro.getBackground().getNameOnly()]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);
@@ -121,13 +121,15 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 		local campHours = this.m.Camp.getCampTimeHours();
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true)));
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		local mod = this.getModifiers();
 		if (mod.Assigned == 0) {
 			return;
 		}
 		foreach (bro in assignedBros) {
-			this.addNegativeSideEffects(bro, campHours);
+			if (!this.isRecovering(bro, true)) {
+				this.addNegativeSideEffects(bro, campHours);
+			}
 		}
 
 		if (campHours > 0) {

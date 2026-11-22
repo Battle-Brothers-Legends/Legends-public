@@ -3711,17 +3711,44 @@
 					}
 				];
 
+			case "character-screen.right-panel-header-module.ProfessionPlanScreenExperience":
+				local ret = [
+					{
+						id = 1,
+						type = "title",
+						text = "Profession Experience"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Profession level and the progress to the next one. Each level grants a profession point. Experience is earned every hour by working at a camp station and grows with the working speed of everyone assigned to it. Only a small part of it is earned while the station is not at work, and the injured earn 80% less."
+					}
+				];
+
+				if (entity != null) {
+					local levels = ::Legends.Professions.Exp.Levels;
+					local level = entity.getProfessionLevel();
+					ret.push({
+						id = 3,
+						type = "text",
+						icon = "ui/icons/xp_received.png",
+						text = level < levels.len() ? ::format("%.1f", ::Math.floor(entity.getProfessionExp() * 10) / 10.0) + " / " + levels[level] + " hours of work for the next level" : "Highest profession level reached"
+					});
+				}
+
+				return ret;
+
 			case "character-screen.right-panel-header-module.ProfessionPlanScreenPlanned":
 				return [
 					{
 						id = 1,
 						type = "title",
-						text = "Level Required"
+						text = "Profession Level Required"
 					},
 					{
 						id = 2,
 						type = "description",
-						text = "Level required for all the acquired and planned professions."
+						text = "Profession level required for all the acquired and planned professions."
 					}
 				];
 
@@ -4882,7 +4909,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "Selected activity cannot be performed while escorting and/or while Injured."
+						text = "Selected activity cannot be performed while escorting, or is performed at " + ::Math.round(::Legends.Camp.InjuredWorkMult * 100) + "% efficiency while Injured."
 					}
 				];
 

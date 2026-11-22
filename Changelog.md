@@ -259,6 +259,11 @@
 - introduced a new system connecting the camping system to brothers - profession tree
 - the tree is accessible via character screen, next to the perk tree
 - uses separate points, independent to regular perks and conveys bonuses for the whole company
+- profession points are earned from profession experience instead of character levels
+- profession experience is gained every hour by brothers assigned to a camp station, at full speed while camping and 10% otherwise
+- each brother at a station adds 100% plus their working speed for it, the total is then split evenly between them
+- `Scholar` (Profession version) - grants 20% more profession experience
+- injured brothers at a dangerous station only gain 20% of their profession experience
 - you start with a very basic tree and gradually unlock more perks down the tree
 - certain perks will be locked unless of a certain background and certain perks will be unlocked on some of the backgrounds
 
@@ -602,7 +607,8 @@
 - right click tents to open the correct list in commander's tent
 - painter tent allows painting the shoulder layer
 - upgraded scouting has been improved and allows the party to scout for locations while camping (but not while escorting)
-- gathering and scouting requires healthy bros and can injure/exhaust bros similarly to training
+- gathering and scouting can injure/exhaust bros similarly to training
+- injured bros now work at dangerous stations (gathering, scouting, training) at 20% efficiency instead of being unable to work
 - healing tent gains intensive treatment of hitpoints at the cost of medicine when upgraded
 - scout tent now always produces a scouting message
 - gathering now incorporates hunting and has been overhauled

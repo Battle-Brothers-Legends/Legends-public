@@ -45,7 +45,10 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getHuntingLevel() {
 		local self = this;
-		local numBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro))).len();
+		local numBros = 0.0;
+		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID))) {
+			numBros += this.getWorkEfficiency(bro);
+		}
 		return ::World.Assets.m.ProfessionEffect.LegendHunting > 0 ? (::World.Assets.m.ProfessionEffect.LegendHunting * numBros) : (0.1 * numBros);
 	}
 
@@ -206,9 +209,11 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function completed() {
 		local campHours = this.m.Camp.getCampTimeHours();
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true)));
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in assignedBros) {
-			this.addNegativeSideEffects(bro, campHours);
+			if (!this.isRecovering(bro, true)) {
+				this.addNegativeSideEffects(bro, campHours);
+			}
 		}
 	}
 

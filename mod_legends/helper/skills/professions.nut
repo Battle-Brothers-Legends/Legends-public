@@ -121,3 +121,29 @@ if (!("Professions" in ::Legends))
 		}
     }
 }
+
+// Called every hour. Each worker of a camp station adds 100% plus their working speed, the sum is split evenly between them
+::Legends.Professions.updateExp <- function () {
+	local exp = ::Legends.Professions.Exp;
+	local roster = ::World.getPlayerRoster().getAll();
+
+	foreach (id, modifier in exp.Stations) {
+		local tent = ::World.Camp.getBuildingByID(id);
+		if (tent == null) {
+			continue;
+		}
+
+		local workers = roster.filter(@(_, _bro) _bro.getCampAssignment() == id);
+		local total = 0.0;
+		foreach (bro in workers) {
+			total += 1.0 + bro.getCurrentProperties().Modifiers[modifier];
+		}
+
+		// A station that is not at work, like on the march or a dangerous one while escorting, only grants the passive share
+		local isWorking = ::World.Camp.canBuildingWorkCurrently(tent, true);
+		foreach (bro in workers) {
+			local share = total / workers.len() * (isWorking ? tent.getWorkEfficiency(bro) : exp.PassiveMult);
+			bro.addProfessionExp(::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar) ? share * exp.ScholarMult : share);
+		}
+	}
+}
