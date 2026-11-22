@@ -151,7 +151,10 @@
 			bro.worsenMood(2.0, "Has heard worrying things about your kind...");
 		}
 
-		bro.getBackground().m.PerkTreeDynamicMins.EnemyChance += 0.04;
+		if (::Math.rand(1, 100) <= 4) {
+			::Legends.Professions.Branches.addFavouredEnemy(bro);
+		}
+
 		bro.getBackground().m.PerkTreeDynamicMins.ClassChance += 0.01;
 		bro.getBackground().m.PerkTreeDynamicMins.MagicChance += 0.001;
 		bro.getSkills().update();
