@@ -4,7 +4,7 @@
 	o.create = function() {
 		create();
 		this.m.Name = "Shield Bash";
-		this.m.Description = "Use the shield to bash the target dealing some damage.";
+		this.m.Description = "Use the shield to bash the target and deal damage. Targets hit on your own turn will be knocked back by one tile and may take damage if they are pushed down several levels of height. Shieldwall, Spearwall and Riposte will be canceled for a target that is successfully knocked back.";
 		this.m.HitChanceBonus = 10;
 		this.m.FatigueCost = 15;
 		this.m.DirectDamageMult = 0.2;

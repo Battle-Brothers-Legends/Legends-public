@@ -4,6 +4,7 @@
 		create();
 		this.m.HitChanceBonus = 10;
 		this.m.DirectDamageMult = 0.3;
+		this.m.Description = "Poke and shove at a target in order to force it away from the user by one tile. Targets hit will be staggered and lose initiative, and may take damage if they are pushed down several levels of height. Shieldwall, Spearwall and Riposte will be canceled for a target that is successfully repelled.";
 	}
 
 	o.getTooltip = function () {
