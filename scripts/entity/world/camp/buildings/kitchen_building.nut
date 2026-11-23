@@ -1,6 +1,7 @@
 this.kitchen_building <- this.inherit("scripts/entity/world/camp/item_crafting_building", {
 	m = {
-		ActivityName = "Cook"
+		ActivityName = "Cook",
+		BaseCraft = 40.0 // only the Cooking modifier of a brother counts, so one with 25% cooks at 10 an hour
 	},
 	function create() {
 		this.camp_building.create();
@@ -12,7 +13,7 @@ this.kitchen_building <- this.inherit("scripts/entity/world/camp/item_crafting_b
 	}
 
 	function getDescription() {
-		return "Cook food in selected order when encamped. Partial progress is kept.";
+		return "Cook food in selected order when encamped. Partial progress is kept. Only brothers that know how to cook can work here.";
 	}
 
 	function getModifiers() {
@@ -35,5 +36,9 @@ this.kitchen_building <- this.inherit("scripts/entity/world/camp/item_crafting_b
 		}
 
 		return ret;
+	}
+
+	function onBroEnter(_bro) {
+		return _bro.getCurrentProperties().Modifiers.Cooking > 0;
 	}
 });
