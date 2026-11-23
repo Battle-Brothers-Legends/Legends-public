@@ -6,7 +6,7 @@
 	}
 
 	o.getDamage = function () {
-		return this.m.Damage * (::Legends.isLegendaryDifficulty() ? 2 : 1);
+		return this.m.Damage;
 	}
 
 	o.getTooltip <- function () {
