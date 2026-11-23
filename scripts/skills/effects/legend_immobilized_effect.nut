@@ -48,8 +48,10 @@ this.legend_immobilized_effect <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onTurnStart() {
-		this.removeSelf();
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
+			this.removeSelf();
+		}
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
