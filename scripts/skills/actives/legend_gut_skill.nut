@@ -43,7 +43,7 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Performs an additional attack for every injury on the target"
+				text = "Performs 2 attacks, and an additional attack for every injury on the target"
 			}
 		]);
 		return ret;
