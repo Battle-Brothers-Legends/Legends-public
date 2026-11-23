@@ -107,6 +107,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 					success = _skill.attackEntity(_user, target) || success;
 					dagger.consumeAmmo();
 					_skill.m.IsDoingAttackMove = true;
+					_user.setDirty(true);
 					_skill.getContainer().setBusy(false);
 				}
 			}.bindenv(this), this);

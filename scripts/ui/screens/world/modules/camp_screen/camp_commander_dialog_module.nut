@@ -157,9 +157,13 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 		return this.queryLoad();
 	}
 
-	function onAssignedAll(_campID) {
+	function onAssignedAll(_data) {
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			this.assignPrimary(bro, _campID, false);
+			if (_data[1]) {
+				this.assignSecondary(bro, _data[0], false);
+			} else {
+				this.assignPrimary(bro, _data[0], false);
+			}
 		}
 
 		::World.Camp.updateAssignments();

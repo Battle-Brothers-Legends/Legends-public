@@ -17,7 +17,7 @@ this.profession_legend_shady_deals <- this.inherit("scripts/skills/legend_profes
 				id = 11,
 				type = "text",
 				icon = "ui/icons/plus.png"
-				text = "Current: [color=%positive%]" + (1 / ::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color]"
+				text = "Current: [color=%positive%]" + (::Legends.Professions.getProfessionEffect(_def, 0) == 0 ? 100 : ::Math.round(100 / ::Legends.Professions.getProfessionEffect(_def, 0))) + "%[/color]"
 			},
 		];
 
@@ -26,7 +26,7 @@ this.profession_legend_shady_deals <- this.inherit("scripts/skills/legend_profes
 				id = 12,
 				type = "text",
 				icon = "ui/icons/level_dark.png"
-				text = "Next: [color=%positive%]" + (1 / ::Legends.Professions.getProfessionEffect(_def, 1)) * 100 + "%[/color]"
+				text = "Next: [color=%positive%]" + ::Math.round(100 / ::Legends.Professions.getProfessionEffect(_def, 1)) + "%[/color]"
 			});
 		}
 		

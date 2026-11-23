@@ -6,7 +6,7 @@
 
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
-				s.Text = "[img]gfx/ui/events/event_26.png[/img]{The prestige and renown of the %companyname% is growing. Everywhere you go, people are looking to join - and not just sellswords, but followers who may be of other use! | With every battle your sellswords fight, the renown of the company grows. As this fame rises, more people, and not just sellswords, will be looking to join the %companyname%. Perhaps it is time the company invests in some special equipment? | Followers of the %companyname% need tools to fill their roles, and said tools would prove helpful to the survival of those around them...}";
+				s.Text = "[img]gfx/ui/events/event_26.png[/img]{The prestige and renown of the %companyname% is growing. Everywhere you go, people are looking to join - mercenaries who are the not just sellswords, but craftsmen who may be of other use! | With every battle your sellswords fight, the renown of the company grows. As this fame rises, more people, and not just sellswords, will be looking to join the %companyname%. Perhaps it is time the company invests in some special equipment? | Mercenaries of the %companyname% need tools to fill their roles, and said tools would prove helpful to the survival of those around them...}";
 			}
 		}
 	}

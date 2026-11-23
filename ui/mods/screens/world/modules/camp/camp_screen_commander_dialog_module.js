@@ -156,13 +156,19 @@ CampScreenCommanderDialogModule.prototype.createDIV = function (_parentDiv)
 	var tentButtonContainer = $('<div class="tent-button-container"/>');
 	this.mStatsContainer.append(tentButtonContainer);
 	// 1st button (small size), use to assign all bro current tent
-	var buttonLayout = $('<div class="l-tent-button-45-41"/>');
-	tentButtonContainer.append(buttonLayout);
+	var buttonLayout = $('<div class="l-tent-button-45-41"/>').appendTo(tentButtonContainer);
+	buttonLayout.mousedown(function (_event) {
+		if(_event.which === 3 && self.mSelectedTent !== null) {
+			self.notifyBackendAssignedAll(self.mSelectedTent.data('ID'), function(_load){
+				self.loadFromData(_load);
+			}, true);
+		}
+	});
 	this.mAssignAllButton = buttonLayout.createImageButton(Path.GFX + 'ui/skin/icon_end_all_turns.png', function() {
 		if(self.mSelectedTent !== null) {
 			self.notifyBackendAssignedAll(self.mSelectedTent.data('ID'), function(_load){
 				self.loadFromData(_load);
-			});
+			}, false);
 		}
 	}, '', 6);
 	this.mAssignAllButton.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "Camping.ButtonAssignAll"});
@@ -1190,9 +1196,9 @@ CampScreenCommanderDialogModule.prototype.notifyBackendBrotherAssigned = functio
 };
 
 
-CampScreenCommanderDialogModule.prototype.notifyBackendAssignedAll = function (_tentID, _callback)
+CampScreenCommanderDialogModule.prototype.notifyBackendAssignedAll = function (_tentID, _callback, _isSecondary)
 {
-	SQ.call(this.mSQHandle, 'onAssignedAll', _tentID, _callback);
+	SQ.call(this.mSQHandle, 'onAssignedAll', [_tentID, _isSecondary === true], _callback);
 }
 
 CampScreenCommanderDialogModule.prototype.notifyBackendSavePresetName = function(_dialog)

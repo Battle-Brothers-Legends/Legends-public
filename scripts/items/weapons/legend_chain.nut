@@ -18,7 +18,7 @@ this.legend_chain <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_legend_chain_01";
-		this.m.Value = 400;
+		this.m.Value = 200;
 		this.m.ShieldDamage = 0;
 		this.m.Condition = 48.0;
 		this.m.ConditionMax = 48.0;
