@@ -155,7 +155,8 @@ foreach (perk in ::Const.Perks.PerkDefObjects) {
 		local entry = {
 			ID = "Other",
 			Name = "Other",
-			Category = "Other"
+			Category = "Other",
+			IsForEnemies = false
 		};
 
 		perk.PerkGroups <- [];
