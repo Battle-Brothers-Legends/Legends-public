@@ -696,4 +696,14 @@
 	}
 
 	o.canDoubleGrip <- @() this.isOffhandFree() && !this.isMainhandFree() && this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isDoubleGrippable();
+
+	// Fixed vanilla onRender bug with rising/sinking entities
+	local onRender = o.onRender;
+	o.onRender = function () {
+		onRender();
+
+		if (this.m.IsRaising || this.m.IsSinking) {
+			this.setRenderCallbackEnabled(true);
+		}
+	}
 });

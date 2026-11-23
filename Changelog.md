@@ -856,6 +856,7 @@
 - the penalty against adjacent targets of two-tile weapons with two weapon types is removed by the mastery of either type, like their tooltips say (`Cleave` of a scythe, `Heartseeker`, `Rupture`, `Smite`)
 - `Smite` of a halberd now has the penalty against adjacent targets its tooltip mentions
 - backing out of the combat dialog right as it opens no longer leaves the world map without its UI
+- fixed units that rise from the ground, like resurrected undead, sometimes staying half buried and impossible to attack until their next turn
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
