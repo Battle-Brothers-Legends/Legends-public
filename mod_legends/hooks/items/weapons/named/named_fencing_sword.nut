@@ -12,6 +12,7 @@
 	o.create = function () {
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.Block = 5;
 		this.m.Variants = [1, 2, 3];
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}

@@ -24,6 +24,7 @@ this.legend_gladius <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamageMax = 48;
 		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.2;
+		this.m.Block = 5;
 	}
 
 	function onEquip()

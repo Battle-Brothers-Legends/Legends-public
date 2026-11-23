@@ -25,6 +25,7 @@ this.legend_sickle <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 0.5;
 		this.m.DirectDamageMult = 0.2;
 		this.m.DirectDamageMult = -0.05;
+		this.m.Block = 5;
 	}
 
 	function onEquip()

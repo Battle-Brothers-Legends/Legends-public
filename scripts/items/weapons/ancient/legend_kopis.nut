@@ -24,6 +24,7 @@ this.legend_kopis <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamageMax = 45;
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.25;
+		this.m.Block = 5;
 	}
 
 	function onEquip()

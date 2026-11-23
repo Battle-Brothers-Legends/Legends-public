@@ -3,6 +3,7 @@
 	o.create = function () {
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.Block = 5;
 		this.setVariant(::Math.rand(0, 1));
 		this.m.Ammo = 8;
 		this.m.AmmoMax = 8;

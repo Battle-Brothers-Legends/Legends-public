@@ -27,6 +27,7 @@ this.legend_named_gladius <- this.inherit("scripts/items/weapons/named/named_wea
 		this.m.RegularDamageMax = 48;
 		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.2;
+		this.m.Block = 5;
 		this.randomizeValues();
 	}
 

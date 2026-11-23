@@ -26,6 +26,7 @@ this.legend_spatha <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageMult = 0.0;
 		this.m.DirectDamageMult = 0.2;
 		this.m.ShieldDamage = 10;
+		this.m.Block = 5;
 	}
 
 	function onEquip()

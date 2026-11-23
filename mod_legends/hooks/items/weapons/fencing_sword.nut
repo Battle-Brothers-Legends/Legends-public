@@ -4,6 +4,7 @@
 	o.create = function() {
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.Block = 5;
 		this.m.Condition = 56.0;
 		this.m.ConditionMax = 56.0;
 		this.m.Variants = [0, 1, 2];
