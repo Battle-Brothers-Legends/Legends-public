@@ -146,9 +146,10 @@ if (!("Professions" in ::Legends))
 	}
 
 	local properties = _animal.getBaseProperties();
-	properties.Hitpoints = ::Math.round(properties.Hitpoints * (1.0 + ::Legends.Professions.DogBreederHitpoints));
+	local mult = 1.0 + ::Legends.Professions.DogBreederHitpoints;
+	properties.Hitpoints = ::Math.round(properties.Hitpoints * mult);
 	_animal.getSkills().update();
-	_animal.setHitpoints(_animal.getHitpointsMax());
+	_animal.setHitpoints(::Math.round(_animal.getHitpoints() * mult));
 }
 
 // Called before an unleashed animal dies. Without a fatality it has a chance to live
