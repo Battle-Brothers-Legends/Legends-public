@@ -685,7 +685,28 @@ this.camp_manager <- {
 		::World.Assets.updateAchievements();
 		::World.Assets.checkAmbitionItems();
 		::World.State.getPlayer().updateStrength();
-		::World.Events.fire("event.legends_camp_attacked");
+		this.showCampAttackedReport();
+	}
+
+	// a fight that is started from a contract or event screen has to wait for that screen to close
+	function showCampAttackedReport () {
+		local screen = ::World.State.getEventScreen();
+
+		if (screen.isVisible() || screen.isAnimating()) {
+			::World.State.setAutoPause(true);
+			::Time.scheduleEvent(::TimeUnit.Real, 50, function (_t) {
+				::World.Camp.showCampAttackedReport();
+			}, null);
+			return;
+		}
+
+		::World.State.setAutoPause(false);
+
+		if (!::World.Events.fire("event.legends_camp_attacked") && this.m.PendingCombat != null) {
+			local combat = this.m.PendingCombat;
+			this.m.PendingCombat = null;
+			::World.State.showCombatDialog(combat.IsPlayerInitiated, combat.IsCombatantsVisible, combat.AllowFormationPicking, combat.Properties, combat.Pos);
+		}
 	}
 };
 
