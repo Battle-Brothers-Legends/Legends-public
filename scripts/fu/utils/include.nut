@@ -17,7 +17,9 @@
 {
     foreach (file in _files)
     {
-        if (_includeLoad || split(file, "/").pop() != "load.nut") ::include(file);
+        // The game enumerates scripts without their extension.
+        local name = split(file, "/").pop();
+        if (_includeLoad || (name != "load" && name != "load.nut")) ::include(file);
     }
 }
 

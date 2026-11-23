@@ -24,6 +24,8 @@ this.popup <- {
 	// Public API: Display text message to user
 	function showRawText( _message, _shouldExitGame = false )
 	{
+		::FU.requireString(_message);
+		::FU.requireBool(_shouldExitGame);
 		// Update exit behavior if requested
 		if (_shouldExitGame)
 		{
@@ -38,8 +40,8 @@ this.popup <- {
 		else
 		{
 			this._sendToUI({
-				content = _message,
-				shouldExit = this._state.exitOnClose
+				text = _message,
+				forceQuit = this._state.exitOnClose
 			}, "showRawText");
 		}
 	}
@@ -68,6 +70,7 @@ this.popup <- {
 	// Public API: Establish connection to UI layer
 	function connect()
 	{
+		if (this._state.uiConnection != null) return;
 		this._state.uiConnection = ::UI.connect("FUPopup", this);
 		this._processPendingMessages();
 	}
@@ -123,11 +126,12 @@ this.popup <- {
 	// Internal: Process any queued messages after UI connection
 	function _processPendingMessages()
 	{
-		foreach (message in this._state.pendingMessages)
+		local pending = this._state.pendingMessages;
+		this._state.pendingMessages = [];
+		foreach (message in pending)
 		{
 			this.showRawText(message);
 		}
-		this._state.pendingMessages.clear();
 	}
 
 	// Internal: Send data to UI with error handling
@@ -142,7 +146,7 @@ this.popup <- {
 			// Fallback: queue for retry if connection fails
 			if (_method == "showRawText" && _payload != null)
 			{
-				this._queueMessage(_payload.content);
+				this._queueMessage(_payload.text);
 			}
 		}
 	}

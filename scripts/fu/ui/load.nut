@@ -1,5 +1,6 @@
 ::mods_registerCSS("fu/css/misc.css");
 ::mods_registerCSS("fu/css/settings_screen.css");
+::mods_registerCSS("fu/css/popup.css");
 
 ::mods_registerJS("fu/utilities.js");
 
@@ -17,18 +18,21 @@
 ::mods_registerJS("fu/fu_connection.js");
 ::mods_registerJS("fu/upload_company.js");
 ::mods_registerJS("fu/ui_screen.js");
+::mods_registerJS("fu/popup.js");
 
-local _modSettingsFiles = ::IO.enumerateFiles("ui/mods/fu/mod_settings/");
-::logInfo("FU: Found " + (_modSettingsFiles != null ? _modSettingsFiles.len() : 0) + " mod settings UI files");
-if (_modSettingsFiles != null)
-foreach (file in _modSettingsFiles)
+// IO.enumerateFiles is a script API; register UI assets explicitly so their
+// extensions and dependency order do not depend on archive enumeration.
+foreach (file in [
+	"array_setting", "boolean_setting", "button_setting", "color_picker_setting",
+	"divider_setting", "enum_setting", "keybind_setting", "range_setting",
+	"spacer_setting", "string_setting", "title_setting", "settings_screen"
+])
 {
-	local splitFile = split(file, "/");
-	local shortArray = splitFile.slice(2, splitFile.len());
-	local shortenedString = shortArray.reduce(@(a, b) a + "/" + b);
-	::logInfo("FU: Registering JS file: " + shortenedString + ".js");
-	::mods_registerJS(shortenedString + ".js");
+	::mods_registerJS("fu/mod_settings/" + file + ".js");
 }
+
+// All screen constructors must be registered before connecting the backend.
+::mods_registerJS("fu/connect_screens.js");
 
 
 ::FU.includeFile("scripts/fu/ui/", "ui.nut");

@@ -1,4 +1,4 @@
-function includeFile( _file )
+local function includeFile( _file )
 {
 	::FU.includeFile("scripts/fu/systems/serialization/", _file);
 }
@@ -19,13 +19,14 @@ includeFile("serialization_mod_addon.nut");
 ::FU.UI.addOnConnectCallback(function()
 {
 	// If a real MSU Serialization system is present, don't run FU's bootstrap to avoid conflicts
-	if ("MSU" in getroottable() && "System" in ::MSU && "Serialization" in ::MSU.System)
+	if ("MSU" in getroottable() && !("IsShim" in ::MSU) && "System" in ::MSU && "Serialization" in ::MSU.System)
 	{
 		return;
 	}
 	local worldState = ::new("scripts/states/world_state");
-	local serEm = ::FU.Class.SerializationEmulator(::FU.ID, "WorldStateOnBeforeSerialize", ::new("scripts/tools/tag_collection"), ::FU.Class.MetaDataEmulator());
-	::FU.System.Serialization.MetaData = serEm.getMetaData();
+	local serEm = ::FU.Class.SerializationEmulator(::FU.Mod, "WorldStateOnBeforeSerialize", ::new("scripts/tools/tag_collection"), ::FU.Class.MetaDataEmulator());
+	local hadAssets = "Assets" in ::World;
+	local previousAssets = hadAssets ? ::World.Assets : null;
 	::World.Assets <- {
 		getName = @() "FUDummy",
 		getBanner = @() "FUDummy",
@@ -36,6 +37,17 @@ includeFile("serialization_mod_addon.nut");
 	::World.Assets.setdelegate({ // attempted patch for any other function calls
 		_get = @(_k)@(...)""
 	});
-	worldState.onBeforeSerialize(serEm);
-	delete ::World.Assets;
+	try
+	{
+		worldState.onBeforeSerialize(serEm);
+	}
+	catch (error)
+	{
+		if (hadAssets) ::World.Assets = previousAssets;
+		else delete ::World.Assets;
+		throw error;
+	}
+	if (hadAssets) ::World.Assets = previousAssets;
+	else delete ::World.Assets;
+	::FU.System.Serialization.MetaData = serEm.getMetaData();
 });

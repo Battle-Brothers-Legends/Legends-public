@@ -1,4 +1,4 @@
-.msu-popup {
+.FU-popup {
 	display: none;
 	height: 72.0rem !important;
 	width: 80.0rem !important;
@@ -8,14 +8,14 @@
 	background-repeat: no-repeat;
 	z-index: 9999 !important;
 }
-.msu-popup-link
+.FU-popup-link
 {
 	color: lightblue;
 	text-decoration: underline;
 	cursor: default;
 }
 
-.msu-popup-small
+.FU-popup-small
 {
 	display: flex;
 	flex-direction: column;
@@ -24,16 +24,16 @@
 	position: absolute;
 	bottom: 0;
 	z-index: 100 !important;
-	background-image: url("coui://gfx/mods/msu/skin/generic_background_large_border.png");
+	background-image: url("coui://gfx/mods/fu/skin/generic_background_large_border.png");
 	background-size: 100% 100%;
 	padding: 0.5rem;
 }
-.msu-popup-small.msu-popup-main-menu-screen
+.FU-popup-small.FU-popup-main-menu-screen
 {
 	left: 50%;
 	transform: translateX(-50%);
 }
-.msu-popup-small-update-button
+.FU-popup-small-update-button
 {
 	margin-bottom: 1rem;
 	height: 3rem;
@@ -41,12 +41,12 @@
 	background-image: url("coui://gfx/mods/msu/buttons/mod_update.png");
 	background-size: 100% 100%;
 }
-.msu-popup-main-menu-screen > .msu-popup-small-update-button
+.FU-popup-main-menu-screen > .FU-popup-small-update-button
 {
 	height: 5rem;
 	width: 5rem;
 }
-.msu-popup-small-update-info
+.FU-popup-small-update-info
 {
 	max-width: 12rem;
 	font-size: 1.5rem;
@@ -54,17 +54,17 @@
 	text-align: center;
 }
 
-.msu-popup .header {
+.FU-popup .header {
 	height: 10rem;
 	width: 100%;
 	margin: 1rem 0 1rem 0;
 }
 
-.msu-popup .header .title {
+.FU-popup .header .title {
 	margin-top: 2rem !important;
 }
 
-.msu-popup .content-container {
+.FU-popup .content-container {
 	top: 11.8rem;
 	height: calc(100% - 11.8rem - 6.3rem);
 	width: 90%;
@@ -75,19 +75,19 @@
 	position: relative;
 }
 
-.msu-popup .footer {
+.FU-popup .footer {
 	position: relative;
 	width: 100%;
 }
 
-.msu-popup .ok-button {
+.FU-popup .ok-button {
 	left: calc(50% - 17.5rem / 2);
 	height: 4.3rem;
 	width: 17.5rem;
 	position: relative;
 }
 
-.msu-mod-info-container
+.FU-mod-info-container
 {
 	width: 100%;
 	overflow: hidden;
@@ -102,35 +102,36 @@
 	border-image: url("coui://gfx/ui/skin/list_item_03.png") 10 fill  stretch;
 }
 
-.msu-mod-info-container > div
+.FU-mod-info-container > div
 {
 	width: 90%;
 	height: auto;
 	overflow:auto;
 	word-wrap: break-word;
 }
-.msu-mod-info-description h1,
-.msu-mod-info-description h2,
-.msu-mod-info-description h3,
-.msu-mod-info-description h4,
-.msu-mod-info-description h5
+.FU-mod-info-description h1,
+.FU-mod-info-description h2,
+.FU-mod-info-description h3,
+.FU-mod-info-description h4,
+.FU-mod-info-description h5
 {
 	margin: 0;
 }
 
-.msu-mod-info-container .msu-mod-version-row .msu-mod-version-info
+.FU-mod-info-container .FU-mod-version-row .FU-mod-version-info
 {
 	float: left;
 }
 
-.msu-mod-info-container .l-source-button
+.FU-mod-info-container .l-github-button,
+.FU-mod-info-container .l-nexusmods-button
 {
 	float: right;
 	width: 3.2rem;
 	height: 3.2rem;
 }
 
-.msu-mod-info-container .msu-popup-is-new-symbol
+.FU-mod-info-container .FU-popup-is-new-symbol
 {
 	width: 2rem;
 	height: 2rem;
@@ -141,8 +142,8 @@
 	background-size: 100% 100%;
 }
 
-.msu-mod-info-container .ui-control.button,
-.msu-mod-info-container .ui-control.button[disabled]
+.FU-mod-info-container .ui-control.button,
+.FU-mod-info-container .ui-control.button[disabled]
 {
 	background-color: rgba(0, 0, 0, 0.0);
 }

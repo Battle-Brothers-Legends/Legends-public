@@ -1,5 +1,17 @@
 ::mods_hookExactClass("ui/screens/menu/modules/main_menu_module", function(o)
 {
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		::FU.Popup.quitGame = this.onQuitButtonPressed.bindenv(this);
+	}
+
+	o.connectBackend <- function()
+	{
+		::FU.UI.connect();
+	}
+
 	o.m.OnModOptionsPressedListener <- null;
 	o.m.OnUploadCompanyPressedListener <- null;
 

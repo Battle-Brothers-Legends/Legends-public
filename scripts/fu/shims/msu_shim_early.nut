@@ -17,10 +17,7 @@ if (!("MSU" in getroottable()))
     ::MSU.includeFile <- function( _prefix, _file ) { ::include(_prefix + _file); };
     ::MSU.includeFiles <- function( _files, _includeLoad = false )
     {
-        foreach (file in _files)
-        {
-            if (_includeLoad || split(file, "/").pop() != "load.nut") ::include(file);
-        }
+        ::FU.includeFiles(_files, _includeLoad);
     };
 
     // Map utilities available at config time (only if already defined on ::FU)

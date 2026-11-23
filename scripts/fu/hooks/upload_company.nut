@@ -147,12 +147,12 @@
 		if (_result.success)
 		{
 			::logInfo("Company uploaded successfully. ID: " + _result.companyId);
-			::FU.Popup.showRawText("Upload Successful", "Your company has been uploaded!\n\nCompany ID: " + _result.companyId + "\n\nUse this ID in Discord with /company " + _result.companyId);
+			::FU.Popup.showRawText("Your company has been uploaded!<br><br>Company ID: " + _result.companyId + "<br><br>Use this ID in Discord with /company " + _result.companyId);
 		}
 		else
 		{
 			::logError("Company upload failed: " + _result.message);
-			::FU.Popup.showRawText("Upload Failed", "Could not upload company data.\n\n" + _result.message);
+			::FU.Popup.showRawText("Could not upload company data.<br><br>" + _result.message);
 		}
 	}
 
@@ -193,7 +193,7 @@
 		if (!_result.success)
 		{
 			::logError("Company fetch failed: " + _result.message);
-			::FU.Popup.showRawText("Fetch Failed", _result.message);
+			::FU.Popup.showRawText("Company fetch failed.<br><br>" + _result.message);
 			return;
 		}
 
@@ -207,7 +207,7 @@
 		else if (this.FetchMode == "scenario")
 		{
 			this.spawnedCompanyData = company;
-			::FU.Popup.showRawText("Company Loaded", company.name + "\nPower: " + company.power_level + "\nBrothers: " + company.brothers.len() + "\n\nReady for scenario battle.");
+			::FU.Popup.showRawText("Company loaded: " + company.name + "<br>Power: " + company.power_level + "<br>Brothers: " + company.brothers.len());
 		}
 	}
 
@@ -237,7 +237,7 @@
 		if (spawnTile == null)
 		{
 			::logError("Could not find valid tile to spawn player company");
-			::FU.Popup.showRawText("Spawn Failed", "No valid tile nearby to spawn the company.");
+			::FU.Popup.showRawText("No valid tile nearby to spawn the company.");
 			return;
 		}
 

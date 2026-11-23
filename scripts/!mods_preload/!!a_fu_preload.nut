@@ -28,6 +28,9 @@ if (!("EndQueue" in ::FU)) ::FU.EndQueue <- {
 ::include("scripts/fu/utils/table.nut");
 ::include("scripts/fu/utils/text.nut");
 ::include("scripts/fu/utils/type_checkers.nut");
+::include("scripts/fu/utils/ai.nut");
+::include("scripts/fu/utils/tile.nut");
+::include("scripts/fu/utils/safe_world.nut");
 
 // Install MSU shim and enhanced mod_hooks wrappers before validation/queue
 ::include("scripts/fu/shims/msu_shim_early.nut");

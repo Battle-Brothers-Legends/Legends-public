@@ -4,5 +4,5 @@ local function includeFile( _file )
 }
 if ("Mod" in ::FU && "Debug" in ::FU.Mod && ::FU.Mod.Debug.isEnabled("modsettings"))
 {
-	includeFile("mod_settings_system_test.nut");
+		includeFile("mod_settings_system_test");
 }
