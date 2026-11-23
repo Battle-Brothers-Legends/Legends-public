@@ -84,7 +84,7 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 
 			return true;
 		} else {
-			if (target.isAlive()) {
+			if (target.isAlive() && _user.isAlive() && !_user.getCurrentProperties().IsStunned) {
 				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 				ret = this.attackEntity(_user, target) || ret;
 			}
@@ -104,7 +104,7 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 		local target = _tag.Target;
 		local isLast = _tag.IsLast;
 
-		if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(user)) {
+		if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(user) && !user.getCurrentProperties().IsStunned) {
 			skill.spawnAttackEffect(target.getTile(), ::Const.Tactical.AttackEffectStab);
 			::Sound.play(skill.m.SoundOnUse[::Math.rand(0, skill.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, user.getPos());
 			skill.attackEntity(user, target);
