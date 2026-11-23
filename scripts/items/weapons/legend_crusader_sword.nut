@@ -29,6 +29,7 @@ this.legend_crusader_sword <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 0.80;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 10;
+		this.m.Block = 5;
 	}
 
 

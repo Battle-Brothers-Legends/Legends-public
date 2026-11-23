@@ -30,6 +30,7 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageMult = 0.35;
 		this.m.ChanceToHitHead = 5;
 		this.m.FatigueOnSkillUse = 5;
+		this.m.Block = 5;
 	}
 
 	function onEquip()

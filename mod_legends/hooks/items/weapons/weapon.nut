@@ -1,6 +1,7 @@
 ::mods_hookExactClass("items/weapons/weapon", function (o) {
 	o.m.Variants <- [];
 	o.m.PossibleEffectIdx <- -1;
+	o.m.Block <- 0;
 
 	o.getShieldDamage = function () {
 		if (this.getContainer() == null || this.getContainer().getActor() == null) {
@@ -26,6 +27,10 @@
 		onDamageDealt(_target, _skill, _hitInfo);
 	}
 
+	o.getBlock <- function () {
+		return this.m.Block;
+	}
+
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function () {
 		local result = getTooltip();
@@ -44,17 +49,14 @@
 			});
 		}
 
-		if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
-			local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
-			local actor = ::Legends.S.isNull(this.getContainer()) ? null : this.getContainer().getActor();
-			local isSpecialized = !::Legends.S.isNull(actor) && ::Legends.Weapons.isCharacterWeaponSpecialized(actor.getCurrentProperties(), this);
+		if (this.m.Block > 0) {
 			result.push({
-				id = 22,
+				id = 5,
 				type = "text",
 				icon = "ui/icons/block.png",
 				text = "Block [color=%positive%]+%_block%[/color]",
 				param = [
-					["_block", block[isSpecialized ? 1 : 0]]
+					["_block", this.m.Block]
 				]
 			});
 		}
@@ -234,11 +236,12 @@
 			_properties.DamageArmorMult *= this.m.ArmorDamageMult;
 			_properties.DamageDirectAdd += this.m.DirectDamageAdd;
 			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHead;
-
-			if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
-				local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
-				_properties.Block += block[::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this) ? 1 : 0];
+			local mult = 1;
+			if (this.getContainer() != null && this.getContainer().getActor() != null) {
+				mult = (this.isWeaponType(::Const.Items.WeaponType.Sword) && this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 3 : 2;
 			}
+
+			_properties.Block += this.getBlock() * mult;
 		}
 	}
 

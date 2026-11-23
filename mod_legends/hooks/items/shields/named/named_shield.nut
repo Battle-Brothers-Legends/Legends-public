@@ -78,7 +78,7 @@
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function(_out) {
 		onSerialize(_out);
-		_out.writeU16(this.m.Block);
+		_out.writeI8(this.m.Block);
 	}
 
 	o.onDeserialize = function(_in) {
@@ -89,6 +89,6 @@
 		this.m.MeleeDefense = _in.readU16();
 		this.m.RangedDefense = _in.readU16();
 		this.m.FatigueOnSkillUse = _in.readI16();
-		this.m.Block = _in.readU16();
+		this.m.Block = _in.readI8();
 	}
 });

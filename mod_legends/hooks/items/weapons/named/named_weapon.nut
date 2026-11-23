@@ -57,6 +57,7 @@
 			this.m.BaseProperties.AmmoMax <- this.m.AmmoMax;
 			this.m.BaseProperties.AdditionalAccuracy <- this.m.AdditionalAccuracy;
 			this.m.BaseProperties.FatigueOnSkillUse <- this.m.FatigueOnSkillUse;
+			this.m.BaseProperties.Block <- this.m.Block;
 		}
 
 		local ranges = ::Legends.Items.Named.randomizeRanges;
@@ -79,6 +80,12 @@
 		if (this.m.ChanceToHitHead > 0) {
 			available.push(function (_i) {
 				_i.m.ChanceToHitHead = _i.m.ChanceToHitHead + ::Math.rand(ranges.ChanceToHitHead[0], ranges.ChanceToHitHead[1]);
+			});
+		}
+
+		if (this.m.Block > 0) {
+			available.push(function(_i) {
+				_i.m.Block = ::Math.round(_i.m.Block * rng.rand(ranges.Block[0], ranges.Block[1]) * 0.01);
 			});
 		}
 
@@ -144,6 +151,7 @@
 		_out.writeU16(this.m.AmmoMax);
 		_out.writeI8(this.m.PossibleEffectIdx);
 		_out.writeI8(this.m.EffectChanceOrBonus);
+		_out.writeI8(this.m.Block);
 		//_out.writeF32(0);
 		this.weapon.onSerialize(_out);
 	}
@@ -163,6 +171,7 @@
 		this.m.AmmoMax = _in.readU16();
 		this.m.PossibleEffectIdx = _in.readI8();
 		this.m.EffectChanceOrBonus = _in.readI8();
+		this.m.Block = _in.readI8();
 		//_in.readF32();
 		this.weapon.onDeserialize(_in);
 		this.updateVariant();

@@ -25,6 +25,7 @@ this.legend_skin_flayer <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 0.9;
 		this.m.DirectDamageMult = 0.2;
 		this.m.FatigueOnSkillUse = 5;
+		this.m.Block = 5;
 	}
 
 	function onEquip()

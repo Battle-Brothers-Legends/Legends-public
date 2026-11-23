@@ -29,6 +29,7 @@ this.legend_named_longsword <- this.inherit("scripts/items/weapons/named/named_w
 		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 5;
+		this.m.Block = 5;
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.randomizeValues();
 	}

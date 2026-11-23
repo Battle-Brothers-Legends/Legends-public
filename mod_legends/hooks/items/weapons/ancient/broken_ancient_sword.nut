@@ -4,6 +4,7 @@
 	o.create = function() {
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.Block = 5;
 	}
 
 });

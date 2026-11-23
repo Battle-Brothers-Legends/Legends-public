@@ -28,6 +28,7 @@ this.legend_named_zweihander <- this.inherit("scripts/items/weapons/named/named_
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 5;
+		this.m.Block = 5;
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.randomizeValues();
 	}

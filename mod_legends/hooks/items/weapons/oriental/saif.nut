@@ -4,6 +4,7 @@
 	o.create = function () {
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.Block = 5;
 		this.m.Categories = "Sword/Cleaver, One-Handed";
 		this.m.Variants = [0, 1, 2];
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);

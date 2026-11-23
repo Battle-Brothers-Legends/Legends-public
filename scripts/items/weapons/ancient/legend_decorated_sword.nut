@@ -27,6 +27,7 @@ this.legend_decorated_sword <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 0.6;
 		this.m.DirectDamageMult = 0.2;
 		this.m.DirectDamageAdd = 0.1;
+		this.m.Block = 5;
 	}
 
 	function onUpdateProperties ( _properties )
