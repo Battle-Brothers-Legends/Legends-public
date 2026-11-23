@@ -429,7 +429,7 @@
 **1h maces**
 - `Bash`
 - `Knock Out`
-- `Return Favor`
+- `Return Favor` - now has 25% (75% with mastery) to stun or else apply daze if you get missed by a melee attack
 
 ### Shields
 - Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.

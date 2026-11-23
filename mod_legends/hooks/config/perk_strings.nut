@@ -553,6 +553,8 @@ Master maces to beat your opponents into submission, armored or not.
 
 • [color=%skill%]Knock Out[/color], [color=%skill%]Knock Over[/color], and [color=%skill%]Strike Down[/color] have a [color=%positive%]100%[/color] chance to [color=%status%]Stun[/color] the target if not immune.
 
+• [color=%skill%]Return Favor[/color] now has [color=%positive%]75%[/color] to apply [color=%effect%]Stunned[/color].
+
 • The Polemace no longer has a penalty for attacking targets directly adjacent.
 
 • Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
