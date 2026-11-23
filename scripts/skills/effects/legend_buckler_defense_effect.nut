@@ -74,6 +74,7 @@ this.legend_buckler_defense_effect <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus();
 		_properties.MeleeDefense += bonus;
 		_properties.RangedDefense += ::Math.round(this.getBonus() / 2);
+		_properties.Block += this.getBonus();
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {
