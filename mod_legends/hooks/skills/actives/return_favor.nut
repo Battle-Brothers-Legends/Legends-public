@@ -33,6 +33,10 @@
 		];
 	}
 
+	o.onAfterUpdate <- function ( _properties ) {
+		this.m.FatigueCostMult = _properties.IsSpecializedInMaces ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+	}
+
 	o.onUse = function (_user, _targetTile) {
 		if (!this.m.IsSpent) {
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendReturnFavor);
