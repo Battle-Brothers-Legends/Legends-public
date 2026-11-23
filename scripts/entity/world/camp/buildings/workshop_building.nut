@@ -172,6 +172,14 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.getModifiers().Craft > 0 ? ::Math.ceil(this.getSalvagePoints() / this.getModifiers().Craft) : 0;
 	}
 
+	function hasWork(_bro) {
+		if (this.m.Salvage == null) {
+			this.onInit();
+		}
+
+		return ::World.Assets.getArmorPartsF() < ::World.Assets.getMaxArmorParts() && this.getSalvagePoints() > 0;
+	}
+
 	function getAssignedBros() {
 		return this.getModifiers().Assigned;
 	}

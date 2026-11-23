@@ -127,9 +127,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			return;
 		}
 		foreach (bro in assignedBros) {
-			if (!this.isRecovering(bro, true)) {
-				this.addNegativeSideEffects(bro, campHours);
-			}
+			this.isRecovering(bro, true);
 		}
 
 		if (campHours > 0) {
@@ -204,6 +202,11 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function getUpdateText() {
 		return this.m.NumBros == 0 ? "No one on patrol!" : ("Patrol radius ... " + this.m.Radius);
+	}
+
+	function update() {
+		this.updateSideEffects();
+		return this.getUpdateText();
 	}
 
 	function updateTick(_hours) {

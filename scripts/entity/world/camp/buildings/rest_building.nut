@@ -19,6 +19,19 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function init() {
 		this.m.Results = [];
+
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			bro.getFlags().set("CampHoursRested", 0);
+		}
+	}
+
+	function update() {
+		local self = this;
+		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID))) {
+			bro.getFlags().increment("CampHoursRested");
+		}
+
+		return null;
 	}
 
 	function isHidden() {
@@ -44,24 +57,11 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	}
 
 	function completed() {
-		if (this.m.Camp.getCampTimeHours() < 8) {
-			return;
-		}
-
-		local mood = 0.5;
-		if (this.m.Camp.getCampTimeHours() >= 12) {
-			mood = 1.0;
-		}
-
-		if (this.m.Camp.getCampTimeHours() >= 16) {
-			mood = 1.5;
-		}
-
-		local self = this;
-		local restingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && (_bro.getLastCampTime() == 0 || ::Time.getVirtualTimeF() - _bro.getLastCampTime() > ::World.getTime().SecondsPerDay) && _bro.getMoraleState() != ::Const.MoraleState.Ignore));
-		foreach (bro in restingBros) {
+		local restedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getFlags().getAsInt("CampHoursRested") >= 8 && (_bro.getLastCampTime() == 0 || ::Time.getVirtualTimeF() - _bro.getLastCampTime() > ::World.getTime().SecondsPerDay) && _bro.getMoraleState() != ::Const.MoraleState.Ignore));
+		foreach (bro in restedBros) {
+			local hours = bro.getFlags().getAsInt("CampHoursRested");
 			this.getRested(bro);
-			bro.improveMood(mood, "Was able to rest in camp");
+			bro.improveMood(hours >= 16 ? 1.5 : (hours >= 12 ? 1.0 : 0.5), "Was able to rest in camp");
 			bro.setLastCampTime(this.m.Camp.getStopTime());
 		}
 	}

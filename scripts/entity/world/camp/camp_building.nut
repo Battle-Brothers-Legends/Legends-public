@@ -35,6 +35,12 @@ this.camp_building <- {
 
 	function completed() {}
 
+	function setModifiers() {}
+
+	function hasWork(_bro) {
+		return true;
+	}
+
 	function Camping() {
 		return this.m.Camping;
 	}
@@ -166,6 +172,11 @@ this.camp_building <- {
 		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID && !_bro.isStabled()).len();
 	}
 
+	function getNumberAssignedAs(_isSecondary) {
+		local self = this;
+		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_isSecondary ? _bro.getSecondaryCampAssignment() : _bro.getPrimaryCampAssignment()) == self.m.ID && !_bro.isStabled()).len();
+	}
+
 	function getBanner(bro = null) {
 		return this.m.BannerImage;
 	}
@@ -264,11 +275,18 @@ this.camp_building <- {
 		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (self.onBroEnter(_bro)));
 		foreach (b in assignedBros) {
 			local bro = ::UIDataHelper.convertEntityToUIData(b, null);
-			local assignedBuilding = ::World.Camp.getBuildingByID(b.getCampAssignment());
-			bro.bannerImage <- assignedBuilding.getBanner(b);
-			bro.IsSelected <- b.getCampAssignment() == this.m.ID;
+			local primary = ::World.Camp.getBuildingByID(b.getPrimaryCampAssignment());
+			local secondary = b.getSecondaryCampAssignment() == null ? null : ::World.Camp.getBuildingByID(b.getSecondaryCampAssignment());
+			local active = b.getCampAssignment();
+			bro.bannerImage <- primary.getBanner(b);
+			bro.secondaryBannerImage <- secondary == null ? null : secondary.getBanner(b);
+			bro.IsSelected <- primary.getID() == this.m.ID;
+			bro.IsSecondarySelected <- secondary != null && secondary.getID() == this.m.ID;
+			// while camping, whether they moved on to their Secondary task or are resting with nothing to do at either
+			bro.IsOnSecondary <- active != primary.getID() && secondary != null && active == secondary.getID();
+			bro.IsIdle <- active != primary.getID() && !bro.IsOnSecondary;
 			bro.Modifier <- this.m.ModName != "" ? b.getCurrentProperties().Modifiers[this.m.ModName] : 0;
-			bro.IsUnableToWork <- (::World.Camp.m.IsEscorting && assignedBuilding.isWorkDangerous()) || this.isRecovering(b);
+			bro.IsUnableToWork <- (::World.Camp.m.IsEscorting && primary.isWorkDangerous()) || this.isRecovering(b);
 			roster.push(bro);
 		}
 
@@ -314,33 +332,46 @@ this.camp_building <- {
 		return this.isRecovering(_bro, _addToResults) ? ::Legends.Camp.InjuredWorkMult : 1.0;
 	}
 
-	function addNegativeSideEffects(_bro, _hours) {
-		local r = ::Math.min(this.getUpgraded() ? 1 : 5, 4 * ::Math.pow(_hours, 0.5) - _bro.getLevel());
-
-		if (::Math.rand(1, 100) < r) {
-			_bro.addLightInjury();
-			this.m.Results.push({
-				Icon = "ui/icons/days_wounded.png",
-				Text = _bro.getName() + " suffers light wounds while " + this.m.ActivityName.tolower() + "."
-			});
-		}
-
-		if (::Math.rand(1, 100) < r) {
-			local injury = _bro.addInjury(::Const.Injury.CampActivities);
-			this.m.Results.push({
-				Icon = injury.getIcon(),
-				Text = _bro.getName() + " suffers " + injury.getNameOnly() + " while " + this.m.ActivityName.tolower() + "."
-			});
-		}
-
-		if (::Math.rand(1, 100) < r) {
-			local effect = ::Legends.Effects.grant(_bro, ::Legends.Effect.Exhausted);
-			if (effect != null) {
-				this.m.Results.push({
-					Icon = effect.getIcon(),
-					Text = "Hard work during " + this.m.ActivityName + " left " + _bro.getName() + " Exhausted."
-				});
+	function updateSideEffects() {
+		local self = this;
+		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID))) {
+			if (!this.isRecovering(bro)) {
+				this.addNegativeSideEffects(bro, this.m.Camp.getElapsedHours());
 			}
 		}
+	}
+
+	function getSideEffectChance(_bro, _hours) {
+		return ::Math.max(0, ::Math.ceil(::Math.min(this.getUpgraded() ? 1 : 5, 4 * ::Math.pow(_hours, 0.5) - _bro.getLevel())) - 1);
+	}
+
+	// Rolled for the last hour only, so the chances add up over a camp to what a single roll at its end used to be
+	function addNegativeSideEffects(_bro, _hours) {
+		local r = this.getSideEffectChance(_bro, _hours) - this.getSideEffectChance(_bro, ::Math.maxf(0, _hours - 1));
+
+		if (::Math.rand(1, 100) <= r) {
+			_bro.addLightInjury();
+			this.addSideEffectToResults("ui/icons/days_wounded.png", _bro.getName() + " suffers light wounds while " + this.m.ActivityName.tolower() + ".");
+		}
+
+		if (::Math.rand(1, 100) <= r) {
+			local injury = _bro.addInjury(::Const.Injury.CampActivities);
+			this.addSideEffectToResults(injury.getIcon(), _bro.getName() + " suffers " + injury.getNameOnly() + " while " + this.m.ActivityName.tolower() + ".");
+		}
+
+		if (::Math.rand(1, 100) <= r) {
+			local effect = ::Legends.Effects.grant(_bro, ::Legends.Effect.Exhausted);
+			if (effect != null) {
+				this.addSideEffectToResults(effect.getIcon(), "Hard work during " + this.m.ActivityName + " left " + _bro.getName() + " Exhausted.");
+			}
+		}
+	}
+
+	function addSideEffectToResults(_icon, _text) {
+		this.m.Results.push({
+			Icon = _icon,
+			Text = _text
+		});
+		this.m.Camp.addUpdateText(_text);
 	}
 }

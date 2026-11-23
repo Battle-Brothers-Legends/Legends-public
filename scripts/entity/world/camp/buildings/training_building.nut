@@ -315,6 +315,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return "Training ... " + (this.getUpgraded() ? this.m.NumBros : (this.m.Untrained + " / " + this.m.NumBros)) + " brothers";
 	}
 
+	function update() {
+		this.updateSideEffects();
+		return this.getUpdateText();
+	}
+
 	function completed() {
 		local campHours = this.m.Camp.getCampTimeHours();
 		local mod = this.getUpgraded() ? this.getModifiers() : null;
@@ -322,9 +327,6 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in assignedBros) {
 			local efficiency = this.getWorkEfficiency(bro, true);
-			if (!this.isRecovering(bro)) {
-				this.addNegativeSideEffects(bro, campHours);
-			}
 
 			local succeeded = false;
 			if (::Math.rand(1, 100) < efficiency * ::Math.min(95, 100 * ::Math.pow(campHours / 12.0, 0.6 + 0.1 * bro.getLevel()))) {

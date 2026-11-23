@@ -6,6 +6,7 @@
 	o.m.VeteranPerks <- 4;
 	o.m.CampAssignment <- "camp.rest";
 	o.m.LastCampAssignment <- "camp.rest";
+	o.m.ActiveCampAssignment <- null;
 	o.m.CampHealing <- 0;
 	o.m.LastCampTime <- 0;
 	o.m.InReserves <- false;
@@ -126,11 +127,33 @@
 	}
 
 	o.getCampAssignment <- function () {
-		return this.m.CampAssignment;
+		return this.m.ActiveCampAssignment == null ? this.m.CampAssignment : this.m.ActiveCampAssignment;
 	}
 
 	o.setCampAssignment <- function (_id) {
 		this.m.CampAssignment = _id;
+		this.m.ActiveCampAssignment = null;
+	}
+
+	o.getPrimaryCampAssignment <- function () {
+		return this.m.CampAssignment;
+	}
+
+	o.getSecondaryCampAssignment <- function () {
+		return this.getFlags().has("CampSecondaryAssignment") ? this.getFlags().get("CampSecondaryAssignment") : null;
+	}
+
+	o.setSecondaryCampAssignment <- function (_id) {
+		if (_id == null) {
+			this.getFlags().remove("CampSecondaryAssignment");
+		} else {
+			this.getFlags().set("CampSecondaryAssignment", _id);
+		}
+	}
+
+	// Set by the camp when it moves characters between their Primary and Secondary tasks
+	o.setActiveCampAssignment <- function (_id) {
+		this.m.ActiveCampAssignment = _id == this.m.CampAssignment ? null : _id;
 	}
 
 	o.getLastCampAssignment <- function () {

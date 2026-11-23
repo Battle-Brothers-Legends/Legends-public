@@ -192,6 +192,10 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 		return ::Math.ceil(points / modifiers.Craft);
 	}
 
+	function hasWork(_bro) {
+		return this.getCraftableQueue().len() != 0;
+	}
+
 	function getAssignedBros() {
 		return this.getModifiers().Assigned;
 	}

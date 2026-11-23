@@ -694,7 +694,7 @@ CampScreenCommanderDialogModule.prototype.addTentEntry = function (_data, _index
 		drag.removeClass('is-dragged');
 		self.notifyBackendBrotherAssigned(drag.data('ID'), drop.data('id'), function( _load ) {
 			self.loadFromData(_load);
-		}, true)
+		}, true, drag.data('button') === 3)
 	};
 
 	var result = $('<div class="ui-control is-camp-action-slot"/>');
@@ -724,6 +724,11 @@ CampScreenCommanderDialogModule.prototype.addTentEntry = function (_data, _index
 
 	var label = $('<div class="bro-count-label text-font-normal font-bold font-color-brother-name">'+ _data.count + '</div>');
 	entry.append(label);
+
+	if (_data.secondaryCount > 0)
+	{
+		entry.append($('<div class="bro-count-label is-secondary text-font-small font-bold font-color-description">+' + _data.secondaryCount + '</div>'));
+	}
 
 	if (_data.resourceImage !== '')
 	{
@@ -857,15 +862,28 @@ CampScreenCommanderDialogModule.prototype.addBrotherSlotDIV = function (_data, _
 	result.attr('id', 'slot-index_' + _data[CharacterScreenIdentifier.Entity.Id]);
 	result.data('ID', _data[CharacterScreenIdentifier.Entity.Id]);
 	result.data('idx', _index);
+	result.toggleClass('is-secondary-selected', _data.IsSecondarySelected === true);
+	result.toggleClass('is-on-secondary', _data.IsOnSecondary === true);
+	result.toggleClass('is-idle', _data.IsIdle === true);
 	if (_data.IsUnableToWork === true) {
         var warningIcon = $('<img class="unable-to-work-bro-warning-icon" src="' + Path.GFX + 'ui/tooltips/warning.png"/>');
         warningIcon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CampScreen.CommanderModule.UnableToWorkWarning});
         _parentDiv.append(warningIcon);
     }
 
-	// drag a brother onto a tent to assign them to it
+	// drag a brother onto a tent to assign them to it: with the left mouse button as their Primary task, with the right one as their Secondary task
+	result.mousedown(function (_event)
+	{
+		result.data('button', _event.which);
+	});
+
 	result.drag("start", function (ev, dd)
 	{
+		if (result.data('button') !== 1 && result.data('button') !== 3)
+		{
+			return false;
+		}
+
 		// build proxy
 		var proxy = $('<div class="ui-control brother is-proxy"/>');
 		proxy.appendTo(document.body);
@@ -881,7 +899,7 @@ CampScreenCommanderDialogModule.prototype.addBrotherSlotDIV = function (_data, _
 		$(dd.drag).addClass('is-dragged');
 
 		return proxy;
-	}, { distance: 3 });
+	}, { distance: 3, which: 0 });
 
 	result.drag(function (ev, dd)
 	{
@@ -934,6 +952,14 @@ CampScreenCommanderDialogModule.prototype.addBrotherSlotDIV = function (_data, _
 
 	result.showListBrotherMoodImage(true, _data.bannerImage);
 
+	// the Secondary task is a small flag at the bottom right of the Primary one
+	if (_data.secondaryBannerImage)
+	{
+		var secondaryBanner = $('<img class="secondary-banner"/>');
+		secondaryBanner.attr('src', Path.GFX + _data.secondaryBannerImage);
+		result.find('.mood-layer:first').append(secondaryBanner);
+	}
+
 	// if('inReserves' in character && character['inReserves'])
 	// {
 	// 	result.showListBrotherMoodImage(true, 'ui/buttons/mood_heal.png');
@@ -961,6 +987,17 @@ CampScreenCommanderDialogModule.prototype.addBrotherSlotDIV = function (_data, _
 		})
 
 		//self.mDataSource.selectedBrotherById(data.id);
+	});
+
+	// a right-click assigns the selected tent as the Secondary task
+	result.mouseup(function (_event)
+	{
+		if (_event.which === 3 && !result.hasClass('is-dragged'))
+		{
+			self.notifyBackendBrotherAssigned(result.data('ID'), self.mSelectedTent.data('ID'), function( _load ) {
+				self.loadFromData(_load);
+			}, false, true);
+		}
 	});
 
 	// result.assignListItemRightClick(function (_item, _event)
@@ -1147,9 +1184,9 @@ CampScreenCommanderDialogModule.prototype.refreshInfoPanel = function(_tentID)
 	SQ.call(this.mSQHandle,'onTentSelected', _tentID, callback);
 }
 
-CampScreenCommanderDialogModule.prototype.notifyBackendBrotherAssigned = function (_broID, _tentID, _callback, _isDragged)
+CampScreenCommanderDialogModule.prototype.notifyBackendBrotherAssigned = function (_broID, _tentID, _callback, _isDragged, _isSecondary)
 {
-	SQ.call(this.mSQHandle, 'onBroAssigned', [_broID, _tentID, _isDragged === true], _callback);
+	SQ.call(this.mSQHandle, 'onBroAssigned', [_broID, _tentID, _isDragged === true, _isSecondary === true], _callback);
 };
 
 

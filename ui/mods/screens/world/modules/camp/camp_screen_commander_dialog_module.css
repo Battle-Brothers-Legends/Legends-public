@@ -806,3 +806,36 @@ However this would change if you decide to add a subtitle or a tab bar to your p
 {
 	z-index: 99999;
 }
+
+/* number of brothers that have a tent as their Secondary task, below and between the head and the number of the Primary ones */
+.ui-control.is-camp-action-slot > .tent-panel .bro-count-label.is-secondary
+{
+	top: 3.6rem;
+	right: 1.8rem;
+	width: 2.0rem;
+	height: 2.0rem;
+	line-height: 2.0rem;
+	text-align: center;
+}
+
+/* the Secondary task of a brother, a small flag at the bottom right of the Primary one */
+.camp-screen > .l-commander-dialog-container .ui-control.brother > .mood-layer img.secondary-banner
+{
+	right: -1.6rem;
+	top: 4.5rem;
+	width: 1.8rem;
+	height: 3.8rem;
+}
+
+/* the flag of a task a brother is not working at right now is dimmed */
+.camp-screen > .l-commander-dialog-container .ui-control.brother.is-on-secondary > .mood-layer img:first-child,
+.camp-screen > .l-commander-dialog-container .ui-control.brother.is-idle > .mood-layer img
+{
+	opacity: 0.35;
+}
+
+/* brothers that have the selected tent as their Secondary task are highlighted faintly */
+.camp-screen > .l-commander-dialog-container .ui-control.brother.is-list-brother.is-secondary-selected .highlight-layer
+{
+	opacity: 0.4;
+}

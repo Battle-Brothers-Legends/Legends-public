@@ -423,6 +423,22 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return (this.m.Queue != null && craft > 0) ? ::Math.ceil(this.getRequiredMeds() / craft) : 0;
 	}
 
+	function hasWork(_bro) {
+		local hasMedicine = ::World.Assets.getMedicine() > 0;
+
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			if (bro.getHitpoints() < bro.getHitpointsMax()) {
+				return true;
+			}
+
+			if (hasMedicine && bro.getSkills().query(::Const.SkillType.TemporaryInjury).filter(@(_, _i)(!_i.isTreated() && _i.isTreatable() && _i.getQueue() != 0)).len() != 0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	function getAssignedBros() {
 		return this.getModifiers().Assigned;
 	}

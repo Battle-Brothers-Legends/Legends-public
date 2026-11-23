@@ -602,7 +602,13 @@
 ## Camping
 - made most dialogs shorter
 - the commanders tent lists its tents four in a row and is taller on screens that are high enough, so all of them are visible without scrolling
-- brothers can be dragged onto a tent in the commanders tent to assign them to it
+- brothers can be dragged onto a tent in the commanders tent to assign them to it. A left click or drag assigns the Primary task and a right click or drag the Secondary task, and camping presets store both
+- brothers can be given a Secondary task in the commanders tent which they move on to if their Primary task has nothing left to do, or while they are injured and the Primary task is dangerous, and rest when neither has work for them
+- a brother shows his Primary task as the large flag and his Secondary task as a small one, tents list how many brothers have them as a Secondary task, and the flag of a task that is not being worked at right now is dimmed while camping
+- ammunition is fletched hour by hour, so fletchers that join or leave during a camp only count for the hours they worked
+- the mood bonus for resting goes by the hours a brother has rested during the camp (8, 12 and 16) instead of by the length of the camp and who is resting when it ends
+- brothers training, scouting or gathering can get hurt during any hour of the camp instead of only when it ends, with the same chances over a whole camp
+- the hourly camping text lists the brothers that moved between their tasks and those that got hurt in that hour
 - hunters tent removed
 - crafting system has been overhauled
 - cooking tent (station) added
