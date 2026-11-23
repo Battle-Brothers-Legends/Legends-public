@@ -696,6 +696,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			::World.State.setEscortedEntity(null);
 			::World.State.getPlayer().setVisible(true);
 			::World.Assets.setUseProvisions(true);
+			::World.Camp.onEscort(false);
 
 			if (!::World.State.isPaused())
 			{

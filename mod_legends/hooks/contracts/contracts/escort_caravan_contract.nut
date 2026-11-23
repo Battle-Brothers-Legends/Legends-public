@@ -480,4 +480,12 @@
 		c.addOrder(despawn);
 		this.m.Caravan = this.WeakTableRef(party);
 	}
+
+	local onClear = o.onClear;
+	o.onClear = function () {
+		onClear();
+		if (this.m.IsActive) {
+			::World.Camp.onEscort(false);
+		}
+	}
 });
