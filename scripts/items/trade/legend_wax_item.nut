@@ -17,12 +17,12 @@ this.legend_wax_item <- this.inherit("scripts/items/trade/trading_good_item", {
 
 	function getSellPriceMult()
 	{
-		return this.World.State.getCurrentTown().getModifiers().BuildingPriceMult;
+		return ::FU.GetTown().getModifiers().BuildingPriceMult;
 	}
 
 	function getBuyPriceMult()
 	{
-		return this.World.State.getCurrentTown().getModifiers().BuildingPriceMult;
+		return ::FU.GetTown().getModifiers().BuildingPriceMult;
 	}
 
 });

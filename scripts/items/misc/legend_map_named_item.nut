@@ -20,8 +20,8 @@ this.legend_map_named_item <- this.inherit("scripts/items/item", {
         if (this.m.IsSold) {
             return this.getSellPrice();
         }
-        if (("State" in this.World) && ::FU.InTown()) {
-            return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult() * this.Const.World.Assets.BaseBuyPrice));
+        if (::FU.GetTown() != null) {
+            return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * ::FU.GetTown().getBuyPriceMult() * this.Const.World.Assets.BaseBuyPrice));
         }
         return this.item.getBuyPrice();
     }
@@ -30,8 +30,8 @@ this.legend_map_named_item <- this.inherit("scripts/items/item", {
         if (this.m.IsBought) {
             return this.getBuyPrice();
         }
-        if (("State" in this.World) && ::FU.InTown()) {
-            return this.Math.floor(this.getValue() * this.World.State.getCurrentTown().getSellPriceMult() * this.Const.World.Assets.BaseSellPrice);
+        if (::FU.GetTown() != null) {
+            return this.Math.floor(this.getValue() * ::FU.GetTown().getSellPriceMult() * this.Const.World.Assets.BaseSellPrice);
         }
         return this.item.getSellPrice();
     }

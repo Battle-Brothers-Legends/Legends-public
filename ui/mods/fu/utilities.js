@@ -1,5 +1,5 @@
 var FU = {
-	ID : "mod_FU"
+	ID : "mod_fu"
 };
 FU.Utils = {};
 FU.Utils.Timers = {};
@@ -215,7 +215,7 @@ FU.TimerObject.prototype.get = function(_msg, _stop)
 
 FU.TimerObject.prototype.pause = function()
 {
-	if (this.PauseStart != null && FU.getSettingValue("mod_FU", "performanceLog"))
+	if (this.PauseStart != null && FU.getSettingValue(FU.ID, "performanceLog", false))
 	{
 		console.error("Timer " + this.ID + " paused despite already being paused!");
 	}
@@ -226,7 +226,7 @@ FU.TimerObject.prototype.unpause = function()
 {
 	if (this.PauseStart == null)
 	{
-		if (FU.getSettingValue("mod_FU", "performanceLog"))
+		if (FU.getSettingValue(FU.ID, "performanceLog", false))
 		{
 			console.error("Timer " + this.ID + " resumed despite not being paused!");
 		}

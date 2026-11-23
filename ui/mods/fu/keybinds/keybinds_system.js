@@ -81,7 +81,7 @@ FU.Keybinds = {
 		var keyCombinations = this.KeybindsByMod[_modID][_id].getRawKeyCombinations();
 		var currentKeyCombination = this.getPressedKeysAsString(_key);
 		currentKeyCombination = FU.Key.sortKeyString(currentKeyCombination) + _key;
-		if (FU.getSettingValue("mod_FU", "keybindsLog"))
+		if (FU.getSettingValue(FU.ID, "keybindsLog", false))
 		{
 			console.error("Checking Key combination: " + currentKeyCombination)
 		}

@@ -71,12 +71,12 @@ this.legend_basilisk_trophy_item <- this.inherit("scripts/items/accessory/access
 
 	function getSellPriceMult()
 	{
-		return this.World.State.getCurrentTown().getBeastPartsPriceMult();
+		return ::FU.GetTown().getBeastPartsPriceMult();
 	}
 
 	function getBuyPriceMult()
 	{
-		return this.World.State.getCurrentTown().getBeastPartsPriceMult();
+		return ::FU.GetTown().getBeastPartsPriceMult();
 	}
 
 	function onUpdateProperties( _properties )

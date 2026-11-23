@@ -21,10 +21,10 @@ this.legend_curry_item <- this.inherit("scripts/items/supplies/food_item", {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && ::FU.InTown())
+		if (::FU.GetTown() != null)
 		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.goat_herd");
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult() * (isBuildingPresent ? this.Const.World.Assets.BaseBuyPrice : this.Const.World.Assets.BuyPriceNotProducedHere)));
+			local isBuildingPresent = ::FU.GetTown().hasAttachedLocation("attached_location.goat_herd");
+			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * ::FU.GetTown().getFoodPriceMult() * ::FU.GetTown().getBuyPriceMult() * (isBuildingPresent ? this.Const.World.Assets.BaseBuyPrice : this.Const.World.Assets.BuyPriceNotProducedHere)));
 		}
 
 		return this.item.getBuyPrice();
@@ -37,9 +37,9 @@ this.legend_curry_item <- this.inherit("scripts/items/supplies/food_item", {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && ::FU.InTown())
+		if (::FU.GetTown() != null)
 		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.goat_herd");
+			local isBuildingPresent = ::FU.GetTown().hasAttachedLocation("attached_location.goat_herd");
 			return this.Math.floor(this.item.getSellPrice() * (isBuildingPresent ? this.Const.World.Assets.BaseSellPrice : this.Const.World.Assets.SellPriceNotProducedHere));
 		}
 

@@ -42,10 +42,10 @@ this.legend_ammo_small_item <- this.inherit("scripts/items/item", {
 
 	function getBuyPrice()
 	{
-		if (("State" in this.World) && ::FU.InTown())
+		if (::FU.GetTown() != null)
 		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.fletchers_hut") || this.World.State.getCurrentTown().hasBuilding("building.fletcher");
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.Const.Difficulty.BuyPriceMult[this.World.Assets.getEconomicDifficulty()] * this.World.State.getCurrentTown().getBuyPriceMult() * (isBuildingPresent ? 1.0 : 1.5)));
+			local isBuildingPresent = ::FU.GetTown().hasAttachedLocation("attached_location.fletchers_hut") || ::FU.GetTown().hasBuilding("building.fletcher");
+			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.Const.Difficulty.BuyPriceMult[this.World.Assets.getEconomicDifficulty()] * ::FU.GetTown().getBuyPriceMult() * (isBuildingPresent ? 1.0 : 1.5)));
 		}
 
 		return this.item.getBuyPrice();

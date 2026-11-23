@@ -21,7 +21,7 @@
 	o.updateStrength = function ()
 	{
 		this.m.Strength = 0.0;
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::FU.GetCompanyRoster();
 
 		if (roster.len() > this.World.Assets.getBrothersScaleMax())
 		{

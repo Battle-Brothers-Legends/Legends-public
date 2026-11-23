@@ -8,7 +8,7 @@
 		if (this.World.Ambitions.getDone() < 2)
 			return;
 
-		if (this.World.getPlayerRoster().getSize() >= 20)
+		if (::FU.GetCompanyRoster().len() >= 20)
 		{
 			this.m.IsDone = true;
 			return;
@@ -31,5 +31,7 @@
 
 		this.m.Score = 1 + this.Math.rand(0, 5);
 	}
+
+	o.onCheckSuccess = function() { return ::FU.GetCompanyRoster().len() >= 20; };
 
 });

@@ -16,7 +16,7 @@ this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 	{
 		if (this.World.Assets.getBrothersMax() < 6 || this.World.Assets.getOrigin().getID() == "scenario.lone_wolf") return;
 
-		if (this.World.getPlayerRoster().getSize() >= 6)
+		if (::FU.GetCompanyRoster().len() >= 6)
 		{
 			this.m.IsDone = true;
 			return;
@@ -27,7 +27,7 @@ this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 
 	function onCheckSuccess()
 	{
-		if (this.World.getPlayerRoster().getSize() >= 6)
+		if (::FU.GetCompanyRoster().len() >= 6)
 		{
 			return true;
 		}

@@ -42,10 +42,10 @@ this.legend_armor_parts_small_item <- this.inherit("scripts/items/item", {
 
 	function getBuyPrice()
 	{
-		if (("State" in this.World) && ::FU.InTown())
+		if (::FU.GetTown() != null)
 		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.workshop") || this.World.State.getCurrentTown().hasAttachedLocation("attached_location.leather_tanner") || this.World.State.getCurrentTown().hasBuilding("building.armorsmith") || this.World.State.getCurrentTown().hasBuilding("building.weaponsmith");
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.Const.Difficulty.BuyPriceMult[this.World.Assets.getEconomicDifficulty()] * this.World.State.getCurrentTown().getBuyPriceMult() * (isBuildingPresent ? 1.0 : 1.5)));
+			local isBuildingPresent = ::FU.GetTown().hasAttachedLocation("attached_location.workshop") || ::FU.GetTown().hasAttachedLocation("attached_location.leather_tanner") || ::FU.GetTown().hasBuilding("building.armorsmith") || ::FU.GetTown().hasBuilding("building.weaponsmith");
+			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.Const.Difficulty.BuyPriceMult[this.World.Assets.getEconomicDifficulty()] * ::FU.GetTown().getBuyPriceMult() * (isBuildingPresent ? 1.0 : 1.5)));
 		}
 
 		return this.item.getBuyPrice();

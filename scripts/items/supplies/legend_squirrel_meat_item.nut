@@ -20,9 +20,9 @@ this.legend_squirrel_meat_item <- this.inherit("scripts/items/supplies/food_item
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && ::FU.InTown())
+		if (::FU.GetTown() != null)
 		{
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult()));
+			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * ::FU.GetTown().getFoodPriceMult() * ::FU.GetTown().getBuyPriceMult()));
 		}
 
 		return this.item.getBuyPrice();
@@ -35,9 +35,9 @@ this.legend_squirrel_meat_item <- this.inherit("scripts/items/supplies/food_item
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && ::FU.InTown())
+		if (::FU.GetTown() != null)
 		{
-			return this.Math.floor(this.getValue() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getSellPriceMult());
+			return this.Math.floor(this.getValue() * ::FU.GetTown().getFoodPriceMult() * ::FU.GetTown().getSellPriceMult());
 		}
 
 		return this.item.getSellPrice();

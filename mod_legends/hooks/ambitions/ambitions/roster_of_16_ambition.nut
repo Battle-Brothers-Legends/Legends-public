@@ -23,12 +23,14 @@
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= 12) {
+		if (::FU.GetCompanyRoster().len() >= 12) {
 			this.m.IsDone = true;
 			return;
 		}
 
 		this.m.Score = 1 + this.Math.rand(0, 5);
 	}
+
+	o.onCheckSuccess = function() { return ::FU.GetCompanyRoster().len() >= 16; };
 
 });

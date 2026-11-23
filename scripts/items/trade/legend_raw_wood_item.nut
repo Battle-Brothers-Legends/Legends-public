@@ -19,10 +19,10 @@ this.legend_raw_wood_item <- this.inherit("scripts/items/trade/trading_good_item
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && ::FU.InTown())
+		if (::FU.GetTown() != null)
 		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.lumber_camp");
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult() * this.World.State.getCurrentTown().getModifiers().BuildingPriceMult * (isBuildingPresent ? this.Const.World.Assets.BaseBuyPrice : this.Const.World.Assets.BuyPriceNotProducedHere)));
+			local isBuildingPresent = ::FU.GetTown().hasAttachedLocation("attached_location.lumber_camp");
+			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * ::FU.GetTown().getBuyPriceMult() * ::FU.GetTown().getModifiers().BuildingPriceMult * (isBuildingPresent ? this.Const.World.Assets.BaseBuyPrice : this.Const.World.Assets.BuyPriceNotProducedHere)));
 		}
 
 		return this.item.getBuyPrice();
@@ -35,10 +35,10 @@ this.legend_raw_wood_item <- this.inherit("scripts/items/trade/trading_good_item
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && ::FU.InTown())
+		if (::FU.GetTown() != null)
 		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.lumber_camp");
-			return this.Math.floor(this.getValue() * this.World.State.getCurrentTown().getSellPriceMult() * this.World.State.getCurrentTown().getModifiers().BuildingPriceMult * (isBuildingPresent ? this.Const.World.Assets.BaseSellPrice : this.Const.World.Assets.SellPriceNotProducedHere));
+			local isBuildingPresent = ::FU.GetTown().hasAttachedLocation("attached_location.lumber_camp");
+			return this.Math.floor(this.getValue() * ::FU.GetTown().getSellPriceMult() * ::FU.GetTown().getModifiers().BuildingPriceMult * (isBuildingPresent ? this.Const.World.Assets.BaseSellPrice : this.Const.World.Assets.SellPriceNotProducedHere));
 		}
 
 		return this.item.getSellPrice();

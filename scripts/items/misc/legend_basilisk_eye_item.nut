@@ -20,12 +20,12 @@ this.legend_basilisk_eye_item <- this.inherit("scripts/items/item", {
 
 	function getSellPriceMult()
 	{
-		return this.World.State.getCurrentTown().getBeastPartsPriceMult();
+		return ::FU.GetTown().getBeastPartsPriceMult();
 	}
 
 	function getBuyPriceMult()
 	{
-		return this.World.State.getCurrentTown().getBeastPartsPriceMult();
+		return ::FU.GetTown().getBeastPartsPriceMult();
 	}
 
 });

@@ -457,6 +457,7 @@ ModSettingsScreen.prototype.updateSetting = function (_setting)
 
 ModSettingsScreen.prototype.setModSettingValue = function (_modID, _settingID, _value)
 {
+	if (_modID === "mod_FU") _modID = FU.ID;
 	var out = this.setTypeIfFloatOrInt({
 		mod : _modID,
 		type : typeof _value,
@@ -504,12 +505,20 @@ ModSettingsScreen.prototype.notifyBackendSettingButtonPressed = function (_data)
 
 FU.getSetting = function (_modID, _settingID)
 {
-	return Screens.ModSettingsScreen.mModSettings[_modID].settings[_settingID];
+	// Keep the old FU spelling at the API boundary, without duplicating panels.
+	if (_modID === "mod_FU") _modID = FU.ID;
+	if (typeof Screens === "undefined" || !Screens.ModSettingsScreen) return undefined;
+	var panels = Screens.ModSettingsScreen.mModSettings;
+	var panel = panels && panels[_modID];
+	return panel && panel.settings ? panel.settings[_settingID] : undefined;
 };
 
-FU.getSettingValue = function (_modID, _settingID)
+FU.getSettingValue = function (_modID, _settingID, _defaultValue)
 {
-	return Screens.ModSettingsScreen.mModSettings[_modID].settings[_settingID].value;
+	// Settings arrive asynchronously. Optional consumers such as input logging
+	// may supply a default until the panel and setting have been received.
+	var setting = FU.getSetting(_modID, _settingID);
+	return setting === undefined ? _defaultValue : setting.value;
 };
 
 FU.setSettingValue = function (_modID, _settingID, _value)
