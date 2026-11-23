@@ -685,6 +685,7 @@
 > the setting is completely optional
 > marked items can be sold with a single click in shops and new items acquired will respect these flags
 > newly acquired items with flags will automatically start be added to repair/salvage queue
+> broken items set to autosalvage are scrapped for 1 tool each while the Salvage Tent is working
 > flags are now visible in shop and loot screens
 > quickly loot items based on current value (new button; ignores legendary, named, quest, food)
 > quickly loot items based on potential value, also sorts and layers/unlayers items to maximize value

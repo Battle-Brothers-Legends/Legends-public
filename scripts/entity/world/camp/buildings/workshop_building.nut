@@ -29,7 +29,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 	function getDescription() {
-		return "Break down equipment into tools in selected order. Once an item reaches zero durability, it will be destroyed.";
+		return "Break down equipment into tools in selected order. Once an item reaches zero durability, it will be destroyed. Broken equipment that is set to autosalvage is scrapped for 1 tool each.";
 	}
 
 	function getModifierTooltip() {
@@ -62,6 +62,16 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			}
 		];
 		local id = 6;
+		local broken = this.getBrokenItems().len();
+
+		if (broken != 0) {
+			ret.push({
+				id = id++,
+				type = "text",
+				icon = "ui/icons/asset_supplies.png",
+				text = ::Legends.Text.colorizeAndPluralize(broken, "positive", "broken item") + " set to autosalvage will be scrapped for 1 tool each."
+			});
+		}
 
 		foreach( bro in mod.Modifiers )
 		{
@@ -177,7 +187,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			this.onInit();
 		}
 
-		return ::World.Assets.getArmorPartsF() < ::World.Assets.getMaxArmorParts() && this.getSalvagePoints() > 0;
+		return ::World.Assets.getArmorPartsF() < ::World.Assets.getMaxArmorParts() && (this.getSalvagePoints() > 0 || this.getBrokenItems().len() != 0);
 	}
 
 	function getAssignedBros() {
@@ -194,7 +204,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getUpdateText() {
 		if (this.m.PointsNeeded == 0)
-			return "No salvage queued";
+			return this.m.ItemsDestroyed == 0 ? "No salvage queued" : "Salvaged ... 100%";
 
 		if (this.getRequiredSupplies() == 0)
 			return "Salvaged ... 100%";
@@ -203,11 +213,24 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 	function update() {
-		if (this.m.Salvage == null || this.m.Salvage.len() == 0 || ::World.Assets.getArmorPartsF() >= ::World.Assets.getMaxArmorParts()) {
+		if (this.m.Salvage == null || ::World.Assets.getArmorPartsF() >= ::World.Assets.getMaxArmorParts()) {
 			return this.getUpdateText();
 		}
 
 		local modifiers = this.getModifiers();
+
+		if (modifiers.Craft > 0) {
+			// broken equipment has no condition left to salvage, so it is scrapped whole for a single tool
+			foreach (item in this.getBrokenItems()) {
+				if (::World.Assets.getArmorPartsF() >= ::World.Assets.getMaxArmorParts()) {
+					break;
+				}
+
+				this.destroyItem(item);
+				this.m.ToolsCreated += 1;
+				::World.Assets.addArmorPartsF(1);
+			}
+		}
 
 		foreach(i, r in this.m.Salvage)	{
 			if (r == null) {
@@ -232,27 +255,37 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			::World.Assets.addArmorPartsF(created);
 
 			if (r.Item.getRepair() <= 0) {
-				this.m.ItemsDestroyed += 1;
 				local myItem = ::World.Assets.getStash().getItemByInstanceID(r.Item.getInstanceID());
 				if (myItem == null)
 					continue;
-				myItem = myItem.item;
-				if (myItem.getRuneVariant() > 0) {
-					local def = ::Legends.Runes.get(myItem.getRuneVariant());
-					local rune = ::new(def.Script);
-					rune.setRuneVariant(myItem.getRuneVariant());
-					rune.setRuneBonus1(myItem.getRuneBonus1());
-					rune.setRuneBonus2(myItem.getRuneBonus2());
-					rune.updateRuneSigilToken();
-					::World.Assets.getStash().add(rune);
-				}
-
-				::World.Assets.getStash().remove(r.Item);
+				this.destroyItem(myItem.item);
 				this.m.Salvage[i] = null;
 			}
 		}
 
 		return this.getUpdateText();
+	}
+
+	// removes the item from the stash, a rune on it is kept
+	function destroyItem(_item) {
+		this.m.ItemsDestroyed += 1;
+
+		if (_item.getRuneVariant() > 0) {
+			local def = ::Legends.Runes.get(_item.getRuneVariant());
+			local rune = ::new(def.Script);
+			rune.setRuneVariant(_item.getRuneVariant());
+			rune.setRuneBonus1(_item.getRuneBonus1());
+			rune.setRuneBonus2(_item.getRuneBonus2());
+			rune.updateRuneSigilToken();
+			::World.Assets.getStash().add(rune);
+		}
+
+		::World.Assets.getStash().remove(_item);
+	}
+
+	// equipment without any condition left that is set to autosalvage
+	function getBrokenItems() {
+		return ::Stash.getItems().filter(@(_, _item) _item != null && !_item.isIndestructible() && _item.canBeSalvaged() && _item.getRepair() <= 0 && ::Legends.Inventory.getCompositeAutomationState(_item) == 4);
 	}
 
 	function getListOfEquipment()
