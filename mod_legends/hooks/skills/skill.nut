@@ -220,7 +220,7 @@
 			["_additionalHitchance", p.HitChanceAdditionalWithEachTile]
 		];
 		if (adjustedHitChanceBonus != 0 && this.m.IsRanged) {
-			local hitChanceText = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" : "Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit";
+			local hitChanceText = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" : "Has [color=%negative%]%_hitChanceBonus%%[/color] chance to hit";
 			if (p.HitChanceAdditionalWithEachTile != 0) {
 				hitChanceText += ", and " + (p.HitChanceAdditionalWithEachTile > 0 ? "[color=%positive%]+" : "[color=%negative%]") + "%_additionalHitchance%[/color] per tile of distance";
 			}
@@ -236,7 +236,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit": "Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit",
+				text = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit": "Has [color=%negative%]%_hitChanceBonus%%[/color] chance to hit",
 				param = hitChanceBonus
 			});
 		}

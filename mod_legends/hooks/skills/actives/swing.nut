@@ -22,8 +22,15 @@
 	}
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
-		if (_skill == this && !this.getItem().isWeaponType(::Const.Items.WeaponType.Sword)) {
+		if (_skill != this) {
+			return;
+		}
+
+		if (!this.getItem().isWeaponType(::Const.Items.WeaponType.Sword)) {
 			_properties.MeleeSkill += this.addHitChanceBonus(::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 10 : -5);
 		}
+		else {
+			_properties.MeleeSkill += this.addHitChanceBonus(::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 0 : -5);
+		} 
 	}
 });

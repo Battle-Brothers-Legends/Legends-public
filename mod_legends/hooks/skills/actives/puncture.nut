@@ -1,5 +1,11 @@
 ::mods_hookExactClass("skills/actives/puncture", function(o)
 {
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.HitChanceBonus = -65;
+	}
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
@@ -23,10 +29,10 @@
 	}
 
 	o.getHitChance <- function (_targetEntity) {
-		if (_targetEntity == null)
-			return 0;
-
 		local mod = 0;
+		if (_targetEntity == null)
+			return mod;
+
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendStupefied))
 			mod += 10;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))

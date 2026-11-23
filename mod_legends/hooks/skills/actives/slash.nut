@@ -26,6 +26,9 @@
 		if (_skill == this && !this.getItem().isWeaponType(::Const.Items.WeaponType.Sword)) {
 			_properties.MeleeSkill += this.addHitChanceBonus(::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 15 : 10);
 		}
+		else {
+			_properties.MeleeSkill += this.addHitChanceBonus(10);
+		}
 	}
 
 });
