@@ -12,6 +12,34 @@
 	z-index: 2;
 }
 
+.camp-screen > .l-commander-dialog-container.is-tall
+{
+	height: 90.8rem;
+}
+
+.camp-screen > .l-commander-dialog-container.is-tall .ui-control.dialog-1280-768
+{
+	background-image: url("coui://gfx/ui/skin/dialog_background_01_wide.png"), url("coui://gfx/ui/skin/dialog_background_01_wide.png");
+	background-position: left top, left bottom;
+	background-size: 128.0rem 76.8rem, 128.0rem 76.8rem;
+	background-repeat: no-repeat, no-repeat;
+}
+
+.camp-screen > .l-commander-dialog-container.is-tall .content > .right-column > .top-row
+{
+	height: 42.2rem;
+}
+
+.camp-screen > .l-commander-dialog-container.is-tall .content > .right-column > .middle-row
+{
+	height: 1.8rem;
+}
+
+.camp-screen > .l-commander-dialog-container.is-tall .content > .right-column > .bottom-row
+{
+	height: 27.8rem;
+}
+
 .camp-screen > .l-commander-dialog-container .l-tab-asset
 {
 	top: 0;
@@ -417,8 +445,9 @@
 {
 	/*width: 10.7rem;
 	height: 12rem;*/
-	width: 16.0rem;
-	height:10.7rem;
+	/* four tents fill a row */
+	width: 20.6rem;
+	height: 13.3rem;
 	float: left;
 	position: relative;
 	margin-left: 1.0rem;
@@ -453,10 +482,10 @@
 
 .ui-control.is-camp-action-slot > .tent-panel img.banner
 {
-	top: 1.0rem;
-	left: 1.0rem;
-	height: 9.2rem;
-	width: 3.0rem;
+	top: 0.9rem;
+	left: 1.2rem;
+	height: 11.5rem;
+	width: 3.8rem;
 	position : absolute;
 }
 
@@ -770,4 +799,10 @@ However this would change if you decide to add a subtitle or a tab bar to your p
     top: 0.5rem;
     right: 0.0rem;
 	z-index: 10;
+}
+
+/* a brother that is dragged onto a tent */
+.ui-control.brother.is-proxy
+{
+	z-index: 99999;
 }

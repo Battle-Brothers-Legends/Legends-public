@@ -459,6 +459,8 @@ CampScreenCommanderDialogModule.prototype.show = function (_withSlideAnimation)
 {
 	var self = this;
 
+	this.mContainer.toggleClass('is-tall', this.mContainer.parent().height() >= 920);
+
 	var withAnimation = (_withSlideAnimation !== undefined && _withSlideAnimation !== null) ? _withSlideAnimation : true;
 	if (withAnimation === true)
 	{
@@ -692,7 +694,7 @@ CampScreenCommanderDialogModule.prototype.addTentEntry = function (_data, _index
 		drag.removeClass('is-dragged');
 		self.notifyBackendBrotherAssigned(drag.data('ID'), drop.data('id'), function( _load ) {
 			self.loadFromData(_load);
-		})
+		}, true)
 	};
 
 	var result = $('<div class="ui-control is-camp-action-slot"/>');
@@ -861,64 +863,55 @@ CampScreenCommanderDialogModule.prototype.addBrotherSlotDIV = function (_data, _
         _parentDiv.append(warningIcon);
     }
 
-	// // drag handler
-	// result.drag("start", function (ev, dd)
-	// {
-	//	 // don't allow drag if this is an empty slot
-	//	 /*var data = $(this).data('item');
-	//	 if (data.isEmpty === true)
-	//	 {
-	//		 return false;
-	//	 }*/
+	// drag a brother onto a tent to assign them to it
+	result.drag("start", function (ev, dd)
+	{
+		// build proxy
+		var proxy = $('<div class="ui-control brother is-proxy"/>');
+		proxy.appendTo(document.body);
+		proxy.data('idx', _index);
 
-	//	 // build proxy
-	//	 var proxy = $('<div class="ui-control brother is-proxy"/>');
-	//	 proxy.appendTo(document.body);
-	//	 proxy.data('idx', _index);
+		var imageLayer = result.find('.image-layer:first');
+		if (imageLayer.length > 0)
+		{
+			imageLayer = imageLayer.clone();
+			proxy.append(imageLayer);
+		}
 
-	//	 var imageLayer = result.find('.image-layer:first');
-	//	 if (imageLayer.length > 0)
-	//	 {
-	//		 imageLayer = imageLayer.clone();
-	//		 proxy.append(imageLayer);
-	//	 }
+		$(dd.drag).addClass('is-dragged');
 
-	//	 $(dd.drag).addClass('is-dragged');
+		return proxy;
+	}, { distance: 3 });
 
-	//	 return proxy;
-	// }, { distance: 3 });
+	result.drag(function (ev, dd)
+	{
+		$(dd.proxy).css({ top: dd.offsetY, left: dd.offsetX });
+	}, { relative: false, distance: 3 });
 
-	// result.drag(function (ev, dd)
-	// {
-	//	 $(dd.proxy).css({ top: dd.offsetY, left: dd.offsetX });
-	// }, { relative: false, distance: 3 });
+	result.drag("end", function (ev, dd)
+	{
+		var drag = $(dd.drag);
+		var drop = $(dd.drop);
+		var proxy = $(dd.proxy);
 
-	// result.drag("end", function (ev, dd)
-	// {
-	//	 var drag = $(dd.drag);
-	//	 var drop = $(dd.drop);
-	//	 var proxy = $(dd.proxy);
-
-	//	 var allowDragEnd = true; // TODO: check what we're dropping onto
-
-	//	 // not dropped into anything?
-	//	 if (drop.length === 0 || allowDragEnd === false)
-	//	 {
-	//		 proxy.velocity("finish", true).velocity({ top: dd.originalY, left: dd.originalX },
-	//		 {
-	//			 duration: 300,
-	//			 complete: function ()
-	//			 {
-	//				 proxy.remove();
-	//				 drag.removeClass('is-dragged');
-	//			 }
-	//		 });
-	//	 }
-	//	 else
-	//	 {
-	//		 proxy.remove();
-	//	 }
-	// }, { drop: '.is-camp-action-slot' });
+		// not dropped onto a tent?
+		if (drop.length === 0)
+		{
+			proxy.velocity("finish", true).velocity({ top: dd.originalY, left: dd.originalX },
+			{
+				duration: 300,
+				complete: function ()
+				{
+					proxy.remove();
+					drag.removeClass('is-dragged');
+				}
+			});
+		}
+		else
+		{
+			proxy.remove();
+		}
+	}, { drop: '.is-camp-action-slot' });
 
 	// update image & name
 	var character = _data[CharacterScreenIdentifier.Entity.Character.Key];
@@ -1154,9 +1147,9 @@ CampScreenCommanderDialogModule.prototype.refreshInfoPanel = function(_tentID)
 	SQ.call(this.mSQHandle,'onTentSelected', _tentID, callback);
 }
 
-CampScreenCommanderDialogModule.prototype.notifyBackendBrotherAssigned = function (_broID, _tentID, _callback)
+CampScreenCommanderDialogModule.prototype.notifyBackendBrotherAssigned = function (_broID, _tentID, _callback, _isDragged)
 {
-	SQ.call(this.mSQHandle, 'onBroAssigned', [_broID, _tentID], _callback);
+	SQ.call(this.mSQHandle, 'onBroAssigned', [_broID, _tentID, _isDragged === true], _callback);
 };
 
 

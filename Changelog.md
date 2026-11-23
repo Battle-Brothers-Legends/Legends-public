@@ -601,6 +601,8 @@
 
 ## Camping
 - made most dialogs shorter
+- the commanders tent lists its tents four in a row and is taller on screens that are high enough, so all of them are visible without scrolling
+- brothers can be dragged onto a tent in the commanders tent to assign them to it
 - hunters tent removed
 - crafting system has been overhauled
 - cooking tent (station) added

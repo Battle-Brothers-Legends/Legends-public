@@ -150,6 +150,9 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 		local campID = _data[1];
 		local bro = ::Tactical.getEntityByID(broID);
 		if (bro.getCampAssignment() == campID) {
+			if (_data[2]) {
+				return;
+			}
 			campID = bro.getLastCampAssignment();
 		}
 		local tent = ::World.Camp.getBuildingByID(campID);
