@@ -859,6 +859,7 @@
 - backing out of the combat dialog right as it opens no longer leaves the world map without its UI
 - fixed units that rise from the ground, like resurrected undead, sometimes staying half buried and impossible to attack until their next turn
 - recipes no longer count every `Cooking Spices` item as 8 uses when checking if they can be crafted, only the uses it has left
+- enemies no longer skip their attack when their weapon has attacks with different ranges and the one they picked couldn't reach anyone, like a pike with `Impale` and `Heartseeker`
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
