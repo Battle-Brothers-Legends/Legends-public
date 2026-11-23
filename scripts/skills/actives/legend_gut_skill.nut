@@ -43,13 +43,16 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Performs 2 attacks, and an additional attack for every injury on the target"
+				text = "Perform an additional attack for every injury on the target"
 			}
 		]);
 		return ret;
 	}
 
 	function onAfterUpdate(_properties) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+		}
 		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
@@ -58,19 +61,12 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		local injuryCount = target.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len();
 		local ret = this.attackEntity(_user, target);
-		local timeDelay = 200;
+		local timeDelay = 0;
 
-		if ((::Tactical.TurnSequenceBar.getActiveEntity() == null || ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID())
-			&& (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer))
-		{
+		if (injuryCount > 0 && (::Tactical.TurnSequenceBar.getActiveEntity() == null || ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID())
+			&& (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) {
 			this.m.IsDoingAttackMove = false;
 			this.getContainer().setBusy(true);
-			::Time.scheduleEvent(::TimeUnit.Virtual, 150, this.onAdditionalAttack, {
-				User = _user,
-				Skill = this,
-				Target = target,
-				IsLast = injuryCount < 1
-			});
 
 			for (local i = 0; i < injuryCount; i = ++i) {
 				::Time.scheduleEvent(::TimeUnit.Virtual, timeDelay + ::Math.rand(0, 55), this.onAdditionalAttack, {
