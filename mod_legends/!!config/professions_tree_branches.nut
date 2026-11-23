@@ -61,7 +61,6 @@ local P = ::Legends.Profession;
 		[P.LegendHunting, [P.LegendSkinning, P.LegendDogBreeder]],
 		[P.LegendSkinning, [P.LegendTrophyCarving, P.LegendLeatherworking]],
 		[P.LegendTrophyCarving, [P.LegendBigGameHunter]],
-		[P.LegendDogBreeder, [P.LegendHippology]],
 
 		// healing
 		[P.LegendHealing, [P.LegendBandageBales, P.LegendButcherBarber]],
@@ -85,7 +84,6 @@ local P = ::Legends.Profession;
 		[P.LegendLookout, [P.LegendCartographer]],
 		[P.LegendCartographer, [P.LegendLayOfTheLand]],
 		[P.LegendTrailblazer, [P.LegendWheelMaintenance, P.LegendLayOfTheLand]],
-		[P.LegendWheelMaintenance, [P.LegendHippology]],
 
 		// training
 		[P.LegendTraining, [P.LegendDrillSergeant, P.LegendSpotTheTells]],

@@ -268,6 +268,8 @@
 - favoured enemy professions show a bar with the experience towards the next point of their bonus
 - you start with a very basic tree and gradually unlock more perks down the tree
 - certain perks will be locked unless of a certain background and certain perks will be unlocked on some of the backgrounds
+- `Hippology` is removed from the tree for now
+- `Dog Breeder` - animals unleashed in battle have 20% more hitpoints, and an unleashed animal that is downed without a fatality has a chance to survive the battle
 
 ## Effects
 - `Redback Poison` - will now apply varying effects for each turn afflicted, first turn Baffled, second turn Dazed, third turn Stunned

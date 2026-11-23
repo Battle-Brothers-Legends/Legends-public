@@ -122,6 +122,50 @@ if (!("Professions" in ::Legends))
     }
 }
 
+::Legends.Professions.DogBreederHitpoints <- 0.2;
+
+::Legends.Professions.getAnimalSurvivalChance <- function (_additionalBros = 0) {
+	local breeder = ::Legends.Professions.ProfessionDefObjects[::Legends.Profession.LegendDogBreeder];
+	local barber = ::Legends.Professions.ProfessionDefObjects[::Legends.Profession.LegendButcherBarber];
+	return ::Legends.Professions.getProfessionEffect({
+		ID = breeder.ID,
+		ScalingArray = barber.ScalingArray,
+		ScalingFactor = barber.ScalingFactor
+	}, _additionalBros);
+}
+
+// Called when an animal is unleashed from the item of its handler
+::Legends.Professions.onAnimalDeployed <- function (_animal, _item) {
+	if (::Legends.S.isNull(_item) || ::Legends.S.isNull(_item.getContainer()) || !("Assets" in ::World) || ::World.Assets == null) {
+		return;
+	}
+
+	local handler = _item.getContainer().getActor();
+	if (::Legends.S.isNull(handler) || handler.getFaction() != ::Const.Faction.Player || ::World.Assets.m.ProfessionEffect.LegendDogBreeder <= 0) {
+		return;
+	}
+
+	local properties = _animal.getBaseProperties();
+	properties.Hitpoints = ::Math.round(properties.Hitpoints * (1.0 + ::Legends.Professions.DogBreederHitpoints));
+	_animal.getSkills().update();
+	_animal.setHitpoints(_animal.getHitpointsMax());
+}
+
+// Called before an unleashed animal dies. Without a fatality it has a chance to live
+::Legends.Professions.onAnimalDowned <- function (_animal, _fatalityType) {
+	if (_fatalityType != ::Const.FatalityType.None || ::Legends.S.isNull(_animal.m.Item) || _animal.getFaction() != ::Const.Faction.PlayerAnimals) {
+		return;
+	}
+
+	if (!("Assets" in ::World) || ::World.Assets == null || ::Math.rand(1, 1000) > ::Legends.Professions.getAnimalSurvivalChance() * 1000) {
+		return;
+	}
+
+	// the item still counts the animal as unleashed until the battle is over, so it can not be sent out again
+	_animal.m.Item = null;
+	::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_animal) + " is down, but will live");
+}
+
 // Called every hour. Each worker of a camp station adds 100% plus their working speed, the sum is split evenly between them
 ::Legends.Professions.updateExp <- function () {
 	local exp = ::Legends.Professions.Exp;

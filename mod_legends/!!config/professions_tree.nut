@@ -148,7 +148,7 @@ if (!("Professions" in ::Legends)) {
 ::Legends.Professions.Trees.CaravaneeringProfessionTree <- [
 	[],
 	[],
-	[::Legends.Profession.LegendWheelMaintenance, ::Legends.Profession.LegendHippology],
+	[::Legends.Profession.LegendWheelMaintenance],
 	[],
 	[],
 	[],
@@ -456,7 +456,7 @@ if (!("Professions" in ::Legends)) {
 ::Legends.Professions.Trees.DogBreedingProfessionTree <- [
 	[],
 	[],//[::Legends.Profession.LegendDogBreeder],
-	[::Legends.Profession.LegendHippology],
+	[],
 	[],
 	[],
 	[],

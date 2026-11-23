@@ -30,6 +30,30 @@ this.profession_legend_dog_breeder <- this.inherit("scripts/skills/legend_profes
 			});
 		}
 
+		ret.extend([
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/special.png"
+				text = "Chance for a downed animal to survive"
+			},
+			{
+				id = 14,
+				type = "text",
+				icon = "ui/icons/plus.png"
+				text = "Current: [color=%positive%]" + 100 * ::Legends.Professions.getAnimalSurvivalChance(0) + "%[/color]"
+			},
+		]);
+
+		if (!_active) {
+			ret.push({
+				id = 15,
+				type = "text",
+				icon = "ui/icons/level_dark.png"
+				text = "Next: [color=%positive%]" + 100 * ::Legends.Professions.getAnimalSurvivalChance(1) + "%[/color]"
+			});
+		}
+
 		return ret;
 	}
 });

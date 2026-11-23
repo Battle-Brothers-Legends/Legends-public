@@ -369,7 +369,7 @@ Learn to use the superior reach of large weapons to keep the enemy from getting 
 
 • If you put away your weapon, you lose all stacks.
 
-• Additionally, while wielding a staff, the defense malus due to being surrounded by opponents is reduced by [color=%negative%]3[/color]. If you have [color=%perk%]Underdog[/color] or [color=%perk%]Battleheart[/color], this perk will instead increase defenses by [color=%positive%]5[/color].
+• Additionally, while wielding a staff, the defense malus due to being surrounded by opponents is reduced by [color=%negative%]3[/color]. If you have [color=%perk%]Ironside[/color] or [color=%perk%]Battleheart[/color], this perk will instead increase defenses by [color=%positive%]5[/color].
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.ReachAdvantage].Tooltip = ::Const.Strings.PerkDescription.ReachAdvantage;
 
