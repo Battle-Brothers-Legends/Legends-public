@@ -679,7 +679,7 @@ Knights would do well to fear your heavy blows.
 'Being aware of your surroundings can make or break a fight.'
 
 [color=%passive%][u]Passive:[/u][/color]
-• Has a [color=%positive%]50%[/color] lower chance to inflict friendly fire. Stacks with the 'Team Player'.
+• Has a [color=%positive%]50%[/color] lower chance to inflict friendly fire. Stacks with 'Team Player'.
 
 • [color=%skill%]Knock Back[/color] will now apply [color=%status%]Taunt effect[/color].
 
