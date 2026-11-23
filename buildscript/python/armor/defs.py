@@ -474,7 +474,7 @@ class Defs:
  "desc" :  "A body armor made of thick overlapping metal plates that cover most of the upper body.",
  "adesc" : "Includes body armor made of thick overlapping metal plates that cover most of the upper body."
 },
-{"name": "leather_lamellar_heavy",           "layer": "plate", "min": 1, "max": 5, "value" : 4750, "con" : 165, "stam" : -24, "impactSound" : "plate", "invSound" : "plate",
+{"name": "leather_lamellar_heavy",           "layer": "plate", "min": 1, "max": 5, "value" : 3000, "con" : 165, "stam" : -24, "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Heavy Lamellar Armor",
  "desc" :  "A heavy lamellar armor that covers most parts of the body with thick, overlapping metal plates for maximum protection.",
  "adesc" : "Includes heavy lamellar armor that covers most parts of the body with thick, overlapping metal plates."
