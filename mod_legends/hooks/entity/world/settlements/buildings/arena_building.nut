@@ -11,7 +11,7 @@
 			this.m.AttemptsRollDay = ::World.getTime().Days;
 			this.m.AttemptsRoll = ::Math.rand(0, 99);
 		}
-		return 1 + ((::World.Assets.m.ProfessionEffect.LegendBreadAndGames * 100).tointeger() + this.m.AttemptsRoll) / 100;
+		return (1 + ::Legends.S.randomizeFractionToInt(::World.Assets.m.ProfessionEffect.LegendBreadAndGames, this.m.AttemptsRoll));
 	}
 
 	o.getCurrentAttempts <- @() this.m.Attempts.len();

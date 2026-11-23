@@ -2,7 +2,7 @@
 
 ::Legends.S.isNull <- ::MSU.isNull;
 
-::Legends.S.randomizeFractionToInt <- @(_value)((_value * 100).tointeger() + ::Math.rand(0, 99)) / 100;
+::Legends.S.randomizeFractionToInt <- @(_value, _randomValue = null)((_value * 100).tointeger() + (_randomValue == null ? ::Math.rand(0, 99) : _randomValue)) / 100;
 
 ::Legends.S.getClosestSettlement <- function (_predicate = @(_, _town)true) {
 	local towns = ::World.EntityManager.getSettlements().filter(_predicate);
