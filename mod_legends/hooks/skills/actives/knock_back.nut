@@ -48,6 +48,10 @@
 		this.m.IsAttack = false;
 		local result = this.skill.onVerifyTarget(_originTile, _targetTile);
 		this.m.IsAttack = true;
+		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor())) {
+			return result;
+		}
+
 		local pulledTo = this.skill.getForcedMovementDestinationTile(_originTile, _targetTile);
 		local target = _targetTile.getEntity();
 		if (result && pulledTo == null && (target != null && (!target.getCurrentProperties().IsRooted || target.isAlliedWith(this.getContainer().getActor()))))
