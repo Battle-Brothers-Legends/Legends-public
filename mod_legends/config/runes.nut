@@ -81,13 +81,6 @@
 		local bonusDiff2 = _selectedItem.getRuneBonus2() - _equippedItem.getRuneBonus2();
 
 		if (bonusDiff1 == 0 && bonusDiff2 == 0) {
-			_tooltipList.push({
-				id = 20,
-				type = "hint",
-				icon = "ui/tooltips/money_sw.png",
-				text = "No rune effect difference"
-			});
-
 			return;
 		}
 
