@@ -32,7 +32,7 @@
 
 			if (!(item.getID() in itemsMap)) itemsMap[item.getID()] <- 0;
 
-			itemsMap[item.getID()] = itemsMap[item.getID()] + (_numUses && "Uses" in item.m ? 8 : 1);
+			itemsMap[item.getID()] = itemsMap[item.getID()] + (_numUses && "Uses" in item.m ? item.m.Uses : 1);
 		}
 		return itemsMap;
 	}

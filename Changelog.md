@@ -858,6 +858,7 @@
 - `Smite` of a halberd now has the penalty against adjacent targets its tooltip mentions
 - backing out of the combat dialog right as it opens no longer leaves the world map without its UI
 - fixed units that rise from the ground, like resurrected undead, sometimes staying half buried and impossible to attack until their next turn
+- recipes no longer count every `Cooking Spices` item as 8 uses when checking if they can be crafted, only the uses it has left
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
