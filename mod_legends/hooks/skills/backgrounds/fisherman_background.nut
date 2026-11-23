@@ -54,8 +54,7 @@
 				::Const.Perks.BeastTree
 			],
 			Class = [
-				::Const.Perks.BeastClassTree,
-				// ::Const.Perks.SpearfisherClassTree
+				::Const.Perks.BeastClassTree
 			],
 			Profession = [],
 			Magic = []

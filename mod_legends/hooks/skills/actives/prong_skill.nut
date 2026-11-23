@@ -29,12 +29,11 @@
 		return tooltip;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties )
-	{
-		onAfterUpdate(_properties);
-		if (_properties.IsSpecializedInSpears)
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
@@ -44,7 +43,7 @@
 		{
 			_properties.MeleeSkill += 20;
 
-			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInSpears && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 			{
 				_properties.MeleeSkill -= 15;
 				this.m.HitChanceBonus -= 5;

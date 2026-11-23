@@ -73,7 +73,7 @@
 ::Legends.CampContracts.IntroBandits <- [{
 	ID = "Intro",
 	Title = "Negotiations",
-	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{A man surprises you by sliding into your shoulder. You just about draw your sword when he quickly explains that a man by the name of %employer% has sought your acquaintance. Sheathing your weapon, you tell the stranger to take you to him - if he\'s got business, he should tell you himself. The messenger nods and leads the way to a bandit\'s hideut. | A messenger - a young lad about as tall as a longsword - sprints by you, throwing a scroll into the air as he swings past. You catch it, but by the time you can look for the kid he\'s already gone. Shrugging, you open the scroll and find the name of %employer%. Directions to a bandit\'s hideout tag the bottom of the scroll.}",
+	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{A man surprises you by sliding into your shoulder. You just about draw your sword when he quickly explains that a man by the name of %employer% has sought your acquaintance. Sheathing your weapon, you tell the stranger to take you to %them_employer% - if %they're_employer% got business, %they_employer% should tell you %themselves_employer%. The messenger nods and leads the way to a bandit\'s hideout. | A messenger - a young lad about as tall as a longsword - sprints by you, throwing a scroll into the air as he swings past. You catch it, but by the time you can look for the kid, he\'s already gone. Shrugging, you open the scroll and find the name of %employer%. Directions to a bandit\'s hideout tag the bottom of the scroll.}",
 	Image = "",
 	List = [],
 	ShowEmployer = false,
@@ -91,7 +91,7 @@
 ::Legends.CampContracts.IntroNecromancers <- [{
 	ID = "Intro",
 	Title = "Negotiations",
-	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{Your fire dims without warning. Flames hiss, shrinking to embers. Then you see a %person_employer% made of shadow and silk, gliding closer. %SPEECH_ON%Don\'t be alarmed. I need help… not a heart.%SPEECH_OFF% A ritual has gone wrong. Something is feeding on the dead, but it\'s not %them_employer% doing. %SPEECH_ON%Not everything that reeks of death is mine.%SPEECH_OFF%%They_employer% offers more gold than sense.}",
+	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{The camp's fire dims without a warning. Flames hiss one final time before shrinking to embers. Then, a shadowy silhouette of a %person_employer% draped in silk glides out of the dark. %SPEECH_ON%Don\'t be alarmed. I require your help, not your heart. A ritual has gone wrong and something is feeding on the dead - but it's not my doing.%SPEECH_OFF%%They_employer% pauses, as if to see if you believe him. %SPEECH_ON%Not everything that reeks of death is mine.%SPEECH_OFF%%They_employer% offers a heavy pouch of gold in stead of further explanation.}",
 	Image = "",
 	List = [],
 	ShowEmployer = false,
@@ -109,7 +109,7 @@
 ::Legends.CampContracts.IntroLegion <- [{
 	ID = "Intro",
 	Title = "An Envoy",
-	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{The camp is punctuated with the sharpening of blades and the creaking of bones. Little other noise is made outside of preparation for the next battle, only accented by quiet servitude. With little ceremony, announcement or forewarning, you find an %person_employer% stepping into the camp. Without a word, they hand you a sealed scroll...}",
+	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{The camp is punctuated with the sharpening of blades and the creaking of bones. Little other noise is made outside of preparation for the next battle, only accented by quiet servitude. With little ceremony, announcement or forewarning, you find an %person_employer% stepping into the camp. Without a word, %they_employer% hands you a sealed scroll...}",
 	Image = "",
 	List = [],
 	ShowEmployer = false,

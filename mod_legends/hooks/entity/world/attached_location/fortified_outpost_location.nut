@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Large barracks housing a host of professional soldiers. Contributes military weapons, armor, soldiers and knights to the local town";
+		this.m.Description = "Large barracks housing a host of professional soldiers. Contributes military weapons, armor, soldiers and knights to the local town.";
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;

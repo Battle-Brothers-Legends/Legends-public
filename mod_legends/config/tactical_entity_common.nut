@@ -90,25 +90,16 @@
 	}
 };
 
-::Const.Tactical.Common.getFireDamageMultiplier <- function (_entity) {
-	if (::Legends.S.oneOf(_entity.getType(), ::Const.EntityType.Schrat, ::Const.EntityType.LegendGreenwoodSchrat, ::Const.EntityType.SchratSmall, ::Const.EntityType.LegendGreenwoodSchratSmall))
-		return 3.0;
-
-	if (_entity.getSkills().hasSkill("racial.skeleton"))
-		return 0.33;
-
-	if (_entity.getSkills().hasSkill("items.firearms_resistance") || _entity.getSkills().hasSkill("racial.serpent"))
-		return 0.66;
-	return 1.0;
-}
-
 local originalOnApplyFire = ::Const.Tactical.Common.onApplyFire;
 ::Const.Tactical.Common.onApplyFire = function (_tile, _entity) {
+	if (_entity.getCurrentProperties().IsImmuneToFire)
+		return;
+
 	local __original = _entity.onDamageReceived;
 
 	_entity.onDamageReceived = function ( _attacker, _skill, _hitInfo ) {
 		local damage = ::Math.rand(15, 30);
-		_hitInfo.DamageRegular = damage * ::Const.Tactical.Common.getFireDamageMultiplier(this);
+		_hitInfo.DamageRegular = damage * this.getCurrentProperties().DamageReceivedFireMult;
 		_hitInfo.DamageArmor = damage;
 		return __original(_attacker, _skill, _hitInfo);
 	};
@@ -145,7 +136,7 @@ local originalOnApplyFire = ::Const.Tactical.Common.onApplyFire;
 	::Sound.play(sounds[::Math.rand(0, sounds.len() - 1)], ::Const.Sound.Volume.Actor, _entity.getPos());
 
 	local hitInfo = clone ::Const.Tactical.HitInfo;
-	hitInfo.DamageRegular = damage * ::Const.Tactical.Common.getFireDamageMultiplier(_entity);
+	hitInfo.DamageRegular = damage * _entity.getCurrentProperties().DamageReceivedFireMult;
 	hitInfo.DamageArmor = damage;
 	hitInfo.DamageDirect = 0.1;
 	hitInfo.BodyPart = ::Const.BodyPart.Body;

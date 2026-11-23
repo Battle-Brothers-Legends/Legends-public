@@ -89,12 +89,13 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 				local item = this.Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Named.named_golden_lamellar_armor]
 				]);
-				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s golden lamellar armor";
+				item.m.Upgrades[this.Const.Items.ArmorUpgrades.Plate].m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Golden Lamellar Armor";
 				this.World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, 2.0, "Created a masterwork Armor"));
 			}
@@ -127,11 +128,12 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 				local item = this.Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
-				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s " + item.m.Name;
+				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Failed Masterpiece";
 				this.World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
+					imageOverlayPath = item.getIconOverlay(),
 					text = "You gain " + item.getName()
 				});
 			}
@@ -166,7 +168,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 
 				foreach( i, item in stash )
 				{
-					if (item != null && item.getID() == "misc.copper_ingots")
+					if (item != null && item.getID() == "misc.legend_iron_ingots")
 					{
 						stash[i] = null;
 						this.List.push({
@@ -186,12 +188,13 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 				local item = this.Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Named.named_golden_lamellar_armor]
 				]);
-				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s golden lamellar armor";
+				item.m.Upgrades[this.Const.Items.ArmorUpgrades.Plate].m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Golden Lamellar Armor";
 				this.World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, 2.0, "Created a masterwork Armor"));
 			}
@@ -226,7 +229,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 
 				foreach( i, item in stash )
 				{
-					if (item != null && item.getID() == "misc.copper_ingots")
+					if (item != null && item.getID() == "misc.legend_iron_ingots")
 					{
 						stash[i] = null;
 						this.List.push({
@@ -246,11 +249,12 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 				local item = this.Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
-				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s " + item.m.Name;
+				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Failed Masterpiece";
 				this.World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
+					imageOverlayPath = item.getIconOverlay(),
 					text = "You gain " + item.getName()
 				});
 			}
@@ -316,7 +320,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 
 		foreach( item in stash )
 		{
-			if (item != null && item.getID() == "misc.copper_ingots")
+			if (item != null && item.getID() == "misc.legend_iron_ingots")
 			{
 				this.m.numIngots = ++this.m.numIngots;
 			}

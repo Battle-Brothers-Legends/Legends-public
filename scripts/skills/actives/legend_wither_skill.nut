@@ -7,11 +7,12 @@ this.legend_wither_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/wither56_skill.png";
 		this.m.IconDisabled = "skills/wither56_skill_bw.png";
 		this.m.Overlay = "wither";
-		this.m.SoundOnHit = [
-			"sounds/enemies/necromancer_01.wav",
-			"sounds/enemies/necromancer_02.wav",
-			"sounds/enemies/necromancer_03.wav"
+		this.m.SoundOnUse = [
+			"sounds/enemies/dlc6/wither_01.wav",
+			"sounds/enemies/dlc6/wither_02.wav",
+			"sounds/enemies/dlc6/wither_03.wav"
 		];
+		this.m.SoundVolume = 1.2;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;

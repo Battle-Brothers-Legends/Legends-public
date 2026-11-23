@@ -3,12 +3,19 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		offHandSkill = null,
 		HandToHand = null,
 		ApplicableItems = [
-			"shield.legend_named_parrying_dagger",
-			"shield.legend_parrying_dagger",
 			"shield.buckler",
+			"shield.named_buckler",
 			"shield.legend_mummy_shield"
 		],
 	},
+
+	function getHandToHandSkill(){
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack);
+    	if (skill != null) return skill;
+    	skill = ::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack);
+    	if (skill != null) return skill;
+    	return ::Legends.Actives.get(this, ::Legends.Active.HandToHand);
+	}
 
 	// takes a weakTableRef
 	function setOffhandSkill(_a) {
@@ -60,7 +67,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		local ohSkill = ::MSU.isNull(this.m.offHandSkill) ? this.m.HandToHand : this.m.offHandSkill;
+		local ohSkill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
 		local blockedOffhand = items.hasBlockedSlot(this.Const.ItemSlot.Offhand);
 		if (ohSkill != null && !blockedOffhand) {
 			if (::Legends.Weapons.isDualWielding(actor)) {
@@ -135,29 +142,41 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_targetEntity != null
-			&& (!items.hasBlockedSlot(this.Const.ItemSlot.Offhand) || off == null || hasNet || !::MSU.isNull(this.m.offHandSkill)))
-		{
+		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) || hasNet || !::MSU.isNull(this.m.offHandSkill)))	{
 			if (!_forFree) {
-				if (_targetTile == null || actor.getTile() == null) {
+				//if (_targetTile == null || actor.getTile() == null) {
 					// Is this necessary?
+				//	return;
+				//}
+				local skillToUse = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
+				if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
 					return;
 				}
 
-				// i need to somehow do this more dynamically
-				this.Const.SkillCounter++;
+				// i need to somehow do this more dynamically (think this is it)
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
+					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
+						return;
+					}
+					::Const.SkillCounter++;
+					_skill.executeFollowUpAttack({
+						TargetTile = _targetEntity.getTile(),
+						Skill = skillToUse
+					})
+				}.bindenv(this), this);
+				/*this.Const.SkillCounter++;
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,
-					Skill = !::MSU.isNull(this.m.offHandSkill)
-						? this.m.offHandSkill: this.m.HandToHand
-					});
+					Skill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand
+					});*/
 			}
 		}
 	}
 
 	function executeFollowUpAttack(_info) {
+		local actor = this.getContainer().getActor();
 		local entity = _info.TargetTile.getEntity();
-		if (::Legends.S.skillEntityAliveCheck(entity)) {
+		if (::Legends.S.isEntityNullOrDead(entity) || ::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
 		if (::MSU.isNull(_info.Skill)) {
@@ -185,13 +204,6 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAdded() {
-		if (::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack))
-			this.m.HandToHand = ::MSU.asWeakTableRef(::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack));
-		else if (::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack))
-			this.m.HandToHand = ::MSU.asWeakTableRef(::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack));
-		else
-			this.m.HandToHand = ::MSU.asWeakTableRef(::Legends.Actives.get(this, ::Legends.Active.HandToHand));
-
 		local off = this.getContainer().getActor().getOffhandItem();
 		if (off != null) {
 			this.onEquip(off);

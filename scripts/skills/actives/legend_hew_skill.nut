@@ -16,18 +16,18 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHew);
 		this.m.Description = "An overhead strike that bears the full force on the targets entire body.";
 		this.m.KilledString = "Hewed";
-		this.m.Icon = "skills/active_20.png";
-		this.m.IconDisabled = "skills/active_20_sw.png";
-		this.m.Overlay = "active_20";
+		this.m.Icon = "skills/active_210.png";
+		this.m.IconDisabled = "skills/active_210_sw.png";
+		this.m.Overlay = "active_210";
 		this.m.SoundOnUse = [
 			"sounds/combat/overhead_strike_01.wav",
 			"sounds/combat/overhead_strike_02.wav",
 			"sounds/combat/overhead_strike_03.wav"
 		];
 		this.m.SoundOnHit = [
-			"sounds/combat/overhead_strike_hit_01.wav",
-			"sounds/combat/overhead_strike_hit_02.wav",
-			"sounds/combat/overhead_strike_hit_03.wav"
+			"sounds/combat/execute_hit_01.wav",
+			"sounds/combat/execute_hit_02.wav",
+			"sounds/combat/execute_hit_03.wav"
 		];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
@@ -42,7 +42,7 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.35;
 		this.m.ActionPointCost = 6;
-		this.m.FatigueCost = 20;
+		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.ChanceDecapitate = 99;
@@ -119,7 +119,7 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 		if (this.m.ApplyHead)
 			_properties.HitChance[this.Const.BodyPart.Head] = 100;
 
-		_properties.DamageTotalMult *= 0.5;
+		_properties.DamageTotalMult *= 0.65;
 		_properties.DamageTooltipMaxMult *= 2.0;
 	}
 });

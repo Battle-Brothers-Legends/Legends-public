@@ -9,19 +9,11 @@ this.herbal_happy_powder_blueprint <- this.inherit("scripts/crafting/blueprint",
 		this.m.Cost = 30;
 		local ingredients = [
 			{
-				Script = "scripts/items/misc/legend_ancient_scroll_item",
-				Num = 1
-			},
-			{
-				Script = "scripts/items/misc/vampire_dust_item",
-				Num = 1
-			},
-			{
 				Script = "scripts/items/misc/mysterious_herbs_item",
 				Num = 1
 			},
 			{
-				Script = "scripts/items/misc/snake_oil_item",
+				Script = "scripts/items/misc/legend_mistletoe_item",
 				Num = 1
 			}
 		];

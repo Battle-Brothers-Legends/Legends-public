@@ -46,6 +46,7 @@ this.legend_named_zweihander <- this.inherit("scripts/items/weapons/named/named_
 		::Legends.Actives.grant(this, ::Legends.Active.Split);
 		::Legends.Actives.grant(this, ::Legends.Active.Swing);
 		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.m.ActionPointCost = 6;
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 		}.bindenv(this));
 	}

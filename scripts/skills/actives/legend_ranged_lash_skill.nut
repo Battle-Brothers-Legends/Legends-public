@@ -1,7 +1,6 @@
 this.legend_ranged_lash_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRangedLash);
 		this.m.Description = "Aim for an opponent\'s head. Somewhat unpredictable in damage, but able to strike over or around shield cover with a bit of luck.";
 		this.m.Icon = "skills/active_91.png";
@@ -40,12 +39,10 @@ this.legend_ranged_lash_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceSmash = 50;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultTooltip();
 
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms)
-		{
+		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -57,25 +54,22 @@ this.legend_ranged_lash_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties )
-	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInFlails ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
-		this.m.IsShieldRelevant = !_properties.IsSpecializedInFlails;
+	function onAfterUpdate( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.IsShieldRelevant = false;
+		}
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse( _user, _targetTile ) {
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectChop);
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
-			{
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				this.m.HitChanceBonus += -15;
 				_properties.MeleeSkill += -15;
 			}

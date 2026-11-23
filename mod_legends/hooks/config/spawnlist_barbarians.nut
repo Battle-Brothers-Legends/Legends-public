@@ -53,7 +53,7 @@
 				},
 				{
 					MinR = 500,
-					Type = this.Const.World.Spawn.Troops.LegendBarbarianMarauder,
+					Type = this.Const.World.Spawn.Troops.LegendBarbarianBloodletter,
 					Cost = 35
 				}
 			]

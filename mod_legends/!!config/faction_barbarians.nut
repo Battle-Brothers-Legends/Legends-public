@@ -18,7 +18,7 @@
 	FatigueRecoveryRate = 25
 };
 
-::Const.Tactical.Actor.LegendBarbarianMarauder <- {
+::Const.Tactical.Actor.LegendBarbarianBloodletter <- {
 	XP = 350,
 	ActionPoints = 9,
 	Hitpoints = 110,

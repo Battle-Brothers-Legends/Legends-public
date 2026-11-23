@@ -60,9 +60,7 @@
 				::Const.Perks.FitTree
 			],
 			Enemy = [],
-			Class = [
-				// ::Const.Perks.StaffClassTree
-			],
+			Class = [],
 			Profession = [],
 			Magic = []
 		}

@@ -16,7 +16,7 @@
 			text = "Has a range of [color=%positive%]2" + "[/color] tiles"
 		});
 
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails)
+		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
 		{
 			ret.push({
 				id = 6,
@@ -35,18 +35,18 @@
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties )
-	{
-		onAfterUpdate(_properties);
-		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 5 : 6;
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
-			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 			{
 				_properties.MeleeSkill -= 15;
 				this.m.HitChanceBonus -= 15;

@@ -115,7 +115,8 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 			],
 			Class = [],
 			Profession = [
-				::Const.Perks.BarterProfessionTree
+				::Const.Perks.BarterProfessionTree,
+				::Const.Perks.CaravaneerProfessionTree
 			],
 			Magic = [
 				::Const.Perks.PhilosophyMagicTree

@@ -1,7 +1,7 @@
 this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWebAtStart);
 		this.m.Description = "This effect is meant to be used under the hood so that entities can start combat webbed.";
 		this.m.Icon = "skills/status_effect_80.png";
@@ -13,8 +13,7 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -29,8 +28,7 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 		]
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		local actor = this.getContainer().getActor();
 		::Legends.Effects.grant(actor, ::Legends.Effect.Web);
 		local breakFree = this.new("scripts/skills/actives/break_free_skill");
@@ -44,16 +42,24 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/break_free_net_03.wav"
 		];
 		actor.getSkills().add(breakFree);
-		local effect = this.Tactical.spawnSpriteEffect("bust_web2", this.createColor("#ffffff"), actor.getTile(), 0, 4, 1.0, actor.getSprite("status_rooted").Scale, 100, 100, 0);
-		local flip = !actor.isAlliedWithPlayer();
-		effect.setHorizontalFlipping(flip);
-		local rooted = actor.getSprite("status_rooted");
-		rooted.setBrush("bust_web2");
-		rooted.Visible = true;
-		local rooted_back = actor.getSprite("status_rooted_back");
-		rooted_back.setBrush("bust_web2_back");
-		rooted_back.Visible = true;
+
+		if (actor.isPlacedOnMap()) {
+			if (actor.hasSprite("status_rooted")) {
+				local rooted = actor.getSprite("status_rooted");
+				local effect = this.Tactical.spawnSpriteEffect("bust_web2", this.createColor("#ffffff"), actor.getTile(), 0, 4, 1.0, rooted.Scale, 100, 100, 0);
+				local flip = !actor.isAlliedWithPlayer();
+				effect.setHorizontalFlipping(flip);
+				rooted.setBrush("bust_web2");
+				rooted.Visible = true;
+			}
+
+			if (actor.hasSprite("status_rooted_back")) {
+				local rooted_back = actor.getSprite("status_rooted_back");
+				rooted_back.setBrush("bust_web2_back");
+				rooted_back.Visible = true;
+			}
+		}
+
 		actor.setDirty(true);
 	}
 });
-

@@ -3,13 +3,15 @@ this.legend_perfect_focus_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPerfectFocus);
-		this.m.Description = "This character has achieved perfect focus, as if time itself has stood still. They can use all skills at half their normal Action Point cost this turn, but at 1.75 times the Fatigue cost.";
+		this.m.Description = "This character has achieved perfect focus, as if time itself has stood still. Each stack grants an additional 3 Action Points during this round.";
 		this.m.Icon = "ui/perks/perfectfocus_circle.png";
-		this.m.IconMini = "perk_37_mini";
-		this.m.Overlay = "perk_37";
+		this.m.IconMini = "mini_perfectfocus_circle";
+		this.m.Overlay = "status_perfectfocus_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
+		this.m.IsStacking = true;
+		this.m.IsHidden = true;
 	}
 
 	function getIconDisabled()
@@ -17,12 +19,16 @@ this.legend_perfect_focus_effect <- this.inherit("scripts/skills/skill", {
 		return "FUCKOFF";
 	}
 
+	function onAdded() {
+		local actor = this.getContainer().getActor();
+		actor.setActionPoints(actor.getActionPoints() + 3);
+	}
+
 	function onUpdate( _properties )
 	{
 		if (!this.isGarbage())
 		{
-			_properties.IsSkillUseHalfCost = true;
-			_properties.FatigueEffectMult *= 1.75;
+			_properties.ActionPoints += 3;
 		}
 	}
 

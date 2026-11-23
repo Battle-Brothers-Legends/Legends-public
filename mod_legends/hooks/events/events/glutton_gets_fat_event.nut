@@ -10,16 +10,14 @@
 	}
 
 	o.onUpdateScore = function () {
-		local brothers = this.World.getPlayerRoster().getAll();
-
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
-		if (this.World.Assets.getFood() < 100)
+		if (::World.Assets.getFood() < 100)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
-
+		local brothers = ::World.getPlayerRoster().getAll();
+		
 		if (brothers.len() < 2)
 			return;
 

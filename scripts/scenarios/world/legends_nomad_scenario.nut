@@ -197,40 +197,47 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.updateFactionActionsDeck();
 	}
 
-	function onHiredByScenario( bro )
-	{								//also contains nomad_ranged
-		if (bro.getBackground().getID() == "background.nomad" || bro.getBackground().getID() == "background.legend_muladi")
-		{
-			bro.improveMood(1.5, "I walk with those on the path of the Interloper");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNomad);
-			bro.getSprite("socket").setBrush("bust_base_nomads");
-			::Legends.Perks.grant(bro, ::Legends.Perk.LegendWindReader);
+	function onHiredByScenario( _bro )
+	{
+		if (_bro.isStabled()) {
+			return;
 		}
-		else if (bro.getBackground().getID() == "background.bladedancer")
+									//also contains nomad_ranged
+		if (_bro.getBackground().getID() == "background.nomad" || _bro.getBackground().getID() == "background.legend_muladi")
 		{
-			bro.improveMood(1.5, "I walk with those on the path of the Interloper");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNomad);
-			bro.getSprite("socket").setBrush("bust_base_nomads");
-			::Legends.Perks.grant(bro, ::Legends.Perk.Dodge);
+			_bro.improveMood(1.5, "I walk with those on the path of the Interloper");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendNomad);
+			_bro.getSprite("socket").setBrush("bust_base_nomads");
+			::Legends.Perks.grant(_bro, ::Legends.Perk.LegendWindReader);
+		}
+		else if (_bro.getBackground().getID() == "background.bladedancer")
+		{
+			_bro.improveMood(1.5, "I walk with those on the path of the Interloper");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendNomad);
+			_bro.getSprite("socket").setBrush("bust_base_nomads");
+			::Legends.Perks.grant(_bro, ::Legends.Perk.Dodge);
 		}
 		else
 		{
-			bro.worsenMood(2.0, "Nomadic life isn\'t for me...");
+			_bro.worsenMood(2.0, "Nomadic life isn\'t for me...");
 		}
 	}
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
-		if (bro.getBackground().getID() == "background.nomad" || bro.getBackground().getID() == "background.legend_muladi" || bro.getBackground().getID() == "background.bladedancer")
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (_bro.getBackground().getID() == "background.nomad" || _bro.getBackground().getID() == "background.legend_muladi" || _bro.getBackground().getID() == "background.bladedancer")
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.00);
-			bro.getBaseProperties().DailyWageMult *= 1.00;
-			bro.getSkills().update();
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.00);
+			_bro.getBaseProperties().DailyWageMult *= 1.00;
+			_bro.getSkills().update();
 		}
 	}
 

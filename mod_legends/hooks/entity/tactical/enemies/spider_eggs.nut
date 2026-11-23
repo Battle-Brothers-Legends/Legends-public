@@ -22,24 +22,10 @@
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-
-	}
-
-	o.assignRandomEquipment <- function ()
-	{
-		local armor = [
-			[1, ::Legends.Armor.Ancient.ancient_priest_attire]
-		];
-		local item = this.Const.World.Common.pickArmor(armor);
-		this.m.Items.equip(item);
-
-		local item = this.Const.World.Common.pickHelmet([
-			[99, ::Legends.Helmet.Ancient.ancient_priest_diadem]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
+		local b = this.m.BaseProperties;	
+		b.Armor[this.Const.BodyPart.Body] = 40;
+		b.ArmorMax[this.Const.BodyPart.Body] = 40;
+        this.m.CurrentProperties = clone b;
 	}
 
 	o.onSpawn = function ( _tile )

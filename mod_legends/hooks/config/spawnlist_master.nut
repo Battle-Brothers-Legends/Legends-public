@@ -21,6 +21,10 @@
 ::Const.World.Spawn.Troops.SkeletonHeavyBodyguard.TitleList <- null;
 ::Const.World.Spawn.Troops.SkeletonHeavyBodyguard.Variant = 1;
 
+::Const.World.Spawn.Troops.GreaterFleshGolem.NameList <- this.Const.Strings.FleshGolemNames;
+::Const.World.Spawn.Troops.GreaterFleshGolem.TitleList <- null;
+::Const.World.Spawn.Troops.GreaterFleshGolem.Variant = 1;
+
 ::Const.World.Spawn.Troops.ZombieBetrayer.NameList <- this.Const.Strings.KnightNames;
 ::Const.World.Spawn.Troops.ZombieBetrayer.TitleList <- this.Const.Strings.FallenHeroTitles;
 ::Const.World.Spawn.Troops.ZombieBetrayer.Strength = 50;

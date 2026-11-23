@@ -180,12 +180,6 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "",
-			text = ""
-		});
 //		this.logInfo(this.getContainer().getActor().getBackground().getNameOnly());
 
 		if (this.getContainer().getActor().getBackground().getNameOnly() == "Donkey")
@@ -202,7 +196,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 			tooltip.push({
 				id = 6,
 				type = "text",
-				icon = "",
+				icon = "ui/icons/leveled_up.png",
 				text = this.isMaxReached() ? "Training results:" : "Training results so far:"
 			});
 
@@ -297,14 +291,14 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				tooltip.push({
 					id = 6,
 					type = "text",
-					icon = "ui/icons/special.png",
+					icon = "ui/icons/unlocked_small.png",
 					text = "[color=%positive%]" + 1 + "[/color] Perk point",
 					divider = "top"
 				});
 				tooltip.push({
 					id = 6,
 					type = "text",
-					icon = "ui/icons/special.png",
+					icon = "ui/icons/unlocked_small.png",
 					text = "[color=%positive%]" + ::Legends.Traits.get(this, this.m.TraitGained).getName() + "[/color] trait"
 				});
 			}
@@ -324,7 +318,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				tooltip.push({
 					id = 6,
 					type = "text",
-					icon = "ui/icons/special.png",
+					icon = "ui/icons/cancel.png",
 					text = "Cannot train in settlements anymore."
 				});
 			} else {
@@ -339,7 +333,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 			tooltip.push({
 				id = 6,
 				type = "text",
-				icon = "ui/icons/special.png",
+				icon = "ui/icons/warning.png",
 				text = "Can train in settlements again after [color=%positive%]" + this.m.SettlementTrainingDelay + "[/color] battles."
 			});
 		}
@@ -356,7 +350,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				tooltip.push({
 					id = 6,
 					type = "text",
-					icon = "ui/icons/special.png",
+					icon = "ui/icons/warning.png",
 					text = "Can change trained trait in settlements again after [color=%positive%]" + this.m.TraitRerollDelay + "[/color] battles."
 				});
 			}
@@ -372,10 +366,12 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 
 	function onCombatFinished()
 	{
+		if (this.Tactical.isActive()) {
 		if (this.m.SettlementTrainingDelay > 0)
 			this.m.SettlementTrainingDelay -= 1;
 		if (this.m.TraitRerollDelay > 0)
 			this.m.TraitRerollDelay -= 1;
+		}
 		this.skill.onCombatFinished();
 	}
 

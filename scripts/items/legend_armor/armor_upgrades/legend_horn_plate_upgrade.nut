@@ -11,7 +11,7 @@ this.legend_horn_plate_upgrade <- this.inherit("scripts/items/legend_armor/legen
 		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.Icon = "armor_upgrades/upgrade_22.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "armor_upgrades/inventory_upgrade_22.png";
 		this.m.OverlayIcon = "armor_upgrades/icon_upgrade_22.png";
 		this.m.OverlayIconLarge = "armor_upgrades/inventory_upgrade_22.png";
 		this.m.SpriteBack = "upgrade_22_back";

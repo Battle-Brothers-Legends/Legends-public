@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "These peat pits produce a valuable fuel source once the peat has been dug up and dried. Contributes peat bricks, daytalers, peddlers and farming tools to the local town";
+		this.m.Description = "These peat pits produce a valuable fuel source once the peat has been dug up and dried. Contributes peat bricks, daytalers, peddlers and farming tools to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

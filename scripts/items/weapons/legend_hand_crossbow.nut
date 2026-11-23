@@ -17,7 +17,7 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_hand_crossbow";
 		this.m.Name = "Hand Crossbow";
-		this.m.Description = "A miniature pull-lever crossbow that can propel bolts over medium distances attached to the wrist. The small size reduces damage, but doesn't impede the hands so a weapon can melee weapon can be held in both hands and it requires almost a full turn to reload.";
+		this.m.Description = "A miniature pull-lever crossbow that can propel bolts over medium distances attached to the wrist. The small size reduces power, but doesn't impede the hands so a melee weapon can be held in both hands. Requires almost a full turn to reload.";
 		this.m.IconLarge = "weapons/ranged/legend_hand_crossbow_01.png";
 		this.m.Icon = "weapons/ranged/legend_hand_crossbow_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Crossbow;

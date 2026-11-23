@@ -1,0 +1,633 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			14.02.2017
+ *  @Description:	Tactical Screen: TurnSequenceBar Module CSS
+ */
+
+/*
+	TurnSequenceBar: Module
+*/
+.tactical-screen .turnsequencebar-module {
+	/*background-color: #000;*/
+
+	left: 0;
+	bottom: 2.6rem;
+	width: 100%;
+	position: absolute;
+	/*pointer-events: none;*/
+}
+
+/* 
+	Enable Border Box Model 
+*/
+/*
+.turnsequencebar-module *
+{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+*/
+
+.turnsequencebar-module .l-center-container {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100.0rem;
+	position: relative;
+	margin: auto;
+}
+
+.turnsequencebar-module .center-container {
+	width: 100%;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .center-container .left-container {
+	width: 40.0rem;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .center-container .right-container {
+	right: 0;
+	bottom: 0;
+	width: 59.0rem;
+	position: absolute;
+}
+
+
+/* 
+	Status Effects
+*/
+.turnsequencebar-module .left-container .status-effects-container {
+	max-width: 40.0rem;
+	margin-bottom: 0.1rem;
+	float: left;
+	clear: both;
+}
+
+.turnsequencebar-module .status-effects-container .l-status-effect {
+	width: 3.9rem;
+	height: 4.0rem;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .l-status-effect:first-child {
+	margin-left: 0.2rem;
+}
+
+.turnsequencebar-module .l-status-effect:last-child {
+	margin-right: 0.2rem;
+}
+
+.turnsequencebar-module .status-effects-container .status-effect {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 3.6rem;
+	height: 3.6rem;
+	position: absolute;
+	margin: auto;
+}
+
+.turnsequencebar-module .status-effect img {
+	width: 100%;
+	height: 100%;
+}
+
+
+/* 
+	Stats Panel
+*/
+.turnsequencebar-module .left-container .stats-panel {
+	/*width : 40.0rem;
+	height: 14.0rem;*/
+	width: 41.0rem;
+	height: 15.1rem;
+	float: left;
+	clear: left;
+
+	background-image: url("coui://gfx/ui/skin/tactical_character_background.png");
+	background-size: 41.0rem 15.1rem;
+}
+
+.turnsequencebar-module .stats-panel .header {
+	padding-top: 0.5rem;
+	padding-left: 0.6rem;
+	padding-right: 0.6rem;
+	width: 100%;
+	height: 4.1rem;
+	float: left;
+}
+
+.turnsequencebar-module .header .l-elevation-image {
+	width: 3.0rem;
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .header .elevation-image {
+	top: 0;
+	left: 0.2rem;
+	right: 0;
+	bottom: 0;
+	width: 1.2rem;
+	height: 2.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.turnsequencebar-module .elevation-image img {
+	width: 100%;
+	height: 100%;
+}
+
+.turnsequencebar-module .header .l-character-name {
+	width: 32.0rem;
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .header .character-name {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2.4rem;
+	position: absolute;
+	margin: auto;
+
+	line-height: 2.4rem;
+}
+
+.turnsequencebar-module .header .l-inventory-button {
+	width: 4.5rem;
+	height: 100%;
+	position: relative;
+	float: left;
+	top: 0.4rem;
+	left: 0;
+	right: 0.3rem;
+	bottom: 0;
+}
+
+.turnsequencebar-module .header .button {
+	width: 4.5rem;
+	height: 4.1rem;
+	position: absolute;
+	margin: auto;
+	right: 0.3rem;
+}
+
+.turnsequencebar-module .header .button .l-image {
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 2.2rem;
+	height: 2.2rem;
+	margin: auto;
+	position: absolute;
+}
+
+.turnsequencebar-module .header .button img {
+	width: 100%;
+	height: 100%;
+}
+
+.turnsequencebar-module .stats-panel .stats-column {
+	width: 19.9rem;
+	height: 11.0rem;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .stats-column>.l-stats-column {
+	top: -1.8rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 20.0rem;
+	height: 9.6rem;
+	position: absolute;
+	margin: auto;
+}
+
+.turnsequencebar-module .stats-panel .stats-row {
+	width: 100%;
+	height: 3.2rem;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .stats-row>.l-stats-row {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 96%;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.turnsequencebar-module .stats-row .l-stats-row-image-column {
+	width: 16%;
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .stats-row .stats-row-image {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
+	margin: auto;
+}
+
+.turnsequencebar-module .stats-row-image img {
+	width: 100%;
+	height: 100%;
+}
+
+.turnsequencebar-module .stats-row .l-stats-row-progressbar-column {
+	width: 84%;
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+.turnsequencebar-module .stats-row .stats-progressbar-container {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*width   : 16.0rem;*/
+	/*width   : 94%;*/
+	width: 15.5rem;
+	height: 2.6rem;
+	position: absolute;
+	margin: auto;
+
+	overflow: hidden;
+}
+
+.turnsequencebar-module .stats-progressbar-container .stats-progressbar,
+.turnsequencebar-module .stats-progressbar-container .stats-progressbar-preview {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+.turnsequencebar-module .stats-progressbar-container .stats-progressbar-preview {
+	z-index: 2;
+}
+
+.turnsequencebar-module .stats-progressbar-container .stats-progressbar-label {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 3;
+
+	text-align: center;
+	line-height: 2.2rem;
+}
+
+
+/* 
+	Right Sub-Container
+*/
+.turnsequencebar-module .right-container .top-container {
+	/* ORGINAL - Without Workaround
+	width   : 100%;
+	position: relative;
+	float   : left;
+	clear   : both;
+	z-index : 2;
+	*/
+
+	left: 0;
+	bottom: 8.3rem;
+	width: 100%;
+	position: absolute;
+	z-index: 3;
+}
+
+.turnsequencebar-module .right-container .bottom-container {
+	/* ORGINAL - Without Workaround
+	width   : 100%;
+	height  : 8.0rem;
+	position: relative;
+	float   : left;
+	clear   : both;
+	z-index : 1;
+	*/
+
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 8.6rem;
+	position: absolute;
+	z-index: 2;
+}
+
+/* Workaround to get box-shadow working */
+.turnsequencebar-module .right-container .bottom-shadow-container {
+	left: 0;
+	bottom: -0.2rem;
+	width: 100%;
+	height: 8.6rem;
+	position: absolute;
+	z-index: 1;
+}
+
+/* 
+	Skills
+*/
+.turnsequencebar-module .top-container .skills-container {
+	max-width: 36.0rem;
+	margin-left: 14.0rem;
+	float: left;
+	clear: both;
+}
+
+.turnsequencebar-module .skills-container .l-skill {
+	width: 4.2rem;
+	height: 4.7rem;
+	position: absolute;
+	float: left;
+
+	background-image: url("coui://gfx/ui/skin/tactical_skill_bg.png");
+	background-size: 4.2rem 4.7rem;
+	background-repeat: no-repeat;
+}
+
+/*.turnsequencebar-module .l-skill:first-child
+{
+	margin-left: 0.6rem;
+}
+
+.turnsequencebar-module .l-skill:last-child
+{
+	margin-right: 0.8rem;
+}*/
+
+.turnsequencebar-module .skills-container .skill {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 3.8rem;
+	height: 3.8rem;
+	position: absolute;
+	margin: auto;
+}
+
+/*.turnsequencebar-module .skill:hover,*/
+.turnsequencebar-module .skill.is-selected {
+	/*box-shadow: 0px 0px 4px 1px #ecae21;*/
+	background-image: url("coui://gfx/ui/skin/golden_gradient.png");
+	background-size: 5.6rem 5.6rem;
+	background-repeat: no-repeat;
+}
+
+.turnsequencebar-module .skill .image-layer {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+.turnsequencebar-module .skill .image-layer img {
+	width: 100%;
+	height: 100%;
+}
+
+/*.turnsequencebar-module .skill .image-layer .entity-image
+{
+	z-index : 1;
+}
+
+.turnsequencebar-module .skill .image-layer .placeholder-image
+{
+	z-index : 0;
+}*/
+
+.turnsequencebar-module .skill .text-layer {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 2;
+}
+
+.turnsequencebar-module .text-layer .numeration-label {
+	left: 0.4rem;
+	bottom: 0.2rem;
+	width: 2.0rem;
+	height: 1.4rem;
+	position: absolute;
+}
+
+.turnsequencebar-module .skill .overlay-layer {
+	top: -0.2rem;
+	/* NOTE: Remove as the images is not equal in size */
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 3;
+}
+
+.turnsequencebar-module .skill .overlay-layer img {
+	width: 100%;
+	height: 100%;
+}
+
+
+/* 
+	Buttons
+*/
+.turnsequencebar-module .top-container .buttons-container {
+	right: 0.2rem;
+	bottom: 0;
+	width: 12.6rem;
+	height: 4.7rem;
+	position: absolute;
+}
+
+.turnsequencebar-module .buttons-container .l-button-container {
+	width: 4.2rem;
+	height: 4.7rem;
+	position: relative;
+	float: right;
+
+	background-image: url("coui://gfx/ui/skin/tactical_skill_bg.png");
+	background-size: 4.2rem 4.7rem;
+	background-repeat: no-repeat;
+}
+
+.turnsequencebar-module .buttons-container .l-button {
+	width: 4.5rem;
+	height: 4.1rem;
+	float: right;
+	margin-top: 0.5rem;
+	left: -0.1rem;
+	position: absolute;
+}
+
+
+/* 
+	Turn Sequence Bar 
+*/
+.turnsequencebar-module .bottom-container .entity-slider-clipping-container {
+	width: 100%;
+	/*19.5rem;*/
+	/* 100% */
+	height: 15.0rem;
+	position: relative;
+	margin-top: -4.0rem;
+	z-index: 1;
+
+	overflow: visible;
+	/* hidden */
+}
+
+.turnsequencebar-module .bottom-container .entity-slider-container {
+	width: 300%;
+	height: 13.0rem;
+	position: relative;
+	margin-left: 1.0rem;
+	z-index: 1;
+	top: 0.4rem;
+
+	overflow: visible !important;
+}
+
+.turnsequencebar-module .entity-slider-container .entity-slider {
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+.turnsequencebar-module .entity-slider-container .l-entity {
+	width: 7.8rem;
+	height: 100%;
+	position: relative;
+	float: left;
+	z-index: 1;
+	/*border   : 1px red solid;*/
+
+	overflow: visible !important;
+	/* shut jQuery.animate() the fucking hell up... */
+
+	/*-webkit-transform: translateZ(0);*/
+}
+
+.turnsequencebar-module .entity-slider-container .entity {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 2;
+
+	overflow: visible !important;
+	/* shut jQuery.animate() the fucking hell up... */
+}
+
+.turnsequencebar-module .entity .image-layer {
+	left: 0;
+	right: 0;
+	top: 2.8rem;
+	bottom: 0;
+	width: 7.4rem;
+	height: 100%;
+	margin: auto;
+	position: absolute;
+	z-index: 3;
+
+	/*
+    width   : 100%;
+    height  : 100%;
+    position: relative;
+    margin-top: 1.6rem;
+    z-index : 3;
+*/
+
+	overflow: visible !important;
+	/* shut jQuery.animate() the fucking hell up... */
+}
+
+.turnsequencebar-module .entity .image-layer img {
+	position: absolute;
+	/*width : 100%;*/
+
+	/*
+    -moz-transform: scale(0.7);
+    -moz-transform-origin: left;
+    -o-transform: scale(0.7);
+    -o-transform-origin: left;
+    -webkit-transform: scale(0.7);
+    -webkit-transform-origin: left;
+*/
+
+	/*
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+
+    display: block;
+    margin: 0 auto;
+    */
+}
+
+.turnsequencebar-module .entity .image-layer img.is-scaling {
+	/*
+    width : 100%;
+
+    -moz-transform: scale(1.0);
+    -moz-transform-origin: left;
+    -o-transform: scale(1.0);
+    -o-transform-origin: left;
+    -webkit-transform: scale(1.0);
+    -webkit-transform-origin: left;
+    */
+}
+
+.turnsequencebar-module .entity .selected-layer {
+	left: 0;
+	right: 0;
+	bottom: -1.0rem;
+	width: 3.5rem;
+	height: 3.5rem;
+	/*
+	width   : 3.4rem;
+	height  : 2.0rem;
+	*/
+	margin: auto;
+	position: absolute;
+	z-index: 4;
+}
+
+.turnsequencebar-module .entity .selected-layer img {
+	width: 100%;
+	height: 100%;
+}

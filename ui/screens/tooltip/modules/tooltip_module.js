@@ -20,6 +20,7 @@ var TooltipModule = function()
 	// container
 	this.mParent    = null;
 	this.mContainer = null;
+	this.mScrollWrapper = null;
 	
 	// current element data
 	this.mCurrentData    = null;
@@ -96,9 +97,38 @@ TooltipModule.prototype.onDisconnection = function ()
 };
 
 
-TooltipModule.prototype.createDIV = function ()
-{
+TooltipModule.prototype.createDIV = function () {
 	this.mContainer = $('<div class="tooltip-module ui-control-tooltip-module display-none"></div>');
+
+	var self = this;
+	window.addEventListener('mousewheel', function (event) {
+		if (!self.mIsVisible || !self.mScrollWrapper)
+			return;
+		var sw = self.mScrollWrapper[0];
+    	if (sw.scrollHeight <= sw.clientHeight)
+        	return;
+		var delta = event.wheelDelta || -event.detail;
+		sw.scrollTop += (delta > 0 ? -40 : 40);
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		return false;
+	}, true);
+
+	window.addEventListener('keydown', function (event) {
+		if (!self.mIsVisible || !self.mScrollWrapper)
+			return;
+		if (!event.ctrlKey)
+			return;
+		var sw = self.mScrollWrapper[0];
+		if (event.keyCode === 38) {
+			sw.scrollTop -= 10;
+			event.preventDefault();
+		}
+		else if (event.keyCode === 40) {
+			sw.scrollTop += 10;
+			event.preventDefault();
+		}
+	}, true);
 };
 
 
@@ -120,7 +150,7 @@ TooltipModule.prototype.register = function (_parentDiv)
 	{
 		_parentDiv.append(this.mContainer);
 		this.mParent = _parentDiv;
-		
+	
 		// Note: This is a workaround to hide the Tooltip if the Cursor has been moven onto the tooltip...
 		this.mContainer.on('mouseenter' + TooltipModuleIdentifier.KeyEvent.Namespace, null, this, function(_event) {
 			var self = _event.data;
@@ -278,7 +308,7 @@ TooltipModule.prototype.bindToElement = function(_targetDIV, _data)
 		*/
 
 		self.hideUITooltip();
-    });
+	});
 	
 	
 /*     _targetDIV.on('keydown' + TooltipModuleIdentifier.KeyEvent.Namespace, null, _targetDIV, function (_event)
@@ -919,12 +949,15 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 		var ornament = $('<div class="top-ornament"></div>');
 		this.mContainer.append(ornament);
 
+		this.mScrollWrapper = $('<div class="tooltip-scroll-wrapper"></div>');
+        this.mContainer.append(this.mScrollWrapper);
+
 		// create: container
 		headerContainer = $('<div class="header-container"></div>');
-		this.mContainer.append(headerContainer);
+		this.mScrollWrapper.append(headerContainer);
 
 		contentContainer = $('<div class="content-container"></div>');
-		this.mContainer.append(contentContainer);
+		this.mScrollWrapper.append(contentContainer);
 
 		leftContentContainer = $('<div class="left-content-container"></div>');
 		contentContainer.append(leftContentContainer);
@@ -932,20 +965,23 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 		contentContainer.append(rightContentContainer);
 
 		footerContainer = $('<div class="footer-container"></div>');
-		this.mContainer.append(footerContainer);
+		this.mScrollWrapper.append(footerContainer);
 
 		hintContainer= $('<div class="hint-container"></div>');
-		this.mContainer.append(hintContainer);
+		this.mScrollWrapper.append(hintContainer);
+
+		this.mScrollHint = $('<div class="tooltip-scroll-hint display-none"></div>');
+		this.mContainer.append(this.mScrollHint);
 	}
 	else
 	{
-		// accquire: container
-		headerContainer       = this.mContainer.find('.header-container:first');
-		contentContainer      = this.mContainer.find('.content-container:first');
+		// acquire: container
+		headerContainer       = this.mScrollWrapper.find('.header-container:first');
+		contentContainer      = this.mScrollWrapper.find('.content-container:first');
 		leftContentContainer  = contentContainer.find('.left-content-container:first');
 		rightContentContainer = contentContainer.find('.right-content-container:first');
-		footerContainer       = this.mContainer.find('.footer-container:first');
-		hintContainer         = this.mContainer.find('.hint-container:first');
+		footerContainer       = this.mScrollWrapper.find('.footer-container:first');
+		hintContainer         = this.mScrollWrapper.find('.hint-container:first');
 
 		// sanity check
 		if (headerContainer.length === 0 ||
@@ -1729,8 +1765,7 @@ TooltipModule.prototype.updateHeaderTextDiv = function(_parentDIV, _data, _isChi
 
 TooltipModule.prototype.addAtmosphericImageDiv = function(_parentDIV, _data)
 {
-	if (!('image' in _data) || typeof(_data.image) !== 'string' || _data.image.length === 0)
-	{
+	if (!('image' in _data) || typeof(_data.image) !== 'string' || _data.image.length === 0) {
 		return null;
 	}
 
@@ -1738,14 +1773,25 @@ TooltipModule.prototype.addAtmosphericImageDiv = function(_parentDIV, _data)
 	_parentDIV.append(container);
 	container.attr('id', 'tooltip-module-atmospheric-image-' + _data.id);
 	
-	if ('isLarge' in _data && _data.isLarge === true)
-	{
+	if ('isLarge' in _data && _data.isLarge === true) {
 		container.removeClass('is-small').addClass('is-large');
 	}
 
 	var image = $('<img/>');
 	image.attr('src', Path.ITEMS + _data.image);
 	container.append(image);
+
+	if ('imageOverlayPath' in _data && Array.isArray(_data.imageOverlayPath)) {
+        container.addClass('is-layered-container'); 
+
+        _data.imageOverlayPath.forEach(function (path) {
+            if (path === null || path === '') return;
+            
+            var overlayImage = $('<img/>');
+            overlayImage.attr('src', Path.ITEMS + path);
+            container.append(overlayImage);
+        });
+    }
 
 	return container;
 };
@@ -1788,6 +1834,7 @@ TooltipModule.prototype.addContentTextDiv = function(_parentDIV, _data, _isChild
 	if (!_isChildRow)
 	{
 		container = $('<div class="row content-container"></div>');
+		if ('isPartialLayer' in _data) container.addClass('is-partial-layer');
 		container.attr('id', 'tooltip-module-content-text-container-' + _data.id);
 	}
 	else
@@ -2318,10 +2365,11 @@ TooltipModule.prototype.addHintDiv = function(_parentDIV, _data, _isChildRow, _i
 	// check if we have a label
 	var useFullWidth = true;
 	var hasIcon = ('icon' in _data);
+	var hasIconsArray = ('icons' in _data && _data.icons.length > 0);
 	var hasLabel = ('label' in _data);
 	var leftColumn = null;
 
-	if (hasIcon || hasLabel)
+	if (hasIcon || hasIconsArray || hasLabel)
 	{
 		useFullWidth = false;
 
@@ -2333,7 +2381,24 @@ TooltipModule.prototype.addHintDiv = function(_parentDIV, _data, _isChildRow, _i
 		leftColumn.append(label);
 
 		// prefer icon over label
-		if (hasIcon)
+		if (hasIconsArray) {
+		var imageLayer = $('<div class="hint-image-layer"></div>');
+            imageLayer.css({ 'position': 'relative', 'display': 'inline-block' });
+            label.append(imageLayer);
+
+            for (var i = 0; i < _data.icons.length; i++)
+            {
+                var image = $('<img/>');
+                image.attr('src', Path.GFX + _data.icons[i]);          
+                if (i === 0) {
+                    image.css({ 'display': 'block' });
+                } else {
+                    image.css({ 'position': 'absolute', 'top': '0', 'left': '0', 'pointer-events': 'none' });
+                }
+                imageLayer.append(image);
+            }
+        }
+        else if (hasIcon)
 		{
 			var image = $('<img/>');
 			image.attr('src', Path.GFX + _data.icon);

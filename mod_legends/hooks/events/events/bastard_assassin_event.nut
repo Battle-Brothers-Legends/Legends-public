@@ -8,13 +8,13 @@
 					Text = "Take care you bastard.",
 					function getResult( _event )
 					{
-						this.World.getPlayerRoster().add(_event.m.Assassin);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Assassin);
+						::World.getTemporaryRoster().clear();
 						_event.m.Assassin.onHired();
-						_event.m.Bastard.getItems().transferToStash(this.World.Assets.getStash());
+						_event.m.Bastard.getItems().transferToStash(::World.Assets.getStash());
 						_event.m.Bastard.getSkills().onDeath(this.Const.FatalityType.None);
 						::Legends.addFallen(_event.m.Bastard, "Left to claim their birthright");
-						this.World.getPlayerRoster().remove(_event.m.Bastard);
+						::World.getPlayerRoster().remove(_event.m.Bastard);
 						_event.m.Bastard = null;
 						return 0;
 					}
@@ -33,7 +33,7 @@
 							});
 						}.bindenv(this));
 					}
-					this.World.Assets.addMoralReputation(2);
+					::World.Assets.addMoralReputation(2);
 					_event.m.Bastard.improveMood(2.0, "You risked your life for him");
 					this.List.push({
 						id = 10,
@@ -49,7 +49,7 @@
 						});
 					}
 
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
 						if (bro.getID() == _event.m.Bastard.getID())
@@ -72,33 +72,37 @@
 		}
 	}
 
-	o.onUpdateScore = function () {
-		if (this.World.getTime().IsDaytime)
+	o.onUpdateScore = function() {
+		if (::World.getTime().IsDaytime)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		if (::World.Assets.getMoney() < 7000)
+			return;
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		local brothers = ::World.getPlayerRoster().getAll();
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
 		local candidates = [];
 		local candidates_other = [];
-		local cantidates_assassins = [];
 
-		foreach( bro in brothers ) {
+		foreach (bro in brothers) {
+			if (bro.getBackground().getID() == "background.assassin" || bro.getBackground().getID() == "background.legend_commander_assassin")
+				return;
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
+				continue;
+
 			if (bro.getLevel() >= 6 && bro.getBackground().getID() == "background.bastard")
 				candidates.push(bro);
-			else if (bro.getBackground().getID() == "background.assassin" || bro.getBackground().getID() == "background.legend_commander_assassin")
-				cantidates_assassins.push(bro);
-			else if (!bro.getSkills().hasTrait(::Legends.Trait.Player))
+			else
 				candidates_other.push(bro);
 		}
 
-		if (candidates.len() == 0 || candidates_other.len() == 0 || cantidates_assassins.len() >= 1)
+		if (candidates.len() == 0 || candidates_other.len() == 0)
 			return;
 
-		this.m.Bastard = candidates[this.Math.rand(0, candidates.len() - 1)];
-		this.m.Other = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+		this.m.Bastard = candidates[::Math.rand(0, candidates.len() - 1)];
+		this.m.Other = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 		this.m.Score = candidates.len() * 5;
 	}
 })

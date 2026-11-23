@@ -169,6 +169,7 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 				"legend_berserker_background"
 			]);
 			this.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
+			this.m.Dude.getBaseProperties().DailyWage = 0;
 			this.m.Dude.addHeavyInjury();
 		}
 

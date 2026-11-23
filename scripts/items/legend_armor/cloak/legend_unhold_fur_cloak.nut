@@ -29,7 +29,7 @@ this.legend_unhold_fur_cloak <- this.inherit("scripts/items/legend_armor/legend_
 		this.m.SpriteDamagedFront = "cloak_fur_unhold_" + variant + "_front_damaged";
 		this.m.SpriteCorpseFront = "cloak_fur_unhold_" + variant + "_front_dead";
 		this.m.Icon = "legend_armor/icon_cloak_fur_unhold_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_cloak_fur_unhold_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_cloak_fur_unhold_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_fur_unhold_"  + variant + ".png";
 	}

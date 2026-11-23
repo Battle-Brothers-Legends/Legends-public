@@ -90,7 +90,7 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Hairs = this.Const.Hair.CommonMale;
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = this.Const.Beards.All;
-
+		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.removeBackgroundType(this.Const.BackgroundType.Female);
 	}
 

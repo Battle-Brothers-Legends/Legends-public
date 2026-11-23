@@ -4,6 +4,7 @@
 	{
 		create();
 		this.m.Variants = [
+			0,
 			1,
 			2,
 			3,
@@ -13,8 +14,8 @@
 			7,
 			8,
 			9,
-			10,
-			11,
+			// 10,
+			// 11,
 			12,
 			13,
 			14,
@@ -63,7 +64,7 @@
 		if (this.Const.DLC.DesertSupporter)
 			this.m.Variants.push(42);
 		this.addVariants();
-		this.m.Variant = this.Math.rand(0, 9); //random one is only 1-9 though
+		this.m.Variant = this.Math.rand(0, 9); //random one is only 0-9 though
 		this.updateVariant();
 	}
 
@@ -73,8 +74,11 @@
 		foreach (banner in ::Const.PlayerBanners)
 		{
 			bannerID = banner.slice("banner_".len()).tointeger();
-			if (bannerID != 102 && bannerID != 103 && bannerID != 101 && this.m.Variants.find(bannerID) == null)
+			bannerID = bannerID >= 50 ? bannerID : bannerID + 11;
+			if (this.m.Variants.find(bannerID) == null)
+			{
 				this.m.Variants.push(bannerID);
+			}
 		}
 		this.m.Variants.sort();
 	}

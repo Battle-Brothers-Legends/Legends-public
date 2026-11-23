@@ -156,6 +156,7 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 					"legend_blacksmith_background"
 				]);
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
+				_event.m.Dude.getBaseProperties().DailyWage = 0;
 				_event.m.Dude.getBaseProperties().Hitpoints += 3;
 				_event.m.Dude.getBaseProperties().Bravery += 10;
 				_event.m.Dude.getBaseProperties().Stamina += 4;

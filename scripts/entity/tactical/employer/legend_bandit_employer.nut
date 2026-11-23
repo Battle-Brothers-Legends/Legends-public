@@ -18,13 +18,13 @@ this.legend_bandit_employer <- ::inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(150, 255);
-		this.setArmorSaturation(0.85);
-		this.getSprite("shield_icon").setBrightness(0.85);
+		//this.setArmorSaturation(0.85);
+		//this.getSprite("shield_icon").setBrightness(0.85);
 	}
 
 	function onAppearanceChanged(_appearance, _setDirty = true) {
 		this.actor.onAppearanceChanged(_appearance, false);
-		this.setArmorBrightness(0.9);
+		//this.setArmorBrightness(0.9);
 		this.setDirty(true);
 	}
 

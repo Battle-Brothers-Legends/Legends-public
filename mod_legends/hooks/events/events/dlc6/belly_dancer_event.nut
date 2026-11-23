@@ -7,7 +7,7 @@
 				s.Text = "[img]gfx/ui/events/event_163.png[/img]{A belly dancer magnetizes %townname%\'s center plaza. Rhythmic movements on their own can coerce a beggar to donating a crown, but with the stage of the whole plaza it is enough to draw crowds and with it heaps of gold. Masked by green silk, nearly see through, and clothed in thin silks with the whole midriff exposed, the dancer is no doubt an expert in her field. She whirls, hips hypnotic, elbows bowed, hands clapping little cymbals, her feet tiptoeing as she spins a spot so tight there very well may be an invisible god above holding her in place as she razzles and dazzles.\n\n Someone throws an apple through the air and the dancer spins around and shoots a tiny dagger through it, plugging it dead center and dropping the fruit to the ground. Another apple soars in and this time a large saber is produced and slashes the stem off and she catches the rest and takes a bite. The crowd claps gently to this.}";
 		}
 			if (s.ID == "B") {
-				s.Text = "[img]gfx/ui/events/event_163.png[/img]{You take out a crown and flip it to the dancer. Her eyes catch its glint, but she doesn\'t break the dance. She drops her weapons and sashays over, cymbals clattering, hips gyrating, her knees hardly bending, her feet almost mystically carrying her across the ground. She claps the cymbals in your face, then swings around, briefly bumping you with her hips, and starts to dance back to the middle. She picks up your coin with a toe and flips it up and it lands in a clay pot. The crowd cheers.}",
+				s.Text = "[img]gfx/ui/events/event_163.png[/img]{You take out a crown and flip it to the dancer. Her eyes catch its glint, but she doesn\'t break the dance. She drops her weapons and sashays over, cymbals clattering, hips gyrating, her knees hardly bending, her feet almost mystically carrying her across the ground. She claps the cymbals in your face, then swings around, briefly bumping you with her hips, and starts to dance back to the middle. She picks up your coin with a toe and flips it up and it lands in a clay pot. The crowd cheers.}";
 				s.Options[0].Text = "Maybe we can make use of this woman?";
 			}
 			if (s.ID == "C") {
@@ -18,7 +18,7 @@
 					_event.m.Dude.setStartValuesEx([
 						"belly_dancer_background"
 					]);
-					_event.m.Dude.getBackground().m.RawDescription = "You found %name% in " + _event.m.Town.getName() + ", masked by green silk and drawing crowds with rhythmic movements and impressively precise fruit slicing. The latter skill is a boon to any mercenary company, and so you didn\'t hesitate to recruit them	.";
+					_event.m.Dude.getBackground().m.RawDescription = "You found %name% in " + _event.m.Town.getName() + ", masked by green silk and drawing crowds with rhythmic movements and impressively precise fruit slicing. The latter skill is a boon to any mercenary company, and so you didn\'t hesitate to recruit %them%.";
 					_event.m.Dude.getBackground().buildDescription(true);
 					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Dexterous);
 					this.Characters.push(_event.m.Dude.getImagePath());

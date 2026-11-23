@@ -3,6 +3,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
+		this.m.NamedWeaponsList = clone this.Const.Items.NamedBarbarianWeapons;
 		this.m.NamedWeaponsList.extend([
 			"weapons/named/legend_named_heavy_javelin",
 			"weapons/named/legend_named_heavy_throwing_axe"

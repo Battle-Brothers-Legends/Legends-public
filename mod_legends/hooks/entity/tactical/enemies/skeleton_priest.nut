@@ -36,6 +36,9 @@
 		{
 			this.m.Items.equip(item);
 		}
+		local b = this.m.BaseProperties;	
+		b.Armor[this.Const.BodyPart.Head] = 50 - item.getArmorMax(); // set head armor of ancient priests to vanilla levels while respecting the outfit
+		b.ArmorMax[this.Const.BodyPart.Head] = 50 - item.getArmorMax();
 	}
 
 });

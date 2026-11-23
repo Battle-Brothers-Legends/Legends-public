@@ -1,6 +1,6 @@
 this.perk_legend_immovable_object <- this.inherit("scripts/skills/skill", {
 	m = {
-		SteelBrow = false
+		isGrantingStunImmunity = false
 	},
 	function create()
 	{
@@ -24,9 +24,9 @@ this.perk_legend_immovable_object <- this.inherit("scripts/skills/skill", {
 		_properties.Bravery += this.Math.floor(bonus);
 		_properties.DamageReceivedDirectMult *= 1.0 - 0.01 * bonus;
 		if (fat > 50)
-			this.m.SteelBrow = true;
+			this.m.isGrantingStunImmunity = true;
 		else
-			this.m.SteelBrow = false;
+			this.m.isGrantingStunImmunity = false;
 		if (fat > 80 && ::Legends.Perks.has(this, ::Legends.Perk.SteelBrow))
 			_properties.IsImmuneToKnockBackAndGrab = true;
 	}

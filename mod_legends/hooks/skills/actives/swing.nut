@@ -1,16 +1,14 @@
 ::mods_hookExactClass("skills/actives/swing", function(o)
 {
-	o.m.ApplyAxeMastery <- false;
+	o.m.IsStaffSwing <- false;
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.HitChanceBonus = -5;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local ret = this.getDefaultTooltip();
 		ret.push({
 			id = 6,
@@ -21,39 +19,20 @@
 		return ret;
 	}
 
-	o.isAxeMasteryApplied <- function ()
-	{
-		return this.m.ApplyAxeMastery;
-	}
-
-	o.setApplyAxeMastery <- function ( _f )
-	{
-		this.m.ApplyAxeMastery = _f;
-	}
-
-	o.onAfterUpdate = function ( _properties )
-	{
-		if (this.m.ApplyAxeMastery)
-		{
-			this.m.FatigueCostMult = _properties.IsSpecializedInAxes ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	o.onAfterUpdate = function ( _properties ) {
+		if (this.m.IsStaffSwing && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
 		}
-		else
-		{
-			this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		}
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
 			_properties.MeleeSkill -= 5;
-			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
-			{
+			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				_properties.MeleeSkill += 5;
-				this.m.HitChanceBonus += 10;
+				this.m.HitChanceBonus += 5;
 			}
 		}
 	}
-
 });

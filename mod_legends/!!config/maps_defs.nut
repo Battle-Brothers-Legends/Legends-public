@@ -36,5 +36,5 @@
 
 // legends locations
 ::Legends.Map.AncientMastaba <- ::Legends.Maps.add("location.legend_mummy", "Ancient Mastaba");
-::Legends.Map.Tournament <- ::Legends.Maps.add("location.legend_tournament", "Tournament");
+// ::Legends.Map.Tournament <- ::Legends.Maps.add("location.legend_tournament", "Tournament");
 //::Legends.Map.TeeteringTower <- ::Legends.Maps.add("location.legend_wizard_tower","Teetering Tower");

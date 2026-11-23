@@ -11,7 +11,7 @@
 			this.m.Icon = "skills/active_halfsword.png";
 			this.m.IconDisabled = "skills/active_halfsword_bw.png";
 			this.m.Overlay = "active_halfsword";
-			this.m.ActionPointCost = this.m.IsGreatHalfsword ? 7 : 5;
+			this.m.ActionPointCost = this.m.IsGreatHalfsword ? 6 : 4;
 			this.m.FatigueCost = this.m.IsGreatHalfsword ? 35 : 25;
 			this.m.IsIgnoredAsAOO = true;
 			this.m.IsHidden = true;
@@ -19,8 +19,7 @@
 	}
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.HitChanceBonus = this.m.IsGreatHalfsword ? -80 : -65;
 	}
@@ -43,17 +42,18 @@
 		return tooltip;
 	}
 
-	o.canDoubleGrip = function ()
-	{
+	o.canDoubleGrip = function () {
+		local actor = this.getContainer().getActor();
 		local missinghand = this.m.Container.getSkillByID("injury.missing_hand");
 		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
-		local main = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local off = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		return (missinghand == null || newhand != null) && main != null && off == null && main.isDoubleGrippable();
+		local main = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local off = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local hasXbow = off != null && ::MSU.String.endsWith(off.getID(), "_hand_crossbow");
+		local hasNet = off != null && ::MSU.String.endsWith(off.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
+		return (missinghand == null || newhand != null) && main != null && (off == null || hasXbow || hasNet) && main.isDoubleGrippable();
 	}
 
-	o.getHitChance <- function (_targetEntity)
-	{
+	o.getHitChance <- function (_targetEntity) {
 		if (_targetEntity == null)
 			return 0;
 
@@ -76,36 +76,37 @@
 		return mod + this.Math.round(chance);
 	}
 	
-	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function ( _properties ) {
-		if (!this.m.IsHalfsword) {
-			return onAfterUpdate(_properties);
+		if (!this.m.IsHalfsword && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
 		}
-		else {
+		else if (this.m.IsHalfsword) {
 			this.m.IsHidden = !this.canDoubleGrip() && !this.m.Item.isItemType(this.Const.Items.ItemType.TwoHanded);
-			this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		}
+
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0; 
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
+			if (this.m.IsHalfsword) {
+				_properties.DamageTotalMult *= 0.5;
+			}
 			this.m.HitChanceBonus += this.getHitChance(_targetEntity);
-			if (this.m.IsHalfsword && _properties.IsSpecializedInSwords)
-			{
+			if (this.m.IsHalfsword && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				this.m.HitChanceBonus += 15;
 			}
-			else if (_properties.IsSpecializedInDaggers)
-			{
+			else if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				this.m.HitChanceBonus += 15;
 			}
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.DamageArmorMult *= 0.0;
+			_properties.DamageDirectAdd = 0;
 			_properties.IsIgnoringArmorOnAttack = true;
 			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
 			_properties.HitChanceMult[this.Const.BodyPart.Body] = 1.0;
 
-			if (this.canDoubleGrip())
-			{
+			if (this.canDoubleGrip()) {
 				_properties.DamageTotalMult /= 1.25;
 			}
 		}

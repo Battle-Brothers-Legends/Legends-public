@@ -34,7 +34,7 @@
 			//Roll = true
 		},
 		{
-			Type = this.Const.World.Spawn.Troops.BanditVeteran,
+			Type = this.Const.World.Spawn.Troops.BanditMarauder,
 			Weight = 100,
 			Cost = 1,
 			Roll = true
@@ -67,7 +67,7 @@
 				},
 				{
 					MinR = 600,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				}
 			]

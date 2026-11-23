@@ -1,17 +1,15 @@
-::mods_hookExactClass("skills/backgrounds/hedge_knight_background", function(o)
-{
+::mods_hookExactClass("skills/backgrounds/hedge_knight_background", function (o) {
 	o.m.AlreadyUsed <- false;
 	o.m.ExecutingAttack <- false;
 
-	o.create = function ()
-	{
+	o.create = function () {
 		this.character_background.create();
 		this.m.ID = "background.hedge_knight";
 		this.m.Name = "Hedge Knight";
 		this.m.Icon = "ui/backgrounds/background_33.png";
 		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting man against man with brute strength and heavy armor, but less so in cooperating with others or in swiftness. Hedge Knights strike with such strength that they might cleave a secondary enemy.";
-		this.m.GoodEnding = "A %person% like %name% would always find a way. The hedge knight eventually, if not inevitably, left the company and set out on %their% own. Unlike many other mercenaries, %they% did not spend %their% crowns on land or ladders with which to climb the noble life. Instead, %they% bought %themselves% the finest war horses and the talents of armorers. The behemoth of a %person% rode from one jousting tournament to the next, winning them all with ease. %They%\'s still at it to this day, and you think %they% won\'t stop until %they%\'s dead. The hedge knight simply knows no other life.";
-		this.m.BadEnding = "%name% the hedge knight eventually left the company. %They% traveled the lands, returning to %their% favorite past time of jousting, which was really a cover for %their% real favorite past time of lancing men off horses in a shower of splinters and glory. At some point, %they% was ordered to \'throw\' a match against a pitiful and gangly prince to earn the nobleman some prestige. Instead, the hedge knight drove %their% lance through the %person%\'s skull. Furious, the lord of the land ordered the hedge knight killed. They say over a hundred soldiers took to %their% home and only half returned alive.";
+		this.m.GoodEnding = "A %person% like %name% would always find a way. The hedge knight eventually, if not inevitably, left the company and set out on %their% own. Unlike many other mercenaries, %they% did not spend %their% crowns on land or ladders with which to climb the noble life. Instead, %they% bought %themselves% the finest war horses and the talents of armorers. The behemoth of a %person% rode from one jousting tournament to the next, winning them all with ease. %They're% still at it to this day, and you think %they% won\'t stop until %they're% dead. The hedge knight simply knows no other life.";
+		this.m.BadEnding = "%name% the hedge knight eventually left the company. %They% traveled the lands, returning to %their% favorite pastime of jousting, which was really a cover for %their% real favorite pastime of lancing men off horses in a shower of splinters and glory. At some point, %they% was ordered to \'throw\' a match against a pitiful and gangly prince to earn the nobleman some prestige. Instead, the hedge knight drove %their% lance through the man\'s skull. Furious, the lord of the land ordered the hedge knight killed. They say over a hundred soldiers took to %their% home and only half returned alive.";
 		this.m.HiringCost = 500;
 		this.m.DailyCost = 50;
 		this.m.Excluded = [
@@ -100,8 +98,7 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local ret = this.character_background.getTooltip();
 		ret.push({
 			id = 13,
@@ -112,11 +109,14 @@
 		return ret;
 	}
 
-	o.setGender <- function (_gender = -1)
-	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) {
+			_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
+		}
 
-		if (_gender != 1) return;
+		if (_gender != 1) {
+			return;
+		}
 
 		this.m.Faces = this.Const.Faces.AllWhiteFemale;
 		this.m.Hairs = this.Const.Hair.AllFemale;
@@ -127,91 +127,118 @@
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	o.onTargetKilled <- function( _targetEntity, _skill )
-	{
-		if (this.m.AlreadyUsed || _skill.isRanged())
+	o.onTargetKilled <- function (_targetEntity, _skill) {
+		if (this.m.AlreadyUsed || _skill.isRanged()) {
 			return;
+		}
 
 		this.m.AlreadyUsed = true;
-		this.m.ExecutingAttack = true;
-		local tile = _targetEntity.getTile();
-		local targetTiles = [];
 
-		for( local i = 0; i != 6; i = ++i )
-		{
-			if (tile.hasNextTile(i))
-			{
-				local next = tile.getNextTile(i);
+		local executeFollowup;
+		executeFollowup = (function( _retries ) {
+			local actor = this.getContainer().getActor();
+			if (::Legends.S.isEntityNullOrDead(actor) || actor.m.MoraleState == ::Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned || !::Tactical.TurnSequenceBar.isActiveEntity(actor)) {
+				this.m.AlreadyUsed = false;
+				return;
+			}
 
-				if (next.IsOccupiedByActor && this.Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
-				{
-					targetTiles.push(next);
+			local tile = actor.getTile();
+			local AOO = this.getContainer().getAttackOfOpportunity();
+			local targetTiles = [];
+
+			if (AOO == null) {
+				this.m.AlreadyUsed = false;
+				return;
+			}
+
+			local targetsAreMovingInvoluntarily = false;
+
+			for (local i = 0; i < 6; i++) {
+				if (tile.hasNextTile(i)) {
+					local next = tile.getNextTile(i);
+
+					if (next.IsOccupiedByActor && ::Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer() && AOO.onVerifyTarget(tile, next)) {
+						local entity = next.getEntity();
+						if (::Legends.S.isEntityNullOrDead(entity)) {
+							continue;
+						}
+
+						if (entity.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
+							targetsAreMovingInvoluntarily = true;
+							break;
+						}
+
+						if (AOO.onVerifyTarget(tile, next)) {
+							targetTiles.push(next);
+						}
+					}
 				}
 			}
-		}
-		if (targetTiles.len() == 0)
-		{
-			this.m.ExecutingAttack = false;
-			return; 
-		}
 
-		this.getContainer().getAttackOfOpportunity().useForFree(targetTiles[this.Math.rand(0, targetTiles.len() - 1)]);
-		this.m.ExecutingAttack = false;
+			if (targetsAreMovingInvoluntarily) {
+				if (_retries > 20) {
+                    this.m.AlreadyUsed = false;
+                    return; 
+                }
+            	::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _retries + 1);
+            	return;
+        	}
+
+			if (targetTiles.len() == 0) {
+				this.m.AlreadyUsed = false;
+				return;
+			}
+
+			this.m.ExecutingAttack = true;
+			AOO.useForFree(targetTiles[this.Math.rand(0, targetTiles.len() - 1)]);
+			this.m.ExecutingAttack = false;
+		}).bindenv(this);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, 0);
 	}
 
-	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
-	{
-		if (this.m.ExecutingAttack)
-		{
+	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
+		if (this.m.ExecutingAttack) {
 			_properties.DamageTotalMult *= 0.5;
 		}
 	}
 
-	o.onTurnStart <- function()
-	{
+	o.onTurnStart <- function () {
 		this.m.AlreadyUsed = false;
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		return "{Some people are born to be feared. Well over six feet tall, %name%\'s stature alone is a threatening one. | %name%\'s shadow casts over smaller men - and they seem to only further shrink when %they% walks by. | Standing amongst men like a bear in a suit of armor, %name% earns plenty of double-takes. | Years of brutal combat with %their% equally huge brothers left %name% a scarred and scary figure.} {The hedge knight has spent many seasons taking %their% prized horse to jousting tournaments. Unfortunately, a polearm crowned %their% mount, leaving %them% without a ride. | A mercenary in the company of %themselves%, the hedge knight wandered for years, doing battle for those who offered the most crowns. | When %they% cleaved five men with one swing, three of which were on %their% side, the hedge knight was banned from service in every army in the land. | Ordered to kill a lord\'s enemies, the hedge knight kicked in the door of a family and slaughtered them all with %their% bare hands. When the lord refused to pay, %name% killed %them%, too. | The hedge knight has spent many nights sleeping peacefully beneath a pale moon - and just as many days killing ruthlessly beneath a shining sun.} {Always on the hunt for more crowns, the company of sellswords seemed like a good fit. | Too terrifying to be employed for long, %name% seeks the company of men who will not piss themselves when %they% grabs a weapon. | Tired of killing jousters and lords, as well as women and children, %name% sees mercenary work as something of a vacation. | War has apparently gotten in the way of %name%\'s jousting career. He seeks to amend that problem.}";
+	o.onBuildDescription <- function () {
+		return "{Some people are born to be feared. Well over six feet tall, %name%\'s stature alone is a threatening one. | %name%\'s shadow casts over smaller men - and they seem to only further shrink when %they% walks by. | Standing amongst men like a bear in a suit of armor, %name% earns plenty of double-takes. | Years of brutal combat with %their% equally huge brothers left %name% a scarred and scary figure.} {The hedge knight has spent many seasons taking %their% prized horse to jousting tournaments. Unfortunately, a polearm crowned %their% mount, leaving %them% without a ride. | A mercenary in the company of %themselves%, the hedge knight wandered for years, doing battle for those who offered the most crowns. | When %they% cleaved five men with one swing, three of which were on %their% side, the hedge knight was banned from service in every army in the land. | Ordered to kill a lord\'s enemies, the hedge knight kicked in the door of a family and slaughtered them all with %their% bare hands. When the lord refused to pay, %name% killed him, too. | The hedge knight has spent many nights sleeping peacefully beneath a pale moon - and just as many days killing ruthlessly beneath a shining sun.} {Always on the hunt for more crowns, the company of sellswords seemed like a good fit. | Too terrifying to be employed for long, %name% seeks the company of men who will not piss themselves when %they% grabs a weapon. | Tired of killing jousters and lords, as well as women and children, %name% sees mercenary work as something of a vacation. | War has apparently gotten in the way of %name%\'s jousting career. %They% seeks to amend that problem.}";
 
 	}
 
-	o.onSetAppearance = function ()
-	{
+	o.onSetAppearance = function () {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
-		{
+		if (this.Math.rand(1, 100) <= 25) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
-		{
+		if (this.Math.rand(1, 100) <= 25) {
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
 		}
 	}
 
-	o.updateAppearance = function ()
-	{
+	o.updateAppearance = function () {
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (tattoo_body.HasBrush)
-		{
+		if (tattoo_body.HasBrush) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
+	o.onChangeAttributes = function () {
 		local c = {
 			Hitpoints = [
 				12,
@@ -249,9 +276,7 @@
 		return c;
 	}
 
-
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function () {
 		local actor = this.getContainer().getActor();
 		actor.setVeteranPerks(3);
 		local items = actor.getItems();

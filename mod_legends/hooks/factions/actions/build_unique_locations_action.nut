@@ -1,7 +1,7 @@
 ::mods_hookExactClass("factions/actions/build_unique_locations_action", function(o)
 {
 	o.m.BuildMummySite <- true;
-	o.m.BuildTournamentSite <- true;
+	o.m.BuildTournamentSite <- false;
 
 	local updateBuildings = o.updateBuildings;
 	o.updateBuildings = function( )

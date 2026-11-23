@@ -16,7 +16,7 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 		this.m.Items.getAppearance().Body = "bust_dawg_01_body_0" + _variant;
 		getSprite("body").setBrush("bust_dawg_01_body_0" + _variant);
 		getSprite("head").setBrush("bust_dawg_01_head_0" + _variant);
-		getSprite("closed_eyes").setBrush("bust_dawg_01_body_01_eyes_closed");
+		getSprite("closed_eyes").setBrush("bust_dawg_01_body_0" + _variant + "_eyes_closed");
 		setDirty(true);
 	}
 

@@ -6,28 +6,6 @@ The Legends mod uses a cross-platform Python-based build system that replaces th
 
 ## Prerequisites
 
-**Cross-Platform Requirements:**
-
-1. Download adam's [modkit](http://www.adammil.net/blog/v133_Battle_Brothers_mod_kit.html#modkit) and unpack it at the same level that legends project is (see screenshot). The tools should be placed in a `bin/` directory at the workspace level, one directory up from the `Legends-public` project folder.
-
-![dir_structure.webp](img/build/dir_structure.webp)
-
-**Expected Directory Structure:**
-
-```plaintext
-work-dir/                      # Your workspace folder
-├── bin/                       # Modding tools go here
-│   ├── bbrusher.exe           # Windows executable
-│   ├── bbrusher.sh            # [Linux/macOS only] wrapper script
-│   ├── masscompile.bat/.sh
-│   └── massdecompile.bat/.sh
-└── Legends-public/            # Legends project
-    ├── build_legends_mod.py
-    ├── build_patch.py
-    ├── build_brushes.py
-    └── ...
-```
-
 **Platform-Specific Requirements:**
 
 **Windows:**
@@ -41,14 +19,7 @@ work-dir/                      # Your workspace folder
 **Linux/macOS:**
 
 1. Python3
-2. On Linux/macOS you'll need to make `bbrusher.exe` - a windows binary - work transparently. The build scripts will call `bbrusher.sh` instead of the .exe directly, but it is your responsibility to make it work on your OS.
-
-The simplest way is to install `wine`. You will also need Microsoft C++ Runtime; the easiest way to add it to your wine prefix is probably to run `winetricks dotnet45` (or newer). This might require installing `winetricks` separately. Then you can just wrap wine in `bbrusher.sh` like this:
-
-```
-#!/bin/bash
-wine bbrusher.exe "$@"
-```
+2. Install python dependencies `pip install Pillow`
 
 ## Platform-Specific Features
 

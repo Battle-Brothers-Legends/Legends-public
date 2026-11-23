@@ -1223,15 +1223,13 @@
 
 	o.setStartValuesEx = function ( _backgrounds, _addTraits = true, _gender = -1, _addEquipment = true )
 	{
-		if (this.isSomethingToSee() && this.World.getTime().Days >= 7)
-		{
+		if (this.isSomethingToSee() && this.World.getTime().Days >= 7) {
 			_backgrounds = this.Const.CharacterPiracyBackgrounds;
 		}
 
 		local background = this.new("scripts/skills/backgrounds/" + _backgrounds[this.Math.rand(0, _backgrounds.len() - 1)]);
 
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled")
-		{
+		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled") {
 			background.setGender(_gender);
 		}
 		this.m.Skills.add(background);
@@ -1243,7 +1241,12 @@
 		*/
 		background.buildDescription();
 
-		this.setGender(background.isBackgroundType(::Const.BackgroundType.Female) ? 1 : 0);
+		if (_gender != -1) {
+    		this.setGender(_gender);
+		}
+		else {
+    		this.setGender(background.isBackgroundType(::Const.BackgroundType.Female) ? 1 : 0);
+		}
 
 		local attributes = background.buildPerkTree();
 		local maxTraits = 0;
@@ -1548,6 +1551,39 @@
 			bTransfer.push(item);
 		}
 		return [eTransfer, bTransfer];
+	}
+
+	o.onCombatFinished <- function ()
+	{
+		this.actor.resetRenderEffects();
+		this.m.IsAlive = true;
+		this.m.IsDying = false;
+		this.m.IsAbleToDie = true;
+		this.m.Hitpoints = this.Math.max(1, this.m.Hitpoints);
+		this.m.MaxEnemiesThisTurn = 1;
+
+		if (this.m.MoraleState != this.Const.MoraleState.Ignore)
+		{
+			this.setMoraleState(this.Const.MoraleState.Steady);
+		}
+
+		this.resetBloodied(false);
+		this.getSprite("dirt").Visible = false;
+		this.getFlags().set("Devoured", false);
+		this.getFlags().set("Charmed", false);
+		this.getFlags().set("Sleeping", false);
+		this.getFlags().set("Nightmare", false);
+		this.m.Fatigue = 0;
+		this.m.ActionPoints = 0;
+		this.m.Items.onCombatFinished();
+		this.m.Skills.onCombatFinished();
+
+		if (this.m.IsAlive)
+		{
+			this.updateLevel();
+			this.updateInjuryVisuals(false);
+			this.onAppearanceChanged(this.m.Items.getAppearance(), true);
+		}
 	}
 
 	o.getStashModifier <- function ()
@@ -1895,12 +1931,6 @@
 		}
 
 		tt.extend(upgrade.getTooltip());
-		tt.push({
-			id = 1,
-			type = "hint",
-			icon = "ui/icons/mouse_left_button.png",
-			text = "UnEquip layer"
-		});
 
 		foreach( t in tt )
 		{

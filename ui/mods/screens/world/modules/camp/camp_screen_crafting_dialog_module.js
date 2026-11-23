@@ -532,10 +532,24 @@ CampScreenCraftingDialogModule.prototype.addListEntry = function (_data)
 
 	var imageOffsetX = ('ImageOffsetX' in _data ? _data['ImageOffsetX'] : 0);
 	var imageOffsetY = ('ImageOffsetY' in _data ? _data['ImageOffsetY'] : 0);
-	var image = column.createImage(Path.ITEMS + _data['ImagePath'], function (_image)
-	{
+
+	var overlays = ('IconOverlay' in _data && _data.IconOverlay !== null && _data.IconOverlay.length > 1) ? _data.IconOverlay : [_data['ImagePath']];
+	var image = column.createImage(Path.ITEMS + overlays[0], function (_image) {
 		_image.centerImageWithinParent(imageOffsetX, imageOffsetY, 0.64, false);
 		_image.removeClass('opacity-none');
+		var parent = _image.parent();
+		for (var i = 1; i < overlays.length; ++i) {
+			if (overlays[i] !== "") {
+				var overlayImage = $('<img/>');
+				overlayImage.attr('src', Path.ITEMS + overlays[i]);
+				overlayImage.css({
+					'width': _image.css('width'),
+					'height': _image.css('height'),
+					'pointer-events': 'none'
+				});
+				parent.append(overlayImage);
+			}
+		}
 	}, null, 'opacity-none');
 	image.bindTooltip({ contentType: 'ui-item', itemId: _data.ID, itemOwner: 'craft' });
 	if(_data.isAmountShown)

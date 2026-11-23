@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "This brewery produces large quantities of beer for both local taverns and traders. Contributes beer, brawlers, monks and gamblers to the local town";
+		this.m.Description = "This brewery produces large quantities of beer for both local taverns and traders. Contributes beer, brawlers, monks and gamblers to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

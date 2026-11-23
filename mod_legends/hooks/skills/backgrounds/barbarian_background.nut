@@ -10,8 +10,8 @@
 		this.m.Name = "Barbarian";
 		this.m.Icon = "ui/backgrounds/background_58.png";
 		this.m.BackgroundDescription = "";
-		this.m.GoodEnding = "%name% the barbarian took all the coin he earned with the company and ventured north. With his money, he gathered a band of warriors and conquered so many tribes that, last you heard, he had been ordained \'king of the north\'.";
-		this.m.BadEnding = "With things the way they were, %name% departed. Last you heard he was traveling north. Penniless with little to his name but an axe, and not looking anything like the natives or speaking their tongue, you figure the barbarian did not get far. Based upon what you\'ve seen happen to his ilk, he\'s either been killed already or captured as a slave.";
+		this.m.GoodEnding = "%name% the barbarian took all the coin %they% earned with the company and ventured north. With %their% money, %they% gathered a band of warriors and conquered so many tribes that, last you heard, %they% had been ordained \'king of the north\'.";
+		this.m.BadEnding = "With things the way they were, %name% departed. Last you heard %they% was traveling north. Penniless with little to %their% name but an axe, and not looking anything like the natives or speaking their tongue, you figure the barbarian did not get far. Based upon what you\'ve seen happen to %their% ilk, %they're% either been killed already or captured as a slave.";
 		this.m.HiringCost = 300;
 		this.m.DailyCost = 30;
 		this.m.Excluded = [
@@ -117,22 +117,12 @@
 		this.m.BeardChance = 0;
 		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.GoodEnding = "%name% the barbarian took all the coin she earned with the company and ventured north. With her money, she gathered a band of warriors and conquered so many tribes that, last you heard, she had been ordained \'queen of the north\'.";
-		this.m.BadEnding = "With things the way they were, %name% departed. Last you heard she was traveling north. Penniless with little to her name but an axe, and not looking anything like the natives or speaking their tongue, you figure the barbarian did not get far. Based upon what you\'ve seen happen to her ilk, she\'s either been killed already or captured as a slave.";
-
 	}
 
 
 	o.onBuildDescription <- function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{%name% survived the battle between yourself and her own tribe of warriors. She offered herself to your company or to your sword. Impressed by her bravery, you chose to take her in. A foreign brute, she hardly speaks your native tongue and she is not well liked by the rest of the company. But if anything can bond two people it is fighting beside one another, killing when it counts, and drinking the night away at the tavern.}";
-		}
-		else
-		{
-			return "{%name% survived the battle between yourself and his own tribe of warriors. He offered himself to your company or to your sword. Impressed by his bravery, you chose to take him in. A foreign brute, he hardly speaks your native tongue and he is not well liked by the rest of the company. But if anything can bond two men it is fighting beside one another, killing when it counts, and drinking the night away at the tavern.}";
-		}
+			return "{%name% survived the battle between yourself and %their% own tribe of warriors. %They% offered %themselves% to your company or to your sword. Impressed by %their% bravery, you chose to take %them% in. A foreign brute, %they% hardly speaks your native tongue and %they% is not well liked by the rest of the company. But if anything can bond two people it is fighting beside one another, killing when it counts, and drinking the night away at the tavern.}";
 	}
 
 	o.onSetAppearance = function ()

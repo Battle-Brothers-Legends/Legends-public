@@ -132,50 +132,82 @@
 		return isTurnDone();
 	}
 
-	local onMovementFinish = o.onMovementFinish;
-	o.onMovementFinish = function (_tile)
-	{
-		// Lionheart perk start
-		local otherActors = [];
-		for (local i = 0; i != 6; i++) {
-			if (_tile.hasNextTile(i)) {
-				local tile = _tile.getNextTile(i);
-				if (!tile.IsOccupiedByActor)
-					continue;
-				otherActors.push(tile.getEntity());
+	o.onMovementFinish = function(_tile) {
+		this.m.IsMoving = true;
+		this.updateVisibility(_tile, this.m.CurrentProperties.getVision(), this.getFaction());
+
+		if (this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getID()) {
+			this.Tactical.TurnSequenceBar.getActiveEntity().updateVisibilityForFaction();
+		}
+
+		this.setZoneOfControl(_tile, this.hasZoneOfControl());
+
+		if (!this.m.IsExertingZoneOfOccupation) {
+			_tile.addZoneOfOccupation(this.getFaction());
+			this.m.IsExertingZoneOfOccupation = true;
+		}
+
+		if (this.Const.Tactical.TerrainEffect[_tile.Type].len() > 0 && !this.m.Skills.hasSkill(this.Const.Tactical.TerrainEffectID[_tile.Type])) {
+			this.m.Skills.add(this.new(this.Const.Tactical.TerrainEffect[_tile.Type]));
+		}
+
+		if (_tile.IsHidingEntity) {
+			this.m.Skills.add(this.new(this.Const.Movement.HiddenStatusEffect));
+		}
+
+		local numOfEnemiesAdjacentToMe = _tile.getZoneOfControlCountOtherThan(this.getAlliedFactions());
+
+		if (this.m.CurrentMovementType == this.Const.Tactical.MovementType.Default) {
+			if (this.m.MoraleState != this.Const.MoraleState.Fleeing) {
+				for (local i = 0; i != 6; i = ++i) {
+					if (_tile.hasNextTile(i)) {
+						local otherTile = _tile.getNextTile(i);
+						if (otherTile.IsOccupiedByActor) {
+							local otherActor = otherTile.getEntity();
+							local numEnemies = otherTile.getZoneOfControlCountOtherThan(otherActor.getAlliedFactions());
+
+							if (otherActor.m.MaxEnemiesThisTurn < numEnemies && !otherActor.isAlliedWith(this) && otherActor.m.CurrentProperties.IsAffectedByMovementMorale) {
+								local difficulty = this.Math.maxf(10.0, 50.0 - this.getXPValue() * 0.1);
+								otherActor.checkMorale(-1, difficulty);
+								otherActor.m.MaxEnemiesThisTurn = numEnemies;
+							}
+						}
+					}
+				}
+			}
+		} else if (this.m.CurrentMovementType == this.Const.Tactical.MovementType.Involuntary) {
+			if (this.m.MaxEnemiesThisTurn < numOfEnemiesAdjacentToMe && this.m.CurrentProperties.IsAffectedByMovementMorale) {
+				local difficulty = 40.0;
+				this.checkMorale(-1, difficulty);
 			}
 		}
-		local isAliedPtrs = [];
-		foreach(i, actor in otherActors) {
-			isAliedPtrs.push(actor.isAlliedWith);
-			actor.isAlliedWith = function(_other) {
-				if (this == null || actor == null)
-					return false;
-				if (_other == null)
-					return false;
-				// check if checkMorale should happen when enemies are affected by it
-				return isAliedPtrs[i](_other) && this.m.CurrentProperties.IsAffectedByMovementMorale;
-			}.bindenv(actor);
+
+		this.m.CurrentMovementType = this.Const.Tactical.MovementType.Default;
+		this.m.MaxEnemiesThisTurn = this.Math.max(1, numOfEnemiesAdjacentToMe);
+
+		if (this.isPlayerControlled() && this.getMoraleState() > this.Const.MoraleState.Breaking &&
+			this.getMoraleState() != this.Const.MoraleState.Ignore &&
+			(_tile.SquareCoords.X == 0 || _tile.SquareCoords.Y == 0 || _tile.SquareCoords.X == 31 || _tile.SquareCoords.Y == 31)
+		) {
+			local change = this.getMoraleState() - this.Const.MoraleState.Breaking;
+			this.checkMorale(-change, -1000);
 		}
-		// original does check with 40 and -1000 difficulty in this function, lionheart check just first one, so
-		local fnPtr = this.checkMorale;
-		this.checkMorale = function (_change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false) {
-			if ( _difficulty > 0) { // check if it's the 40.0 one we want to change
-				if (this.m.CurrentProperties.IsAffectedByMovementMorale && _difficulty > 0)
-					return fnPtr(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine)
-			} else { // if it's -1000 one, use at is was
-				return fnPtr(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine)
-			}
-		}.bindenv(this);
-		// Lionheart perk stop
-		onMovementFinish(_tile);
-		// restore state
-		foreach (i, actor in otherActors) {
-			if (actor == null)
-				continue;
-			actor.isAlliedWith = isAliedPtrs[i];
+
+		if (this.m.IsEmittingMovementSounds && this.Const.Tactical.TerrainMovementSound[_tile.Subtype].len() != 0) {
+			local sound = this.Const.Tactical.TerrainMovementSound[_tile.Subtype][this.Math.rand(0, this.Const.Tactical.TerrainMovementSound[_tile.Subtype].len() - 1)];
+			this.Sound.play("sounds/" + sound.File, sound.Volume * this.Const.Sound.Volume.TacticalMovement * this.Math.rand(90, 100) * 0.01, this.getPos(), sound.Pitch * this.Math.rand(95, 105) * 0.01);
 		}
-		this.checkMorale = fnPtr;
+
+		this.spawnTerrainDropdownEffect(_tile);
+
+		if (_tile.Properties.Effect != null && _tile.Properties.Effect.IsAppliedOnEnter) {
+			_tile.Properties.Effect.Callback(_tile, this);
+		}
+
+		this.m.Skills.onMovementFinished();
+		this.m.Items.onMovementFinished();
+		this.setDirty(true);
+		this.m.IsMoving = false;
 	}
 
 	o.isArmedWithMagicStaff <- function()
@@ -288,9 +320,19 @@
 	// Preparation to call onRiposte(). Given its own function so it can be easily reused
 	o.onBeforeRiposte <- function ( _attacker, _skill, _delayMultiplier=1 )
 	{
-		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte())
-		{
+		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
 			local skill = this.m.Skills.getAttackOfOpportunity();
+
+			// prevents riposte from attacking with h2h if only oh sword equipped; shouldn't need to check for non-weapon ohs since riposte gets removed on unequip
+			local items = this.getItems();
+        	local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+        	local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
+			if (mh == null && oh != null) {
+				local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
+				if (ohSkill != null) {
+					skill = ohSkill;
+				}
+			}
 
 			if (skill != null) {
 				local info = {
@@ -321,7 +363,7 @@
 			this.getFlags().set("PerformedRiposte", true);
 		}
 	}
-	
+
 	o.onOffhandRiposte <- function (_info) {
 		if (!_info.User.isAlive()) {
 			return;
@@ -487,28 +529,28 @@
 		}
 
 		// Flip the offhand weapon sprite when dual wielding
-		if (hasSprite("shield_icon") && _appearance.Shield.len() != 0) 
+		if (hasSprite("shield_icon") && _appearance.Shield.len() != 0)
 		{
-			if (::Legends.Weapons.isDualWielding(this)) 
+			if (::Legends.Weapons.isDualWielding(this))
 			{
 				this.setAlwaysApplySpriteOffset(true);
 				local flip = !this.isAlliedWithPlayer();
 				local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 				local ohSprite = getSprite("shield_icon");
 				ohSprite.setHorizontalFlipping(!flip);
-				if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded)) 
+				if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded))
 				{
 					// WIP, not sure if dual-wielding two handed weapons will stay
 					ohSprite.Scale = 0.80;
 					setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
-				} 
-				else 
+				}
+				else
 				{
 					ohSprite.Scale = 1.0;
 					setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
 				}
 				this.m.IsOffhandFlipped = true;
-			} 
+			}
 			else if (this.m.IsOffhandFlipped) //We only want to reset sprite position when it's actually needed
 			{
 				this.m.IsOffhandFlipped = false;

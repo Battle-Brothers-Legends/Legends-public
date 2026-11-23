@@ -17,10 +17,8 @@
 		}
 
 		local bros = roster.getAll();
-		bros[0].setStartValuesEx([
-			"barbarian_background"
-		]);
-		bros[0].getBackground().m.RawDescription = "A sturdy warrior, %name% has been through many campaigns of raiding and pillaging. Although a man of few words, the raider is an absolutely vicious specimen in battle. Even for a raider, what he does to defeated villagers irks many. It is likely he came with you to satiate his more sadistic lusts.";
+		bros[0].setStartValuesEx(["barbarian_background"]);
+		bros[0].getBackground().m.RawDescription = "A sturdy warrior, %name% has been through many campaigns of raiding and pillaging. Although a %person% of few words, the raider is an absolutely vicious specimen in battle. Even for a raider, what %they% does to defeated villagers irks many. It is likely %they% came with you to satiate %their% more sadistic lusts.";
 		bros[0].improveMood(1.0, "Had a successful raid");
 		bros[0].setPlaceInFormation(3);
 		bros[0].setVeteranPerks(2);
@@ -46,10 +44,8 @@
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]));
-		bros[1].setStartValuesEx([
-			"barbarian_background"
-		]);
-		bros[1].getBackground().m.RawDescription = "%name% was a boy when taken from a southern village and raised amongst the barbarians of the wastes. While he learned the language and culture, he never fit in and was a constant victim of cruel jokes and games. You are not sure if he has followed you to return home or to get away from his northern \'family\'.";
+		bros[1].setStartValuesEx(["barbarian_background"]);
+		bros[1].getBackground().m.RawDescription = "%name% was a %child% when taken from a southern village and raised amongst the barbarians of the wastes. While %they% learned the language and culture, %they% never fit in and was a constant victim of cruel jokes and games. You are not sure if %they% has followed you to return home or to get away from %their% northern \'family\'.";
 		bros[1].improveMood(1.0, "Had a successful raid");
 		bros[1].setPlaceInFormation(4);
 		bros[1].setVeteranPerks(2);
@@ -73,10 +69,8 @@
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband]
 		]));
-		bros[2].setStartValuesEx([
-			"barbarian_background"
-		]);
-		bros[2].getBackground().m.RawDescription = "Barbarian raiders often take from lands foreign to them. Most see their raids as a matter of material and women, but occasionally they will enslave formidable boys with great potential. %name%, a northerner, was such a child and he was raised to be a raider himself. Half his life was with his primitive clan, and the other half with those who took him. This has made him as hardy and brutish a warrior as one can get.";
+		bros[2].setStartValuesEx(["barbarian_background"]);
+		bros[2].getBackground().m.RawDescription = "Barbarian raiders often take from lands foreign to them. Most see their raids as a matter of material and women, but occasionally they will enslave formidable boys with great potential. %name%, a northerner, was such a child and %they% was raised to be a raider %themselves%. Half %their% life was with %their% primitive clan, and the other half with those who took %them%. This has made %them% as hardy and brutish a warrior as one can get.";
 		bros[2].improveMood(1.0, "Had a successful raid");
 		bros[2].setPlaceInFormation(5);
 		bros[2].setVeteranPerks(2);
@@ -99,10 +93,8 @@
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]));
-		bros[3].setStartValuesEx([
-			"monk_background"
-		]);
-		bros[3].getBackground().m.RawDescription = "The man who put you on the path, you believe %name% may serve some greater role to your attaining immense treasures. You have seen northern gimps and one-armed men who would best him in combat, but his knowledge and intelligence may be sharper blades in good time.";
+		bros[3].setStartValuesEx(["monk_background"], true, 0);
+		bros[3].getBackground().m.RawDescription = "The man who put you on the path, you believe %name% may serve some greater role to your attaining immense treasures. You have seen northern gimps and one-armed men who would best %them% in combat, but %their% knowledge and intelligence may be sharper blades in good time.";
 		bros[3].improveMood(2.0, "Thinks he managed to convince you to give up raiding and pillaging");
 		bros[3].setPlaceInFormation(13);
 		bros[3].setVeteranPerks(2);
@@ -244,11 +236,14 @@
 		return false; // produces a lot of bugs with unlayered armors
 	}
 
-	o.onHiredByScenario <- function(bro) {
-		if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) {
-			bro.worsenMood(0.5, "Is uncomfortable with joining raiders");
+	o.onHiredByScenario <- function(_bro) {
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) {
+			_bro.worsenMood(0.5, "Is uncomfortable with joining raiders");
 		} else {
-			bro.improveMood(1.5, "Is excited at becoming a raider");
+			_bro.improveMood(1.5, "Is excited at becoming a raider");
 		}
 	}
 
@@ -260,6 +255,9 @@
 	}
 
 	o.onGenerateBro <- function(bro) {
+		if (bro.isStabled()) {
+			return;
+		}
 		if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.5);
 			bro.getBaseProperties().DailyWageMult *= 1.5;

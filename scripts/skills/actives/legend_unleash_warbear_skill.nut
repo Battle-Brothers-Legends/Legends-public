@@ -40,15 +40,8 @@ this.legend_unleash_warbear_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IconDisabled = "skills/bear_square_bw.png";
 		this.m.Overlay = "active_165";
 		this.m.SoundOnUse = [
-			"sounds/enemies/wolf_idle_00.wav",
-			"sounds/enemies/wolf_idle_01.wav",
-			"sounds/enemies/wolf_idle_02.wav",
-			"sounds/enemies/wolf_idle_03.wav",
-			"sounds/enemies/wolf_idle_04.wav",
-			"sounds/enemies/wolf_idle_06.wav",
-			"sounds/enemies/wolf_idle_07.wav",
-			"sounds/enemies/wolf_idle_08.wav",
-			"sounds/enemies/wolf_idle_09.wav"
+			"sounds/enemies/bear_idle1.wav",
+			"sounds/enemies/bear_idle2.wav",
 		];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;

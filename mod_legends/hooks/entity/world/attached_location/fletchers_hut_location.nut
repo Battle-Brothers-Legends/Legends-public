@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "The arrow makers in these sheds produce all kinds of ranged ammunition which they then sell at the nearest settlement. Contributes bows, crossbows, arrows, bolts, bowyers and archers to the local town";
+		this.m.Description = "The arrow makers in these sheds produce all kinds of ranged ammunition which they then sell at the nearest settlement. Contributes bows, crossbows, arrows, bolts, bowyers and archers to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

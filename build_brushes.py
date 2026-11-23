@@ -4,13 +4,14 @@ OS-agnostic brush building script for Legends mod
 Replaces build_brushes.sh with cross-platform Python implementation
 """
 
-import os
-import sys
-import subprocess
-import shutil
 import argparse
+import shutil
+import sys
+import time
+from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
-import platform
+
+from buildscript.lib import BrushUtils
 
 
 class BrushBuildError(Exception):
@@ -29,18 +30,11 @@ class BrushBuilder:
 
         self.build_dir = Path(build_dir)
         self.repo_dir = repo_dir
-        # Prefer repo-local bin; fall back to parent ../bin
-        local_bin = self.current_dir / "bin"
-        parent_bin = self.current_dir.parent / "bin"
-        self.bin_dir = local_bin if local_bin.exists() else parent_bin
-
-        # Determine executable extension based on OS
-        self.exe_ext = ".exe" if platform.system() == "Windows" else ".sh"
+        self.brush = BrushUtils(self.current_dir, self.repo_dir)
 
         print(f"Build directory: {self.build_dir}")
         print(f"Repository directory: {self.repo_dir}")
         print(f"Current directory: {self.current_dir}")
-        print(f"Binary directory: {self.bin_dir}")
 
     def handle_exit(self, result, context=""):
         """Handle subprocess exit codes"""
@@ -120,79 +114,6 @@ class BrushBuilder:
 
         generate_legend_enemies(self.current_dir)
 
-    def get_helmet_brushes(self):
-        """Get list of helmet brush directories"""
-        helmet_brushes = []
-        helmet_dir = self.current_dir / "unpacked" / "legend_helmets"
-
-        if helmet_dir.exists():
-            for subdir in helmet_dir.iterdir():
-                if subdir.is_dir() and subdir.name.isdigit():
-                    helmet_brushes.append(f"legend_helmets/{subdir.name}")
-
-        return helmet_brushes
-
-    def get_armor_brushes(self):
-        """Get list of armor brush directories"""
-        armor_brushes = []
-        armor_dir = self.current_dir / "unpacked" / "legend_armor"
-
-        if armor_dir.exists():
-            for subdir in armor_dir.iterdir():
-                if subdir.is_dir() and subdir.name.isdigit():
-                    armor_brushes.append(f"legend_armor/{subdir.name}")
-
-        return armor_brushes
-
-    def build_brush(self, brush_path):
-        """Build a single brush using bbrusher"""
-        print(f"Building {brush_path} brush...")
-
-        bbrusher_exe = self.bin_dir / f"bbrusher{self.exe_ext}"
-        if not bbrusher_exe.exists():
-            raise BrushBuildError(f"bbrusher executable not found at {bbrusher_exe}")
-
-        # Convert forward slashes to underscores for brush name
-        brush_name = brush_path.replace("/", "_")
-        brush_file = self.current_dir / "brushes" / f"{brush_name}.brush"
-        unpacked_dir = self.current_dir / "unpacked" / brush_path
-
-        if not unpacked_dir.exists():
-            print(
-                f"Warning: Unpacked directory {unpacked_dir} does not exist, skipping {brush_path}"
-            )
-            return
-
-        try:
-            # Change to bin directory
-            original_cwd = os.getcwd()
-            os.chdir(self.bin_dir)
-
-            # Run bbrusher command
-            cmd = [
-                str(bbrusher_exe),
-                "pack",
-                "--gfxPath",
-                f"../{self.repo_dir}/",
-                str(brush_file),
-                str(unpacked_dir),
-            ]
-
-            result = subprocess.run(
-                cmd, capture_output=True, text=True, encoding="utf-8", errors="replace"
-            )
-
-            # Change back to original directory
-            os.chdir(original_cwd)
-
-            self.check_for_error(result.stdout, brush_path)
-
-            return result.stdout
-
-        except Exception as e:
-            os.chdir(original_cwd)  # Ensure we change back even on error
-            raise BrushBuildError(f"Failed to build brush {brush_path}: {e}")
-
     def copy_brushes_and_gfx(self):
         """Copy brushes and graphics to build directory for packaging"""
         print(f"Copying brushes to {self.build_dir}/brushes ...")
@@ -218,37 +139,46 @@ class BrushBuilder:
 
     def build_all_brushes(self):
         """Build all brushes"""
-        # Static brush list
-        brushes = [
-            # "entity_blood",
-            "legend_characters",
-            "legend_enemies",
-            "legend_weapons",
-            "legend_world",
-            "world_tiles",
-            "legend_horses",
-            "legend_detail",
-            "terrain",
-            "legend_ui",
-            "legend_objects",
-            "legend_effects",
-        ]
-
-        # Add dynamic helmet brushes
-        brushes.extend(self.get_helmet_brushes())
-
-        # Add dynamic armor brushes
-        brushes.extend(self.get_armor_brushes())
-
         # Create brushes directory
         brushes_dir = self.current_dir / "brushes"
         if brushes_dir.exists():
             shutil.rmtree(brushes_dir)
         brushes_dir.mkdir(exist_ok=True)
 
+        start = time.time()
         # Build each brush
-        for brush in brushes:
-            self.build_brush(brush)
+        with ProcessPoolExecutor() as executor:
+            list(
+                executor.map(
+                    self.brush.build_brush,
+                    # these are build as bbrusher would
+                    [
+                        "world_tiles",
+                        "terrain",
+                        "legend_detail",
+                    ],
+                )
+            )
+        with ProcessPoolExecutor() as executor:
+            list(
+                executor.map(
+                    self.brush.build_brush_best_fit,
+                    # these are using different packaging method for better compression
+                    [
+                        "legend_armor",
+                        "legend_helmets",
+                        "legend_characters",
+                        "legend_enemies",
+                        "legend_weapons",
+                        "legend_world",
+                        "legend_horses",
+                        "legend_ui",
+                        "legend_objects",
+                        "legend_effects",
+                    ],
+                )
+            )
+        print("Elapsed build brush", time.time() - start)
 
     def build(self):
         """Main build process"""
@@ -279,7 +209,9 @@ class BrushBuilder:
 def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(description="Build brushes for Legends mod")
-    parser.add_argument("build_dir", nargs="?", help="Build directory (default: ./build)")
+    parser.add_argument(
+        "build_dir", nargs="?", help="Build directory (default: ./build)"
+    )
     parser.add_argument(
         "repo_dir",
         nargs="?",

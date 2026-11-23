@@ -116,7 +116,7 @@
 	"weapon.legend_military_goedendag",
 	"weapon.legend_infantry_axe",
 	"weapon.legend_halberd",
-	"weapon.legend_estoc",
+	"weapon.estoc",
 	"weapon.greatsword",
 	"weapon.greataxe",
 	"weapon.billhook"

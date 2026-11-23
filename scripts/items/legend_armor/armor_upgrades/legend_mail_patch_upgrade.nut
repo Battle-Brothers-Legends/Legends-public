@@ -6,7 +6,7 @@ this.legend_mail_patch_upgrade <- this.inherit("scripts/items/legend_armor/legen
 		this.m.ID = "legend_armor_upgrade.body.legend_mail_patch";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Mail Patch";
-		this.m.Description = "A large patch of mail that can be added to any armor to protect the most arms and the shoulders.";
+		this.m.Description = "A large patch of mail that can be added to any armor to protect the arms and the shoulders.";
 		this.m.ArmorDescription = "Includes a large patch of mail worn on the shoulders.";
 		this.m.Variants = [1];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
@@ -27,7 +27,7 @@ this.legend_mail_patch_upgrade <- this.inherit("scripts/items/legend_armor/legen
 		this.m.SpriteDamagedBack = "pauldrons_mail_patch_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_mail_patch_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_mail_patch_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_mail_patch_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_mail_patch_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_mail_patch_"  + variant + ".png";
 	}

@@ -35,8 +35,7 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.OrcWarlord);
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 200)
-		{
+		if (!::FU.InScenario() && this.World.getTime().Days >= this.Const.World.Scaling.Orcs.WarlordStatIncreaseDay)	{
 			b.MeleeSkill += 5;
 			b.DamageTotalMult += 0.1;
 		}
@@ -101,6 +100,9 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
@@ -111,6 +113,10 @@
 		}
 
 		::Legends.S.scaleBaseProperties(b);
+	}
+
+	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
+		this.legend_orc.onDeath( _killer, _skill, _tile, _fatalityType );
 	}
 
 	o.assignRandomEquipment = function ()

@@ -1,21 +1,15 @@
-::mods_hookExactClass("entity/tactical/humans/envoy", function(o)
-{
-	o.getPlaceInFormation = function() {
+::mods_hookExactClass("entity/tactical/humans/envoy", function (o) {
+	local create = o.create;
+	o.create = function () {
+		create();
+		if (this.Math.rand(1, 100) <= 25) {
+            this.setGender(1);
+		}
+	}
+
+	o.getPlaceInFormation = function () {
 		return this.m.PlaceInFormation;
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, ::Legends.Armor.Standard.linen_tunic]
-		]));
-		local item = this.Const.World.Common.pickHelmet([
-			[1, ::Legends.Helmet.Standard.feathered_hat],
-			[2, ::Legends.Helmet.None]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
-	}
+	o.assignRandomEquipment = function () {}
 });

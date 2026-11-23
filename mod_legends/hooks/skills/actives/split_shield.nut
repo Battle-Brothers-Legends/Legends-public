@@ -1,5 +1,4 @@
 ::mods_hookExactClass("skills/actives/split_shield", function (o) {
-	o.m.IsOrcWeapon <- false;
 	o.m.IsHammer <- false;
 	o.m.OverflowDamage <- 0;
 
@@ -61,10 +60,6 @@
 		return ret;
 	}
 
-	o.setApplyOrcWeapon <- function (_f) {
-		this.m.IsOrcWeapon = _f;
-	}
-
 	o.calculateDamage <- function (_target) {
 		local actor = this.getContainer().getActor();
 		local mastery = this.m.ApplyAxeMastery && actor.getCurrentProperties().IsSpecializedInAxes;
@@ -99,21 +94,8 @@
 
 		if (shield != null) {
 			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplitShield);
-			local damage = calculateDamage(target);
-
-			local conditionBefore = shield.getCondition();
-			shield.applyShieldDamage(damage);
-			if (!this.Tactical.getNavigator().isTravelling(target)) {
-				this.Tactical.getShaker().shake(target, _user.getTile(), 2, this.Const.Combat.ShakeEffectSplitShieldColor, this.Const.Combat.ShakeEffectSplitShieldHighlight, this.Const.Combat.ShakeEffectSplitShieldFactor, 1.0, [
-					"shield_icon"
-				], 1.0);
-			}
 
 			if (this.m.IsHammer) {
-				this.m.OverflowDamage = damage;
-				attackEntity(_user, target);
-				this.m.OverflowDamage = 0;
-
 				if (::Legends.S.skillEntityAliveCheck(_user, target)) {
 					return true;
 				}
@@ -122,6 +104,16 @@
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer && !target.getFlags().has("tail")) {
 					this.Tactical.EventLog.log(stagger.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(_user), this.Const.UI.getColorizedEntityName(target)));
 				}
+			}
+
+			local damage = calculateDamage(target);
+
+			local conditionBefore = shield.getCondition();
+			shield.applyShieldDamage(damage);
+			if (!this.Tactical.getNavigator().isTravelling(target)) {
+				this.Tactical.getShaker().shake(target, _user.getTile(), 2, this.Const.Combat.ShakeEffectSplitShieldColor, this.Const.Combat.ShakeEffectSplitShieldHighlight, this.Const.Combat.ShakeEffectSplitShieldFactor, 1.0, [
+					"shield_icon"
+				], 1.0);
 			}
 
 			local overflowDamage = this.Math.floor(damage - conditionBefore);
@@ -134,7 +126,7 @@
 						this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
 						if (overflowDamage > 0) {
 							this.m.OverflowDamage = overflowDamage;
-							attackEntity(_user, target);
+							this.attackEntity(_user, target);
 							this.m.OverflowDamage = 0;
 						}
 					} else {
@@ -165,11 +157,10 @@
 		return true;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
-		if (this.m.IsOrcWeapon) {
-			this.m.ActionPointCost = 5;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.m.MaxRange == 2) {
+			this.m.ActionPointCost -= 1;
 		}
 	}
 

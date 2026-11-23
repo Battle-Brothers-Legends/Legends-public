@@ -395,7 +395,7 @@ CampScreenHealerDialogModule.prototype.assignItemToSlot = function(_owner, _slot
 		_slot.assignListItemOverlayImage();
 
 		// show amount
-		_slot.assignListItemAmount('' + _item.Percentage +'%', '#ffffff');
+		_slot.assignListItemAmount('' + _item.Percentage.toFixed(2) +'%', '#ffffff');
 
 		// bind tooltip
 		_slot.assignListItemTooltip(_item.ID, "stash");

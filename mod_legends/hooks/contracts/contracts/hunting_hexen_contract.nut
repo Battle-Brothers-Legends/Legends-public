@@ -18,6 +18,48 @@
 		];
 	}
 
+	local createStates = o.createStates;
+	o.createStates = function () {
+		createStates();
+		foreach (s in this.m.States) {
+			if (s.ID == "Offer") {
+				s.end = function () {
+					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+					local r = this.Math.rand(1, 100);
+
+					if (r <= 20) {
+						this.Flags.set("IsSpiderQueen", true);
+					} else if (r <= 40) {
+						this.Flags.set("IsCurse", true);
+					} else if (r <= 50) {
+						this.Flags.set("IsEnchantedVillager", true);
+					} else if (r <= 55) {
+						this.Flags.set("IsSinisterDeal", true);
+					}
+
+					this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+					this.Flags.set("Delay", this.Math.rand(10, 30) * 1.0);
+					local envoy = this.World.getGuestRoster().create("scripts/entity/tactical/humans/firstborn");
+					local items = envoy.getItems();
+					items.equip(this.Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Standard.linen_tunic]
+					]));
+					items.equip(this.Const.World.Common.pickHelmet([
+						[1, ::Legends.Helmet.Standard.feathered_hat],
+						[3, ::Legends.Helmet.None]
+					]));
+					envoy.setName(this.Flags.get("ProtecteeName"));
+					envoy.setTitle("");
+					envoy.setFaction(1);
+					this.Flags.set("ProtecteeID", envoy.getID());
+					this.Contract.m.Home.setLastSpawnTimeToNow();
+					this.Contract.setScreen("Overview");
+					this.World.Contracts.setActiveContract(this.Contract);
+				}
+			}
+		}
+	}
+
 	local createScreens = o.createScreens;
 	o.createScreens = function()
 	{

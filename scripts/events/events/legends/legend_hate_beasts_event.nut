@@ -49,8 +49,7 @@ this.legend_hate_beasts_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-	if (!this.Const.DLC.Unhold)
-		{
+		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 			return;
 		}
 

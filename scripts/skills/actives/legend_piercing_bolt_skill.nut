@@ -54,7 +54,7 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 	function onUse( _user, _targetTile )
 	{
 		this.m.OriginalDirection = _user.getTile().getDirectionTo(_targetTile);
-		return shoot_bolt.onUse(_user, _targetTile);
+		return this.shoot_bolt.onUse(_user, _targetTile);
 	}
 
 	function onScheduledTargetHit( _info )

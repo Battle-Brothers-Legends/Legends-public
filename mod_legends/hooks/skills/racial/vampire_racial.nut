@@ -8,12 +8,6 @@
 				if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow)) {
 					_properties.DamageReceivedRegularMult *= 1.2;
 				}
-				if (weapon.getID() == "weapon.goblin_crossbow") {
-					_properties.DamageReceivedRegularMult *= 2.0;
-				}
-				if (weapon.getID() == "weapon.legend_wooden_stake") {
-					_properties.DamageReceivedRegularMult *= 10.0;
-				}
 				if (weapon.getID() == "weapon.legend_wooden_spear") {
 					_properties.DamageReceivedRegularMult *= 5.0;
 				}

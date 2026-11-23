@@ -93,12 +93,14 @@
 			}
 			foreach (idx in toRemove) {
 				local upgrade = _item.getUpgrade(idx);
+				upgrade.setTransactionPrice(null);
 				if (upgrade.isDestroyedOnRemove()) {
 					continue;
 				}
 				this.Stash.add(_item.removeUpgrade(idx));
 			}
 		}
+		_item.setTransactionPrice(null);
 		return this.UIDataHelper.convertStashAndEntityToUIData(_entity, null, false, this.m.InventoryFilter);
 	}
 

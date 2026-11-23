@@ -78,9 +78,7 @@
 				::Const.Perks.IndestructibleTree
 			],
 			Enemy = [],
-			Class = [
-				::Const.Perks.StaffClassTree
-			],
+			Class = [],
 			Profession = [],
 			Magic = []
 		}

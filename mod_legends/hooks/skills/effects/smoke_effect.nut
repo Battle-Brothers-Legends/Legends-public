@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/effects/smoke_effect", function(o) {
-	
-	o.getTooltip = function()
-	{
+::mods_hookExactClass("skills/effects/smoke_effect", function (o) {
+	o.getTooltip = function () {
 		return [
 			{
 				id = 1,
@@ -17,7 +15,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=%negative%]50%[/color] Ranged Damage received decrease"
+				text = "[color=%negative%]50%[/color] less Ranged Damage received"
 			},
 			{
 				id = 12,
@@ -33,25 +31,39 @@
 			}
 		];
 	}
-	o.onUpdate = function( _properties )
-	{
-		this.skill.onUpdate(_properties);
-		local actor = this.getContainer().getActor();
-		local tile = this.getContainer().getActor().getTile();
-		//local target = _targetTile.getEntity();
 
-		if (tile.Properties.Effect == null || tile.Properties.Effect.Type != "smoke")
-		{
+	o.onAdded <- function () {
+		local actor = this.getContainer().getActor();
+		local properties = actor.getCurrentProperties();
+		actor.getSkills().add(::new("scripts/skills/terrain/hidden_effect"));
+		properties.Vision -= 10;
+		actor.updateVisibility(actor.getTile(), actor.getCurrentProperties().getVision(), actor.getFaction());
+		actor.setDirty(true);
+	};
+
+	o.onRemoved <- function () {
+		local actor = this.getContainer().getActor();
+		local properties = actor.getCurrentProperties();
+		properties.Vision += 10;
+		actor.updateVisibility(actor.getTile(), actor.getCurrentProperties().getVision(), actor.getFaction());
+		actor.setDirty(true);
+	};
+
+	o.onMovementFinished <- function (_tile) {
+		if (_tile.Properties.Effect == null || _tile.Properties.Effect.Type != "smoke") {
 			this.removeSelf();
 		}
-		else
-		{
-			actor.getSkills().add(::new("scripts/skills/terrain/hidden_effect"));		
+	};
+
+	o.onUpdate = function (_properties) {
+		local actor = this.getContainer().getActor();
+		local tile = actor.getTile();
+		if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "smoke")	{
 			_properties.RangedSkillMult *= 0.5;
 			_properties.DamageReceivedRangedMult *= 0.5;
 			_properties.Vision -= 10;
-			
+		} else {
+			this.removeSelf();
 		}
-		return true;
 	}
 });

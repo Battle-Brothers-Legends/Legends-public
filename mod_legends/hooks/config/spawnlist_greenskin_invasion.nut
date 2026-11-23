@@ -20,14 +20,9 @@
 					Cost = 15
 				},
 				{
-					Type = ::Const.World.Spawn.Troops.LegendGoblinPlunderer,
-					MinR = 800,
-					Cost = 40
-				},
-				{
 					Type = ::Const.World.Spawn.Troops.LegendGoblinHarrier,
 					MinR = 1200,
-					Cost = 50
+					Cost = 40
 				}
 			]
 		},
@@ -57,13 +52,13 @@
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.LegendGoblinDirewolfRider,
-					MinR = 1200,
-					Cost = 60
+					MinR = 1000,
+					Cost = 50
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.LegendGoblinWhiteDirewolfRider,
-					MinR = 1600,
-					Cost = 80
+					MinR = 1400,
+					Cost = 60
 				}
 			]
 		},

@@ -2,8 +2,8 @@ this.legend_named_shamshir_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Bonus = 0
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedShamshir);
 		this.m.Name = "";
 		this.m.Description = "";
@@ -12,13 +12,12 @@ this.legend_named_shamshir_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Item;
 		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.IsStacking = true;
 		this.m.IsWeaponSkill = true;
 		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -33,14 +32,13 @@ this.legend_named_shamshir_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function setBonus( _bonus )
-	{
+	function setBonus(_bonus) {
 		this.m.Bonus = _bonus;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().getID() == this.getItem().getID())
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill.isAttack() && _skill.getItem() != null && this.getItem() != null && _skill.getItem().getInstanceID() == this.getItem().getInstanceID()) {
 			_properties.ThresholdToInflictInjuryMult *= 1 - (this.m.Bonus * 0.01);
+		}
 	}
 });

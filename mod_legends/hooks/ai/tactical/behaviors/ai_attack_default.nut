@@ -23,6 +23,7 @@
 		::Legends.Actives.getID(::Legends.Active.LegendHeartseeker),
 		::Legends.Actives.getID(::Legends.Active.LegendBucklerBash),
 		::Legends.Actives.getID(::Legends.Active.LegendThrowKnife),
+		::Legends.Actives.getID(::Legends.Active.LegendSlingstaffBash),
 		// ::Legends.Actives.getID(::Legends.Active.LegendHaftstrike), // this bad boy makes the enemies attack with weak attacks for no reason
 		::Legends.Actives.getID(::Legends.Active.LegendHew),
 	]);

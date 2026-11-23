@@ -240,24 +240,24 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		return false;
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().getID() == "background.graverobber" || bro.getBackground().getID() == "background.gravedigger" || bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.anatomist" || bro.getBackground().getID() == "background.converted_cultist")
+		if (_bro.getBackground().getID() == "background.graverobber" || _bro.getBackground().getID() == "background.gravedigger" || _bro.getBackground().getID() == "background.cultist" || _bro.getBackground().getID() == "background.anatomist" || _bro.getBackground().getID() == "background.converted_cultist")
 		{
-			bro.improveMood(1.5, "I feel strange...but better!");
-			bro.getSprite("socket").setBrush("bust_base_undead");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendDeathlySpectre);
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendWitheringAura);
+			_bro.improveMood(1.5, "I feel strange...but better!");
+			_bro.getSprite("socket").setBrush("bust_base_undead");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendDeathlySpectre);
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendWitheringAura);
 		}
-		else if (bro.getBackground().getID() == "background.legend_puppet")
+		else if (_bro.getBackground().getID() == "background.legend_puppet")
 		{
-			bro.getSprite("socket").setBrush("bust_base_undead");
-			bro.getBaseProperties().Hitpoints += 12;
+			_bro.getSprite("socket").setBrush("bust_base_undead");
+			_bro.getBaseProperties().Hitpoints += 12;
 		}
-		else if (!bro.isStabled())
+		else if (!_bro.isStabled())
 		{
-			bro.worsenMood(2.0, "Feels very sick all of a sudden...");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendWitheringAura);
+			_bro.worsenMood(2.0, "Feels very sick all of a sudden...");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendWitheringAura);
 		}
 	}
 
@@ -279,23 +279,26 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 			_roster.remove(g);
 	}
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
-		if (bro.getBackground().getID() == "background.graverobber" || bro.getBackground().getID() == "background.gravedigger" || bro.getBackground().getID() == "background.cultist")
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.00); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 1.00; //1.0 = default
-			bro.getSkills().update();
+		if (_bro.isStabled()) {
+			return;
 		}
-		else if (bro.getBackground().getID() == "background.legend_puppet")
+		if (_bro.getBackground().getID() == "background.graverobber" || _bro.getBackground().getID() == "background.gravedigger" || _bro.getBackground().getID() == "background.cultist")
 		{
-			bro.getBaseProperties().Hitpoints += 12;
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.00); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 1.00; //1.0 = default
+			_bro.getSkills().update();
+		}
+		else if (_bro.getBackground().getID() == "background.legend_puppet")
+		{
+			_bro.getBaseProperties().Hitpoints += 12;
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.2); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 1.2; //1.0 = default
-			bro.getSkills().update();
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.2); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 1.2; //1.0 = default
+			_bro.getSkills().update();
 		}
 	}
 
@@ -314,7 +317,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 
 	function onBuildPerkTree( _background )
 	{
-		if (_background.getID() == "background.gravedigger" || _background.getID() == "background.graverobber" || _background.getID() == "background.cultist")
+		if (_background.getID() == "background.gravedigger" || _background.getID() == "background.graverobber" || _background.getID() == "background.cultist" || _background.getID() == "background.anatomist")
 		{
 			this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendSiphon);
 		}

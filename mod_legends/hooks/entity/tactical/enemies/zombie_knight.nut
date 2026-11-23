@@ -18,7 +18,7 @@
 		b.SurroundedBonus = 5; // resetting from vanilla
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
@@ -27,6 +27,15 @@
 		::Legends.S.scaleBaseProperties(b);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+	}
+
+	local onResurrected = o.onResurrected;
+	o.onResurrected = function (_info) {
+		onResurrected(_info);
+		if (!_info.IsHeadAttached) {
+			this.m.Skills.removeByID(::Legends.Actives.getID(::Legends.Active.ZombieBite));
+			this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
+		}
 	}
 
 	o.assignRandomEquipment = function()

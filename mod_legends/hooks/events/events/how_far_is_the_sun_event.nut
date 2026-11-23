@@ -7,12 +7,13 @@
 		create();
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
+				s.Text = "[img]gfx/ui/events/event_05.png[/img]While resting, the men start a conversation about how far away the sun is. %otherbrother% looks up at it, wincing and gritting %their_other% teeth as %they_other% just about blinds %themselves_other% in %their_other% measuring. Finally, %they_other% looks back down.%SPEECH_ON%I\'d wager it\'s about ten to fifteen miles away.%SPEECH_OFF%%They_other% nods at %their_other% own presumably accurate summation.%SPEECH_ON%Aye, probably not even that far. I heard a story about an archer in a faraway land hitting it with an arrow.%SPEECH_OFF%";
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
 					if (_event.m.Dervish != null && this.Options.len() < 6) {
 						this.Options.insert(this.Options.len() - 1, {
-							Text = "Our southern ascetic has lived their life under their Gilder\'s embrace, surely they have an idea",
+							Text = "Our southern ascetic has lived %their_dervish% life under %their_dervish% Gilder\'s embrace, surely %they_dervish% have an idea",
 							getResult = @(_event) "Dervish"
 						});
 					}
@@ -25,6 +26,7 @@
 				}
 			}
 			if (s.ID == "Historian") {
+				s.Text = "[img]gfx/ui/events/event_05.png[/img]%historian% the historian starts in on the conversation.%SPEECH_ON%I doubt the veracity of that claim about shooting it with a bow. Here\'s a much more truthful tale I\'ve read of: there are men in the mountains of the east who have big spyglasses to stare up at the night sky. They think the sun is quite far away. At least ten thousand miles, even. They also think the nightlights are other suns and not the souls of dead heroes.%SPEECH_OFF%%otherbrother% gets up.%SPEECH_ON%Watch yer mouth, fool, and don\'t speak ill of our ancestors.%SPEECH_OFF%The historian nods.%SPEECH_ON%Of course! It was only an idea.%SPEECH_OFF%What hogwash. Pretty dumb shite for a supposed \'smart\' %person_historian% like %historian%. A few of the brothers have a laugh at the historian\'s silly notions.";
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Historian.getImagePath());
 					local brothers = this.World.getPlayerRoster().getAll();
@@ -69,6 +71,7 @@
 				}
 			}
 			if (s.ID == "Cultist") {
+				s.Text = "[img]gfx/ui/events/event_05.png[/img]%cultist% the cultist gets up and looks at the sun. As %they_cultist% continues to stare at it, a shadow slowly emerges over %their_cultist% face, as though some entity were shielding %them_cultist% from the light. Suddenly, %they_cultist% raises a hand and starts drawing some aerial rites with %their_cultist% hand. You swear the darkness on %their_cultist% face is moving as though an imprint of %their_cultist% drawings, a sort of shifting tattoo. When %they're_cultist% finished, %they_cultist% takes a seat.%SPEECH_ON%The sun is dying.%SPEECH_OFF%The men look concerned. One interjects.%SPEECH_ON%Dying? What do you mean?%SPEECH_OFF%%cultist% stares at him.%SPEECH_ON%Davkul wills it that all may die.%SPEECH_OFF%One man asks if this supposed \'Davkul\' will die too. The cultist nods.%SPEECH_ON%When there is nothing left to die, Davkul may finally rest. A crueler god would have departed already. It is by Davkul\'s good graces that he will go last, and for that we praise him.%SPEECH_OFF%";
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Cultist.getImagePath());
 					local brothers = this.World.getPlayerRoster().getAll();
@@ -119,7 +122,7 @@
 				}
 			}
 			if (s.ID == "Archer") {
-				s.Text = "[img]gfx/ui/events/event_05.png[/img]%archer% takes the challenge, grabbing his bow and a couple of arrows. He licks his finger and holds it up.%SPEECH_ON%Wind\'s right for a good star shootin\'.%SPEECH_OFF%The archer nocks an arrow, draws, and takes aim. The blistering light is instantly blinding.%SPEECH_ON%Fark, I can\'t see shit.%SPEECH_OFF%His aim wobbles as dark spots take over his vision. The arrow is loosed and sails wide of the sun. Real wide. They look at the company, eyes dimmed, hands out as he tries to steady himself while his sight returns.%SPEECH_ON%Did I hit it?%SPEECH_OFF%%otherbrother% hides his chuckling.%SPEECH_ON%Right on the button!%SPEECH_OFF%The men burst into laughter.";
+				s.Text = "[img]gfx/ui/events/event_05.png[/img]%archer% takes the challenge, grabbing %their_archer% bow and a couple of arrows. %They_archer% licks %their_archer% finger and holds it up.%SPEECH_ON%Wind\'s right for a good star shootin\'.%SPEECH_OFF%The archer nocks an arrow, draws, and takes aim. The blistering light is instantly blinding.%SPEECH_ON%Fark, I can\'t see shit.%SPEECH_OFF%%Their_archer% aim wobbles as dark spots take over %their_archer% vision. The arrow is loosed and sails wide of the sun. Real wide. %They_archer% looks at the company, eyes dimmed, hands out as %they_archer% tries to steady %themselves_archer% while %their_archer% sight returns.%SPEECH_ON%Did I hit it?%SPEECH_OFF%%otherbrother% hides %their_other% chuckling.%SPEECH_ON%Right on the button!%SPEECH_OFF%The men burst into laughter.";
 			}
 		}
 
@@ -155,7 +158,7 @@
 
 		this.m.Screens.push({
 			ID = "Dervish",
-			Text = "[img]gfx/ui/events/event_161.png[/img]%Dervish% the dervish lets out a plain smile, as though they were waiting for such a question for some time. They place themself before the rest of the company and open their arms towards the sun, graciously absorbing its heat for %themselves_dervish%. Confidently, they proclaim.%SPEECH_ON%The answer you seek cannot come from others- only you can know how close you are to our guiding sun.%SPEECH_OFF%A few of the company look on visibly taken aback and confused. One brother manages to capture the mood perfectly with a loud \'huh?\'. The ascetic, still basking in the sun, elaborates their point.%SPEECH_ON%The Gilder above grants us the sun, both as a reward and punishment- the same sun that warms your bones on a cold day can scorch your skin. How close the sun is depends on your relationship with the Gilder: if you serve them loyally and well, the sun reaches balance and offers sublime radiance. If you are wicked and resist the Gilder, the sun ebbs and flows between scorching heat and frigid cold.%SPEECH_OFF%A few brothers scoff at such a silly notion, a sun that is personal to everyone beneath it? Many quickly shrug it off and go back to their own theories, some pulling at their collars and wiping sweat from their brow. The dervish, pleased with their speech, returns to the company. You spot a faint smile, but notably not a single bead of sweat on them as they gleefully listen to the company bounce between their own theories, like a father listening to nonsense ramblings of his children.",
+			Text = "[img]gfx/ui/events/event_161.png[/img]%Dervish% the dervish lets out a plain smile, as though %they_dervish% was waiting for such a question for some time. %They_dervish% places %themselves_dervish% before the rest of the company and opens %their_dervish% arms towards the sun, graciously absorbing its heat for %themselves_dervish%. Confidently, %they_dervish% proclaims.%SPEECH_ON%The answer you seek cannot come from others - only you can know how close you are to our guiding sun.%SPEECH_OFF%A few of the company look on visibly taken aback and confused. One brother manages to capture the mood perfectly with a loud \'huh?\'. The ascetic, still basking in the sun, elaborates %their_dervish% point.%SPEECH_ON%The Gilder above grants us the sun, both as a reward and punishment - the same sun that warms your bones on a cold day can scorch your skin. How close the sun is depends on your relationship with the Gilder: if you serve him loyally and well, the sun reaches balance and offers sublime radiance. If you are wicked and resist the Gilder, the sun ebbs and flows between scorching heat and frigid cold.%SPEECH_OFF%A few brothers scoff at such a silly notion, a sun that is personal to everyone beneath it? Many quickly shrug it off and go back to their own theories, some pulling at their collars and wiping sweat from their brows. The dervish, pleased with %their_dervish% speech, returns to the company. You spot a faint smile, but notably not a single bead of sweat on %them_dervish% as %they_dervish% gleefully listens to the company bounce between %their_dervish% own theories, like a father listening to nonsense ramblings of his children.",
 			Image = "",
 			List = [],
 			Characters = [],

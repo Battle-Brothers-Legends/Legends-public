@@ -10,7 +10,6 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		}

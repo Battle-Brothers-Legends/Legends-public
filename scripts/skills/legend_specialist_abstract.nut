@@ -110,7 +110,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 			return _stat;
 		}
 		local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
-		return this.Math.floor(0.01 * this.Math.min(5 * daysCompany + 25, 100) * _stat);
+		return this.Math.floor(0.01 * this.Math.min(5 * actor.getLevel() + 25, 100) * _stat);
 		// if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Week in company")
 		// {
 		// 	local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
@@ -158,12 +158,12 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsedSpecialistChecks(_skill)
 	{
-		if (_skill == null)
+		if (::Legends.S.isNull(_skill))
 			return false;
 
 		local item = _skill.getItem();
 
-		if (item == null || !("isItemType" in item))
+		if (::Legends.S.isNull(item))
 			return false;
 
 		if (!item.isItemType(this.Const.Items.ItemType.Weapon))

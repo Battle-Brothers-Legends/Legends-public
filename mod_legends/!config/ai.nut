@@ -23,21 +23,25 @@ local count = ::Const.AI.Behavior.ID.COUNT;
 ::Const.AI.Behavior.ID.Howl <- count++;
 ::Const.AI.Behavior.ID.SpawnShadow <- count++;
 ::Const.AI.Behavior.ID.Corruption <- count++;
+::Const.AI.Behavior.ID.SlingstaffMoveIntoRange <- count++;
 ::Const.AI.Behavior.ID.COUNT = count;
 
 ::Const.AI.Behavior.Name.extend([
 	"Howl",
 	"SpawnShadow",
-	"Corruption"
+	"Corruption",
+	"SlingstaffMoveIntoRange"
 ]);
 
 ::Const.AI.Behavior.Order.Corruption <- 39;
 ::Const.AI.Behavior.Order.SpawnShadow <- 39;
 ::Const.AI.Behavior.Order.Howl <- 39;
+::Const.AI.Behavior.Order.SlingstaffMoveIntoRange <- 60;
 
 ::Const.AI.Behavior.Score.Howl <- 60;
 ::Const.AI.Behavior.Score.Corruption <- 480;
 ::Const.AI.Behavior.Score.SpawnShadow <- 2000;
+::Const.AI.Behavior.Score.SlingstaffMoveIntoRange <- 60;
 
 ::Const.AI.Behavior.HowlMaxMoraleRatio <- 2.5;
 ::Const.AI.Behavior.HowlMinAlliesInRange <- 1;

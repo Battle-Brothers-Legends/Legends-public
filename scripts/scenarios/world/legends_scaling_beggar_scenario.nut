@@ -141,12 +141,15 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		return false;
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
 		{
-			bro.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
-			bro.worsenMood(1.0, "Fell sick after joining you");
+			_bro.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
+			_bro.worsenMood(1.0, "Fell sick after joining you");
 		}
 	}
 

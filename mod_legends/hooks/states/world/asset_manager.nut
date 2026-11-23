@@ -1135,70 +1135,66 @@
 		}
 	}
 
-	o.getRosterDescription <- function ()
-	{
+	o.getRosterDescription <- function () {
+		local terrainIDs = [2, 3, 4, 5, 9, 11, 12, 14, 15, 17, 18];
+
 		local ret = {
-			TerrainModifiers = [],
+			TerrainModifiers = [
+				["Plains", ::Const.World.TerrainTypeSpeedMult[2]],
+            	["Swamp", ::Const.World.TerrainTypeSpeedMult[3]],
+            	["Hills", ::Const.World.TerrainTypeSpeedMult[4]],
+            	["Forests", ::Const.World.TerrainTypeSpeedMult[5]],
+            	["Mountains", ::Const.World.TerrainTypeSpeedMult[9]],
+            	["Farmland", ::Const.World.TerrainTypeSpeedMult[11]],
+            	["Snow", ::Const.World.TerrainTypeSpeedMult[12]],
+            	["Highlands", ::Const.World.TerrainTypeSpeedMult[14]],
+            	["Steppes", ::Const.World.TerrainTypeSpeedMult[15]],
+            	["Deserts", ::Const.World.TerrainTypeSpeedMult[17]],
+            	["Oases", ::Const.World.TerrainTypeSpeedMult[18]]
+			],
 			Brothers = []
 		}
 
-		for (local i=0; i < 11; i=++i)
-		{
-			ret.TerrainModifiers.push(["", 0]);
-		}
-
-		foreach (bro in this.World.getPlayerRoster().getAll())
-		{
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			local terrains = bro.getBackground().getModifiers().Terrain;
-			ret.TerrainModifiers[0][0] = "Plains";
-			ret.TerrainModifiers[0][1] += terrains[2] * 100.0;
-
-			ret.TerrainModifiers[1][0] = "Swamp";
-			ret.TerrainModifiers[1][1] += terrains[3] * 100.0;
-
-			ret.TerrainModifiers[2][0] = "Hills";
-			ret.TerrainModifiers[2][1] += terrains[4] * 100.0;
-
-			ret.TerrainModifiers[3][0] = "Forests";
-			ret.TerrainModifiers[3][1] += terrains[5] * 100.0;
-
-			ret.TerrainModifiers[4][0] = "Mountains";
-			ret.TerrainModifiers[4][1] += terrains[9] * 100.0;
-
-			ret.TerrainModifiers[5][0] = "Farmland";
-			ret.TerrainModifiers[5][1] += terrains[11] * 100.0;
-
-			ret.TerrainModifiers[6][0] = "Snow";
-			ret.TerrainModifiers[6][1] += terrains[12] * 100.0;
-
-			ret.TerrainModifiers[7][0] = "Highlands";
-			ret.TerrainModifiers[7][1] += terrains[14] * 100.0;
-
-			ret.TerrainModifiers[8][0] = "Stepps";
-			ret.TerrainModifiers[8][1] += terrains[15] * 100.0;
-
-			ret.TerrainModifiers[9][0] = "Deserts";
-			ret.TerrainModifiers[9][1] += terrains[17] * 100.0;
-
-			ret.TerrainModifiers[10][0] = "Oases";
-			ret.TerrainModifiers[10][1] += terrains[18] * 100.0;
+			for (local i = 0; i < terrainIDs.len(); ++i) {
+            	ret.TerrainModifiers[i][1] += terrains[terrainIDs[i]];
+        	}
 
 			ret.Brothers.push({
 				Name = bro.getName(),
-				Mood = this.Const.MoodStateIcon[bro.getMoodState()],
+				Mood = ::Const.MoodStateIcon[bro.getMoodState()],
 				Level = bro.getLevel(),
 				Background = bro.getBackground().getNameOnly()
 			});
 		}
 
+		if (this.World.Retinue.hasFollower("follower.scout")) {
+			for (local i = 0; i < terrainIDs.len(); ++i) {
+				local terrainBaseSpeed = ::Const.World.TerrainTypeSpeedMult[terrainIDs[i]];
+				if (terrainBaseSpeed <= 0.65 && terrainBaseSpeed > 0.0) {
+					ret.TerrainModifiers[i][1] *= (terrainBaseSpeed + 0.15) / terrainBaseSpeed;
+				}
+			}
+		}
+
+		local globalMultiplier = 1.0;
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendWheelMaintenance)) {
+				globalMultiplier += 0.05;
+			}
+		}
+
+		foreach (terrain in ret.TerrainModifiers) {
+            terrain[1] *= globalMultiplier * 100.0;
+        }
+
 		local sortfn = function (first, second)
 		{
-			if (first.Level == second.Level)
-			{
+			if (first.Level == second.Level) {
 				return 0
 			}
-			if (first.Level > second.Level)
-			{
+			if (first.Level > second.Level)	{
 				return -1
 			}
 			return 1

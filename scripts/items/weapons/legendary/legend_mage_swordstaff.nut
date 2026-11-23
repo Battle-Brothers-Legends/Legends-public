@@ -37,11 +37,15 @@ this.legend_mage_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
 			_skill.m.IsGreatSlash = true;
+			_skill.m.IsStaffSlash = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Swing);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
+		::Legends.Actives.grant(this, ::Legends.Active.Swing, function (_skill) {
+			_skill.m.IsStaffSwing = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough);
 		::Legends.Actives.grant(this, ::Legends.Active.Lunge, function (_skill) {
 			_skill.m.isGreatLunge = true;
+			_skill.m.IsStaffLunge = true;
 		}.bindenv(this));
 	}
 

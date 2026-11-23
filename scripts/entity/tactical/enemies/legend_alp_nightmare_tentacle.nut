@@ -43,7 +43,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 100)
+		if (!::FU.InScenario() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5)
 		{
 			b.MeleeSkill += 5;
 			b.RangedSkill += 5;
@@ -100,3 +100,4 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 
 
 });
+

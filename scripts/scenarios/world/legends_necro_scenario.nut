@@ -201,22 +201,22 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	}
 
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().getID() == "background.graverobber" || bro.getBackground().getID() == "background.gravedigger" || bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist")
+		if (_bro.getBackground().getID() == "background.graverobber" || _bro.getBackground().getID() == "background.gravedigger" || _bro.getBackground().getID() == "background.cultist" || _bro.getBackground().getID() == "background.converted_cultist")
 		{
-			bro.improveMood(1.5, "These people really understand me!");
-			bro.getSprite("socket").setBrush("bust_base_undead");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendDeathlySpectre);
+			_bro.improveMood(1.5, "These people really understand me!");
+			_bro.getSprite("socket").setBrush("bust_base_undead");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendDeathlySpectre);
 		}
-		else if (bro.getBackground().getID() == "background.legend_puppet")
+		else if (_bro.getBackground().getID() == "background.legend_puppet")
 		{
-			bro.getSprite("socket").setBrush("bust_base_undead");
+			_bro.getSprite("socket").setBrush("bust_base_undead");
 		}
-		else if (!bro.isStabled())
+		else if (!_bro.isStabled())
 		{
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendDeathlySpectre);
-			bro.worsenMood(2.0, "Something doesn't feel right here...");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendDeathlySpectre);
+			_bro.worsenMood(2.0, "Something doesn't feel right here...");
 		}
 	}
 
@@ -238,6 +238,9 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 	function onGenerateBro(bro)
 	{
+		if (bro.isStabled()) {
+			return;
+		}
 		if (bro.getBackground().getID() == "background.graverobber" || bro.getBackground().getID() == "background.gravedigger" || bro.getBackground().getID() == "background.cultist")
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default

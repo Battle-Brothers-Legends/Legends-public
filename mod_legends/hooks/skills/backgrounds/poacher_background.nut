@@ -78,9 +78,7 @@
 				::Const.Perks.BeastTree,
 				::Const.Perks.GreenskinTree
 			],
-			Class = [
-				// ::Const.Perks.ShortbowClassTree
-			],
+			Class = [],
 			Profession = [],
 			Magic = []
 		}

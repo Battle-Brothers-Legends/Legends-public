@@ -52,7 +52,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Grants all allied units within 8 tiles [color=%positive%]1[/color] additional Action Point for their next turn."
+				text = "Grants all allied units within 8 tiles [color=%positive%]1[/color] additional Action Point for their next turn"
 			}
 		];
 
@@ -91,10 +91,17 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 		local myTile = _user.getTile();
 		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 
-		foreach( a in actors )
-		{
-			if (a.getFaction() == _user.getFaction())
-			{
+		foreach( a in actors ) {
+			if (_user.getID() == a.getID())
+				continue;
+
+			if (a.getSkills().hasEffect(::Legends.Effect.LegendMartialMarch))
+				continue;			
+
+			if (a.getTile().getDistanceTo(myTile) > 8)
+				continue;
+
+			if (a.getFaction() == _user.getFaction()) {
 				::Legends.Effects.grant(a, ::Legends.Effect.LegendMartialMarch);
 			}
 			this.m.AffectedActors.push(a.weakref());

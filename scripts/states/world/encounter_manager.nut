@@ -113,33 +113,24 @@ this.encounter_manager <- {
 
     function fire( _id, _update = true )
     {
-        if (this.m.ActiveEvent != null && this.m.ActiveEvent.getID() != _id)
-        {
+        if (this.m.ActiveEvent != null && this.m.ActiveEvent.getID() != _id) {
             this.logInfo("Failed to fire event - another event with id \'" + this.m.ActiveEvent.getID() + "\' is already queued.");
             return false;
         }
 
         local event = this.getEvent(_id);
 
-        if (event != null)
-        {
+        if (event != null) {
             if (_update)
-            {
                 event.update();
-            }
 
             this.m.ActiveEvent = event;
             this.m.ActiveEvent.fire();
 
-            if (this.World.State.showEventScreen(this.m.ActiveEvent))
-            {
+            if (::World.State.showEventScreen(this.m.ActiveEvent))
                 return true;
-            }
-            else
-            {
-				this.clearActiveEvent();
-                return false;
-            }
+			this.clearActiveEvent();
+            return false;
         } else {
             this.logInfo("Failed to fire event - with id \'" + _id + "\' not found.");
             return false;

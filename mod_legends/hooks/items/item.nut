@@ -47,6 +47,10 @@
 		return this.m.Type;
 	}
 
+	o.makeName <- function() {
+		return this.getName();
+	}
+
 	o.isDroppedAsLoot = function ()
 	{
 		return this.m.IsDroppedAsLoot || this.isNamed();

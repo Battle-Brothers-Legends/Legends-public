@@ -31,32 +31,24 @@
 			text = "Has a range of [color=%positive%]2" + "[/color] tiles"
 		});
 
-		if (this.m.ApplyAxeMastery)
+		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
 		{
-			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes)
-			{
-				ret.push({
-					id = 6,
-					type = "text",
-					icon = "ui/icons/hitchance.png",
-					text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent"
-				});
-			}
-		}
-		else
-		{
-			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms)
-			{
-				ret.push({
-					id = 6,
-					type = "text",
-					icon = "ui/icons/hitchance.png",
-					text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
-				});
-			}
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent"
+			});
 		}
 
 		return ret;
+	}
+
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
@@ -69,13 +61,13 @@
 				this.m.HitChanceBonus += 5;
 			}
 
-			if (this.m.IsStaffStrike && this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
+			if (this.m.IsStaffStrike && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()))
 			{
 				_properties.MeleeSkill += 5;
 				this.m.HitChanceBonus += 5;
 			}
 
-			if (_targetEntity != null && (this.m.ApplyAxeMastery && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes || !this.m.ApplyAxeMastery && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 			{
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus += -5;

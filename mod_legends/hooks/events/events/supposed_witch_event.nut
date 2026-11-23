@@ -37,21 +37,17 @@
 						_event.m.Dude.getFlags().add("PlayerSkeleton");
 						_event.m.Dude.getFlags().add("undead");
 						_event.m.Dude.getFlags().add("skeleton");
-						_event.m.Dude.setStartValuesEx(
-							this.Const.SupposedWitchBackgrounds, true, 1
-						);
+						_event.m.Dude.setStartValuesEx(this.Const.SupposedWitchBackgrounds, true, 1);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					}
 					else
 					{
-						_event.m.Dude.setStartValuesEx(
-							this.Const.SupposedWitchBackgrounds, true, 1
-						);
+						_event.m.Dude.setStartValuesEx(this.Const.SupposedWitchBackgrounds, true, 1);
 					}
 
 					_event.m.Dude.setTitle("the Roasted");
-					_event.m.Dude.getBackground().m.RawDescription = "While visiting the local village you found %name% tied to a stake and set her free, now she fights with you and for her freedom";
+					_event.m.Dude.getBackground().m.RawDescription = "While visiting the local village you found %name% tied to a stake and set %them% free, now %they% fights with you and for %their% freedom";
 					_event.m.Dude.getBackground().buildDescription(true);
 					this.Characters.push(_event.m.Dude.getImagePath());
 

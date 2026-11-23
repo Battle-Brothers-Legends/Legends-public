@@ -1,5 +1,25 @@
-::mods_hookNewObject("statistics/statistics_manager", function(o)
-{
+::mods_hookNewObject("statistics/statistics_manager", function (o) {
+
+	o.popNews = function (_type) {
+		foreach (i, n in this.m.News) {
+			if (n.Type == _type) {
+				this.m.News.remove(i);
+				return n;
+			}
+		}
+	}
+
+	o.addNews = function (_type, _news) {
+		_news.Type <- _type;
+		_news.Time <- this.Time.getVirtualTimeF();
+
+		if (this.m.News.len() >= 10) {
+			this.m.News.remove(0);
+		}
+
+		this.m.News.push(_news);
+	}
+
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function(_out)
 	{

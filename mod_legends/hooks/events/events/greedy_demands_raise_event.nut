@@ -1,9 +1,23 @@
-::mods_hookExactClass("events/events/greedy_demands_raise_event", function(o) {
-	local onUpdateScore = o.onUpdateScore;
-	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf")
-			return;
-		onUpdateScore();
+::mods_hookExactClass("events/events/greedy_demands_raise_event", function (o) {
+	local create = o.create;
+	o.create = function () {
+		create();
+		::Legends.Screens.hook(this, "A", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_64.png[/img]{%bro% enters your tent with a scroll at %their_greedy% side. %They_greedy% unfurls it, revealing a literal list of things %they_greedy% has killed. You inquire as to what %they_greedy% wants you to do with that. The scroll is tossed onto your desk and %they_greedy% responds.%SPEECH_ON%Compensate me. Higher pay starting right now. %newpay% crowns a day.%SPEECH_OFF% | %bro% apparently wants higher pay, %newpay% crowns a day instead of the %oldpay% crowns %they_greedy% earns now, stating that %they_greedy% has slain a great deal of enemies while in the company of the %companyname%.\n\nKilling lots of things is a good bargaining chip when that\'s the business you are in, you\'ll give %them_greedy% that much. | It appears that %bro% wants more pay on account of killing lots of, well, everything on your behalf. You tell %them_greedy% that none of it was on your personal behalf, just that you simply paid %them_greedy% to do it. %They_greedy% nods.%SPEECH_ON%Right. And now I want more pay. %newpay% crowns a day.%SPEECH_OFF% | %bro% feels as though %their_greedy% services for the company aren\'t being well compensated. %They're_greedy% asking for more pay, %newpay% crowns a day instead of the %oldpay% crowns %they_greedy% earns now, on account of how good %they_greedy% is at that whole mercenary business. | %bro% is demanding you pay %them_greedy% more, %newpay% crowns a day instead of the %oldpay% crowns %they_greedy% earned so far, now that %they_greedy% has proven %themselves_greedy% more than capable of fighting for the %companyname%.\n\n%They're_greedy% got a bit of a point, though you\'re not sure you\'re ready to hand the crowns over quite yet.}";
+		});
+		::Legends.Screens.hook(this, "B", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_64.png[/img]{You agree to %bro%\'s terms. %They're_greedy% very unsurprisingly happy about it and you get on with your day. | %bro%\'s demands aren\'t too much and you are happy to fork %them_greedy% a few extra crowns a day. %They_greedy% gives you a handshake. It\'s firm, but not too firm. | %bro% wavers on %their_greedy% feet as %they_greedy% readies for your answer. You tell %their_greedy% to relax as you\'ve agreed to %their_greedy% terms. %They_greedy% finally sighs in relief.%SPEECH_ON%Thank you, sir. I thought I might have to, I dunno.%SPEECH_OFF%You raise an eyebrow.%SPEECH_ON%I hope that wasn\'t a threat.%SPEECH_OFF%The %person_greedy% awkwardly laughs and shakes %their_greedy% head.%SPEECH_ON%No, no of course not!%SPEECH_OFF% | You tell %bro% you\'ll increase %their_greedy% pay under one condition: he do a little dance.%SPEECH_ON%A victory dance?%SPEECH_OFF%You shrug.%SPEECH_ON%Any dance.%SPEECH_OFF%%They_greedy% raises %their_greedy% arms and swings them a little. You burst into laughter.%SPEECH_ON%No number of kills would amount to whatever that was.%SPEECH_OFF%The %person_greedy% snickers.%SPEECH_ON%Thank you, sir.%SPEECH_OFF% | You agree to give %bro% a higher wage.%SPEECH_ON%It would be my privilege.%SPEECH_OFF%The %person_greedy% raises an eyebrow.%SPEECH_ON%Spare me the ceremony. I\'m here to kill, let\'s not dance around it.%SPEECH_OFF%You nod.}";
+		});
+		::Legends.Screens.hook(this, "C", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_64.png[/img]{You decline %bro%\'s request. %They_greedy% purses %their_greedy% lips, wrings %their_greedy% hands, then nods, turns and leaves. The silence is a bit harsh, but the message well received: %they_greedy% ain\'t a happy man. | Declining %bro%\'s request leads to a sudden outburst.%SPEECH_ON%Well, fark this shit. I\'ll still fight fer ya, but don\'t expect the best out of me!%SPEECH_OFF%You nod, but tell %them_greedy% %they_greedy%\'d be dead without putting forth %their_greedy% best, so you\'ll get what you want regardless. | %bro% winces when you decline the suggestion.%SPEECH_ON%Alright then, I see how this place is run. In we go, out we go. No matter to you, right? We\'re just the pawns you use to get what you want. That\'s fine. That\'s absolutely fine.%SPEECH_OFF%%They_greedy% turns and leaves. You get the feeling it is not at all \'fine.\' | You tell %bro% that you do not agree with his estimations of how much %they_greedy% should get paid. %They_greedy% responds with a few swears with an estimated volume of \'loud.\' When %they're_greedy% finished, %they_greedy% nods.%SPEECH_ON%But that\'s alright. I get the business. And I\'m sure you understand that you get why I must look after the business that is myself, too.%SPEECH_OFF% | %bro% presses for more pay, but you put your foot down.%SPEECH_ON%You\'ll get what we agreed upon, no more.%SPEECH_OFF%%They_greedy% nods and then slowly backs out of the tent.%SPEECH_ON%As you say, sir.%SPEECH_OFF%}";
+		});
 	}
 
+	local onUpdateScore = o.onUpdateScore;
+	o.onUpdateScore = function () {
+		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf") {
+			return;
+		}
+		onUpdateScore();
+	}
 })

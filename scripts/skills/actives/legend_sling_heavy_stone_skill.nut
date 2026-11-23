@@ -120,7 +120,6 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		this.m.MaxRange = this.m.Item.getRangeMax();
-		this.m.AdditionalAccuracy = this.m.Item.getAdditionalAccuracy();
 		if (_properties.IsSpecializedInSlings)
 		{
 			this.m.MaxRange = this.m.Item.getRangeMax() + 1;
@@ -163,15 +162,15 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
-			if (_properties.IsSpecializedInSlings)
-			{
-				this.m.AdditionalAccuracy += 5;
+			this.m.AdditionalAccuracy += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 5) : this.m.Item.getAdditionalAccuracy();
+			if (_properties.IsSpecializedInSlings) {
 				this.m.AdditionalHitChance += 2;
 			}
 			if (_properties.IsSharpshooter)
 				_properties.DamageDirectMult += 0.05;
 
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
+			this.m.HitChanceBonus += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 			_properties.FatigueDealtPerHitMult += 3.0;
 		}

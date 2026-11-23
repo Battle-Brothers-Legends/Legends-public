@@ -35,7 +35,7 @@
 				},
 				{
 					MinR = 500,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				}
 			]
@@ -157,7 +157,7 @@
 				},
 				{
 					MinR = 500,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				}
 			]
@@ -286,7 +286,7 @@
 				},
 				{
 					MinR = 500,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				}
 			]
@@ -455,7 +455,7 @@
 				},
 				{
 					MinR = 500,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				}
 			]
@@ -635,7 +635,7 @@
 				},
 				{
 					MinR = 600,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				}
 			]

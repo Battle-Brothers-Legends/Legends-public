@@ -27,7 +27,7 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 		this.m.SpriteDamagedBack = "mountain_armor_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "mountain_armor_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_mountain_armor_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_mountain_armor_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_mountain_armor_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_mountain_armor_"  + variant + ".png";
 	}

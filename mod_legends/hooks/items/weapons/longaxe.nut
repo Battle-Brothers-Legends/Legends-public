@@ -5,6 +5,8 @@
 		create();
 		this.m.Variants = [0, 1, 2];
 		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.WeaponType = this.Const.Items.WeaponType.Axe | this.Const.Items.WeaponType.Polearm;
+		this.setCategories("Axe/Polearm, Two-Handed");
 	}
 
 	o.updateVariant <- function() {

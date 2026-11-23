@@ -338,7 +338,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			{
 				this.m.CurrentProgress = r.Points / r.Blueprint.getCostForCraft();
 				this.m.CurrentCraft = r.Blueprint.getName();
-				break
+				break;
 			}
 		}
 

@@ -5,7 +5,7 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
-		this.m.ID = "legend_armor.cloak_rich";
+		this.m.ID = "legend_armor.body.cloak_rich";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.Name = "";
 		this.m.Description = "An embroidered silk cloak made with the finest materials affordable only for those in positions of great power.";
@@ -37,7 +37,7 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 		this.m.SpriteDamagedBack = "cloak_rich_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "cloak_rich_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_cloak_rich_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_cloak_rich_" + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_cloak_rich_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_rich_" + variant + ".png";
 	}

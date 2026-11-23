@@ -228,8 +228,8 @@
 	MoraleEffectMult = 1.0,
 	FatigueRecoveryRate = 30,
 	Armor = [
-		50,
-		50
+		100,
+		100
 	]
 };
 ::Const.Tactical.Actor.LegendHorse <- {

@@ -566,37 +566,28 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			text = this.getValueString()
 		});
 
-		result.push({
+		local baseIcon = {
 			id = 3,
 			type = "image",
 			image = this.m.IconLarge != "" ? this.m.IconLarge : this.m.Icon,
-			isLarge = this.m.IconLarge != "" ? true : false
-		});
+			isLarge = this.m.IconLarge != "" ? true : false,
+			imageOverlayPath = []
+		};
 
-
-		foreach( u in this.m.Upgrades )
-		{
-			if (u != null)
+		local upgradeLayerOrder = [this.Const.Items.ArmorUpgrades.Chain, this.Const.Items.ArmorUpgrades.Plate, this.Const.Items.ArmorUpgrades.Tabbard, this.Const.Items.ArmorUpgrades.Attachment, this.Const.Items.ArmorUpgrades.Cloak];
+		foreach( u in upgradeLayerOrder )	{
+			local upgrade = this.m.Upgrades[u];
+			if (upgrade != null)
 			{
-				if (u.getIconLarge() != null)
+				local overlay = upgrade.getIconLarge() != null ? upgrade.getIconLarge() : upgrade.getIcon();
+				if (overlay != null && overlay != "")
 				{
-					result.push({
-						id = 3,
-						type = "image",
-						image = u.getIconLarge(),
-						isLarge = true
-					});
-				}
-				else
-				{
-					result.push({
-						id = 3,
-						type = "image",
-						image = u.getIcon()
-					});
+					baseIcon.imageOverlayPath.push(overlay);
 				}
 			}
 		}
+
+		result.push(baseIcon);
 
 		result.push({
 			id = 4,
@@ -615,6 +606,13 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				text = "Weight: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+			});
+		}
+		else {
+			result.push({
+				id = 5,
+				type = "text",
+				text = "&nbsp;\n&nbsp;"
 			});
 		}
 
@@ -640,8 +638,10 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			result.push({
 				id = 10,
 				type = "text",
-				text = "[leg_img](gfx/ui/items/%icon%,height=28px,width=28px)[/leg_img] [b][u]%name%[/u][/b]",
-				param = [["name", this.getName()], ["icon", this.m.Icon]]
+				text = "[b][u]%name%[/u][/b]",
+				icon = "ui/items/" + this.m.Icon,
+				param = [["name", this.getName()]],
+				isPartialLayer = true
 			});
 
 			result.push({
@@ -689,6 +689,16 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		}
 
 		return result;
+	}
+
+	function onAddedToStash( _stashID ) {
+		foreach (u in this.m.Upgrades) {
+			if (u != null && u.isNamed()) {
+				if (u.m.Name.len() == 0) {
+					u.setName(u.createRandomName());
+				}
+			}
+		}
 	}
 
 	function isDroppedAsLoot()

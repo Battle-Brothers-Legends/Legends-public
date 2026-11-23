@@ -27,7 +27,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_armor_upgrade", {
 		this.m.SpriteDamagedBack = "$brush" + "_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "$brush" + "_" + variant + "_dead";
 		this.m.Icon = "$icon" + "_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "$inventory" + "_" + variant + ".png";
 		this.m.OverlayIcon = "$overlay" + "_" + variant + ".png";
 		this.m.OverlayIconLarge = "$overlayLarge" + "_" + variant + ".png";
 	}

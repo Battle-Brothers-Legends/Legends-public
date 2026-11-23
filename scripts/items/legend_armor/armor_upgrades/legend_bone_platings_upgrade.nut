@@ -23,7 +23,7 @@ this.legend_bone_platings_upgrade <- this.inherit("scripts/items/legend_armor/le
 		this.m.SpriteDamagedBack = "pauldrons_bone_platings_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_bone_platings_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_bone_platings_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_bone_platings_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_bone_platings_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_bone_platings_"  + variant + ".png";
 	}

@@ -70,12 +70,11 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			Magic = [
 				::Const.Perks.ValaChantMagicTree,
 				::Const.Perks.ValaTranceMagicTree,
-				::Const.Perks.ValaSpiritMagicTree,
-				::Const.Perks.StavesMagicTree
+				::Const.Perks.ValaSpiritMagicTree
 			]
 		};
 		this.m.CustomPerkTree = [
-			[],
+			[::Legends.Perk.LegendSpecialistSelfdefense],
 			[],
 			[],
 			[],

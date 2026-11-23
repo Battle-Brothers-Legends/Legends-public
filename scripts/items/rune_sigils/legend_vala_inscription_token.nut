@@ -48,18 +48,40 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 				image = this.getIcon()
 			});
 		}
-
 		result.push({
 			id = 65,
-			type = "text",
-			text = "Right-click to attach this inscribed rune to the selected character\'s equipment. Weapon and shield runes cannot be detached, this rune gives the following effect(s):"
-		});
-		result.push({
-			id = 66,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = this.getRuneSigilTooltip()
 		});
+
+		local def = ::Legends.Runes.get(this.getRuneVariant());
+		local slot = "";
+		if (def.ItemType == ::Legends.Runes.Target.Weapon) {
+    		slot = "Weapon";
+		} else if (def.ItemType == ::Legends.Runes.Target.Shield) {
+    		slot = "Shield";
+		}
+		result.push({
+			id = 66,
+			type = "hint",
+			icon = "ui/icons/mouse_right_button.png",
+			text = "Right-click to attach this inscribed rune to the selected character\'s " + slot + ". It cannot be detached."
+		});
+
+		local offhand = null;
+		local broID = this.World.State.m.CharacterScreen.m.SelectedBrotherID;
+		if (broID != null) {
+			offhand = this.Tactical.getEntityByID(broID).getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		}
+		if (offhand != null && ((offhand.getItemType() & this.Const.Items.ItemType.Weapon) != 0)) {
+			result.push({
+				id = 67,
+				type = "hint",
+				icon = "ui/icons/mouse_right_button_shift.png",
+				text = "Shift + Right-click to attach this inscribed rune to the selected character\'s offhand Weapon. It cannot be detached."
+			});
+		}
 
 		return result;
 	}
@@ -69,7 +91,11 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 		local target = null;
 		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def.ItemType == ::Legends.Runes.Target.Weapon) {
-			target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+			if (_item == null) {
+				target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+			} else {
+				target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+        	}
 			if (target == null)
 				return false;
 		} else if (def.ItemType == ::Legends.Runes.Target.Helmet) {

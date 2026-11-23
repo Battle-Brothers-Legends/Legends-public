@@ -17,6 +17,8 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 		b.setValues(this.Const.Tactical.Actor.LegendGoblinHarrier);
 		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);

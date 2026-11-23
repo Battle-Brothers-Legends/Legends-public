@@ -17,7 +17,7 @@
 			text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 		});
 
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInMaces)
+		if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
 		{
 			ret.push({
 				id = 7,
@@ -36,7 +36,7 @@
 			});
 		}
 
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInMaces)
+		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
 		{
 			ret.push({
 				id = 6,
@@ -48,15 +48,48 @@
 		return ret;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
+	o.onUse = function ( _user, _targetTile ) {
+		local target = _targetTile.getEntity();
+		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		local success = this.attackEntity(_user, target);
+
+		if (::Legends.S.isEntityNullOrDead(_user)) {
+			return success;
+		}
+
+		if (::Legends.S.isEntityNullOrDead(target)) {
+			return success;
+		}
+
+		if (success)
 		{
+			if ((::Legends.S.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem()) || this.Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned))
+			{
+				local stun = ::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
+
+				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
+				{
+					this.Tactical.EventLog.log(stun.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(_user), this.Const.UI.getColorizedEntityName(target)));
+				}
+			}
+		}
+
+		return success;
+	}
+
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		}
+	}
+
+	o.onAnySkillUsed = function( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.5;
 			_properties.FatigueDealtPerHitMult += 2.0;
 
-			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInMaces && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
-			{
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus = -15;
 			}

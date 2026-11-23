@@ -73,8 +73,11 @@
 		foreach (banner in ::Const.PlayerBanners)
 		{
 			bannerID = banner.slice("banner_".len()).tointeger();
-			if (bannerID != 102 && bannerID != 103 && bannerID != 101 && this.m.Variants.find(bannerID) == null)
+			bannerID = bannerID >= 50 ? bannerID : bannerID + 11;
+			if (this.m.Variants.find(bannerID) == null)
+			{
 				this.m.Variants.push(bannerID);
+			}
 		}
 		this.m.Variants.sort();
 	}

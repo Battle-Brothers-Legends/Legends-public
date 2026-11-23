@@ -1,11 +1,8 @@
-::mods_hookExactClass("ai/tactical/agents/military_ranged_agent", function(o)
-{
+::mods_hookExactClass("ai/tactical/agents/military_ranged_agent", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.0;
 			this.m.Properties.IsRangedUnit = true;
@@ -22,5 +19,11 @@
 			this.m.Properties.OverallFormationMult = 1.0;
 			this.m.Properties.EngageTargetMultipleOpponentsMult = 2.7;
 		}
+	}
+
+	local onAddBehaviors = o.onAddBehaviors;
+	o.onAddBehaviors = function () {
+		onAddBehaviors();
+		this.addBehavior(this.new("scripts/ai/tactical/behaviors/legend_ai_slingstaff_move_into_range"));
 	}
 });

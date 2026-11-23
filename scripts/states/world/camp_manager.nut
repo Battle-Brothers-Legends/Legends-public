@@ -232,6 +232,12 @@ this.camp_manager <- {
 
 	function update( _worldState )
 	{
+		local escortEntity = ::World.State.getEscortedEntity();
+    	local isCurrentlyEscorting = escortEntity != null && !escortEntity.isNull();
+    	if (isCurrentlyEscorting != this.m.IsEscorting) {
+        	this.onEscort(isCurrentlyEscorting);
+    	}
+
 		foreach( b in this.m.Tents )
 		{
 			if (this.m.IsCamping && b.Camping() || this.m.IsEscorting && b.Escorting())
@@ -506,8 +512,7 @@ this.camp_manager <- {
 
 			local image = null;
 
-			// how about consts here? magic numbers are bad practice
-			if (highest == 4 || highest == 8 || highest == 9) {
+			if (highest == ::Const.World.TerrainType.Hills || highest == ::Const.World.TerrainType.AutumnForest || highest == ::Const.World.TerrainType.Mountains) {
 				image = building.getUIImage(highest);
 			} else {
 				image = building.getUIImage(0);

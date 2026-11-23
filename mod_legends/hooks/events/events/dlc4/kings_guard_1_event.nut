@@ -23,7 +23,7 @@
 						], false);
 					}
 					_event.m.Dude.setTitle("");
-					_event.m.Dude.getBackground().m.RawDescription = "You found %name% frozen half to death in the north, claiming to have been a King\'s Guard once, but looking at the wretch now you see but a cripple.";
+					_event.m.Dude.getBackground().m.RawDescription = "You found %name% frozen half to death in the north. %They% claims %they% was a King\'s Guard once, but looking at %them% now you see but a cripple.";
 					_event.m.Dude.getBackground().buildDescription(true);
 					_event.m.Dude.getFlags().set("IsSpecial", true);
 					_event.m.Dude.getBaseProperties().Bravery += 15;
@@ -48,10 +48,10 @@
 				}
 			}
 			if (s.ID == "B") {
-				s.Text = "%terrainImage%{You pat the wretch on the head, but say it\'s already over. The downtrodden prisoner nods.%SPEECH_ON%Speak. For. Yourself. Mercenary.%SPEECH_OFF% The purple lips smile again, but this time it does release. It sticks. Literally. The crippled figure leans forward with eyes open that do not blink and in this state the mind is gone. You get the company back on the road, or what one can make of a road in these snowed stretches.}";
+				s.Text = "%terrainImage%{You pat the %person_dude% on the head, but tell %them_dude% it\'s already over. %They_dude% nods.%SPEECH_ON%Speak. For. Yourself. Mercenary.%SPEECH_OFF%%They_dude% smiles again, but this time it does release. It sticks. Literally. And %they_dude% leans forward and %their_dude% eyes are open and do not blink and in this state %they_dude% is gone. You get the men back on the road, or what one can make of a road in these snowed stretches.}";
 			}
 			if (s.ID == "C") {
-				s.Text = "%terrainImage%{The nearly frozen figure joins the company. The prisoner\'s a ragged wreck, but if what was said is true maybe the frozen body will someday become the fighter it once was.}";
+				s.Text = "%terrainImage%{The nearly frozen %person_dude% joins the company. %They're_dude% a ragged wreck, but if what %they_dude% said is true maybe %they_dude% will someday become the fighter %they_dude% could barely speak of.}";
 			}
 		}
 	}

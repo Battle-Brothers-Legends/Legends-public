@@ -180,7 +180,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		}, null);
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
 	}
 

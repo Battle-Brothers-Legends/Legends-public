@@ -2,13 +2,11 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Item = null
 	},
-	function setItem( _i )
-	{
+	function setItem( _i ) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWindUp);
 		this.m.Description = "Evaluate your enemy, preparing your next attack to push them back.";
 		this.m.Icon = "skills/active_10.png";
@@ -37,8 +35,7 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = [
-			{
+		local ret = [ {
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -57,8 +54,7 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 
 		local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
 
-		if (canUse != null)
-		{
+		if (canUse != null) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -71,8 +67,7 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
 
-		if (hasMelee)
-		{
+		if (hasMelee) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -80,8 +75,7 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 				text = "The next attack will push the enemy back and baffle them if it connects, otherwise the effect is wasted."
 			});
 		}
-		else if (item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded))
-		{
+		else if (item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded)) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -89,8 +83,7 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 				text = "The next attack will deal increased damage and armor penetration based on your current initiative."
 			});
 		}
-		else
-		{
+		else {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -102,40 +95,38 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon) || (item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded));
+		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon) || (item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded) || item.isWeaponType(this.Const.Items.WeaponType.Throwing));
 		return !((!this.Tactical.isActive() || canUse == null) && hasMelee);
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse( _user, _targetTile ) {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded))
-		{
+		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded)) {
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendPrepareBullet);
 		}
-		else
-		{
+		else {
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendKnockbackPrepared);
 		}
 
 		return true;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate( _properties ) {
 		local actor = this.getContainer().getActor();
 		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 
-		if (item == null)
+		if (item == null) {
 			return;
+		}
 
-		if (item.isItemType(this.Const.Items.ItemType.TwoHanded))
+		if (item.isItemType(this.Const.Items.ItemType.TwoHanded)) {
 			this.m.ActionPointCost = 1;
-		else if (item.isItemType(this.Const.Items.ItemType.OneHanded))
+		}
+		else if (item.isItemType(this.Const.Items.ItemType.OneHanded)) {
 			this.m.ActionPointCost = 2;
+		}
 	}
 });

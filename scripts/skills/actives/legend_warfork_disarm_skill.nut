@@ -39,13 +39,6 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local ret = this.skill.getDefaultUtilityTooltip();
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=%positive%]2" + "[/color] tiles"
-		});
-
 		if (this.m.HitChanceBonus != 0)
 		{
 			ret.push({

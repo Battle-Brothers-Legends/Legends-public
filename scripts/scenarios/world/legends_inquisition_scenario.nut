@@ -233,17 +233,20 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 	}
 
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
 		{
-			bro.improveMood(1.0, "Joined a righteous cause");
+			_bro.improveMood(1.0, "Joined a righteous cause");
 		}
 		else
 		{
-			bro.worsenMood(1.0, "Dislikes your sermons");
+			_bro.worsenMood(1.0, "Dislikes your sermons");
 		}
-		bro.improveMood(0.5, "Learned a new skill");
+		_bro.improveMood(0.5, "Learned a new skill");
 	}
 
 	function onUpdateHiringRoster( _roster )
@@ -273,6 +276,9 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 
 	function onGenerateBro(bro)
 	{
+		if (bro.isStabled()) {
+			return;
+		}
 		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default

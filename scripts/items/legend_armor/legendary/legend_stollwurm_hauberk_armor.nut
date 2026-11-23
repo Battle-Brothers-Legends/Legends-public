@@ -30,7 +30,7 @@ this.legend_stollwurm_hauberk_armor <- this.inherit("scripts/items/legend_armor/
 		this.m.SpriteDamagedBack = "wurm_hauberk_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "wurm_hauberk_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_wurm_hauberk_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_wurm_hauberk_" + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_wurm_hauberk_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_wurm_hauberk_" + variant + ".png";
 	}

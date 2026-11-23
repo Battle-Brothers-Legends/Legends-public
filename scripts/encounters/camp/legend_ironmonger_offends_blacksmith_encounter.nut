@@ -124,7 +124,8 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 				_screen.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "Your " + item.getName() + " is repaired"
+					imageOverlayPath = item.getIconOverlay(),
+					text = "Your " + item.makeName() + " is repaired"
 				});
 				items++;
 				if (items > 4)

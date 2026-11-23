@@ -28,22 +28,20 @@ def checkForIcon(path, iconpath, variants):
     return has_missing
 
 
-def makeSheet(armorPath, num):
-    dirpath = armorPath / str(num)
+def makeSheet(armorPath):
+    dirpath = armorPath
     dirpath.mkdir(parents=True, exist_ok=True)
 
     metadataPath = dirpath / "metadata.xml"
     F = open(metadataPath, "w")
-    F.write(f'<brush name="gfx/legend_armor_{num}.png" version="17">\n')
+    F.write(f'<brush name="gfx/legend_armor.png" version="17">\n')
     return F
 
 
 def makeBrushes(path):
     armorPath = Path(path) / "unpacked/legend_armor"
     cleanupDirs(armorPath)
-    fileCount = 0
-    imageCount = 0
-    F = makeSheet(armorPath, fileCount)
+    F = makeSheet(armorPath)
     IC = 4280560954
     
     L = [Template(t) for t in Templates.Layer]
@@ -78,11 +76,11 @@ def makeBrushes(path):
                         "dead": f"{name}_dead",
                         "arrow": f"{name}_dead_arrows",
                         "javelin": f"{name}_dead_javelin",
-                        "name_path": f"..\\entity\\legend_armor\\{name}.png",
-                        "damaged_path": f"..\\entity\\legend_armor\\{name}_damaged.png",
-                        "dead_path": f"..\\entity\\legend_armor\\{name}_dead.png",
-                        "arrow_path": "..\\..\\dead_arrows.png",
-                        "javelin_path": "..\\..\\dead_javelin.png",
+                        "name_path": f"entity\\legend_armor\\{name}.png",
+                        "damaged_path": f"entity\\legend_armor\\{name}_damaged.png",
+                        "dead_path": f"entity\\legend_armor\\{name}_dead.png",
+                        "arrow_path": "..\\dead_arrows.png",
+                        "javelin_path": "..\\dead_javelin.png",
                 }
                 if "front_back" in d:
                     fbo = d["front_back"]
@@ -93,26 +91,18 @@ def makeBrushes(path):
                         "back_name": f"{name}_back",
                         "back_damaged": f"{name}_back_damaged",
                         "back_dead": f"{name}_back_dead",
-                        "front_name_path": f"..\\entity\\legend_armor\\front_back\\{name}_front.png",
-                        "front_damaged_path": f"..\\entity\\legend_armor\\front_back\\{name}_front_damaged.png",
-                        "front_dead_path": f"..\\entity\\legend_armor\\front_back\\{name}_front_dead.png",
-                        "back_name_path": f"..\\entity\\legend_armor\\front_back\\{name}_back.png",
-                        "back_damaged_path": f"..\\entity\\legend_armor\\front_back\\{name}_back_damaged.png",
-                        "back_dead_path": f"..\\entity\\legend_armor\\front_back\\{name}_back_dead.png",
+                        "front_name_path": f"entity\\legend_armor\\front_back\\{name}_front.png",
+                        "front_damaged_path": f"entity\\legend_armor\\front_back\\{name}_front_damaged.png",
+                        "front_dead_path": f"entity\\legend_armor\\front_back\\{name}_front_dead.png",
+                        "back_name_path": f"entity\\legend_armor\\front_back\\{name}_back.png",
+                        "back_damaged_path": f"entity\\legend_armor\\front_back\\{name}_back_damaged.png",
+                        "back_dead_path": f"entity\\legend_armor\\front_back\\{name}_back_dead.png",
                         "fl": fbo["front"][0], "fr": fbo["front"][1], "ft": fbo["front"][2], "fb": fbo["front"][3],
                         "fld": fbo["front_dead"][0], "frd": fbo["front_dead"][1], "ftd": fbo["front_dead"][2], "fbd": fbo["front_dead"][3],
                         "bl": fbo["back"][0], "br": fbo["back"][1], "bt": fbo["back"][2], "bb": fbo["back"][3],
                         "bld": fbo["back_dead"][0], "brd": fbo["back_dead"][1], "btd": fbo["back_dead"][2], "bbd": fbo["back_dead"][3],
                     })
                 F.write(t.substitute(opts))
-
-                imageCount += 1
-                if imageCount > 700:
-                    F.write("</brush>\n")
-                    F.close()
-                    imageCount = 0
-                    fileCount += 1
-                    F = makeSheet(armorPath, fileCount)
 
     F.write("</brush>\n")
     F.close()
@@ -150,11 +140,11 @@ def generate_legend_armor(base_path):
 
         if "vanilla" in d:
             brush = f"bust_{d['vanilla']}"
-            overlayLarge = f"armor/inventory_{d['vanilla']}_armor"
+            overlayLarge = inventory = f"armor/inventory_{d['vanilla']}_armor"
             overlay = icon = f"armor/icon_{d['vanilla']}_armor"
         else:
             brush = brushName
-            overlayLarge = f"legend_armor/inventory_{brushName}"
+            overlayLarge = inventory = f"legend_armor/inventory_{brushName}"
             overlay = icon = f"legend_armor/icon_{brushName}"
 
         if inherit:
@@ -182,6 +172,7 @@ def generate_legend_armor(base_path):
             "overlayLarge": overlayLarge,
             "overlay": overlay,
             "icon": icon,
+            "inventory": inventory,
             "impactSound": impactsound,
             "invSound": invsound,
             "names": "[" + ", ".join(f'"{n}"' for n in d["names"]) + "]" if "names" in d else "[]",

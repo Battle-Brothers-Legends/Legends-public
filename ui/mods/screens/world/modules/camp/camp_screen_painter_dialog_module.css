@@ -288,11 +288,12 @@
 .camp-screen>.l-painter-dialog-container .content .details-container .column.is-character-background-container .row.is-top {
 	top: 0;
 	height: 4.4rem;
+	overflow: visible;
 }
 
 .camp-screen>.l-painter-dialog-container .content .details-container .column.is-character-background-container .row.is-top .armorname {
 	top: 1.5rem;
-	left: 6.2rem;
+	left: 2rem;
 	height: 3.6rem;
 	position: absolute;
 	overflow: hidden;
@@ -303,7 +304,30 @@
 
 .camp-screen>.l-painter-dialog-container .content .details-container .column.is-character-background-container .row.is-top .helmetname {
 	top: 1.5rem;
-	left: 34.0rem;
+	right: 2.0rem;
+	/*25.0rem - right*/
+	height: 3.6rem;
+	position: absolute;
+	overflow: hidden;
+	text-align: left;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen>.l-painter-dialog-container .content .details-container .column.is-character-background-container .row.is-top .weaponname {
+	top: 43.5rem;
+	left: 9.0rem;
+	height: 3.6rem;
+	position: absolute;
+	overflow: hidden;
+	text-align: left;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen>.l-painter-dialog-container .content .details-container .column.is-character-background-container .row.is-top .shieldname {
+	top: 43.5rem;
+	right: 9.0rem;
 	/*25.0rem - right*/
 	height: 3.6rem;
 	position: absolute;

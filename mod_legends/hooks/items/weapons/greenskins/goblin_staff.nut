@@ -8,6 +8,9 @@
 		this.updateVariant();
 		this.m.Categories = "Staff, Two-Handed";
 		this.m.Description = "A gnarly staff carved from old and hard wood, adorned with bones and feathers. Can give a good wack.";
+		this.m.SlotType = this.Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
+		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
 		this.m.ShieldDamage = 0;
 		this.m.Condition = 56.0;
 		this.m.ConditionMax = 56.0;

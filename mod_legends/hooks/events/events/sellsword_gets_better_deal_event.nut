@@ -39,11 +39,31 @@
 		}
 	}
 
-	local onUpdateScore = o.onUpdateScore;
-	o.onUpdateScore = function ()
-	{
-		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf")
+	o.onUpdateScore = function() {
+		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf") {
 			return;
-		onUpdateScore()
+		}
+
+		if (this.World.Retinue.hasFollower("follower.paymaster")) {
+			return;
+		}
+
+		local brothers = this.World.getPlayerRoster().getAll();
+		local candidates = [];
+
+		foreach (bro in brothers) {
+			if (bro.getLevel() >= 4	&& bro.getLevel() <= 9	&& this.Time.getVirtualTimeF() - bro.getHireTime() > this.World.getTime().SecondsPerDay * 25.0 && bro.getBackground().getID() == "background.sellsword"	&& !bro.getFlags().has("convincedToStayWithCompany") && !bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist)) {
+				candidates.push(bro);
+			}
+		}
+
+		if (candidates.len() == 0) {
+			return;
+		}
+
+		this.m.Sellsword = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Amount = this.Math.rand(5, 15);
+		this.m.OldPay = this.m.Sellsword.getDailyCost();
+		this.m.Score = candidates.len() * 10;
 	}
-})
+});

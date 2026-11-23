@@ -99,10 +99,10 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function getDescription()
 	{
 		local desc = "";
-		desc = desc + "Repairing equipment takes tools. Break down and reuse equipment in your stash to create tools to repair other gear.";
+		desc = desc + "Repairing equipment takes tools. Break down and reuse equipment in your stash to create tools to repair other gear. ";
 		desc = desc + "Once an item reaches zero durability, it will be consumed and destroyed. Every 30 durability equals a tool. ";
 		desc = desc + "\n\n";
-		desc = desc + "The more people assigned to the tent, the quicker items will be salvaged. People with salvage skills increase the speed further";
+		desc = desc + "The more people assigned to the tent, the quicker items will be salvaged. People with salvage skills increase the speed further.";
 		desc = desc + "\n\n";
 		desc = desc + "The salvage tent can be upgraded by purchasing a salvage cart from a settlement merchant. An upgraded tent has a 15% increase in salvage speed and every 10 durability equals a tool.";
 		desc = desc + "\n\n";
@@ -165,7 +165,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return false;
 		}
 
-		return !this.World.Flags.get("HasLegendCampScraping");
+		return !(::World.Flags.get("HasLegendCampScrapping") || ::World.Flags.get("HasLegendCampScraping"));
 	}
 
 	function getUpgraded()

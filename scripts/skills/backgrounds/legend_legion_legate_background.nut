@@ -78,10 +78,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 				::Const.Perks.ViciousTree
 			],
 			Enemy = [],
-			Class = [
-				// ::Const.Perks.ButcherClassTree,
-				// ::Const.Perks.ScytheClassTree
-			],
+			Class = [],
 			Profession = [],
 			Magic = []
 		}

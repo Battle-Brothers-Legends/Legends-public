@@ -203,10 +203,6 @@
 			{
 				garbage.push(bro);
 			}
-			else
-			{
-				this.setupBro(bro);
-			}
 		}
 
 		// Remove unqualified hires
@@ -218,10 +214,10 @@
 
 	o.onHiredByScenario <- function ( _bro ) //recruits via events
 	{
-		this.setupBro(_bro);
+		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLWRelationship);
 	}
 
-	o.onGenerateBro <- function (bro) //companions free everyone else normal.
+	o.onGenerateBro <- function (bro)
 	{
 		if (bro.getBackground().getID() == "background.companion")
 		{
@@ -235,13 +231,6 @@
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSkills().update();
 		}
-	}
-
-	o.setupBro <- function ( _bro )
-	{
-		// _bro.m.HiringCost = 0;
-		// _bro.getBaseProperties().DailyWage = 0;
-		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLWRelationship);
 	}
 });
 

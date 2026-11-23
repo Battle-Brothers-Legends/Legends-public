@@ -6,7 +6,7 @@ this.legend_wood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.m.ID = "blueprint.legend_wood_blueprint";
 		this.m.Type = this.Const.Items.ItemType.Misc;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/quality_wood_item");
-		this.m.Cost = 10;
+		this.m.Cost = 90;
 		local ingredients = [
 			{
 				Script = "scripts/items/trade/legend_raw_wood_item",

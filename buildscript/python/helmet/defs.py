@@ -114,6 +114,11 @@ class Defs:
  "desc" :  "A hood made of chain mail with a leather brim. Offers good protection and while leaving the face unobstructed.",
  "adesc" : "Includes a chain mail hood."
  },
+ {"name" : "chain_hood_masked"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 3, "base" : True, "value" : 400, "con" : 80, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "chain", "invSound" : "chain",
+ "title" :  "Masked Chain Mail Hood",
+ "desc" :  "A hood made of chain mail with a leather brim and a cloth mask. Keeps the wearer's face obstructed while being surprisingly comfortable to wear.",
+ "adesc" : "Includes a masked chain mail hood."
+ },
 {"name" : "aventail"                     , "layer" : "hood", "min" : 1, "max" : 5, "base" : True, "value" : 150, "con" : 60, "stam" : -3, "vis" : 0, "hair" : "false", "beard" : "true", "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Aventail",
  "desc" :  "A mail aventail that extends from below the eyeline to cover the neck and lower face.",
@@ -341,7 +346,7 @@ class Defs:
  "desc" :  "A nordic helm with a metal face mask and cheek guards.",
   "adesc" : "Includes a nordic metal helm."
  },
-{"name" : "norman_helm"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 150, "con" : 50, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "norman_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 150, "con" : 50, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Nasal Helm",
  "desc" :  "A light metal helm with a nose guard.",
  "adesc" : "Includes a light metal helm."
@@ -351,12 +356,12 @@ class Defs:
  "desc" :  "A conical helm of excellent quality with polished, golden elements that catch the light with a sharp, brilliant glint.",
  "adesc" : "Includes a conical helm of excellent quality with polished, golden elements."
  },
-{"name" : "flat_top_helm_rusted"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 225, "con" : 70, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "flat_top_helm_rusted"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 225, "con" : 70, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Rusted Flat Top Helm",
  "desc" :  "A rusted and dented helm with a flat top, a telling sign of a negligent owner.",
  "adesc" : "Includes a rusted flat metal helm."
  },
-{"name" : "flat_top_helm"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 325, "con" : 85, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "flat_top_helm"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 325, "con" : 85, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Flat Top Helm",
  "desc" :  "A flat metal helm with a nose guard, popular among the soldiers.",
  "adesc" : "Includes a flat metal helm."
@@ -386,12 +391,12 @@ class Defs:
  "desc" :  "An expertly crafted nasal helm decorated with intricate golden ornaments.",
  "adesc" : "Includes an expertly crafted nasal helm."
  },
-{"name" : "bascinet"                     , "layer" : "helm", "min" : 1, "max" : 7, "value" : 400, "con" : 80, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "bascinet"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 7, "value" : 400, "con" : 80, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Bascinet",
  "desc" :  "A rounded steel helm with a reinforced dome, providing solid protection for the cranium.",
  "adesc" : "Includes a steel bascinet."
  },
-{"name" : "bascinet_named"                     , "layer" : "helm", "min" : 1, "max" : 11, "value" : 1700, "con" : 90, "stam" : -4, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 90, "max" : 115 }, "fat": { "min" : 4, "max" : 2 }, "vis": { "min" : 1, "max" : 0 }, "names" : Names  },
+{"name" : "bascinet_named"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 11, "value" : 1700, "con" : 90, "stam" : -4, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 90, "max" : 115 }, "fat": { "min" : 4, "max" : 2 }, "vis": { "min" : 1, "max" : 0 }, "names" : Names  },
  "title" :  "Bascinet",
  "desc" :  "An exquisite bascinet with a pointed head. Very comfortable thanks to its soft leather interior.",
  "adesc" : "Includes an exquisite bascinet."
@@ -431,7 +436,7 @@ class Defs:
  "desc" :  "An exceptional kettle helm of unmatched quality. Adorned with golden decorative elements.",
  "adesc" : "Includes an exceptional kettle helm of unmatched quality."
  },
-{"name" : "enclave_kettle"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 1250, "con" : 145, "stam" : -10, "vis" : -2, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "enclave_kettle"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 1250, "con" : 145, "stam" : -10, "vis" : -2, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Kettle Sallet",
  "desc" :  "A steel helm that melds the defensive brim of a kettle hat with the sleek, protective form of a sallet.",
  "adesc" : "Includes a steel kettle sallet."
@@ -451,22 +456,22 @@ class Defs:
  "desc" :  "A short skullcap with a pair of rondels affixed to the sides, providing extra protection to the wearer's head.",
  "adesc" : "Includes a skullcap with protective side rondels."
  },
-{"name" : "deep_cervelliere"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 1000, "con" : 100, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "deep_cervelliere"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 1000, "con" : 100, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Reinforced Deep Cervelliere",
  "desc" :  "A metal cervelliere with a deep, rounded bowl and bolted cheek guards, providing good protection.",
  "adesc" : "Includes a deep steel cervelliere."
  },
-{"name" : "deep_cervelliere_named"                     , "layer" : "helm", "min" : 1, "max" : 8, "value" : 3200, "con" : 105, "stam" : -6, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 105, "max" : 125 }, "fat": { "min" : 6, "max" : 5 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
+{"name" : "deep_cervelliere_named"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 8, "value" : 3200, "con" : 105, "stam" : -6, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 105, "max" : 125 }, "fat": { "min" : 6, "max" : 5 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
  "title" :  "Reinforced Deep Cervelliere",
  "desc" :  "A decorated deep cervelliere with bolted cheek guards. It bears a gilded trim with decorative leaf plates pinned to the front ridge.",
  "adesc" : "Includes an intricately decorated deep cervelliere."
  },
-{"name" : "cervelliere"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 1500, "con" : 105, "stam" : -7, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "cervelliere"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 1500, "con" : 105, "stam" : -7, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Reinforced Cervelliere",
  "desc" :  "A heavy steel helm with added bolted cheek guards that offers extensive coverage for the jaw and the temples.",
  "adesc" : "Includes a steel cervelliere with bolted cheek guards."
  },
-{"name" : "cervelliere_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 2500, "con" : 110, "stam" : -6, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 110, "max" : 135 }, "fat": { "min" : 6, "max" : 5 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
+{"name" : "cervelliere_named"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 1, "value" : 2500, "con" : 110, "stam" : -6, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 110, "max" : 135 }, "fat": { "min" : 6, "max" : 5 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
  "title" :  "Reinforced Cervelliere",
  "desc" :  "A skillfully painted cervelliere with added bolted cheek guards. Made of strong steel capable of protecting one's skull from all kinds of trauma.",
  "adesc" : "Includes a skillfully painted cervelliere with bolted cheek guards."
@@ -486,12 +491,12 @@ class Defs:
  "desc" :  "A conical helm fluted to redirect the force of the incoming blows.",
  "adesc" : "Includes a fluted conical helm."
  },
-{"name" : "sallet"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 800, "con" : 50, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "sallet"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 6, "value" : 800, "con" : 50, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Sallet",
  "desc" :  "A metal sallet helm with an extended neck guard, a design uncommon in these lands. Well crafted to offer maximum protection with minimum weight, and without impairing vision.",
  "adesc" : "Includes a metal sallet."
  },
-{"name" : "sallet_named"                     , "layer" : "helm", "min" : 1, "max" : 9, "value" : 1600, "con" : 55, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "sallet_named"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 9, "value" : 1600, "con" : 55, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Gilded Sallet",
  "desc" :  "A beautifully designed metal sallet helm with an extended neck guard, a design uncommon in these lands. Expertly crafted to offer maximum protection with minimum weight, and without impairing vision.",
  "adesc" : "Includes a beautifully designed metal sallet."
@@ -541,7 +546,7 @@ class Defs:
  "desc" :  "A sturdy steel helm with a crafty sloped design meant to deflect blows.",
  "adesc" : "Includes a steel frogmouth helm."
  },
-{"name" : "frogmouth_named"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 5, "value" : 2250, "con" : 160, "stam" : -10, "vis" : -2, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",  "named" : { "con": { "min" : 170, "max" : 195 }, "fat": { "min" : 13, "max" : 11 }, "vis": { "min" : 3, "max" : 2 }, "names" : Names  },
+{"name" : "frogmouth_named"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 5, "value" : 2250, "con" : 160, "stam" : -10, "vis" : -2, "hair" : "true", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",  "named" : { "con": { "min" : 180, "max" : 205 }, "fat": { "min" : 13, "max" : 11 }, "vis": { "min" : 3, "max" : 2 }, "names" : Names  },
  "title" :  "Frogmouth",
  "desc" :  "A prestigious helm with a crafty sloped design meant to deflect blows. Such a masterpiece surely belonged to a champion of many great tournaments.",
  "adesc" : "Includes a prestigious frogmouth helm of excellent construction."
@@ -611,7 +616,7 @@ class Defs:
  "desc" :  "A restored and polished helm of a long dead legionary, once again serving its purpose after centuries of decay and neglect.",
  "adesc" : "Includes a restored ancient legionary helm."
  },
-{"name" : "tailed_conic"                     , "layer" : "helm", "min" : 1, "max" : 5, "value" : 3000, "con" : 140, "stam" : -8, "vis" : -2, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 140, "max" : 165 }, "fat": { "min" : 9, "max" : 7 }, "vis": { "min" : 2, "max" : 1 }, "names" : Names  },
+{"name" : "tailed_conic"                     , "layer" : "helm", "lower": True, "min" : 1, "max" : 5, "value" : 3000, "con" : 140, "stam" : -8, "vis" : -2, "hair" : "true", "beard" : "false", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 140, "max" : 165 }, "fat": { "min" : 9, "max" : 7 }, "vis": { "min" : 2, "max" : 1 }, "names" : Names  },
  "title" :  "Feathered Nasal Helm",
  "desc" :  "A hardened nasal helm with a cloth band and a tail.",
  "adesc" : "Includes a nasal helm with a tail."
@@ -812,10 +817,15 @@ class Defs:
  "desc" :  "A compact iron jaw guard that doesn't obstruct the user's field of vision.",
  "adesc" : "Includes a compact iron jaw guard."
  },
-{"name" : "cult_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 11, "value" : 60, "con" : 15, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "cult_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 12, "value" : 60, "con" : 15, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Cult Leather Hood",
  "desc" :  "A rough leather hood commonly used in cultist ceremonies. Counts as a cultist item.",
  "adesc" : "Includes a rough leather hood."
+ },
+ {"name" : "executioner_hood_full"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 6, "value" : 120, "con" : 25, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+ "title" :  "Executioner\'s Hood",
+ "desc" :  "A hood worn by executioners to protect their identity and prevent retaliation. Counts as a cultist item.",
+ "adesc" : "Includes a tall leather hood."
  },
 {"name" : "faceplate_long"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 6, "value" : 180, "con" : 35, "stam" : -3, "vis" : 0, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Long Faceplate",
@@ -892,12 +902,12 @@ class Defs:
  "desc" :  "A visor that fits on an armet, protecting the lower jaw while leaving a slit for eyesight.",
  "adesc" : "Includes an armet visor."
  },
-{"name" : "wallace_sallet_visor"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 3, "value" : 150, "con" : 20, "stam" : -1, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "wallace_sallet_visor"                     , "layer" : "top", "min" : 1, "max" : 3, "value" : 150, "con" : 20, "stam" : -1, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Sallet Visor",
  "desc" :  "A gracefully curved iron visor, featuring two eye-slits and a few breaths in the center.",
   "adesc" : "Includes a curved iron visor."
  },
-{"name" : "wallace_sallet_visor_named"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 1, "value" : 700, "con" : 35, "stam" : -1, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 35, "max" : 50 }, "fat": { "min" : 2, "max" : 1 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
+{"name" : "wallace_sallet_visor_named"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 700, "con" : 35, "stam" : -1, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate", "named" : { "con": { "min" : 35, "max" : 50 }, "fat": { "min" : 2, "max" : 1 }, "vis": { "min" : 1, "max" : 1 }, "names" : Names  },
  "title" :  "Sallet Visor",
  "desc" :  "A beautifully painted visor bearing an exquisite caricature of a beast's visage upon the front, striking terror - and perhaps a touch of bewilderment - into any who gaze upon it.",
  "adesc" : "Includes a beautifully painted curved iron visor."
@@ -986,8 +996,8 @@ class Defs:
  "adesc" : "Includes a long cloth hood."
  },
 {"name" : "executioner_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 1, "value" : 100, "con" : 10, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
- "title" :  "Executioner's Hood",
- "desc" :  "A heavy hood designed to hide the identity of the executioner from the vengeance of those sympathetic to the condemned. Counts as a cultist item.",
+ "title" :  "Executioner's Cowl",
+ "desc" :  "A heavy, deep cowl designed to hide the identity of the executioner from the vengeance of those sympathetic to the condemned. Counts as a cultist item.",
  "adesc" : "Includes a heavy cloth hood."
  },
 {"name" : "southern_noble_crown"                     , "layer" : "vanity", "min" : 1, "max" : 12, "value" : 100, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",

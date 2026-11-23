@@ -8,6 +8,8 @@
 	<sprite id="band_of_brothers_mini" ic="FF4C4B4D" img="skills\mini\band_of_brothers_mini.png" />
 	<sprite id="drums_of_war_mini" offsetY="35" ic="FF374B50" img="skills/mini/drums_of_war_mini.png" />
 	<sprite id="martial_march_mini" offsetY="35" ic="FF374B50" img="skills/mini/martial_march_mini.png" />
+	<sprite id="perfectfocus_active" ic="FF374B50" img="skills/perfectfocus_square.png" />
+	<sprite id="perk_41_active" ic="FF374B50" img="skills/perk_41_active.png" />
 	<sprite id="perk_barrage_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_barrage_mini.png" />
 	<sprite id="perk_sling_mastery_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_sling_mastery_mini.png" />
 	<sprite id="perk_spec_2hsword_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_2hsword_mini.png" />
@@ -81,6 +83,8 @@
 	<sprite id="status_spears_circle" ic="FF23165B" img="skills\status_spears_circle.png" />
 	<sprite id="status_effect_doublestrike" ic="FF23165B" img="skills\status_effect_doublestrike.png" />
 	<sprite id="mini_doublestrike_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_doublestrike_circle.png" />
+	<sprite id="status_perfectfocus_circle" ic="FF23165B" img="skills\status_perfectfocus_circle.png" />
+	<sprite id="mini_perfectfocus_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_perfectfocus_circle.png" />
 	<sprite id="mini_spears_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_spears_circle.png" />
 	<sprite id="revolt_square" ic="FF23165B" img="skills\revolt_square.png" />
 	<sprite id="relax_square" ic="FF23165B" img="skills\relax_square.png" />
@@ -246,7 +250,6 @@
 	<sprite id="miner_orientation"  ic="FF22200A" img="orientation\miner_orientation.png" />
 	<sprite id="squire_orientation" ic="FF22200A" img="orientation\squire_orientation.png" />
 	<sprite id="witchhunter_orientation"  ic="FF22200A" img="orientation\witchhunter_orientation.png" />
-	<sprite id="banditveteran_orientation" ic="FF22200A" img="orientation\banditveteran_orientation.png" />
 	<sprite id="banditwarlord_orientation" ic="FF22200A" img="orientation\banditwarlord_orientation.png" />
 	<sprite id="banditoutrider_orientation" ic="FF22200A" img="orientation\banditoutrider_orientation.png" />
 	<sprite id="bear_orientation"  ic="FF22200A" img="orientation\bear_orientation.png" />
@@ -273,5 +276,5 @@
 	<sprite id="goblin_direwolf_rider_orientation" ic="FF22200A" img="orientation\goblin_direwolf_rider_orientation.png" />
 	<sprite id="goblin_white_direwolf_rider_orientation" ic="FF22200A" img="orientation\goblin_white_direwolf_rider_orientation.png" />
 	<sprite id="enraged_hyena_orientation" ic="FF22200A" img="orientation\enraged_hyena_orientation.png" />
-	<sprite id="fault_finder_orientation" ic="FF22200A" img="orientation\fault_finder_orientation.png" />
+	<sprite id="wicht_orientation" ic="FF22200A" img="orientation\wicht_orientation.png" />
 </brush>

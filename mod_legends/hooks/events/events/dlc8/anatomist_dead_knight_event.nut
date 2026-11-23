@@ -17,7 +17,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 					item = this.new("scripts/items/weapons/arming_sword");
 					item.setCondition(item.getConditionMax() / 2 - 1);
@@ -56,7 +57,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 					_event.m.Anatomist.worsenMood(1.0, "Was denied the opportunity to examine a promising corpse");
 
@@ -95,7 +97,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 					_event.m.Anatomist.addXP(200, false);
 					_event.m.Anatomist.updateLevel();

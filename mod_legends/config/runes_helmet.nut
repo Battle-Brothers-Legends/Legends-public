@@ -98,7 +98,7 @@ This item has the power of the rune sigil of Luck:
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Luck:
-[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] chance to have any attacker require two successful attack rolls in order to hit..
+[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] chance to have any attacker require two successful attack rolls in order to hit.
 	",
 	setRuneBonus = function(_item, _bonus) {
 		if (_bonus) {

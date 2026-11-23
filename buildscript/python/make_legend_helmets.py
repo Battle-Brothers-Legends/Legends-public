@@ -26,13 +26,13 @@ def checkForIcon(path, iconpath, variants):
     return has_missing
 
 
-def makeSheet(helmetsPath, num):
-    dirpath = helmetsPath / str(num)
+def makeSheet(helmetsPath):
+    dirpath = helmetsPath
     dirpath.mkdir(parents=True, exist_ok=True)
 
     metadataPath = dirpath / "metadata.xml"
     F = open(metadataPath, "w")
-    F.write(f'<brush name="gfx/legend_helmets_{num}.png" version="17">\n')
+    F.write(f'<brush name="gfx/legend_helmets.png" version="17">\n')
     return F
 
 
@@ -40,9 +40,7 @@ def makeBrushes(path):
     helmetsPath = Path(path) / "unpacked/legend_helmets"
     cleanupDirs(helmetsPath)
     helmetDir = helmetsPath / "entity"
-    fileCount = 0
-    imageCount = 0
-    F = makeSheet(helmetsPath, fileCount)
+    F = makeSheet(helmetsPath)
 
     templates = [Template(t) for t in Templates.BLayer]
     cardinals = Templates.Cardinals
@@ -66,16 +64,16 @@ def makeBrushes(path):
                 return crop_rel_path.replace("/", "\\"), Templates.calculate_cardinals(cardinals[cardinal_index], CropTool.getBounds(helmetDir / rel_path))
 
             fin_name_path, name_cardinals = fixPathsAndGetCardinals(name_path, c_name_path, 0)
-            fin_damaged_path, damaged_cardinals   = fixPathsAndGetCardinals(damaged_path, c_damaged_path, 1)
+            fin_damaged_path, damaged_cardinals = fixPathsAndGetCardinals(damaged_path, c_damaged_path, 1)
             fin_dead_path, dead_cardinals = fixPathsAndGetCardinals(dead_path, c_dead_path, 2)
 
             opts = {
                 "name": f"legendhelms_{name}",
                 "damaged": f"legendhelms_{name}_damaged",
                 "dead": f"legendhelms_{name}_dead",
-                "name_path": fin_name_path,
-                "damaged_path": fin_damaged_path,
-                "dead_path": fin_dead_path,
+                "name_path": fin_name_path.strip("..\\"),
+                "damaged_path": fin_damaged_path.strip("..\\"),
+                "dead_path": fin_dead_path.strip("..\\"),
                 "name_cardinals": name_cardinals,
                 "damaged_cardinals": damaged_cardinals,
                 "dead_cardinals": dead_cardinals,
@@ -84,14 +82,6 @@ def makeBrushes(path):
 
             for s in templates:
                 F.write(s.substitute(opts))
-
-                imageCount += 1  
-                if imageCount > 1600:           
-                    F.write("</brush>\n")
-                    F.close()
-                    imageCount = 0
-                    fileCount += 1
-                    F = makeSheet(helmetsPath, fileCount)
 
     F.write("</brush>\n")
     F.close()

@@ -8,8 +8,7 @@
 		this.m.HitChanceBonus = 5;
 	}
 
-	o.setItem <- function (_item)
-	{
+	o.setItem <- function (_item) {
 		this.skill.setItem(_item);
 		if (this.m.IsMeleeRupture)
 		{
@@ -52,13 +51,13 @@
 		return tooltip;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function(_properties)
-	{
-		onAfterUpdate(_properties);
+	o.onAfterUpdate = function(_properties) {
 		if (this.m.IsMeleeRupture) {
-			this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
+			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+				this.m.ActionPointCost -= 1;
+			}
 		}
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
@@ -67,7 +66,7 @@
 
 			if (this.m.IsMeleeRupture)
 				return;
-			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus = -10;
 			}

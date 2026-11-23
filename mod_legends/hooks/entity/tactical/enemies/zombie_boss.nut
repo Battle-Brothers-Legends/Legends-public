@@ -10,7 +10,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);

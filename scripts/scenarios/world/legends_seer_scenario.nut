@@ -130,44 +130,50 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		this.addBroToRoster(_roster, "apprentice_background", 4);
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated))
 		{
-			bro.improveMood(1.0, "Excited to study from you");
+			_bro.improveMood(1.0, "Excited to study from you");
 		}
 		else
 		{
-			bro.worsenMood(1.0, "Wishes you would stop using big words");
+			_bro.worsenMood(1.0, "Wishes you would stop using big words");
 		}
 
-		if (bro.getSkills().hasTrait(::Legends.Trait.Bright))
+		if (_bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
-			bro.improveMood(0.5, "Keen to learn from a master");
+			_bro.improveMood(0.5, "Keen to learn from a master");
 		}
 
-		if (bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+		if (_bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 		{
-			bro.worsenMood(0.5, "Thinks you are a boring nerd");
+			_bro.worsenMood(0.5, "Thinks you are a boring nerd");
 		}
 
-		bro.improveMood(0.5, "Learned a new skill");
+		_bro.improveMood(0.5, "Learned a new skill");
 	}
 
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Bright))
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
-			bro.getSkills().update();
+		if (_bro.isStabled()) {
+			return;
 		}
-		else if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.1); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 1.1; //1.0 = default
-			bro.getSkills().update();
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.9); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
+			_bro.getSkills().update();
+		}
+		else if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+		{
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.1); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 1.1; //1.0 = default
+			_bro.getSkills().update();
 		}
 	}
 

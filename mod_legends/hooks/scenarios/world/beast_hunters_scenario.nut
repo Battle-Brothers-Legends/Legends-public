@@ -132,6 +132,10 @@
 
 	o.onGenerateBro <- function (bro)
 	{
+		if (bro.isStabled()) {
+			bro.getSprite("socket").setBrush("bust_base_beasthunters");
+			return;
+		}
 		local r;
 		r = this.Math.rand(0,5);
 		if (bro.getBackground().getID() == "background.beast_slayer")

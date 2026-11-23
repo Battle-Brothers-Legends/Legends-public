@@ -24,7 +24,7 @@
 ::Const.Strings.PerkName.LegendLookout <- "Lookout";
 ::Const.Strings.PerkName.LegendBoondockBlade <- "Boondock Blade";
 ::Const.Strings.PerkName.LegendVengeance <- "Vengeance";
-::Const.Strings.PerkName.LegendDoubleStrike <- "Double Strike";
+::Const.Strings.PerkName.LegendDoubleStrike <- "Flux";
 ::Const.Strings.PerkName.LegendImmovableObject <- "Immovable Object";
 ::Const.Strings.PerkName.LegendBloodyHarvest <- "Bloody Harvest";
 ::Const.Strings.PerkName.LegendPerfectFocus <- "Perfect Focus";
@@ -221,7 +221,7 @@
 ::Const.Strings.PerkName.LegendMagicBurningHands <- "Burning Hands";
 ::Const.Strings.PerkName.LegendMagicChainLightning <- "Chain Lightning";
 ::Const.Strings.PerkName.LegendMagicCircleOfProtection <- "Circle of Protection";
-::Const.Strings.PerkName.LegendMagicDaze <- "Daze";
+::Const.Strings.PerkName.LegendMagicDaze <- "Stupefy";
 ::Const.Strings.PerkName.LegendMagicHailstone <- "Hailstone";
 ::Const.Strings.PerkName.LegendMagicHealingWind <- "Healing Wind";
 ::Const.Strings.PerkName.LegendMagicImbue <- "Imbue";
@@ -253,7 +253,7 @@
 ::Const.Strings.PerkName.LegendHex <- "Hex";
 ::Const.Strings.PerkName.LegendMiasma <- "Miasma";
 ::Const.Strings.PerkName.LegendDarkflight <- "Darkflight";
-::Const.Strings.PerkName.LegendDaze <- "Daze";
+::Const.Strings.PerkName.LegendDaze <- "Stupefy";
 ::Const.Strings.PerkName.LegendStun <- "Stun";
 ::Const.Strings.PerkName.LegendHorrify <- "Horrify";
 ::Const.Strings.PerkName.LegendPush <- "Revolt";
@@ -336,7 +336,9 @@
 Hold your ground!
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain a stacking [color=%positive%]+5[/color] Melee Skill, Ranged Skill and Melee Defense as long as you have not moved during your turn. You will start combat with 1 stack.
+• Gain a stacking Melee Skill, Ranged Skill and Melee Defense as long as you have not moved during your turn. You will start combat with 1 stack.
+
+• The first stack grants [color=%positive%]5[/color] bonus, and each subsequent stack grants 1 less up to a maximum of [color=%positive%]15[/color] granted at 5 stacks.
 
 • If you were to receive [color=%status%]Stagger[/color] instead remove a stack.
 ";
@@ -374,7 +376,7 @@ Ankles, hands, elbows and knees, you've learned how to fight dirty to secure vic
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Debilitate[/color] skill which can prime your next attack to [color=%status%]Cripple[/color] a target for three turns, reducing their ability to inflict damage by [color=%negative%]-25%[/color] and increasing the damage they take by [color=%positive%]+15%[/color].
 
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]10[/color] Fatigue. Works on enemy targets hit.
+• Costs [color=%negative%]3[/color] AP and [color=%negative%]10[/color] Fatigue. Works on all enemy targets hit.
 ";
 
 ::Const.Strings.PerkDescription.LegendReturnFavor <- @"
@@ -392,9 +394,11 @@ Strike back with interest!
 Take a deep breath, then get to work.
 
 [color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Perfect Focus[/color] skill which allows the use of all other skills at [color=%negative%]half[/color] the normal Action Point cost (rounded down), but increases Fatigue cost by [color=%positive%]+75%[/color] for one round.
+• Unlocks the [color=%skill%]Perfect Focus[/color] skill which grants stacking [color=%effect%]Perfect Focus[/color]. Each stack increases your Action Points by [color=%positive%]3[/color] on use.
 
-• Costs [color=%negative%]1[/color] AP and [color=%negative%]10[/color] Fatigue.
+• Undead characters can not use this ability, but instead gain [color=%positive%]+3[/color] Action Points.
+
+• Costs [color=%negative%]0[/color] AP and [color=%negative%]30[/color] Fatigue, but Fatigue cost will increase by [color=%positive%]50%[/color] for each subsequent use this combat. The Fatigue cost will be reduced by [color=%negative%]50%[/color] at the start of each turn down to [color=%negative%]30[/color].
 ";
 
 // ::Const.Strings.PerkDescription.Furor <- @"
@@ -415,7 +419,7 @@ There's wolves, bears, nachzehrers, and you. All beings of vicious slaughter.
 Heavy armor, a trusty shield and your heels dug into the ground and you can weather any storm.
 
 [color=%passive%][u]Passive:[/u][/color]
-• For every 10 points of gear weight from all slot gain [color=%positive%]1[/color] Resolve and [color=%negative%]1%[/color] less damage ignoring armor.
+• For every 10 points of gear weight from all slots gain [color=%positive%]1[/color] Resolve and [color=%negative%]1%[/color] less damage ignoring armor.
 
 • If you have at least 50 gear weight any attack that would stun you will instead daze you.
 
@@ -423,25 +427,23 @@ Heavy armor, a trusty shield and your heels dug into the ground and you can weat
 ";
 
 ::Const.Strings.PerkDescription.LegendDoubleStrike <- @"
-Master the art of following up for devastating effects.
+Master chaining your attacks for a devastating effect.
 
 [color=%passive%][u]Passive:[/u][/color]
-• After landing a hit, the next attack this turn does [color=%positive%]25%[/color] overall damage and it costs [color=%negative%]20%[/color] less Fatigue than normal.
+• After landing a hit, gain a [color=%positive%]25%[/color] bonus to damage and recover [color=%positive%]1-2[/color] fatigue with each further hit.
 
-• If the attack misses, the effect is lost.
+• Missing or ending your turn will remove the effect.
 
-• When [color=%status%]Dual Wielding[/color] daggers, if the offhand attack successfully hits, the next mainhand attack costs [color=%positive%]-1[/color] AP and deals [color=%positive%]+10%[/color] damage.
+• When [color=%status%]Dual Wielding[/color] daggers, the bonus to damage is increased to [color=%positive%]35%[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendVengeance <- @"
 'You've done it now!'
 
 [color=%passive%][u]Passive:[/u][/color]
-• After receiving a blow, the next attack this character attempts will inflict [color=%positive%]+100%[/color] damage to both Hitpoints and armor.
+• After receiving a hit, or a death of a party member or a pet, gain a stack of [color=%effect]Vengeance[/color], which allows you to deal [color=%positive%]20%[/color] extra Damage.
 
-• If the attack misses the effect is wasted. Does not work from friendly fire or any self inflicted damage.
-
-• Additionally a party member or pet dying will trigger the effect.
+• The damage does not stack and each attack consumes one charge.
 ";
 
 ::Const.Strings.PerkDescription.LegendBruiser <- @"
@@ -538,13 +540,13 @@ Learn to find your enemies before they find you.
 • While on duty in the scout tent they grant [color=%positive%]+10%[/color] scouting.
 
 [color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Mark Target[/color] skill.
+• Unlocks the [color=%skill%]Mark Target[/color] skill which afflicts your target with [color=%status%]Marked[/color], reducing their Melee and Ranged defense by [color=%negative%]10[/color] and increasing Damage Received from all sources by up to [color=%negative%]20%[/color] depending on the targets max Hitpoints.
 
 • Costs [color=%negative%]2[/color] AP and [color=%negative%]15[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendBoondockBlade <- @"
-Catch your enemies by suprise
+Catch your enemies by surprise.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When in a hiding place, such as high grass, gain a bonus of [color=%positive%]+10[/color] to Melee Skill, Ranged Skill, and Melee and Ranged Defense.
@@ -588,7 +590,7 @@ Exert yourself to move one tile at an unusually quick speed.
 You're a well-rounded athlete!
 
 [color=%passive%][u]Passive:[/u][/color]
-• Reduce the Fatigue cost of all your skills by a percentage equal to [color=%negative%]20%[/color] of your maximum usable Fatigue after gear weight is accounted for.
+• Reduce the Fatigue cost of all your skills and movement by a percentage equal to [color=%negative%]20%[/color] of your maximum usable Fatigue after gear weight is accounted for.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecPoison <- @"
@@ -612,7 +614,7 @@ Unlock the deadly art of poisoning and be able to lick your poisoned weapon with
 'Excuse me'
 
 [color=%active%][u]Active:[/u][/color]
-• Enables the character to move swiftly and safely through any Zone of Control one turn. The first attack against you will be an automatic miss. Can only be used if your total armor weight is 30 or less.
+• Enables the character to move swiftly and safely through any Zone of Control for one turn. The first attack against you will be an automatic miss. Can only be used if your total armor weight is 30 or less.
 
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
@@ -682,13 +684,13 @@ Disapparate from your current location and reappear on the other side of the bat
 Assault the senses of your target with a flurry of colorful movement and sounds.
 
 [color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Daze[/color] skill which applies the [color=%status%]Bewildered[/color] effect on hit.
+• Unlocks the [color=%skill%]Daze[/color] skill which applies the [color=%status%]Stupefied[/color] effect on hit.
 
 • Chance to hit is based on Ranged Skill and has a range of six tiles.
 
-• [color=%status%]Bewildered[/color] enemies have their Initiative, Fatigue, and damage reduced by [color=%negative%]-50%[/color].
+• [color=%status%]Stupefied[/color] enemies have their Initiative, Fatigue, and damage reduced by [color=%negative%]-50%[/color].
 
-• If you have the [color=%perk%]Taunt[/color] perk, chance to hit is [color=%positive%]doubled[/color].
+• If you have the [color=%perk%]Battlefield Control[/color] perk, the chance to hit is [color=%positive%]doubled[/color].
 
 • Costs [color=%negative%]5[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
@@ -892,7 +894,7 @@ Taste of the forbidden flesh.
 Sooth an ally, halving their Fatigue.
 
 [color=%active%][u]Active:[/u][/color]
-• Unlocks [color=%skill%]Relax[/color] skill which reduces accumlated Fatigue by [color=%negative%]50%[/color] for any ally within three tiles.
+• Unlocks [color=%skill%]Relax[/color] skill which reduces accumulated Fatigue by [color=%negative%]50%[/color] for any ally within three tiles.
 
 • Costs [color=%negative%]9[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
@@ -1139,9 +1141,9 @@ Obtain mastery over chants.
 A very disagreeable and cacophonous chant can makes it almost impossible for enemies to focus and concentrate properly.
 
 [color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Disharmony[/color] chant which prevents enemies from enforcing Zones of Control while adjacent to the Vala and enemies within 3 tiles of the Vala will be afflicted by a malus to Initiative.
+• Unlocks the [color=%skill%]Disharmony[/color] chant which afflicts enemies within 4 tiles of the Vala will be afflicted by a malus to Initiative.
 
-• The debuff to Initiative increases by [color=%negative%]1%[/color] for every 15 points of Resolve and Fatigue the Vala has.
+• The debuff to Initiative increases by [color=%negative%]1%[/color] for every 5 points of Resolve the Vala has.
 
 • The reduction weakens by [color=%negative%]25%[/color] per one tile the target is away from the Vala.
 
@@ -1413,13 +1415,13 @@ Carefully evaluate your enemies and bide your time.
 Lets hope your enemies like fighting in the shade.
 
 [color=%passive%][u]Passive:[/u][/color]
-•[color=%skill%]Sling Stone[/color] will now [color=%skill%]Debilitate[/color] on headshots and [color=%skill%]Baffle[/color] on body shots.
+• [color=%skill%]Sling Stone[/color] will now [color=%status%]Debilitate[/color] on headshots, [color=%status%]Baffle[/color] on body shots and ignore shield bonuses.
 
-• [color=%skill%]Fire Handgonne[/color] will apply [color=%skill%]Shellshocked[/color] on headshots.
+• [color=%skill%]Fire Handgonne[/color] will apply [color=%status%]Shellshocked[/color] on headshots.
 
 • [color=%skill%]Sling Heavy Stone[/color] will stun on headshots.
 
-• [color=%skill%]Shoot Bolt[/color] and [color=%skill%]Shoot Stake[/color] will automatically reload on headshots.
+• [color=%skill%]Shoot Bolt[/color], [color=%skill%]Piercing Bolt[/color] and [color=%skill%]Shoot Stake[/color] headshots reduces the cost of [color=%skill%]Reload Bolt[/color] to [color=%negative%]0[/color] AP and [color=%negative%]10[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendStaffBlock <- @"
@@ -1460,7 +1462,7 @@ Your skill on the butcher's block seems to be easily translated to chopping limb
 
 • When taking [color=%perk%]Cleaver Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Cleavers, but not Whips, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Cleavers, but not Whips, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistBlacksmith <- @"
@@ -1471,7 +1473,7 @@ Diligent practice with the hammer each day has proven to be equally good at craf
 
 • When taking [color=%perk%]Hammer Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as One Handed Hammers, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as One Handed Hammers, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistPrisoner <- @"
@@ -1482,7 +1484,7 @@ Life on the streets has shown you how to properly bury a knife in another person
 
 • When taking [color=%perk%]Dagger Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Daggers, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Daggers, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 
 • You will also receive the Deathblow skill and Daggers that already have Deathblow, like Qatal Daggers, will have a buffed version.
 ";
@@ -1504,7 +1506,7 @@ You have mastered the trusty spear and you can use it both for dealing damage an
 
 • When taking [color=%perk%]Spear Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Spears you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Spears you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistMiner <- @"
@@ -1515,7 +1517,7 @@ Cracking rocks and cracking skulls aren't that much different.
 
 • When taking [color=%perk%]Hammer Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Two Handed Hammers, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Two Handed Hammers, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 
 • The bonus will be doubled against Ifrits and Rock Unholds.
 ";
@@ -1528,7 +1530,7 @@ Years of using farming tools have given you an understanding of how to stab true
 
 • When taking [color=%perk%]Polearm Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Polearms, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Polearms, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistPoacher <- @"
@@ -1545,7 +1547,7 @@ From small game to big bounties.
 
 • When taking [color=%perk%]Bow Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Bows, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Bows, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 
 • The bonus will be doubled against Wolves and Hyenas.
 ";
@@ -1558,7 +1560,7 @@ You used to dig up graves, now you're digging graves.
 
 • When taking [color=%perk%]Mace Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Two Handed Mace, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Two Handed Mace, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 
 • If you are using a Shovel you will also receive the Knock Out skill.
 
@@ -1573,7 +1575,7 @@ Timber!
 
 • When taking [color=%perk%]Axe Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For non-specialist weapons classified as Two Handed Axes, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For non-specialist weapons classified as Two Handed Axes, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 
 • Allows this character to harvest wood while in camp.
 
@@ -1586,9 +1588,9 @@ Call an 'erbalist...But not for me!
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+12[/color] chance to hit and [color=%positive%]30%[/color] of lowered threshold to inflict injuries as additional damage to hitpoints while using a Sickle.
 
-• When taking [color=%perk%]Sword Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage. Additionally reduces the Action Point cost of [color=%skill%]Slash[/color] by [color=%negative%]1[/color] when using a Sickle.
+• When taking [color=%perk%]Sword Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as One Handed Swords, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as One Handed Swords, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistReaper <- @"
@@ -1608,7 +1610,7 @@ Practice in the arts of punishment makes the tips of the cattail to inflict horr
 
 • When taking [color=%perk%]Flail Mastery[/color] or [color=%positive%]Cleaver Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Flails or Whips, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Flails or Whips, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistShepherd <- @"
@@ -1619,7 +1621,7 @@ Slinger? I hardly knew 'er!
 
 • When taking [color=%perk%]Sling Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Slings, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Slings, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistInventor <- @"
@@ -1634,7 +1636,7 @@ Using your wits and tools, you've managed to create aids, which help you use unw
 
 • When taking [color=%perk%]Spear Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
-• For other weapons classified as Firearms, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Firearms, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistBodyguard <- @"
@@ -1645,7 +1647,7 @@ Eating and sleeping with your blade has turned it into an extension of your arm.
 
 • When taking [color=%perk%]Sword Mastery[/color] gain [color=%positive%]10%[/color] damage.
 
-• For other weapons classified as a Two-Handed Sword, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as a Two-Handed Sword, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistInquisition <- @"
@@ -1658,7 +1660,7 @@ Nobody expects the Inquisition!
 
 • Gain [color=%positive%]+12[/color] chance to hit while using a Wooden Stake.
 
-• For other weapons classified as Crossbows, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Crossbows, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 
 • While using Crossbows the bonus will be doubled against Hexe and Alps.
 ";
@@ -1671,14 +1673,14 @@ Mastering the art of leaning against a wall with a big stick has it's benefits.
 
 • When taking [color=%perk%]Mace Mastery[/color] gain [color=%positive%]10%[/color] damage.
 
-• For other weapons classified as One-Handed Mace, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as One-Handed Mace, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistSelfdefense <- @"
 Twist and thrust with your staff to deflect blows and intercept strikes.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain [color=%positive%]+16[/color] Melee Skill and [color=%positive%]+16[/color] Defense while wielding a staves or magic staves.
+• Gain [color=%positive%]+16[/color] Melee Skill and [color=%positive%]+16[/color] Defense while wielding a staff or a magic staff.
 
 • When wielding slingstaves, musical instruments and other hybrid staves the bonus is only [color=%positive%]+8[/color].
 ";
@@ -1691,20 +1693,20 @@ An axe to the back of the head solves many issues, you even get to keep the loot
 
 • When taking [color=%perk%]Axe Mastery[/color] or [color=%perk%]Throwing Mastery[/color] gain [color=%positive%]10%[/color] damage.
 
-• For other weapons classified as One-Handed Axes, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as One-Handed Axes, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistSpearfisher <- @"
 Throwing a spear and throwing a net is just muscle memory at this point.
 
 [color=%passive%][u]Specialist Weapon Perk:[/u][/color]
-• Gain [color=%positive%]+12[/color] chance to hit while using a Javelins.
+• Gain [color=%positive%]+12[/color] chance to hit while using a Javelin.
 
 • When taking [color=%perk%]Throwing Specialization[/color] gain [color=%positive%]10%[/color] damage.
 
 • Each time you use a throwing weapon, you can use [color=%skill%]Throw Net[/color] for free.
 
-• For other weapons classified as Throwing, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Throwing, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistSharpshooter <- @"
@@ -1715,7 +1717,7 @@ Thread the needle from this distance? No sweat.
 
 • When taking [color=%perk%]Bow Mastery[/color] gain [color=%positive%]10%[/color] damage.
 
-• For other weapons classified as Longbows, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% according to your choice in campaign generation.
+• For other weapons classified as Longbows, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 
 • The additional range gained is still subject to vision penalties.
 ";
@@ -1905,12 +1907,10 @@ Master the difficult angles and timings of slinging rocks from afar.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemyBeast <- @"
-Enforce your position as the top of the food chain.
+Enforce your position at the top of the food chain.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants [color=%positive%]+5%[/color] base bonus to Melee Skill, Ranged Skill and maximum damage while fighting Beasts.
-
-• Additionally, this bonus increases the more Beasts you kill and counts all kills made previously with this character retroactively.
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting Beasts. This bonus increases with every Beast kill made by this character.
 
 • Increase per kill:
   - Nachzehrers | [color=%positive%]+0.16%[/color]
@@ -1928,18 +1928,14 @@ Enforce your position as the top of the food chain.
   - Spider Eggs | [color=%positive%]+0.5%[/color]
   - Redback | [color=%positive%]+1%[/color]
 
-• At 15% or more (including the base 5% bonus), you will unlock an extremely difficult legendary contract to hunt legendary beasts such as, Skin Ghouls, Rock Unholds, Stollwurms, Enraged Hyenas, White Direwolfs and Readback Spiders.
-
-• Total bonus capped at 25%.
+• At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to hunt the following legendary Beasts: Redback Spiders, Rock Unholds, Skin Ghouls, Stollwurms and White Direwolfs.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemyOccult <- @"
 A skeptical mindset cuts through the tricks of the occult, leaving only brittle shapes to steel.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants [color=%positive%]+5%[/color] base bonus to Melee Skill, Ranged Skill and Resolve while fighting occult creatures.
-
-• Additionally, this bonus increases the more occult creatures you kill and counts all kills made previously with this character retroactively.
+• Grants bonuses to Melee Skill, Ranged Skill, maximum damage and Resolve while fighting the Occult. This bonus increases with every Occult kill made by this character.
 
 • Increase per kill:
   - Alp | [color=%positive%]+0.25%[/color]
@@ -1955,18 +1951,14 @@ A skeptical mindset cuts through the tricks of the occult, leaving only brittle 
   - Greenwood Schrat | [color=%positive%]+1%[/color]
   - Greenwood Sapling | [color=%positive%]+0.4%[/color]
 
-• At 15% or more (including the base 5% bonus), you will unlock multiple difficult legendary contracts to hunt Demon Alps and Hexe Coven Leaders.
-
-• Total bonus capped at 25%.
+• At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to hunt the following Occult leaders: Demon Alps, Greenwood Schrats and Hexe Coven Leaders.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemyGreenskin <- @"
-Big or small, greenskins lack strength of will.
+Big or small, greenskins lack the strength of will.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants [color=%positive%]+5%[/color] base bonus to Melee Skill, Ranged Skill and maximum damage while fighting greenskins.
-
-• Additionally, this bonus increases the more greenskins you kill and counts all kills made previously with this character retroactively.
+• Grants bonuses to Melee Skill, Ranged Skill, maximum damage while fighting Greenskins. This bonus increases with every Greenskin kill made by this character.
 
 • Increase per kill:
   - Orc Young | [color=%positive%]+0.125%[/color]
@@ -1981,9 +1973,7 @@ Big or small, greenskins lack strength of will.
   - Goblin Shaman | [color=%positive%]+0.25%[/color]
   - Goblin Overseer | [color=%positive%]+0.25%[/color]
 
-• Also increases spawn rate of greenskin champions.
-
-• Total bonus capped at 25%.
+• Increases the likelihood of encountering Greenskin champions.
 ";
 
 //No contract
@@ -1993,9 +1983,7 @@ Big or small, greenskins lack strength of will.
 Shambling corpses come wave on wave, rising sleepless from their graves.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants [color=%positive%]+5%[/color] base bonus to Melee Skill, Ranged Skill, and maximum damage while fighting undead.
-
-• Additionally, this bonus increases the more of these enemy types you kill and counts all kills made previously with this character retroactively.
+• Grants bonuses to Melee Skill, Ranged Skill, maximum damage and Resolve while fighting the Undead. This bonus increases with every Undead kill made by this character.
 
 • Increase per kill:
   - Wiederganger | [color=%positive%]+0.01%[/color]
@@ -2018,18 +2006,14 @@ Shambling corpses come wave on wave, rising sleepless from their graves.
   - Embalmed Priest | [color=%positive%]+1.25%[/color]
   - Embalmed Queen | [color=%positive%]+2%[/color]
 
-• Also increases spawn rate of undead champions.
-
-• Total bonus capped at 25%.
+• Increases the likelihood of encountering Undead champions.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemyCivilization <- @"
 We live in a society.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants [color=%positive%]+5%[/color] base bonus to Melee Skill, Ranged Skill, and maximum damage while fighting law-abiding citizens.
-
-• Additionally, this bonus increases the more of these enemy types you kill and counts all kills made previously with this character retroactively.
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting law-abiding citizens. This bonus increases with every Lawful kill made by this character.
 
 • Increase per kill:
   - Footman | [color=%positive%]+0.125%[/color]
@@ -2046,11 +2030,9 @@ We live in a society.
   - Pollaxe | [color=%positive%]+0.125%[/color]
   - Sureshot | [color=%positive%]+0.125%[/color]
 
-• Also increases spawn rate of knight and fencer champions.
-• [color=%positive%]5%[/color] chance to get any items from slain enemies, that might not otherwise be available to loot. Stacks with itself and effects of a similar nature.
+• Increases the likelihood of encountering Lawful champions.
 
-
-• Total bonus capped at 25%.
+• [color=%positive%]5%[/color] chance to get any items from slain enemies, that otherwise might not be available to loot. Stacks with itself and effects of a similar nature.
 ";
 
 //Madman is registered as king
@@ -2058,9 +2040,7 @@ We live in a society.
 The uncivilized are a plague to be uprooted.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants [color=%positive%]+5%[/color] base bonus to Melee Skill, Ranged Skill, and maximum damage while fighting outlaws and criminals.
-
-• Additionally, this bonus increases the more outlaws you kill and counts all kills made previously with this character retroactively.
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting outlaws and criminals. This bonus increases with every Outlaw kill made by this character.
 
 • Increase per kill:
   - Rabble | [color=%positive%]+0.025%[/color]
@@ -2085,21 +2065,16 @@ The uncivilized are a plague to be uprooted.
   - Nomad Archer | [color=%positive%]+0.0625%[/color]
   - Nomad Leader | [color=%positive%]+0.25%[/color]
 
-• Also increases spawn rate of outlaw champions.
+• Increases the likelihood of encountering Outlaw champions.
 
-• At 15% or more (including the base 5% bonus), you will unlock a multiple legendary contracts to stop a brigand army from taking over a settlement.
-• At 15% or more (including the base 5% bonus), you will unlock a very difficult legendary contract to escort an important barbarian prisoner.
-
-• Total bonus capped at 25%.
+• At 15% or more increases the likelihood of receiving extremely difficult legendary contracts to stop a brigand army from taking over a settlement and to escort an important barbarian prisoner.
 ";
 
 ::Const.Strings.PerkDescription.LegendFavouredEnemySwordmaster <- @"
 The path to martial prowess is beset by the fake and the weak. Only one can stand to be the greatest.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants [color=%positive%]+5%[/color] base bonus to Melee Skill, Ranged Skill, and maximum damage while fighting elite melee combatants.
-
-• Additionally, this bonus increases the more swordmaster archetypes you kill and counts all kills made previously with this character retroactively.
+• Grants bonuses to Melee Skill, Ranged Skill and maximum damage while fighting elite melee combatants. This bonus increases with every Swordmaster kill made by this character.
 
 • Increase per kill:
   - Hedge Knight | [color=%positive%]+0.25%[/color]
@@ -2107,7 +2082,7 @@ The path to martial prowess is beset by the fake and the weak. Only one can stan
   - Zweihander | [color=%positive%]+0.25%[/color]
   - Swordmaster | [color=%positive%]+0.5%[/color]
   - Bandit Leader | [color=%positive%]+0.25%[/color]
-  - Bandit Warlord | [color=%positive%]+1%[/color]
+  - Robber Baron | [color=%positive%]+1%[/color]
   - Fencer | [color=%positive%]+0.25%[/color]
   - Barbarian King | [color=%positive%]+1%[/color]
   - Sergeant | [color=%positive%]+0.0125%[/color]
@@ -2118,11 +2093,9 @@ The path to martial prowess is beset by the fake and the weak. Only one can stan
   - Executioner | [color=%positive%]+0.5%[/color]
   - Desert Devil | [color=%positive%]+0.5%[/color]
 
-• Also increases spawn rate of swordmaster archetype champions.
+• Increases the likelihood of encountering Swordmaster champions.
 
-• Unlocks a very difficult repeating event to fight a champion in single combat for a reward.
-
-• Total bonus capped at 25%.
+• Unlocks a very difficult recurring encounter in which a Swordmaster champion challenges a brother to single combat.
 ";
 
 ::Const.Strings.PerkDescription.LegendForcefulSwing <- @"
@@ -2154,7 +2127,7 @@ Balancing your armor can allow protect against different threats.
 Well fitting armor lets you strike faster and fight longer.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Reduce the Fatigue cost of all your skills by [color=%negative%]15%[/color], and gain [color=%positive%]30%[/color] Initiative.
+• Reduce the Fatigue cost of all your skills and movement by [color=%negative%]15%[/color], and gain [color=%positive%]30%[/color] Initiative.
 
 • The bonus decreases if the combined Weight penalties of your body and head armor exceed half of your maximum Fatigue. Maximum fatigue is influenced by the weight of all your combined gear, not just armor.
 ";
@@ -2269,7 +2242,7 @@ You're as capable with one hand as the other!
 [color=%passive%][u]Passive:[/u][/color]
 • When your offhand is free, follow up attacks with [color=%skill%]Hand to Hand[/color]. Gain [color=%positive%]+5[/color] Melee Skill and [color=%positive%]+10[/color] Melee Defense if both hands are free.
 
-• If using a Buckler, Mummy Shield or Parrying Dagger, follow up attacks with [color=%skill%]Buckler Bash[/color] or [color=%skill%]Stab[/color] instead.
+• If using a Buckler or Mummy Shield, follow up attacks with [color=%skill%]Buckler Bash[/color] instead.
 
 • When dual wielding other weapons, the weight penalty is reduced by [color=%positive%]33%[/color].
 ";
@@ -2305,7 +2278,7 @@ Make liberal use of alcohol and food to motivate your mercenaries.
 Some folks take joy in the simple pleasures of destroying shields.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants an additional [color=%positive%]+100%[/color] damage to shields when using [color=%skill%]Split Shield[/color] or a Throwing Spear.
+• Grants an additional [color=%positive%]+50%[/color] damage to shields when using [color=%skill%]Split Shield[/color] or a Throwing Spear.
 • If the shield is destroyed, gain [color=%positive%]4[/color] additional AP and any damage above the max durability of the target's shield will hit the target.
 
 • When [color=%status%]Dual Wielding[/color] axes, [color=%skill%]Split Shield[/color] uses the combined shield damage from both weapons.
@@ -2369,7 +2342,7 @@ The mere sight of this character sends enemies fleeing.
 A skilled mercenary has unimpeded movement regardless of armor.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Reduces Fatigue cost of [color=%skill%]Climb[/color], [color=%skill%]Lunge[/color], [color=%skill%]Footwork[/color], [color=%skill%]Rotation[/color], [color=%skill%]Leap[/color], [color=%skill%]Quick Step[/color], [color=%skill%]Evasion[/color] and [color=%skill%]Tumble[/color] by [color=%negative%]50%[/color].
+• Reduces Fatigue cost of [color=%skill%]Climb[/color], [color=%skill%]Lunge[/color], [color=%skill%]Footwork[/color], [color=%skill%]Rotation[/color], [color=%skill%]Leap[/color], [color=%skill%]Quick Step[/color], [color=%skill%]Evasion[/color] by [color=%negative%]50%[/color].
 
 • The Action Point cost of [color=%skill%]Climb[/color], [color=%skill%]Footwork[/color] and [color=%skill%]Rotation[/color] is reduced by [color=%negative%]1[/color], [color=%skill%]Leap[/color] by [color=%negative%]3[/color] and [color=%skill%]Evasion[/color] by [color=%negative%]2[/color].
 
@@ -2402,7 +2375,7 @@ Years of practice lead this character to fall back to their instincts and basic 
 Carpe juggular!
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain an additional [color=%positive%]20%[/color] damage on hits to the head and chance to hit the head against targets that are [color=%status%]Debilitated[/color] or have sustained any injury effects, like a broken arm.
+• Gain an additional [color=%positive%]20%[/color] damage on hits to the head and chance to hit the head against targets that are [color=%status%]Debilitated[/color], [color=%status%]Knocked Over[/color] or have sustained any injury effects, like a broken arm.
 
 • Also grants [color=%positive%]+10%[/color] damage on hits to the head and chance to hit the head against targets who suffer from any of the following effects: [color=%status%]Baffled[/color], [color=%status%]Dazed[/color], [color=%status%]Distracted[/color], [color=%status%]Grappled[/color], [color=%status%]Netted[/color], [color=%status%]Rooted[/color], [color=%status%]Shellshocked[/color], [color=%status%]Sleeping[/color], [color=%status%]Staggered[/color], [color=%status%]Stunned[/color], [color=%status%]Vulnerable[/color], [color=%status%]Webbed[/color], or [color=%status%]Withered[/color].
 ";
@@ -2574,7 +2547,7 @@ Any camp worth its salt will have an alcohol still fashioned out of whatever can
 Knowledge of an animal's physiology allows for better diet, exercise and care.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increases Hitpoints by [color=%positive%]25%[/color] for each donkey in the company and their carrying capacity by [color=%positive%]+12[/color].
+• Increases Hitpoints by [color=%positive%]25%[/color] for donkeys in the company and their carrying capacity by [color=%positive%]+12[/color].
 
 • Does not stack with the same perk on multiple mercenaries.
 ";
@@ -2898,6 +2871,8 @@ The old gods have allowed you to wield their light.
 
 • Cultists and Undead become [color=%status%]Consecrated[/color], taking [color=%damage%]10[/color] to [color=%damage%]20[/color] damage each turn, and lose any immunity to [color=%status%]Injuries[/color], [color=%status%]Bleeding[/color], and [color=%status%]Poison[/color].
 
+• Consecrated Wichts will lose [color=%status%]Battle Forged[/color].
+
 • Additionally, Undead cannot resurrect in the area while the flame is active.
 
 • Costs [color=%negative%]7[/color] AP and [color=%negative%]30[/color] Fatigue.
@@ -2950,7 +2925,11 @@ Use your athletic skill to leap high and far.
 Make use of your acrobatic skill to dodge attacks and move out of trouble.
 
 [color=%passive%][u]Passive:[/u][/color]
-• As long as there's a free tile adjacent any attack against you will be rerolled. If the attack is ranged you will use your Melee Defense and if the attack is Melee you will use your Ranged Defense for the reroll.
+• As long as there's a free tile adjacent to you grant a chance to have any attacker require two successful attack rolls in order to hit. If the attack is ranged you will use your Melee Defense and if the attack is melee you will use your Ranged Defense for the reroll. On a successful reroll you will be moved to a random tile.
+
+• Disabled if you are rooted or stunned.
+
+• Stacks with 'Lucky' or [color=%perk%]Premonition[/color] with the chance of either being added to the chance to reroll.
 ";
 
 ::Const.Strings.PerkDescription.LegendHairSplitter <- @"
@@ -3266,7 +3245,7 @@ Gain enhanced vision and tactical advantages at night.
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+1[/color] vision and become unaffected by night time penalties.
 
-• When attacking at night, adjacent enemies will lose [color=%negative%]10[/color] Resolve when adjacent to you.
+• When attacking at night, adjacent enemies will lose [color=%negative%]10[/color] Resolve.
 
 • Gain [color=%positive%]+10%[/color] Melee and Ranged Skill while fighting at night.
 ";
@@ -3359,7 +3338,9 @@ Enhance your logistical support in battle.
 A lion's heart beats with unyielding strength, facing every challenge with with fearless resolve!
 
 [color=%passive%][u]Passive:[/u][/color]
-• Being surrounded by enemies no longer affects your morale and increases your resolve by [color=%positive%]10%[/color].
+• Increases your resolve by [color=%positive%]10%[/color].
+
+• Being surrounded by enemies no longer affects your morale.
 ";
 
 ::Const.Strings.PerkDescription.LegendStrengthInNumbers <- @"

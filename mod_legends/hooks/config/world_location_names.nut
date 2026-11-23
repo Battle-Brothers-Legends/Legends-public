@@ -355,7 +355,7 @@
 	"Bonepile",
 	"Doomscar",
 	"Redtusk Warcamp",
-	"Warlord\’s Maw",
+	"Warlord\'s Maw",
 	"Ashfang Pit",
 	"Grimhorn Warcamp"
 ]);

@@ -26,7 +26,7 @@ this.legend_metal_pauldrons_upgrade <- this.inherit("scripts/items/legend_armor/
 		this.m.SpriteDamagedBack = "pauldrons_metal_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_metal_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_metal_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_metal_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_metal_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_metal_"  + variant + ".png";
 	}

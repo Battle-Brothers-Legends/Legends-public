@@ -191,16 +191,16 @@ enemies = r"""
 <sprite id="legend_orc_behemoth_head_01" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF636C75" width="174" height="214" img="entity\orcs\legend_orc_behemoth_head_01.png" left="-68" right="36" top="-13" bottom="71" />
 <sprite id="legend_orc_behemoth_head_01_bloodied" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF636C75" width="174" height="214" img="entity\orcs\legend_orc_behemoth_head_01_bloodied.png" left="-68" right="36" top="-13" bottom="71" />
 <sprite id="legend_orc_behemoth_head_01_dead" offsetY="30" f="64F6" f1="40" f2="-20" ic="FF5B636F" width="169" height="139" img="entity\orcs\legend_orc_behemoth_head_01_dead.png" left="-17" right="85" top="-70" bottom="14" />
-<sprite id="legend_orc_behemoth_head_01_dead_bloodpool" offsetY="30" f="6420" f1="40" f2="-20" width="169" height="139" img="entity\orcs\legend_orc_behemoth_head_01_dead_bloodpool.png" left="-20" right="82" top="-62" bottom="16" />
+<sprite id="legend_orc_behemoth_head_dead_bloodpool" offsetY="30" f="6420" f1="40" f2="-20" width="169" height="139" img="entity\orcs\legend_orc_behemoth_head_01_dead_bloodpool.png" left="-20" right="82" top="-62" bottom="16" />
 
 <sprite id="legend_orc_behemoth_guts" offsetY="30" f="6402" ic="FF191B63" width="169" height="139" img="entity\orcs\legend_orc_behemoth_guts.png" left="-48" right="40" top="-9" bottom="47" />
 
-<sprite id="legend_orc_behemoth_armour_01" offsetX="-5" offsetY="35" ic="FF555758" width="174" height="214" img="entity\orcs\legend_orc_behemoth_armour_01.png" left="-68" right="72" top="-81" bottom="90" />
-<sprite id="legend_orc_behemoth_armour_01_damaged" offsetX="-5" offsetY="35" ic="FF171844" width="174" height="214" img="entity\orcs\legend_orc_behemoth_armour_01_damaged.png" left="-68" right="72" top="-81" bottom="90" />
-<sprite id="legend_orc_behemoth_armour_01_dead" offsetY="30" f="64FE" ic="FF3F4149" width="169" height="139" img="entity\orcs\legend_orc_behemoth_armour_01_dead.png" left="-84" right="85" top="-70" bottom="62" />
-<sprite id="legend_orc_behemoth_armour_01_dead_arrows" offsetX="-5" offsetY="20" f="64FB" ic="FF41484D" width="238" height="186" img="entity\orcs\legend_orc_behemoth_armour_01_dead_arrows.png" left="-37" right="35" top="4" bottom="60" />
-<sprite id="legend_orc_behemoth_armour_01_dead_guts" offsetX="-5" offsetY="20" f="6401" ic="FF101042" width="238" height="186" img="entity\orcs\legend_orc_behemoth_armour_01_dead_guts.png" left="-52" right="24" top="10" bottom="60" />
-<sprite id="legend_orc_behemoth_armour_01_dead_javelin" offsetX="-5" offsetY="20" f="64FB" ic="FF131A27" width="238" height="186" img="entity\orcs\legend_orc_behemoth_armour_01_dead_javelin.png" left="-47" right="25" top="-7" bottom="89" />
+<sprite id="legend_orc_behemoth_armor_01" offsetX="-5" offsetY="35" ic="FF555758" width="174" height="214" img="entity\orcs\legend_orc_behemoth_armour_01.png" left="-68" right="72" top="-81" bottom="90" />
+<sprite id="legend_orc_behemoth_armor_01_damaged" offsetX="-5" offsetY="35" ic="FF171844" width="174" height="214" img="entity\orcs\legend_orc_behemoth_armour_01_damaged.png" left="-68" right="72" top="-81" bottom="90" />
+<sprite id="legend_orc_behemoth_armor_01_dead" offsetY="30" f="64FE" ic="FF3F4149" width="169" height="139" img="entity\orcs\legend_orc_behemoth_armour_01_dead.png" left="-84" right="85" top="-70" bottom="62" />
+<sprite id="legend_orc_behemoth_armor_01_dead_arrows" offsetX="-5" offsetY="20" f="64FB" ic="FF41484D" width="238" height="186" img="entity\orcs\legend_orc_behemoth_armour_01_dead_arrows.png" left="-37" right="35" top="4" bottom="60" />
+<sprite id="legend_orc_behemoth_armor_01_dead_guts" offsetX="-5" offsetY="20" f="6401" ic="FF101042" width="238" height="186" img="entity\orcs\legend_orc_behemoth_armour_01_dead_guts.png" left="-52" right="24" top="10" bottom="60" />
+<sprite id="legend_orc_behemoth_armor_01_dead_javelin" offsetX="-5" offsetY="20" f="64FB" ic="FF131A27" width="238" height="186" img="entity\orcs\legend_orc_behemoth_armour_01_dead_javelin.png" left="-47" right="25" top="-7" bottom="89" />
 
 <sprite id="legend_orc_behemoth_helmet_01" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF636C75" width="174" height="214" img="entity\orcs\legend_orc_behemoth_helmet_01.png" left="-68" right="36" top="-13" bottom="71" />
 <sprite id="legend_orc_behemoth_helmet_01_damaged" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF636C75" width="174" height="214" img="entity\orcs\legend_orc_behemoth_helmet_01_damaged.png" left="-68" right="36" top="-13" bottom="71" />
@@ -208,7 +208,7 @@ enemies = r"""
 
 <sprite id="bust_orc_elite_armor_01" offsetY="35" ic="FF1A2028" width="174" height="214" img="entity\orcs\bust_orc_elite_armor_01.png" top="-68" bottom="48" />
 <sprite id="bust_orc_elite_armor_01_damaged" offsetY="35" ic="FF1A2028" width="174" height="214" img="entity\orcs\bust_orc_elite_armor_01_damaged.png" top="-68" bottom="48" />
-<sprite id="bust_orc_elite_armor_01_dead" offsetX="-5" offsetY="20" f="64FE" ic="FF202730" width="238" height="186" img="entity\orcs\bust_orc_elite_armor_01_dead.png" left="-79" right="99" top="-77" bottom="93" />
+<sprite id="bust_orc_elite_armor_01_dead" offsetX="-5" offsetY="20" f="64FE" ic="FF202730" width="238" height="186" img="entity\orcs\bust_orc_elite_armor_01_dead.png" left="-81" right="77" top="-69" bottom="67" />
 <sprite id="bust_orc_elite_armor_01_dead_arrows" offsetX="-5" offsetY="20" f="64FB" ic="FF41484D" width="238" height="186" img="entity\orcs\bust_orc_elite_armor_01_dead_arrows.png" left="-37" right="35" top="4" bottom="60" />
 <sprite id="bust_orc_elite_armor_01_dead_guts" offsetX="-5" offsetY="20" f="6401" ic="FF101042" width="238" height="186" img="entity\orcs\bust_orc_elite_armor_01_dead_guts.png" left="-52" right="24" top="10" bottom="60" />
 <sprite id="bust_orc_elite_armor_01_dead_javelin" offsetX="-5" offsetY="20" f="64FB" ic="FF131A27" width="238" height="186" img="entity\orcs\bust_orc_elite_armor_01_dead_javelin.png" left="-47" right="25" top="-7" bottom="89" />
@@ -554,9 +554,9 @@ s<sprite id="bust_demonalp_shadow_01" offsetY="35" ic="FF000000" width="174" hei
 <sprite id="bust_unhold_head_05" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF39455B" width="174" height="214" img="entity\beasts\bust_unhold_head_05.png" left="-69" right="21" top="-24" bottom="68" />
 <sprite id="bust_unhold_head_05_dead" offsetY="30" f="64F6" f1="40" f2="-20" ic="FF343E56" width="169" height="139" img="entity\beasts\bust_unhold_head_05_dead.png" left="4" right="76" top="-62" bottom="8" />
 <sprite id="bust_unhold_head_05_dead_bloodpool" offsetY="30" f="6420" f1="40" f2="-20" width="169" height="139" img="entity\beasts\bust_unhold_head_04_dead_bloodpool.png" left="-9" right="85" top="-64" bottom="16" />
-<sprite id="bust_unhold_head_06" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF39455B" width="174" height="214" img="entity\beasts\bust_unhold_head_06.png" left="-69" right="21" top="-24" bottom="68" />
-<sprite id="bust_unhold_head_06_dead" offsetY="30" f1="40" f2="-20" ic="FF343E56" width="169" height="139" img="entity\beasts\bust_unhold_head_06_dead.png" left="4" right="76" top="-62" bottom="8" />
-<sprite id="bust_unhold_head_06_dead_bloodpool" offsetY="30" f="6420" f1="40" f2="-20" width="169" height="139" img="entity\beasts\bust_unhold_head_04_dead_bloodpool.png" left="-9" right="85" top="-64" bottom="16" />
+<sprite id="bust_unhold_head_06" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF636C75" width="174" height="214" img="entity\beasts\bust_unhold_head_06.png" left="-68" right="26" top="-43" bottom="81" />
+<sprite id="bust_unhold_head_06_dead" offsetY="30" f1="40" f2="-20" ic="FF5B636F" width="169" height="139" img="entity\beasts\bust_unhold_head_06_dead.png" left="-17" right="85" top="-70" bottom="14" />
+<sprite id="bust_unhold_head_06_dead_bloodpool" offsetY="30" f="6420" f1="40" f2="-20" width="169" height="139" img="entity\beasts\bust_unhold_head_04_dead_bloodpool.png" left="-20" right="82" top="-62" bottom="16" />
 
 <sprite id="bust_skeleton_body_01_injured" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\bust_skeleton_body_injured.png" left="-37" right="33" top="-45" bottom="3" />
 <sprite id="bust_skeleton_body_02_injured" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\bust_skeleton_body_injured.png" left="-37" right="33" top="-45" bottom="3" />
@@ -580,6 +580,7 @@ s<sprite id="bust_demonalp_shadow_01" offsetY="35" ic="FF000000" width="174" hei
 <sprite id="bust_dawg_01_body_02" offsetY="25" ic="FF2A2627" width="104" height="142" img="entity\beasts\bust_dawg_01_body_02.png" left="-34" right="42" top="-37" bottom="21" />
 <sprite id="bust_dawg_01_head_02" offsetY="25" ic="FF312F35" width="104" height="142" img="entity\beasts\bust_dawg_01_head_02.png" left="-3" right="57" top="-4" bottom="44" />
 <sprite id="bust_dawg_01_body_01_eyes_closed" offsetY="25" width="104" height="142" img="entity\beasts\bust_dawg_01_body_01_eyes_closed.png" left="23" right="33" top="28" bottom="34" />
+<sprite id="bust_dawg_01_body_02_eyes_closed" offsetY="25" width="104" height="142" img="entity\beasts\bust_dawg_01_body_02_eyes_closed.png" left="23" right="33" top="28" bottom="34" />
 
 <sprite id="bust_hyena_07" offsetX="-10" offsetY="35" ic="FF1F334E" width="104" height="142" img="entity\beasts\bust_hyena_07.png" left="-52" right="50" top="-54" bottom="20" />
 <sprite id="bust_hyena_07_body_dead" offsetX="4" offsetY="24" f="6403" ic="FF1B2944" width="179" height="154" img="entity\beasts\bust_hyena_07_body_dead.png" left="-85" right="81" />

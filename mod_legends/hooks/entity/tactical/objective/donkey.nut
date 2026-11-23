@@ -4,7 +4,9 @@
 	o.onInit = function ()
 	{
 		onInit();
-
+		local b = this.m.BaseProperties;
+		b.IsImmuneToBleeding = false;
+		b.IsImmuneToPoison = false;
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDonkeyKick);
 		if(::Legends.isLegendaryDifficulty())
 		{

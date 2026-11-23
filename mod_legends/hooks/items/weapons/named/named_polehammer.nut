@@ -4,18 +4,17 @@
 	o.m.EffectBounds <- [ [3, 7] ];
 
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Variants = [1, 2, 3];
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.WeaponType = this.Const.Items.WeaponType.Hammer | this.Const.Items.WeaponType.Polearm;
+		this.setCategories("Hammer/Polearm, Two-Handed");
 	}
 
-	o.getTooltip <- function ()
-	{
+	o.getTooltip <- function () {
 		local result = this.named_weapon.getTooltip();
-		if (this.m.PossibleEffectIdx == 0)
-		{
+		if (this.m.PossibleEffectIdx == 0) {
 			result.push({
 				id = 12,
 				type = "text",
@@ -27,16 +26,10 @@
 	}
 
 	local onEquip = o.onEquip;
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPryArmor, function (_skill) {
-			_skill.m.FatigueCost = 35;
-			_skill.m.ActionPointCost = 6;
-			_skill.m.MaxRange = 2;
-			_skill.m.Icon = "skills/legend_active_pry_armor_polehammer.png";
-			_skill.m.IconDisabled = "skills/legend_active_pry_armor_polehammer_bw.png";
-			_skill.m.Overlay = "active_legend_pry_armor_polehammer";
+			_skill.m.IsPolearm = true;
 		});
 		::Legends.Actives.grant(this, ::Legends.Active.Impale, function (_skill) {
 			_skill.m.Icon = "skills/legend_halberd_impale.png";

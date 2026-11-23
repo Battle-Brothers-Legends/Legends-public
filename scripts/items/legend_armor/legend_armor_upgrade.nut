@@ -253,8 +253,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		// Other common stats found on Attachements:
 		this.applyEffectTooltips(result);
-
-		if (this.getOverlayIconLarge() != null)
+		if (this.getOverlayIconLarge() != null && this.m.Type != this.Const.Items.ArmorUpgrades.Rune)
 		{
 			result.push({
 				id = 3,
@@ -273,24 +272,33 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		}
 
 		// Interaction Tooltips
-		result.push({
-			id = 70,
-			type = "hint",
-			icon = "ui/icons/mouse_right_button.png",
-			text = "Right-click or left-click and drag onto the armor of the currently selected character to attach."
-		});
-		result.push({
-			id = 71,
-			type = "hint",
-			icon = "ui/icons/mouse_left_button_shift.png",
-			text = "Hold Shift and drag onto an armor in the stash to attach."
-		});
-		result.push({
-			id = 72,
-			type = "hint",
-			icon = "ui/icons/mouse_left_button_shift.png", //I wish I could vanish this easily
-			text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
-		});
+		if (this.m.Armor == null) {
+			result.push({
+				id = 70,
+				type = "hint",
+				icon = "ui/icons/mouse_right_button.png",
+				text = "Right-click or left-click and drag onto the armor of the currently selected character to attach."
+			});
+			result.push({
+				id = 71,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button_shift.png",
+				text = "Hold Shift and drag onto an armor in the stash to attach."
+			});
+		} else {
+			result.push({
+				id = 1,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button_shift.png",
+				text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
+			});
+			result.push({
+				id = 2,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button.png",
+				text = "Unequip layer"
+			});
+		}
 
 		local rune = ::Legends.Runes.get(this.getRuneVariant());
 		if (rune != null) {
@@ -314,11 +322,13 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		});
 
 		_result.push({
-			id = 10,
-			type = "text",
-			text = "[leg_img](gfx/ui/items/%icon%,height=28px,width=28px)[/leg_img] [b][u]%name%[/u][/b]",
-			param = [["name", this.getName()], ["icon", this.m.Icon]]
-		});
+				id = 10,
+				type = "text",
+				text = "[b][u]%name%[/u][/b]",
+				icon = "ui/items/" + this.m.Icon,
+				param = [["name", this.getName()]],
+				isPartialLayer = true
+			});
 
 		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
@@ -544,7 +554,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		if (this.getInitiativeModifier() != 0) _properties.Initiative += this.getInitiativeModifier();
 		if (this.getThreatModifier() != 0) _properties.Threat += this.getThreatModifier();
 		if (this.getResolveModifier() != 0) _properties.Bravery += this.getResolveModifier();
-		if (this.getFatiguePenaltyMultiplier() != 0) _properties.Stamina += this.getCurrentFatigueModifier();	// We are adding to the Stamina of the wearer
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )

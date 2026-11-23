@@ -56,9 +56,7 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 				::Const.Perks.FitTree
 			],
 			Enemy = [],
-			Class = [
-				// ::Const.Perks.HammerClassTree
-			],
+			Class = [],
 			Profession = [
 				::Const.Perks.RepairProfessionTree
 			],

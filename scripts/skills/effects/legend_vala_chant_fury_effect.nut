@@ -43,7 +43,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		{
 			return 0.75;
 		}
-		else if (distance == 1){
+		else if (distance == 1) {
 			return 1.0;
 		}
 		else{
@@ -106,6 +106,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 			return;
 
 		if (_attacker.getType() == ::Const.EntityType.FlyingSkull)
+			return;
 
 		if (!this.checkEntities() || !this.isInRange())
 			return;
@@ -123,6 +124,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 					Skill = payback,
 					TargetTile = _attacker.getTile(),
 					Container = this.getContainer(),
+					StartingTile = actor.getTile()
 				};
 				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onPerformPaypack.bindenv(this), attackinfo);
 			}
@@ -149,6 +151,10 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	function onPerformPaypack(_attackinfo)
 	{
 		_attackinfo.Container.setBusy(false);
+
+		if (_attackinfo.User.getTile().ID != _attackinfo.StartingTile.ID)
+            return;
+
 		this.m.isPerformingPayback = true;
 		if (_attackinfo.User.isAlive() && _attackinfo.TargetTile.getEntity().isAlive())
 		{

@@ -8,17 +8,11 @@
 	o.m.MinRangeForPerTile <- 2; // to fix HitChanceAdditionalWithEachTile in cases where the min range is higher than 2
 	o.m.IsExecutingOffhand <- false;
 
-	o.getDescription = function()
-	{
+	o.getDescription = function () {
 		local vars = [];
-		if (this.getContainer() == null || (typeof this.getContainer() == "instance" && this.getContainer().isNull()) || this.getContainer().getActor() == null)
-		{
-			this.logError("Skill: " + this.getName() + " is missing a" + (this.getContainer() == null ? " Container" : "n Actor") + " when getting description");
-			this.MSU.Log.printStackTrace();
-		}
-		else
-		{
-			local actor = this.getContainer().getActor();
+		local container = this.getContainer();
+		if (container != null && (typeof container == "instance" && !container.isNull()) && container.getActor() != null) {
+			local actor = container.getActor();
 			vars.extend([
 				[
 					"name",
@@ -38,18 +32,6 @@
 		return this.buildTextFromTemplate(this.m.Description, vars);
 	}
 
-	local getFatigueCost = o.getFatigueCost;
-	o.getFatigueCost = function()
-	{
-		local item = this.getItem();
-		if (this.m.Container != null && this.m.IsWeaponSkill && item != null)
-		{
-			local containerProperties = this.m.Container.getActor().getCurrentProperties();
-			this.m.FatigueCostMult = ::Math.minf(this.m.FatigueCostMult, (item.isItemType(::Const.Items.ItemType.Weapon) && ::Legends.S.isCharacterWeaponSpecialized(containerProperties, this.getItem())) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0);
-		}
-		return getFatigueCost();
-	}
-
 	local getActionPointCost = o.getActionPointCost;
 	o.getActionPointCost = function()
 	{
@@ -59,8 +41,7 @@
 	}
 
 	// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
-	o.getUnactivatedPerkTooltipHints <- function()
-	{
+	o.getUnactivatedPerkTooltipHints <- function(_actor = null) {
 		return [];
 	}
 
@@ -554,7 +535,10 @@
 				::Legends.Actives.getID(::Legends.Active.Impale),
 				::Legends.Actives.getID(::Legends.Active.Rupture),
 				::Legends.Actives.getID(::Legends.Active.Prong),
-				::Legends.Actives.getID(::Legends.Active.Lunge)
+				::Legends.Actives.getID(::Legends.Active.Lunge),
+				::Legends.Actives.getID(::Legends.Active.EstocStab),
+				::Legends.Actives.getID(::Legends.Active.Perforate),
+				::Legends.Actives.getID(::Legends.Active.Skewer)
 			))
 			{
 				ret.push({
@@ -572,7 +556,7 @@
 			});
 		}
 
-		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToRoot && this.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowNet))
+		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToRoot && (this.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowNet) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Root) || this.getID() == ::Legends.Actives.getID(::Legends.Active.LegendRoot)))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
@@ -604,7 +588,7 @@
 			});
 		}
 
-		return this.modGetHitFactors(ret, _targetTile)
+		return this.modGetHitFactors(ret, _targetTile);
 	}
 
 	o.modGetHitFactors <- function( ret, _targetTile )
@@ -667,7 +651,7 @@
 				{
 					local tooltip = terrainEffect.getTooltip();
 
-					foreach( i, r in tooltip )
+					foreach( _, r in tooltip )
 					{
 						if (("type" in r) && r.type == "text" && ("icon" in r) && "text" in r)
 						{
@@ -1337,8 +1321,8 @@
 
 		if (this.m.IsRanged && !_allowDiversion && this.m.IsShowingProjectile)
 		{
-			toHit = toHit - 15;
-			properties.DamageTotalMult *= 0.75;
+			toHit = toHit + properties.HitChanceOnDiversion;
+			properties.DamageTotalMult *= properties.DamageTotalOnDiversionMult;
 		}
 
 		if (defense > -100 && skill > -100)
@@ -1444,16 +1428,26 @@
 			}
 		}
 
-		if (isHit && this.Math.rand(1, 100) <= defenderProperties.RerollDefenseChance)
-		{
-			r = this.Math.rand(1, 100);
-			isHit = r <= toHit;
-			if(!isHit) {
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_targetEntity) + " got lucky.");
-			} else {
+		if (isHit && defenderProperties.RerollDefenseChance > 0) {
+			if (this.Math.rand(1, 100) <= defenderProperties.RerollDefenseChance) {
+				r = this.Math.rand(1, 100);
+				local tumble = ::Legends.Perks.get(_targetEntity, ::Legends.Perk.LegendTumble);
+				isHit = r <= toHit;
+				if(!isHit) {
+					this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and " + this.Const.UI.getColorizedEntityName(_targetEntity) + " got lucky (Chance: " + this.Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + r + ")");
+					if (tumble) {
+						tumble.m.CanTeleport = true;
+					} 
+				}
+				else {
+					this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and " + this.Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough (Chance: " + this.Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + r + ")");
+				}
+			}
+			else {
 				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough.");
 			}
 		}
+		
 
 		if (isHit)
 		{

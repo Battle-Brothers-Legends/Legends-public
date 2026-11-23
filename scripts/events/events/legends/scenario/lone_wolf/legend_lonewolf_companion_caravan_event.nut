@@ -176,6 +176,7 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 				_event.m.Dude.getBaseProperties().MeleeDefense += 5;
 				_event.m.Dude.getBaseProperties().RangedDefense += 7;
 				_event.m.Dude.getBaseProperties().Initiative += 10;
+				_event.m.Dude.getBaseProperties().DailyWage = 0;
 				_event.m.Dude.addLightInjury();
 
 				if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)

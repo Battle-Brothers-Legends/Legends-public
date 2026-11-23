@@ -4,8 +4,8 @@
 ::Const.Tactical.Actor.OrcYoung.DamageTotalMult = 1.00;
 
 ::Const.Tactical.Actor.OrcBerserker.Initiative = 100;
+::Const.Tactical.Actor.OrcBerserker.Hitpoints = 200;
 ::Const.Tactical.Actor.OrcBerserker.Stamina = 220;
-::Const.Tactical.Actor.OrcBerserker.DamageTotalMult = 1.1;
 
 ::Const.Tactical.Actor.OrcWarrior.Stamina = 320;
 ::Const.Tactical.Actor.OrcWarrior.Initiative = 100;

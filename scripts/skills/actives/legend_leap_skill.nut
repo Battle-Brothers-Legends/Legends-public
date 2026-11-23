@@ -105,18 +105,16 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function isUsable()
-	{
-		if ( !this.getContainer().getActor().getCurrentProperties().IsRooted)
-		{
-
-			return true;
-
-		}
-		else
-		{
+	function isUsable() {
+		if (this.Tactical.isActive() && this.Tactical.State.getStrategicProperties() != null && this.Tactical.State.getStrategicProperties().IsArenaMode) {
 			return false;
 		}
+
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted) {
+			return false;
+		}
+
+		return true;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )

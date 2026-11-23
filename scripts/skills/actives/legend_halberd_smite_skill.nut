@@ -64,8 +64,10 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 5 : 6;
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+		}
 	}
 
 	function onUse( _user, _targetTile )
@@ -82,7 +84,7 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax += 20;
 		}
 
-if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+		if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 		{
 			this.m.HitChanceBonus -= 15;
 		}

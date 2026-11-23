@@ -83,9 +83,7 @@
 				::Const.Perks.FitTree
 			],
 			Enemy = [],
-			Class = [
-				// ::Const.Perks.WoodaxeClassTree
-			],
+			Class = [],
 			Profession = [
 				::Const.Perks.WoodworkingProfessionTree
 			],

@@ -13,6 +13,8 @@
 			}
 		}
 
+		_caller.onUpdate(ret);
+		_caller.onAfterUpdate(ret);
 		_caller.onAnySkillUsed(_caller, _targetEntity, ret);
 		return ret;
 	}

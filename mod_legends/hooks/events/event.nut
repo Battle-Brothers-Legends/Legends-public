@@ -345,16 +345,30 @@
 		]);
 	}
 
-	o.canFire <- function ()
-	{
+	local update = o.update;
+	o.update = function () {
+		if("isValidForEncounter" in this.m) {
+			if (this.Time.getVirtualTimeF() < this.m.CooldownUntil) {
+				this.m.isValidForEncounter = false; // it might be true here and show up not ready encounter
+				return;
+			}
+			this.onClear();
+			this.onUpdateScore();
+		} else update();
+	}
+
+	o.canFire <- function () {
 		return true;
 	}
 
 	local fire = o.fire;
 	o.fire = function () {
-		fire();
 		if("isValidForEncounter" in this.m) {
+			this.update(); // force update for a case when game loaded and update didn't happen yet
+			fire();
 			::World.Events.removeSpecialEvent(this.m.ID);
+		} else {
+			fire();
 		}
 	}
 });

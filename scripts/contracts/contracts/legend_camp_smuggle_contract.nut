@@ -35,7 +35,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			if (settlement.isMilitary()) {
 				militarySettlements.push(settlement);
 			} else {
-				sourceSettlements.push(settlement)
+				sourceSettlements.push(settlement);
 			}
 		}
 
@@ -61,7 +61,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			if (settlement.isMilitary()) {
 				militarySettlements.push(settlement);
 			} else {
-				sourceSettlements.push(settlement)
+				sourceSettlements.push(settlement);
 			}
 		}
 		// limit these to 3 nearest
@@ -273,7 +273,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
-			Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{With a cocky grin, %employer% strolls into your tent like he owns the place. %SPEECH_ON%I need a favor. %Town%'s got something of mine, but I'm not welcome here. Could you, uh, go shopping for me?%SPEECH_OFF% }",
+			Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{With a cocky grin, %employer% strolls into your tent like %they_employer% owns the place. %SPEECH_ON%I need a favor. %Town%'s got something of mine, but I'm not welcome here. Could you, uh, go shopping for me?%SPEECH_OFF% }",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -298,17 +298,32 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			Text = ::format("[img]gfx/ui/events/event_112.png[/img]{%s | %s | %s}",
 				"A smuggler meets you behind the tavern, tossing a chest into your hands. %SPEECH_ON%Road's clear - for now. And if it starts squeaking, you didn\'t get it from me.%SPEECH_OFF%",
 				"A nervous clerk meets you by the well, handing off a small chest. %SPEECH_ON%Here! Just take it and go. I never saw you, understood?%SPEECH_OFF%",
-				"As you near the market, a passing drunk addresses you with a slurred greeting, then produces a small box from under their ragged cloak. %SPEECH_ON%Took you long enough, take it and be quick, the boss is waiting.%SPEECH_OFF%They push the box into your chest and slink past, quickly resuming their act with a hiccup and some surprisingly good singing."
+				"As you near the market, a passing drunk addresses you with a slurred greeting, then produces a small box from under their ragged cloak. %SPEECH_ON%Took you long enough, take it and be quick, the boss is waiting.%SPEECH_OFF%He pushes the box into your chest and slink past, quickly resuming their act with a hiccup and some surprisingly good singing."
 			),
 			Image = "",
 			List = [],
-			ShowEmployer = true,
+			ShowEmployer = false,
 			ShowDifficulty = true,
 			Options = [{
 				Text = "{Pick the package and head out.}",
 				function getResult() {
 					this.Contract.m.Town.getSprite("selection").Visible = false;
-					this.Contract.m.Camp = ::WeakTableRef(::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits).getNearestSettlement(::World.State.getPlayer().getTile()));
+					local playerTile = ::World.State.getPlayer().getTile();
+                    local banditFaction = ::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits);
+                    local targetCamp = banditFaction.getNearestSettlement(playerTile);
+					if (targetCamp == null) {
+						local maxDist = 15;
+						local tile = null;
+						while (tile == null) {
+							tile = this.Contract.getTileToSpawnLocation(playerTile, 9, maxDist);
+							maxDist++;
+						}
+						tile.clear();
+						targetCamp = ::World.spawnLocation("scripts/entity/world/locations/bandit_camp_location", tile.Coords);
+						targetCamp.onSpawned();
+						targetCamp.setFaction(banditFaction.getID());
+					}
+                    this.Contract.m.Camp = ::WeakTableRef(targetCamp);
 					this.Contract.m.Camp.getFlags().set("isContractLocation", true);
 					this.Contract.m.Camp.setDiscovered(true);
 					::World.uncoverFogOfWar(this.Contract.m.Camp.getPos(), 250.0);
@@ -350,7 +365,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			Title = "At bandit camp...",
 			Text = ::format("[img]gfx/ui/events/event_05.png[/img]{%s | %s}",
 				"You hand over the package over to the %employer%.%SPEECH_ON%Give me that and scram.%SPEECH_OFF%You leave the camp, wondering if you really did the right thing.",
-				"As you near the camp, several figures approach with steel at the ready. %randombrother% reaches for their weapon, but stops as one of the bandits speak. %SPEECH_ON%You have it?%SPEECH_OFF% A nod and gesture to the package in your arms disarms any tension. They produce a purse, tossing it your way. You catch it as you set the package on the floor. %SPEECH_ON%As agreed, it's %reward_count% crowns. Now, if you don\'t mind.%SPEECH_OFF% They look away from the camp, then back to you. %SPEECH_ON%Piss off.%SPEECH_OFF%"
+				"As you near the camp, several figures approach with steel at the ready. %randombrother% reaches for %their_randombrother% weapon, but stops as one of the bandits speak. %SPEECH_ON%You have it?%SPEECH_OFF% A nod and gesture to the package in your arms disarms any tension. %They_employer% produces a purse, tossing it your way. You catch it as you set the package on the floor. %SPEECH_ON%As agreed, it's %reward_completion% crowns. Now, if you don\'t mind.%SPEECH_OFF% %They_employer% looks away from the camp, then back to you. %SPEECH_ON%Piss off.%SPEECH_OFF%"
 			)
 			Image = "",
 			Characters = [],

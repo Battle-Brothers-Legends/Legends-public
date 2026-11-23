@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Even in sparse environments an experienced gatherer can find berries, roots and other edible things. Although not the most delicious, it can still keep a man fed. Contributes roots, berries, spices, sickles, puddings, herbalists and daytalers to the local town";
+		this.m.Description = "Even in sparse environments an experienced gatherer can find berries, roots and other edible things. Although not the most delicious, it can still keep a man fed. Contributes roots, berries, spices, sickles, puddings, herbalists and daytalers to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;
@@ -63,19 +63,6 @@
 				R = 20,
 				P = 1.0,
 				S = "supplies/legend_medicine_small_item"
-			});
-		}
-		else if (_id == "building.weaponsmith")
-		{
-			_list.push({
-				R = 99,
-				P = 1.0,
-				S = "weapons/named/legend_named_sickle"
-			});
-			_list.push({
-				R = 99,
-				P = 1.0,
-				S = "weapons/named/legend_named_shovel"
 			});
 		}
 	}

@@ -102,8 +102,7 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 			],
 			Enemy = [],
 			Class = [
-				::Const.Perks.HealerClassTree,
-				// ::Const.Perks.SickleClassTree
+				::Const.Perks.HealerClassTree
 			],
 			Profession = [
 				::Const.Perks.HealerProfessionTree,

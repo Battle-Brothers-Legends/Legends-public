@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "This lumber camp is used as a base for lumberjacks on the search for the most precious and durable materials in the nearby woods. Contributes wood, wood products and lumberjacks to the local town";
+		this.m.Description = "This lumber camp is used as a base for lumberjacks on the search for the most precious and durable materials in the nearby woods. Contributes wood, wood products and lumberjacks to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

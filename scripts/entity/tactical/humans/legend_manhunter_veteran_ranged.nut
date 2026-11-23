@@ -118,6 +118,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 		if (mainhandWeaponID == "weapon.handgonne" || mainhandWeaponID == "weapon.named_handgonne") {
 			this.getItems().addToBag(::Const.World.Common.pickItem([
 				[1, "weapons/oriental/qatal_dagger"],
+				[1, "weapons/legend_katar"],
 			], "scripts/items/"));
 		} else {
 			this.getItems().addToBag(::Const.World.Common.pickItem([
@@ -157,7 +158,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				[1, ::Legends.Helmet.Southern.southern_helmet_with_coif]
 			];
 
-			if (this.World.getTime().Days > 50) {
+			if (this.World.getTime().Days > ::Const.World.Scaling.Nomads.LegendsManhunterVeteranBetterArmorDay) {
 				helmets.extend([
 					[1, ::Legends.Helmet.Southern.heavy_lamellar_helmet]
 				]);

@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A harbor that serves both foreign trading ships and local fishermen. Contributes fish, nets, fishermen and fishmongers to the local town";
+		this.m.Description = "A harbor that serves both foreign trading ships and local fishermen. Contributes fish, nets, fishermen and fishmongers to the local town.";
 	}
 
 	o.onBuild = function ()

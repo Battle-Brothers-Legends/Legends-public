@@ -11,7 +11,7 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = this.Const.Beards.All;
 		this.getFlags().add("peasant");
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_minstrel_agent");
+		this.m.AIAgent = this.new("scripts/ai/tactical/agents/barbarian_drummer_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.Math.rand(1, 100) <= 50)
 		{
@@ -39,7 +39,6 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("socket").setBrush("bust_base_militia");
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.Taunt);
 			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);

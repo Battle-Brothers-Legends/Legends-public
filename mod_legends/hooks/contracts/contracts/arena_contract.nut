@@ -115,11 +115,19 @@
 		createScreens();
 		foreach (s in this.m.Screens)
 		{
+			if (s.ID == "Task") {
+				local start = s.start;
+				s.start <- function () {
+					start();
+					this.Text = ::MSU.String.replace(this.Text, "The arena master", " The arena master");
+				}
+				
+			}
 			if (s.ID == "Overview")
 			{
 				s.Options.push(
 				{
-					Text = "{This isn\'t what I had in mind. | I\'ll sit this one out. | I\'ll wait for the next fight.}",
+					Text = "{I\'ll have to think it over.}",
 					function getResult()
 					{
 						this.Contract.getHome().getBuilding("building.arena").registerAttempt();
@@ -130,7 +138,6 @@
 					}
 				});
 			}
-
 			if (s.ID == "Start")
 			{
 				s.Options.push({

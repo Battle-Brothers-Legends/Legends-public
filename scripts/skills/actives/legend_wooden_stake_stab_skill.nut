@@ -3,7 +3,7 @@ this.legend_wooden_stake_stab_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWoodenStakeStab);
-		this.m.Description = "A quick and fast stab with the wooden shaft. Deals +100 damage to vampires.";
+		this.m.Description = "A quick and fast stab with the wooden shaft. Very effective against vampires.";
 		this.m.KilledString = "Staked";
 		this.m.Icon = "skills/wooden_stake_square.png";
 		this.m.IconDisabled = "skills/wooden_stake_square_bw.png";
@@ -38,6 +38,14 @@ this.legend_wooden_stake_stab_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
+
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/damage_dealt.png",
+			text = "Deals extra damage to vampires"
+		});
+
 		return ret;
 	}
 

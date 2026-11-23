@@ -1,0 +1,25 @@
+name: Propagate Release to Nexus Mods
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout workflow
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions/nexus-sync
+          sparse-checkout-cone-mode: false
+          ref: development
+
+      - name: Run Nexus Sync
+        uses: ./.github/actions/nexus-sync
+        with:
+          api_key: ${{ secrets.NEXUS_API_KEY }}
+          core_id: ${{ secrets.NEXUS_CORE_ID }}
+          assets_id: ${{ secrets.NEXUS_ASSETS_ID }}
+          tag_name: ${{ github.event.release.tag_name }}
+          release_body: ${{ github.event.release.body }}

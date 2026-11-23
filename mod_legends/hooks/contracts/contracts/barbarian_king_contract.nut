@@ -1,8 +1,6 @@
-::mods_hookExactClass("contracts/contracts/barbarian_king_contract", function(o)
-{
+::mods_hookExactClass("contracts/contracts/barbarian_king_contract", function (o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.Name = "The Winter King";
 		this.m.DescriptionTemplates = [
@@ -16,34 +14,45 @@
 	}
 
 	local createScreens = o.createScreens;
-	o.createScreens = function()
-	{
+	o.createScreens = function () {
 		createScreens();
-		foreach (s in this.m.Screens)
-		{
-			if (s.ID == "AGreaterThreat5")
-			{
-				s.start <- function ()
+		::Legends.Screens.hook(this, "Task", function (_screen) {
+			_screen.Title = "The Winter King";
+			_screen.Text = "[img]gfx/ui/events/event_45.png[/img]{%employer% is swinging a thin crown around %their_employer% finger. It is a cheap looking piece of metal, but no doubt a crown from somewhere. %They_employer% looks you up and down as the tin scrapes and skitters over %their_employer% fingernail and back again.%SPEECH_ON%I suspect I should have seen this coming. Men seek power, and those cut from the barbarian cloth are no different.%SPEECH_OFF%%They_employer% lets the crown slide down to %their_employer% knuckles where it hangs limply.%SPEECH_ON%The barbarians to the %direction% in the region of %region% are uniting under a so-called king. A savage so strong and nasty he threatens to get a horde and after that, well, I suspect he\'ll want to expand his realm south. I need you to go to this region, find this man, and cut him down.%SPEECH_OFF% | One of %employer%\'s servants fetches you to a garden where you find the %person_employer% tending to a tomato plant. %They're_employer% pruning it with goat shears and nodding to %their_employer% own handiwork. %They_employer% talks loosely.%SPEECH_ON%My scouts tell me that a northern savage in %region% is gathering an army. A gathering of idiots is not too out of the ordinary for those primitives, but I do believe this one is proclaiming himself king. And kings, well, they wish to be suzerain over more than just what they got. They want what everyone else has got. What I got.%SPEECH_OFF%The %person_employer% pauses and nods to you.%SPEECH_ON%I need you to go to the region of %region%, find this so-called savage king, and kill him. It will not be easy, but you will be paid quite well.%SPEECH_OFF% | %employer% is surrounded by %their_employer% lieutenants. They regard you with sneers, but %employer% ignores their judgments and makes %their_employer% own.%SPEECH_ON%Ah, sellsword, I do believe a man of your chops is just the one I\'m looking for. A barbarian in %region% has ordained himself king. He even wears a crown of some sort, probably of bone and antler, but it is the shape and purpose that matters. Not only matters to him, but to us. We can\'t allow him to live. I need you to go find this primitive and end him before he gathers an army too big for my fellow lieutenants here to deal with.%SPEECH_OFF% | %employer% welcomes you with a mug of ale. %They_employer% %themselves_employer% enjoys a goblet of wine.%SPEECH_ON%I\'ve brought you here because there is a certain primitive in the region of %region% that I need killing. He is calling himself king, heh, suzerain over the savages. Well, while I don\'t respect his royal authority in the slightest, I know a budding threat when I see one. I can\'t wait around for this barbarian to round up the villages and gather an army. I need you to find him and kill him. It won\'t be easy, but you\'ll be paid well.%SPEECH_OFF%You now wonder if %they're_employer% slipping you ale to loosen you into accepting this absurd task. | %employer% is holding a pair of deer antlers with the crown still at the base. When %they_employer% puts it on his desk it stands upright as though still attached to its authorship.%SPEECH_ON%Word on the wind is that a savage in %region% is gathering an army. He is proclaiming himself king and if he can wrangle those primitives under his banner then that no doubt makes him a strong sonuvabitch. It also means we may be in a heap of shit here real soon if he isn\'t taken care of.%SPEECH_OFF%The %person_employer% knocks the antlers over and they fall upon their tips with hollow clacks.%SPEECH_ON%So that\'s what you\'re here for, sellsword. I need you to find this barbarian and put an end to him before he gets any wise ideas about what he is and isn\'t suzerain over.%SPEECH_OFF% | %employer%\'s sitting in %their_employer% chair with pursed lips. %They're_employer% thumbing a dagger around, the tip of it auguring a divot into %their_employer% desk.%SPEECH_ON%My scouts to the %direction% started disappearing a little while ago. And then the survivors trickled in and with them tales of a barbarian proclaiming himself king of %region%. Now, do I need to conjure what the issue is with a savage ordaining himself ruler of a horde of primitives?%SPEECH_OFF%You tell %them_employer% you can imagine it keeps %them_employer% up at night. %employer% grins.%SPEECH_ON%Aye, that it does. So I need a man such as yourself, a strapping, nice, civilized sellsword. I need you to go and find this so-called king and kill him before he\'s got all those damn idiots marching under his banner.%SPEECH_OFF%}";
+		});
+		::Legends.Screens.hook(this, "Victory", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_145.png[/img]{The Barbarian King is dead. Though he adorned himself the title of royalty, he lies amongst the dead like any other of his people. A savage. A primitive. With a slightly hardier body and some accoutrements native to his warring and pillaging and ravaging. Little else distinguishes him. You chop into his neck with your sword and put your boot to his face as you cut him clean off the shoulders. %randombrother% takes the heavy head and drops it into a knapsack. You order the men to scavenge what they can before preparing a return to %employer%.}";
+		});
+		::Legends.Screens.hook(this, "AGreaterThreat2", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_136.png[/img]{You spit and nod toward the elder.%SPEECH_ON%We walked past burned homes, raped women, and slain men just to find your sorry lot, and now you want to band together? We ain\'t allies. We ain\'t friends. Tell your so-called \'King\' to pray to whatever shit gods you...%SPEECH_OFF%The elder holds his hand up and talks with the king in their native tongue. The two men nod, turn, and leave. %randombrother% laughs.%SPEECH_ON%Brevity is the soul of scorn, captain.%SPEECH_OFF%You tell the %person_randombrother% to get back to the battle line and prepare for the fight ahead.}";
+		});
+		::Legends.Screens.hook(this, "AGreaterThreat5", function (_screen) {
+			_screen.start <- function () {
+				if (this.Contract.m.Destination != null
+					&& !this.Contract.m.Destination.isNull()
+					&& this.Contract.m.Destination.isAlive())
 				{
-					if (this.Contract.m.Destination != null && !this.Contract.m.Destination.isNull() && this.Contract.m.Destination.isAlive())
-					{
-						this.Contract.m.Destination.die();
-						this.Contract.m.Destination = null;
-					}
-
-					local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet]]);
-					this.World.Assets.getStash().add(item);
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.makeName()) + item.makeName()
-					});
+					this.Contract.m.Destination.die();
+					this.Contract.m.Destination = null;
 				}
+
+				local item = this.Const.World.Common.pickHelmet([
+					[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet]
+				]);
+				this.World.Assets.getStash().add(item);
+				this.List.push({
+					id = 10,
+					icon = "ui/items/" + item.getIcon(),
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
+				});
 			}
-			if (s.ID == "Task")
-			{
-				s.Title = "The Winter King";
-			}
-		}
+		});
+		::Legends.Screens.hook(this, "Success1", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_31.png[/img]{%employer% takes the Barbarian King\'s head and rolls it out of the sack. It tumbles freely, knocking over a tray of goblets which go scattering and clattering about. Even in death the savage is a purveyor of chaos.%SPEECH_ON%Thank you, sellsword.%SPEECH_OFF%Your employer says, nodding to %themselves_employer% as %they_employer% rights the head and tilts it onto the flap of neck.%SPEECH_ON%He is an ugly mutt, isn\'t he? Look at those teeth. Look at them! There\'s holes in those teeth. Absolutely disgusting.%SPEECH_OFF%You tell the %person_employer% to pay you and %they_employer% does so as agreed. But %they_employer% keeps shaking %their_employer% head and %they_employer% bares %their_employer% own teeth and mimics picking at them.%SPEECH_ON%How do you clean teeth like that? With a rope?%SPEECH_OFF%Shrugging, you head out the door, not bothering to tell %employer% that the first thing your men did to that godforsaken head is knife the gold out of its mouth. | You dump the Barbarian King\'s head onto %employer%\'s table. %They_employer% stares at it, then at you.%SPEECH_ON%That\'s the biggest fucking head I\'ve ever seen.%SPEECH_OFF%Nodding, you ask for your pay and it is delivered in appropriate sum. Your employer starts pushing the savage\'s face around, as though %they_employer% was a sorcerer looking to steal its secrets.%SPEECH_ON%I\'d wager this is where tales of ogres come from, yeah? Like a child sees this ugly thing and there it is, his imagination is set alight, and so the monster is born.%SPEECH_OFF%If only things were that simple. | Even without its massive body the head of the Barbarian King makes quite the splash when shown to %employer%. A host of nobles and servants ooh and ahh at the size of it. A man in a black robe is quick to pay you what you\'re owed. %employer% %themselves_employer% picks the head up and tosses it into the air as to weigh it.%SPEECH_ON%By the old gods, it is truly heavy! Oy %randomname%.%SPEECH_OFF%A servant steps forward. Your employer grins.%SPEECH_ON%Fetch me a pike. We\'re going to hoist this horror head high into the heavens.%SPEECH_OFF%A suitable stop for a savage. | Mere moments after giving %employer% the head of the Barbarian King it is being used as a plaything. Children of noblemen roll it back and forth across the stone floor, the savage\'s head knocking over walls of goblets and fortresses of dinner trays. A dog barks as it tracks the head back and forth. %employer% claps you on the shoulder.%SPEECH_ON%Outstanding work, sellsword. Truly. My scouts tell me it was a hell of a fight, that you were almost like a primitive yourself. But I suppose that\'s what it had to take, right? A savage to fight a savage? Spirit of such primacy can\'t be contained by our civilized ways!%SPEECH_OFF%One of the kids kicks the King in the face, breaking its jaw and cutting the child\'s foot on the teeth. The kid screams for help and, perhaps defending its owner, the dog sets upon the head and starts dragging it around by the flap of neck. %employer% smiles again.%SPEECH_ON%Your pay is waiting for you outside. It is in full, as promised.%SPEECH_OFF% | A man in knight\'s armor takes the Barbarian King\'s head from you. Immediately, you draw your sword, but %employer% leaps in to end any start to violence.%SPEECH_ON%Oy, sellsword, it is quite alright. Your pay, as promised.%SPEECH_OFF%The %person_employer% hands you a satchel of crowns, but behind %them_employer% you see the head being given to a man in a black cloak. You nod and ask what they intend to do with it. %employer% grins.%SPEECH_ON%Frankly, steins await me, sellsword, and I\'m quite thirsty.%SPEECH_OFF%The %person_employer% quickly walks past you. You do not see any ale, or any drink at all, %they_employer% simply follows the man in the cloak. | %employer% stares at the Barbarian King\'s head like a cat would meanly stare at anything not its own self.%SPEECH_ON%Interesting. I think I\'ll have it stuffed and put upon my mantle.%SPEECH_OFF%Speaking slightly out of turn, you remind your employer that it is the head of a man he is referring to. %employer% shrugs.%SPEECH_ON%So? It is a monstrosity. There cannot be coexistence between the civilized and the savage. By having it properly taken care of I will ruminate on that reality. What will you do? Advise me again?%SPEECH_OFF%Pursing your lips, you ask for your pay. The %person_employer% points toward the corner.%SPEECH_ON%In the satchel there. You did well, sellsword, but don\'t speak to me in such a manner again. Good day.%SPEECH_OFF%}";
+		});
+		::Legends.Screens.hook(this, "Success2", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_31.png[/img]{%employer% welcomes you reluctantly.%SPEECH_ON%You realize I have scouts and spies everywhere, don\'t you?%SPEECH_OFF%Holding up your empty hands, you tell %them_employer% you had no intent on lying. The \'barbarian king\' will bother the lands no more. Your employer taps %their_employer% fingers together a few times then nods.%SPEECH_ON%Your honesty is refreshing, though I must say it is quite unfortunate the man and his warband still live. That said, all reports suggest they are moving away so I suppose your work is done all the same, a fat pagan head or not. Your pay, as agreed upon.%SPEECH_OFF%}";
+		});
 	}
 });

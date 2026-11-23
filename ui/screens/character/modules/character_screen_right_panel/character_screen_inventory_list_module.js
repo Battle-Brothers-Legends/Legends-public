@@ -564,7 +564,13 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 				}
 				else
 				{
-					var targetSlot = (shift && sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand) ? CharacterScreenIdentifier.ItemSlot.Offhand : null;
+					var targetSlot = null;
+					if (shift === true && sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand) {
+						targetSlot = CharacterScreenIdentifier.ItemSlot.Offhand;
+					}
+					else if (sourceSlotType === CharacterScreenIdentifier.ItemSlot.None || sourceSlotType === 'none') {
+						targetSlot = shift ? CharacterScreenIdentifier.ItemSlot.Offhand : CharacterScreenIdentifier.ItemSlot.Mainhand;
+					}
 					self.mDataSource.equipInventoryItem(entityId, itemId, null, targetSlot);
 				}
 			}

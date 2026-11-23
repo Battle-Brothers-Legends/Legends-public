@@ -95,7 +95,7 @@
 				"weapons/named/legend_named_heavy_throwing_axe",
 				"weapons/named/legend_named_heavy_javelin"
 			];
-			this.m.Items.addToBag(this.new(weapons[this.Math.rand(0, items.len() - 1)]));
+			this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
 		else {
 			local weightName = this.Const.World.Common.convNameToList(helmets);

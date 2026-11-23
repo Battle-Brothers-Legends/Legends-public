@@ -1,5 +1,5 @@
 this.perk_legend_barter_paymaster <- this.inherit("scripts/skills/skill", {
-
+	m = {},
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPaymaster);

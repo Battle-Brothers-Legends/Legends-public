@@ -5,7 +5,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A small but sturdy shield gripped in the fist. Offers poor protection against ranged attacks but can be useful in deflecting blows in melee. Gains defense depending on how many enemies are within 1 tile.";
+		this.m.Description += " Gains defense depending on how many enemies are within 1 tile.";
 		this.m.MeleeDefense = 5;
 	}
 

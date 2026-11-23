@@ -21,7 +21,7 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 100)
+		if (!::FU.InScenario() && this.World.getTime().Days >= ::Const.World.Scaling.UndeadMummies.LegendsMummyPolearmSpecDay)
 		{
 			b.IsSpecializedInPolearms = true;
 		}
@@ -91,3 +91,4 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 	}
 
 });
+

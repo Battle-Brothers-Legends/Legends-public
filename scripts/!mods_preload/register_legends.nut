@@ -3,9 +3,9 @@
 
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.3.12",
+	Version = "19.4.23",
 	Name = "Legends Mod",
-	BuildName = "Left & Right",
+	BuildName = "Bandits & Greenskins",
 	IsStartingNewCampaign = false
 };
 
@@ -16,9 +16,9 @@
 ::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 
 ::mods_queue(::Legends.ID, [
-	"mod_legends_assets(>=19.3.7)",
-	"vanilla(>=1.5.1-5)",
-	"vanilla(<1.5.2)",
+	"mod_legends_assets(>=19.4.23)",
+	"vanilla(>=1.5.2-3)",
+	"vanilla(<1.5.3)",
 	"dlc_lindwurm",
 	"dlc_unhold",
 	"dlc_wildmen",
@@ -36,7 +36,7 @@
 	::include("mod_legends/load.nut");
 });
 
-// some mods can be easily 'fixed' by loadind after legends, that what it is for
+// some mods can be easily 'fixed' by loading after legends, that what it is for
 ::mods_registerMod(::Legends.ID + "_load_order_fix", ::Legends.Version, ::Legends.Name + " - Load order fix");
 ::mods_queue(::Legends.ID + "_load_order_fix", [
 	">mod_legends", // mods listed here will be forced to load after legends

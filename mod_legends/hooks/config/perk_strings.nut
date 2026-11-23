@@ -36,6 +36,8 @@ Everything can be learned if you put your mind to it.
 • At the twelfth character level, you gain an additional perk point.
 
 • The bonus experience stays until level 99.
+
+• Doesn't get as irritated while reading.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Student].Tooltip = ::Const.Strings.PerkDescription.Student;
 ::Const.Strings.PerkDescription.KillingFrenzy <- @"
@@ -53,7 +55,7 @@ Learn to move on difficult terrain.
 [color=%passive%][u]Passive:[/u][/color]
 • Action Point costs for movement on all terrain is reduced by [color=%negative%]-1[/color] to a minimum of [color=%negative%]2[/color] Action Points per tile.
 
-• Fatigue cost from movement is reduced by [color=%negative%]50%[/color].
+• Base Fatigue cost of movement on difficult terrain is reduced by [color=%negative%]50%[/color].
 
 • Changing height levels has no additional Action Point cost anymore.
 [color=%passive%][u]Active:[/u][/color]
@@ -103,7 +105,7 @@ Knights would do well to fear your heavy blows.
 Glide through battle like a leaf in a stream.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Once per turn, upon killing an opponent, reduce current Fatigue by [color=%negative%]-10%[/color] of characters base maximum Fatigue (before penalties due to armor weight are applied).
+• Once per turn, upon killing an opponent, reduce current Fatigue by [color=%negative%]10%[/color] of characters base maximum Fatigue (before penalties due to armor weight are applied).
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.BattleFlow].Tooltip = ::Const.Strings.PerkDescription.BattleFlow;
 ::Const.Strings.PerkDescription.SpecBow <- @"
@@ -141,7 +143,7 @@ Master combat with axes and destroying shields.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• [color=%skill%]Split Shield[/color] damage is increased by [color=%positive%]50%[/color] when used with axes. When [color=%status%]Dual Wielding[/color] axes, [color=%skill%]Split Shield[/color] damage is combined.
+• [color=%skill%]Split Shield[/color] damage is increased by [color=%positive%]50%[/color] when used with axes.
 
 • [color=%skill%]Round Swing[/color] gains [color=%positive%]+5%[/color] chance to hit.
 
@@ -165,7 +167,7 @@ Master swift and deadly daggers.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• [color=%skill%]Stab[/color], [color=%skill%]Puncture[/color], and [color=%skill%]Deathblow[/color] Action Point cost is reduced to [color=%negative%]3[/color], allowing for an additional attack each turn.
+• [color=%skill%]Stab[/color], [color=%skill%]Puncture[/color], [color=%skill%]Perforate[/color], [color=%skill%]Skewer[/color] and [color=%skill%]Deathblow[/color] Action Point cost is reduced to [color=%negative%]3[/color], allowing for an additional attack each turn.
 
 • [color=%skill%]Throw Knife[/color] chance to distract on head hit is increased by [color=%positive%]25%[/color].
 ";
@@ -204,9 +206,12 @@ Master polearms and keeping the enemy at bay.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• Polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
+• [color=%skill%]Rupture[/color] increases [color=%status%]Bleeding[/color] damage inflicted to [color=%positive%]10[/color].
 
 • Increases [color=%status%]Daze[/color] chance when using [color=%skill%]Staff Daze[/color] to [color=%positive%]100%[/color] and increase the range of [color=%skill%]Leap[/color] by [color=%positive%]1[/color] when using a staff.
+
+• Other polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
+
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecPolearm].Tooltip = ::Const.Strings.PerkDescription.SpecPolearm;
 ::Const.Strings.PerkDescription.SpecHammer <- @"
@@ -453,9 +458,9 @@ Nailed it!
 Become one with your weapon and go for the weak spots!
 
 [color=%passive%][u]Passive:[/u][/color]
-• When holding a Buckler, Mummy Shield or Parrying Dagger in your offhand an extra [color=%positive%]+25%[/color] of damage ignores armor on Melee Attacks.
+• When holding a Buckler or Mummy Shield in your offhand an extra [color=%positive%]+25%[/color] of damage ignores armor on Melee Attacks.
 
-[color=%passive%][u]Active:[/u][/color] Unlocks the [color=%skill%]Flourish[/color] skill, which will increase fatigue cost by [color=%positive%]50%[/color] and as long as you are faster than your target grants a chance on each attack to ignore armor completely based on the initiative difference between you and your target. As long as you are faster than the target, any attack that inflicts at least [color=%positive%]1[/color] point of damage to Hitpoints triggers a morale check for the opponent with a penalty equal to [color=%negative%]20%[/color] of the Initiative difference between you and the target.
+[color=%passive%][u]Active:[/u][/color] Unlocks the [color=%skill%]Flourish[/color] skill, which will increase fatigue cost by [color=%positive%]75%[/color], Action Point Cost [color=%positive%]1[/color] and as long as you are faster than your target grants a chance on each attack to ignore armor completely based on the initiative difference between you and your target. As long as you are faster than the target, any attack that inflicts at least [color=%positive%]1[/color] point of damage to Hitpoints triggers a morale check for the opponent with a penalty equal to [color=%negative%]20%[/color] of the Initiative difference between you and the target.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Duelist].Tooltip = ::Const.Strings.PerkDescription.Duelist;
 ::Const.Strings.PerkDescription.CripplingStrikes <- @"
@@ -487,7 +492,7 @@ Looking for this?
 Like a beast of prey, you hunt the weak.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Inflict an additional [color=%positive%]20%[/color] damage against targets that are [color=%status%]Debilitated[/color] or have sustained any injury effects, like a broken arm.
+• Inflict an additional [color=%positive%]20%[/color] damage against targets that are [color=%status%]Debilitated[/color], [color=%status%]Knocked Over[/color] or have sustained any injury effects, like a broken arm.
 
 • Also grants [color=%positive%]+10%[/color] damage against targets who suffer from any of the following effects: [color=%status%]Baffled[/color], [color=%status%]Dazed[/color], [color=%status%]Distracted[/color], [color=%status%]Grappled[/color], [color=%status%]Netted[/color], [color=%status%]Rooted[/color], [color=%status%]Shellshocked[/color], [color=%status%]Sleeping[/color], [color=%status%]Staggered[/color], [color=%status%]Stunned[/color], [color=%status%]Vulnerable[/color], [color=%status%]Webbed[/color], or [color=%status%]Withered[/color].
 ";

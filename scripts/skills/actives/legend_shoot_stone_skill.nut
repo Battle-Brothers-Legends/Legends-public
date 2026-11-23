@@ -143,20 +143,18 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
+	{	
 		if (_skill == this)
 		{
-			this.m.AdditionalAccuracy += this.m.Item.getAdditionalAccuracy();
+			this.m.AdditionalAccuracy += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
 
-			if (_properties.IsSpecializedInSlings)
-				this.m.AdditionalAccuracy += 5;
-
-			if (_properties.IsSharpshooter)
+			if (this.getContainer().getActor().getCurrentProperties().IsSharpshooter)
 				_properties.DamageDirectMult += 0.05;
 
-			_properties.FatigueDealtPerHitMult += 1.0;
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
+			this.m.HitChanceBonus += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+			_properties.FatigueDealtPerHitMult += 1.0;			
 		}
 	}
 

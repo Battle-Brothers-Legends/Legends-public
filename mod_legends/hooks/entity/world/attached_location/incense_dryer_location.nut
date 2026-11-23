@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Tree sap is gathered from the surrounding trees and dried in the sun to create valuable incense. Contributes incense, spices, medicine and daytalers to the local town";
+		this.m.Description = "Tree sap is gathered from the surrounding trees and dried in the sun to create valuable incense. Contributes incense, spices, medicine and daytalers to the local town.";
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;

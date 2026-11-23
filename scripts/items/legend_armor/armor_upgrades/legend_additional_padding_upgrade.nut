@@ -30,7 +30,7 @@ this.legend_additional_padding_upgrade <- this.inherit("scripts/items/legend_arm
 		this.m.SpriteDamagedFront = "pauldrons_padding_fur_" + variant + "_front_damaged";
 		this.m.SpriteCorpseFront = "pauldrons_padding_fur_" + variant + "_front_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_padding_fur_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_padding_fur_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_padding_fur_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_padding_fur_"  + variant + ".png";
 	}

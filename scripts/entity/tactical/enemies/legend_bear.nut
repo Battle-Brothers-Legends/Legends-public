@@ -182,6 +182,17 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
+	function onFactionChanged()
+	{
+		this.actor.onFactionChanged();
+		local flip = this.isAlliedWithPlayer();
+		this.getSprite("body").setHorizontalFlipping(flip);
+		this.getSprite("armor").setHorizontalFlipping(flip);
+		this.getSprite("head").setHorizontalFlipping(flip);
+		this.getSprite("injury").setHorizontalFlipping(flip);
+		this.getSprite("helmet").setHorizontalFlipping(flip);
+	}
+
 	function onInit()
 	{
 		this.actor.onInit();
@@ -189,19 +200,19 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		b.setValues(this.Const.Tactical.Actor.LegendBear);
 		b.IsImmuneToDisarm = true;
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 90)
+		if (!::FU.InScenario() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay)
 		{
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 190)
+		if (!::FU.InScenario() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay2)
 		{
 			b.DamageTotalMult += 0.2;
 		}
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
-		this.m.CurrentProperties = clone b;
+		b.MeleeSkill += 10;
 		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bear_01";
@@ -235,20 +246,18 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBearBite);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBearClaws);
 		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.BaseProperties.Armor[this.Const.BodyPart.Head] += 50;
-			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Head] += 50;		
-			this.m.BaseProperties.Armor[this.Const.BodyPart.Body] += 120;
-			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Body] += 120;
-			this.m.Hitpoints = 2 * b.Hitpoints;
-			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
+			b.Armor[this.Const.BodyPart.Head] += 50;
+			b.ArmorMax[this.Const.BodyPart.Head] += 50;		
+			b.Armor[this.Const.BodyPart.Body] += 120;
+			b.ArmorMax[this.Const.BodyPart.Body] += 120;
+			b.Hitpoints *= 2;			
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-
-
+		this.m.CurrentProperties = clone b;
 	}
 
 	function assignRandomEquipment()
@@ -256,3 +265,4 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
+

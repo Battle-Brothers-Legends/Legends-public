@@ -3,7 +3,7 @@ this.legend_flourish_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlourish);
-		this.m.Description = "Prepare to show your enemies a dazzling display of swordmanship.";
+		this.m.Description = "Prepare to show your enemies a dazzling display of swordsmanship.";
 		this.m.Icon = "ui/perks/perk_41_active.png";
 		this.m.IconDisabled = "ui/perks/perk_41_active_sw.png";
 		this.m.Overlay = "perk_41_active";
@@ -48,20 +48,26 @@ this.legend_flourish_skill <- this.inherit("scripts/skills/skill", {
 			{
 				id = 7,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "As long as you are faster than your target grants a chance on each attack to ignore armor completely based on the initiative difference between you and your target"
+				icon = "ui/icons/fatigue.png",
+				text = "Increases fatigue use of all attack skills by [color=%positive%]75%[/color]"
 			},
 			{
 				id = 8,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "As long as you are faster than the target, any attack that inflicts at least [color=%positive%]1[/color] point of damage to Hitpoints triggers a morale check for the opponent with a penalty equal to [color=%negative%]20%[/color] of the Initiative difference between you and the target"
+				icon = "ui/icons/action_points.png",
+				text = "Increases Action Point cost of all attack skills by [color=%positive%]1[/color]"
 			},
 			{
 				id = 9,
 				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = "All skills cost [color=%positive%]50%[/color] more fatigue"
+				icon = "ui/icons/direct_damage.png",
+				text = "Chance on each attack to ignore armor completely, the chance is [color=%positive%]50%[/color] of the Initiative difference between you and the target as long as you are faster"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "As long as you are faster than the target, any attack that inflicts at least [color=%positive%]1[/color] point of damage to Hitpoints triggers a morale check for the opponent with a penalty equal to [color=%negative%]20%[/color] of the Initiative difference between you and the target"
 			}
 		];
 	}

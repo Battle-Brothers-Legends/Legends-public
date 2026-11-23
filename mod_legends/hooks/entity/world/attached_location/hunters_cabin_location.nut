@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Hunters take shelter in these small huts while on the hunt. Chopped up game, venison and hides hung up to dry in the sun surround the huts. Contributes meat, furs, bows, poachers and hunters to the local town";
+		this.m.Description = "Hunters take shelter in these small huts while on the hunt. Chopped up game, venison and hides hung up to dry in the sun surround the huts. Contributes meat, furs, bows, poachers and hunters to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

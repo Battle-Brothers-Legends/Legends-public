@@ -29,7 +29,7 @@ this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/leg
 		this.m.SpriteDamagedBack = "wild_scale_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "wild_scale_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_wild_scale_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_wild_scale_" + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_wild_scale_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_wild_scale_" + variant + ".png";
 	}

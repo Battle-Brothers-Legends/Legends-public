@@ -6,7 +6,7 @@ this.legend_gold_ingot_01_blueprint <- this.inherit("scripts/crafting/blueprint"
 		this.m.ID = "blueprint.legend_gold_ingot_01";
 		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/legend_gold_ingots_item");
-		this.m.Cost = 180;
+		this.m.Cost = 3600;
 		local ingredients = [
 			{
 				Script = "scripts/items/loot/ancient_gold_coins_item",

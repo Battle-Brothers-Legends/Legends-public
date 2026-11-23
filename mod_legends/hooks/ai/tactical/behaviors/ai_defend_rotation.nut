@@ -87,6 +87,9 @@
 
 		foreach( opponent in targets )
 		{
+			if (opponent == null || ::Legends.S.isEntityNullOrDead(opponent.Actor) || !opponent.Actor.isPlacedOnMap()) {
+        		continue;
+    		}
 			local dir = myTile.getDirection8To(opponent.Actor.getTile());
 			local mult = this.isRangedUnit(opponent.Actor) ? 2 : 1;
 			mult = mult * (7.0 / myTile.getDistanceTo(opponent.Actor.getTile()));
@@ -143,7 +146,7 @@
 		local bestScore = 1.0;
 
 		foreach (ally in allies) {
-			if (!ally.isAlive() || !ally.isPlacedOnMap()) {
+			if (::Legends.S.isEntityNullOrDead(ally) || !ally.isPlacedOnMap()) {
 				continue;
 			}
 
@@ -154,9 +157,11 @@
 			if (this.isAllottedTimeReached(time)) {
 				yield null;
 				time = this.Time.getExactTime();
+				if (::Legends.S.isEntityNullOrDead(ally) || !ally.isPlacedOnMap()) continue;
+        		if (::Legends.S.isEntityNullOrDead(_entity) || !_entity.isPlacedOnMap()) return this.Const.AI.Behavior.Score.Zero;
 			}
 
-			if (!ally.isAlive() || !ally.isPlacedOnMap()) {
+			if (::Legends.S.isEntityNullOrDead(ally)) {
 				continue;
 			}
 
@@ -202,8 +207,10 @@
 				0
 			];
 
-			foreach( opponent in targets )
-			{
+			foreach( opponent in targets ) {
+				if (opponent == null || ::Legends.S.isEntityNullOrDead(opponent.Actor) || !opponent.Actor.isPlacedOnMap()) {
+        			continue;
+    			}
 				local dir = allyTile.getDirection8To(opponent.Actor.getTile());
 				local mult = this.isRangedUnit(opponent.Actor) ? 2 : 1;
 				mult = mult * (7.0 / allyTile.getDistanceTo(opponent.Actor.getTile()));

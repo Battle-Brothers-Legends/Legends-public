@@ -150,20 +150,20 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		bro.improveMood(0.5, "Learned a new skill");
-		::Legends.Perks.grant(bro, ::Legends.Perk.LegendLeap);
+		_bro.improveMood(0.5, "Learned a new skill");
+		::Legends.Perks.grant(_bro, ::Legends.Perk.LegendLeap);
 	}
 
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Performing))
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Performing))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
-			bro.getSkills().update();
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
+			_bro.getSkills().update();
 		}
 	}
 

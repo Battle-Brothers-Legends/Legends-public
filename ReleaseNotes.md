@@ -3577,7 +3577,6 @@ Fixes values on named gambeson.
 Catch and print errors with invalid blueprint.
 Fixes crash when apply poision effects a second time.
 
-<<<<<<< HEAD
 
 13.0.0. RC 3
 
@@ -3629,7 +3628,6 @@ Mail shirt fatigue from -6 to -7
 
   13.2.1 **Punching Vampires**
 
-<<<<<<< HEAD
 **Necrosavant Hunter**
 Necrosavant lords have 25% chance to be Ladies, when this happens they gain terrifying visage.
 New Weapon - Wooden stake, very cheap, 5 durability, does 10-15 damage, but against necrosavants it does 90-100 damage. Counts as a dagger
@@ -4049,7 +4047,6 @@ Ranger gains Incoming to provide ranged defense to allies
 Militia origin gives "hate nobles" trait to all recruits
 
 **Fixes**
-<<<<<<< HEAD
 Fixes zombie bit error on warlock start
 Fixes invisible necromancers that can't be killed (wuxiang)
 Fixes peasant squire not getting duelist (mwah)
@@ -5176,7 +5173,6 @@ Redback Spider + Hexen Leader Cloak layers have icons/brushes again (Thanks Leo)
 Nets now properly use net casting mastery & net mastery
 Fixes corrupt saves when saving a new campaign before unpausing
 
-=======
 
 15.0.0.19
 https://drive.google.com/file/d/1iSV9jTJ3u8yJYPmmqhW-2VSeUteZyD0R/view?usp=sharing
@@ -5910,8 +5906,6 @@ Fixes male names on southern females
 Fixes tumble perk from being selected
 Fixes unable to enter town
 Fixes cheer on perk
-<<<<<<< HEAD
-<<<<<<< HEAD
 Rabble no longer have mismatched body and face ethnicities
 
 **Download**

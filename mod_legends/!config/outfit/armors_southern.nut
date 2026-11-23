@@ -197,7 +197,7 @@
 		],
 		Chain = [],
 		Plate = [
-			[1, "plate/legend_armor_southern_named_plate"], // 210-230 -23-26 9000
+			[1, "plate/legend_armor_southern_plate_full"], // 210-230 -23-26 9000
 		],
 		Cloak = [],
 		Tabard = [],

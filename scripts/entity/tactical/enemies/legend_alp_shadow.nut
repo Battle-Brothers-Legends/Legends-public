@@ -87,7 +87,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 150)
+		if (!::FU.InScenario() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpShadowMDefIncreaseDay)
 			b.MeleeDefense += 5;
 
 		if (::Legends.isLegendaryDifficulty())
@@ -228,3 +228,4 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
+

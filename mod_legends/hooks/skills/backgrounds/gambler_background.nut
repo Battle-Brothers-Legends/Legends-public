@@ -63,7 +63,7 @@
 			],
 			Traits = [
 				::Const.Perks.DeviousTree,
-				::Const.Perks.IntelligentTree,
+				::Const.Perks.SturdyTree,
 				::Const.Perks.CalmTree,
 				::Const.Perks.FastTree
 			],

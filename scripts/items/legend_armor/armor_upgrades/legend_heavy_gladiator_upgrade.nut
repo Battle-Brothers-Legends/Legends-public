@@ -26,7 +26,7 @@ this.legend_heavy_gladiator_upgrade <- this.inherit("scripts/items/legend_armor/
 		this.m.SpriteDamagedBack = "pauldrons_gladiator_heavy_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_gladiator_heavy_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_gladiator_heavy_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_gladiator_heavy_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_gladiator_heavy_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_gladiator_heavy_"  + variant + ".png";
 	}

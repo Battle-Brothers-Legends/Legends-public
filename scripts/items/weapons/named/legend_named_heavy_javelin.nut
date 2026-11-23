@@ -20,7 +20,7 @@ this.legend_named_heavy_javelin <- inherit("scripts/items/weapons/named/named_we
 		this.m.NameList = this.Const.Strings.JavelinNames;
 		this.m.Description = "A jagged harpoon, that flies true despite it\'s weight and size. Harder to throw and hit with, but more impactful.";
 		this.m.Categories = "Throwing Weapon/Spear, One-Handed";
-		this.m.SlotType = Const.ItemSlot.Mainhand;
+		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.WeaponType = this.Const.Items.WeaponType.Throwing | this.Const.Items.WeaponType.Spear;
 		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Ammo | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.OneHanded;
 		this.m.AddGenericSkill = true;
@@ -66,6 +66,22 @@ this.legend_named_heavy_javelin <- inherit("scripts/items/weapons/named/named_we
 	{
 		this.named_weapon.onEquip();
 		this.addSkill(this.new("scripts/skills/actives/throw_javelin"));
+	}
+
+	function onPutIntoBag()
+	{
+		this.item.onPutIntoBag();
+		if (this.m.Name.len() == 0)
+		{
+			if (this.Math.rand(1, 100) <= 25)
+			{
+				this.setName(this.getContainer().getActor().getName() + "\'s " + this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)]);
+			}
+			else
+			{
+				this.setName(this.createRandomName());
+			}
+		}
 	}
 
 	function setAmmo(_a)

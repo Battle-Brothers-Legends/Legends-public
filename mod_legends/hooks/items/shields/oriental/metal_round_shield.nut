@@ -1,7 +1,6 @@
-::mods_hookExactClass("items/shields/oriental/metal_round_shield", function(o) {
+::mods_hookExactClass("items/shields/oriental/metal_round_shield", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Variants = [
 			1,
@@ -9,5 +8,6 @@
 			3
 		];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
 	}
 });

@@ -14,15 +14,16 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 		this.m.Properties.TargetPriorityHittingAlliesMult = 1.0;
 		this.m.Properties.OverallDefensivenessMult = 2.0;
 		this.m.Properties.OverallFormationMult = 1.0;
-		this.m.Properties.EngageRangeMin = 7;
-		this.m.Properties.EngageRangeMax = 9;
-		this.m.Properties.EngageRangeIdeal = 9;
+		this.m.Properties.EngageRangeMin = 3;
+		this.m.Properties.EngageRangeMax = 5;
+		this.m.Properties.EngageRangeIdeal = 5;
 		this.m.Properties.PreferCarefulEngage = true;
 		this.m.Properties.PreferWait = true;
 	}
 
 	function onAddBehaviors()
 	{
+		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_engage_melee"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_retreat"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_break_free"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_defend"));
@@ -132,10 +133,7 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 				continue;
 
 			if ( // must have combat capability
-				t.Actor.getMoraleState() == ::Const.MoraleState.Fleeing
-				|| t.Actor.getCurrentProperties().IsStunned
-				|| t.Actor.getCurrentProperties().IsRooted
-				|| t.Actor.isNonCombatant()
+				t.Actor.getMoraleState() == ::Const.MoraleState.Fleeing || ::Legends.S.isEntityMovementDisabled(t.Actor) || t.Actor.isNonCombatant()
 			)
 				continue;
 

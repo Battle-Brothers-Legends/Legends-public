@@ -3,19 +3,16 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendBoneBreaker);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendAnchor);
+		local b = this.m.BaseProperties;
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendAmbidextrous);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPummelIntoSubmission);
 		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
-			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendGrappler);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendPummelIntoSubmission);
+			b.Hitpoints *= 1.5;
 		}
+
+		::Legends.S.scaleBaseProperties(b);
 	}
 });

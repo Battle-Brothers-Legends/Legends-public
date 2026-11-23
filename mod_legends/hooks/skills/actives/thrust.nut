@@ -36,10 +36,9 @@
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
-		this.m.DazeChance = _properties.IsSpecializedInMaces ? 50 : 25;
+		this.m.DazeChance = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 50 : 25;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onTargetHit <- function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {

@@ -1,60 +1,38 @@
 this.perk_legend_himshaw <- this.inherit("scripts/skills/skill", {
 	m = {
-		RepairedToday = false
+		RepairedAfterCombatToday = false
 	},
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendHimshaw);
 	}
 
-	function onCombatFinished()
-	{
-		if (repair(0.2))
-			this.m.RepairedToday = true;
+	function onCombatFinished()	{
+		if (!this.m.RepairedAfterCombatToday && repair(0.2)) {
+			this.m.RepairedAfterCombatToday = true;
+		}
 	}
 
-	function repair(_toRepair)
-	{
+	function repair(_toRepair) {
 		local actor = this.getContainer().getActor();
-		local body = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-		local bodyAdded = 0;
-		local bodyMissing = 0;
 		local repaired = false;
-		if (body)
-		{
-			bodyMissing = body.getArmorMax() - body.getArmor();
-			bodyAdded = this.Math.min(bodyMissing, this.Math.max(0, this.Math.floor(body.getArmorMax() * _toRepair)));
-
-			if (bodyAdded > 0)
-			{
-				body.setArmor(body.getArmor() + bodyAdded);
-				actor.setDirty(true);
+		foreach(item in [actor.getItems().getItemAtSlot(::Const.ItemSlot.Head), actor.getItems().getItemAtSlot(::Const.ItemSlot.Body)]) {
+			if (item) {
+				local missing = item.getArmorMax() - item.getArmor();
+            	local added = ::Math.min(missing, ::Math.max(0, ::Math.floor(item.getArmorMax() * _toRepair)));
+				if (added > 0) {
+					item.setArmor(item.getArmor() + added);
+					repaired = true;
+				}
 			}
-			repaired = true;
 		}
 
-		body = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-		if (body)
-		{
-			bodyMissing = body.getArmorMax() - body.getArmor();
-			bodyAdded = this.Math.min(bodyMissing, this.Math.max(0, this.Math.floor(body.getArmorMax() * _toRepair)));
-
-			if (bodyAdded > 0)
-			{
-				body.setArmor(body.getArmor() + bodyAdded);
-				actor.setDirty(true);
-			}
-			repaired = true;
-		}
-		if (repaired)
-			return true;
-		return false;
+		return repaired;
 	}
 
-	function onNewDay()
-	{
+	function onNewDay()	{
 		repair(0.1);
-		this.m.RepairedToday = false;
+		this.m.RepairedAfterCombatToday = false;
 	}
 
 });

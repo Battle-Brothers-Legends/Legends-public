@@ -162,13 +162,12 @@ this.legend_dual_wield_effect <- this.inherit("scripts/skills/skill", {
 		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		// Check target is valid
-		if (_targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying()) {
+		if (::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
 
-		// Check distance
-		if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > 1) {
+		// Check target is valid
+		if ( ::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
 		}
 
@@ -186,13 +185,30 @@ this.legend_dual_wield_effect <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		// Schedule follow-up attack
-		if (!_forFree && skillToUse != null) {
-			this.Const.SkillCounter++;
-			::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
-				TargetTile = _targetTile,
-				Skill = skillToUse
-			});
+		// Check distance
+		if (skillToUse != null) {
+			if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
+				return;
+			}
+
+			// Schedule follow-up attack
+			if (!_forFree) {
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
+					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
+						return;
+					}
+					::Const.SkillCounter++;
+					_skill.executeFollowUpAttack({
+						TargetTile = _targetEntity.getTile(),
+						Skill = skillToUse
+					});
+				}.bindenv(this), this);
+				//this.Const.SkillCounter++;
+				/*::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
+					TargetTile = _targetTile,
+					Skill = skillToUse
+				});*/
+			}
 		}
 	}
 

@@ -119,14 +119,20 @@
 		_properties.DamageReceivedRangedMult *= 1 - (0.02 * this.m.RangedDefense);
 	}
 
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function ( _in ) {
 		this.item.onDeserialize(_in);
+		if (!this.isNamed() && this.isRuned()) {
+			local rune = ::Legends.Runes.get(this.getRuneVariant());
+
+			if (rune != null && rune.Effect == ::Legends.Effect.LegendRssDurability) {
+				this.m.ConditionMax += this.getFlags().getAsInt(rune.Flag);
+			}
+		}
 		this.m.Condition = this.Math.minf(this.m.ConditionMax, this.m.Condition);
 
 		if (this.isRuned())
 		{
-			this.updateRuneSigil();
+			this.item.updateRuneSigil();
 		}
 	}
 });

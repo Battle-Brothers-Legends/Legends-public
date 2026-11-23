@@ -21,13 +21,11 @@
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRotation = true;
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 90)
-		{
+		if (!::FU.InScenario() && this.World.getTime().Days >= this.Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 190)
-		{
+		if (!::FU.InScenario() && this.World.getTime().Days >= this.Const.World.Scaling.Beasts.LegendsUnholdDamageIncreaseDay2) {
 			b.DamageTotalMult += 0.2;
 		}
 

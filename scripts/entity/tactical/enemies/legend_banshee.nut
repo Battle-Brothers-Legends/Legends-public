@@ -143,7 +143,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 140)
+		if (!::FU.InScenario() && this.World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay)
 		{
 			b.MeleeDefense += 5;
 		}
@@ -258,3 +258,4 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
+

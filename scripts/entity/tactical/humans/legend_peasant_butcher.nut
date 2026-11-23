@@ -34,7 +34,7 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.25;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -76,7 +76,6 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 			return false;
 		}
 
-		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_butchers_cleaver"));
 		::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);

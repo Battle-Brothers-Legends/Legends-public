@@ -5,6 +5,7 @@ if (!("FU" in getroottable())) ::FU <- {};
 if (!("Safe" in ::FU)) ::FU.Safe <- {};
 
 // World / Assets helpers
+// Campaign-only: scenario stashes do not imply that world assets are available.
 ::FU.Safe.WorldHasStash <- function()
 {
     try { return ::World.Assets.getStash() != null; } catch (e) { return false; }
@@ -12,13 +13,19 @@ if (!("Safe" in ::FU)) ::FU.Safe <- {};
 
 ::FU.Safe.GetStash <- function()
 {
-    try { return ::World.Assets.getStash(); } catch (e) { return null; }
+    try {
+        local stash = ::World.Assets.getStash();
+        if (stash != null) return stash;
+    } catch (e) {}
+    // The global stash may outlive a scenario; only use it while one is active.
+    if (!::FU.InScenario()) return null;
+    try { return ::Stash; } catch (e) { return null; }
 }
 
 ::FU.Safe.HasStashSpace <- function()
 {
     try {
-        local s = ::World.Assets.getStash();
+        local s = ::FU.Safe.GetStash();
         return s != null && s.hasEmptySlot();
     } catch (e) { return false; }
 }
@@ -71,7 +78,7 @@ if (!("Safe" in ::FU)) ::FU.Safe <- {};
 ::FU.Safe.WithStash <- function( _fn )
 {
     try {
-        local s = ::World.Assets.getStash();
+        local s = ::FU.Safe.GetStash();
         if (s != null) return _fn(s);
     } catch (e) {}
     return null;

@@ -73,6 +73,7 @@ this.legend_prosthetic_hand <- this.inherit("scripts/skills/traits/character_tra
 				}
 			]);
 		}
+		return ret
 	}
 
 	function newhandShield()

@@ -34,6 +34,18 @@
 		weapon.addSkill(_skill);
 	}
 
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
+			_skill.m.IsHalfsword = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Hammer, function (_skill) {
+			_skill.m.IsMordhau = true;
+		}.bindenv(this));
+	}
+
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
 	{
 		if (_skill.getItem() != null && _skill.getItem().getID() == this.getID() && _targetEntity != null)

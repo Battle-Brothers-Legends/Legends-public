@@ -9,7 +9,8 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/chop_hit_01.wav",
 			"sounds/combat/chop_hit_02.wav",
 			"sounds/combat/chop_hit_03.wav"
-		]
+		],
+		TilesLeft = 1
 	},
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHarvest);

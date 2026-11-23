@@ -134,12 +134,12 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		this.World.Flags.set("IsLegendsVala", true);
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Female))
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Female))
 		{
-			bro.improveMood(1.0, "Joined the righteous cause of the Sisterhood");
-			bro.improveMood(0.5, "Learned a new skill");
+			_bro.improveMood(1.0, "Joined the righteous cause of the Sisterhood");
+			_bro.improveMood(0.5, "Learned a new skill");
 		}
 	}
 

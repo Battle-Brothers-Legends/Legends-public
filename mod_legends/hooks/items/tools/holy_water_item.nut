@@ -77,13 +77,19 @@
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well."
+			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well"
 		},
 		{
 			id = 9,
 			type = "text",
 			icon = "ui/icons/direct_damage.png",
 			text = "[color=%damage%]100%[/color] of damage ignores armor"
+		},
+		{
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Will remove [color=%status%]Battle Forged[/color] from Wichts"
 		}]);
 		if (!this.World.Retinue.hasFollower("follower.alchemist"))
 		{

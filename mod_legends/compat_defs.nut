@@ -99,6 +99,7 @@
 ::Legends.Compat.HardIncompat.add("mod_AC", "1.30.33", "Instead use the newer ACU found in the AC Submod channel Pins"); // Accessory Companions
 ::Legends.Compat.HardIncompat.add("mod_allCripplesBecomeTheKingsGuard", "1.0");
 ::Legends.Compat.HardIncompat.add("and_justice_for_all", "1.4.0");
+::Legends.Compat.HardIncompat.add("mod_ambition_control", "1.0.1");
 ::Legends.Compat.HardIncompat.add("mod_autopilot", "23", "Instead use Hackflow's Autopilot New mod");
 ::Legends.Compat.HardIncompat.add("mod_auto_level", "1.1.1", "Instead use Hackflow's Bro Studio for something similar");
 ::Legends.Compat.HardIncompat.add("mod_avatar", "1.0.2");
@@ -174,12 +175,13 @@
 ::Legends.Compat.HardIncompat.add("mod_origin_customizer", "2.2.4");
 ::Legends.Compat.HardIncompat.add("mod_pauseOnView", "3");
 ::Legends.Compat.HardIncompat.add("mod_legends_PTR", "2.2.2", "PTR ded, hue hue"); // PTR
-::Legends.Compat.HardIncompat.add("quicker", "1.3.1", "Use Swifter instead, found on Nexus");
 ::Legends.Compat.HardIncompat.add("quirks", "0.8.0");
 ::Legends.Compat.HardIncompat.add("mod_raided", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_repeatableOguTrophyAmbitions", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_Recruits", "2");
 ::Legends.Compat.HardIncompat.add("mod_reforged");
+::Legends.Compat.HardIncompat.add("mod_druid");
+::Legends.Compat.HardIncompat.add("mod_necro");
 // and reforged deps
 ::Legends.Compat.HardIncompat.add("mod_dynamic_perks");
 ::Legends.Compat.HardIncompat.add("mod_dynamic_spawns");
@@ -224,9 +226,11 @@
 ::Legends.Compat.HardIncompat.add("mod_xpInReserve", "1.0"); // XP in Reserve
 ::Legends.Compat.HardIncompat.add("sato_corpse_loot_fix"); // Sato's Corpse Loot Fix
 ::Legends.Compat.HardIncompat.add("mod_career_stats", "1.0.2"); // I've seen this mod being the issue in logs as cause of errors
+::Legends.Compat.HardIncompat.add("mod_black_pyramid", "1.0.2"); // ai slop
 //endregion
 
 //region SoftIncompat
+::Legends.Compat.SoftIncompat.add("mod_op_archers", "0.0.3", "Should work but has no compatibility for legends specific skills or any submods");
 ::Legends.Compat.SoftIncompat.add("advanced_grader"); // Needs to be updated with Legends specific things to work with Legends
 ::Legends.Compat.SoftIncompat.add("mod_BLPT", "0.1.2"); // Darx's Bad Luck Protection
 ::Legends.Compat.SoftIncompat.add("mod_bro_storage", "1.0.2");

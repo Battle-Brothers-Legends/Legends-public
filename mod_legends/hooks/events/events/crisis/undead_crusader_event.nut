@@ -35,8 +35,9 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 			return;
+		}
 
 		if (!this.World.FactionManager.isUndeadScourge())
 			return;

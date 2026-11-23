@@ -5,6 +5,7 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				s.Text = "[img]gfx/ui/events/event_20.png[/img]{While in %townname%, you receive a letter from a messenger. He asks that you not read it, but as soon as he\'s around the corner you do just that, breaking apart a wax royal seal. You read that %disowned%, the disowned noble%person_disowned%, is no longer exiled. Instead, %them_disowned% place is on the family throne as soon as %them_disowned% already gravely-ill father passes away.\n\nYou hold the letter in your hand, unsure of what to do with it. %disowned% has long been a member of the %companyname%. For some, there is a strange appeal to a %person_disowned% who was once in the royal rooms of the world, and now finds %themselves_disowned% in the veritable lowlands of a mercenary company. But while a bloodline may dry, a lineage never truly dies...}";
+				s.Options[0].Text = "I\'ll show %them_disowned% the letter."
 			}
 			if (s.ID == "B") {
 				s.Text = "[img]gfx/ui/events/event_82.png[/img]{Sighing with the realization of what might happen, you decide to go and show %them_disowned% the letter. %They_disowned% reads it for a length of time, then looks up.%SPEECH_ON%I know you\'ve read this.%SPEECH_OFF%%They_disowned% holds the letter back toward you.%SPEECH_ON%And I know you could have just as easily burned this letter. But you didn\'t. That only goes to show me what I already know: the %companyname% is my family now. If you want me to stay, I\'ll stay, if you want me to go, I\'ll go.%SPEECH_OFF%}";
@@ -93,7 +94,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 
 					item = this.new("scripts/items/weapons/" + weapons_list[this.Math.rand(0, weapons_list.len() - 1)]);

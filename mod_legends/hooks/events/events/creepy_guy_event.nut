@@ -1,24 +1,24 @@
-::mods_hookExactClass("events/events/creepy_guy_event", function(o) {
+::mods_hookExactClass("events/events/creepy_guy_event", function (o) {
 	o.m.Shieldmaiden <- null;
 	o.m.Militia <- null;
 
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
 		::Legends.Screens.hook(this, "A", function (_screen) {
 			local start = _screen.start;
-			_screen.start <- function(_event) {
+			_screen.start <- function (_event) {
 				start(_event);
 				if (_event.m.Shieldmaiden != null && this.Options.len() < 6) {
 					this.Options.insert(this.Options.len() - 1, {
 						Text = "Our shieldmaiden seems interested, how about she takes the lead?",
-						getResult = @(_event) "Shieldmaiden"
+						getResult = @(_event)"Shieldmaiden"
 					});
 				}
 				if (_event.m.Militia != null && this.Options.len() < 6) {
 					this.Options.insert(this.Options.len() - 1, {
 						Text = "%militia% is eager to take action.",
-						getResult = @(_event) "Militia"
+						getResult = @(_event)"Militia"
 					});
 				}
 			}
@@ -27,8 +27,9 @@
 			_screen.Text = "[img]gfx/ui/events/event_43.png[/img]You muscle your way into the crowd, looking for fingers and toes or bloodied pockets. One man\'s got a good, lumpy sag in his pocket. You drive him into a corner and shake him down with a dagger to his throat.\n\n After him, you see a woman with a sickly grin on her face prancing along the cobbled stones. That\'s a scornful wench if you\'ve ever seen one. Pulling her aside, you quickly find a finger and a toe in the linens of her frock. She lies and says they\'re just cooking ingredients. You tell her if that\'s the case then you\'ll report her to the guards for cannibalism. She gives them up.\n\n Returning the grossly extremities to the old man, you are promptly paid the five hundred crowns. He hardly even thanks you for your \'work\' before rushing away. He never did explain what, exactly, such things were for. You don\'t care. Five hundred crowns is five hundred crowns.";
 		});
 		::Legends.Screens.hook(this, "Thief", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_43.png[/img]%thief% laughs.%SPEECH_ON%Hell, this\'ll be easy.%SPEECH_OFF%%They_thief% goes off to the crowd and you lose sight of %them_thief% in an instant. The old man chews on his gums for awhile before raising his voice.%SPEECH_ON%This feller, he is one to trust?%SPEECH_OFF%Before you can answer, %thief% emerges from behind the old man\'s shoulder and drops a bloody bandage into his palms. The creepy man unwraps the linens to discover freshly strewn extremities. The thief smugly smiles.%SPEECH_ON%Any thief worth %their_thief% salt learns to pickpocket before anything else. I usually go after keys instead of toes, but a job is a job. Also \'picked\' some other things of interest here and there. Take a look.%SPEECH_OFF%";
 			local start = _screen.start;
-			_screen.start <- function(_event) {
+			_screen.start <- function (_event) {
 				start(_event);
 				this.List.push({
 					id = 10,
@@ -37,17 +38,25 @@
 				});
 			}
 		});
-
+		::Legends.Screens.hook(this, "Minstrel", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_92.png[/img]%minstrel% the minstrel grabs the old man by his shoulders.%SPEECH_ON%Say, what mighty muscles you seem to have, my burly friend. I shan\'t ask why you need the toes and fingers of that dead man...%SPEECH_OFF%The old man nods and says he\'d never tell anyway. The minstrel continues.%SPEECH_ON%...but if you want a good, strong, and violent man, then am I not looking at it? It\'s you, old man! Take yer own fingers and toes and go with them to complete the task - ahem, whatever weird shite that might be, ahem - and you\'ll find the \'reward\' you\'re after. You are the hero of this story, can\'t you see?%SPEECH_OFF%The old man spits and shakes his head.%SPEECH_ON%You take me for a fool, don\'t ya? Our business here is through! Get out of my way you sorry sellswords.%SPEECH_OFF%The old man leaves. You ask the minstrel what the hell %they're_minstrel% doing. %They_minstrel% shrugs and holds up a purse of crowns.%SPEECH_ON%Sleight of hand.%SPEECH_OFF%Nicely done. But you ask where your own purse is. %minstrel% raises another sack.%SPEECH_ON%Really, really good sleight of hand.%SPEECH_OFF%";
+		});
+		::Legends.Screens.hook(this, "Butcher", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_19.png[/img]%butcher% the butcher spits and says %they_butcher%\'ll do it. You tell %them_butcher% that %they're_butcher% not exactly the thieving sort. %They_butcher% shakes %their_butcher% head.%SPEECH_ON%Naw. I mean I\'ll give him a finger. Just one, but it\'ll be a doozy and worth its weight in gold as far as this old fart\'s concerned. As far as you\'re concerned, captain, I want half the reward.%SPEECH_OFF%The creepy stranger nods as a smile crackles his dried, flaky skin.%SPEECH_ON%Yes... yes! A %person_butcher% who would do this would certainly fit the profile of the ingredients I need. Do it. Do it!%SPEECH_OFF%Before you can even agree to this, the butcher grabs a tong hanging off a nearby wall, leverages it atop an anvil, wedges a finger between the pincers, and presses %their_butcher% knee to the handle, promptly severing a finger all in one go. %They_butcher% wraps the hand before giving up the extremity to the stranger.%SPEECH_ON%There you have it: one especially cruel man\'s finger.%SPEECH_OFF%The stranger grabs it as though it were the key to the world. \'Marvelous!\', you think he says, but it\'s hard to hear as he hurriedly gives you some crowns and runs off. It\'s actually more than you originally agreed to. The butcher has certainly \'earned\' %their_butcher% half and you hand it over.";
+		});
 		this.m.Screens.push({
-			ID = "Shieldmaiden"
-			Text = "[img]gfx/ui/events/event_50.png[/img]As though waiting to be called forward, %shieldmaiden% steps before the old man and grimaces. She doesn\'t try to hide the blatant disgust she has for this connoisseur of loose limbs, but nevertheless invites him forward.%SPEECH_ON%You want the fingers of a violent, dangerous person? Take mine.%SPEECH_OFF%She offers her sword hand out to the creep who\'s almost as confused as you are by the offer. After sizing her up and perhaps satisfied to the malice of the hand offered to him, he produces a rust-mottled knife and reaches for the shieldmaiden\'s outstretched hand, eyes glazed over in a disturbing, hungry trance. In an instant, %shieldmaiden% pulls back and uses her shield to smash the outstretched arm of the old fool - a disgusting snap at the elbow and immediate wail of agony confirms your shieldmaiden struck true. Without relenting, the shield coils back for another strike, this time on the flapping jaw of the hollering creep, and one crunch later, his screams are notably muffled as he falls to the dirt. %shieldmaiden% stands proud over the crumpled mess of a man, notices his coin purse that now furnishes the floor, and soundly grabs it. She pockets some of it, then throws the rest back to you.%SPEECH_ON%Aww, tough luck old man. You\'ll have to be quicker than that.%SPEECH_OFF%Your shock at the swift and brutal violence is quickly dispelled as you see the digit-hungry crowd start to turn to investigate the commotion. Grabbing your shieldmaiden by the shoulder, you decide it\'s best if you get out of there."
-			Image = ""
-			List = []
-			Characters = []
-			Options = [{
-				Text = "Well, can\'t say that\'s what I would have done"
-				getResult = @(_event) 0
-			}]
+			ID = "Shieldmaiden",
+			Text = "[img]gfx/ui/events/event_50.png[/img]As though waiting to be called forward, %shieldmaiden% steps before the old man and grimaces. She doesn\'t try to hide the blatant disgust she has for this connoisseur of loose limbs, but nevertheless invites him forward.%SPEECH_ON%You want the fingers of a violent, dangerous person? Take mine.%SPEECH_OFF%She offers her sword hand out to the creep who\'s almost as confused as you are by the offer. After sizing her up and perhaps satisfied to the malice of the hand offered to him, he produces a rust-mottled knife and reaches for the shieldmaiden\'s outstretched hand, eyes glazed over in a disturbing, hungry trance. In an instant, %shieldmaiden% pulls back and uses her shield to smash the outstretched arm of the old fool - a disgusting snap at the elbow and immediate wail of agony confirms your shieldmaiden struck true. Without relenting, the shield coils back for another strike, this time on the flapping jaw of the hollering creep, and one crunch later, his screams are notably muffled as he falls to the dirt. %shieldmaiden% stands proud over the crumpled mess of a man, notices his coin purse that now furnishes the floor, and soundly grabs it. She pockets some of it, then throws the rest back to you.%SPEECH_ON%Aww, tough luck old man. You\'ll have to be quicker than that.%SPEECH_OFF%Your shock at the swift and brutal violence is quickly dispelled as you see the digit-hungry crowd start to turn to investigate the commotion. Grabbing your shieldmaiden by the shoulder, you decide it\'s best if you get out of there.",
+			Image = "",
+			List = [],
+			Characters = [],
+			Options = [
+				{
+					Text = "Well, can\'t say that\'s what I would have done",
+					getResult = @(_event)0
+				}
+			],
+
 			function start(_event) {
 				this.Characters.push(_event.m.Shieldmaiden.getImagePath());
 
@@ -62,15 +71,18 @@
 		});
 
 		this.m.Screens.push({
-			ID = "Militia"
-			Text = "[img]gfx/ui/events/event_65.png[/img]%militia% looks at the throng of peasants - all clamouring for their own macabre memento – and shakes %their_militia% head. You see them pull a number of mismatched rags from their jacket pocket and quickly tie one around their arm before passing the rest to a few of the sturdier looking men from the company. %SPEECH_ON%With me. Follow my lead, and this should be over quick.%SPEECH_OFF%The deputised mercenaries are confused but agree nonetheless, perhaps eager to dispense lawful violence against such a lawless mob, or perhaps obliged by the unquestionable gravitas in %militia%\'s order. One ties a floral patch around their arm, earning smirks from the rest of the company as they set off into the rabble. What follows resembles the sound of battle – as though the mob had suddenly become feral and decided to gorge themselves on your ad-hoc militia\'s flesh. Orders, roars, jeers, thuds, boos, and a few embarrassing yelps later, the crowd begins to calm, albeit with a few loud grumbles about them “ruining the fun”. The shouts of your impromptu militia turn to firm but measured commands to disperse and leave the dead alone, no matter how guilty they are. With the peasants returning to the less exciting doldrum of their insignificant realities, %militia% approaches with a self-assured smile.%SPEECH_ON%Well, captain. It can be a real ball-ache at times, but it\'s just like wrangling chickens: you find the cockerel and shut it up, and the rest don\'t feel as cocky all of a sudden.%SPEECH_OFF%%They_militia% turns and gestures to a battered peasant – the instigator perhaps- dazed and slipping in the churned earth of the mob as they slip away. You can\'t say you\'ve ever been involved in chicken wrangling, but you feel you have a better idea of it now. The creep smiles a near toothless smile and slips a purse into your hands, looking through you to the now abandoned corpse. They lick their cracked lips as %militia% undoes their armband and pockets it as they join the rest of the company.%SPEECH_ON%Wait, who was that?%SPEECH_OFF%"
-			Image = ""
-			List = []
-			Characters = []
-			Options = [{
-				Text = "Don't worry about it, let's go."
-				getResult = @(_event) 0
-			}]
+			ID = "Militia",
+			Text = "[img]gfx/ui/events/event_65.png[/img]%militia% looks at the throng of peasants - all clamouring for their own macabre memento - and shakes %their_militia% head. You see %them_militia% pull a number of mismatched rags from %their_militia% jacket pocket and quickly tie one around %their_militia% arm before passing the rest to a few of the sturdier looking men from the company. %SPEECH_ON%With me. Follow my lead, and this should be over quick.%SPEECH_OFF%The deputised mercenaries are confused but agree nonetheless, perhaps eager to dispense lawful violence against such a lawless mob, or perhaps obliged by the unquestionable gravitas in %militia%\'s order. One ties a floral patch around their arm, earning smirks from the rest of the company as they set off into the rabble. What follows resembles the sound of battle - as though the mob had suddenly become feral and decided to gorge themselves on your ad-hoc militia\'s flesh. Orders, roars, jeers, thuds, boos, and a few embarrassing yelps later, the crowd begins to calm, albeit with a few loud grumbles about them “ruining the fun”. The shouts of your impromptu militia turn to firm but measured commands to disperse and leave the dead alone, no matter how guilty they are. With the peasants returning to the less exciting doldrum of their insignificant realities, %militia% approaches with a self-assured smile.%SPEECH_ON%Well, captain. It can be a real ball-ache at times, but it\'s just like wrangling chickens: you find the cockerel and shut it up, and the rest don\'t feel as cocky all of a sudden.%SPEECH_OFF%%They_militia% turns and gestures to a battered peasant - the instigator perhaps - dazed and slipping in the churned earth of the mob as they slip away. You can\'t say you\'ve ever been involved in chicken wrangling, but you feel you have a better idea of it now. The creep smiles a near toothless smile and slips a purse into your hands, looking through you to the now abandoned corpse. He licks his cracked lips as %militia% undoes their armband and pockets it as %they_militia% join the rest of the company.%SPEECH_ON%Wait, who was that?%SPEECH_OFF%",
+			Image = "",
+			List = [],
+			Characters = [],
+			Options = [
+				{
+					Text = "Don't worry about it, let's go.",
+					getResult = @(_event)0
+				}
+			],
+
 			function start(_event) {
 				this.Characters.push(_event.m.Militia.getImagePath());
 
@@ -88,16 +100,19 @@
 	o.onUpdateScore = function () {
 		onUpdateScore();
 
-		if (!this.m.Score)
+		if (!this.m.Score) {
 			return;
+		}
 
 		local candidates_shieldmaiden = ::World.getPlayerRoster().getAll().filter(@(idx, _bro) _bro.getBackground().getID() == "background.legend_shieldmaiden");
-		if (candidates_shieldmaiden.len() != 0)
+		if (candidates_shieldmaiden.len() != 0) {
 			this.m.Shieldmaiden = candidates_shieldmaiden[this.Math.rand(0, candidates_shieldmaiden.len() - 1)];
+		}
 
 		local candidates_militia = ::World.getPlayerRoster().getAll().filter(@(idx, _bro) _bro.getBackground().getID() == "background.militia");
-		if (candidates_militia.len() != 0)
+		if (candidates_militia.len() != 0) {
 			this.m.Militia = candidates_militia[this.Math.rand(0, candidates_militia.len() - 1)];
+		}
 
 	}
 

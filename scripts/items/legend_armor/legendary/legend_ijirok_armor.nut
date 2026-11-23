@@ -12,7 +12,7 @@ this.legend_ijirok_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 12000;
+		this.m.Value = 20000;
 		this.m.Condition = 220;
 		this.m.ConditionMax = 220;
 		this.m.StaminaModifier = -20;
@@ -25,7 +25,7 @@ this.legend_ijirok_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 		this.m.SpriteDamagedBack = "bust_body_98_damaged";
 		this.m.SpriteCorpseBack = "bust_body_98_dead";
 		this.m.Icon = "armor/icon_body_armor_98.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "armor/inventory_body_armor_98.png";
 		this.m.OverlayIcon = "armor/icon_body_armor_98.png";
 		this.m.OverlayIconLarge = "armor/inventory_body_armor_98.png";
 	}

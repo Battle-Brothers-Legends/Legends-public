@@ -11,6 +11,18 @@
 	"Glen of Mull"
 ];
 
+::Const.Strings.FleshGolemNames <- [
+	"Winged Victory",
+	"Venus de Milo",
+	"Augustus",
+	"Adonis",
+	"Discobulos",
+	"Belvedere",
+	"Colossus",
+	"Artemision",
+	"Apollo"
+];
+
 ::Const.Strings.DesertStalkerChampionTitles <- [
 	"the Scorpion",
 	"the Sand Stalker",

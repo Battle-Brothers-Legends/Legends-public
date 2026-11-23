@@ -9,7 +9,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.5;
 			this.m.ActionPoints = b.ActionPoints + 5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

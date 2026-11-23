@@ -77,10 +77,8 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 			],
 			Enemy = [],
 			Class = [
-				// ::Const.Perks.ButcherClassTree,
 				::Const.Perks.BeastClassTree,
-				::Const.Perks.JugglerClassTree,
-				// ::Const.Perks.SpearfisherClassTree
+				::Const.Perks.JugglerClassTree
 			],
 			Profession = [],
 			Magic = []

@@ -7,7 +7,7 @@ this.legend_named_glove <- this.inherit("scripts/items/accessory/gloves/legend_g
 	function create()
 	{
 		this.legend_glove_item.create();
-		this.m.ItemType = this.Const.Items.ItemType.Accessory | this.Const.Items.ItemType.Named;
+		this.m.ItemType = this.Const.Items.ItemType.Brawler | this.Const.Items.ItemType.Named;
 	}
 
 	function getRandomCharacterName( _list )

@@ -12,7 +12,7 @@ this.legend_named_whip_feint_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Item;
 		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.IsStacking = true;
         this.m.IsWeaponSkill = true;
         this.m.IsHidden = true;
 	}
@@ -46,11 +46,11 @@ this.legend_named_whip_feint_effect <- this.inherit("scripts/skills/skill", {
 		if (!_skill.isAttack())
 			return;
 
-		if (_skill.getItem() == null)
+		if (_skill.getItem() == null || this.getItem() == null)
 			return;
 
-		if (_skill.getItem().getID() != this.getItem().getID())
-			return;
+		if (_skill.getItem().getInstanceID() != this.getItem().getInstanceID())
+   			return;
 
         if (::Math.rand(0, 100) > this.m.Bonus)
 	        return;

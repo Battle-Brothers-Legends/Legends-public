@@ -1,5 +1,5 @@
 this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
-
+	m = {},
 	function create()
 	{
 		this.m.Type = this.Const.EntityType.LegendCatapult;

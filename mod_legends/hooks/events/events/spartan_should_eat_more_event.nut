@@ -7,7 +7,7 @@
 				s.Text = "[img]gfx/ui/events/event_05.png[/img] %spartan% has always been a bit tight with how much %they_spartan% eats. You\'re not sure if it\'s part of some religious rite, a sense of duty, or %they_spartan%\'s just not a big eater. Regardless, the lack of food has weakened the %person_spartan% and you find %them_spartan% barely able to sit upright on a log. You\'ve got a bowl of meat and corn in hand, wondering if maybe you should offer it to %them_spartan%.";
 			}
 			if (s.ID == "B") {
-				s.Text = "[img]gfx/ui/events/event_05.png[/img] You decide that the %person_spartan% has probably been through this before and decide to leave %them_spartan% be. A few moments later, you catch him walking and talking just fine. In fact, %they_spartan% gets around pretty well for a %person_spartan% who eats so lightly!";
+				s.Text = "[img]gfx/ui/events/event_05.png[/img] You decide that the %person_spartan% has probably been through this before and decide to leave %them_spartan% be. A few moments later, you catch %them_spartan% walking and talking just fine. In fact, %they_spartan% gets around pretty well for a %person_spartan% who eats so lightly!";
 			}
 			if (s.ID == "C") {
 				s.Text = "[img]gfx/ui/events/event_05.png[/img] The %person_spartan%\'s done this before, %they_spartan% can do it again. You turn around to go eat your meal elsewhere, only to hear the %person_spartan% crumple to the ground. %They_spartan%\'s completely passed out and appears to have hit %their_spartan% head on the way down.";

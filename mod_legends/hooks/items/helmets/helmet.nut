@@ -1,5 +1,6 @@
 ::mods_hookExactClass("items/helmets/helmet", function(o) {
 	o.m.Variants <- [];
+	o.m.HideHelmetIfDestroyed = false;
 
 	o.getVision <- function () {
 		return this.m.Vision;

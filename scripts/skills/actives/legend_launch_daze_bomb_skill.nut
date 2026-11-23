@@ -67,6 +67,11 @@ this.legend_launch_daze_bomb_skill <- this.inherit("scripts/skills/actives/throw
 		return ret;
 	}
 
+	function isUsable()
+	{
+		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	}
+
 	function isHidden()
 	{
 		local actor = this.getContainer().getActor();

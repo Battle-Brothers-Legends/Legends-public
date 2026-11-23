@@ -4,7 +4,7 @@
 		create();
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
-				s.Text = "[img]gfx/ui/events/event_82.png[/img]{You find %guard% stretching about with surprising limberness, and looks nothing at all like the freezing, frigid figure you found abandoned in the ice by those barbarians. Spotting you, the mercenary nods and comes over with a quiet voice.%SPEECH_ON%I\'m glad you trusted in me, captain. Perhaps you did it out of the kindness of your heart, but I need to show you something.%SPEECH_OFF%He flashes an emblem you have heard referenced many times, but have never seen: it carries the sigil of the King\'s Guard and its pristineness is such that there is no way it could have been a farce. The mercenary smiles at you.%SPEECH_ON%I think I am in good health and ready to serve you as I did my liege.%SPEECH_OFF%The kings of these lands have long since fallen, replaced by squabbling lords and nobles. If this mercenary can fight for you as well as for the kings, then the %companyname% has brighter days ahead surely.}";
+				s.Text = "[img]gfx/ui/events/event_82.png[/img]{You find %guard% stretching about with surprising limberness. %They_dude% looks nothing at all like the freezing, frigid %person_dude% you found abandoned in the ice by those barbarians. Spotting you, %they_dude% nods and comes over with a quiet voice.%SPEECH_ON%I\'m glad you trusted in me, captain. Perhaps you did it out of the kindness of your heart, but I need to show you something.%SPEECH_OFF%%They_dude% flashes an emblem you have heard referenced many times, but have never seen: it carries the sigil of the King\'s Guard and its pristineness is such that there is no way it could have been a farce. The %person_dude% smiles at you.%SPEECH_ON%I think I am in good health and ready to serve you as I did my liege.%SPEECH_OFF%The kings of these lands have long since fallen, replaced by squabbling lords and nobles. If this %person_dude% can fight for you as well as %they_dude% did for the kings, then the %companyname% has brighter days ahead surely.}";
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Dude.getImagePath());
 					local bg = this.new("scripts/skills/backgrounds/kings_guard_background");
@@ -12,11 +12,11 @@
 					local oldPerkTree = _event.m.Dude.getBackground().m.CustomPerkTree;
 					_event.m.Dude.getSkills().removeByID("background.cripple");
 					_event.m.Dude.getSkills().add(bg);
-					_event.m.Dude.getBackground().m.RawDescription = "You found %name% frozen half to death in the north. With your help, the former King\'s Guard regained strength and now fights for you.";
+					_event.m.Dude.getBackground().m.RawDescription = "You found %name% frozen half to death in the north. With your help, the former King\'s Guard regained %their% strength and now fights for you.";
 					_event.m.Dude.getBackground().buildDescription(true);
 					_event.m.Dude.getBackground().rebuildPerkTree(oldPerkTree);
 					_event.m.Dude.resetPerks();
-					_event.m.Dude.improveMood(1.0, "Is his former self again");
+					_event.m.Dude.improveMood(1.0, "Is %their% former self again");
 
 					if (_event.m.Dude.getMoodState() >= this.Const.MoodState.Neutral) {
 						this.List.push({

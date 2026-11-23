@@ -61,9 +61,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 				::Const.Perks.OutlawTree,
 				::Const.Perks.BeastTree
 			],
-			Class = [
-				// ::Const.Perks.MilitiaClassTree
-			],
+			Class = [],
 			Profession = [
 				::Const.Perks.FencingTeacherProfessionTree
 			],

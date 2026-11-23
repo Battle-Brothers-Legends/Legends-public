@@ -53,13 +53,13 @@ This item has the power of the rune sigil of Defense:
 	Script = "scripts/items/rune_sigils/legend_vala_inscription_token",
 	Tooltip = @"
 This item has the power of the rune sigil of Radiance:
-[color=%negative%]-%bonus1%%[/color] to all adjacent enemies\' Melee skill.
-[color=%negative%]-%bonus2%%[/color] to all adjacent enemies\' Melee defense.
+[color=%negative%]-%bonus1%%[/color] to all adjacent enemies' Melee skill.
+[color=%negative%]-%bonus2%%[/color] to all adjacent enemies' Melee defense.
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Radiance:
-[color=%negative%]-3%[/color] to [color=%negative%]-%max1%%[/color] to all adjacent enemies\' Melee skill.
-[color=%negative%]-3%[/color] to [color=%negative%]-%max2%%[/color] to all adjacent enemies\' Melee defense.
+[color=%negative%]-3%[/color] to [color=%negative%]-%max1%%[/color] to all adjacent enemies' Melee skill.
+[color=%negative%]-3%[/color] to [color=%negative%]-%max2%%[/color] to all adjacent enemies' Melee defense.
 	",
 	setRuneBonus = function(_item, _bonus) {
 		if (_bonus) {

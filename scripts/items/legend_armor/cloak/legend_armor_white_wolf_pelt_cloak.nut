@@ -30,7 +30,7 @@ this.legend_armor_white_wolf_pelt_cloak <- this.inherit("scripts/items/legend_ar
 		this.m.SpriteDamagedFront = "cloak_pelt_wolf_white_" + variant + "_front_damaged";
 		this.m.SpriteCorpseFront = "cloak_pelt_wolf_white_" + variant + "_front_dead";
 		this.m.Icon = "legend_armor/icon_cloak_pelt_wolf_white_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_cloak_pelt_wolf_white_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_cloak_pelt_wolf_white_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_pelt_wolf_white_"  + variant + ".png";
 	}

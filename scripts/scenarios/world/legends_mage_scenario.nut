@@ -126,30 +126,30 @@ this.legends_mage_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		this.addBroToRoster(_roster, "apprentice_background", 4);
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated))
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated))
 		{
-			bro.improveMood(1.0, "Excited to study under you");
+			_bro.improveMood(1.0, "Excited to study under you");
 		}
 		else
 		{
-			bro.worsenMood(1.0, "Scared of your magic");
+			_bro.worsenMood(1.0, "Scared of your magic");
 		}
 
-		if (bro.getSkills().hasTrait(::Legends.Trait.Bright))
+		if (_bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
-			bro.improveMood(0.5, "Keen to learn from a master");
+			_bro.improveMood(0.5, "Keen to learn from a master");
 		}
 
-		if (bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+		if (_bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 		{
-			bro.worsenMood(0.5, "Thinks you are a boring nerd");
+			_bro.worsenMood(0.5, "Thinks you are a boring nerd");
 		}
 
-		if (bro.getSkills().hasTrait(::Legends.Trait.LegendPragmatic))
+		if (_bro.getSkills().hasTrait(::Legends.Trait.LegendPragmatic))
 		{
-			bro.improveMood(0.5, "Thinks magic is pretty useful");
+			_bro.improveMood(0.5, "Thinks magic is pretty useful");
 		}
 
 		if (bro.getSkills().hasTrait(::Legends.Trait.Superstitious))

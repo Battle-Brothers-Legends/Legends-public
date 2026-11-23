@@ -84,7 +84,7 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		foreach (banner in ::Const.PlayerBanners)
 		{
 			bannerID = banner.slice("banner_".len()).tointeger();
-			if (bannerID != 102 && bannerID != 103 && bannerID != 101 && this.m.Variants.find(bannerID) == null)
+			if (this.m.Variants.find(bannerID) == null)
 				this.m.Variants.push(bannerID);
 		}
 		this.m.Variants.sort();

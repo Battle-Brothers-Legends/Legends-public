@@ -78,7 +78,6 @@ if (!("LegendMod" in ::Const))
 
 ::Const.LegendMod.FavoriteGreenSkins <- [
 	::Const.EntityType.GoblinFighter,
-	::Const.EntityType.LegendGoblinPlunderer, //
 	::Const.EntityType.LegendGoblinHarrier, // these 2 inherit from the goblin fighter but just in case?
 	::Const.EntityType.LegendGoblinBerserker,
 	::Const.EntityType.GoblinAmbusher,
@@ -107,7 +106,6 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.Greatsword,
 	::Const.EntityType.Swordmaster,
 	::Const.EntityType.BanditLeader,
-	// ::Const.EntityType.BanditVeteran,
 	::Const.EntityType.LegendRobberBaron,
 	::Const.EntityType.LegendBarbarianRunechosen,
 	::Const.EntityType.BarbarianChampion,
@@ -131,7 +129,7 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.BarbarianChosen, //King
 	::Const.EntityType.BarbarianDrummer,
 	::Const.EntityType.BarbarianBeastmaster,
-	::Const.EntityType.LegendBarbarianMarauder,
+	::Const.EntityType.LegendBarbarianBloodletter,
 	::Const.EntityType.LegendBarbarianPillager,
 	::Const.EntityType.LegendBarbarianRunechosen,
 	::Const.EntityType.BanditRabble,
@@ -140,7 +138,7 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.BanditPoacher,
 	::Const.EntityType.BanditMarksman,
 	::Const.EntityType.BanditRaider,
-	::Const.EntityType.BanditVeteran,
+	::Const.EntityType.BanditMarauder,
 	::Const.EntityType.LegendRobberBaron,
 	::Const.EntityType.BanditLeader,
 	::Const.EntityType.Slave,
@@ -383,7 +381,6 @@ if (!("LegendMod" in ::Const))
 		return 4;
 
 	case ::Const.EntityType.GoblinFighter :
-	case ::Const.EntityType.LegendGoblinPlunderer :
 	case ::Const.EntityType.LegendGoblinHarrier :
 	case ::Const.EntityType.GoblinAmbusher :
 		return 8;
@@ -520,7 +517,7 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.BanditRaider :
 		return 8;
 
-	case ::Const.EntityType.BanditVeteran :
+	case ::Const.EntityType.BanditMarauder :
 		return 5;
 
 	case ::Const.EntityType.BanditLeader :
@@ -542,7 +539,7 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.BarbarianChosen: //Barbarian King
 		return 1;
 
-	case ::Const.EntityType.LegendBarbarianMarauder:
+	case ::Const.EntityType.LegendBarbarianBloodletter:
 	case ::Const.EntityType.LegendBarbarianPillager:
 		return 2;
 

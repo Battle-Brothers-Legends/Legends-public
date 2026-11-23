@@ -208,7 +208,7 @@
 					broTable = bro.getBackground().getModifiers().Terrain;
 					if (broTable == null)
 					{
-						continue
+						continue;
 					}
 					for (local i = 0; i < broTable.len(); ++i)
 					{
@@ -230,11 +230,10 @@
 					}
 				}
 
-				if (wheelMaintenance > 0)
-				{
-					for (local i = 0; i < terrainTable.len(); ++i)
-					{
-						tTable[i] *= (this.Const.World.TerrainTypeSpeedMult[i] + (0.05 * wheelMaintenance.tofloat())) / this.Const.World.TerrainTypeSpeedMult[i];
+				if (wheelMaintenance > 0) {
+					local globalMultiplier = 1.0 + (0.05 * wheelMaintenance.tofloat());
+					for (local i = 0; i < terrainTable.len(); ++i) {
+						tTable[i] *= globalMultiplier;
 					}
 				}
 

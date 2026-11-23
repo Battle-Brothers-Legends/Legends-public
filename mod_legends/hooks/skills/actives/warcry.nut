@@ -31,6 +31,10 @@
 					}
 
 					a.setFatigue(a.getFatigue() - 20);
+					local rage = ::Legends.Effects.get(a, ::Legends.Effect.BerserkerRage);
+					if (rage != null) {
+						rage.addRage(5);
+					}
 					if (!skill.m.IsUpgraded)
 						continue;
 

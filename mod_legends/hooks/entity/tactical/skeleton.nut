@@ -133,4 +133,277 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 	}
+
+	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
+		local appearance = this.getItems().getAppearance();
+		local targetScale = 0.9;
+		local flip = this.Math.rand(1, 100) < 50;
+		this.m.IsCorpseFlipped = flip;
+
+		if (_tile != null) {
+			local sprite_body = this.getSprite("body");
+			local sprite_head = this.getSprite("head");
+			local sprite_face = this.getSprite("face");
+			local sprite_hair = this.getSprite("hair");
+			local sprite_beard = this.getSprite("beard");
+			local sprite_beard_top = this.getSprite("beard_top");
+			local decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+			decal.Color = sprite_body.Color;
+			decal.Saturation = sprite_body.Saturation;
+			decal.Scale = targetScale;
+
+			if (appearance.CorpseArmor != "")
+			{
+				local armorDecal;
+
+				if (this.doesBrushExist(appearance.CorpseArmor + "_skeleton"))
+				{
+					armorDecal = appearance.CorpseArmor + "_skeleton";
+				}
+				else
+				{
+					armorDecal = appearance.CorpseArmor;
+				}
+
+				local decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+				decal.Scale = targetScale;
+			}
+
+			local helmetLowerLayers = [
+					"HelmetLayerVanityLowerCorpse",
+					"HelmetLayerVanity2LowerCorpse"
+			];
+			local helmetLayers = [
+					"HelmetCorpse",
+					"HelmetLayerHelmLowerCorpse",
+					"HelmetLayerTopLowerCorpse",
+					"HelmetLayerHelmCorpse",
+					"HelmetLayerTopCorpse",
+					"HelmetLayerVanityCorpse",
+					"HelmetLayerVanity2Corpse"
+			];
+
+			if (_fatalityType != this.Const.FatalityType.Decapitated)
+			{
+				foreach (layer in helmetLowerLayers) {
+					if (appearance[layer] != "") {
+						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						decal.Scale = targetScale;
+					}
+				}
+
+				if (!appearance.HideCorpseHead)
+				{
+					local decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					decal.Color = sprite_head.Color;
+					decal.Saturation = sprite_head.Saturation;
+					decal.Scale = targetScale;
+				}
+
+				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
+				{
+					local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					decal.Color = sprite_beard.Color;
+					decal.Saturation = sprite_beard.Saturation;
+					decal.Scale = targetScale;
+
+					if (sprite_beard_top.HasBrush)
+					{
+						local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						decal.Color = sprite_beard.Color;
+						decal.Saturation = sprite_beard.Saturation;
+						decal.Scale = targetScale;
+					}
+				}
+
+				if (!appearance.HideCorpseHead)
+				{
+					local decal = _tile.spawnDetail(sprite_face.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					decal.Color = sprite_face.Color;
+					decal.Saturation = sprite_face.Saturation;
+					decal.Scale = targetScale;
+				}
+
+				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
+				{
+					local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					decal.Color = sprite_hair.Color;
+					decal.Saturation = sprite_hair.Saturation;
+					decal.Scale = targetScale;
+				}
+
+				foreach (layer in helmetLayers) {
+					if (appearance[layer] != "") {
+						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						decal.Scale = targetScale;
+					}
+				}
+			}
+			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+			{
+				local layers = [];
+
+				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
+				//foreach (layer in helmetLowerLayers) {
+				//	if (appearance[layer] != "") {
+				//		layers.push(appearance[layer]);
+				//	}
+				//}
+
+				if (!appearance.HideCorpseHead)
+				{
+					layers.push(sprite_head.getBrush().Name + "_dead");
+				}
+
+				if (!appearance.HideBeard && sprite_beard.HasBrush)
+				{
+					layers.push(sprite_beard.getBrush().Name + "_dead");
+				}
+
+				if (!appearance.HideCorpseHead)
+				{
+					layers.push(sprite_face.getBrush().Name + "_dead");
+				}
+
+				if (!appearance.HideHair && sprite_hair.HasBrush)
+				{
+					layers.push(sprite_hair.getBrush().Name + "_dead");
+				}
+
+				//foreach (layer in helmetLayers) {
+				//	if (appearance[layer] != "") {
+				//		layers.push(appearance[layer]);
+				//	}
+				//}
+
+				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
+				{
+					layers.push(sprite_beard_top.getBrush().Name + "_dead");
+				}
+
+				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
+				local idx = 0;
+				//foreach (layer in helmetLowerLayers) {
+				//	if (appearance[layer] != "") {
+				//		decap[idx].Scale = targetScale;
+				//		idx = ++idx;
+				//	}
+				//}
+
+				if (!appearance.HideCorpseHead)	{
+					decap[idx].Color = sprite_head.Color;
+					decap[idx].Saturation = sprite_head.Saturation;
+					decap[idx].Scale = targetScale;
+					decap[idx].setHorizontalFlipping(true);
+					idx = ++idx;
+				}
+
+				if (!appearance.HideBeard && sprite_beard.HasBrush)
+				{
+					decap[idx].Color = sprite_beard.Color;
+					decap[idx].Saturation = sprite_beard.Saturation;
+					decap[idx].Scale = targetScale;
+					decap[idx].setHorizontalFlipping(true);
+					idx = ++idx;
+				}
+
+				if (!appearance.HideCorpseHead)
+				{
+					decap[idx].Scale = targetScale;
+					decap[idx].setHorizontalFlipping(true);
+					idx = ++idx;
+				}
+
+				if (!appearance.HideHair && sprite_hair.HasBrush)
+				{
+					decap[idx].Color = sprite_hair.Color;
+					decap[idx].Saturation = sprite_hair.Saturation;
+					decap[idx].Scale = targetScale;
+					decap[idx].setHorizontalFlipping(true);
+					idx = ++idx;
+				}
+
+				//foreach (layer in helmetLayers) {
+				//	if (appearance[layer] != "") {
+				//		decap[idx].Scale = targetScale;
+				//		idx = ++idx;
+				//	}
+				//}
+
+				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
+				{
+					decap[idx].Color = sprite_beard.Color;
+					decap[idx].Saturation = sprite_beard.Saturation;
+					decap[idx].Scale = targetScale;
+					decap[idx].setHorizontalFlipping(true);
+				}
+			}
+
+			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			{
+				local armorDecal;
+
+				if (appearance.CorpseArmor != "" && this.doesBrushExist(appearance.CorpseArmor + "_skeleton"))
+				{
+					armorDecal = appearance.CorpseArmor + "_skeleton_arrows";
+				}
+				else if (appearance.CorpseArmor != "")
+				{
+					armorDecal = appearance.CorpseArmor + "_arrows";
+				}
+				else
+				{
+					armorDecal = appearance.Corpse + "_arrows";
+				}
+
+				if (this.doesBrushExist(armorDecal))
+				{
+					decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					decal.Saturation = 0.85;
+				}
+			}
+			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			{
+				local armorDecal;
+
+				if (appearance.CorpseArmor != "" && this.doesBrushExist(appearance.CorpseArmor + "_skeleton"))
+				{
+					armorDecal = appearance.CorpseArmor + "_skeleton_javelin";
+				}
+				else if (appearance.CorpseArmor != "")
+				{
+					armorDecal = appearance.CorpseArmor + "_javelin";
+				}
+				else
+				{
+					armorDecal = appearance.Corpse + "_javelin";
+				}
+
+				if (this.doesBrushExist(armorDecal))
+				{
+					decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					decal.Saturation = 0.85;
+				}
+			}
+
+			this.spawnTerrainDropdownEffect(_tile);
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		this.dropLoot(_tile, tileLoot, !flip);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+
+		if (_tile == null)
+		{
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		}
+		else
+		{
+			_tile.Properties.set("Corpse", corpse);
+			this.Tactical.Entities.addCorpse(_tile);
+		}
+
+		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
 });

@@ -58,10 +58,6 @@
 		actor.setTitle("the Kingsguard");
 		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-	}
-
-	o.onAddEquipment <- function() {
-		local actor = this.getContainer().getActor();
 		actor.setVeteranPerks(3);
 	}
 });

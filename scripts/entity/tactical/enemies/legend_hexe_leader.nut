@@ -229,7 +229,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Hexe);
+		b.setValues(this.Const.Tactical.Actor.LegendHexeLeader);
 		b.TargetAttractionMult = 3.0;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;

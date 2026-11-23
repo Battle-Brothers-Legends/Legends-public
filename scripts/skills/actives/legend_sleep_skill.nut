@@ -101,7 +101,7 @@ this.legend_sleep_skill <- this.inherit("scripts/skills/skill", {
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to his resolve");
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to high resolve");
 				}
 
 				continue;

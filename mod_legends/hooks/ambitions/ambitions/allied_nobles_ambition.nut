@@ -24,7 +24,8 @@
 		this.m.SuccessList.push({
 			id = 10,
 			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+			imageOverlayPath = item.getIconOverlay(),
+			text = "You gain " + item.makeName()
 		});
 
 
@@ -35,7 +36,8 @@
 		this.m.SuccessList.push({
 			id = 10,
 			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+			imageOverlayPath = item.getIconOverlay(),
+			text = "You gain " + item.makeName()
 		});
 		item = this.new("scripts/items/shields/faction_heater_shield");
 		item.setFaction(banner);

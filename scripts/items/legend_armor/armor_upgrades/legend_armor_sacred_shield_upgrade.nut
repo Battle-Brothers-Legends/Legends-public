@@ -25,7 +25,7 @@ this.legend_armor_sacred_shield_upgrade <- this.inherit("scripts/items/legend_ar
 		this.m.SpriteDamagedBack = "pauldrons_belt_shield_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_belt_shield_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_belt_shield_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_belt_shield_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_belt_shield_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_belt_shield_"  + variant + ".png";
 	}

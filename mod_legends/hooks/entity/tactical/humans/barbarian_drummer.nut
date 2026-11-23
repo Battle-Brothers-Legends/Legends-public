@@ -18,7 +18,7 @@
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 30)
+		if (!::FU.InScenario() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.DrummerDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}

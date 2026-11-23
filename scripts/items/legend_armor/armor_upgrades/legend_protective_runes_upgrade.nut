@@ -23,7 +23,7 @@ this.legend_protective_runes_upgrade <- this.inherit("scripts/items/legend_armor
 		this.m.SpriteDamagedBack = "pauldrons_protective_runes_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_protective_runes_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_protective_runes_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_protective_runes_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_protective_runes_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_protective_runes_"  + variant + ".png";
 	}

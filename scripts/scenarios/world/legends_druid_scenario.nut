@@ -186,10 +186,8 @@ this.legends_druid_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	}
 
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-
-
 	}
 
 	function onUpdateHiringRoster( _roster )

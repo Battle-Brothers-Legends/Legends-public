@@ -30,7 +30,7 @@ this.legend_armor_pauldrons_shoulderplates_heraldic <- this.inherit("scripts/ite
 		this.m.SpriteDamagedFront = "pauldrons_shoulderplates_heraldic_" + variant + "_front_damaged";
 		this.m.SpriteCorpseFront = "pauldrons_shoulderplates_heraldic_" + variant + "_front_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_shoulderplates_heraldic_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_shoulderplates_heraldic_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_shoulderplates_heraldic_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_shoulderplates_heraldic_"  + variant + ".png";
 	}

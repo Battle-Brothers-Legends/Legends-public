@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/backgrounds/beggar_southern_background", function(o)
-{
-	o.create = function ()
-	{
+::mods_hookExactClass("skills/backgrounds/beggar_southern_background", function (o) {
+	o.create = function () {
 		this.beggar_background.create();
 		this.m.Faces = this.Const.Faces.SouthernMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;
@@ -13,23 +11,22 @@
 		this.m.Names = this.Const.Strings.SouthernNames;
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		return "{After losing everything to a fire | After his gambling addiction got the better of him | Framed for a crime he didn\'t commit, and having to pay the constable everything to keep himself out of the dungeons | A refugee after his village was burned to the ground | Banished from his home after a violent struggle with his brother | A man with few talents and no ambition | After being released from a dungeon where he spent countless years chained to a wall | After giving all his worldly possessions to an obscure cult promising salvation of his eternal soul | A very intelligent man until a brigand knocked him over the head}, {%name% found himself on the streets, | %name% was forced onto the streets,} {having to beg for bread | depending on the goodwill of others | being beaten and resigned to his fate | spending what little coin he had to drink the days away | digging into the trash of others and scurrying away from lawmen | avoiding ruffians and thugs while he begged for crowns}. {While he seems earnest in becoming a mercenary, there is little doubt that all his time on the street have robbed %name% of his best years. | Years have passed and took a toll on his health by now. | Once a man like %name% has spent a few days on the streets, much less a few years, even the very dangerous job of being a sellsword seems like the greenest of pastures. | Only the gods know what %name% has done to survive, but he is a frail man standing before you now. | At the sight of you he rises with open arms to embrace you, claiming to know you well from years past and many a shared adventure, although your name escapes him at the moment.}";
+	o.onBuildDescription <- function () {
+		if (this.isBackgroundType(this.Const.BackgroundType.Female)) {
+			return "{After losing her husband to a fire | After her husband\'s gambling addiction got the better of him | Her husband was framed for a crime he didn\'t commit, and having to pay the constable everything to keep herself out of the dungeons | A refugee and widow after her village was burned to the ground | Banished from her home after a violent struggle with her husband | A woman with few talents and no husband | After being released alone from a dungeon where she spent countless years chained to a wall | After giving all her worldly possessions to an obscure cult that took her husband and promised salvation of her eternal soul | Married to a very intelligent man until a brigand knocked him over the head}, {%name% found herself on the streets, | %name% was forced onto the streets,} {having to beg for bread | depending on the goodwill of others | being beaten and resigned to her fate | spending what little coin she had to drink the days away | digging into the trash of others and scurrying away from lawmen | avoiding ruffians and thugs while she begged for crowns}. {While she seems earnest in becoming a mercenary, there is little doubt that all her time on the street, and her former marriage, have robbed %name% of her best years. | Years have passed and took a toll on her health by now. | Once a woman like %name% has spent a few days on the streets, much less a few years, even the very dangerous job of being a sellsword seems like the greenest of pastures. | Only the gods know what %name% has done to survive, but she is a frail woman standing before you now. | At the sight of you she rises with open arms to embrace you, claiming to know you well from years past and many a shared adventure, although your name escapes her at the moment.}";
+		} else {
+			return "{After losing everything to a fire | After his gambling addiction got the better of him | Framed for a crime he didn\'t commit, and having to pay the constable everything to keep himself out of the dungeons | A refugee after his village was burned to the ground | Banished from his home after a violent struggle with his brother | A man with few talents and no ambition | After being released from a dungeon where he spent countless years chained to a wall | After giving all his worldly possessions to an obscure cult promising salvation of his eternal soul | A very intelligent man until a brigand knocked him over the head}, {%name% found himself on the streets, | %name% was forced onto the streets,} {having to beg for bread | depending on the goodwill of others | being beaten and resigned to his fate | spending what little coin he had to drink the days away | digging into the trash of others and scurrying away from lawmen | avoiding ruffians and thugs while he begged for crowns}. {While he seems earnest in becoming a mercenary, there is little doubt that all his time on the street have robbed %name% of his best years. | Years have passed and took a toll on his health by now. | Once a man like %name% has spent a few days on the streets, much less a few years, even the very dangerous job of being a sellsword seems like the greenest of pastures. | Only the gods know what %name% has done to survive, but he is a frail man standing before you now. | At the sight of you he rises with open arms to embrace you, claiming to know you well from years past and many a shared adventure, although your name escapes him at the moment.}";
+		}
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
 		local r;
 		r = this.Math.rand(0, 4);
 
-		if (r == 0)
-		{
+		if (r == 0) {
 			items.equip(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 1)
-		{
+		} else if (r == 1) {
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 

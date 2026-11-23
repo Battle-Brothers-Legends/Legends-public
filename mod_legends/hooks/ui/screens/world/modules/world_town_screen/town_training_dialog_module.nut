@@ -29,12 +29,69 @@
 		return price;
 	}
 
-	local queryRosterInformation = o.queryRosterInformation;
-	o.queryRosterInformation = function()
-	{
-		local result = queryRosterInformation();
-		result.SubTitle = "Have your men train for combat and learn from veterans";
+	o.queryRosterInformation = function() {
 		local brothers = this.World.getPlayerRoster().getAll();
+		local roster = [];
+
+		foreach (b in brothers) {
+			if (b.getLevel() >= 12) {
+				continue;
+			}
+
+			if (b.getLevel() >= 7
+				&& this.World.Assets.getOrigin().getID() == "scenario.manhunters"
+				&& b.getBackground().getID() == "background.slave")
+			{
+				continue;
+			}
+
+			if (b.getSkills().hasEffect(::Legends.Effect.Trained)) {
+				continue;
+			}
+
+			local background = b.getBackground();
+			local e = {
+				ID = b.getID(),
+				Name = b.getName(),
+				Level = b.getLevel(),
+				ImagePath = b.getImagePath(),
+				ImageOffsetX = b.getImageOffsetX(),
+				ImageOffsetY = b.getImageOffsetY(),
+				BackgroundImagePath = background.getIconColored(),
+				BackgroundText = background.getDescription(),
+				Training = [],
+				Effects = []
+			};
+			e.Training.push({
+				id = 0,
+				icon = "skills/status_effect_75.png",
+				name = "Sparring Fight",
+				tooltip = "world-town-screen.training-dialog-module.Train1",
+				price = 80 + 50 * b.getLevel()
+			});
+			e.Training.push({
+				id = 1,
+				icon = "skills/status_effect_76.png",
+				name = "Veteran\'s Lessons",
+				tooltip = "world-town-screen.training-dialog-module.Train2",
+				price = 100 + 60 * b.getLevel()
+			});
+			e.Training.push({
+				id = 2,
+				icon = "skills/status_effect_77.png",
+				name = "Rigorous Schooling",
+				tooltip = "world-town-screen.training-dialog-module.Train3",
+				price = 90 + 55 * b.getLevel()
+			});
+			roster.push(e);
+		}
+
+		local result = {
+			Title = "Training Hall",
+			SubTitle = "Have your men train for combat and learn from veterans",
+			Roster = roster,
+			Assets = this.m.Parent.queryAssetsInformation()
+		};
 
 		foreach (bro in brothers) {
 			local trait = ::Legends.Traits.grant(bro, ::Legends.Trait.LegendIntensiveTraining);

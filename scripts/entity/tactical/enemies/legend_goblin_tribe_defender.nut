@@ -60,7 +60,7 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		this.m.Items.equip(::new("scripts/items/weapons/named/legend_named_goblin_crossbow"));
 		this.m.Items.addToBag(::new("scripts/items/weapons/greenskins/goblin_falchion"));
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendVengeance);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		return true;
 	}

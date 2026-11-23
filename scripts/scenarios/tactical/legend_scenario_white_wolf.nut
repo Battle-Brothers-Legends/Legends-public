@@ -15,7 +15,7 @@ this.legend_scenario_white_wolf <- this.inherit("scripts/scenarios/tactical/scen
 
 	function initMap()
 	{
-		local testMap = this.MapGen.get("tactical.human_camp");
+		local testMap = this.MapGen.get("tactical.snow");
 		local minX = testMap.getMinX();
 		local minY = testMap.getMinY();
 		this.Tactical.resizeScene(minX, minY);

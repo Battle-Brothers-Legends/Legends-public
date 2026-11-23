@@ -29,8 +29,9 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Unhold)
+		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 			return;
+		}
 
 		local fallen = [];
 		local fallen = this.World.Statistics.getFallen();

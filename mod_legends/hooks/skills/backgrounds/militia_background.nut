@@ -52,9 +52,7 @@
 			Enemy = [
 				::Const.Perks.OutlawTree
 			],
-			Class = [
-				// ::Const.Perks.MilitiaClassTree
-			],
+			Class = [],
 			Profession = [],
 			Magic = []
 		}

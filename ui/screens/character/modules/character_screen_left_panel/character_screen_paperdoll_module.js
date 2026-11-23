@@ -884,6 +884,13 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 			var ignoreSlotType = false;
 			var targetSlotOverride = null;
 
+			
+			// runes
+			if (isUsable && (sourceSlotType === CharacterScreenIdentifier.ItemSlot.None || sourceSlotType === 'none'))	{
+				ignoreSlotType = true;
+				targetSlotOverride = targetSlotType;
+			}
+
 			// Special Case: Source = Twohander and Target = Offhand and Inventory = Stash and Main & Offhand are filled with Item and Stash = full
 			if (
 				sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand &&

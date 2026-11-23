@@ -85,7 +85,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 		local vipStillToMoveAndAdjacent = 0;
 
 
-		if (!target.isTurnDone() && target.getActionPoints() >= 4 && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted)
+		if (!target.isTurnDone() && target.getActionPoints() >= 4 && !::Legends.S.isEntityMovementDisabled(target))
 		{
 			vipStillToMove = ++vipStillToMove;
 

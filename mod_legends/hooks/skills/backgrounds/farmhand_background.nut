@@ -69,9 +69,7 @@
 				::Const.Perks.SturdyTree
 			],
 			Enemy = [],
-			Class = [
-				// ::Const.Perks.PitchforkClassTree
-			],
+			Class = [],
 			Profession = [],
 			Magic = []
 		}

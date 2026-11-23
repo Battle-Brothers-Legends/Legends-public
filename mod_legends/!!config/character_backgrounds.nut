@@ -176,7 +176,7 @@
 	"legend_runesmith_background",
 	"legend_transmuter_background",
 	"legend_necromancer_background",
-	"legend_ancient_summoner_background",
+	//"legend_ancient_summoner_background",
 	"legend_master_archer_background",
 	"legend_berserker_background",
 	"legend_necrosavant_background",
@@ -188,7 +188,7 @@
 ];
 
 ::Const.CharacterMagicBackgrounds <- [
-	"legend_ancient_summoner_background",
+	//"legend_ancient_summoner_background",
 	"legend_conjurer_background",
 	"legend_death_summoner_background",
 	"legend_diviner_background",
@@ -305,7 +305,8 @@
 	"legend_muladi_background",
 	"daytaler_southern_background",
 	"legend_qiyan_background",
-	"shepherd_southern_background"
+	"shepherd_southern_background",
+	"executioner_background"
 ];
 ::Const.HorseBackgrounds <- [
 	"legend_horse_destrier",

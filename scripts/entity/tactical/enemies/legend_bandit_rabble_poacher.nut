@@ -53,7 +53,7 @@ this.legend_bandit_rabble_poacher <- this.inherit("scripts/entity/tactical/legen
 			this.getSprite("eye_rings").Visible = true;
 		}
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 40)
+		if (!::FU.InScenario() && this.World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsRabbleDefIncreaseDay)
 		{
 			b.RangedDefense += 5;
 		}

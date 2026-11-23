@@ -85,27 +85,24 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 
 	function findTileToSpawnWarden()
 	{
-		local ActorTile = this.getContainer().getActor().getTile();
-		local MapSize = this.Tactical.getMapSize();
+		local actor = this.getContainer().getActor();
+
+		if (!actor.isPlacedOnMap()) {
+			return null;
+    	}
+
 		local EmptyTiles = [];
 
-		for( local x = 0; x < MapSize.X; x = ++x )
-		{
-			for( local y = 0; y < MapSize.Y; y = ++y )
-			{
-				local tile = this.Tactical.getTileSquare(x, y);
+		local populateTiles = function( _tile, _emptyTiles ) {
+        	if (_tile.IsEmpty) {
+            	_emptyTiles.push(_tile);
+        	}
+    	};
+		
+		this.Tactical.queryTilesInRange(actor.getTile(), 1, 3, false, [], populateTiles, EmptyTiles);	
 
-				if (tile.IsEmpty && tile.getDistanceTo(ActorTile) <= 3)
-				{
-					EmptyTiles.push(tile);
-				}
-			}
-		}
-
-		if (EmptyTiles.len() != 0)
-		{
-			local random = this.Math.rand(0, EmptyTiles.len() - 1);
-			return EmptyTiles[random];
+		if (EmptyTiles.len() != 0) {
+			return EmptyTiles[this.Math.rand(0, EmptyTiles.len() - 1)];
 		}
 
 		return null;
@@ -217,7 +214,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 
 	function onTurnStart()
 	{
-		this.summonWarden();
+		//this.summonWarden();
 	}
 
 	function onCombatFinished()

@@ -24,12 +24,12 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 		{
 			this.m.BaseProperties.Armor[this.Const.BodyPart.Head] += 100;
 			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Head] += 100;		
-			this.m.BaseProperties.Armor[this.Const.BodyPart.Body] += 250;
-			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Body] += 250;
+			this.m.BaseProperties.Armor[this.Const.BodyPart.Body] += 350;
+			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Body] += 350;
 			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendVengeance);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBoneBreaker);
 		}
 	}
 
@@ -48,7 +48,7 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		this.getItems().equip(::Const.World.Common.pickArmor([
-			[1, ::Legends.Armor.Greenskin.legend_orc_elite_heavy_armor]
+			[1, ::Legends.Armor.Greenskin.orc_warlord_armor]
 		]));
 
 		this.getItems().equip(::Const.World.Common.pickHelmet([

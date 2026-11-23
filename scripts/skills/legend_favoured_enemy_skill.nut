@@ -84,6 +84,15 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				text = this.getDescription()
 			},
 			{
+				id = 16,
+				type = "progressbar",
+				icon = "ui/tooltips/positive.png",
+				value = stats.HitChance,
+				valueMax = 25,
+				text = "" + stats.HitChance + "% / " + "25%",
+				style = "fatigue-slim"
+			},
+			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
@@ -122,9 +131,9 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	// When the Perk is yet to be activated, show in the Tooltip what the current bonus is
-	function getUnactivatedPerkTooltipHints()
+	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
-		local stats = this.getTotalKillStats();
+		local stats = this.getTotalKillStats(_actor);
 		local killsText = "";
 		if (stats.Kills > 0)
 		{
@@ -146,6 +155,15 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				type = "hint",
 				icon = "ui/tooltips/positive.png"
 				text = format("Activating this perk will grant a %s bonus to the relevant stats", ::Const.UI.getColorized("+" + stats.HitChance + "%", ::Const.UI.Color.PositiveValue))
+			},
+			{
+				id = 4,
+				type = "progressbar",
+				icon = "ui/tooltips/positive.png",
+				value = stats.HitChance,
+				valueMax = 25,
+				text = stats.HitChance + "% / " + "25%",
+				style = "fatigue-slim"
 			}
 		];
 
@@ -164,9 +182,9 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		return false;
 	}
 
-	function getTotalKillStats()
-	{
-		return this.Const.LegendMod.GetFavoriteEnemyStats(this.getContainer().getActor(), this.m.ValidTypes);
+	function getTotalKillStats(_actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+		return this.Const.LegendMod.GetFavoriteEnemyStats(actor, this.m.ValidTypes);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

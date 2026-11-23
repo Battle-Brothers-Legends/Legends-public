@@ -51,23 +51,22 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		local flip = this.Math.rand(0, 100) < 50;
+	function onDeath( _killer, _skill, _tile, _fatalityType ) {
+		local appearance = this.getItems().getAppearance();
+		local targetScale = 0.9;
+		local flip = this.Math.rand(1, 100) < 50;
 		this.m.IsCorpseFlipped = flip;
 		local isResurrectable = _fatalityType != this.Const.FatalityType.Decapitated && this.m.IsResurrectable;
-		local appearance = this.getItems().getAppearance();
-		local sprite_body = this.getSprite("body");
-		local sprite_head = this.getSprite("head");
-		local sprite_face = this.getSprite("face");
 		local corpse = clone this.Const.Corpse;
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
+			local sprite_body = this.getSprite("body");
+			local sprite_head = this.getSprite("head");
+			//local sprite_face = this.getSprite("face");
 			local decal = _tile.spawnDetail("mummy_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 			decal.Color = sprite_body.Color;
 			decal.Saturation = sprite_body.Saturation;
-			decal.Scale = 0.9;
+			decal.Scale = targetScale;
 
 			if (appearance.CorpseArmor != "")
 			{
@@ -83,40 +82,65 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 				}
 
 				local decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
-				decal.Scale = 0.9;
+				decal.Scale = targetScale;
 			}
+
+			local helmetLowerLayers = [
+					"HelmetLayerVanityLowerCorpse",
+					"HelmetLayerVanity2LowerCorpse"
+			];
+			local helmetLayers = [
+					"HelmetCorpse",
+					"HelmetLayerHelmLowerCorpse",
+					"HelmetLayerTopLowerCorpse",
+					"HelmetLayerHelmCorpse",
+					"HelmetLayerTopCorpse",
+					"HelmetLayerVanityCorpse",
+					"HelmetLayerVanity2Corpse"
+			];
 
 			if (_fatalityType != this.Const.FatalityType.Decapitated)
 			{
+				foreach (layer in helmetLowerLayers) {
+					if (appearance[layer] != "") {
+						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						decal.Scale = targetScale;
+					}
+				}
+
 				if (!appearance.HideCorpseHead)
 				{
 					local decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
-					decal.Scale = 0.9;
+					decal.Scale = targetScale;
 				}
 
-				if (!appearance.HideCorpseHead)
-				{
-					local decal = _tile.spawnDetail(sprite_face.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
-					decal.Color = sprite_face.Color;
-					decal.Saturation = sprite_face.Saturation;
-					decal.Scale = 0.9;
-				}
+				//if (!appearance.HideCorpseHead)
+				//{
+				//	local decal = _tile.spawnDetail(sprite_face.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+				//	decal.Color = sprite_face.Color;
+				//	decal.Saturation = sprite_face.Saturation;
+				//	decal.Scale = targetScale;
+				//}
 
-				if (appearance.HelmetCorpse != "")
-				{
-					local decal = _tile.spawnDetail(appearance.HelmetCorpse, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
-					if (decal != null && decal.Scale != null)
-					{
-						decal.Scale = 0.9;
+				foreach (layer in helmetLayers) {
+					if (appearance[layer] != "") {
+						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						decal.Scale = targetScale;
 					}
-
 				}
 			}
 			else if (_fatalityType == this.Const.FatalityType.Decapitated)
 			{
 				local layers = [];
+
+				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
+				//foreach (layer in helmetLowerLayers) {
+				//	if (appearance[layer] != "") {
+				//		layers.push(appearance[layer]);
+				//	}
+				//}
 
 				if (!appearance.HideCorpseHead)
 				{
@@ -125,29 +149,41 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 
 				if (!appearance.HideCorpseHead)
 				{
-					layers.push(sprite_face.getBrush().Name + "_dead");
+					//layers.push(sprite_face.getBrush().Name + "_dead");
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					layers.push(appearance.HelmetCorpse);
-				}
+				//foreach (layer in helmetLayers) {
+				//	if (appearance[layer] != "") {
+				//		layers.push(appearance[layer]);
+				//	}
+				//}
 
 				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
+				local idx = 0;
+				//foreach (layer in helmetLowerLayers) {
+				//	if (appearance[layer] != "") {
+				//		decap[idx].Scale = targetScale;
+				//		decap[idx].setHorizontalFlipping(true);
+				//		idx = ++idx;
+				//	}
+				//}
 
-				if (!appearance.HideCorpseHead)
-				{
-					decap[0].Color = sprite_head.Color;
-					decap[0].Saturation = sprite_head.Saturation;
-					decap[0].Scale = 0.9;
-					decap[0].setHorizontalFlipping(true);
+				if (!appearance.HideCorpseHead) {
+					decap[idx].Color = sprite_head.Color;
+					decap[idx].Saturation = sprite_head.Saturation;
+					decap[idx].Scale = targetScale;
+					decap[idx].setHorizontalFlipping(true);
+					idx = ++idx;
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					decap[1].Scale = 0.9;
-					decap[1].setHorizontalFlipping(true);
-				}
+				//foreach (layer in helmetLayers) {
+				//	if (appearance[layer] != "") {
+				//		decap[idx].Scale = targetScale;
+				//		decap[idx].setHorizontalFlipping(true);
+				//		idx = ++idx;
+				//	}
+				//}
+
 			}
 
 			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
@@ -199,7 +235,8 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			local custom = {
-				Face = sprite_face.getBrush().Name,
+				//Face = sprite_face.getBrush().Name,
+				Head = sprite_body.getBrush().Name,
 				Body = sprite_body.getBrush().Name,
 				BodyColor = sprite_body.Color,
 				BodySaturation = sprite_body.Saturation
@@ -222,8 +259,8 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 				corpse.IsResurrectable = true;
 			}
 
-			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			//_tile.Properties.set("Corpse", corpse);
+			//this.Tactical.Entities.addCorpse(_tile);
 		}
 
 		local deathLoot = this.getItems().getDroppableLoot(_killer);
@@ -244,9 +281,11 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		if (_info.Custom != null)
 		{
-			local face = this.getSprite("face");
+			//local face = this.getSprite("face");
+			local head = this.getSprite("head");
 			local body = this.getSprite("body");
-			face.setBrush(_info.Custom.Face);
+			//face.setBrush(_info.Custom.Face);
+
 			body.setBrush(_info.Custom.Body);
 			body.Color = _info.Custom.BodyColor;
 			body.Saturation = _info.Custom.BodySaturation;
@@ -299,7 +338,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("armor_layer_cloak").setHorizontalFlipping(flip);
 		this.getSprite("armor_upgrade_back").setHorizontalFlipping(flip);
 		this.getSprite("head").setHorizontalFlipping(flip);
-		this.getSprite("face").setHorizontalFlipping(flip);
+		//this.getSprite("face").setHorizontalFlipping(flip);
 		this.getSprite("injury").setHorizontalFlipping(flip);
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
@@ -344,18 +383,18 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.addSprite("armor_upgrade_back");
 
 		local head = this.addSprite("head");
-		head.setBrush("bust_skeleton_head_03");
+		//head.setBrush("bust_skeleton_head_03");
+		head.setBrush("mummy_head_0" + this.Math.rand(1, 4));
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
 		injury.setBrush("bust_skeleton_head_injured");
 
-		local face = this.addSprite("face");
-		face.setBrush("mummy_head_0" + this.Math.rand(1, 4));
+		//local face = this.addSprite("face");
+		//face.setBrush("mummy_head_0" + this.Math.rand(1, 4));
 
-		foreach (a in this.Const.CharacterSprites.Helmets)
-		{
-			this.addSprite(a)
+		foreach (a in this.Const.CharacterSprites.Helmets) {
+			this.addSprite(a);
 		}
 
 		local body_blood = this.addSprite("body_blood");

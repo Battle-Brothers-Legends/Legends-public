@@ -61,7 +61,7 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

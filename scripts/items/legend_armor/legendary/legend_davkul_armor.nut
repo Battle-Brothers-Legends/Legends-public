@@ -31,7 +31,7 @@ this.legend_davkul_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 		this.m.SpriteDamagedBack = "armor_davkul_named_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "armor_davkul_named_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_armor_davkul_named_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIconLarge = "legend_armor/inventory_armor_davkul_named_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_armor_davkul_named_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_armor_davkul_named_"  + variant + ".png";
 	}

@@ -27,7 +27,7 @@ this.legend_pauldron_stag_upgrade <- this.inherit("scripts/items/legend_armor/le
 		this.m.SpriteDamagedBack = "pauldrons_stag_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_stag_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_stag_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_stag_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_stag_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_stag_"  + variant + ".png";
 	}

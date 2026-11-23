@@ -1161,6 +1161,10 @@
 				this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]
 			],
 			[
+				"randomvizier",
+				this.Const.Strings.SouthernNames[this.Math.rand(0, this.Const.Strings.SouthernNames.len() - 1)] + " " + this.Const.Strings.VizierTitles[this.Math.rand(0, this.Const.Strings.VizierTitles.len() - 1)]
+			],
+			[
 				"randomnamefemale",
 				this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)]
 			],
@@ -1351,8 +1355,9 @@
 		// THE COMMMENT ABOVE IS PROBABLY WRONG. Scenario doesn't seem to be null here on deserialize. But some weird
 		// shenanigans are still happening, so I will test some more. -- Midas
 		local origin = this.World.Assets.getOrigin();
-		if (origin != null)
+		if (origin != null && this.getContainer() != null && !this.getContainer().getActor().getFlags().get("ScenarioPerkSet"))
 		{
+			this.getContainer().getActor().getFlags().set("ScenarioPerkSet", true);
 			origin.onBuildPerkTree(this);
 		}
 

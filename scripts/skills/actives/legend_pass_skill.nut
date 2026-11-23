@@ -1,5 +1,5 @@
-this.legend_pass_skill <- this.inherit("scripts/skills/skill",
-{
+this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
+	m = {},
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPass);

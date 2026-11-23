@@ -443,12 +443,14 @@
 		case "character-screen-inventory-list-module.stash":
 			if (_item.isUsable())
 			{
-				tooltip.push({
-					id = 1,
-					type = "hint",
-					icon = "ui/icons/mouse_right_button.png",
-					text = "Use item"
-				});
+				if(_item.getID().find("inscription") == null && !_item.isItemType(::Const.Items.ItemType.Armor) && !_item.isItemType(::Const.Items.ItemType.Helmet) && !_item.isItemType(::Const.Items.ItemType.Named) ) {
+					tooltip.push({
+						id = 1,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button.png",
+						text = "Use item"
+					});
+				}
 			}
 			else if (_item.getSlotType() != this.Const.ItemSlot.None && _item.getSlotType() != this.Const.ItemSlot.Bag)
 			{
@@ -485,8 +487,9 @@
 				});
 			}
 
-			if (_item.getRepair() >= _item.getRepairMax())
-			{
+			local slot = _item.getSlotType();
+			if (_item.getRepair() >= _item.getRepairMax() && ( slot == this.Const.ItemSlot.Body || slot == this.Const.ItemSlot.Head || slot == this.Const.ItemSlot.Mainhand || slot == this.Const.ItemSlot.Offhand ) && !_item.isItemType(::Const.Items.ItemType.Net))
+			{	
 				tooltip.push({
 					id = 3,
 					type = "hint",
@@ -768,21 +771,14 @@
 				if ( (::World.State.isInCharacterScreen() || (::Tactical.isActive() && ::Tactical.State.isInCharacterScreen())) && "HasUnactivatedPerkTooltipHints" in perk && perk.HasUnactivatedPerkTooltipHints)
 				{
 					// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
-					local tempContainer = this.new("scripts/skills/skill_container");
 					local tempPerk = this.new(perk.Script); // Need to instantiate a dummy perk because the player character's perk tree doesn't hold actual perks
-					local playerClone = clone player;
 					tempPerk.m.IsForPerkTooltip=true; // onAdded() can check for this so it doesn't do anything when the dummy perk is added to the dummy skill container
-					tempContainer.setActor(playerClone); // Associate a clone of the player character to the dummy container so that the dummy perk can read the character's data
-					tempContainer.add(tempPerk);
-					local perkHints = tempPerk.getUnactivatedPerkTooltipHints(); // get the additional hints (these will be capable of using the character's data)
-					if (perkHints != null && perkHints.len()>0)
-					{
+					local perkHints = tempPerk.getUnactivatedPerkTooltipHints(clone player); // get the additional hints (these will be capable of using the character's data)
+					if (perkHints != null && perkHints.len()>0)	{
 						ret.extend(perkHints);
 					}
 					// Clean up
 					tempPerk = null;
-					tempContainer = null;
-					playerClone = null;
 				}
 
 				if (player.getPerkPointsSpent() >= perk.Unlocks)
@@ -1454,17 +1450,31 @@
 			ret.push({
 				id = id++,
 				type = "text",
-				text = "Terrain Movement Modifiers:"
+				text = "Terrain Movement Speed:"
 			});
 
-			foreach( bro in data.TerrainModifiers )
-			{
-				if (bro[1] == 0) continue;
-				ret.push({
-					id = id++,
-					type = "text",
-					text = bro[0] + " [color=%positive%]" + bro[1] + "%[/color]"
-				});
+			foreach( terrainModifier in data.TerrainModifiers ) {
+				local name = terrainModifier[0];
+				local speed = terrainModifier[1];
+				// avoid float rounding errors, don't show when 100% speed
+				if (this.Math.abs(speed - 100.0) < 0.01) {
+        			continue;
+    			}
+				local speedText = ::format("%.2f", speed);
+				if (speed > 100.0) {
+					ret.push({
+						id = id++,
+						type = "text",
+						text = name + " [color=%positive%]" + speedText + "%[/color]"
+					});
+				}
+				else {
+					ret.push({
+						id = id++,
+						type = "text",
+						text = name + " [color=%negative%]" + speedText + "%[/color]"
+					});
+				}
 			}
 
 			ret.push({
@@ -1748,7 +1758,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "A higher melee defense reduces the probability of being hit with a melee attack, such as the thrust of a spear. It can be increased as the character gains experience and by equipping a good shield."
+					text = "A higher melee defense reduces the probability of being hit with a melee attack, such as the thrust of a spear. It can be increased as the character gains experience and by equipping a good shield. Diminishing returns above 50."
 				}
 			];
 
@@ -1762,7 +1772,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "A higher ranged defense reduces the probability of being hit with a ranged attack, such as an arrow shot from afar. It can be increased as the character gains experience and by equipping a good shield."
+					text = "A higher ranged defense reduces the probability of being hit with a ranged attack, such as an arrow shot from afar. It can be increased as the character gains experience and by equipping a good shield. Diminishing returns above 50."
 				}
 			];
 
@@ -3374,6 +3384,20 @@
 				}
 			];
 
+		case "world-screen.topbar.TimeVeryFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Very Fast Speed (3)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Set time to pass even faster than normal. Use judiciously."
+				}
+			];
+
 		case "world-screen.topbar.options-module.ActiveContractButton":
 			return [
 				{
@@ -3854,7 +3878,7 @@
 			];
 
 		case "world-town-screen.main-dialog-module.Arena":
-			local ttinfo = this.World.State.getCurrentTown().getBuilding("building.arena").getAttempts();
+			
 			local ret = [
 				{
 					id = 1,
@@ -3865,23 +3889,26 @@
 					id = 2,
 					type = "description",
 					text = "The arena offers an opportunity to earn gold and fame in fights that are to the death, and in front of crowds that cheer for the most gruesome manner in which lives are dispatched."
-				},
-				{
+				}
+			];
+
+			if (this.World.State.getCurrentTown() != null) {
+				local ttinfo = this.World.State.getCurrentTown().getBuilding("building.arena").getAttempts();
+				ret.push({
 					id = 3,
 					type = "hint",
 					icon = "ui/icons/melee_skill.png",
 					text = "There are " + ttinfo[0] + " / " + ttinfo[1] + " fights available today."
-				}
-			];
-
-			if (this.World.State.getCurrentTown() != null && this.World.State.getCurrentTown().getBuilding("building.arena").isClosed())
-			{
-				ret.push({
-					id = 3,
-					type = "hint",
-					icon = "ui/tooltips/warning.png",
-					text = "No more matches take place here today. Come back tomorrow!"
 				});
+				
+				if (this.World.State.getCurrentTown().getBuilding("building.arena").isClosed()) {
+					ret.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/tooltips/warning.png",
+						text = "No more matches take place here today. Come back tomorrow!"
+					});
+				}
 			}
 
 			if (this.World.Contracts.getActiveContract() != null && this.World.Contracts.getActiveContract().getType() != "contract.arena" && this.World.Contracts.getActiveContract().getType() != "contract.arena_tournament")
@@ -4485,10 +4512,12 @@
 				{
 					id = 1,
 					type = "title"
+					text = "Tools Produced"
 				},
 				{
 					id = 2,
-					type = "description"
+					type = "description",
+					text = desc
 				}
 			];
 			return ret;

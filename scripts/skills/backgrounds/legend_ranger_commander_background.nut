@@ -104,8 +104,7 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 			],
 			Class = [
 				::Const.Perks.BeastClassTree,
-				::Const.Perks.HoundmasterClassTree,
-				// ::Const.Perks.SharpshooterClassTree,
+				::Const.Perks.HoundmasterClassTree
 			],
 			Profession = [],
 			Magic = [

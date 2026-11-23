@@ -41,6 +41,10 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function getDescription() {
+		return "A chant that gets the blood boiling, making your allies eager to fight.";
+	}
+
 	function getTooltip()
 	{
 		local actor = this.getContainer().getActor();

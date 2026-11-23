@@ -24,12 +24,10 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.OrcYoung);
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 70)
-		{
+		if (!::FU.InScenario() && this.World.getTime().Days >= this.Const.World.Scaling.Orcs.YoungThrowingSpecDay) {
 			b.IsSpecializedInThrowing = true;
 
-			if (this.World.getTime().Days >= 150)
-			{
+			if (this.World.getTime().Days >= this.Const.World.Scaling.Orcs.YoungStatIncreaseDay) {
 				b.RangedSkill += 5;
 			}
 		}
@@ -76,7 +74,8 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		::Legends.Actives.grant(this, ::Legends.Active.Charge);
-
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
@@ -87,6 +86,11 @@
 
 		::Legends.Actives.grant(this, ::Legends.Active.WakeAlly);
 		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
+	}
+
+	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
+		this.legend_orc.onDeath( _killer, _skill, _tile, _fatalityType );
 	}
 
 	o.assignRandomEquipment = function ()

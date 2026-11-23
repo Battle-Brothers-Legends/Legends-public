@@ -22,13 +22,13 @@
 		local c = party.getController();
 		local start = null;
 		local best = 9999;
-		local curentTile = party.getTile();
+		local currentTile = party.getTile();
 
 		foreach (settlement in World.EntityManager.getSettlements())
 		{
 			if (settlement.getID() == m.Settlement.getID()) continue;
 
-			local distance = settlement.getTile().getDistanceTo(curentTile);
+			local distance = settlement.getTile().getDistanceTo(currentTile);
 
 			if (distance > best) continue;
 

@@ -27,7 +27,7 @@ this.legend_joint_cover_upgrade <- this.inherit("scripts/items/legend_armor/lege
 		this.m.SpriteDamagedBack = "pauldrons_joint_cover_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_joint_cover_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_joint_cover_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_joint_cover_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_joint_cover_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_joint_cover_"  + variant + ".png";
 	}

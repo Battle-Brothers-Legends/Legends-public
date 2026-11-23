@@ -76,7 +76,8 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 						this.List.push({
 							id = 10,
 							icon = "ui/items/" + item.getIcon(),
-							text = "Your " + item.getName() + " is repaired"
+							imageOverlayPath = item.getIconOverlay(),
+							text = "Your " + item.makeName() + " is repaired"
 						});
 						items = ++items;
 

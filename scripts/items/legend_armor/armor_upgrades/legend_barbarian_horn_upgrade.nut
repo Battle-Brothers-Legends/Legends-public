@@ -30,7 +30,7 @@ this.legend_barbarian_horn_upgrade <- this.inherit("scripts/items/legend_armor/l
 		this.m.SpriteDamagedFront = "pauldrons_barbarian_horn_" + variant + "_front_damaged";
 		this.m.SpriteCorpseFront = "pauldrons_barbarian_horn_" + variant + "_front_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_barbarian_horn_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_barbarian_horn_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_barbarian_horn_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_barbarian_horn_"  + variant + ".png";
 	}

@@ -19,3 +19,6 @@
 ::Const.Tactical.Actor.GhostKnight.Hitpoints = 375;
 ::Const.Tactical.Actor.GhostKnight.Stamina = 150;
 ::Const.Tactical.Actor.GhostKnight.MeleeSkill = 110;
+
+::Const.Tactical.Actor.LesserFleshGolem.MeleeSkill = 65;
+::Const.Tactical.Actor.GreaterFleshGolem.MeleeSkill = 80;

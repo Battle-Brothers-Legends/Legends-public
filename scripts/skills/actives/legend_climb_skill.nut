@@ -62,33 +62,26 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isUsable()
-	{
-		if (this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted)
-		{
-			local myTile = this.getContainer().getActor().getTile();
+	function isUsable() {
+		if (this.Tactical.isActive() && this.Tactical.State.getStrategicProperties() != null && this.Tactical.State.getStrategicProperties().IsArenaMode) {
+			return false;
+		}
 
-			for( local i = 0; i < 6; i = ++i )
-			{
-				if (!myTile.hasNextTile(i))
-				{
-				}
-				else
-				{
+		local actor = this.getContainer().getActor();
+		if (this.skill.isUsable() && !actor.getCurrentProperties().IsRooted) {
+			local myTile = actor.getTile();
+			for (local i = 0; i < 6; i = ++i) {
+				if (!myTile.hasNextTile(i)) {
+				} else {
 					local nextTile = myTile.getNextTile(i);
 
-					if (this.Math.abs(nextTile.Level - myTile.Level) < 1)
-					{
-					}
-					else
-					{
-					 return true;
+					if (this.Math.abs(nextTile.Level - myTile.Level) < 1) {
+					} else {
+						return true;
 					}
 				}
 			}
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}

@@ -73,7 +73,9 @@
 				::Const.Perks.OutlawTree
 			],
 			Class = [],
-			Profession = [],
+			Profession = [
+				::Const.Perks.CaravaneerProfessionTree
+			],
 			Magic = []
 		}
 	}

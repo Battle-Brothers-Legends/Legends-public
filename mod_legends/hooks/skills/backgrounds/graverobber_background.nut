@@ -54,9 +54,7 @@
 				::Const.Perks.BeastTree,
 				::Const.Perks.UndeadTree
 			],
-			Class = [
-				// ::Const.Perks.ShovelClassTree
-			],
+			Class = [],
 			Profession = [],
 			Magic = []
 		}

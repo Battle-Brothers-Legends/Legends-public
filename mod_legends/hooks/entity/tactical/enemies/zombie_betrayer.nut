@@ -22,7 +22,7 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.5;
 			b.Armor[this.Const.BodyPart.Head] += 50;
 			b.ArmorMax[this.Const.BodyPart.Head] += 50;		
 			b.Armor[this.Const.BodyPart.Body] += 100;

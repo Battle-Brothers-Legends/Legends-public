@@ -27,7 +27,7 @@ this.legend_light_padding_replacement_upgrade <- this.inherit("scripts/items/leg
 		this.m.SpriteDamagedBack = "pauldrons_padding_light_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "pauldrons_padding_light_" + variant + "_dead";
 		this.m.Icon = "legend_armor/upgrades/pauldrons_padding_light_" + variant + "_upgrade.png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_pauldrons_padding_light_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_padding_light_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_padding_light_"  + variant + ".png";
 	}

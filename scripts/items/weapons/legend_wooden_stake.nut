@@ -5,7 +5,7 @@ this.legend_wooden_stake <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_wooden_stake";
 		this.m.Name = "Wooden Stake";
-		this.m.Description = "A roughly sharpened wooden shaft, usually used for tents and carpentry. Can be applied to other more visceral tasks. Deals x10 damage against vampires. Affected by dagger mastery";
+		this.m.Description = "A roughly sharpened wooden shaft, usually used for tents and carpentry. Can be applied to other more visceral tasks. Very effective against vampires.";
 		this.m.IconLarge = "weapons/melee/wooden_stake_01.png";
 		this.m.Icon = "weapons/melee/wooden_stake_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Dagger;

@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A deep mine built atop a gold ore vein. This rare metal has a tendency to bring out the worst in people. Contributes gold and silver ingots, miners, caravan hands, sellswords and thieves to the local town";
+		this.m.Description = "A deep mine built atop a gold ore vein. This rare metal has a tendency to bring out the worst in people. Contributes gold and silver ingots, miners, caravan hands, sellswords and thieves to the local town.";
 	}
 
 	o.onUpdateProduce <- function ( _list )

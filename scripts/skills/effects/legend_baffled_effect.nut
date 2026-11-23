@@ -64,7 +64,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 		{
 			if (!actor.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " shook off being baffled thanks to his unnatural physiology");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " shook off being baffled thanks to unnatural physiology");
 			}
 
 			this.removeSelf();

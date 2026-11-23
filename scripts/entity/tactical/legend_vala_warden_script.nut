@@ -201,7 +201,7 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		local WardenStats = this.m.BaseProperties;
 		WardenStats.setValues(NewWardenStats);
 		this.m.Hitpoints = WardenStats.Hitpoints;
-		this.m.CurrentProperties = WardenStats;
+		this.m.CurrentProperties = clone WardenStats;
 	}
 
 

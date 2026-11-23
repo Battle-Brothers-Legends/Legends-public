@@ -2,7 +2,7 @@
 this.camp_enchanter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Enchanting",
-		Description = "While encamped, the Vala can craft powerful runes"
+		Description = "Craft powerful runes while encamped."
 	},
 	function create()
 	{

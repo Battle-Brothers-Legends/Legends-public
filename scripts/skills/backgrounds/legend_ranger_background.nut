@@ -100,8 +100,7 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 				::Const.Perks.OccultTree,
 			],
 			Class = [
-				::Const.Perks.BeastClassTree,
-				// ::Const.Perks.SharpshooterClassTree
+				::Const.Perks.BeastClassTree
 			],
 			Profession = [],
 			Magic = [

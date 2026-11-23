@@ -74,9 +74,7 @@
 			Enemy = [
 				::Const.Perks.OutlawTree
 			],
-			Class = [
-				// ::Const.Perks.LongswordClassTree
-			],
+			Class = [],
 			Profession = [
 				::Const.Perks.FencingTeacherProfessionTree
 			],

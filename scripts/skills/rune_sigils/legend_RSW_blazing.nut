@@ -9,7 +9,7 @@ this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.IsStacking = true;
 		this.m.IsHidden = true;
 	}
 
@@ -25,17 +25,17 @@ this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
 		if (!_skill.isAttack())
 			return;
 
-		if (_skill.getItem() == null)
+		if (_skill.getItem() == null || this.getItem() == null)
 			return;
 
-		if (_skill.getItem().getID() != this.getItem().getID())
+		if (_skill.getItem().getInstanceID() != this.getItem().getInstanceID())
 			return;
 
 		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		local p = {
-			Type = "fire",
+			Type = "fire_legend_rsw_blazing",
 			Tooltip = "Fire rages here, melting armor and flesh alike",
 			IsPositive = false,
 			IsAppliedAtRoundStart = false,
@@ -59,7 +59,7 @@ this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
 			tile.Type != ::Const.Tactical.TerrainType.ShallowWater &&
 			tile.Type != ::Const.Tactical.TerrainType.DeepWater)
 		{
-			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "fire") {
+			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "fire_legend_rsw_blazing") {
 				tile.Properties.Effect.Timeout = ::Time.getRound() + this.getItem().getRuneBonus2();
 				tile.Properties.Effect.Damage = this.getItem().getRuneBonus1();
 			} else {
@@ -86,10 +86,11 @@ this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
 				tile.clear(::Const.Tactical.DetailFlag.Scorchmark);
 				tile.spawnDetail("impact_decal", ::Const.Tactical.DetailFlag.Scorchmark, false, true);
 			}
-		}
+		
 
-		if (tile.IsOccupiedByActor) {
-			::Const.Tactical.Common.onApplyFireRune(tile, tile.getEntity());
+			if (tile.IsOccupiedByActor) {
+				::Const.Tactical.Common.onApplyFireRune(tile, tile.getEntity());
+			}
 		}
 	}
 });

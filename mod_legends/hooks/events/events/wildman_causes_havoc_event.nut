@@ -101,6 +101,12 @@
 				}
 			}];
 			_screen.start <- function ( _event ) {
+				if (_event.m.Wildman != null && _event.m.Berserker == null)	{
+					this.Text = "[img]gfx/ui/events/event_01.png[/img]You go and see the shop. The wild%person_wildman% truly did a number on the place. And it reeks of %their_wildman%... scent. It would be a bad look for the company to not handle this issue with great care. You agree to pay for the damages, something most mercenary bands would not have done. This act of kindness does not slip the townspeople by.";
+				}
+				else {
+					this.Text = "[img]gfx/ui/events/event_01.png[/img]You go and see the shop. The berserker truly did a number on the place. And it reeks of %their_berserker%... scent. It would be a bad look for the company to not handle this issue with great care. You agree to pay for the damages, something most mercenary bands would not have done. This act of kindness does not slip the townspeople by.";
+				}
 				if (_event.m.Berserker != null)
 					this.Characters.push(_event.m.Berserker.getImagePath());
 
@@ -431,4 +437,4 @@
 		this.m.Wildman = null;
 		this.m.Town = null;
 	}
-})
+});

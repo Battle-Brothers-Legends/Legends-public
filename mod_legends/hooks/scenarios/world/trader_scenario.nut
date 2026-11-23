@@ -161,16 +161,16 @@
 		return false;
 	}
 
-	o.onHiredByScenario <- function ( bro )
+	o.onHiredByScenario <- function ( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
 		{
-			bro.worsenMood(1.0, "Unhappy they will need to do all the fighting");
+			_bro.worsenMood(1.0, "Unhappy they will need to do all the fighting");
 		}
-		else if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) //anyone but combat background
+		else if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) //anyone but combat background
 		{
-			bro.improveMood(0.5, "Glad to be out of the fighting line");
-			bro.getSprite("socket").setBrush("bust_base_caravan");
+			_bro.improveMood(0.5, "Glad to be out of the fighting line");
+			_bro.getSprite("socket").setBrush("bust_base_caravan");
 		}
 	}
 

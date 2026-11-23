@@ -36,7 +36,7 @@
 
 	o.isUsable <- function()
 	{
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
 	}
 
 	o.getAmmo <- function()
@@ -75,6 +75,7 @@
 		});
 
 		this.m.Item.drop(_targetTile);
+		return true;
 	}
 
 	o.onAfterUpdate = function( _properties )

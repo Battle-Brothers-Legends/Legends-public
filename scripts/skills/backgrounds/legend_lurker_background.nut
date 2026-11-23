@@ -115,8 +115,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			],
 			Class = [
 				::Const.Perks.BeastClassTree,
-				::Const.Perks.NinetailsClassTree,
-				// ::Const.Perks.ShortbowClassTree
+				::Const.Perks.NinetailsClassTree
 			],
 			Profession = [],
 			Magic = []

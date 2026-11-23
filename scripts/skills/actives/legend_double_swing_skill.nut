@@ -1,6 +1,8 @@
 this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		BothHitMiddle = false
+		BothHitMiddle = false,
+		TilesLeft = 1,
+		TilesRight = 1
 	},
 
 	function create() {
@@ -89,6 +91,18 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
+	function onAfterUpdate (_properties) {
+		local items = this.getContainer().getActor().getItems();
+		local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		if (mh != null && mh.isWeaponType(this.Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers) {
+			this.m.ActionPointCost -= 1;
+		}
+		if (oh != null && oh.isWeaponType(this.Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers) {
+			this.m.ActionPointCost -= 1;
+		}
+	}
+
 	function isUsable() {
 		if (!this.skill.isUsable()) {
 			return false;
@@ -96,9 +110,30 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		return ::Legends.Weapons.isDualWielding(this.getContainer().getActor());
 	}
 
+	function getFatigueCost() {
+        local actor = this.getContainer().getActor();
+        
+        if (actor == null || !::Legends.Weapons.isDualWielding(actor)) {
+            return this.skill.getFatigueCost(); 
+        }
+
+        local items = actor.getItems();
+        local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+        local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+
+        local mhSkill = ::Legends.Weapons.findPrimaryAttackSkill(actor, mh);
+        local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(actor, oh);
+        
+        if (mhSkill != null && ohSkill != null) {
+            return this.Math.max(this.m.FatigueCost, mhSkill.getFatigueCost() + ohSkill.getFatigueCost());
+        }
+
+        return this.skill.getFatigueCost();
+    }
+
 	function onUse(_user, _targetTile) {
 		this.m.BothHitMiddle = false;
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSwing);
+		//this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSwing); // removed as the attacks spawn effects individually in onUse
 
 		local ret = false;
 
@@ -130,7 +165,7 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 				&& cwTile.getEntity().isAttackable()
 				&& this.Math.abs(cwTile.Level - tile.Level) <= 1)
 			{
-				ret = mhSkill.attackEntity(_user, cwTile.getEntity()) || ret;
+				ret = mhSkill.onUse(_user, cwTile) || ret;
 				if (::Legends.S.isEntityNullOrDead(_user)) {
 					return ret;
 				}
@@ -144,7 +179,7 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 				&& ccwTile.getEntity().isAttackable()
 				&& this.Math.abs(ccwTile.Level - tile.Level) <= 1)
 			{
-				ret = ohSkill.attackEntity(_user, ccwTile.getEntity()) || ret;
+				ret = ohSkill.onUse(_user, ccwTile) || ret;
 				if (::Legends.S.isEntityNullOrDead(_user)) {
 					return ret;
 				}
@@ -153,14 +188,14 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 
 		// Target tile (middle) with mainhand
 		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable()) {
-			ret = mhSkill.attackEntity(_user, _targetTile.getEntity()) || ret;
+			ret = mhSkill.onUse(_user, _targetTile) || ret;
 
 			if (::Legends.S.isEntityNullOrDead(_user, _targetTile.getEntity())) {
 				return ret;
 			}
 
 			// Target tile (middle) with offhand
-			local ohHit = ohSkill.attackEntity(_user, _targetTile.getEntity());
+			local ohHit = ohSkill.onUse(_user, _targetTile);
 			ret = ohHit || ret;
 			if (ohHit) {
 				this.m.BothHitMiddle = true;

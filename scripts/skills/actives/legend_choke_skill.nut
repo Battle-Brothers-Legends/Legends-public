@@ -27,7 +27,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.IsWeaponSkill = true;
+		this.m.IsWeaponSkill = false;
 		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
 		this.m.HitChanceBonus = -65;
@@ -78,8 +78,8 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
 		if (hasNet && mainhand == null)
-			return true;
-		return mainhand != null || offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
+			return false;
+		return mainhand != null || offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || actor.isStabled();
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
@@ -168,6 +168,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		_properties.DamageRegularMax = 15;
 		_properties.IsIgnoringArmorOnAttack = true;
 		_properties.DamageArmorMult *= 0.0;
+		_properties.DamageDirectAdd = 0;
 		_properties.MeleeSkill += this.m.HitChanceBonus;
 
 		// Based on decapitate

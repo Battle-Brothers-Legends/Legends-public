@@ -227,6 +227,9 @@
 
 	o.onGenerateBro <- function (bro)
 	{
+		if (bro.isStabled()) {
+			return;
+		}
 		local r = this.Math.rand(0, 9);
 		if (r == 0)
 		{

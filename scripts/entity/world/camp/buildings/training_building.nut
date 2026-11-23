@@ -3,7 +3,12 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		Results = [],
 		NumBros = 0,
 		UnTrained = 0,
-		BaseCraft = 0.15 // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
+		BaseCraft = 0.15, // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
+		TrainingDescriptors = {
+			M = ["Short Guard ", "Upper Snake Guard ", "Bastard Cross ", "The Middle Iron Door ", "thrusts ", "trips ", "grapples ", "foot passing ", "striking ", "vambrace traps ", "a pommel bash ", "half sword ", "The Thumb Scissor ", "jabs ", "hand to hand combat "],
+    		T = ["for hours, ", "all day, ", "for several hours, ", "until exhaustion, ", "as long as possible, "],
+     		A = [" feels ready for a fight", " needs a real opponent", " is prepared for battle", " is keen to try it out", " is ready for a scrap"],
+		}
 	},
 	function create()
 	{
@@ -298,6 +303,19 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	}
 
+	function getDescriptors( bro, extraTrainingDescriptors){
+		local numberOfMTA = this.m.TrainingDescriptors.M.len() * this.m.TrainingDescriptors.T.len() * this.m.TrainingDescriptors.A.len();
+		local numberOfExtraDescriptors = extraTrainingDescriptors.len() + numberOfMTA;
+		local r = this.Math.rand(0, numberOfExtraDescriptors - 1);
+
+		if (r < numberOfMTA) {
+			return "After practicing " + this.m.TrainingDescriptors.M[(r / (this.m.TrainingDescriptors.A.len() * this.m.TrainingDescriptors.T.len())) % this.m.TrainingDescriptors.M.len()] + this.m.TrainingDescriptors.T[(r / this.m.TrainingDescriptors.A.len()) % this.m.TrainingDescriptors.T.len()] + bro.getName() + this.m.TrainingDescriptors.A[r % this.m.TrainingDescriptors.A.len()];
+		}
+		else {
+			return bro.getName() + extraTrainingDescriptors[r - numberOfMTA];
+		}
+	}
+
 	function getTrained( bro )
 	{
 		local inTraining = ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining);
@@ -305,78 +323,52 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local originalXP = bro.m.XP;
 		bro.addXP(XPbonus);
 		bro.updateLevel();
-		local mod = this.getModifiers();
-		local adjectives = [
-			bro.getName() + " learned a new move",
-			bro.getName() + " finally nails the fancy parry they have been been practicing",
-			bro.getName() + " invents an overly showy move",
-			bro.getName() + " finds a stance that feels more natural",
-			bro.getName() + " learns how to adjust the new armor so it fits better",
-			bro.getName() + " has perfected a new skill in practice",
-			bro.getName() + " had their ego bruised and wants an outlet for frustration",
-			bro.getName() + " left the training dummy as nothing more than a pile of splinters",
-			bro.getName() + " has practiced a skill so much it has become second nature",
-			bro.getName() + " feels more comfortable with their weapon",
-			bro.getName() + " sets a new personal best in training"
+		local extraTrainingDescriptors = [
+			" learned a new move",
+			" finally nails the fancy parry they have been been practicing",
+			" invents an overly showy move",
+			" finds a stance that feels more natural",
+			" learns how to adjust the new armor so it fits better",
+			" has perfected a new skill in practice",
+			" had their ego bruised and wants an outlet for frustration",
+			" left the training dummy as nothing more than a pile of splinters",
+			" has practiced a skill so much it has become second nature",
+			" feels more comfortable with their weapon",
+			" sets a new personal best in training"
 		];
-		local text = "After practicing ";
-		local M = [
-			"Short Guard ",
-			"Upper Snake Guard ",
-			"Bastard Cross ",
-			"The Middle Iron Door ",
-			"thrusts ",
-			"trips ",
-			"grapples ",
-			"foot passing ",
-			"striking ",
-			"vambrace traps ",
-			"a pommel bash ",
-			"half sword ",
-			"The Thumb Scissor ",
-			"jabs ",
-			"hand to hand combat "
-		];
-
-		foreach( m in M )
-		{
-			local text1 = text + m;
-			local T = [
-				"for hours, ",
-				"all day, ",
-				"for several hours, ",
-				"until exhaustion, ",
-				"as long as possible, "
-			];
-
-			foreach( t in T )
-			{
-				local text2 = text1 + t + bro.getName() + " ";
-				local A = [
-					"feels ready for a fight",
-					"needs a real opponent",
-					"is prepared for battle",
-					"is keen to try it out",
-					"is ready for a scrap"
-				];
-
-				foreach( a in A )
-				{
-					local text3 = text2 + a;
-					adjectives.push(text3);
-				}
-			}
-		}
 
 		if (bro.getLevel() < 3)
 		{
-			adjectives.push(bro.getName() + " figures out what end of the weapon to hold");
-			adjectives.push(bro.getName() + " remembers that you can move your legs as well as your arms");
+			extraTrainingDescriptors.push(" figures out what end of the weapon to hold");
+			extraTrainingDescriptors.push(" remembers that you can move your legs as well as your arms");
 		}
 
 		this.m.Results.push({
 			Icon = "ui/icons/xp_received.png",
-			Text = adjectives[this.Math.rand(0, adjectives.len() - 1)] + " and gains [color=" + this.Const.UI.Color.PositiveEventValue + "]" + (bro.m.XP - originalXP) + "[/color] XP."
+			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains [color=" + this.Const.UI.Color.PositiveEventValue + "]" + (bro.m.XP - originalXP) + "[/color] XP."
+		});
+		return true;
+	}
+
+	function getTrainedAfter11( bro )
+	{
+		if (bro.getSkills().hasEffect(::Legends.Effect.Trained)) {
+			return;
+		}
+		local effect = ::Legends.Effects.grant(bro, ::Legends.Effect.Trained, function(_effect) {
+			_effect.m.Duration = 1;
+			_effect.m.XPGainMult = 1.1;
+			_effect.m.Icon = "skills/status_effect_75.png";
+		}.bindenv(this));
+		local extraTrainingDescriptors = [
+			" learned how to get most of the next battle",
+			" finds a stance that can improve his experience in the next battle",
+			" is ready to learn more in the next battle"
+		];
+
+		this.m.Results.push({
+			Icon = effect.getIcon(),
+			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains a [color=" + this.Const.UI.Color.PositiveEventValue + "]10%[/color] xp increase for the next battle."
 		});
 		return true;
 	}
@@ -384,16 +376,16 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function getFailed( _bro )
 	{
 		this.m.Results.push({
-			Icon = "", //Should get an icon for failed training
+			Icon = "ui/tooltips/negative.png", //Should get an icon for failed training
 			Text = _bro.getName() + " didn't learn anything useful."
 		});
 	}
 
-	function getBreak( _bro )
+	function getBreak( _bro, cause )
 	{
 		this.m.Results.push({
-			Icon = "", //Should get an icon for failed training
-			Text = _bro.getName() + " was recovering from an injury so didn't train."
+			Icon = "ui/icons/days_wounded.png", //Should get an icon for failed training
+			Text = _bro.getName() + " was " + cause + " and didn't train."
 		});
 	}
 
@@ -527,9 +519,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				continue;
 			}
 
-			if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury))
-			{
-				this.getBreak(bro);
+			if (bro.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury)) {
+				this.getBreak(bro, "recovering from an injury");
+				continue;
+			} else if(bro.getSkills().hasSkillOfType(::Const.SkillType.SemiInjury)) {
+				this.getBreak(bro, bro.getSkills().getAllSkillsOfType(::Const.SkillType.SemiInjury)[0].getName().tolower());
 				continue;
 			}
 
@@ -581,86 +575,12 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				this.getInjury(bro);
 			}
 
-			local r = this.Math.min(injuryMin, 4 * this.Math.pow(this.m.Camp.getCampTimeHours(), 0.5) - bro.getLevel());
-
 			if (this.Math.rand(1, 100) < r)
 			{
 				::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted);
 			}
 
 		}
-	}
-	function getTrainedAfter11( bro )
-	{
-		if (bro.getSkills().hasEffect(::Legends.Effect.Trained))
-		{
-			return;
-		}
-		local effect = ::Legends.Effects.grant(bro, ::Legends.Effect.Trained, function(_effect) {
-			_effect.m.Duration = 1;
-			_effect.m.XPGainMult = 1.1;
-			_effect.m.Icon = "skills/status_effect_75.png";
-		}.bindenv(this));
-		local mod = this.getModifiers();
-		local adjectives = [
-			bro.getName() + " learned how to get most of the next battle",
-			bro.getName() + " finds a stance that can improve his expirience in the next battle",
-			bro.getName() + " is ready to learn more in the next battle",
-		];
-		local text = "After practicing ";
-		local M = [
-			"Short Guard ",
-			"Upper Snake Guard ",
-			"Bastard Cross ",
-			"The Middle Iron Door ",
-			"thrusts ",
-			"trips ",
-			"grapples ",
-			"foot passing ",
-			"striking ",
-			"vambrace traps ",
-			"a pommel bash ",
-			"half sword ",
-			"The Thumb Scissor ",
-			"jabs ",
-			"hand to hand combat "
-		];
-
-		foreach( m in M )
-		{
-			local text1 = text + m;
-			local T = [
-				"for hours, ",
-				"all day, ",
-				"for several hours, ",
-				"until exhaustion, ",
-				"as long as possible, "
-			];
-
-			foreach( t in T )
-			{
-				local text2 = text1 + t + bro.getName() + " ";
-				local A = [
-					"feels ready for a fight",
-					"needs a real opponent",
-					"is prepared for battle",
-					"is keen to try it out",
-					"is ready for a scrap"
-				];
-
-				foreach( a in A )
-				{
-					local text3 = text2 + a;
-					adjectives.push(text3);
-				}
-			}
-		}
-
-		this.m.Results.push({
-			Icon = effect.getIcon(),
-			Text = adjectives[this.Math.rand(0, adjectives.len() - 1)] + " and gains a [color=" + this.Const.UI.Color.PositiveEventValue + "]10%[/color] xp increase for the next battle."
-		});
-		return true;
 	}
 
 	function onClicked( _campScreen )

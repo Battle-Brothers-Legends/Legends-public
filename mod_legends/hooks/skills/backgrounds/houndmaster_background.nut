@@ -96,7 +96,7 @@
 				id = 14,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "Wardogs unleashed by this character will start at confident morale."
+				text = "Wardogs unleashed by this character will start at confident morale"
 			}
 		);
 		return ret;

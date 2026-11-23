@@ -31,7 +31,7 @@ this.legend_peasant <- this.inherit("scripts/entity/tactical/legend_randomized_u
 		this.getSprite("socket").setBrush("bust_base_militia");
 		// if(::Legends.isLegendaryDifficulty())
 		// 	{
-		// 	this.m.Hitpoints = b.Hitpoints * 1.5;
+		// 	b.Hitpoints *= 1.5;
 		// 	::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		// 	this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		// 	}

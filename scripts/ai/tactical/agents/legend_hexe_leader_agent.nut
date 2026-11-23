@@ -1,7 +1,7 @@
 this.legend_hexe_leader_agent <- this.inherit("scripts/ai/tactical/agent", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.agent.create();
 		this.m.ID = this.Const.AI.Agent.ID.Hexe_leader;
 		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageRanged] = 0.9;
@@ -34,8 +34,7 @@ this.legend_hexe_leader_agent <- this.inherit("scripts/ai/tactical/agent", {
 		this.m.Properties.PreferCarefulEngage = true;
 	}
 
-	function onAddBehaviors()
-	{
+	function onAddBehaviors() {
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_engage_ranged"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_attack_default"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_charm"));
@@ -45,18 +44,14 @@ this.legend_hexe_leader_agent <- this.inherit("scripts/ai/tactical/agent", {
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_use_potion"));
 	}
 
-	function onRoundStarted()
-	{
+	function onRoundStarted() {
 		this.agent.onRoundStarted();
 
-		if (this.Time.getRound() == 1)
-		{
+		if (this.Time.getRound() == 1) {
 			local allies = this.Tactical.Entities.getInstancesOfFaction(this.getActor().getFaction());
 
-			foreach( a in allies )
-			{
-				if (a.getType() != this.Const.EntityType.Hexe && a.getType() != this.Const.EntityType.LegendHexeLeader && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed) && !a.getSkills().hasEffect(::Legends.Effect.Charmed))
-				{
+			foreach (a in allies) {
+				if (a.getType() != this.Const.EntityType.Hexe && a.getType() != this.Const.EntityType.LegendHexeLeader && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed)	&& !a.getSkills().hasEffect(::Legends.Effect.Charmed) && !a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))	{
 					::Legends.Effects.grant(a, ::Legends.Effect.FakeCharmed);
 				}
 			}
@@ -64,4 +59,3 @@ this.legend_hexe_leader_agent <- this.inherit("scripts/ai/tactical/agent", {
 	}
 
 });
-

@@ -38,16 +38,22 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Increases fatigue use of all skills by [color=%positive%]50%[/color]"
+				text = "Increases fatigue use of all attack skills by [color=%positive%]75%[/color]"
 			},
 			{
 				id = 8,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = "Increases Action Point cost of all attack skills by [color=%positive%]1[/color]"
+			},
+			{
+				id = 9,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
 				text = "Chance on each attack to ignore armor completely, the chance is [color=%positive%]50%[/color] of the Initiative difference between you and the target as long as you are faster"
 			},
 			{
-				id = 9,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "As long as you are faster than the target, any attack that inflicts at least [color=%positive%]1[/color] point of damage to Hitpoints triggers a morale check for the opponent with a penalty equal to [color=%negative%]20%[/color] of the Initiative difference between you and the target"
@@ -123,9 +129,17 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		return bonus;
 	}
 
-	function onAfterUpdate(_properties)
-	{
-		_properties.FatigueEffectMult *= 1.5;
+	function onUpdate(_properties) {
+		local skills = [];
+		foreach (skill in this.getContainer().queryActives()) {
+			if (skill.isAttack()) {
+				_properties.SkillCostAdjustments.push({
+					ID = skill.m.ID,
+					APAdjust = 1,
+					FatigueMultAdjust = 1.75
+				});
+			}
+		}
 	}
 
 	function onCombatStarted()

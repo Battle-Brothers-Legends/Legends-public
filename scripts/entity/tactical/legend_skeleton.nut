@@ -179,26 +179,25 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		}
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath( _killer, _skill, _tile, _fatalityType ) {		
+		local appearance = this.getItems().getAppearance();
+		local targetScale = 0.9;
 		local flip = false;
 		this.m.IsCorpseFlipped = false;
 		local isResurrectable = false;
-		local appearance = this.getItems().getAppearance();
-		local sprite_body = this.getSprite("body");
-		local sprite_head = this.getSprite("head");
-		local sprite_face = this.getSprite("face");
-		local sprite_hair = this.getSprite("hair");
-		local sprite_beard = this.getSprite("beard");
-		local sprite_beard_top = this.getSprite("beard_top");
 		local corpse = clone this.Const.Corpse;
-
-		if (_tile != null)
-		{
+		
+		if (_tile != null) {
+			local sprite_body = this.getSprite("body");
+			local sprite_head = this.getSprite("head");
+			local sprite_face = this.getSprite("face");
+			local sprite_hair = this.getSprite("hair");
+			local sprite_beard = this.getSprite("beard");
+			local sprite_beard_top = this.getSprite("beard_top");
 			local decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 			decal.Color = sprite_body.Color;
 			decal.Saturation = sprite_body.Saturation;
-			decal.Scale = 0.9;
+			decal.Scale = targetScale;
 
 			if (appearance.CorpseArmor != "")
 			{
@@ -214,17 +213,38 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				}
 
 				local decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
-				decal.Scale = 0.9;
+				decal.Scale = targetScale;
 			}
+
+			local helmetLowerLayers = [
+					"HelmetLayerVanityLowerCorpse",
+					"HelmetLayerVanity2LowerCorpse"
+			];
+			local helmetLayers = [
+					"HelmetCorpse",
+					"HelmetLayerHelmLowerCorpse",
+					"HelmetLayerTopLowerCorpse",
+					"HelmetLayerHelmCorpse",
+					"HelmetLayerTopCorpse",
+					"HelmetLayerVanityCorpse",
+					"HelmetLayerVanity2Corpse"
+			];
 
 			if (_fatalityType != this.Const.FatalityType.Decapitated)
 			{
+				foreach (layer in helmetLowerLayers) {
+					if (appearance[layer] != "") {
+						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+							decal.Scale = targetScale;
+					}
+				}
+
 				if (!appearance.HideCorpseHead)
 				{
 					local decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
-					decal.Scale = 0.9;
+					decal.Scale = targetScale;
 				}
 
 				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
@@ -232,14 +252,14 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 					local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_beard.Color;
 					decal.Saturation = sprite_beard.Saturation;
-					decal.Scale = 0.9;
+					decal.Scale = targetScale;
 
 					if (sprite_beard_top.HasBrush)
 					{
 						local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 						decal.Color = sprite_beard.Color;
 						decal.Saturation = sprite_beard.Saturation;
-						decal.Scale = 0.9;
+						decal.Scale = targetScale;
 					}
 				}
 
@@ -248,7 +268,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 					local decal = _tile.spawnDetail(sprite_face.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_face.Color;
 					decal.Saturation = sprite_face.Saturation;
-					decal.Scale = 0.9;
+					decal.Scale = targetScale;
 				}
 
 				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
@@ -256,18 +276,26 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 					local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_hair.Color;
 					decal.Saturation = sprite_hair.Saturation;
-					decal.Scale = 0.9;
+					decal.Scale = targetScale;
 				}
 
-				if (appearance.HelmetCorpse != "")
-				{
-					local decal = _tile.spawnDetail(appearance.HelmetCorpse, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
-					decal.Scale = 0.9;
+				foreach (layer in helmetLayers) {
+					if (appearance[layer] != "") {
+						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						decal.Scale = targetScale;
+					}
 				}
 			}
 			else if (_fatalityType == this.Const.FatalityType.Decapitated)
 			{
 				local layers = [];
+
+				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
+				//foreach (layer in helmetLowerLayers) {
+				//	if (appearance[layer] != "") {
+				//		layers.push(appearance[layer]);
+				//	}
+				//}
 
 				if (!appearance.HideCorpseHead)
 				{
@@ -289,10 +317,11 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 					layers.push(sprite_hair.getBrush().Name + "_dead");
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					layers.push(appearance.HelmetCorpse);
-				}
+				//foreach (layer in helmetLayers) {
+				//	if (appearance[layer] != "") {
+				//		layers.push(appearance[layer]);
+				//	}
+				//}
 
 				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
 				{
@@ -301,12 +330,18 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 
 				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
 				local idx = 0;
+				//foreach (layer in helmetLowerLayers) {
+				//	if (appearance[layer] != "") {
+				//		decap[idx].Scale = targetScale;
+				//		decap[idx].setBrightness(targetBrightness);
+				//		idx = ++idx;
+				//	}
+				//}
 
-				if (!appearance.HideCorpseHead)
-				{
+				if (!appearance.HideCorpseHead)	{
 					decap[idx].Color = sprite_head.Color;
 					decap[idx].Saturation = sprite_head.Saturation;
-					decap[idx].Scale = 0.9;
+					decap[idx].Scale = targetScale;
 					decap[idx].setHorizontalFlipping(true);
 					idx = ++idx;
 				}
@@ -315,14 +350,14 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				{
 					decap[idx].Color = sprite_beard.Color;
 					decap[idx].Saturation = sprite_beard.Saturation;
-					decap[idx].Scale = 0.9;
+					decap[idx].Scale = targetScale;
 					decap[idx].setHorizontalFlipping(true);
 					idx = ++idx;
 				}
 
 				if (!appearance.HideCorpseHead)
 				{
-					decap[idx].Scale = 0.9;
+					decap[idx].Scale = targetScale;
 					decap[idx].setHorizontalFlipping(true);
 					idx = ++idx;
 				}
@@ -331,23 +366,24 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				{
 					decap[idx].Color = sprite_hair.Color;
 					decap[idx].Saturation = sprite_hair.Saturation;
-					decap[idx].Scale = 0.9;
+					decap[idx].Scale = targetScale;
 					decap[idx].setHorizontalFlipping(true);
 					idx = ++idx;
 				}
 
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					decap[idx].Scale = 0.9;
-					decap[idx].setHorizontalFlipping(true);
-					idx = ++idx;
-				}
+				//foreach (layer in helmetLayers) {
+				//	if (appearance[layer] != "") {
+				//		decap[idx].Scale = targetScale;
+				//		decap[idx].setBrightness(targetBrightness);
+				//		idx = ++idx;
+				//	}
+				//}
 
 				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
 				{
 					decap[idx].Color = sprite_beard.Color;
 					decap[idx].Saturation = sprite_beard.Saturation;
-					decap[idx].Scale = 0.9;
+					decap[idx].Scale = targetScale;
 					decap[idx].setHorizontalFlipping(true);
 				}
 			}

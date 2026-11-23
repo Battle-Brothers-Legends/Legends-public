@@ -61,7 +61,8 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 			Enemy = [],
 			Class = [],
 			Profession = [
-				::Const.Perks.RepairProfessionTree
+				::Const.Perks.RepairProfessionTree,
+				::Const.Perks.CaravaneerProfessionTree
 			],
 			Magic = [
 				::Const.Perks.PhilosophyMagicTree,

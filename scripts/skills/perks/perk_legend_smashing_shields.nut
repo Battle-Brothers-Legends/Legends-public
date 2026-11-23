@@ -1,6 +1,6 @@
 this.perk_legend_smashing_shields <- this.inherit("scripts/skills/skill", {
 	m = {
-		Modifier = 2.00
+		Modifier = 1.50
 	},
 	function create()
 	{

@@ -109,10 +109,7 @@
 		}
 
 		// Allow equipping mainhand weapons in offhand slot
-		if (_item.getSlotType() == ::Const.ItemSlot.Mainhand
-			&& _item.getBlockedSlotType() == null)
-		{
-
+		if (_item.getSlotType() == ::Const.ItemSlot.Mainhand && _item.getBlockedSlotType() == null)	{
 			local mh = this.getItemAtSlot(::Const.ItemSlot.Mainhand);
 			local oh = this.getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (mh != null && oh == null && !this.hasBlockedSlot(::Const.ItemSlot.Offhand)) {
@@ -138,6 +135,19 @@
 		local result = equip(_item);
 		local slot = _item.getSlotType();
 		if (result && (slot == ::Const.ItemSlot.Mainhand || slot == ::Const.ItemSlot.Offhand)) {
+			if (_item.getCurrentSlotType() == ::Const.ItemSlot.Mainhand) {
+                local oh = this.getItemAtSlot(::Const.ItemSlot.Offhand);
+                
+                if (oh != null && oh.isItemType(::Const.Items.ItemType.Weapon)) {
+                    oh.onUnequip();
+                    oh.onEquip();
+                    
+                    if (!::Legends.S.isEntityNullOrDead(this.m.Actor)) {
+                        this.m.Actor.getSkills().update();
+						this.m.Actor.setDirty(true);
+                    }
+                }
+            }
 			this.updateDualWield();
 		}
 

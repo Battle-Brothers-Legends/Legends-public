@@ -491,50 +491,56 @@
 		tooltip.extend(::ModJimmysTooltips.modGetEquipmentLootChance(_entity, _targetedWithSkill, 700));
 	}
 
-	if(::ModJimmysTooltips.Mod.ModSettings.getSetting("Stats").getValue()){
+	if(::ModJimmysTooltips.Mod.ModSettings.getSetting("Stats").getValue()) {
 		local properties = _entity.getCurrentProperties();
 		tooltip.push({
 			id = 600,
 			type = "hint",
 			icon = "ui/icons/melee_skill.png",
-			text = "[color=%positive%]"+properties.getMeleeSkill()+"[/color] Melee Skill"
+			text = "[color=%positive%]" + properties.getMeleeSkill() + "[/color] Melee Skill"
 		});
 		tooltip.push({
 			id = 601,
 			type = "hint",
 			icon = "ui/icons/melee_defense.png",
-			text = "[color=%positive%]"+properties.getMeleeDefense()+"[/color] Melee Defense"
+			text = "[color=%positive%]" + properties.getMeleeDefense() + "[/color] Melee Defense"
 		});
 		tooltip.push({
 			id = 602,
 			type = "hint",
 			icon = "ui/icons/ranged_skill.png",
-			text = "[color=%positive%]"+properties.getRangedSkill()+"[/color] Ranged Skill"
+			text = "[color=%positive%]" + properties.getRangedSkill() + "[/color] Ranged Skill"
 		});
 		tooltip.push({
 			id = 603,
 			type = "hint",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=%positive%]"+properties.getRangedDefense()+"[/color] Ranged Defense"
+			text = "[color=%positive%]" + properties.getRangedDefense() + "[/color] Ranged Defense"
 		});
 		tooltip.push({
 			id = 604,
 			type = "hint",
 			icon = "ui/icons/initiative.png",
-			text = "[color=%positive%]"+_entity.getInitiative()+"[/color] Initiative"
+			text = "[color=%positive%]" + _entity.getInitiative() + "[/color] Initiative"
 		});
 		tooltip.push({
 			id = 605,
 			type = "hint",
 			icon = "ui/icons/bravery.png",
-			text = "[color=%positive%]"+_entity.getBravery()+"[/color] Resolve"
+			text = "[color=%positive%]" + _entity.getBravery() + "[/color] Resolve"
+		});
+		tooltip.push({
+			id = 606,
+			type = "hint",
+			icon = "ui/icons/fatigue.png",
+			text = "[color=%positive%]" + properties.FatigueRecoveryRate + "[/color] Fatigue Recovery per Turn"
 			divider = "bottom" // add a diviver
 		});
 	}
 
 	if (!::Tactical.Entities.getFlags().get("ModJimmysTooltips_ShowLootChance"))
 		tooltip.push({
-			id = 606,
+			id = 607,
 			type = "hint",
 			icon = "ui/skin/icon_wait.png",
 			text = "Press \""
@@ -543,7 +549,7 @@
 		});
 	else
 		tooltip.push({
-			id = 606,
+			id = 607,
 			type = "hint",
 			icon = "ui/skin/icon_wait.png",
 			text = "Press \""
@@ -583,11 +589,14 @@ local function colorizeInGreen( _text )
 		if (!_item.m.IsDroppedAsLoot)
 			continue;
 
+		local upgradeIconPaths = ::ModJimmysTooltips.getItemIconPaths(_item);
+
 		local ret = {
 			id = _startID,
 			type = "hint",
-			icon = checkForIcon("ui/items/", _item),
-			text = _item.getName()
+			icon = upgradeIconPaths[0],
+			icons = upgradeIconPaths
+			text = _item.makeName()
 		};
 
 		switch(_item.getSlotType())
@@ -640,6 +649,24 @@ local function colorizeInGreen( _text )
 		return "ui/items/supplies/legend_placeholder.png";
 	else
 		return toAdd + _item.getIcon();
+}
+
+::ModJimmysTooltips.getItemIconPaths <- function (_item) {
+	local paths = [];
+	local baseIcon = ::ModJimmysTooltips.checkForIcon("ui/items/", _item);
+	paths.push(baseIcon);
+
+	local slot = _item.getSlotType();
+	if (slot == ::Const.ItemSlot.Body || slot == ::Const.ItemSlot.Head) {
+		if(_item.getUpgrades().len() > 0){
+			foreach (u in _item.m.Upgrades) {
+				 if (u != null && u.getIcon() != "" && u.getIcon().find("rune_sigils") == null) {
+					paths.push("ui/items/" + u.getIcon());
+				}
+			}
+		}
+	}
+	return paths;
 }
 
 ::ModJimmysTooltips.modGetStandardLootChance <- function( _tooltip, _item, _isArmor = false )
@@ -738,7 +765,7 @@ local function colorizeInGreen( _text )
 		return _tooltip;
 
 	local condition = _item.getRepair(), conditionMax = _item.getRepairMax();
-	local isValid = condition > 30 && condition / conditionMax >= 0.25;
+	local isValid = condition >= 5 && condition / conditionMax >= 0.2;
 	local conditionExpected = condition;
 
 	if (_expectedDamage != null)

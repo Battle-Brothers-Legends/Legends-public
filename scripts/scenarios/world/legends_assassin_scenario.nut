@@ -154,16 +154,18 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 		}
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		if (_bro.isStabled())
+			return;
+		if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
 		{
-			bro.worsenMood(1.0, "Is uncomfortable with joining an assassin");
+			_bro.worsenMood(1.0, "Is uncomfortable with joining an assassin");
 		}
-		else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		else if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
 		{
-			bro.improveMood(1.0, "Is excited at becoming part of outlaw company");
- 			bro.getSprite("socket").setBrush("bust_base_assassin"); //custom base
+			_bro.improveMood(1.0, "Is excited at becoming part of outlaw company");
+ 			_bro.getSprite("socket").setBrush("bust_base_assassin"); //custom base
 		}
 	}
 

@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/large_steppe_village", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/large_steppe_village", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			"apprentice_background",
@@ -52,7 +50,8 @@
 			"caravan_hand_southern_background",
 			"peddler_southern_background",
 			"beggar_southern_background",
-			"cripple_southern_background"
+			"cripple_southern_background",
+			"executioner_background"
 		];
 		this.m.StablesList = [
 			"legend_donkey_background",
@@ -60,8 +59,7 @@
 			"legend_horse_destrier",
 			"legend_horse_courser"
 		];
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_nomad")
-		{
+		if (this.World.Assets.getOrigin().getID() == "scenario.legends_nomad") {
 			this.m.DraftList.push("nomad_background");
 			this.m.DraftList.push("nomad_background");
 			this.m.DraftList.push("nomad_background");
@@ -73,29 +71,22 @@
 		}
 	}
 
-	o.onBuild = function ()
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
+		if (this.Math.rand(1, 100) <= 50) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/training_hall_building"));
-		}
-		else if (this.Math.rand(1, 100) <= 50)
-		{
+		} else if (this.Math.rand(1, 100) <= 50) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-		}
-		else
-		{
+		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 60)
-		{
+		if (this.Math.rand(1, 100) <= 60) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/wooden_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -110,9 +101,7 @@
 				this.Const.World.TerrainType.Hills,
 				this.Const.World.TerrainType.Tundra
 			], [], 1, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/wooden_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,

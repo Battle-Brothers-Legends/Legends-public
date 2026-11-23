@@ -58,31 +58,32 @@
 		return this.skill.isHidden();
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this && _targetEntity != null)
-		{
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		}
+	}
+
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill == this && _targetEntity != null) {
 			local targetStatus = _targetEntity.getSkills();
 			local bonus = false;
 
-			if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsStunned)
+			if (::Legends.S.isEntityMovementDisabled(_targetEntity))
 				bonus = true;
 
-			foreach ( skill in this.m.ApplicableSkills)
-			{
-				if (targetStatus.hasEffect(skill))
-				{
+			foreach ( skill in this.m.ApplicableSkills) {
+				if (targetStatus.hasEffect(skill)) {
 					bonus = true;
 				}
 			}
 
-			if (bonus && this.m.DeathblowBonus && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
-			{
+			if (bonus && this.m.DeathblowBonus && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner)) {
 				_properties.DamageTotalMult *= 1.5;
 				_properties.DamageDirectAdd += 0.3;
 			}
-			else if (bonus)
-			{
+			else if (bonus) {
 				_properties.DamageTotalMult *= 1.33;
 				_properties.DamageDirectAdd += 0.2;
 			}

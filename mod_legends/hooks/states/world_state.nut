@@ -97,39 +97,38 @@
 	local loadCampaign = o.loadCampaign;
 	o.loadCampaign = function( _campaignFileName )
 	{
-		if (::Time.getRealTimeF() - m.CampaignLoadTime < 4.0)
+		if (::Time.getRealTimeF() - this.m.CampaignLoadTime < 4.0)
 			return;
 
-		m.AppropriateTimeToRecalc = 0;
+		this.m.AppropriateTimeToRecalc = 0;
 		loadCampaign(_campaignFileName);
 	}
 
 	o.onCalculatePlayerPartyModifiers <- function()
 	{
-		m.AppropriateTimeToRecalc = 1;
-		getPlayer().calculateModifiers(); //Leonion's fix
+		this.m.AppropriateTimeToRecalc = 1;
+		this.getPlayer().calculateModifiers(); //Leonion's fix
 	}
 
-    // Defer starting a new campaign until CampaignSettings are available
-    o.m.LegendsDeferredCampaignStart <- false;
-    local startNewCampaign = o.startNewCampaign;
-    o.startNewCampaign = function()
-    {
-        if (this.m.CampaignSettings == null || !("Seed" in this.m.CampaignSettings))
-        {
-            ::logError("Legends: CampaignSettings missing or incomplete (no Seed). Deferring campaign start.");
-            this.m.LegendsDeferredCampaignStart = true;
-            return;
-        }
+	o.m.LegendsDeferredCampaignStart <- false;
+	local startNewCampaign = o.startNewCampaign;
+	o.startNewCampaign = function()
+	{
+		if (this.m.CampaignSettings == null || !("Seed" in this.m.CampaignSettings))
+		{
+			::logError("Legends: CampaignSettings missing or incomplete (no Seed). Deferring campaign start.");
+			this.m.LegendsDeferredCampaignStart = true;
+			return;
+		}
 
-        m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
-        ::Legends.IsStartingNewCampaign = true;
-        startNewCampaign();
-        ::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
-        ::World.Crafting.resetAllBlueprints(); //
-        onCalculatePlayerPartyModifiers();
-        ::Legends.IsStartingNewCampaign = false;
-    }
+		this.m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
+		::Legends.IsStartingNewCampaign = true;
+		startNewCampaign();
+		::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
+		::World.Crafting.resetAllBlueprints(); //
+		this.onCalculatePlayerPartyModifiers();
+		::Legends.IsStartingNewCampaign = false;
+	}
 
 	o.showIntroductionScreen <- function ( _tag = null )
 	{
@@ -174,13 +173,13 @@
 	{
 		local friendlyCaravanParties = [];
 
-		foreach( party in m.PartiesInCombat )
+		foreach( party in this.m.PartiesInCombat )
 		{
 			if (party.getTroops().len() > 0
 				&& party.isAlive()
 				&& party.isAlliedWithPlayer()
 				&& party.getFlags().get("IsCaravan")
-				&& m.EscortedEntity == null
+				&& this.m.EscortedEntity == null
 			) {
 				friendlyCaravanParties.push(party);
 				party.getFlags().set("IsCaravan", false); // set to false so the check in the original 'onCombatFinished' will fail
@@ -228,7 +227,7 @@
 				continue;
 			}
 
-			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 			{
 				continue;
 			}
@@ -253,7 +252,7 @@
 				continue;
 			}
 
-			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 			{
 				continue;
 			}
@@ -513,6 +512,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(3.0);
 			::World.setSpeedMult(3.0);
 			this.logDebug("World Speed set to x3.0");
 			return true;
@@ -528,6 +528,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(4.0);
 			::World.setSpeedMult(4.0);
 			this.logDebug("World Speed set to x4.0");
 			return true;
@@ -543,6 +544,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(5.0);
 			::World.setSpeedMult(5.0);
 			this.logDebug("World Speed set to x5.0");
 			return true;
@@ -558,6 +560,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(6.0);
 			::World.setSpeedMult(6.0);
 			this.logDebug("World Speed set to x6.0");
 			return true;
@@ -573,6 +576,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(7.0);
 			::World.setSpeedMult(7.0);
 			this.logDebug("World Speed set to x7.0");
 			return true;
@@ -588,6 +592,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(8.0);
 			::World.setSpeedMult(8.0);
 			this.logDebug("World Speed set to x8.0");
 			return true;
@@ -603,6 +608,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(9.0);
 			::World.setSpeedMult(9.0);
 			this.logDebug("World Speed set to x9.0");
 			return true;
@@ -1035,6 +1041,12 @@
 				return true;
 
 			case 3:
+				if (!this.m.MenuStack.hasBacksteps())
+				{
+					this.setVeryFastTime();
+					break;
+				}
+
 				if (!this.m.EventScreen.isVisible() || this.m.EventScreen.isAnimating())
 				{
 					break;
@@ -1353,7 +1365,7 @@
 					continue;
 				}
 
-				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 				{
 					continue;
 				}
@@ -1387,7 +1399,7 @@
 					continue;
 				}
 
-				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 				{
 					continue;
 				}
@@ -1503,7 +1515,7 @@
 				else
 				{
 					entities.push({
-						Name =  getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i],
+						Name = this.getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i],
 						Icon = this.Const.EntityIcon[i],
 						Overlay = null
 					});
@@ -1602,6 +1614,6 @@
 
 		::World.Camp.clear();
 		::World.Camp.onDeserialize(_in);
-		onCalculatePlayerPartyModifiers();
+		this.onCalculatePlayerPartyModifiers();
 	}
 });

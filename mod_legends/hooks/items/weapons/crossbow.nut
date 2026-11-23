@@ -23,10 +23,10 @@
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendStrafingRun);
+		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
 			_skill.m.IsRangedKnockOut = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 	}
 
 	o.onCombatFinished = function ()

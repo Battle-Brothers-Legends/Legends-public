@@ -107,7 +107,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		onArmorHitSounds[this.Const.BodyPart.Head] = this.Const.Sound.ArmorLeatherImpact;
 		this.getFlags().add("ghoul");
 		this.getFlags().add("undead");
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/ghoul_agent");
+		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_skin_ghoul_agent");
 		this.m.AIAgent.setActor(this);
 
 		local rolls = ::Legends.S.extraLootChance(1);

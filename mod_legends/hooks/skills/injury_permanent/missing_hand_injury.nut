@@ -21,37 +21,37 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 			return;
 		}
 		local actor = this.getContainer().getActor();
-		local item = actor.getOffhandItem();
-		if (item == null)
-			item = actor.getMainhandItem();
+		local itemToUnequip = null;
+		local oh = actor.getOffhandItem();
+		local mh = actor.getMainhandItem();
+		if (oh != null) { // unequip offhand
+			itemToUnequip = oh;
+		}
+		else if (mh != null && mh.getBlockedSlotType() == ::Const.ItemSlot.Offhand) { // unequip 2handers
+			itemToUnequip = mh;
+		}
 
-		if (item == null)
-			return; // no weps case
-
-		if (!(item.getBlockedSlotType() == ::Const.ItemSlot.Offhand || item.getCurrentSlotType() == ::Const.ItemSlot.Offhand))
-			return; // some items do not have offhand as blocked even when they're offhand like shields
-
-		if (item && (!actor.isPlacedOnMap() || ::FU.HasTacticalState() && ::FU.IsBattleEnded()))
+		if (itemToUnequip != null && (!actor.isPlacedOnMap() || ::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 		{   // in case outside battle
-			items.unequip(item);
+			items.unequip(itemToUnequip);
 			if (items.hasEmptySlot(::Const.ItemSlot.Bag))
 			{
-				items.addToBag(item);
+				items.addToBag(itemToUnequip);
 			}
 			else if (this.World.Assets.getStash().hasEmptySlot())
 			{
-				this.World.Assets.getStash().add(item);
+				this.World.Assets.getStash().add(itemToUnequip);
 			}
 			else
 			{
 				this.World.Assets.getStash().makeEmptySlots(1);
-				this.World.Assets.getStash().add(item);
+				this.World.Assets.getStash().add(itemToUnequip);
 			}
 		}
-		else if (item)
+		else if (itemToUnequip)
 		{   // during battle
-			items.unequip(item);
-			item.drop(actor.getTile());
+			items.unequip(itemToUnequip);
+			itemToUnequip.drop(actor.getTile());
 		}
 
 		items.getData()[::Const.ItemSlot.Offhand][0] = -1;

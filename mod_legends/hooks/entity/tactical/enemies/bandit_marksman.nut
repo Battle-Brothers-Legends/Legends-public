@@ -36,7 +36,7 @@
 			b.Vision = 8;
 		}
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 40)
+		if (!::FU.InScenario() && this.World.getTime().Days >= this.Const.World.Scaling.Brigands.MarksmanStatIncreaseDay)
 		{
 			b.RangedDefense += 5;
 		}
@@ -44,7 +44,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 20)
+		if (!::FU.InScenario() && this.World.getTime().Days >= this.Const.World.Scaling.Brigands.MarksmanBullseyeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}

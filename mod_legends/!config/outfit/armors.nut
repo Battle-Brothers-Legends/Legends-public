@@ -1951,7 +1951,7 @@
 		Attachments = [
 			[4, "armor_upgrades/legend_additional_padding_upgrade"],
 			[4, "armor_upgrades/legend_barbarian_horn_upgrade"],
-			[1, "armor_upgrades/legend_armor_skull_chain", 1]
+			[1, "armor_upgrades/legend_armor_skull_chain_upgrade"]
 		],
 	}]
 };
@@ -1986,7 +1986,7 @@
 		],
 		Attachments = [
 			[9, ""],
-			[1, "armor_upgrades/legend_barbarian_horn"]
+			[1, "armor_upgrades/legend_barbarian_horn_upgrade"]
 		],
 	}]
 };
@@ -2848,9 +2848,9 @@
 		Cloth = [
 			[1, "cloth/legend_armor_knightly_robe", 7]], // 60 -2 450
 		Chain = [
-			[1, "chain/legend_armor_mail_shirt_simple", 1]], // 25 -3 250
+			[1, "chain/legend_armor_mail_shirt_simple"]], // 25 -3 250
 		Plate = [
-			[1, "plate/legend_armor_scale_shirt", 1]], // 85 -10 1750
+			[1, "plate/legend_armor_scale_shirt"]], // 85 -10 1750
 		Cloak = [
 			[1, "cloak/legend_armor_decorative_hood", 8],
 			[1, "cloak/legend_armor_shoulder_cloth", 2]], // 15 -1 50
@@ -2955,7 +2955,7 @@
 		Plate = [
 			[1, "plate/legend_armor_leather_brigandine_hardened_full", 1], // 140 -19 3000
 			[1, "plate/legend_armor_leather_riveted"], // 95 -13 900
-			[1, "plate/legend_armor_scale_shirt", 1], // 85 -10 1750
+			[1, "plate/legend_armor_scale_shirt"], // 85 -10 1750
 			[1, "plate/legend_armor_leather_brigandine", 1]], // 65 -8 750
 		Cloak = [
 			[1, ""]],
@@ -2989,3 +2989,95 @@
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.fault_finder_robes);
 
+::Legends.Armor.Standard.executioner_tunic <- {
+	ID = "executioner_tunic",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_sackcloth_tattered"]
+		],
+		Chain = [
+		],
+		Plate = [
+			[1, "plate/legend_armor_leather_tunic_bloodstained"]
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments = [
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.executioner_tunic);
+
+::Legends.Armor.Standard.pillaged_heavy_lamellar_armor <- {
+	ID = "pillaged_heavy_lamellar_armor", // 260-275 -36-37 3540-5790
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_thick_tunic"], // 30 -3 40
+		],
+		Chain = [
+			[1, "chain/legend_armor_reinforced_mail_shirt"] // 80 -10 1000
+		],
+		Plate = [
+			[1, "plate/legend_armor_leather_lamellar_reinforced"], // 150 -23 2500
+			[1, "plate/legend_armor_leather_lamellar_heavy"] // 165 -24 4750
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments = [
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.pillaged_heavy_lamellar_armor);
+
+::Legends.Armor.Standard.rusted_mail_hauberk <- {
+	ID = "rusted_mail_hauberk",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_thick_tunic"], // 30 -3 40
+		],
+		Chain = [
+			[1, "chain/legend_armor_hauberk_full"], // 110 -16 1750
+		],
+		Plate = [
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments = [
+			[1, "armor_upgrades/legend_leather_neckguard_upgrade"],
+			[1, "armor_upgrades/legend_armor_rusted_mail_patch_upgrade"],
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.rusted_mail_hauberk);	
+
+::Legends.Armor.Standard.patchwork_scale_armor <- {
+	ID = "patchwork_scale_armor",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_gambeson_wolf"], // 70 -9 300
+		],
+		Chain = [],
+		Plate = [
+			[1, "plate/legend_armor_scale"], // 100 -12 2250
+		],
+		Cloak = [
+			[1, "cloak/legend_armor_cloak_cowl_ragged"], // 10 -1 20
+		],
+		Tabard = [
+		],
+		Attachments = [
+			[1, "armor_upgrades/legend_metal_pauldrons_upgrade"] // 60 -6 800 
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.patchwork_scale_armor);	

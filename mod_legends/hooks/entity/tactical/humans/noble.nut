@@ -1,5 +1,15 @@
 ::mods_hookExactClass("entity/tactical/humans/noble", function(o)
 {
+	local create = o.create;
+	o.create = function(){
+		create();
+		this.m.Name = this.generateName();
+	}
+
+	o.generateName = function()	{
+		return this.Const.Strings.NobleTitles[this.Math.rand(0, this.Const.Strings.NobleTitles.len() - 1)] + " " + (this.getGender() != 1 ? this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)] : this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)]);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{

@@ -26,7 +26,7 @@ this.legend_armor_named_warlock_cloak <- this.inherit("scripts/items/legend_armo
 		this.m.SpriteDamagedBack = "cloak_cursed_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "cloak_cursed_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_cloak_cursed_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_cursed_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_cloak_cursed_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_cursed_"  + variant + ".png";
 	}

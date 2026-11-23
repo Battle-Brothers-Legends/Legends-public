@@ -105,7 +105,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
@@ -115,7 +116,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
@@ -163,7 +165,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
@@ -173,7 +176,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
@@ -223,7 +227,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
@@ -233,7 +238,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
@@ -289,7 +295,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
@@ -299,7 +306,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.CrossbowTree.Tree);
@@ -356,7 +364,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
@@ -366,7 +375,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.BowTree.Tree);
@@ -407,7 +417,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
@@ -417,7 +428,8 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.PolearmTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);

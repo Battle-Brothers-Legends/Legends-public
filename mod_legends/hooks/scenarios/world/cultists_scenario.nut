@@ -127,6 +127,9 @@
 
 	o.onHiredByScenario <- function ( _bro ) //cultist hire
 	{
+		if (_bro.isStabled()) {
+			return;
+		}
 		if (this.isCultist(_bro.getBackground()))
 		{
 			_bro.improveMood(2.0, "Embraced by Davkul");
@@ -140,6 +143,8 @@
 
 	o.onGenerateBro <- function (bro)
 	{
+		if (bro.isStabled())
+			return;
 		//Can't really recruit converted cultists but its here anyway for posterity
 		if (bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist" || bro.getBackground().getID() == "background.legend_lurker" || bro.getBackground().getID() == "background.legend_husk" || bro.getBackground().getID() == "background.legend_magister")
 		{

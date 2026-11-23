@@ -11,4 +11,16 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendTalented)
 		]);
 	}
+
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function () {
+		local ret = getTooltip();
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Gets more irritated while reading"
+		});
+		return ret;
+	}
 });

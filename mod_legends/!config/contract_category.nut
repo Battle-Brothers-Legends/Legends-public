@@ -61,6 +61,7 @@
 	drive_away_barbarians_contract = this.Const.Contracts.Categories.Battle,
 	investigate_cemetery_contract = this.Const.Contracts.Categories.Battle,
 	return_item_contract = this.Const.Contracts.Categories.Battle,
+	slave_uprising_contract = this.Const.Contracts.Categories.Battle,
 
 	hunting_alps_contract = this.Const.Contracts.Categories.Hunt,
 	hunting_hexen_contract = this.Const.Contracts.Categories.Hunt,

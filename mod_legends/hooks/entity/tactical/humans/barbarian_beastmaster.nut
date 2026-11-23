@@ -16,7 +16,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 30)
+		if (!::FU.InScenario() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.BeastmasterDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}

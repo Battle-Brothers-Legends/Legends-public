@@ -26,7 +26,7 @@
 	o.updateVariant <- function() {
 		this.m.Icon = "weapons/melee/named_greatsword_0" + this.m.Variant + "_70x70.png";
 		this.m.IconLarge = "weapons/melee/named_greatsword_0" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_named_greatsword_0" + this.m.Variant;
+		this.m.ArmamentIcon = "icon_legend_named_greatsword_0" + this.m.Variant;
 	}
 
 	o.onEquip = function () {

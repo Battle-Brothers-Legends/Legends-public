@@ -119,6 +119,7 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 		local damage = this.Math.min(max, p * _targetEntity.getHitpoints());
 
 		_properties.DamageArmorMult *= 0.0;
+		_properties.DamageDirectAdd = 0;
 		_properties.IsIgnoringArmorOnAttack = true;
 		_properties.DamageRegularMin = damage;
 		_properties.DamageRegularMax = damage;

@@ -4,7 +4,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.ActionPointCost = 4;
+		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 13;
 	}
 
@@ -37,11 +37,11 @@
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties )
-	{
-		onAfterUpdate(_properties);
-		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )

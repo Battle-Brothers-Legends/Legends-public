@@ -9,6 +9,7 @@
 	o.m.Payment.Items <- []; // stores negotiated item payment based contracts
 	o.m.Payment.ItemPool <- []; // weighted list of available items
 	o.m.Payment.IsSingleItem <- false; // option used to roll just single item from the list, normally money pool is used to buy items
+	o.m.RecipientID <- 0;
 
 	o.create = function()
 	{
@@ -426,12 +427,15 @@
 			"reward",
 			this.m.Payment.getOnCompletion() + this.m.Payment.getInAdvance()
 		]);
-		if (this.m.EmployerID != 0)
-		{
+		if (this.m.EmployerID != 0)	{
 			::Const.LegendMod.extendVarsWithPronouns(vars, this.getEmployer(), "employer");
+		}
+		if (this.m.RecipientID != 0) {
+			::Const.LegendMod.extendVarsWithPronouns(vars, this.getRecipient(), "recipient");
 		}
 		::Const.LegendMod.extendVarsWithPronouns(vars, brothers[brother1], "randombrother");
 		::Const.LegendMod.extendVarsWithPronouns(vars, brothers[brother2], "randombrother2");
+
 		// Dynamically handle pronouns for any additional actors in a contract
         // For this to work, any contract text using the placeholder pronoun must refer to the actor in the lowercase form of the actor's variable name
         // For example, the placeholder "%they_somebody%" will get the pronoun for this.m.Somebody
@@ -462,6 +466,11 @@
 	o.setCategory <- function( _c )
 	{
 		this.m.Category = _c;
+	}
+
+	o.getRecipient <- function ()
+	{
+		return this.Tactical.getEntityByID(this.m.RecipientID);
 	}
 
 	local getUIBulletpoints = o.getUIBulletpoints;

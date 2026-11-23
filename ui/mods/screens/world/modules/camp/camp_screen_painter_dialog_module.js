@@ -369,13 +369,13 @@ CampScreenPainterDialogModule.prototype.createDIV = function (_parentDiv) {
 
 	// details: buttons
 	detailsRow = $('<div class="row is-button-container"/>');
-	this.mDetailsPanel.Container.append(detailsRow);
-	var costsLabel = $('<div class="totalmoney title-font-normal font-bold font-bottom-shadow font-color-title">Total Cost:</div>');
+	this.mDetailsPanel.Container.append(detailsRow); // don't write out costs since painting is free
+	/*var costsLabel = $('<div class="totalmoney title-font-normal font-bold font-bottom-shadow font-color-title">Total Cost:</div>');
 	detailsRow.append(costsLabel);
 	var costsImage = $('<img class="moneyimg"/>');
 	detailsRow.append(costsImage);
 	costsImage.attr('src', Path.GFX + Asset.ICON_ASSET_MONEY);
-	this.mDetailsPanel.TotalCostText = $('<div class="totalmoneysum title-font-normal font-bold font-bottom-shadow font-color-title">0</div>');
+	this.mDetailsPanel.TotalCostText = $('<div class="totalmoneysum title-font-normal font-bold font-bottom-shadow font-color-title">0</div>');*/
 	detailsRow.append(this.mDetailsPanel.TotalCostText);
 
 	var ConfirmButtonLayout = $('<div class="l-confirm-button"/>');
@@ -515,7 +515,7 @@ CampScreenPainterDialogModule.prototype.updateDetailsPanel = function (_element)
 						self.layers[r][1].Image.attr('src', Path.ITEMS + data.BodyArmor[_key]['Icon']);
 						self.layers[r][1].Combined.attr('src', Path.ITEMS + data.BodyArmor[_key]['IconLarge']);
 						if (data.BodyArmor[_key]['Variants'] > 1) {
-							self.layers[r][1].Value.html("" + data.BodyArmor[_key]['Value']);
+							self.layers[r][1].Value.html("");//self.layers[r][1].Value.html("" + data.BodyArmor[_key]['Value']); painting is free
 							self.layers[r][1].Value.css({ opacity: 0.5 });
 							self.layers[r][1].Input.setInputTextBP(data.BodyArmor[_key]['Variant'] + "/" + data.BodyArmor[_key]['Variants']);
 							self.layers[r][1].Left.enableButton(true);
@@ -547,7 +547,7 @@ CampScreenPainterDialogModule.prototype.updateDetailsPanel = function (_element)
 						self.layers[r][2].Image.attr('src', Path.ITEMS + data.Helmet[_key]['Icon']);
 						self.layers[r][2].Combined.attr('src', Path.ITEMS + data.Helmet[_key]['IconLarge']);
 						if (data.Helmet[_key]['Variants'] > 1) {
-							self.layers[r][2].Value.html("" + data.Helmet[_key]['Value']);
+							self.layers[r][2].Value.html("");//self.layers[r][2].Value.html("" + data.Helmet[_key]['Value']); painting is free
 							self.layers[r][2].Value.css({ opacity: 0.5 });
 							self.layers[r][2].Input.setInputTextBP(data.Helmet[_key]['Variant'] + "/" + data.Helmet[_key]['Variants']);
 							self.layers[r][2].Left.enableButton(true);
@@ -577,7 +577,7 @@ CampScreenPainterDialogModule.prototype.updateDetailsPanel = function (_element)
 			self.layers[0][3].Image.attr('src', Path.ITEMS + data.Weapon.Weapon['Icon']);
 			self.layers[0][3].Combined.attr('src', Path.ITEMS + data.Weapon.Weapon['IconLarge']);
 			if (data.Weapon.Weapon['Variants'] > 1) {
-				self.layers[0][3].Value.html("" + data.Weapon.Weapon['Value']);
+				self.layers[0][3].Value.html("");//self.layers[0][3].Value.html("" + data.Weapon.Weapon['Value']); painting is free
 				self.layers[0][3].Value.css({ opacity: 0.5 });
 				self.layers[0][3].Input.setInputTextBP(data.Weapon.Weapon['Variant'] + "/" + data.Weapon.Weapon['Variants']);
 				self.layers[0][3].Left.enableButton(true);
@@ -601,7 +601,7 @@ CampScreenPainterDialogModule.prototype.updateDetailsPanel = function (_element)
 			self.layers[0][4].Image.attr('src', Path.ITEMS + data.Shield.Shield['Icon']);
 			self.layers[0][4].Combined.attr('src', Path.ITEMS + data.Shield.Shield['IconLarge']);
 			if (data.Shield.Shield['Variants'] > 1) {
-				self.layers[0][4].Value.html("" + data.Shield.Shield['Value']);
+				self.layers[0][4].Value.html("");//self.layers[0][4].Value.html("" + data.Shield.Shield['Value']);
 				self.layers[0][4].Value.css({ opacity: 0.5 });
 				self.layers[0][4].Input.setInputTextBP(data.Shield.Shield['Variant'] + "/" + data.Shield.Shield['Variants']);
 				self.layers[0][4].Left.enableButton(true);
@@ -623,7 +623,7 @@ CampScreenPainterDialogModule.prototype.updateDetailsPanel = function (_element)
 
 
 		self.mDetailsPanel.ConfirmButton.enableButton(false);
-		self.mDetailsPanel.TotalCostText.html("0");
+		//self.mDetailsPanel.TotalCostText.html("0"); painting is free
 
 		self.mDetailsPanel.Container.removeClass('display-none').addClass('display-block');
 	}

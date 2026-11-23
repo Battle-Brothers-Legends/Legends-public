@@ -5,16 +5,17 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "A") {
-				local getResult = s.Options[0].getResult;
-				s.Options[0].getResult <- function (_event) {
+		::Legends.Screens.hook(this, "A", function (_screen) {
+			local getResult = _screen.Options[0].getResult;
+				_screen.Options[0].getResult <- function (_event) {
 					if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 						return "E";
 					return getResult(_event)
 				}
-			}
-		}
+		});
+		::Legends.Screens.hook(this, "D", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_76.png[/img]Suddenly, a crossbow aims over your shoulder and fires so closely you can feel the air rushing past the twang of its rope. The bolt pierces the old man\'s skull and he tips forward, head to the mud, arse in the air, hands still beside himself in dispirited supination.\n\nYou turn to see %witchhunter% the witch hunter standing behind you. %They_witchhunter% lowers the crossbow and walks over to the corpse, grabbing it by the nape of the neck and putting a stake through its back. The body wretches with a shriek and the clothing bloats as the body implodes, a swirling dust hurriedly exiting out the cloak as though it had been caught impersonating a man.\n\n The witch hunter turns to you.%SPEECH_ON%Necrosavant. Rare. Extremely dangerous.%SPEECH_OFF%";
+		});
 		this.m.Screens.push({
 			ID = "E",
 			Text = "[img]gfx/ui/events/event_76.png[/img]The figure rises and turns to you with a dark gaze of one who has lived for a thousand years.%SPEECH_ON%Ah, brothers, I have waited for you.%SPEECH_OFF%",

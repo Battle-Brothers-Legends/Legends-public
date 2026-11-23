@@ -5,7 +5,7 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCascade);
-		this.m.Description = "Let loose a cascade of three striking shots on your opponent. Will strike over or around shield cover.";
+		this.m.Description = "Let loose a cascade of three striking shots on your opponent.";
 		this.m.KilledString = "Pin cushioned";
 		this.m.Icon = "skills/triplestrike_square.png";
 		this.m.IconDisabled = "skills/triplestrike_square_bw.png";

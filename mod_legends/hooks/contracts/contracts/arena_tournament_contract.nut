@@ -236,7 +236,7 @@
 						_c.addToCombat(_e, this.Const.World.Spawn.Troops.NomadOutlaw);
 				}
 			});
-			if (this.World.getTime().Days > 50) {
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Arena.StrongerEnemiesDay) {
 				twists.push({
 					R = 5,
 					function F( _c, _d, _e ) {
@@ -264,7 +264,7 @@
 
 				});
 			}
-			if (this.World.getTime().Days > 50) {
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Arena.StrongerEnemiesDay) {
 				twists.push({
 					R = 5,
 					function F( _c, _d, _e ) {

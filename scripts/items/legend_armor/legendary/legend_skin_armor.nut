@@ -29,7 +29,7 @@ this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_
 		this.m.SpriteDamagedBack = "skin_armor_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "skin_armor_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_skin_armor_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_skin_armor_" + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_skin_armor_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_skin_armor_" + variant + ".png";
 	}
@@ -65,8 +65,7 @@ this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_
 	function onCombatFinished()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor == null)
-		{
+		if (::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
 

@@ -10,6 +10,7 @@
 			this.m.IconDisabled = "skills/active_61_sw.png";
 			this.m.Overlay = "active_61";
 			this.m.FatigueCost = 15;
+			this.m.ActionPointCost = 6;
 			this.m.MinRange = 1;
 			this.m.MaxRange = 2;
 		}
@@ -22,7 +23,8 @@
 			return getTooltip();
 
 		local ret = this.getDefaultTooltip();
-		local dmg = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5;
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local dmg = ::Legends.S.isCharacterWeaponSpecialized(properties, this.getItem()) ? 10 : 5;
 		ret.push({
 			id = 7,
 			type = "text",
@@ -35,7 +37,7 @@
 			icon = "ui/icons/special.png",
 			text = "Inflicts additional stacking [color=%damage%]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
 		});
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms) {
+		if (!::Legends.S.isCharacterWeaponSpecialized(properties, this.getItem())) {
 			ret.push({
 				id = 6,
 				type = "text",
@@ -48,13 +50,10 @@
 
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function ( _properties ) {
-		if (this.m.IsScytheCleave) {
-			this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-			this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 5 : 6;
+		if (this.m.IsScytheCleave && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
 		}
-		else {
-			onAfterUpdate(_properties);
-		}
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0; 
 	}
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {

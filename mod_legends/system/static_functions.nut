@@ -34,36 +34,38 @@
 {
 	switch (true)
 	{
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Axe):
-			return _properties.IsSpecializedInAxes;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Bow):
-			return _properties.IsSpecializedInBows;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Cleaver):
-			return _properties.IsSpecializedInCleavers;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Crossbow):
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Firearm): // handgonne
-			return _properties.IsSpecializedInCrossbows;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Dagger):
-			return _properties.IsSpecializedInDaggers;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Flail):
-			return _properties.IsSpecializedInFlails;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Hammer):
-			return _properties.IsSpecializedInHammers;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Mace):
-			return _properties.IsSpecializedInMaces;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Sling):
-			return _properties.IsSpecializedInSlings;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Spear):
-			return _properties.IsSpecializedInSpears;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Sword):
-			return _properties.IsSpecializedInSwords;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Throwing):
-			return _properties.IsSpecializedInThrowing;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Staff):
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Polearm):
-			return _properties.IsSpecializedInPolearms;
-		case _weapon.isWeaponType(::Const.Items.WeaponType.Musical):
-			return _properties.IsSpecializedInMusic;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Axe) && _properties.IsSpecializedInAxes:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Bow) && _properties.IsSpecializedInBows:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Cleaver) && _properties.IsSpecializedInCleavers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) && _properties.IsSpecializedInCrossbows:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Firearm) && _properties.IsSpecializedInCrossbows: // handgonne
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Flail) && _properties.IsSpecializedInFlails:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Hammer) && _properties.IsSpecializedInHammers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Mace) && _properties.IsSpecializedInMaces:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Sling) && _properties.IsSpecializedInSlings:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Spear) && _properties.IsSpecializedInSpears:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Sword) && _properties.IsSpecializedInSwords:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Throwing) && _properties.IsSpecializedInThrowing:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Staff) && _properties.IsSpecializedInPolearms:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Polearm) && _properties.IsSpecializedInPolearms:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Musical) && _properties.IsSpecializedInMusic:
+			return true;
 		default:
 			return false;
 	}
@@ -99,9 +101,9 @@
 
 ::Legends.S.getOverlappingNeighbourActors <- function (_actor, _secondActor)
 {
-	local firstActorEntities = Legends.S.getNeighbouringActors(_actor.getTile());
+	local firstActorEntities = ::Legends.S.getNeighbouringActors(_actor.getTile());
 	local overlaps = [];
-	foreach (entity in Legends.S.getNeighbouringActors(_secondActor.getTile()))
+	foreach (entity in ::Legends.S.getNeighbouringActors(_secondActor.getTile()))
 	{
 		if (firstActorEntities.find(entity) != null);
 		{
@@ -114,7 +116,7 @@
 
 ::Legends.S.isInZocWithActor <- function (_actor, _secondActor)
 {
-	if (!_secondActor.isAlive() || !_secondActor.isDying())
+	if (::Legends.S.isEntityNullOrDead(_secondActor))
 		return false;
 
 	if (_secondActor.isNonCombatant())
@@ -139,6 +141,11 @@
 	local playerTile = ::World.State.getPlayer().getTile();
 	towns.sort(@(a, b) playerTile.getDistanceTo(b.getTile()) <=> playerTile.getDistanceTo(a.getTile()));
 	return towns.top();
+}
+
+::Legends.S.isEntityMovementDisabled <- function (_entity) {
+	local properties = _entity.getCurrentProperties();
+	return properties.IsStunned	|| properties.IsRooted;
 }
 
 // Sorry chop but I really need to alias this function for my sanity
@@ -206,7 +213,7 @@
 	return this.Math.maxf(0.5, (100.0 - toolEfficiencyModifier) / 100.0);
 }
 
-::Legends.S.applyBleed <- function (_target, _actor, _hpBefore, _soundsA, _soundsB, _damage = 0, _effect = ::Legends.Effect.Bleeding) {
+::Legends.S.applyBleed <- function (_target, _actor, _hpBefore, _soundsA, _soundsB, _damage = 0, _effect = ::Legends.Effect.Bleeding, _bypassHitpointsCheck = false) {
 	local damage = 0;
 	if (_damage > 0) {
 		damage = _damage;
@@ -223,7 +230,7 @@
 			this.Sound.play(_soundsB[this.Math.rand(0, _soundsB.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
 		}
 	}
-	else if (!_target.getCurrentProperties().IsImmuneToBleeding && _hpBefore - _target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding ) {
+	else if (!_target.getCurrentProperties().IsImmuneToBleeding && (_hpBefore - _target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding || _bypassHitpointsCheck)) {
 		::Legends.Effects.grant(_target, _effect, function(_effect) {
 			if (_actor.getFaction() == this.Const.Faction.Player )
 				_effect.setActor(_actor);

@@ -3,8 +3,20 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A large and heavy crossbow with menacing spikes in front. More like a minitature ballista, it shoots stakes with enough force to knock back a target hit. Deals +100 damage to vampires.";
+		this.m.Description = "A large and heavy crossbow with menacing spikes in front. More like a minitature ballista, it shoots stakes with enough force to knock back a target hit. Very effective against vampires.";
 		this.setVariant(this.Math.rand(0, 1));
+	}
+
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function () {
+		local result = getTooltip();
+		result.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/damage_dealt.png",
+			text = "Deals extra damage to vampires"
+		});
+		return result;
 	}
 
 	o.updateVariant <- function() {
@@ -29,7 +41,7 @@
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;
@@ -37,10 +49,10 @@
 	{
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
 			_skill.m.IsRangedKnockOut = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 	}
 
 	o.onCombatFinished = function ()

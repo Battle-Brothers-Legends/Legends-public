@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/medium_coast_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/medium_coast_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			"apprentice_background",
@@ -57,7 +55,8 @@
 			"raider_background",
 			"retired_soldier_background",
 			"sellsword_background",
-			"swordmaster_background"
+			"swordmaster_background",
+			"executioner_background"
 		];
 		this.m.StablesList = [
 			"legend_donkey_background",
@@ -66,53 +65,36 @@
 		];
 	}
 
-	o.onBuild = function ( )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
+		if (this.Math.rand(1, 100) <= 50) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-		}
-		else
-		{
+		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		}
 
-		if (!this.Const.World.Buildings.Kennels == 0)
-		{
+		if (!this.Const.World.Buildings.Kennels == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-		}
-		else if (this.Const.World.Buildings.Stables == 0)
-		{
+		} else if (this.Const.World.Buildings.Stables == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
-		else
-		{
+		} else {
 			local r = this.Math.rand(1, 4);
 
-			if (r == 1)
-			{
+			if (r == 1) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/fishing_huts_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -128,9 +110,7 @@
 				this.Const.World.TerrainType.Hills,
 				this.Const.World.TerrainType.Tundra
 			], [], 1, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/fishing_huts_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -148,8 +128,7 @@
 			], [], 1, true);
 		}
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+		if (this.Math.rand(1, 100) <= 40) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/surface_iron_vein_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -161,9 +140,7 @@
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills
 			], [], 1);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/surface_iron_vein_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,

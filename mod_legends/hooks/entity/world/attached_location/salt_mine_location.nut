@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A mine in which precious rock salt is extracted and shipped off to only the most trustworthy traders. Contributes salt, pickaxes and miners to the local town";
+		this.m.Description = "A mine in which precious rock salt is extracted and shipped off to only the most trustworthy traders. Contributes salt, pickaxes and miners to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

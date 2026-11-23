@@ -5,6 +5,8 @@
 		_properties.DamageReceivedDirectMult *= 0.00; // ghosts don't have armor so this doesn't matter for regular ghosts, just ghost armor/wichts
 		_properties.IsResistantToAnyStatuses = true; // not 100% on both of these properties but should make them highly resistant to debuffs
 		_properties.IsResistantToPhysicalStatuses = true;
+		if (this.getContainer().hasPerk(::Legends.Perk.BattleForged) && (this.getContainer().hasEffect(::Legends.Effect.LegendConsecratedEffect) || this.getContainer().hasEffect(::Legends.Effect.HolyWater)))
+			::Legends.Perks.remove(this.getContainer(), ::Legends.Perk.BattleForged);
 	}
 
 	local onBeingAttacked = o.onBeingAttacked;

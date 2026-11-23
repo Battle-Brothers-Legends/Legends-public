@@ -90,9 +90,9 @@ this.legend_headache_effect <- this.inherit("scripts/skills/injury/injury", {
 		if (this.getContainer().hasSkill("injury.brain_damage"))
 			days *= 2;
 		if (::Legends.Perks.has(this, ::Legends.Perk.Student))
-			this.Math.floor(days /= 1.5);
+			days = this.Math.floor(days / 1.5);
 		if (::Legends.Traits.has(this, ::Legends.Trait.Bright))
-			this.Math.floor(days /= 2);
+			days = this.Math.floor(days / 2);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendIrritable, function (_effect) {
 			_effect.m.HealingTime = days;
 		}.bindenv(this));

@@ -17,11 +17,15 @@ this.legend_blooddrinker_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetKilled( _targetEntity, _skill ) {
-		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().getID() == "legend.legend_royal_executioner")
+		local actor = this.getContainer().getActor();
+		if(_skill == null || ::Legends.S.isEntityNullOrDead(actor)){
+			return;
+		}
+
+		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().getID() == "weapon.legend_royal_executioner")
 		{
-			local actor = this.getContainer().getActor();
 			local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-			local healthAdded = this.Math.min(healthMissing, 0.01 * HealPct * actor.getHitpointsMax());
+			local healthAdded = this.Math.min(healthMissing, 0.01 * this.m.HealPct * actor.getHitpointsMax());
 
 			if (healthAdded <= 0)
 			{

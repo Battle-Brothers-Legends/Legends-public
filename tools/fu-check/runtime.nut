@@ -30,6 +30,38 @@ assert(!::FU.InScenario());
 assert(!::FU.HasStashSpace());
 assert(::MSU.Tile == ::FU.Tile);
 
+// Equipment upgrades use a scenario stash when campaign assets are unavailable.
+local scenarioStash = { hasEmptySlot = function() { return true; } };
+local campaignStash = { hasEmptySlot = function() { return false; } };
+::Stash <- scenarioStash;
+assert(::FU.GetStash() == null && !::FU.HasStashSpace());
+local stashVisits = 0;
+local visitStash = function(stash) { stashVisits++; return stash; };
+assert(::FU.WithStash(visitStash) == null && stashVisits == 0);
+local inScenario = true;
+::Tactical <- { State = { isScenarioMode = function() { return inScenario; } } };
+assert(::FU.GetStash() == scenarioStash && ::FU.HasStashSpace());
+assert(::FU.WithStash(visitStash) == scenarioStash && stashVisits == 1);
+assert(!::FU.WorldHasStash());
+::World.Assets <- { getStash = function() { return campaignStash; } };
+assert(::FU.GetStash() == campaignStash && !::FU.HasStashSpace());
+assert(::FU.WithStash(visitStash) == campaignStash && stashVisits == 2);
+assert(::FU.WorldHasStash());
+::World.Assets = null;
+assert(::FU.GetStash() == scenarioStash);
+::World.Assets = { getStash = function() { return null; } };
+assert(::FU.GetStash() == scenarioStash);
+delete ::World.Assets;
+inScenario = false;
+assert(::FU.GetStash() == null && !::FU.HasStashSpace());
+assert(::FU.WithStash(visitStash) == null && stashVisits == 2);
+::Tactical.State = null;
+assert(::FU.GetStash() == null);
+delete ::Tactical;
+assert(::FU.GetStash() == null);
+delete ::Stash;
+assert(::FU.GetStash() == null && !::FU.HasStashSpace());
+
 // Extensionless game enumeration must not recurse into the loader itself.
 local originalInclude = ::include;
 local included = [];

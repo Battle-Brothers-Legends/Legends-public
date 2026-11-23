@@ -212,12 +212,13 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	function kill( _killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false ) {
 		this.m.IsDying = true;
 
-		if (!::Legends.S.skillEntityAliveCheck(this.m.Tail)) {
+		if (!::Legends.S.isEntityNullOrDead(this.m.Tail)) {
 			this.m.Tail.kill(_killer, _skill, _fatalityType, _silent);
 			this.m.Tail = null;
 		}
 
 		this.actor.kill(_killer, _skill, _fatalityType, _silent);
+		::Tactical.TurnSequenceBar.ForceRecheckNextTurnCondition();
 	}
 
 	function updateOverlay()
@@ -273,7 +274,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 170)
+		if (!::FU.InScenario() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay)
 		{
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.1;
@@ -327,7 +328,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.5;
 			this.m.ActionPoints = b.ActionPoints + 5;
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
@@ -393,7 +394,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function onMovementStep( _tile, _levelDifference ) {
-		local result = actor.onMovementStep( _tile, _levelDifference );
+		local result = this.actor.onMovementStep( _tile, _levelDifference );
 		if(result) {
 			this.m.MovementAPSpent += this.Math.max(1, (this.m.ActionPointCosts[_tile.Type] + this.m.CurrentProperties.MovementAPCostAdditional) * this.m.CurrentProperties.MovementAPCostMult) + (_levelDifference != 0 ? this.m.LevelActionPointCost : 0);
 		}

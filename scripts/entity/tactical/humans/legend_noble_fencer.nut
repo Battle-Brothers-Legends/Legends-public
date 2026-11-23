@@ -28,6 +28,7 @@ this.legend_noble_fencer <- this.inherit("scripts/entity/tactical/human", {
 		b.IsSpecializedInHammers = true;
 		b.IsSpecializedInSpears = true;
 		b.IsSpecializedInCleavers = true;
+		b.IsSpecializedInDaggers = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -74,7 +75,7 @@ this.legend_noble_fencer <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		this.getItems().equip(::Const.World.Common.pickItem([
-			[1, "weapons/legend_estoc"],
+			[1, "weapons/estoc"],
 			[1, "weapons/fencing_sword"],
 		], "scripts/items/"));
 
@@ -142,7 +143,7 @@ this.legend_noble_fencer <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
 			"weapons/named/named_fencing_sword",
-			"weapons/named/legend_named_estoc"
+			"weapons/named/named_estoc"
 		];
 
 		local armor = [

@@ -9,6 +9,23 @@
 		this.m.HitChanceBonus = 10;
 	}
 
+	o.getTooltip = function() {
+		local ret = this.getDefaultUtilityTooltip();
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+		});
+		ret.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/hitchance.png",
+			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit"
+		});
+		return ret;
+	}
+
 	o.setItem <- function (_item)
 	{
 		this.skill.setItem(_item);
@@ -45,17 +62,10 @@
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties )
-	{
-		if (this.m.IsChain)
-		{
-			this.m.FatigueCostMult = _properties.IsSpecializedInFlails ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-			this.m.ActionPointCost = _properties.IsSpecializedInFlails ? 5 : 6;
-		}
-		else
-		{
-			onAfterUpdate( _properties );
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 

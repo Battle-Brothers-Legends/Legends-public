@@ -13,7 +13,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain an " + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain an " + item.makeName()
 					});
 
 					local weapons = [

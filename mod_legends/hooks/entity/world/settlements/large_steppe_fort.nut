@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/large_steppe_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/large_steppe_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList.extend([
 			"apprentice_background",
@@ -46,7 +44,8 @@
 			"hedge_knight_background",
 			"legend_ironmonger_background",
 			"legend_noble_2h",
-			"eunuch_southern_background"
+			"eunuch_southern_background",
+			"executioner_background"
 		]);
 		this.m.StablesList = [
 			"legend_horse_destrier",
@@ -54,8 +53,7 @@
 			"legend_horse_destrier",
 			"legend_horse_courser"
 		];
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_nomad")
-		{
+		if (this.World.Assets.getOrigin().getID() == "scenario.legends_nomad") {
 			this.m.DraftList.push("nomad_background");
 			this.m.DraftList.push("nomad_background");
 			this.m.DraftList.push("nomad_background");
@@ -67,14 +65,12 @@
 		}
 	}
 
-	o.onBuild = function ()
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/training_hall_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-		if (::Legends.Mod.ModSettings.getSetting("StackCitadels").getValue())
-		{
+		if (::Legends.Mod.ModSettings.getSetting("StackCitadels").getValue()) {
 			local ALL = [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -99,26 +95,19 @@
 		}
 
 
-		if (this.Math.rand(1, 100) <= 50 || this.Const.World.Buildings.Fletchers == 0)
-		{
+		if (this.Math.rand(1, 100) <= 50 || this.Const.World.Buildings.Fletchers == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));
-		}
-		else
-		{
+		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
-		}
-		else
-		{
+		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+		if (this.Math.rand(1, 100) <= 40) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -131,9 +120,7 @@
 				this.Const.World.TerrainType.Steppe,
 				this.Const.World.TerrainType.Hills
 			], [], 1, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,

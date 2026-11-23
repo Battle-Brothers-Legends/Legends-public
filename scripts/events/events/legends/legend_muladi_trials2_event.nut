@@ -55,7 +55,7 @@ this.legend_muladi_trials2_event <- this.inherit("scripts/events/event", {
 							this.List.push(entry);
 					}
 				}
-				::Legends.S.getClosestSettlement().addPlayerRelation(::Const.World.Assets.RelationMinorOffense, "You killed the peasants");
+				::Legends.S.getClosestSettlement().getFactionOfType(::Const.FactionType.OrientalCityState).addPlayerRelation(::Const.World.Assets.RelationMinorOffense, "You killed the peasants");
 			}
 		});
 

@@ -13,8 +13,7 @@ this.legend_named_flamberge <- this.inherit("scripts/items/weapons/named/named_w
 		]
 	},
 
-	function create()
-	{
+	function create() {
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_flamberge";
 		this.m.NameList = this.Const.Strings.GreatswordNames;
@@ -44,8 +43,7 @@ this.legend_named_flamberge <- this.inherit("scripts/items/weapons/named/named_w
 		this.randomizeValues();
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = this.named_weapon.getTooltip();
 		result.push({
 			id = 8,
@@ -56,41 +54,18 @@ this.legend_named_flamberge <- this.inherit("scripts/items/weapons/named/named_w
 		return result;
 	}
 
-	function onDamageDealt( _target, _skill, _hitInfo )
-	{
-		this.named_weapon.onDamageDealt(_target, _skill, _hitInfo);
-		local actor = this.getContainer().getActor();
-		if (!_target.isAlive() || _target.isDying())
+	function onDamageDealt(_target, _skill, _hitInfo) {
+		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
+		if (_skill.getItem() == null || !_skill.isAttack() || !_skill.m.IsWeaponSkill) {
 			return;
+		}
 
-		_skill.spawnAttackEffect(_target.getTile(), this.Const.Tactical.AttackEffectChop);
-		if (!actor.isAlive() || actor.isDying())
+		local actor = this.getContainer().getActor();		
+		if (::Legends.S.isEntityNullOrDead(actor)) {
 			return;
+		}
 
-		if (!_target.isAlive() || _target.isDying())
-		{
-			if (_target.getFlags().has("tail") || !_target.getCurrentProperties().IsImmuneToBleeding)
-			{
-				this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, actor.getPos());
-			}
-			else
-			{
-				this.Sound.play(this.m.SoundsB[this.Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, actor.getPos());
-			}
-		}
-		else if (!_target.getCurrentProperties().IsImmuneToBleeding)
-		{
-			::Legends.Effects.grant(_target, ::Legends.Effect.Bleeding, function(_effect) {
-				if (actor.getFaction() == this.Const.Faction.Player )
-					_effect.setActor(this.getContainer().getActor());
-				_effect.setDamage(2);
-			}.bindenv(this));
-			this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, actor.getPos());
-		}
-		else
-		{
-			this.Sound.play(this.m.SoundsB[this.Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, actor.getPos());
-		}
+		::Legends.S.applyBleed(_target, actor, _target.getHitpoints(), this.m.SoundsA, this.m.SoundsB, 2, ::Legends.Effect.Bleeding, true);
 	}
 
 	function onEquip() {

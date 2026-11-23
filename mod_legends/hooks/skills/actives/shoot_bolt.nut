@@ -73,24 +73,23 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
-		if (_skill == this)
+		if (_skill != this && _skill.getID() != ::Legends.Actives.getID(::Legends.Active.LegendStrafingRun))
+			return;
+
+		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+			return;
+
+		_properties.RangedSkill += this.m.AdditionalAccuracy;
+		_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+		if (_properties.IsSharpshooter)
 		{
-			if (::Legends.S.skillEntityAliveCheck(_targetEntity))
-				return;
+			_properties.DamageDirectMult += 0.05;
+		}
 
-			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
-
-			if (_properties.IsSharpshooter)
-			{
-				_properties.DamageDirectMult += 0.05;
-			}
-
-			if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics) && _targetEntity != null)
-			{
-				local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
-				_properties.DamageDirectAdd += 0.25 - (distance * 0.05)
-			}
+		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
+		{
+			local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
+			_properties.DamageDirectAdd += 0.25 - (distance * 0.05)
 		}
 	}
 });

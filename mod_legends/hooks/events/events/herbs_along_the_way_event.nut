@@ -70,4 +70,19 @@
 
 		onUpdateScore();
 	}
+
+	local onPrepareVariables = o.onPrepareVariables;
+	o.onPrepareVariables = function (_vars) {
+		onPrepareVariables(_vars);
+		_vars.push([
+			"herbalist",
+			this.m.Herbalist != null ? this.m.Herbalist.getName() : ""
+		]);
+	}
+
+	local onClear = o.onClear;
+	o.onClear = function () {
+		onClear();
+		this.m.Herbalist = null;
+	}
 });

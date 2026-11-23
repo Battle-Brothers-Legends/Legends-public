@@ -180,7 +180,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 		local actor = this.getContainer().getActor();
-		if (actor == null) {
+		if (actor == null && actor.getCurrentProperties().IsRooted) {
 			return false;
 		}
 		if (actor.getTile() != null && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
@@ -228,16 +228,16 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onLeapStart(_tag) {
-		for (local i = 0; i < Const.Tactical.DustParticles.len(); i++) {
-			Tactical.spawnParticleEffect(
+		for (local i = 0; i < ::Const.Tactical.DustParticles.len(); i++) {
+			::Tactical.spawnParticleEffect(
 				false,
-				Const.Tactical.DustParticles[i].Brushes,
+				::Const.Tactical.DustParticles[i].Brushes,
 				_tag.actor.getTile(),
-				Const.Tactical.DustParticles[i].Delay,
-				Const.Tactical.DustParticles[i].Quantity,
-				Const.Tactical.DustParticles[i].LifeTimeQuantity,
-				Const.Tactical.DustParticles[i].SpawnRate,
-				Const.Tactical.DustParticles[i].Stages
+				::Const.Tactical.DustParticles[i].Delay,
+				::Const.Tactical.DustParticles[i].Quantity,
+				::Const.Tactical.DustParticles[i].LifeTimeQuantity,
+				::Const.Tactical.DustParticles[i].SpawnRate,
+				::Const.Tactical.DustParticles[i].Stages
 			);
 		}
 
@@ -269,16 +269,16 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 	function onRetreatStart(_tag) {
 		// ::logDebug("legend_enraged_hyena_bite_skill: onRetreatStart _tag= " + _tag);
 
-		for (local i = 0; i < Const.Tactical.DustParticles.len(); i++) {
-			Tactical.spawnParticleEffect(
+		for (local i = 0; i < ::Const.Tactical.DustParticles.len(); i++) {
+			::Tactical.spawnParticleEffect(
 				false,
-				Const.Tactical.DustParticles[i].Brushes,
+				::Const.Tactical.DustParticles[i].Brushes,
 				_tag.actor.getTile(),
-				Const.Tactical.DustParticles[i].Delay,
-				Const.Tactical.DustParticles[i].Quantity,
-				Const.Tactical.DustParticles[i].LifeTimeQuantity,
-				Const.Tactical.DustParticles[i].SpawnRate,
-				Const.Tactical.DustParticles[i].Stages
+				::Const.Tactical.DustParticles[i].Delay,
+				::Const.Tactical.DustParticles[i].Quantity,
+				::Const.Tactical.DustParticles[i].LifeTimeQuantity,
+				::Const.Tactical.DustParticles[i].SpawnRate,
+				::Const.Tactical.DustParticles[i].Stages
 			);
 		}
 

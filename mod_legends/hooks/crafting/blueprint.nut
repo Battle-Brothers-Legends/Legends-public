@@ -13,7 +13,7 @@
 	}
 	o.getCostForCraft <- function  ()
 	{
-		return getCost() * this.m.CraftMultiplier;
+		return this.getCost() * this.m.CraftMultiplier;
 	}
 
 	o.getIcon = function ()
@@ -42,35 +42,14 @@
 			{
 				if (s.getID() == _idx)
 				{
-					return s.getTooltip();
-				}
-			}
-		}
-
-		return null;
-	}
-
-
-	o.getTooltipForComponent = function ( _idx )
-	{
-		if (_idx > this.m.PreviewComponents.len() - 1)
-		{
-			this.logError("Out of bound error on blueprint :: " + this.m.ID);
-			return null;
-		}
-
-		return this.m.PreviewComponents[_idx].Instance.getTooltip();
-	}
-
-	o.getTooltipForSkill <- function ( _idx )
-	{
-		foreach( c in this.m.PreviewSkills )
-		{
-			foreach( s in c.Instances )
-			{
-				if (s.getID() == _idx)
-				{
-					return s.getTooltip();
+					local tooltip = s.getTooltip();
+					if(tooltip[0].text.find("Background:") != null)
+						tooltip.push({
+							id = 2,
+							type = "description",
+							text = "Requires a " + tooltip[0].text.slice(tooltip[0].text.find("Background:") + 12) + " to craft."
+						});
+					return tooltip;
 				}
 			}
 		}
@@ -251,6 +230,7 @@
 			Description = this.getDescription(),
 			ImagePath = this.getIcon(),
 			LargeImagePath = this.getIconLarge() != null ? this.getIconLarge() : this.getIcon(),
+			IconOverlay = this.m.PreviewCraftable.getIconOverlay(),
 			Ingredients = this.getIngredients(),
 			Cost = this.getCost(),
 			IsCraftable = this.isCraftable(),

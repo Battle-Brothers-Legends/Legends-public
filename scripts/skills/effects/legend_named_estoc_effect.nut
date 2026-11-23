@@ -1,3 +1,4 @@
+//// as of 15.2.2 replaced by vanilla version
 this.legend_named_estoc_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Bonus = 0

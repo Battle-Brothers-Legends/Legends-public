@@ -199,32 +199,38 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 	}
 
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
 		{
-			bro.improveMood(1.0, "Supports the ranger cause");
-			bro.getSprite("socket").setBrush("bust_base_beasts");
+			_bro.improveMood(1.0, "Supports the ranger cause");
+			_bro.getSprite("socket").setBrush("bust_base_beasts");
 		}
 		else
 		{
-			bro.worsenMood(2.0, "Does not like sleeping in the woods");
+			_bro.worsenMood(2.0, "Does not like sleeping in the woods");
 		}
 	}
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
-				bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
-				bro.getSkills().update();
+				_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+				_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
+				_bro.getSkills().update();
 			}
 			else
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
-				bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
-				bro.getSkills().update();
+				_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.25); //1.0 = default
+				_bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
+				_bro.getSkills().update();
 			}
 	}
 

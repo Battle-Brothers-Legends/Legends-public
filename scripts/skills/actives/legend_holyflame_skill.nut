@@ -45,19 +45,25 @@ this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Allies gain the Sanctified effect, becoming immune to injuries, bleeding, poison, and morale checks when taking damage."
+			text = "Allies gain the Sanctified effect, becoming immune to injuries, bleeding, poison, and morale checks when taking damage"
 		},
 		{
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Undead and Cultists gain the Consecrated effect, dealing damage to them each turn and removing their immunity to injuries, bleeding, and being poisoned."
+			text = "Undead and Cultists gain the Consecrated effect, dealing damage to them each turn and removing their immunity to injuries, bleeding, and being poisoned"
+		},
+		{
+			id = 8,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Will remove [color=%status%]Battle Forged[/color] from Wichts"
 		},
 		{
 			id = 9,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Undead are unable to resurrect in the area while the flame is active."
+			text = "Undead are unable to resurrect in the area while the flame is active"
 		}]);
 
 		return ret;
@@ -87,7 +93,7 @@ this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
 		{
 			if (!_targetTile.hasNextTile(i))
 			{
-				continue
+				continue;
 			}
 			local tile = _targetTile.getNextTile(i);
 			targets.push(tile);

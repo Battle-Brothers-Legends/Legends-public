@@ -53,27 +53,7 @@ this.legend_alp_serpent_hook_skill <- this.inherit("scripts/skills/actives/serpe
 				Skill = this
 			});
 		}
-
-		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local damage = this.Math.max(0, this.Math.abs(pullToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-
-		if (damage == 0)
-		{
-			this.Tactical.getNavigator().teleport(_targetTile.getEntity(), pullToTile, null, null, true);
-		}
-		else
-		{
-			local tag = {
-				Attacker = _user,
-				Skill = this,
-				HitInfo = clone this.Const.Tactical.HitInfo
-			};
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-			tag.HitInfo.DamageDirect = 1.0;
-			tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-			this.Tactical.getNavigator().teleport(_targetTile.getEntity(), pullToTile, this.onPulledDown, tag, true);
-		}
+		this.Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, pullToTile, this, null, null);
 
 		::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
 

@@ -34,7 +34,7 @@ this.legend_peasant_woodsman <- this.inherit("scripts/entity/tactical/human", {
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.25;
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);

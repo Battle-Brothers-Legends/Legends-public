@@ -16,7 +16,7 @@ this.legend_scroll_preview_item <- ::inherit("scripts/items/item", {
 
 	function getTooltip()
 	{
-		return result = [
+		return [
 			{
 				id = 1,
 				type = "title",

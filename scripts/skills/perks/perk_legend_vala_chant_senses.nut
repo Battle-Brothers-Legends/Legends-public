@@ -43,6 +43,10 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function getDescription() {
+		return "An intriguing chant that stimulates the senses.";
+	}
+
 	function getTooltip()
 	{
 		local actor = this.getContainer().getActor();

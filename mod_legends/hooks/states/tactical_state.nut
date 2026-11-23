@@ -1,5 +1,9 @@
 ::mods_hookExactClass("states/tactical_state", function(o)
 {
+	o.onCancelQuitToMainMenu = function() {
+		::Tactical.State.setPause(false);
+	}
+
 	o.swapToItem <- function ( _activeEntity, _item )
 	{
 		if (this.m.CurrentActionState != null)
@@ -72,6 +76,173 @@
 			_setActionStateBySkillIndex(_index);
 		}
 	};
+
+	o.computeEntityPath = function(_activeEntity, _mouseEvent) {
+		if (this.m.IsGameFinishable && this.isBattleEnded() || this.wasInCameraMovementMode()) {
+			return;
+		}
+
+		this.m.LastTileSelected = this.Tactical.getTile(this.Tactical.screenToTile(_mouseEvent.getX(), _mouseEvent.getY()));
+
+		if (!this.m.LastTileSelected.IsDiscovered
+			|| _activeEntity.getCurrentProperties().IsRooted)
+		{
+			this.Cursor.setCursor(this.Const.UI.Cursor.Denied);
+			return;
+		}
+
+		if (this.m.LastTileSelected.ID == _activeEntity.getTile().ID) {
+			this.Cursor.setCursor(this.Const.UI.Cursor.Denied);
+			this.Tactical.getNavigator().clearVisualisation();
+			this.Tactical.getHighlighter().clear();
+			this.Tactical.TurnSequenceBar.resetActiveEntityCostsPreview();
+			this.m.CurrentActionState = null;
+			return;
+		}
+
+		this.m.CurrentActionState = this.Const.Tactical.ActionState.ComputePath;
+		local settings = this.Tactical.getNavigator().createSettings();
+		settings.ActionPointCosts = _activeEntity.getActionPointCosts();
+		local properties = _activeEntity.getCurrentProperties();
+		local realMovementCostsForPreview = _activeEntity.getFatigueCosts();
+		foreach (i, val in realMovementCostsForPreview) {
+			realMovementCostsForPreview[i] = ::Math.round(val * properties.FatigueEffectMult);
+		}
+		settings.FatigueCosts = realMovementCostsForPreview; // set preview fat costs so it includes fat reduction/increase effects
+		settings.FatigueCostFactor = this.Const.Movement.FatigueCostFactor;
+		settings.ActionPointCostPerLevel = _activeEntity.getLevelActionPointCost();
+		settings.FatigueCostPerLevel = _activeEntity.getLevelFatigueCost();
+		settings.ZoneOfControlCost = 4;
+		settings.AlliedFactions = _activeEntity.getAlliedFactions();
+		settings.Faction = _activeEntity.getFaction();
+		settings.AllowZoneOfControlPassing = true;
+		settings.IsPlayer = true;
+
+		local athletic = {
+			skill = _activeEntity.getSkills().getSkillByID(::Legends.Traits.getID(::Legends.Trait.Athletic)),
+			bonusAP = 0,
+			bonusFat = 0
+		};
+
+		local targetTileType = _activeEntity.getTile().Type;
+		if (this.Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, settings, 0)) {
+			targetTileType = this.Tactical.getNavigator().getCostForPath(_activeEntity, settings, 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
+		}
+		
+		if (athletic.skill != null && !athletic.skill.m.HasMoved) {
+			athletic.bonusAP = this.Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
+			athletic.bonusFat = this.Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
+			if (_activeEntity.getFatigue() - athletic.bonusFat < 0) {
+				athletic.bonusFat += _activeEntity.getFatigue() - athletic.bonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
+			}
+			_activeEntity.setActionPoints(_activeEntity.getActionPoints() + athletic.bonusAP); //add temporary stats to fool the prediction
+			_activeEntity.setFatigue(this.Math.max(0, _activeEntity.getFatigue() - athletic.bonusFat));
+		}
+
+		if (this.Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, settings, 0)) {
+			this.Cursor.setCursor(this.Const.UI.Cursor.Boot);
+			this.Tactical.getNavigator().buildVisualisation(_activeEntity, settings, _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
+			this.Tactical.getHighlighter().clear();
+			this.Tactical.getHighlighter().highlightZoneOfControl(_activeEntity.getAlliedFactions());
+			settings.ZoneOfControlCost = 0;
+			local movementCosts = this.Tactical.getNavigator().getCostForPath(_activeEntity, settings, _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
+
+			if (movementCosts.Tiles != 0) {
+				this.Tactical.TurnSequenceBar.setActiveEntityCostsPreview(movementCosts);
+			} else {
+				this.Tactical.TurnSequenceBar.flashProgressbars(movementCosts.IsMissingActionPoints, movementCosts.IsMissingFatigue);
+			}
+		} else {
+			this.Cursor.setCursor(this.Const.UI.Cursor.Denied);
+			this.Tactical.getNavigator().clearVisualisation();
+			this.Tactical.getHighlighter().clear();
+			this.Tactical.TurnSequenceBar.resetActiveEntityCostsPreview();
+			this.m.CurrentActionState = null;
+		}
+		settings.FatigueCosts = _activeEntity.getFatigueCosts(); // reset preview fat costs for executeEntityTravel below to use so its not applied twice
+		if (athletic.skill != null && !athletic.skill.m.HasMoved) {
+			_activeEntity.setActionPoints(_activeEntity.getActionPoints() - athletic.bonusAP); // reset temporary stats after engine's prediction
+			_activeEntity.setFatigue(_activeEntity.getFatigue() + athletic.bonusFat);
+		}
+	}
+
+	o.executeEntityTravel = function(_activeEntity, _mouseEvent) {
+		if (this.wasInCameraMovementMode()) {
+			return;
+		}
+
+		local tile = this.Tactical.getTile(this.Tactical.screenToTile(_mouseEvent.getX(), _mouseEvent.getY()));
+
+		if (this.Tactical.getNavigator().HasValidPath
+			&& this.m.LastTileSelected.X == tile.X
+			&& this.m.LastTileSelected.Y == tile.Y)
+		{
+			local athletic = {
+				skill = _activeEntity.getSkills().getSkillByID(::Legends.Traits.getID(::Legends.Trait.Athletic)),
+				bonusAP = 0,
+				bonusFat = 0,
+				buffApplied = false
+			};
+
+			if (athletic.skill != null && !athletic.skill.m.HasMoved) {
+				local targetTileType = _activeEntity.getTile().Type;
+				if (this.Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, this.Tactical.getNavigator().getLastSettings(), 0)) {
+					targetTileType = this.Tactical.getNavigator().getCostForPath(_activeEntity, this.Tactical.getNavigator().getLastSettings(), 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
+				}
+				local properties = _activeEntity.getCurrentProperties();
+				athletic.bonusAP = this.Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
+				athletic.bonusFat = this.Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
+				if (_activeEntity.getFatigue() - athletic.bonusFat < 0) {
+					athletic.bonusFat += _activeEntity.getFatigue() - athletic.bonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
+				}
+				_activeEntity.setActionPoints(_activeEntity.getActionPoints() + athletic.bonusAP);
+				_activeEntity.setFatigue(this.Math.max(0, _activeEntity.getFatigue() - athletic.bonusFat));
+				athletic.buffApplied = true;
+			}
+
+			local movementCosts = this.Tactical.getNavigator().getCostForPath(_activeEntity, this.Tactical.getNavigator().getLastSettings(), _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
+
+			if (movementCosts.Tiles != 0) {
+				this.Cursor.setCursor(this.Const.UI.Cursor.Hourglass);
+				this.m.CurrentActionState = this.Const.Tactical.ActionState.TravelPath;
+				this.m.ActiveEntityNeedsUpdate = true;
+				this.Tactical.getNavigator().clearVisualisation();
+				this.Tactical.getHighlighter().clear();
+				this.Tactical.getShaker().cancel(_activeEntity);
+
+				if (this.Tactical.getCamera().Level < tile.Level) {
+					this.Tactical.getCamera().Level = tile.Level;
+				}
+
+				if (athletic.buffApplied) {
+					if (this.m.CurrentActionState == this.Const.Tactical.ActionState.TravelPath) {
+						athletic.skill.m.HasMoved = true;
+					} else {
+						_activeEntity.setActionPoints(_activeEntity.getActionPoints() - athletic.bonusAP); // most likely unnecessary, but just in case the move didn't happen
+						_activeEntity.setFatigue(_activeEntity.getFatigue() + athletic.bonusFat);
+					}
+				}
+			}
+		} else {
+			this.computeEntityPath(_activeEntity, _mouseEvent);
+		}
+	}
+
+	o.onProcessAI = function() {
+		if (this.Tactical.State == null || this.Tactical.State.isBattleEnded())	{
+			return;
+		}
+
+		local activeEntity = this.Tactical.TurnSequenceBar.getActiveEntity();
+
+		if (activeEntity != null && activeEntity.getAIAgent().isEvaluating()) {
+			if (this.Time.getVirtualTime() < activeEntity.getAIAgent().m.NextEvaluationTime) {
+            	return; 
+        	}
+
+			activeEntity.getAIAgent().think(true);
+		}
+	}
 
 	o.onBattleEnded = function()
 	{
@@ -430,6 +601,31 @@
 		}
 
 		local loot = [];
+
+		local alive = this.Tactical.Entities.getAllInstancesAsArray();
+		foreach (actor in alive) {
+			if (!::Legends.S.isEntityNullOrDead(actor) && actor.getFaction() == this.Const.Faction.PlayerAnimals && actor.getType() == this.Const.EntityType.ZombieYeoman) {
+				foreach( item in actor.getItems().getAllItems() ) {
+					if (isArena && item.getLastEquippedByFaction() != 1) {
+						continue;
+					}
+
+					item.onCombatFinished();
+					if (!item.isChangeableInBattle() && item.isDroppedAsLoot()) {
+						if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && this.Math.rand(1, 100) <= 66) {
+							local c = this.Math.minf(item.getCondition(), this.Math.rand(this.Math.maxf(10, item.getConditionMax() * 0.35), item.getConditionMax()));
+							item.setCondition(c);
+						}
+
+						item.removeFromContainer();
+						foreach (i in item.getLootLayers()) {
+							loot.push(i);
+						}
+					}
+				}
+			}
+		}
+
 		local size = this.Tactical.getMapSize();
 
 		for( local x = 0; x < size.X; x = ++x )
@@ -470,7 +666,7 @@
 				// 	{
 				// 		if (this.Math.rand(1, 100) <= zombieSalvage)
 				// 		{
-				// 			local zloot = this.new("scripts/items/spawns/skeleton_item");
+				// 			local zloot = this.new("scripts/items/spawns/legend_skeleton_item");
 				// 			loot.push(zloot);
 				// 		}
 				// 	}
@@ -521,7 +717,6 @@
 							{
 								loot.push(i);
 							}
-
 						}
 					}
 				}
@@ -708,5 +903,55 @@
 		this.Tactical.Entities.updateTileEffects();
 		this.Tactical.TopbarRoundInformation.update();
 		this.m.MaxHostiles = this.Math.max(this.m.MaxHostiles, this.Tactical.Entities.getHostilesNum());
+	}
+
+
+	o.tactical_flee_screen_onFleePressed = function () {
+		this.Sound.play("sounds/retreat_01.wav", 0.75);
+
+		if (this.isScenarioMode() || this.isEveryoneSafe()) {
+			this.m.IsFleeing = true;
+			this.m.MenuStack.pop();
+			this.m.TacticalDialogScreen.hide();
+			this.m.TacticalScreen.hide();
+			this.Time.clearEvents();
+			this.setPause(true);
+			this.flee();
+		} else if (!this.m.IsAutoRetreat) {
+			this.m.IsAutoRetreat = true;
+			this.m.MenuStack.pop();
+			this.Settings.getTempGameplaySettings().FasterPlayerMovement = true;
+			this.Settings.getTempGameplaySettings().FasterAIMovement = true;
+			this.Tactical.getCamera().zoomTo(this.Math.maxf(this.Tactical.getCamera().Zoom, 1.5), 1.0);
+			this.Time.setVirtualSpeed(1.5);
+			local alive = this.Tactical.Entities.getAllInstancesAsArray();
+
+			foreach (bro in alive) {
+				if (bro.isAlive() && this.isKindOf(bro, "player")) {
+					if (bro.getSkills().hasEffect(::Legends.Effect.Charmed)) {
+						local agent = bro.getSkills().getSkillByID(::Legends.Effects.getID(::Legends.Effect.Charmed)).m.OriginalAgent;
+						agent.setUseHeat(true);
+						agent.getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 1.0;
+					} else if (bro.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed)) {
+						local agent = bro.getSkills().getSkillByID(::Legends.Effects.getID(::Legends.Effect.LegendIntenselyCharmed)).m.OriginalAgent;
+						agent.setUseHeat(true);
+						agent.getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 1.0;
+					} else {
+						bro.getAIAgent().setUseHeat(true);
+						bro.getAIAgent().getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 1.0;
+					}
+
+					this.Tactical.TurnSequenceBar.updateEntity(bro.getID());
+				}
+			}
+
+			local activeEntity = this.Tactical.TurnSequenceBar.getActiveEntity();
+
+			if (activeEntity != null && activeEntity.isPlayerControlled()) {
+				activeEntity.getAIAgent().setFinished(false);
+			}
+
+			this.updateCurrentEntity();
+		}
 	}
 });

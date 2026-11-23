@@ -6,7 +6,7 @@ this.legend_silver_ingot_02_blueprint <- this.inherit("scripts/crafting/blueprin
 		this.m.ID = "blueprint.legend_silver_ingot_02";
 		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/legend_silver_ingots_item");
-		this.m.Cost = 180;
+		this.m.Cost = 900;
 		local ingredients = [
 			{
 				Script = "scripts/items/loot/silverware_item",

@@ -2,7 +2,7 @@
 this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Healing",
-		Description = "Tend to wounded brothers"
+		Description = "Mend wounds and tend injuries."
 	},
 
 	function create()
