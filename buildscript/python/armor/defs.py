@@ -469,7 +469,7 @@ class Defs:
  "desc" :  "A rugged body harness made of thick overlapping metal plates that cover most of the upper body, but is exceptionally heavy.",
  "adesc" : "Includes a heavy lamellar harness made of thick overlapping metal plates."
 },
-{"name": "leather_lamellar_harness_reinforced", "layer": "plate", "min": 1, "max": 5, "value" : 350, "con" : 145, "stam" : -20, "impactSound" : "plate", "invSound" : "plate",
+{"name": "leather_lamellar_harness_reinforced", "layer": "plate", "min": 1, "max": 5, "value" : 2250, "con" : 140, "stam" : -20, "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Reinforced Lamellar Harness",
  "desc" :  "A body armor made of thick overlapping metal plates that cover most of the upper body.",
  "adesc" : "Includes body armor made of thick overlapping metal plates that cover most of the upper body."
@@ -485,7 +485,7 @@ class Defs:
  "adesc" : "Includes an extraordinarily well-crafted gold plated lamellar harness.",
  "named" : { "con": { "min" : 175, "max" : 195 }, "fat": { "min" : 23, "max" : 19 }, "names" : ["Harness", "Ward", "Defense", "Splendor", "Golden Lamellar"]  }
 },
-{"name": "leather_lamellar_reinforced",      "layer": "plate", "min": 1, "max": 4, "value" : 2500, "con" : 150, "stam" : -23, "impactSound" : "plate", "invSound" : "plate",
+{"name": "leather_lamellar_reinforced",      "layer": "plate", "min": 1, "max": 4, "value" : 2500, "con" : 155, "stam" : -23, "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Reinforced Leather Lamellar Armor",
  "desc" :  "Numerous overlapping metal reinforced leather plates that provides excellent protection for most of the upper body but is very heavy.",
  "adesc" : "Includes armor of overlapping reinforced metal leather plates."
