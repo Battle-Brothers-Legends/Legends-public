@@ -277,12 +277,12 @@ this.camp_building <- {
 			local bro = ::UIDataHelper.convertEntityToUIData(b, null);
 			local primary = ::World.Camp.getBuildingByID(b.getPrimaryCampAssignment());
 			local secondary = b.getSecondaryCampAssignment() == null ? null : ::World.Camp.getBuildingByID(b.getSecondaryCampAssignment());
-			local active = b.getCampAssignment();
+			local active = ::World.Camp.getActiveAssignment(b, false);
 			bro.bannerImage <- primary.getBanner(b);
 			bro.secondaryBannerImage <- secondary == null ? null : secondary.getBanner(b);
 			bro.IsSelected <- primary.getID() == this.m.ID;
 			bro.IsSecondarySelected <- secondary != null && secondary.getID() == this.m.ID;
-			// while camping, whether they moved on to their Secondary task or are resting with nothing to do at either
+			// whether they are, or would be when camping now, at their Secondary task or resting with nothing to do at either
 			bro.IsOnSecondary <- active != primary.getID() && secondary != null && active == secondary.getID();
 			bro.IsIdle <- active != primary.getID() && !bro.IsOnSecondary;
 			bro.Modifier <- this.m.ModName != "" ? b.getCurrentProperties().Modifiers[this.m.ModName] : 0;

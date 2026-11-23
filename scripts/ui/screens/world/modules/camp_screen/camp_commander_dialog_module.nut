@@ -136,6 +136,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 
 	function onTentSelected(_id) {
 		this.m.CurrentTent = ::World.Camp.getBuildingByID(_id);
+		::World.Camp.updateAssignments();
 		return {
 			Roster = this.m.CurrentTent.getSortedRoster(),
 			Label = this.m.CurrentTent.getName(),

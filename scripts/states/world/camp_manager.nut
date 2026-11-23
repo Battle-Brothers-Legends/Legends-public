@@ -98,12 +98,12 @@ this.camp_manager <- {
 	}
 
 	// The first of the Primary and Secondary tasks that has work the character can do at full efficiency, then the first that has work at all, as an injured character still helps a little at a dangerous tent. With nothing to do at either they rest
-	function getActiveAssignment( _bro ) {
+	function getActiveAssignment( _bro, _requireCamping = true ) {
 		local tents = [];
 
 		foreach (id in [_bro.getPrimaryCampAssignment(), _bro.getSecondaryCampAssignment()]) {
 			local tent = id == null ? null : this.getBuildingByID(id);
-			if (tent != null && this.canBuildingWorkCurrently(tent, true) && tent.hasWork(_bro)) {
+			if (tent != null && this.canBuildingWorkCurrently(tent, _requireCamping) && tent.hasWork(_bro)) {
 				tents.push(tent);
 			}
 		}
