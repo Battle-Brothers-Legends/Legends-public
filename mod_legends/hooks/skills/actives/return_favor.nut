@@ -8,6 +8,7 @@
 	}
 
 	o.getTooltip = function () {
+		local effect = this.getContainer().getActor().getCurrentProperties().IsSpecializedInMaces ? 75 : 25;
 		return [
 			{
 				id = 1,
@@ -25,10 +26,17 @@
 				text = this.getCostString()
 			},
 			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Any opponent missing with a melee attack will get debuffed with either [color=%effect%]Stunned[/color] or [color=%effect%]Dazed[/color]"
+			},
+			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Gain a [color=%positive%]75%[/color] chance to attempt to Stun or Stagger any opponent missing this character with a melee attack."
+				text = "Has a [color=%positive%]%_effect%%[/color] chance to apply [color=%effect%]Stunned[/color], else will apply [color=%effect%]Dazed[/color]",
+				param = [["_effect", effect]]
 			}
 		];
 	}
