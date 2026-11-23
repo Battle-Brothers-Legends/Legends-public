@@ -226,6 +226,8 @@ Go for the head!
 • Hitting the head of a target will give you a guaranteed hit to the head with your next attack.
 
 • Connecting your hit resets the effect, but every % head hit chance above 50 gives a chance for the effect to not be consumed.
+
+• Killing an enemy with a hit to the head will increase chance to hit the head and Damage on a hit to the head by +10% for each kill until the end of combat.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.HeadHunter].Tooltip = ::Const.Strings.PerkDescription.HeadHunter;
 
