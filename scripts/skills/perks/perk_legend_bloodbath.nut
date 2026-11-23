@@ -68,7 +68,7 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 
 		local bleedingEnemies = ::Tactical.Entities.getAllInstancesAsArray()
 			.filter(function (_, _actor) {
-				if (!::MSU.isKindOf(_actor, "actor"))
+				if (!::FU.isKindOf(_actor, "actor"))
 					return false;
 				if (::Legends.S.skillEntityAliveCheck(_actor))
 					return false;

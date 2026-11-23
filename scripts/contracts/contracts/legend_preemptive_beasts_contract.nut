@@ -197,7 +197,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 						local poachers = [];
 						for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
 						{
-							if(!::MSU.isNull(::Tactical.getEntityByID(this.Flags.get("Poacher" + i))))
+							if(!::FU.isNull(::Tactical.getEntityByID(this.Flags.get("Poacher" + i))))
 							{
 								survivors++;
 							}
@@ -336,15 +336,15 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
 					{
 						local p = ::Tactical.getEntityByID(this.Flags.get("Poacher" + i));
-						if (!::MSU.isNull(p))
+						if (!::FU.isNull(p))
 						{
 							poacher = p;
 							break;
 						}
 					}
-					if (!::MSU.isNull(poacher))
+					if (!::FU.isNull(poacher))
 					{
-						this.Contract.m.Poacher = ::MSU.asWeakTableRef(poacher);
+						this.Contract.m.Poacher = ::FU.asWeakTableRef(poacher);
 						this.Options.push({
 							Text = "(Poacher) " + poacher.getName() + " can help us.",
 							function getResult()
@@ -364,10 +364,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 						candidates.push(c);
 					}
 				}
-				local expert = ::MSU.Array.rand(candidates);
-				if (!::MSU.isNull(expert))
+				local expert = ::FU.Array.rand(candidates);
+				if (!::FU.isNull(expert))
 				{
-					this.Contract.m.ExpertHunter = ::MSU.asWeakTableRef(expert);
+					this.Contract.m.ExpertHunter = ::FU.asWeakTableRef(expert);
 					this.Options.push({
 						Text = "(Expert Hunter) " + expert.getName() + " has something to say.",
 						function getResult()
@@ -656,12 +656,12 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				{
 					if (peddlerBackgrounds.find(bro.getBackground().getID()) != null)
 					{
-						this.Contract.m.Peddler = ::MSU.asWeakTableRef(bro);
+						this.Contract.m.Peddler = ::FU.asWeakTableRef(bro);
 						// this.Contract.m.Peddler = bro;
 						break;
 					}
 				}
-				if (!::MSU.isNull(this.Contract.m.Peddler))
+				if (!::FU.isNull(this.Contract.m.Peddler))
 				{
 					Options.push({
 						Text = "%peddler% has a business proposal",
@@ -1017,7 +1017,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
 				{
 					local p = ::Tactical.getEntityByID(this.Flags.get("Poacher" + i));
-					if (!::MSU.isNull(p)) poachers.push(p.getName());
+					if (!::FU.isNull(p)) poachers.push(p.getName());
 				}
 
 				if (this.Flags.get("PeddlerPayLater"))
@@ -1140,7 +1140,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			::Const.UI.getColorized(this.m.Flags.get("Cut"), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 		]);
 
-		if (!::MSU.isNull(this.m.Peddler))
+		if (!::FU.isNull(this.m.Peddler))
 		{
 			_vars.push([
 				"peddler",
@@ -1148,7 +1148,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			]);
 		}
 
-		if (!::MSU.isNull(this.m.Poacher))
+		if (!::FU.isNull(this.m.Poacher))
 		{
 			_vars.push([
 				"poacher",
@@ -1156,7 +1156,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			]);
 		}
 
-		if (!::MSU.isNull(this.m.ExpertHunter))
+		if (!::FU.isNull(this.m.ExpertHunter))
 		{
 			_vars.push([
 				"experthunter",

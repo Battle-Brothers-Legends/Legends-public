@@ -71,7 +71,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
+		local hasNet = offhand != null && ::FU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
 		if (hasNet && this.skill.isUsable()) {
 			return true;
 		}

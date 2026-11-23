@@ -13,20 +13,20 @@ if (!("getAmmoTypeName" in ::Const.Items))
 {
 	::Const.Items.getAmmoTypeName <- function( _ammoType )
 	{
-		local idx = ::MSU.Math.log2int(_ammoType) + 1;
+		local idx = ::FU.Math.log2int(_ammoType) + 1;
 		if (idx < ::Const.Items.AmmoTypeName.len())
 		{
 			return ::Const.Items.AmmoTypeName[idx];
 		}
 
-		throw ::MSU.Exception.KeyNotFound(_ammoType);
+		throw ::FU.Exception.KeyNotFound(_ammoType);
 	}
 }
 if (!("addNewAmmoType" in ::Const.Items))
 {
 	::Const.Items.addNewAmmoType <- function( _ammoType, _ammoTypeName = "" )
 	{
-		if (_ammoType in ::Const.Items.AmmoType) throw ::MSU.Exception.DuplicateKey(_ammoType);
+		if (_ammoType in ::Const.Items.AmmoType) throw ::FU.Exception.DuplicateKey(_ammoType);
 
 		local max = 0;
 		foreach (w, value in ::Const.Items.AmmoType)

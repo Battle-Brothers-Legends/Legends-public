@@ -244,7 +244,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		this.Const.LegendMod.FavEnemyPerkMap.addEnemies(this.m.ValidTypes, this.m.ID)
 	}
 
-	// Requires MSU; this will add tooltips to display bonuses when targeting an enemy
+	// Requires FU; this will add tooltips to display bonuses when targeting an enemy
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
 		if (this.validTarget( _targetTile.getEntity().getType())) {

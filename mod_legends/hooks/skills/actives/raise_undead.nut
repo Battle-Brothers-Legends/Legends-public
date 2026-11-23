@@ -14,7 +14,7 @@
 			return false;
 		}
 
-		if (!this.MSU.Tile.canResurrectOnTile(_targetTile))
+		if (!this.FU.Tile.canResurrectOnTile(_targetTile))
 		{
 			return false;
 		}

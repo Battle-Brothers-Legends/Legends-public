@@ -19,7 +19,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	// takes a weakTableRef
 	function setOffhandSkill(_a) {
-		this.m.offHandSkill = ::MSU.asWeakTableRef(_a);
+		this.m.offHandSkill = ::FU.asWeakTableRef(_a);
 	}
 
 	function resetOffhandSkill() {
@@ -32,7 +32,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden() {
-		if (!::MSU.isNull(this.m.offHandSkill)) {
+		if (!::FU.isNull(this.m.offHandSkill)) {
 			return false;
 		}
 
@@ -67,7 +67,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		local ohSkill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
+		local ohSkill = !::FU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
 		local blockedOffhand = items.hasBlockedSlot(this.Const.ItemSlot.Offhand);
 		if (ohSkill != null && !blockedOffhand) {
 			if (::Legends.Weapons.isDualWielding(actor)) {
@@ -142,13 +142,13 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) || hasNet || !::MSU.isNull(this.m.offHandSkill)))	{
+		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) || hasNet || !::FU.isNull(this.m.offHandSkill)))	{
 			if (!_forFree) {
 				//if (_targetTile == null || actor.getTile() == null) {
 					// Is this necessary?
 				//	return;
 				//}
-				local skillToUse = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
+				local skillToUse = !::FU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
 				if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
 					return;
 				}
@@ -167,7 +167,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 				/*this.Const.SkillCounter++;
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,
-					Skill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand
+					Skill = !::FU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand
 					});*/
 			}
 		}
@@ -179,7 +179,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		if (::Legends.S.isEntityNullOrDead(entity) || ::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
-		if (::MSU.isNull(_info.Skill)) {
+		if (::FU.isNull(_info.Skill)) {
 			::logWarning("legend_ambidextrous: offhand skill is null, cannot execute follow-up attack");
 			return;
 		}

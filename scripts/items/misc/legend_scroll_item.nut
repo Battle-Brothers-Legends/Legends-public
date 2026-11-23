@@ -204,7 +204,7 @@ this.legend_scroll_item <- ::inherit("scripts/items/item", {
 		local trained = ::Legends.Effects.get(_actor, ::Legends.Effect.Trained);
 
 		if (trained != null) {
-			if (!::MSU.isKindOf(trained, "injury")) {
+			if (!::FU.isKindOf(trained, "injury")) {
 				trained.m.Duration += 3;
 				trained.m.XPGainMult = 1.5;
 				trained.m.Description = format("Trained effect (: +50% XP for %i battles", effect.m.Duration);

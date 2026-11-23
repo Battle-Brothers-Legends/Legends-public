@@ -17,7 +17,7 @@ this.legend_grazed_effect <- this.inherit("scripts/skills/skill", {
 
 	function setActor( _a )
 	{
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
+		this.m.Actor = ::FU.asWeakTableRef(_a);
 	}
 
 	function getAttacker()
@@ -27,7 +27,7 @@ this.legend_grazed_effect <- this.inherit("scripts/skills/skill", {
 			return this.getContainer().getActor();
 		}
 
-		if (::MSU.isNull(this.m.Actor))
+		if (::FU.isNull(this.m.Actor))
 		{
 			return this.getContainer().getActor();
 		}

@@ -8,7 +8,7 @@
 
 	o.setActor <- function ( _a )
 	{
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
+		this.m.Actor = ::FU.asWeakTableRef(_a);
 	}
 
 	o.getAttacker <- function ()
@@ -18,7 +18,7 @@
 			return this.getContainer().getActor();
 		}
 
-		if (::MSU.isNull(this.m.Actor))
+		if (::FU.isNull(this.m.Actor))
 		{
 			return this.getContainer().getActor();
 		}

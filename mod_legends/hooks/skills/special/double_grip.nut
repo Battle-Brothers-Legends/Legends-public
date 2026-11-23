@@ -53,7 +53,7 @@
 
 	// 	foreach( valid in m.AllowedWeapons )
 	// 	{
-	// 		if (::MSU.String.endsWith(_offhand.getID(), valid))
+	// 		if (::FU.String.endsWith(_offhand.getID(), valid))
 	// 			return true;
 	// 	}
 
@@ -83,8 +83,8 @@
 		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
 		local main = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local off = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local hasXbow = off != null && ::MSU.String.endsWith(off.getID(), "_hand_crossbow");
-		local hasNet = off != null && ::MSU.String.endsWith(off.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
+		local hasXbow = off != null && ::FU.String.endsWith(off.getID(), "_hand_crossbow");
+		local hasNet = off != null && ::FU.String.endsWith(off.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
 		return (missinghand == null || newhand != null) && main != null && (off == null || hasXbow || hasNet) && main.isDoubleGrippable();
 	}
 

@@ -100,7 +100,7 @@ WorldObituaryScreen.prototype.reloadList = function ()
 	this.CreateStatHeader();
 	this.updateStatPositions();
 
-	if (MSU.getSettingValue("mod_legends", "SwapPerks"))
+	if (FU.getSettingValue("mod_legends", "SwapPerks"))
 	{
 		$('.trait-group, .perminjury-group, .table-header-traits, .table-header-perminjuries').hide();
 		$('.perk-group, .table-header-perks').show();
@@ -134,7 +134,7 @@ WorldObituaryScreen.prototype.createToggleCheckbox = function(settingKey, labelT
 		increaseArea: '30%'
 	});
 
-	var currentValue = MSU.getSettingValue("mod_legends", settingKey);
+	var currentValue = FU.getSettingValue("mod_legends", settingKey);
 	checkbox.iCheck(currentValue ? 'check' : 'uncheck');
 
 	var label = $('<label class="bool-checkbox-label title-font-small font-color-title obituary-checkbox-label" for="' + id + '">' + labelText + '</label>');
@@ -155,7 +155,7 @@ WorldObituaryScreen.prototype.createToggleCheckbox = function(settingKey, labelT
 	checkbox.on('ifChecked ifUnchecked', function (event) 
 	{
 		var newValue = event.type === 'ifChecked';
-		MSU.setSettingValue("mod_legends", settingKey, newValue);
+		FU.setSettingValue("mod_legends", settingKey, newValue);
 
 		if (typeof onToggleCallback === 'function') 
 		{
@@ -330,21 +330,21 @@ WorldObituaryScreen.prototype.createDIV = function (_parentDiv)
 	$(document).on('keyup.mod_legends', function(event) 
 	{
 		// Toggle Perks Keybind
-		if (MSU.Keybinds.isKeybindPressed("mod_legends", "toggle_perks", event))
+		if (FU.Keybinds.isKeybindPressed("mod_legends", "toggle_perks", event))
 		{
 			self.mTogglePerksCheckbox.find('input').iCheck('toggle');
 			return false;
 		}
 
 		// Toggle Stacked Stars Keybind
-		else if (MSU.Keybinds.isKeybindPressed("mod_legends", "stacked_talent_stars", event))
+		else if (FU.Keybinds.isKeybindPressed("mod_legends", "stacked_talent_stars", event))
 		{
 			self.mToggleStarsCheckbox.find('input').iCheck('toggle');
 			return false;
 		}
 
 		// Toggle Stat Order Keybind
-		else if (MSU.Keybinds.isKeybindPressed("mod_legends", "toggle_stat_order", event))
+		else if (FU.Keybinds.isKeybindPressed("mod_legends", "toggle_stat_order", event))
 		{
 			self.mToggleStatsCheckbox.find('input').iCheck('toggle');
 			return false;
@@ -401,7 +401,7 @@ WorldObituaryScreen.prototype.destroyDIV = function ()
 
 WorldObituaryScreen.prototype.getStatOrder = function ()
 {
-    var SwapStats = MSU.getSettingValue("mod_legends", "SwapStats");
+    var SwapStats = FU.getSettingValue("mod_legends", "SwapStats");
 
     return SwapStats
         ? [4, 5, 6, 7, 0, 1, 2, 3]
@@ -471,21 +471,21 @@ WorldObituaryScreen.prototype.addListEntry = function (_data)
         // Traits (First entry is background)
 		if (_data.traits && _data.traits.length > 0)
 		{
-			var show_num_traits = MSU.getSettingValue("mod_legends", "show_num_traits");
+			var show_num_traits = FU.getSettingValue("mod_legends", "show_num_traits");
 			result.append(this.createIconGroup(_data.traits, 'trait-group', show_num_traits));
 		}
 
         // Permanent Injuries
 		if (_data.perminjuries && _data.perminjuries.length > 0)
 		{
-			var show_num_perminjuries = MSU.getSettingValue("mod_legends", "show_num_perminjuries");
+			var show_num_perminjuries = FU.getSettingValue("mod_legends", "show_num_perminjuries");
 			result.append(this.createIconGroup(_data.perminjuries, 'perminjury-group', show_num_perminjuries));
 		}
 
         // Perks
 		if (_data.perks && _data.perks.length > 0)
 		{
-			var show_num_perks = MSU.getSettingValue("mod_legends", "show_num_perks");
+			var show_num_perks = FU.getSettingValue("mod_legends", "show_num_perks");
 			var perksGroup = this.createIconGroup(_data.perks, 'perk-group', show_num_perks);
 			perksGroup.hide(); // Initially hidden; toggle in settings
 			result.append(perksGroup);
@@ -495,7 +495,7 @@ WorldObituaryScreen.prototype.addListEntry = function (_data)
 		if (_data.stats && _data.talents && _data.stats.length > 0)
 		{
 			var statsLabels = ['hptext', 'fttext', 'brtext', 'ittext', 'matext', 'ratext', 'mdtext', 'rdtext'];
-			var TalentStackedStars = MSU.getSettingValue("mod_legends", "StackedStars");
+			var TalentStackedStars = FU.getSettingValue("mod_legends", "StackedStars");
 			var statOrder = this.getStatOrder();
 
 			var statWidth = !TalentStackedStars ? '6.5rem' : '5.5rem';
@@ -634,7 +634,7 @@ WorldObituaryScreen.prototype.syncCheckboxStates = function()
 	{
 		var setting = settings[i];
 		var input = setting.checkbox.find('input[type="checkbox"]');
-		var value = MSU.getSettingValue("mod_legends", setting.key);
+		var value = FU.getSettingValue("mod_legends", setting.key);
 		input.iCheck(value ? 'check' : 'uncheck');
 	}
 };
@@ -689,8 +689,8 @@ WorldObituaryScreen.prototype.show = function (_data)
 	
     this.mContainer.removeClass('display-none').addClass('display-block');
 
-    // Check MSU setting to hide/show the checkboxes
-    var shouldHide = MSU.getSettingValue("mod_legends", "HideObituarySetting");
+    // Check FU setting to hide/show the checkboxes
+    var shouldHide = FU.getSettingValue("mod_legends", "HideObituarySetting");
 
     if (this.mTogglePerksCheckbox)  this.mTogglePerksCheckbox.css('display', shouldHide ? 'none' : 'block');
     if (this.mToggleStatsCheckbox)  this.mToggleStatsCheckbox.css('display', shouldHide ? 'none' : 'block');
@@ -782,7 +782,7 @@ WorldObituaryScreen.prototype.loadFromData = function (_data)
     var $traitElements = $('.trait-group, .perminjury-group, .table-header-traits, .table-header-perminjuries');
     var $perkElements = $('.perk-group, .table-header-perks');
 
-    if (MSU.getSettingValue("mod_legends", "SwapPerks")) {
+    if (FU.getSettingValue("mod_legends", "SwapPerks")) {
         $traitElements.hide();
         $perkElements.show();
     } else {

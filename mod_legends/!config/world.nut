@@ -12,7 +12,7 @@ for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
 {
 	local ret = clone ::Const.World.AllTerrainTypes;
 	local garbage = clone _types;
-	::MSU.Array.sortDescending(garbage);
+	::FU.Array.sortDescending(garbage);
 	foreach( i in garbage )
 		ret.remove(i);
 	return ret;

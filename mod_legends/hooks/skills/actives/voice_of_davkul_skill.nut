@@ -12,7 +12,7 @@
 			if (a.getFatigue() == 0)
 				continue;
 
-			if (a.getType() == this.Const.EntityType.Cultist || (::MSU.isKindOf(a, "player") && !::MSU.isNull(a.getBackground()) && (a.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist) || a.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))))
+			if (a.getType() == this.Const.EntityType.Cultist || (::FU.isKindOf(a, "player") && !::FU.isNull(a.getBackground()) && (a.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist) || a.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))))
 				::Legends.Effects.grant(a, ::Legends.Effect.VoiceOfDavkul);
 		}
 

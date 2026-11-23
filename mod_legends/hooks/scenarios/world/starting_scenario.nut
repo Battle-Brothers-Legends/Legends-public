@@ -160,7 +160,7 @@
 
 	o.setCurrentSettlement <- function ( _settlement )
 	{
-		this.m.CurrentSettlement = ::MSU.asWeakTableRef(_settlement);
+		this.m.CurrentSettlement = ::FU.asWeakTableRef(_settlement);
 	}
 
 	o.getExcludedAmbitions <- function () {

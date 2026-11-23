@@ -64,7 +64,7 @@
 		return bonus;
 	}
 
-	// Requires MSU; this will add tooltips to display bonuses when targeting an enemy
+	// Requires FU; this will add tooltips to display bonuses when targeting an enemy
 	o.onGetHitFactors <- function ( _skill, _targetTile, _tooltip )
 	{
 		local bonus = this.calculateBonus(_targetTile.getEntity()) * 100;

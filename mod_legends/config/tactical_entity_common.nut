@@ -43,7 +43,7 @@
 
 ::Const.Tactical.Common.onApplyDemonShadows <- function(_tile, _entity)
 {
-	if (_entity.getSkills().hasTrait(::Legends.Trait.RacialAlp) || ::MSU.isKindOf(_entity, "legend_alp_shadow"))
+	if (_entity.getSkills().hasTrait(::Legends.Trait.RacialAlp) || ::FU.isKindOf(_entity, "legend_alp_shadow"))
 	{
 		return;
 	}

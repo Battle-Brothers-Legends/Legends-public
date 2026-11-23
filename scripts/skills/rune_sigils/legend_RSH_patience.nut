@@ -43,7 +43,7 @@ this.legend_RSH_patience <- this.inherit("scripts/skills/skill", {
 				return;
 			if (!_skill.isRanged()) {
 				_skill.m.HitChanceBonus += this.m.Bonus;
-			} else if (_skill.isRanged() && ::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
+			} else if (_skill.isRanged() && ::FU.isIn("AdditionalAccuracy", _skill.m, true)) {
 				_skill.m.AdditionalAccuracy += this.m.Bonus;
 			}
 			this.m.Bonus = 0;

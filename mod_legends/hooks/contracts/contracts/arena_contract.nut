@@ -119,7 +119,7 @@
 				local start = s.start;
 				s.start <- function () {
 					start();
-					this.Text = ::MSU.String.replace(this.Text, "The arena master", " The arena master");
+					this.Text = ::FU.String.replace(this.Text, "The arena master", " The arena master");
 				}
 				
 			}
@@ -213,7 +213,7 @@
 							break;
 
 						case 3:
-							a = ::new(::MSU.Array.rand([
+							a = ::new(::FU.Array.rand([
 								"scripts/items/legend_helmets/helm/legend_helmet_southern_gladiator_helm_crested",
 								"scripts/items/legend_helmets/helm/legend_helmet_southern_gladiator_helm_split",
 								"scripts/items/legend_helmets/helm/legend_helmet_southern_gladiator_helm_masked"

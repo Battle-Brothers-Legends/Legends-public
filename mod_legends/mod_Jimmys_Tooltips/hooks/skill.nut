@@ -1,6 +1,6 @@
-// add MSU custom events for all primary deffensive perks
+// add FU custom events for all primary deffensive perks
 // this `addEvent` should never be inside a hook
-::MSU.Skills.addEvent("onOtherActorTooltip", function(_tooltip, _targetActor){}, true, true);
+::FU.Skills.addEvent("onOtherActorTooltip", function(_tooltip, _targetActor){}, true, true);
 
 ::ModJimmysTooltips.ModHook.hook("scripts/skills/skill", function(q){
 

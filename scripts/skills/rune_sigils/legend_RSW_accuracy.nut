@@ -23,7 +23,7 @@ this.legend_RSW_accuracy <- this.inherit("scripts/skills/skill", {
 			}
 			else if (_skill.isRanged())
 			{
-				if (::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
+				if (::FU.isIn("AdditionalAccuracy", _skill.m, true)) {
 					_skill.m.AdditionalAccuracy += this.getItem().getRuneBonus2();
 				} else {
 					::logError("AdditionalAccuracy not found in skill")

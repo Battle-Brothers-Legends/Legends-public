@@ -62,7 +62,7 @@
 		if (this.m.DescriptionTemplates.len() == 0)
 			return;
 
-		this.m.Description = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		this.m.Description = ::FU.Array.rand(this.m.DescriptionTemplates);
 	}
 
 	local getOnCompletion = o.m.Payment.getOnCompletion;
@@ -440,7 +440,7 @@
         // For this to work, any contract text using the placeholder pronoun must refer to the actor in the lowercase form of the actor's variable name
         // For example, the placeholder "%they_somebody%" will get the pronoun for this.m.Somebody
         foreach (key, value in this.m) {
-            if (::MSU.isKindOf(value, "actor")) {
+            if (::FU.isKindOf(value, "actor")) {
                 ::Const.LegendMod.extendVarsWithPronouns(vars, value, key.tolower());
             }
         }

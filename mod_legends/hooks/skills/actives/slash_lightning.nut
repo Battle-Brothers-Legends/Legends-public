@@ -8,7 +8,7 @@
 		local myTile = _user.getTile();
 		local target = _targetTile.getEntity();
 
-		if (!_targetTile.IsEmpty || ::MSU.isNull(target) || !target.isAlive() || target.isDying())
+		if (!_targetTile.IsEmpty || ::FU.isNull(target) || !target.isAlive() || target.isDying())
 			return success;
 
 		if (success && _user.isAlive() && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID())

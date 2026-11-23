@@ -203,7 +203,7 @@
 		local commander = this.World.getTemporaryRoster().create("scripts/entity/tactical/humans/knight");
 		local name = this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)];
 		if (commander.getGender() == 1) {
-			name = ::MSU.String.replace(name, "Sir", "Dame");
+			name = ::FU.String.replace(name, "Sir", "Dame");
 		}
 		this.m.Commander.Name = name;
 		this.m.Commander.Gender = commander.getGender();

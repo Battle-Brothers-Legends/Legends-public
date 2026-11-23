@@ -27,7 +27,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 			local bodyarmorbase = b.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
 			local bodyarmor = null;
 			local bodyarmorfinal = {};
-			if (bodyarmorbase != null && ::MSU.isKindOf(bodyarmorbase, "legend_armor"))
+			if (bodyarmorbase != null && ::FU.isKindOf(bodyarmorbase, "legend_armor"))
 			{
 				bodyarmor = {
 					Cloth = bodyarmorbase,
@@ -67,7 +67,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 			local helmetbase = b.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
 			local helmet = null;
 			local helmetfinal = {};
-			if (helmetbase != null && ::MSU.isKindOf(helmetbase, "legend_helmet"))
+			if (helmetbase != null && ::FU.isKindOf(helmetbase, "legend_helmet"))
 			{
 				helmet = {
 					Hood = helmetbase,

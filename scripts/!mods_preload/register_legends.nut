@@ -12,7 +12,7 @@
 // Register FU mod with mod_hooks so registry system can find it
 ::mods_registerMod(::FU.ID, ::FU.Version, ::FU.Name);
 
-// Register Legends with vanilla mod_hooks (avoid depending on MSU at this point)
+// Register Legends with the mod hooks API.
 ::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 
 ::mods_queue(::Legends.ID, [
@@ -30,8 +30,8 @@
 	::include("scripts/fu/load.nut");
 
 	::Legends.Mod <- ::FU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
-	::Legends.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, "https://github.com/Battle-Brothers-Legends/Legends-public");
-	::Legends.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
+	::Legends.Mod.Registry.addModSource(::FU.System.Registry.ModSourceDomain.GitHub, "https://github.com/Battle-Brothers-Legends/Legends-public");
+	::Legends.Mod.Registry.setUpdateSource(::FU.System.Registry.ModSourceDomain.GitHub);
 	// loading mod files
 	::include("mod_legends/load.nut");
 });

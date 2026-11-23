@@ -74,7 +74,7 @@
 			}
 		}
 
-		if (this.m.Settlement.getSize() >= 3 && !::MSU.isKindOf(this.m.Settlement, "city_state"))
+		if (this.m.Settlement.getSize() >= 3 && !::FU.isKindOf(this.m.Settlement, "city_state"))
 		{
 			if (this.m.Settlement.hasSituation("situation.ambushed_trade_routes") || this.m.Settlement.hasSituation("situation.abducted_children") || this.m.Settlement.hasSituation("situation.disappearing_villagers") || this.m.Settlement.hasSituation("situation.raided") || this.m.Settlement.hasSituation("situation.unhold_attacks"))
 			{

@@ -46,5 +46,5 @@ TacticalCombatResultScreenLootPanel.prototype.createDIV = function (_parentDiv)
 	this.mSortInventoryButton = layout.createImageButton(Path.GFX + Asset.BUTTON_SORT, function() {
 		self.mDataSource.notifyBackendSortButtonClicked();
 	}, '', 3);
-	this.mSortInventoryButton.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "CombatResult.Sort"});
+	this.mSortInventoryButton.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "CombatResult.Sort"});
 }

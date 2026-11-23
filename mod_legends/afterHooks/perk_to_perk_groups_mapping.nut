@@ -116,7 +116,7 @@ foreach (key, category in ::Const.Perks)
 {
 	if ("GroupsCategory" in category)
 	{
-		// ::MSU.Log.printData("Handling Category: " + key);
+		// ::FU.Log.printData("Handling Category: " + key);
 		foreach (group in category.Tree)
 		{
 			group.Category <- category.GroupsCategory;
@@ -133,7 +133,7 @@ foreach (key, group in ::Const.Perks)
 	if (!("Name" in group))
 		continue;
 
-	// ::MSU.Log.printData("Handling Group: " + key);
+	// ::FU.Log.printData("Handling Group: " + key);
 	group.Perks <- []; // single array to store all the perkDefs that the perk group comprises
 	foreach (row in group.Tree) {
 		foreach (perkDef in row) {
@@ -154,7 +154,7 @@ foreach (key, group in ::Const.Perks)
 				Category = category
 			};
 
-			// ::MSU.Log.printData("Perk " + ::Const.Perks.PerkDefObjects[perkDef].Const + " from Group [" + key + "] categorized as [" + entry.Category + "]");
+			// ::FU.Log.printData("Perk " + ::Const.Perks.PerkDefObjects[perkDef].Const + " from Group [" + key + "] categorized as [" + entry.Category + "]");
 			::Legends.Perks.PerkToPerkGroupMap[perkDef].Groups.push(entry);
 		}
 	}

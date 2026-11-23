@@ -198,7 +198,7 @@
 
 	o.onBuildPerkTree <- function ( _background )
 	{
-		local perk = ::MSU.Array.rand(this.m.FavouredEnemyPerks);
+		local perk = ::FU.Array.rand(this.m.FavouredEnemyPerks);
 		this.addScenarioPerk(_background, perk);
 	}
 });

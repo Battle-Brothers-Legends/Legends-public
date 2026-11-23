@@ -38,7 +38,7 @@
 	margin-bottom: 1rem;
 	height: 3rem;
 	width: 3rem;
-	background-image: url("coui://gfx/mods/msu/buttons/mod_update.png");
+	background-image: url("coui://gfx/ui/icons/special.png");
 	background-size: 100% 100%;
 }
 .FU-popup-main-menu-screen > .FU-popup-small-update-button

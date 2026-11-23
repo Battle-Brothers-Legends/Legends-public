@@ -8,19 +8,19 @@ if (!("Actives" in ::Legends)) {
 		::logError("_target == null " + _onError);
 		throw "_target == null";
 	}
-	if (::MSU.isKindOf(_target, "skill")) {
+	if (::FU.isKindOf(_target, "skill")) {
 		return _target.getContainer();
 	}
-	if (::MSU.isKindOf(_target, "skill_container")) {
+	if (::FU.isKindOf(_target, "skill_container")) {
 		return _target;
 	}
-	if (::MSU.isKindOf(_target, "actor")) {
+	if (::FU.isKindOf(_target, "actor")) {
 		return _target.getSkills();
 	}
-	if (::MSU.isKindOf(_target, "character_background")) {
+	if (::FU.isKindOf(_target, "character_background")) {
 		return _target.getContainer();
 	}
-	if (::MSU.isKindOf(_target, "item")) {
+	if (::FU.isKindOf(_target, "item")) {
 		return ::Legends.Actives.getContainer(_target.getContainer().getActor());
 	}
 	::logError("Unsupported _target class " + _onError);
@@ -52,7 +52,7 @@ if (!("Actives" in ::Legends)) {
 	// When granting to an item, always create a new skill instance so each weapon
 	// has its own skill in m.SkillPtrs. This handles dual wielding (both identical
 	// weapons and different weapons that share skills).
-	if (::MSU.isKindOf(_target, "item")) {
+	if (::FU.isKindOf(_target, "item")) {
 		skill = ::new(skillDef.Script);
 		if (skill == null) {
 			return null;

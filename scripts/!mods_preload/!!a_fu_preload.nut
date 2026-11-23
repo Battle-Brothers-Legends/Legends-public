@@ -3,6 +3,8 @@ if (!("FU" in getroottable())) ::FU <- {};
 if (!("ID" in ::FU)) ::FU.ID <- "mod_fu";
 if (!("Name" in ::FU)) ::FU.Name <- "Functional Utilities";
 if (!("Version" in ::FU)) ::FU.Version <- "1.0.0";
+// MSU API compatibility is independent of FU's release version.
+if (!("MSUCompatibilityVersion" in ::FU)) ::FU.MSUCompatibilityVersion <- "1.7.0";
 if (!("VanillaID" in ::FU)) ::FU.VanillaID <- "vanilla";
 if (!("Class" in ::FU)) ::FU.Class <- {};
 if (!("EndQueue" in ::FU)) ::FU.EndQueue <- {

@@ -480,7 +480,7 @@ CharacterScreenLeftPanelHeaderModule.prototype.createDismissDialogContent = func
 	
 	// --- 
 	
-	var HideDismissOption = MSU.getSettingValue("mod_legends", "HideDismissOption");
+	var HideDismissOption = FU.getSettingValue("mod_legends", "HideDismissOption");
 	if (!HideDismissOption)
 	{
 		var obituaryPackage = $('<div class="retirement-package"/>');

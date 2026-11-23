@@ -384,7 +384,7 @@ this.camp_manager <- {
 					notValid.push(e);
 			}
 			foreach (e in notValid) {
-				::MSU.Array.removeByValue(this.m.CampEncounters, e);
+				::FU.Array.removeByValue(this.m.CampEncounters, e);
 			}
 			return;
 		}
@@ -568,7 +568,7 @@ this.camp_manager <- {
 			}
 		}
 
-		// Use FU utils instead of MSU Serialization
+		// Serialize preset names through FU.
 		::FU.Utils.serialize(this.m.PresetNames, _out);
 		// serialize encounters
 		_out.writeF32(this.m.CampEncountersCooldownUntil);

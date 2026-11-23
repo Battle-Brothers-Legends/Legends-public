@@ -26,28 +26,28 @@
 		for( local i = 0; i < 10; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
 			}, false);
 		}
 
 		for( local i = 0; i < 3; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
 			}, false, 100);
 		}
 
 		for( local i = 0; i < 4; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RangedEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.RangedEnemies).roll()
 			}, false);
 		}
 
 		for( local i = 0; i < 7; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RiderEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.RiderEnemies).roll()
 			}, false);
 		}
 
@@ -65,42 +65,42 @@
 		for( local i = 0; i < 7; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RangedEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.RangedEnemies).roll()
 			}, false, 100);
 		}
 
 		for( local i = 0; i < 3; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RiderEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.RiderEnemies).roll()
 			}, false, 100);
 		}
 
 		for( local i = 0; i < 5; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RiderEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.RiderEnemies).roll()
 			}, false);
 		}
 
 		for( local i = 0; i < 8; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.MeleeEnemies).roll()
 			}, false);
 		}
 
 		for( local i = 0; i < 7; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.RangedEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.RangedEnemies).roll()
 			}, false);
 		}
 
 		for( local i = 0; i < 3; i++ )
 		{
 			this.Const.World.Common.addTroop(this, {
-				Type = ::MSU.Class.WeightedContainer(this.m.SpecialEnemies).roll()
+				Type = ::FU.Class.WeightedContainer(this.m.SpecialEnemies).roll()
 			}, false);
 		}
 	}

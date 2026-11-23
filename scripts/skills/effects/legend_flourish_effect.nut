@@ -118,7 +118,7 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 	function getIniDifference( _attacker, _defender )
 	{
 		local bonus = 0;
-		if (::MSU.isNull(_attacker) || ::MSU.isNull(_defender)) return bonus;
+		if (::FU.isNull(_attacker) || ::FU.isNull(_defender)) return bonus;
 
 		local defenderCurrentInitiative = _defender.getInitiative();
 		local attackerCurrentInitiative = _attacker.getInitiative();

@@ -75,7 +75,7 @@
 	// Bag fatigue uses getStaminaModifier
 	o.getStaminaModifier <- function ()
 	{
-		if (!::MSU.isNull(getContainer()) && !::MSU.isNull(getContainer().getActor()) && getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair))
+		if (!::FU.isNull(getContainer()) && !::FU.isNull(getContainer().getActor()) && getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair))
 		{
 			return 0;
 		}

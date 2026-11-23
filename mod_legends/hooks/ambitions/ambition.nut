@@ -51,7 +51,7 @@
 		::Const.LegendMod.extendVarsWithPronouns(vars, veteran, "veteranbrother");
 
 		foreach (key, value in this.m) {
-			if (::MSU.isKindOf(value, "actor")) {
+			if (::FU.isKindOf(value, "actor")) {
 				::Const.LegendMod.extendVarsWithPronouns(vars, value, key.tolower());
 			}
 		}

@@ -595,7 +595,7 @@
 		if (_info.Type == "")
 			return;
 
-		if (_info.Tile == null || !this.MSU.Tile.canResurrectOnTile(_info.Tile, true))
+		if (_info.Tile == null || !this.FU.Tile.canResurrectOnTile(_info.Tile, true))
 		{
 			return;
 		}

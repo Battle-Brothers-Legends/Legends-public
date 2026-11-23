@@ -4,7 +4,7 @@
 if (!("MSU" in getroottable()))
 {
     ::MSU <- {
-        Version = ::FU.Version,
+        Version = ::FU.MSUCompatibilityVersion,
         ID = "mod_msu",
         Name = "MSU shim (via FU)",
         VanillaID = ::FU.VanillaID,

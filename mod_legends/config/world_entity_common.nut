@@ -74,7 +74,7 @@ if (!("World" in ::Const))
 			function IsValid( _item, _shopID )
 			{
 				// must be a food_item and hasn't been bought by player
-				if (!::MSU.isKindOf(_item, "food_item") || _item.m.BestBefore != 0.0)
+				if (!::FU.isKindOf(_item, "food_item") || _item.m.BestBefore != 0.0)
 					return 0;
 
 				return _item.getValue();
@@ -191,7 +191,7 @@ if (!("World" in ::Const))
 
 	function getWeightContainer( _array = null )
 	{
-		if (this.WeightedContainer == null) this.WeightedContainer = ::MSU.Class.WeightedContainer();
+		if (this.WeightedContainer == null) this.WeightedContainer = ::FU.Class.WeightedContainer();
 
 		if (_array != null) {
 			this.WeightedContainer.clear();
@@ -208,7 +208,7 @@ if (!("World" in ::Const))
 
 		if (isMilitary) mult *= 2.0;
 
-		if (::MSU.isKindOf(_settlement, "city_state")) mult *= 1.75;
+		if (::FU.isKindOf(_settlement, "city_state")) mult *= 1.75;
 
 		local budget = ::Math.round(::Math.rand(50, 75 + (!isMilitary ? 10 : 0)) * mult);
 
@@ -1217,7 +1217,7 @@ if (!("World" in ::Const))
 		T.push(v);
 	}
 
-//	::MSU.Log.printData(T, 100); // test
+//	::FU.Log.printData(T, 100); // test
 
 	return {
 		MovementSpeedMult = _template.MovementSpeedMult,

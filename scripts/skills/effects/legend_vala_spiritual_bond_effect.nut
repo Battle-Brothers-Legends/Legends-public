@@ -5,7 +5,7 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function setVala(_v)
 	{
-		this.m.Vala = ::MSU.asWeakTableRef(_v);
+		this.m.Vala = ::FU.asWeakTableRef(_v);
 	}
 
 	function create()
@@ -31,7 +31,7 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID())
 			return false;
 
-		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity))
+		if (::FU.isNull(this.m.Vala) || ::FU.isNull(this.m.Vala.m.WardenEntity))
 			return false;
 
 		return true;
@@ -51,7 +51,7 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
-		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity))
+		if (::FU.isNull(this.m.Vala) || ::FU.isNull(this.m.Vala.m.WardenEntity))
 			return false;
 
 		if (_damageHitpoints < 1)

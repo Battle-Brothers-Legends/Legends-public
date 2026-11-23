@@ -4,7 +4,7 @@
 	{
 		local actor = ::Tactical.TurnSequenceBar.getActiveEntity();
 		local tooltip = ::ModJimmysTooltips.modTacticalTooltip(__original(_targetedWithSkill), _targetedWithSkill, this);
-		if (!::MSU.isNull(actor)) {
+		if (!::FU.isNull(actor)) {
 			this.getSkills().onOtherActorTooltip(tooltip, actor);
 		}
 		return tooltip;

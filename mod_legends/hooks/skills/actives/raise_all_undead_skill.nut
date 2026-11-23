@@ -2,7 +2,7 @@
 {
 	o.onVerifyTarget = function ( _originTile, _targetTile )
 	{
-		if (this.MSU.Tile.canResurrectOnTile(_targetTile, true))
+		if (this.FU.Tile.canResurrectOnTile(_targetTile, true))
 		{
 			return false;
 		}

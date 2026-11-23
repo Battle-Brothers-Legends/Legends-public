@@ -58,7 +58,7 @@ this.legend_raise_undead_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (!this.MSU.Tile.canResurrectOnTile(_targetTile))
+		if (!this.FU.Tile.canResurrectOnTile(_targetTile))
 		{
 			return false;
 		}

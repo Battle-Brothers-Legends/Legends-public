@@ -63,7 +63,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 			}
 		];
 
-		if (::MSU.String.endsWith(this.m.ID, "skill_book"))
+		if (::FU.String.endsWith(this.m.ID, "skill_book"))
 		{
 			result.push({
 				id = 10,
@@ -83,8 +83,10 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 				text = "Reading this will allow the user to learn [color=%negative%]" + selection + "[/color] perk group. Following perks will be added if not already in the tree:"
 			});
 
-			local tree = ::MSU.deepClone(this.m.PerkGroups.filter(function (_, _it) { return _it.Name == this.m.PerkGroupSelection; }.bindenv(this)).top().Tree);
-			foreach (perk in tree.reduce(function (a, b) { a.extend(b); return a; }).map(@(_def) ::Const.Perks.PerkDefObjects[_def])) {
+			local tree = this.m.PerkGroups.filter(function (_, _it) { return _it.Name == this.m.PerkGroupSelection; }.bindenv(this)).top().Tree;
+			local perkIDs = [];
+			foreach (row in tree) perkIDs.extend(row);
+			foreach (perk in perkIDs.map(@(_def) ::Const.Perks.PerkDefObjects[_def])) {
 				result.push({
 					id = 10,
 					type = "text",

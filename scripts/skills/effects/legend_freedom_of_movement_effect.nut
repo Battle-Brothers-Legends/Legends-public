@@ -27,7 +27,7 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 	function getBonus( _attacker, _defender )
 	{
 		local bonus = 1;
-		if (::MSU.isNull(_attacker) || ::MSU.isNull(_defender)) return bonus;
+		if (::FU.isNull(_attacker) || ::FU.isNull(_defender)) return bonus;
 
 		local defenderCurrentInitiative = _defender.getInitiative();
 		local attackerCurrentInitiative = _attacker.getInitiative();
@@ -54,10 +54,10 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 		_properties.DamageReceivedRegularMult *= bonus;
 	}
 
-	// MSU custom-added event
+	// FU custom-added event
 	function onOtherActorTooltip( _tooltip, _targetActor )
 	{
-		if (::MSU.isNull(_targetActor) || !_targetActor.isPlayerControlled()) {
+		if (::FU.isNull(_targetActor) || !_targetActor.isPlayerControlled()) {
 			return;
 		}
 
@@ -71,12 +71,12 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 		});
 	}
 
-	// MSU function
+	// FU function
 	function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
 	{
-		local attacker = ::MSU.isNull(_skill) ? null : _skill.getContainer().getActor();
+		local attacker = ::FU.isNull(_skill) ? null : _skill.getContainer().getActor();
 
-		if (::MSU.isNull(attacker))
+		if (::FU.isNull(attacker))
 		{
 			return;
 		}

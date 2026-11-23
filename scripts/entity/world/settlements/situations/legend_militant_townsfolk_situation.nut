@@ -27,7 +27,7 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 	function onAdded( _settlement )
 	{
 		// This situation can only occur in Tier 1 and Tier 2 settlements (non-fort and non-city-state)
-		if ( _settlement.getSize() > 2 || _settlement.isMilitary() || ::MSU.isKindOf(_settlement, "city_state"))
+		if ( _settlement.getSize() > 2 || _settlement.isMilitary() || ::FU.isKindOf(_settlement, "city_state"))
 		{
 			_settlement.removeSituationByID(this.getID());
 			return;
@@ -55,7 +55,7 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 		// Further improvement: make the items based on attached locations or settlement type
 		if ( _stash.getID() == "shop")
 		{
-			local wc = ::MSU.Class.WeightedContainer([
+			local wc = ::FU.Class.WeightedContainer([
 				[1,"scripts/items/weapons/legend_hoe"],
 				[1,"scripts/items/weapons/legend_scythe"],
 				[2,"scripts/items/weapons/pitchfork"],

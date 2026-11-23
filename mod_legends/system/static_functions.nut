@@ -1,6 +1,6 @@
 ::Legends.S <- {};
 
-::Legends.S.isNull <- ::MSU.isNull;
+::Legends.S.isNull <- ::FU.isNull;
 
 ::Legends.S.colorize <- function(_valueString, _value)
 {

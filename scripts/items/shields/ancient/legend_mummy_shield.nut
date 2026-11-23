@@ -40,7 +40,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		this.shield.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash, function (_skill) {
-			this.m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(_skill);
+			this.m.PrimaryOffhandAttack = ::FU.asWeakTableRef(_skill);
 		}.bindenv(this));
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
 			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;

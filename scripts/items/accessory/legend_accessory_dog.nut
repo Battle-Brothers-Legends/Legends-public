@@ -25,14 +25,14 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 
 	function isAllowedInBag()
 	{
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
+		if (::FU.isNull(this.getContainer()) || ::FU.isNull(this.getContainer().getActor()))
 			return true;
 		return this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendPackleader);
 	}
 
 	function isChangeableInBattle()
 	{
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
+		if (::FU.isNull(this.getContainer()) || ::FU.isNull(this.getContainer().getActor()))
 			return true;
 		return this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendPackleader);
 	}

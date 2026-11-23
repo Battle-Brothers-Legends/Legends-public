@@ -71,7 +71,7 @@
 
 		foreach( valid in m.AllowedWeapons )
 		{
-			if (::MSU.String.endsWith(_offhand.getID(), valid))
+			if (::FU.String.endsWith(_offhand.getID(), valid))
 				return true;
 		}
 

@@ -10,11 +10,11 @@ this.perk_legend_distant_visions <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (m.IsNew && ::MSU.isKindOf(getContainer().getActor(), "player") && getContainer().getActor().isPlayerControlled())
+		if (m.IsNew && ::FU.isKindOf(getContainer().getActor(), "player") && getContainer().getActor().isPlayerControlled())
 		{
 			foreach (settlement in ::World.EntityManager.getSettlements())
 			{
-				if (::MSU.isKindOf(settlement, "settlement") && settlement.m.OnEnter == null)
+				if (::FU.isKindOf(settlement, "settlement") && settlement.m.OnEnter == null)
 					settlement.setVisited(true);
 			}
 		}

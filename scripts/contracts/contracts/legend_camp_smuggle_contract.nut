@@ -28,7 +28,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 		local sourceSettlements = [];
 		local militarySettlements = [];
 		foreach (settlement in ::World.EntityManager.getSettlements()) {
-			if (!::MSU.isKindOf(settlement, "settlement"))
+			if (!::FU.isKindOf(settlement, "settlement"))
 				continue;
 			if (settlement.isIsolatedFromRoads())
 				continue;
@@ -54,7 +54,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 		local sourceSettlements = [];
 		local militarySettlements = [];
 		foreach (settlement in ::World.EntityManager.getSettlements()) {
-			if (!::MSU.isKindOf(settlement, "settlement"))
+			if (!::FU.isKindOf(settlement, "settlement"))
 				continue;
 			if (settlement.isIsolatedFromRoads())
 				continue;

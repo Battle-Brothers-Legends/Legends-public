@@ -9,5 +9,5 @@
 			return _fn(s);
 		}
 	}
-	::logError(::format("screen with ID=%s not found (%s)", _id, ::MSU.isKindOf(_event, "event") ? _event.getID() : _event.getType()));
+	::logError(::format("screen with ID=%s not found (%s)", _id, ::FU.isKindOf(_event, "event") ? _event.getID() : _event.getType()));
 }

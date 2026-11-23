@@ -8,7 +8,7 @@
 		}
 
 		local target = _targetTile.getEntity();
-		if (::MSU.isNull(target) || !target.isAlive())
+		if (::FU.isNull(target) || !target.isAlive())
 			return false;
 
 		if (!target.isAlliedWith(this.getContainer().getActor()))

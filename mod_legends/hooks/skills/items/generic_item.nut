@@ -2,7 +2,7 @@
 {
 	o.onUpdate = function ( _properties )
 	{
-		if (!::MSU.isNull(this.m.Item) && !::MSU.isNull(this.m.Item.getContainer()))
+		if (!::FU.isNull(this.m.Item) && !::FU.isNull(this.m.Item.getContainer()))
 		{
 			this.m.Item.onUpdateProperties(_properties);
 		}
@@ -14,7 +14,7 @@
 
 	o.onTurnStart = function ()
 	{
-		if (!::MSU.isNull(this.m.Item) && !::MSU.isNull(this.m.Item.getContainer()))
+		if (!::FU.isNull(this.m.Item) && !::FU.isNull(this.m.Item.getContainer()))
 		{
 			this.m.Item.onTurnStart();
 		}

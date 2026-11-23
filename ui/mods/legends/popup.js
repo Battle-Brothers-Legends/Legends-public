@@ -1,24 +1,24 @@
-var MSUPopup = function ()
+var LegendsDependencyPopup = function ()
 {
 	this.mSQHandle = null
 	this.mContainer = null;
-	this.mID = "MSUPopup";
+	this.mID = "LegendsDependencyPopup";
 
 	this.mHeaderContainer = null;
 	this.mTextContainer = null;
 	this.mFooterContainer = null;
 }
 
-MSUPopup.prototype.onConnection = function (_handle)
+LegendsDependencyPopup.prototype.onConnection = function (_handle)
 {
 	this.register($('.root-screen'));
 	this.mSQHandle = _handle;
 }
 
-MSUPopup.prototype.createDIV = function (_parentDiv)
+LegendsDependencyPopup.prototype.createDIV = function (_parentDiv)
 {
 	var self = this;
-	this.mContainer = $('<div class="msu-popup ui-control dialog display-none opacity-none"/>');
+	this.mContainer = $('<div class="legends-dependency-popup ui-control dialog display-none opacity-none"/>');
 	_parentDiv.append(this.mContainer);
 
 	this.mHeaderContainer = $('<div class="header"/>');
@@ -48,21 +48,21 @@ MSUPopup.prototype.createDIV = function (_parentDiv)
 	})
 }
 
-MSUPopup.prototype.create = function(_parentDiv)
+LegendsDependencyPopup.prototype.create = function(_parentDiv)
 {
 	this.createDIV(_parentDiv);
 };
 
-MSUPopup.prototype.destroy = function ()
+LegendsDependencyPopup.prototype.destroy = function ()
 {
 	this.destroyDIV();
 }
 
-MSUPopup.prototype.show = function ()
+LegendsDependencyPopup.prototype.show = function ()
 {
 	var self = this;
 
-	// MSUUIScreen.show
+	// FUUIScreen.show
 	var moveTo = { opacity: 1, right: '10.0rem' };
 	var offset = -this.mContainer.width();
 	if (self.mContainer.hasClass('is-center') === true)
@@ -87,12 +87,12 @@ MSUPopup.prototype.show = function ()
 	});
 }
 
-MSUPopup.prototype.isVisible = function ()
+LegendsDependencyPopup.prototype.isVisible = function ()
 {
 	return this.mContainer.hasClass('display-block');
 }
 
-MSUPopup.prototype.showRawText = function (_data)
+LegendsDependencyPopup.prototype.showRawText = function (_data)
 {
 	if (_data.forceQuit)
 	{
@@ -109,12 +109,12 @@ MSUPopup.prototype.showRawText = function (_data)
 	}
 }
 
-MSUPopup.prototype.hide = function ()
+LegendsDependencyPopup.prototype.hide = function ()
 {
 	this.mTextContainer.html("");
 	var self = this;
 
-	//MSUUIScreen.hide
+	//FUUIScreen.hide
 	this.mContainer.velocity("finish", true).velocity({ opacity: 0 },
 	{
 		duration: Constants.SCREEN_FADE_IN_OUT_DELAY,
@@ -130,21 +130,21 @@ MSUPopup.prototype.hide = function ()
 	});
 }
 
-MSUPopup.prototype.register = function (_parentDiv)
+LegendsDependencyPopup.prototype.register = function (_parentDiv)
 {
-	console.log('MSUPopup::REGISTER');
+	console.log('LegendsDependencyPopup::REGISTER');
 	this.create(_parentDiv);
 }
 
-MSUPopup.prototype.unregister = function ()
+LegendsDependencyPopup.prototype.unregister = function ()
 {
-	console.log('MSUPopup::UNREGISTER');
+	console.log('LegendsDependencyPopup::UNREGISTER');
 	this.destroy();
 }
 
-MSUPopup.prototype.quitGame = function ()
+LegendsDependencyPopup.prototype.quitGame = function ()
 {
 	SQ.call(this.mSQHandle, "quitGame");
 }
 
-registerScreen("MSUPopup", new MSUPopup());
+registerScreen("LegendsDependencyPopup", new LegendsDependencyPopup());

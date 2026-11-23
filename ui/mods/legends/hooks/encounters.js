@@ -55,7 +55,7 @@ WorldTownScreenMainDialogModule.prototype.createEncounter = function (_data, _i,
         self.mParent.notifyBackendEncounterClicked(_i);
     });
 
-    encounter.bindTooltip({ contentType: 'msu-generic', modId: mod_legends.ID, elementId: "Encounters.Element", encounterType: _data.Type});
+    encounter.bindTooltip({ contentType: 'FU-generic', modId: mod_legends.ID, elementId: "Encounters.Element", encounterType: _data.Type});
 };
 //endregion
 
@@ -97,7 +97,7 @@ CampScreenMainDialogModule.prototype.createEncounter = function (_data, _i, _con
         self.notifyBackendEncounterClicked(_i);
     });
 
-    encounter.bindTooltip({ contentType: 'msu-generic', modId: mod_legends.ID, elementId: "Encounters.Element", encounterType: _data.Type});
+    encounter.bindTooltip({ contentType: 'FU-generic', modId: mod_legends.ID, elementId: "Encounters.Element", encounterType: _data.Type});
 };
 
 /**

@@ -505,7 +505,7 @@
 	// A helper function to filter out any existing attached locations from possible candidates in buildNewLocation()
 	o.filterNewLocation <- function ( _items )
 	{
-		// ::MSU.Log.printData(_items.map(function(item){return item[1].Script;}));
+		// ::FU.Log.printData(_items.map(function(item){return item[1].Script;}));
 		local ret = clone _items;
 		local existingLocations = this.getAttachedLocations().map(function(location){ return location.ClassName; });
 		local garbage = [];
@@ -533,7 +533,7 @@
 			ret = _items;
 		}
 
-		// ::MSU.Log.printData(ret.map(function(item){ return item[1].Script;}));
+		// ::FU.Log.printData(ret.map(function(item){ return item[1].Script;}));
 		return ret;
 	}
 
@@ -1128,7 +1128,7 @@
 			}
 			foreach (e in notValid) {
 //				::logInfo("encounter became non valid " + e.getType());
-				::MSU.Array.removeByValue(this.m.SettlementEncounters, e);
+				::FU.Array.removeByValue(this.m.SettlementEncounters, e);
 			}
 			return;
 		}

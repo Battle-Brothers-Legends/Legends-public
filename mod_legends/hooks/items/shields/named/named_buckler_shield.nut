@@ -15,7 +15,7 @@
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.KnockBack))
 		{
 			::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash, function (_skill) {
-				this.m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(_skill);
+				this.m.PrimaryOffhandAttack = ::FU.asWeakTableRef(_skill);
 			}.bindenv(this));
 			return;
 		}

@@ -484,7 +484,7 @@
 
 				for( local j = 0; j < produce; j = ++j )
 				{
-					party.addToInventory(::MSU.Array.rand(L));
+					party.addToInventory(::FU.Array.rand(L));
 				}
 			}
 		}

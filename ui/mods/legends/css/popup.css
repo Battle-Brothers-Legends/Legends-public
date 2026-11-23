@@ -1,4 +1,4 @@
-.msu-popup {
+.legends-dependency-popup {
 	height: 72.0rem !important;
 	width: 80.0rem !important;
 	position: relative;
@@ -8,7 +8,7 @@
 	z-index: 100 !important;
 }
 
-.msu-popup .header {
+.legends-dependency-popup .header {
 	height: 10rem;
 	width: 100%;
 	margin: 1rem 0 1rem 0;
@@ -16,11 +16,11 @@
 	vertical-align: middle;
 }
 
-.msu-popup .header .title {
+.legends-dependency-popup .header .title {
 	margin-top: 2rem !important;
 }
 
-.msu-popup .text-container {
+.legends-dependency-popup .text-container {
 	top: 11.8rem;
 	height: calc(100% - 11.8rem - 6.3rem);
 	width: 90%;
@@ -32,12 +32,12 @@
 	position: relative;
 }
 
-.msu-popup .footer {
+.legends-dependency-popup .footer {
 	position: relative;
 	width: 100%;
 }
 
-.msu-popup .ok-button {
+.legends-dependency-popup .ok-button {
 	left: calc(50% - 17.5rem / 2);
 	height: 4.3rem;
 	width: 17.5rem;

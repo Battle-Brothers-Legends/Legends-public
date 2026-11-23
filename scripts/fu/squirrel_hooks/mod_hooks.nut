@@ -35,7 +35,8 @@ local mods_registerMod = ::mods_registerMod;
 	if (typeof _version == "string")
 	{
 		_extra.SemVer <- ::FU.SemVer.getTable(_version);
-		_version = 2147483647; // 2^31-1 to make sure a semver version is always greater than an int/float one
+		// Modern Hooks accepts semantic versions; only legacy hooks need a numeric sentinel.
+		if (!("Hooks" in getroottable())) _version = 2147483647;
 	}
 	else if (typeof _version == "float" || typeof _version == "integer")
 	{

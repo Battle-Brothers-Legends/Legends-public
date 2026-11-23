@@ -21,7 +21,7 @@ this.perk_legend_bloody_harvest <- this.inherit("scripts/skills/skill", {
 			}
 			else if (_skill.isRanged())
 			{
-				if (::MSU.isIn("AdditionalAccuracy", _skill.m, true)) {
+				if (::FU.isIn("AdditionalAccuracy", _skill.m, true)) {
 					_skill.m.AdditionalAccuracy += bonus;
 				} else {
 					::logError("AdditionalAccuracy not found in skill")

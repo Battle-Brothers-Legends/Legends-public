@@ -17,7 +17,7 @@
 
 	o.formatDescription <- function ()
 	{
-		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local r = ::FU.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null)
 			r = format(r, ::Const.UI.getColorized(this.m.Home.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));

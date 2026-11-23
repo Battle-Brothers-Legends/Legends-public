@@ -316,7 +316,7 @@
 		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && this.getFlags().has("CaravanInvestment"))
 		{
 			local origin = this.getOrigin();
-			if (!::MSU.isNull(origin))
+			if (!::FU.isNull(origin))
 			{
 				local destinationID = this.getFlags().get("CaravanDestinationID");
 				if (destinationID == null)

@@ -12,7 +12,7 @@ this.perk_legend_ironside <- this.inherit("scripts/skills/skill", {
 
 	function isOpponent( _actor, _tag )
 	{
-		if (!::MSU.isKindOf(_actor, "actor"))
+		if (!::FU.isKindOf(_actor, "actor"))
 			return;
 
 		if (::Legends.S.skillEntityAliveCheck(_actor))

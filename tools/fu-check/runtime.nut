@@ -29,6 +29,44 @@ foreach (key in ["AI", "Tile", "Safe", "InScenario", "HasStashSpace"])
 assert(!::FU.InScenario());
 assert(!::FU.HasStashSpace());
 assert(::MSU.Tile == ::FU.Tile);
+assert(::MSU.Version == ::FU.MSUCompatibilityVersion && ::MSU.Version != ::FU.Version);
+assert(::FU.SemVer.compareVersionWithOperator(::MSU.Version, ">=", "1.3.0-a"));
+local earlyMSU = ::MSU;
+delete ::MSU;
+::include("scripts/fu/shims/msu_shim.nut");
+assert(::MSU.Version == earlyMSU.Version);
+::MSU = earlyMSU;
+
+// Keep registration metadata for FU, but preserve semantic versions for Modern Hooks.
+local registeredMods = [{ Name = "mod_hooks", Version = 20, FriendlyName = "Hooks" }];
+::mods_getRegisteredMods <- function() { return registeredMods; };
+::mods_registerMod <- function(id, version, name = null, extra = null) {
+    local mod = clone extra;
+    mod.Name <- id;
+    mod.Version <- version;
+    mod.FriendlyName <- name;
+    registeredMods.push(mod);
+};
+::mods_queue <- function(id, expressions, callback) {};
+::_mods_runQueue <- function() {};
+::include("scripts/fu/squirrel_hooks/mod_hooks.nut");
+::mods_registerMod("legacy", "19.4.23", "Legacy");
+assert(registeredMods.top().Version == 2147483647);
+assert(::FU.SemVer.getVersionString(registeredMods.top().SemVer) == "19.4.23");
+::Hooks <- {};
+::mods_registerMod("mod_legends", "19.4.23", "Legends");
+assert(registeredMods.top().Version == "19.4.23");
+assert(::FU.SemVer.compareVersionWithOperator(registeredMods.top().Version, "<", "20.0.0"));
+::mods_registerMod(::FU.ID, ::FU.Version, ::FU.Name);
+assert(registeredMods.top().Version == "1.0.0");
+::mods_registerMod("numeric", 20);
+assert(registeredMods.top().Version == 20 && registeredMods.top().SemVer == null);
+delete ::Hooks;
+delete ::mods_getRegisteredMods;
+delete ::mods_registerMod;
+delete ::mods_queue;
+delete ::_mods_runQueue;
+::print("PASS: independent MSU compatibility version and legacy/modern registration versions\n");
 
 // Equipment upgrades use a scenario stash when campaign assets are unavailable.
 local scenarioStash = { hasEmptySlot = function() { return true; } };

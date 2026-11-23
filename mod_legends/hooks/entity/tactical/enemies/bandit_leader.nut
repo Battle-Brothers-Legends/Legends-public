@@ -208,9 +208,9 @@
 		if (r < 30)
 		{
 			local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;		// Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
-			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
-			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_battle_whip");
-			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
+			::FU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
+			::FU.Array.remove(namedWeaponArray, "weapons/named/named_battle_whip");
+			::FU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
 			this.getItems().equip(this.Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
 		}
 		else if (r < 60)

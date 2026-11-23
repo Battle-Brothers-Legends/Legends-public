@@ -447,7 +447,7 @@
 		_out.writeU16(this.m.IsToBeRepairedQueue);
 		_out.writeU16(this.m.IsToBeSalvagedQueue);
 		_out.writeI32(this.m.OriginSettlementID);
-		// FU replaces MSU's Serialization helpers with ::FU.Utils
+		// Serialize item data through FU.
 		::FU.Utils.serialize(this.m.TradeHistorySettlementIDs, _out);
 	}
 

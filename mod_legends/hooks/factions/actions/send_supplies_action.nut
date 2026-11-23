@@ -54,8 +54,8 @@
 		if (starts.len() == 0 || dests.len() == 0)
 			return;
 
-		this.m.Start = ::MSU.Array.rand(starts);
-		this.m.Dest = ::MSU.Array.rand(dests);
+		this.m.Start = ::FU.Array.rand(starts);
+		this.m.Dest = ::FU.Array.rand(dests);
 
 		if (this.m.Start.isConnectedToByRoads(this.m.Dest))
 		{

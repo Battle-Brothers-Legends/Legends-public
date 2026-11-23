@@ -106,7 +106,7 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		local effects = ::MSU.Class.WeightedContainer([
+		local effects = ::FU.Class.WeightedContainer([
 			[0.5, ::Legends.Effect.ImmuneToPoison],
 			[0.5, ::Legends.Effect.Bleeding],
 			[0.5, ::Legends.Effect.LegendBeerBuzzEffect],

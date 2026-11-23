@@ -45,7 +45,7 @@ this.legend_dummy_faction <- this.inherit("scripts/factions/faction", {
 			this.m.Banner = 1;
 			return;
 		}
-		else if (::MSU.isNull(::World.FactionManager.getFaction(_factionID)))
+		else if (::FU.isNull(::World.FactionManager.getFaction(_factionID)))
 		{
 			::logWarning("Attempted to set Dummy Faction to mimic empty faction with ID = [" + _factionID + "]");
 			return;
@@ -87,7 +87,7 @@ this.legend_dummy_faction <- this.inherit("scripts/factions/faction", {
 	{
 		local faction = ::World.FactionManager.getFaction(this.getMimicID());
 
-		if (!::MSU.isNull(faction))
+		if (!::FU.isNull(faction))
 		{
 			local units = clone this.getUnits();
 			foreach (i, u in units)

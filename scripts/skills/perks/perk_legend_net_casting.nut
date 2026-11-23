@@ -59,6 +59,6 @@ this.perk_legend_net_casting <- this.inherit("scripts/skills/skill", {
 	// function onPayForItemAction( _skill, _items )
 	// {
 	// 	local id = _skill == null ? "no skill" : _skill.m.ID;
-	// 	::MSU.Log.printData(_items.map(function(i){if(i != null) {return i.getName()} else {return "null"}}));
+	// 	::FU.Log.printData(_items.map(function(i){if(i != null) {return i.getName()} else {return "null"}}));
 	// }
 });

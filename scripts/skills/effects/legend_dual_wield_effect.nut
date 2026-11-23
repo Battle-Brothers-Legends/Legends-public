@@ -221,7 +221,7 @@ this.legend_dual_wield_effect <- this.inherit("scripts/skills/skill", {
 		if (::Legends.S.isEntityNullOrDead(entity)) {
 			return;
 		}
-		if (::MSU.isNull(_info.Skill)) {
+		if (::FU.isNull(_info.Skill)) {
 			return;
 		}
 		this.m.IsExecutingOffhand = true;

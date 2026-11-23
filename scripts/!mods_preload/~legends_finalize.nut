@@ -1,11 +1,6 @@
-local isNoMSU = false, isNoModernHooks = false;
-
-if (!("MSU" in this.getroottable()))
-	isNoMSU = true;
-else if (::MSU.SemVer.compare(::MSU.SemVer.getTable(::MSU.Version), ::MSU.SemVer.getTable("1.3.0")) >= 0 && !("Hooks" in this.getroottable()))
-	isNoModernHooks = true;
-else
-	return;
+local isNoFU = !("FU" in this.getroottable());
+local isNoModernHooks = !("Hooks" in this.getroottable());
+if (!isNoFU && !isNoModernHooks) return;
 
 ::Legends.Popup <- {
 	m = {
@@ -32,7 +27,7 @@ else
 
 	function connect()
 	{
-		this.m.JSHandle = ::UI.connect("MSUPopup", this);
+		this.m.JSHandle = ::UI.connect("LegendsDependencyPopup", this);
 		if (this.m.TextCache != "")
 		{
 			this.showRawText(this.m.TextCache, true)
@@ -64,10 +59,10 @@ else
 
 local text = "";
 
-if (isNoMSU)
-	text += "ERROR: Legends Requires Modding Standards & Utilities (MSU) to function.<br><a style=\"color: lightblue; text-decoration: underline;\"onclick=\"openURL('https://www.nexusmods.com/battlebrothers/mods/479')\">Get MSU from Nexusmods</a>";
-else if (isNoModernHooks)
-	text += "ERROR: Modding Standards & Utilities v" + ::MSU.Version + " (MSU) Requires Modern Hooks to function.<br><a style=\"color: lightblue; text-decoration: underline;\"onclick=\"openURL('https://www.nexusmods.com/battlebrothers/mods/685')\">Get Modern Hooks from Nexusmods</a>";
+if (isNoFU)
+	text += "ERROR: Legends requires Functional Utilities (FU). Reinstall the complete Legends package.<br>";
+if (isNoModernHooks)
+	text += "ERROR: Legends requires Modern Hooks.<br><a style=\"color: lightblue; text-decoration: underline;\"onclick=\"openURL('https://www.nexusmods.com/battlebrothers/mods/685')\">Get Modern Hooks from Nexusmods</a>";
 
 ::Legends.Popup.showRawText(text, true);
 

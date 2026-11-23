@@ -6,12 +6,12 @@ foreach(mod in ::Legends.Compat.HardIncompat.List) {
 	local text = ::format("%s(%s)<br>is NOT compatible and will crash your game.", name, mod.ID);
 	if (mod.Version != null) {
 		local knownVersion = ::Legends.Compat.normalizeVersion(mod.Version);
-		if (::MSU.SemVer.compare(::MSU.SemVer.getTable(modVersion), ::MSU.SemVer.getTable(knownVersion)) > 0)
+		if (::FU.SemVer.compare(::FU.SemVer.getTable(modVersion), ::FU.SemVer.getTable(knownVersion)) > 0)
 			text += "<br>However, your version is newer than one we confirmed not working, it might work, but there's no guarantee."
 	}
 	if (mod.Replacement != null)
 		text += "<br>" + mod.Replacement;
-	::Legends.Mod.Debug.addPopupMessage(text, ::MSU.Popup.State.Full);
+	::FU.Popup.showRawText(text);
 }
 
 foreach (mod in ::Legends.Compat.IncompatNotRegistered.List) {
@@ -42,7 +42,7 @@ foreach (mod in ::Legends.Compat.IncompatNotRegistered.List) {
 		local text = ::format("%s<br>is NOT compatible and will crash your game.", name);
 		if (mod.Replacement != null)
 			text += "<br>" + mod.Replacement;
-		::Legends.Mod.Debug.addPopupMessage(text, ::MSU.Popup.State.Full);
+		::FU.Popup.showRawText(text);
 	}
 }
 
@@ -54,12 +54,12 @@ foreach(mod in ::Legends.Compat.SoftIncompat.List) {
 	local text = ::format("%s(%s)<br>is compatible but might cause weird issues, use at your own risk.", name, mod.ID);
 	if (mod.Version != null) {
 		local knownVersion = ::Legends.Compat.normalizeVersion(mod.Version);
-		if (::MSU.SemVer.compare(::MSU.SemVer.getTable(modVersion), ::MSU.SemVer.getTable(knownVersion)) > 0)
+		if (::FU.SemVer.compare(::FU.SemVer.getTable(modVersion), ::FU.SemVer.getTable(knownVersion)) > 0)
 			text += "<br>However, your version is newer than one we confirmed not working, it might work, but there's no guarantee."
 	}
 	if (mod.Replacement != null)
 		text += "<br>" + mod.Replacement;
-	::Legends.Mod.Debug.addPopupMessage(text, ::MSU.Popup.State.Full);
+	::FU.Popup.showRawText(text);
 }
 
 foreach(mod in ::Legends.Compat.IncompatButPatched.List) {
@@ -71,7 +71,7 @@ foreach(mod in ::Legends.Compat.IncompatButPatched.List) {
 
 	local name = ::Hooks.getMod(mod.ID).Name;
 	local text = ::format("%s(%s)<br>is NOT compatible, but has patch %s", name, mod.ID, mod.Patch);
-	::Legends.Mod.Debug.addPopupMessage(text, ::MSU.Popup.State.Full);
+	::FU.Popup.showRawText(text);
 }
 
 foreach (mod in ::Legends.Compat.OtherVersionCompat.List) {
@@ -81,7 +81,7 @@ foreach (mod in ::Legends.Compat.OtherVersionCompat.List) {
 	local isVersionCompat = false;
 	foreach(v in mod.Version) {
 		local knownVersion = ::Legends.Compat.normalizeVersion(v);
-		if (::MSU.SemVer.compare(::MSU.SemVer.getTable(knownVersion), ::MSU.SemVer.getTable(version)) == 0) {
+		if (::FU.SemVer.compare(::FU.SemVer.getTable(knownVersion), ::FU.SemVer.getTable(version)) == 0) {
 			isVersionCompat = true;
 			break;
 		}
@@ -94,11 +94,11 @@ foreach (mod in ::Legends.Compat.OtherVersionCompat.List) {
 	foreach (version in mod.Version) {
 		text += version + ",";
 	}
-	::Legends.Mod.Debug.addPopupMessage(text, ::MSU.Popup.State.Full);
+	::FU.Popup.showRawText(text);
 }
 
 foreach (mod in ::Legends.Compat.Integrated) {
 	if (!::Hooks.hasMod(mod))
 		continue;
-	::Legends.Mod.Debug.addPopupMessage(::format("%s is integrated into Legends, please remove it.", mod), ::MSU.Popup.State.Full);
+	::FU.Popup.showRawText(::format("%s is integrated into Legends, please remove it.", mod));
 }

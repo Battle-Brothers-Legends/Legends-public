@@ -21,7 +21,7 @@
 			foreach( e in entities ) {
 				if (!e.isLocation())
 					continue;
-				if (!::MSU.isKindOf(e, "settlement"))
+				if (!::FU.isKindOf(e, "settlement"))
 					continue;
 
 				e.setActive(false);

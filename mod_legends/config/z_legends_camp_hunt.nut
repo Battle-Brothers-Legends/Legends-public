@@ -9,8 +9,8 @@ if (!("HuntingLoot" in ::Const))
 	{
 		local generator = {
 			
-			Target = ::MSU.Class.WeightedContainer(null),
-			Brew = ::MSU.Class.WeightedContainer(null),
+			Target = ::FU.Class.WeightedContainer(null),
+			Brew = ::FU.Class.WeightedContainer(null),
 			HuntLevel = _huntLevel,
 			CookLevel = _cookLevel,
 			BrewLevel = _brewLevel,
@@ -62,7 +62,7 @@ if (!("HuntingLoot" in ::Const))
 
 				if(targetDef.Type=="Hunt" && this.Upgraded && this.HuntLevel > 0 && (::Math.rand(1,5) <= (2 * huntModeBonus) || this.dropLoot(this.HuntLevel, isHuntMode)))
 				{
-					loot = this.new(::MSU.Class.WeightedContainer(targetDef.Loot).roll());
+					loot = this.new(::FU.Class.WeightedContainer(targetDef.Loot).roll());
 				}
 
 				if("Cook" in targetDef && this.CookLevel > 0 && (::Math.rand(1,5) <= (2 * cookModeBonus) || this.dropLoot(this.CookLevel, isCookMode)))

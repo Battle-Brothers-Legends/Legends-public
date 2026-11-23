@@ -34,7 +34,7 @@
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		this.m.IsHidden = !::MSU.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0;
+		this.m.IsHidden = !::FU.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0;
 
 		if (_properties.IsSpecializedInNets) {
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
@@ -52,7 +52,7 @@
 	local onUse = o.onUse;
 	o.onUse = function ( _user, _targetTile )
 	{
-		local isPlayer = ::MSU.isKindOf(_user, "player");
+		local isPlayer = ::FU.isKindOf(_user, "player");
 		local net = _user.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local target = _targetTile.getEntity();
 

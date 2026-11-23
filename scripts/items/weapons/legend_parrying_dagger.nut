@@ -123,13 +123,13 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 
 		this.shield.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Stab, function (_skill) {
-			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::MSU.asWeakTableRef(_skill);
+			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::FU.asWeakTableRef(_skill);
 			this.m.PrimaryOffhandAttack = this.m.OffHandWeaponSkills[_skill.m.ID];
 			_skill.m.Order = ::Const.SkillOrder.UtilityTargeted - 3;
 			_skill.m.ID = _skill.m.ID + "_offhand";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
-			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::MSU.asWeakTableRef(_skill);
+			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::FU.asWeakTableRef(_skill);
 			_skill.m.Order = ::Const.SkillOrder.UtilityTargeted - 2;
 			_skill.m.ID = _skill.m.ID + "_offhand";
 		}.bindenv(this));
@@ -157,7 +157,7 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		foreach (id, offhandSkill in m.OffHandWeaponSkills)
 		{
 
-			if (::MSU.isNull(offhandSkill)) {
+			if (::FU.isNull(offhandSkill)) {
 				continue;
 			}
 
@@ -192,7 +192,7 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 					offhandSkill.m.IsHidden = false;
 				}
 				continue;
-			} else if (::MSU.isNull(offhandSkill)) {
+			} else if (::FU.isNull(offhandSkill)) {
 				if (mainhandSkill != null && "m" in mainhandSkill) {
 					mainhandSkill.m.IsHidden = false;
 				}

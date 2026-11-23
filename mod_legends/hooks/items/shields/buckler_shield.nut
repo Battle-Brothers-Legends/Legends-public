@@ -14,7 +14,7 @@
 	{
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash, function (_skill) {
-			this.m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(_skill);
+			this.m.PrimaryOffhandAttack = ::FU.asWeakTableRef(_skill);
 		}.bindenv(this));
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
 			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;

@@ -75,7 +75,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		rage.setBrush("mind_control");
 		rage.Visible = false;
 
-		if (::MSU.isKindOf(actor, "player")) {
+		if (::FU.isKindOf(actor, "player")) {
 			actor.improveMood = function (_change, _text = "") {};
 			actor.worsenMood = function (_change, _text = "") {};
 		}

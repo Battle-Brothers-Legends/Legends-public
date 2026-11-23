@@ -177,9 +177,9 @@
 	o.formatDescription <- function ()
 	{
 		if (!this.m.Flags.has("Item"))
-			this.m.Flags.set("Item", ::MSU.Array.rand(this.m.StolenItemNames));
+			this.m.Flags.set("Item", ::FU.Array.rand(this.m.StolenItemNames));
 
-		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local r = ::FU.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null)
 			r = format(r, ::Const.UI.getColorized(this.m.Flags.get("Item"), ::Const.UI.Color.getHighlightLightBackgroundValue()));
@@ -202,7 +202,7 @@
 		}
 
 		if (!this.m.Flags.has("Item"))
-			this.m.Flags.set("Item", ::MSU.Array.rand(this.m.StolenItemNames));
+			this.m.Flags.set("Item", ::FU.Array.rand(this.m.StolenItemNames));
 
 		this.contract.start();
 	}

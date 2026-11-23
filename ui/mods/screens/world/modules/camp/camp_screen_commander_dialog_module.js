@@ -165,7 +165,7 @@ CampScreenCommanderDialogModule.prototype.createDIV = function (_parentDiv)
 			});
 		}
 	}, '', 6);
-	this.mAssignAllButton.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "Camping.ButtonAssignAll"});
+	this.mAssignAllButton.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "Camping.ButtonAssignAll"});
 	// 2nd button (mid size), tent button
 	var buttonLayout = $('<div class="l-tent-button-175-43"/>');
 	tentButtonContainer.append(buttonLayout);
@@ -367,11 +367,11 @@ CampScreenCommanderDialogModule.prototype.bindTooltips = function ()
 {
 	this.mAssets.bindTooltips();
 	this.mLeaveButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.LeaveButton });
-	this.mSaveButton.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "CampingPresets.ButtonSavePreset"});
-	this.mLoadButton.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "CampingPresets.ButtonLoadPreset"});
-	this.mPresetNameButton.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "CampingPresets.ButtonPresetName"});
+	this.mSaveButton.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "CampingPresets.ButtonSavePreset"});
+	this.mLoadButton.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "CampingPresets.ButtonLoadPreset"});
+	this.mPresetNameButton.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "CampingPresets.ButtonPresetName"});
 	this.mSaveSlotButtons.forEach( function (_slot){
-		_slot.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "CampingPresets.ButtonPresetSlot", index: _slot.data('Index')});
+		_slot.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "CampingPresets.ButtonPresetSlot", index: _slot.data('Index')});
 	});
 };
 
@@ -641,7 +641,7 @@ CampScreenCommanderDialogModule.prototype.selectTentEntry = function(_element, _
 				self.mTentButton.changeButtonText(res.Label);
 				self.mTentButton.enableButton(res.Enabled);
 				self.mConfigureButton.enableButton(res.Configure);
-				self.mConfigureButton.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "Camping.ButtonConfigure", tent: id});
+				self.mConfigureButton.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "Camping.ButtonConfigure", tent: id});
 				self.mStatsList.forEach(function (c) {
 					c.remove();
 				});
@@ -1035,7 +1035,7 @@ CampScreenCommanderDialogModule.prototype.showHunterPopupDialog = function( _dat
 			button.data('ID', ButtonNames[i]);
 			button.data('Func', "setMode");
 			var eid = "CampingHuntingMode." + ButtonNames[i];
-			button.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: eid});
+			button.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: eid});
 			_dialogButtons.push(button);
 	    }
 	    _dialogButtons[SelectedIndex].enableButton(false);
@@ -1179,7 +1179,7 @@ CampScreenCommanderDialogModule.prototype.showPresetNamePopupDialog = function()
 	layout.createImageButton(Path.GFX + "ui/skin/icon_delete.png", function() {
 		self.notifyBackendDeletePresetName();
 		self.removePopup();
-	}, '', 6).bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "CampingPresets.PresetNameDialog.ButtonDelete" });
+	}, '', 6).bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "CampingPresets.PresetNameDialog.ButtonDelete" });
 
 	var container = $('<div class="l-cancel-save-button-container"/>');
 	footer.append(container);
@@ -1189,7 +1189,7 @@ CampScreenCommanderDialogModule.prototype.showPresetNamePopupDialog = function()
 	container.append(layout);
 	layout.createTextButton("Cancel", function() {
 		self.removePopup();
-	}, '', 1).bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "CampingPresets.PresetNameDialog.ButtonCancel" });
+	}, '', 1).bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "CampingPresets.PresetNameDialog.ButtonCancel" });
 
 	// save button
 	var layout = $('<div class="l-flex-button-cancel-save"/>');
@@ -1198,7 +1198,7 @@ CampScreenCommanderDialogModule.prototype.showPresetNamePopupDialog = function()
 		self.notifyBackendSavePresetName(self.mPopupDialog);
     	self.removePopup();
 	}, '', 1);
-	saveButton.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: "CampingPresets.PresetNameDialog.ButtonOk" });
+	saveButton.bindTooltip({ contentType: 'FU-generic', modId: "mod_legends", elementId: "CampingPresets.PresetNameDialog.ButtonOk" });
 
     this.mPopupDialog.addPopupDialogContent(self.createPresetNameDialogContent(this.mPopupDialog,saveButton));
 

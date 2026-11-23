@@ -62,7 +62,7 @@
 
 			if (ret.find("\n\n" + pre) == null) {
 				local prefix = ret.find("\n" + pre) == null ? "\n\n" : "\n";
-				ret = this.MSU.String.replace(ret, pre, prefix + pre);
+				ret = this.FU.String.replace(ret, pre, prefix + pre);
 			}
 
 			::logInfo("saving " + ret);

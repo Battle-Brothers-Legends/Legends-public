@@ -187,11 +187,11 @@
 
 				if (party.getStashInventory().getItems().len() != 0) {
 					local prefix = "scripts/items/";
-					local script = ::IO.scriptFilenameByHash(::MSU.Array.rand(party.getStashInventory().getItems()).ClassNameHash);
+					local script = ::IO.scriptFilenameByHash(::FU.Array.rand(party.getStashInventory().getItems()).ClassNameHash);
 					::World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", script.slice(prefix.len()));
 				}
 				else if (party.getInventory().len() != 0) {
-					::World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", ::MSU.Array.rand(party.getInventory()));
+					::World.Statistics.getFlags().set("LastCombatSavedCaravanProduce", ::FU.Array.rand(party.getInventory()));
 				}
 			}
 		}
@@ -218,7 +218,7 @@
 		properties.InCombatAlready = false;
 		properties.IsAttackingLocation = false;
 		local factions = [];
-		factions.resize(256, 0); // handled by MSU
+		factions.resize(256, 0); // handled by FU
 
 		foreach( party in raw_parties )
 		{

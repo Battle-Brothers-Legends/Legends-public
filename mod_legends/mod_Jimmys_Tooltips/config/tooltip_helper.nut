@@ -544,7 +544,7 @@
 			type = "hint",
 			icon = "ui/skin/icon_wait.png",
 			text = "Press \""
-			+ ::MSU.System.Keybinds.KeybindsByMod[::ModJimmysTooltips.ID].rawget("updateTooltip").getKeyCombinations()
+			+ ::FU.System.Keybinds.KeybindsByMod[::ModJimmysTooltips.ID].rawget("updateTooltip").getKeyCombinations()
 			+ "\" key to show the chance to loot equipment"
 		});
 	else
@@ -553,7 +553,7 @@
 			type = "hint",
 			icon = "ui/skin/icon_wait.png",
 			text = "Press \""
-			+ ::MSU.System.Keybinds.KeybindsByMod[::ModJimmysTooltips.ID].rawget("updateTooltip").getKeyCombinations()
+			+ ::FU.System.Keybinds.KeybindsByMod[::ModJimmysTooltips.ID].rawget("updateTooltip").getKeyCombinations()
 			+ "\" key to show the default tooltip"
 		});
 
@@ -581,7 +581,7 @@ local function colorizeInGreen( _text )
 
 	local tooltip = [], expectedDamage;
 
-	if (_targetedWithSkill != null && ::MSU.isKindOf(_targetedWithSkill, "skill") && _targetedWithSkill.isAttack())
+	if (_targetedWithSkill != null && ::FU.isKindOf(_targetedWithSkill, "skill") && _targetedWithSkill.isAttack())
 		expectedDamage = ::ModJimmysTooltips.getExpectedArmorDamage(_targetedWithSkill, _entity);
 
 	foreach (i, _item in _entity.getItems().getAllItems())

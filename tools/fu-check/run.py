@@ -3,6 +3,7 @@
 import argparse
 from pathlib import Path
 import subprocess
+from migration import check as check_migration
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -15,6 +16,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--squirrel-source", required=True, type=Path,
                         help="Tree containing include/squirrel.h and src/{squirrel,sqstdlib}")
+    parser.add_argument("--all-scripts", action="store_true",
+                        help="Also syntax-check all Legends Squirrel and UI JavaScript")
     args = parser.parse_args()
     source = args.squirrel_source.resolve()
     build = ROOT / "build/fu-check"
@@ -31,11 +34,19 @@ def main():
     nuts = sorted((ROOT / "scripts/fu").rglob("*.nut"))
     nuts += sorted((ROOT / "scripts/mods/FU").glob("*.nut"))
     nuts += [ROOT / "scripts/!mods_preload/!!a_fu_preload.nut"]
+    if args.all_scripts:
+        nuts = sorted(path for folder in ("scripts", "mod_legends")
+                      for path in (ROOT / folder).rglob("*.nut"))
     run(runner, "--compile", *nuts)
     print(f"Squirrel syntax: {len(nuts)} files passed", flush=True)
     run(runner, ROOT / "tools/fu-check/runtime.nut")
-    for path in sorted((ROOT / "ui/mods/fu").rglob("*.js")):
+    run(runner, ROOT / "tools/fu-check/native_integration.nut")
+    check_migration()
+    js_root = ROOT / ("ui" if args.all_scripts else "ui/mods/fu")
+    js_files = sorted(js_root.rglob("*.js"))
+    for path in js_files:
         run("node", "--check", path)
+    print(f"JavaScript syntax: {len(js_files)} files passed", flush=True)
     run("node", ROOT / "tools/fu-check/ui.cjs")
 
 

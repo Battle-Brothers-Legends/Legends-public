@@ -70,7 +70,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 
 	function isViableTile( _tile )
 	{
-		if (!this.MSU.Tile.canResurrectOnTile(_tile))
+		if (!this.FU.Tile.canResurrectOnTile(_tile))
 			return false;
 
 		if (!_tile.IsEmpty)

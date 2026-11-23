@@ -98,7 +98,7 @@ this.legend_danger_pay_skill <- this.inherit("scripts/skills/skill", {
 	function calculateMinMax()
 	{
 		local roster = this.World.getPlayerRoster().getAll();
-		this.m.MinCost = this.getCrownCost(::MSU.Table.randValue( roster ));
+		this.m.MinCost = this.getCrownCost(::FU.Table.randValue( roster ));
 		this.m.MaxCost = this.m.MinCost;
 		foreach( bro in roster )
 		{
