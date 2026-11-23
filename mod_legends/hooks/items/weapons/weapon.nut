@@ -46,14 +46,15 @@
 
 		if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
 			local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
+			local actor = ::Legends.S.isNull(this.getContainer()) ? null : this.getContainer().getActor();
+			local isSpecialized = !::Legends.S.isNull(actor) && ::Legends.Weapons.isCharacterWeaponSpecialized(actor.getCurrentProperties(), this);
 			result.push({
 				id = 22,
 				type = "text",
 				icon = "ui/icons/block.png",
-				text = "Block [color=%positive%]+%_block%[/color] in the main hand, [color=%positive%]+%_mastery%[/color] with its mastery",
+				text = "Block [color=%positive%]+%_block%[/color]",
 				param = [
-					["_block", block[0]],
-					["_mastery", block[1]]
+					["_block", block[isSpecialized ? 1 : 0]]
 				]
 			});
 		}
