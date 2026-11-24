@@ -162,8 +162,8 @@ if (!("Professions" in ::Legends)) {
         ScalingFactor = 0.5
     },
     LegendEyeForTalent = {
-        ScalingArray = [0, 4], // stars visible
-        ScalingFactor = 0.25
+        ScalingArray = [0, 2], // stars visible
+        ScalingFactor = 0.5
     },
     LegendFavouredEnemyBeast = {
 		Name = "Favoured Enemy - Beasts",
