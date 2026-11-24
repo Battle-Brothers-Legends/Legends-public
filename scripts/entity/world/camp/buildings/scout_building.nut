@@ -193,27 +193,24 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 					});
 				}
 			}
-		} else {
-			// add scouting effect giving a bonus for escort battles here
 		}
 	}
-}
 
-function getUpdateText() {
-	return this.m.NumBros == 0 ? "No one on patrol!" : ("Patrol radius ... " + this.m.Radius);
-}
+	function getUpdateText() {
+		return this.m.NumBros == 0 ? "No one on patrol!" : ("Patrol radius ... " + this.m.Radius);
+	}
 
-function update() {
-	this.updateSideEffects();
-	return this.getUpdateText();
-}
+	function update() {
+		this.updateSideEffects();
+		return this.getUpdateText();
+	}
 
-function updateTick(_hours) {
-	this.m.Radius = 250 + ::Math.pow(this.m.Rate, 0.5) * 300.0 * ::Math.pow(_hours, 0.5 - (0.1 * this.m.Rate));
-}
+	function updateTick(_hours) {
+		this.m.Radius = 250 + ::Math.pow(this.m.Rate, 0.5) * 300.0 * ::Math.pow(_hours, 0.5 - (0.1 * this.m.Rate));
+	}
 
-function onDeserialize(_in) {
-	setModifiers();
-	this.camp_building.onDeserialize(_in);
-}
+	function onDeserialize(_in) {
+		setModifiers();
+		this.camp_building.onDeserialize(_in);
+	}
 });
