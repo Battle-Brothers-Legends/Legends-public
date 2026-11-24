@@ -16,7 +16,7 @@ this.legend_mummy_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		];
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.Value = 850;
+		this.m.Value = 1100;
 		this.m.MeleeDefense = 15;
 		this.m.RangedDefense = 30;
 		this.m.StaminaModifier = -20;
@@ -59,6 +59,7 @@ this.legend_mummy_tower_shield <- this.inherit("scripts/items/shields/shield", {
 			_skill.m.Icon = "skills/fortify_square.png";
 			_skill.m.IconDisabled = "skills/fortify_square_bw.png";
 		});
+		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 

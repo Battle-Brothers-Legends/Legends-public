@@ -12,15 +12,15 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 		this.m.Variants = [9];
 		this.m.Variant = 9;
 		this.updateVariant();
-		this.m.Value = 1200;
+		this.m.Value = 7000;
 		this.m.MeleeDefense = 24;
 		this.m.RangedDefense = 24;
 		this.m.StaminaModifier = -15;
 		this.m.Condition = 65;
 		this.m.ConditionMax = 65;
 		this.m.Block = 10;
-		this.m.RegularDamage = 20;
-		this.m.RegularDamageMax = 40;
+		this.m.RegularDamage = 25;
+		this.m.RegularDamageMax = 50;
 		this.randomizeValues();
 	}
 
@@ -31,8 +31,8 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 		this.m.Condition = 65;
 		this.m.ConditionMax = 65;
 		this.m.Block = 10;
-		this.m.RegularDamage = 20;
-		this.m.RegularDamageMax = 40;
+		this.m.RegularDamage = 25;
+		this.m.RegularDamageMax = 50;
 		this.m.FatigueOnSkillUse = 0;
 	}
 

@@ -18,7 +18,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		];
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.Value = 200;
+		this.m.Value = 310;
 		this.m.MeleeDefense = 8;
 		this.m.RangedDefense = 8;
 		this.m.Block = 6;

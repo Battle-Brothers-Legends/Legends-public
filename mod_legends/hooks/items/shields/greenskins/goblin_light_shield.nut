@@ -14,6 +14,7 @@
 		this.m.RegularDamageMax = 10;
 		this.m.Condition = 14;
 		this.m.ConditionMax = 14;
+		this.m.Value = 65;
 	}
 
 	o.onEquip = function () {

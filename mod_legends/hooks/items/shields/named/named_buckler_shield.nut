@@ -10,6 +10,7 @@
 		this.m.Block = 5;
 		this.m.RegularDamage = 5;
 		this.m.RegularDamageMax = 10;
+		this.m.Value = 350;
 		this.updateVariant();
 	}
 
