@@ -4,7 +4,8 @@
 		create();
 		this.m.Icon = "skills/return_favor_square.png";
 		this.m.IconDisabled = "skills/return_favor_square_bw.png";
-		this.m.ActionPointCost = 3;
+		this.m.FatigueCost = 25;
+		this.m.ActionPointCost = 2;
 	}
 
 	o.getTooltip = function () {
