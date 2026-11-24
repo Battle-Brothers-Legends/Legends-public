@@ -439,14 +439,14 @@
 
 ### Regular Shields
 - Shields in general no longer reduce ranged Damage Taken
-- Coffin Shield - now has 15 Mdef, 20 Rdef, 36 condition, 13 Block, 10-25 Damage
+- Coffin Shield - now has 15 Mdef, 20 Rdef, 36 condition, 13 Block, 10-20 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
 > additionally reduces ranged Damage taken by 15%
-- Ancient Tower Shield - now has 25 Mdef, 20 Rdef, 48 condition, 15 Block, 10-25 Damage
+- Ancient Tower Shield - now has 25 Mdef, 20 Rdef, 48 condition, 15 Block, 10-20 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
-- Tower Shield - now has 20 Weight, 15 Block, 10-25 Damage
+- Tower Shield - now has 20 Weight, 15 Block, 10-20 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
-- Ancient Southern Tower (Mummy) Shield - now has 20 Weight, 13 Block, 10-25 Damage
+- Ancient Southern Tower (Mummy) Shield - now has 20 Weight, 13 Block, 10-20 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
 > additionally reduces ranged Damage taken by 30%
 - Auxiliary Shield - now has 8 Block, 10-25 Damage

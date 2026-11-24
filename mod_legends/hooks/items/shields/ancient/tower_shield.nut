@@ -17,7 +17,7 @@
 		this.m.ConditionMax = 48;
 		this.m.Block = 15;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamageMax = 25;
+		this.m.RegularDamageMax = 20;
 		this.m.Value = 600;
 	}
 
