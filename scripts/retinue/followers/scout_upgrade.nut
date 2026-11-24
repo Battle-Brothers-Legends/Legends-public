@@ -11,7 +11,7 @@ this.scout_upgrade <- this.inherit("scripts/retinue/follower", {
 		this.m.Effects = [
 			"Increase scouting speed by 15%",
 			"Reduces the chance of getting injured while scouting",
-			"Allows scouting nearby locations"
+			"Scout distant locations and reveal them on the map"
 		];
 	}
 });

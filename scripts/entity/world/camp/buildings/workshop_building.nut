@@ -154,7 +154,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local ret = this.camp_building.getModifiers();
 
 		if (this.getUpgraded())	{
-			ret.Consumption = 1.0 / 10.0;
+			ret.Consumption = 1.0 / 16.0;
 		}
 
 		return ret;
