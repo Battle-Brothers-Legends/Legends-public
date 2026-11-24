@@ -270,7 +270,7 @@ if (!("Professions" in ::Legends)) {
     },
     LegendLookout = {
         ScalingArray = [0, 0.2], // vision radius
-        ScalingFactor = 0.05
+        ScalingFactor = 0.25
     },
     LegendMaterialist = {
         ScalingArray = [0, 0.1], // better state of repair of undamaged by player items looted
