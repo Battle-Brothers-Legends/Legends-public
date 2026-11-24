@@ -5,5 +5,6 @@
 		this.m.Block = 10;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamageMax = 25;
+		this.m.Value = 110;
 	}
 });
