@@ -487,7 +487,10 @@ if (!("Perks" in ::Legends))
 	LegendPossession = {},
 	LegendPrayerOfFaith = {},
 	LegendPrayerOfHope = {},
-	LegendPrepared = {},
+	LegendPrepared = {
+		Icon = "ui/perks/perk_20.png", // bag and belts innit
+		IconDisabled = "ui/perks/perk_20_sw.png",
+	},
 	LegendPromisedPotential = {},
 	LegendPugilist = {},
 	LegendPummelIntoSubmission = {},
