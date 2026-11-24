@@ -245,12 +245,12 @@
 		return value * ::Const.World.Assets.BaseLootSellPrice;
 	}
 
-	return ::Math.floor(value * ::Const.World.Assets.BaseSellPrice);
+	return value * ::Const.World.Assets.BaseSellPrice;
 }
 
 ::Legends.Inventory.getItemRepairValuePotential <- @(_item) ::Legends.Inventory.getItemPredictedSalePrice(_item, _item.getRawValue()) - ::Legends.Inventory.getItemRepairCost(_item);
 
-::Legends.Inventory.getItemRepairGoldPerDurability <- @(_item) ::Legends.Inventory.getItemRepairValuePotential(_item) / ::Legends.Inventory.getMissingDurability(_item);
+::Legends.Inventory.getItemRepairGoldPerDurability <- @(_item) (::Legends.Inventory.getItemRepairValuePotential(_item) - ::Legends.Inventory.getItemPredictedSalePrice(_item, _item.getValue())) / ::Legends.Inventory.getMissingDurability(_item);
 
 ::Legends.Inventory.getItemSalvageToolsRecovered <- @(_item) _item.getRepair() / (::World.Retinue.hasFollower(::Legends.Camp.Upgrades[::Legends.Camp.CampBuildings.Workshop]) ? 10 : 20);
 
