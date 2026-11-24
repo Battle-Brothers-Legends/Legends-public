@@ -515,11 +515,11 @@ Master flails and circumvent your opponent's shield.
 
 • [color=%skill%]Lash[/color], [color=%skill%]Hail[/color] and [color=%skill%]Castigate[/color] ignore the defense bonus of shields.
 
-• [color=%skill%]Flail[/color], [color=%skill%]Lash[/color], [color=%skill%]Cascade[/color], [color=%skill%]Hail[/color], [color=%skill%]Pound[/color], [color=%skill%]Censer Strike[/color] and [color=%skill%]Castigate[/color] ignore an additional [color=%positive%]25%[/color] of Block value.
+• All flail skills ignore an additional [color=%positive%]25%[/color] of Block value.
 
-• [color=%skill%]Thresh[/color] gains [color=%positive%]+5%[/color] chance to hit and ignores an additional [color=%positive%]25%[/color] of Block value.
+• [color=%skill%]Thresh[/color] gains [color=%positive%]+5%[/color] chance to hit.
 
-• [color=%skill%]Pound[/color] ignores additional [color=%positive%]+10%[/color] armor penetration on hits to the head and ignores an additional [color=%positive%]33%[/color] of Block value.
+• [color=%skill%]Pound[/color] ignores additional [color=%positive%]+10%[/color] armor penetration on hits to the head.
 
 • Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
 

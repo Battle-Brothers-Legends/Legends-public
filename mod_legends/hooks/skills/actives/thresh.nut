@@ -14,6 +14,7 @@
 			this.m.KilledString = "Threshed";
 			this.m.ChanceDisembowel = 10;
 			this.m.ChanceSmash = 33;
+			this.m.BlockBypass = 0;
 		}
 		this.skill.setItem(_item);
 	}
@@ -95,6 +96,14 @@
 			}
 
 			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
+		}
+	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function ( _properties ) {
+		onAfterUpdate(_properties);
+		if (_properties.IsSpecializedInFlails) {
+			this.m.BlockBypass += 0.25;
 		}
 	}
 });

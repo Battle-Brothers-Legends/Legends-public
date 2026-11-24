@@ -183,10 +183,7 @@
 - `Pugilist` - additionally each successful attack reduces the ap cost of `Kick` by 1 until the end of your turn. 
 - `Reach Advantage` - stacks will now decay by 2 at the start of your turn instead of losing all of them
 - `Promised Potential` - the bonus per star in attribute is now 3
-- `Bloody Harvest` - the bonus is now additive multiplier
 - `Carnage` - no longer grants `Prepare Graze` and `Prepare Bleed`
-- `Heightened Reflexes` - the damage bonus is an additive multiplier
-- `Muscularity` - bonus from fatigue dropped to 10% and the bonus is now an additive multiplier
 - `Backswing` - new gfx to differentiate from feint
 - `Anticipation` - removed for now
 - `Ballistics` - no longer reduces hitchance penalty with tile traveled, instead deals an additional 2 damage per tile traveled
@@ -320,8 +317,8 @@
 - `Riposte` is now available to all staves
 
 **Flails**
-- with the new Block mechanic flail skills have an innate 25% ignore of shield Block except for `Thresh`
-> increased to a total of 50% with the mastery
+- with the new Block mechanic flail skills have an innate 25% ignore of shield Block except for `Thresh` which has 0 and `Cascade` + `Hail` which have 50% base
+> increased to a total of 50% with the mastery, 25% `Thresh`, 75% `Hail` + `Cascade`
 
 **Crossbows**
 - `Improvised Strike` - now has a 25(50 with mastery) chance to daze OR stagger on body shot and will always stun on headshot, down from just slapping all 3 debuffs on a headshot

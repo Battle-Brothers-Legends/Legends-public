@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.BlockBypass = 0.25;
+		this.m.BlockBypass = 0.50;
 	}
 
 	o.getTooltip = function () {

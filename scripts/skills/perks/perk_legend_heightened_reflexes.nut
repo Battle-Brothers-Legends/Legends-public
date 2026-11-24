@@ -13,7 +13,7 @@ this.perk_legend_heightened_reflexes <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		_properties.DamageTotalMult += this.getBonus();
+		_properties.DamageTotalMult *= this.getBonus();
 	}
 
 	function getTooltip() {
