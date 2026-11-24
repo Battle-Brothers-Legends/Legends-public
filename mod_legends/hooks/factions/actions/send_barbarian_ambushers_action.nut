@@ -72,7 +72,7 @@
 
 		local settlement = this.pickWeightedRandom(settlements);
 		settlement.setLastSpawnTimeToNow();
-		local difficulty = ::Math.rand(75, 120) * this.getReputationToDifficultyLightMult() * ::Const.World.Scaling.getDistanceScaling(this, settlement.getTile(), true) * (::World.FactionManager.isCivilWar() ? (::Legends.isLegendaryDifficulty() ? 1.2 : 1.1) : 1.0);
+		local difficulty = ::Math.rand(90, 130) * this.getReputationToDifficultyLightMult() * ::Const.World.Scaling.getDistanceScaling(this, settlement.getTile(), true) * (::World.FactionManager.isCivilWar() ? (::Legends.isLegendaryDifficulty() ? 1.2 : 1.1) : 1.0);
 		local party = this.getFaction().spawnEntity(settlement.getTile(), "Barbarians", false, ::Const.World.Spawn.Barbarians, difficulty);
 		party.getSprite("banner").setBrush(settlement.getBanner());
 		party.setDescription("A warband of barbarian tribals.");

@@ -567,6 +567,11 @@
 ### City States
 - `Gladiators` - gain `Net Casting`, `Net Mastery`, additionally gain `Alert` and `Lone Wolf` on Legendary
 
+### Barbarians
+- `Barbarian Reavers` and `Barbarian Pillagers` now show up in smaller groups, roaming warbands are no longer only `Thralls` and `Warhounds` for most of the early game
+- roaming barbarian warbands are slightly larger
+- `Barbarian Chosen` and `Barbarian Bloodletters` need a slightly larger group before they show up
+
 ## Ambitions
 - New ambition: make city states aware (triggers at 800 renown or more).
 - Updated the 'allied nobles' ambition to give the player a randomly chosen named weapon (11 possibilities) upon ambition completion.

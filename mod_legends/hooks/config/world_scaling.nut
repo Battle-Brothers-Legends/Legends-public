@@ -45,4 +45,4 @@
 ::Const.World.Scaling.UndeadMummies <- {};
 ::Const.World.Scaling.UndeadMummies.LegendsMummyPolearmSpecDay <- 100;
 
-::Const.World.Scaling.getDistanceScaling <- @(_action, _tile, _isAttacker = false) ::Math.maxf(1.0, _action.getDistanceToSettlements(_tile) / 14.0 * (_isAttacker ? ::Math.minf(1.0, ::World.getTime().Days / 100) : 1.0)); // attackers distance scaling is reduced until day 100
+::Const.World.Scaling.getDistanceScaling <- @(_action, _tile, _isAttacker = false) ::Math.maxf(1.0, _action.getDistanceToSettlements(_tile) / 14.0 * (_isAttacker ? ::Math.minf(1.0, ::World.getTime().Days / 100.0) : 1.0)); // attackers distance scaling is reduced until day 100
