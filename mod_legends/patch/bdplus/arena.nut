@@ -17,3 +17,16 @@
 		this.m.AdditionalLoot.add(::Legends.Arena.pickLoot(this.m.MatchesFoughtTotal));
 	}
 });
+
+::mods_hookExactClass("events/events/special/arena_event", function (o) {
+	local getPromotions = o.getPromotions;
+	o.getPromotions = function () {
+		local promotions = getPromotions();
+		foreach (bro in this.m.Bros) {
+			if (bro.isAlive() && (bro.getSkills().hasTrait(::Legends.Trait.ArenaVeteran) || bro.getSkills().hasTrait(::Legends.Trait.LegendArenaChampion))) {
+				::Legends.Arena.updateTraits(promotions, bro);
+			}
+		}
+		return promotions;
+	}
+});
