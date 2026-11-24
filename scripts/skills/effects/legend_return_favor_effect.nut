@@ -12,54 +12,52 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
 		local effect = this.getContainer().getActor().getCurrentProperties().IsSpecializedInMaces ? 75 : 25;
-		tooltip.extend([{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Any opponent missing with a melee attack will get debuffed with either [color=%effect%]Stunned[/color] or [color=%effect%]Dazed[/color]"
-		},
-		{
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Has a [color=%positive%]%_effect%%[/color] chance to apply [color=%effect%]Stunned[/color], else will apply [color=%effect%]Dazed[/color]",
-			param = [["_effect", effect]]
-		}]);
+		tooltip.extend([
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Any opponent missing with a melee attack will get debuffed with either [color=%effect%]Stunned[/color] or [color=%effect%]Dazed[/color]"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=%positive%]%_effect%%[/color] chance to apply [color=%effect%]Stunned[/color], else will apply [color=%effect%]Dazed[/color]",
+				param = [
+					["_effect", effect]
+				]
+			}
+		]);
 		return tooltip;
 	}
 
 	function onMissed(_attacker, _skill) {
 		local actor = this.getContainer().getActor();
 
-		if (::Tactical.TurnSequenceBar.isActiveEntity(actor) || _skill.isRanged()) {
-			return;
-		}
-
-		if (::Legends.S.isEntityNullOrDead(_attacker) || ::Legends.S.isEntityNullOrDead(actor)) {
+		if (::Legends.S.isEntityNullOrDead(_attacker, actor) || ::Tactical.TurnSequenceBar.isActiveEntity(actor) || _skill.isRanged()) {
 			return;
 		}
 
 		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local d = _attacker.getTile().getDistanceTo(actor.getTile());
 
-		if (d <= 1 || item != null && d <= item.getRangeMax()) {
-			return;
-		}
-
-		local stunBracket = actor.getCurrentProperties().IsSpecializedInMaces ? 75 : 25;
-		local effect = null;
-		if (::Math.rand(1, 100) <= stunBracket && !_attacker.getCurrentProperties().IsImmuneToStun && !_attacker.getSkills().hasEffect(::Legends.Effect.Stunned)) {
-			effect = ::Legends.Effects.grant(_attacker, ::Legends.Effect.Stunned, function (_effect) {
-				_effect.addTurns(1);
-			}.bindenv(this));
-			if (!actor.isHiddenToPlayer() && !_attacker.isHiddenToPlayer()) {
-				::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
-			}
-		}
-		else if (!_attacker.getCurrentProperties().IsImmuneToDaze) {
-			effect = ::Legends.Effects.grant(_attacker, ::Legends.Effect.Dazed);
-			if (!actor.isHiddenToPlayer() && !_attacker.isHiddenToPlayer()) {
-				::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
+		if (item != null && d <= item.getRangeMax()) {
+			local stunBracket = actor.getCurrentProperties().IsSpecializedInMaces ? 75 : 25;
+			local effect = null;
+			local attackerProperties = _attacker.getCurrentProperties();
+			if (::Math.rand(1, 100) <= stunBracket && !attackerProperties.IsImmuneToStun && !::Legends.Effects.has(_attacker, ::Legends.Effect.Stunned)) {
+				effect = ::Legends.Effects.grant(_attacker, ::Legends.Effect.Stunned, function (_effect) {
+					_effect.addTurns(1);
+				}.bindenv(this));
+				if (!actor.isHiddenToPlayer() && !_attacker.isHiddenToPlayer()) {
+					::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_attacker)));
+				}
+			} else if (!attackerProperties.IsImmuneToDaze) {
+				effect = ::Legends.Effects.grant(_attacker, ::Legends.Effect.Dazed);
+				if (!actor.isHiddenToPlayer() && !_attacker.isHiddenToPlayer()) {
+					::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_attacker)));
+				}
 			}
 		}
 	}

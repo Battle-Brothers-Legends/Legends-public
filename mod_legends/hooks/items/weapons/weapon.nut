@@ -234,11 +234,11 @@
 			_properties.DamageArmorMult *= this.m.ArmorDamageMult;
 			_properties.DamageDirectAdd += this.m.DirectDamageAdd;
 			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHead;
+		}
 
-			if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
-				local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
-				_properties.Block += block[::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this) ? 1 : 0];
-			}
+		if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
+			local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
+			_properties.Block += block[::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this) ? 1 : 0];
 		}
 	}
 
