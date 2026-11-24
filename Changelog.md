@@ -866,6 +866,7 @@
 - Fixed the acid immunity of lindwurm and stollwurm armor being lost when one of two such layers was taken off, e.g. a `Lindwurm Scale Cloak` worn over a named lindwurm scale armor
 - Fixed an error when the named lindwurm helmet layer was removed from a helmet that is not worn
 - Acid flasks now eat 20% of the head armor each turn as their tooltip says, it was 4%
+- layered armors and helms now properly follow the state of repair they should when obtained majorly undamaged by player
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
