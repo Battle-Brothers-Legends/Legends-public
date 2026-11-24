@@ -157,64 +157,63 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			locations.push(location);
 		}
 
-		if (this.getUpgraded()) {
-			if (::World.Camp.m.IsEscorting) {
-				for (local i = 0; i < ::Legends.S.randomizeFractionToInt(campHours * 0.1 + (0.1 * this.getModifiers().Craft)); i++) {
-					if (locations.len() == 0) {
-						break;
-					}
-
-					local randomLocationIndex = ::Math.rand(0, locations.len() - 1);
-					local location = locations[randomLocationIndex];
-					locations.remove(randomLocationIndex);
-					location.setDiscovered(true);
-					::World.uncoverFogOfWar(location.getTile().Pos, 400.0);
-
-					local tracks = "";
-					switch (::World.FactionManager.getFaction(location.getFaction()).getType()) {
-						case ::Const.FactionType.Orcs:
-							tracks = "Orc";
-							break;
-						case ::Const.FactionType.Goblins:
-							tracks = "Goblin";
-							break;
-						case ::Const.FactionType.Undead:
-						case ::Const.FactionType.Zombies:
-							tracks = "Undead";
-							break;
-						default:
-							tracks = "Human";
-							break;
-					}
-
-					if (location != null) {
-						this.m.Results.push({
-							Icon = "ui/icons/vision.png",
-							Text = "While on patrol, " + mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1] + " came across some " + tracks + " tracks and followed them towards the " + ::Legends.Text.colorizeAndPluralize(location.getName(), "negativeEvent") + ". It is " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, playerTile.getDistanceTo(location.getTile()) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + " to the " + ::Const.Strings.Direction8[playerTile.getDirection8To(location.getTile())] + "."
-						});
-					}
+		if (this.getUpgraded() && !::World.Camp.m.IsEscorting) {
+			for (local i = 0; i < ::Legends.S.randomizeFractionToInt(campHours * 0.1 + (0.1 * this.getModifiers().Craft)); i++) {
+				if (locations.len() == 0) {
+					break;
 				}
-			} else {
-				// add scouting effect giving a bonus for escort battles here
+
+				local randomLocationIndex = ::Math.rand(0, locations.len() - 1);
+				local location = locations[randomLocationIndex];
+				locations.remove(randomLocationIndex);
+				location.setDiscovered(true);
+				::World.uncoverFogOfWar(location.getTile().Pos, 400.0);
+
+				local tracks = "";
+				switch (::World.FactionManager.getFaction(location.getFaction()).getType()) {
+					case ::Const.FactionType.Orcs:
+						tracks = "Orc";
+						break;
+					case ::Const.FactionType.Goblins:
+						tracks = "Goblin";
+						break;
+					case ::Const.FactionType.Undead:
+					case ::Const.FactionType.Zombies:
+						tracks = "Undead";
+						break;
+					default:
+						tracks = "Human";
+						break;
+				}
+
+				if (location != null) {
+					this.m.Results.push({
+						Icon = "ui/icons/vision.png",
+						Text = "While on patrol, " + mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1] + " came across some " + tracks + " tracks and followed them towards the " + ::Legends.Text.colorizeAndPluralize(location.getName(), "negativeEvent") + ". It is " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, playerTile.getDistanceTo(location.getTile()) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + " to the " + ::Const.Strings.Direction8[playerTile.getDirection8To(location.getTile())] + "."
+					});
+				}
 			}
+		} else {
+			// add scouting effect giving a bonus for escort battles here
 		}
 	}
+}
 
-	function getUpdateText() {
-		return this.m.NumBros == 0 ? "No one on patrol!" : ("Patrol radius ... " + this.m.Radius);
-	}
+function getUpdateText() {
+	return this.m.NumBros == 0 ? "No one on patrol!" : ("Patrol radius ... " + this.m.Radius);
+}
 
-	function update() {
-		this.updateSideEffects();
-		return this.getUpdateText();
-	}
+function update() {
+	this.updateSideEffects();
+	return this.getUpdateText();
+}
 
-	function updateTick(_hours) {
-		this.m.Radius = 250 + ::Math.pow(this.m.Rate, 0.5) * 300.0 * ::Math.pow(_hours, 0.5 - (0.1 * this.m.Rate));
-	}
+function updateTick(_hours) {
+	this.m.Radius = 250 + ::Math.pow(this.m.Rate, 0.5) * 300.0 * ::Math.pow(_hours, 0.5 - (0.1 * this.m.Rate));
+}
 
-	function onDeserialize(_in) {
-		setModifiers();
-		this.camp_building.onDeserialize(_in);
-	}
+function onDeserialize(_in) {
+	setModifiers();
+	this.camp_building.onDeserialize(_in);
+}
 });
