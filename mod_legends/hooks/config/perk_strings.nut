@@ -702,7 +702,7 @@ Steel your heart and dodge blades from the front, behind and above in the thick 
 [color=%passive%][u]Passive:[/u][/color]
 • The defense malus due to being surrounded by opponents is reduced by [color=%negative%]5[/color].
 
-• If an attacker has the [color=%perk%]Strength In Numbers[/color] perk, the effect of that perk is negated, and the normal defense malus due to being surrounded is applied instead.
+• If an attacker has the [color=%perk%]Backstabber[/color] perk, the effect of that perk is negated, and the normal defense malus due to being surrounded is applied instead.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Underdog].Tooltip = ::Const.Strings.PerkDescription.Underdog;
 

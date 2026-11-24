@@ -190,8 +190,6 @@
 	"Warlocks require medicine to maintain their thralls, but food to occupy their puppets.",
 	"Miners help you move quickly through mountains.",
 	"Indebted, Wildmen and Brawlers have the potential to become skilled unarmed combatants.",
-	"A Blacksmith can repair armour in battle...for a steep cost.",
-	"Herbalists and Monks can heal in battle...for a steep cost.",
 	"Your mercenaries will interact with each other differently depending on their backgrounds and traits.",
 
 	//Enemies - info on specific enemies. Helpful only.
