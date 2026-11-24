@@ -355,7 +355,7 @@ if (!("Professions" in ::Legends)) {
     },
     LegendSkinning = {
         ScalingArray = [0, 0.2], // chance of extra loot from beasts
-        ScalingFactor = 0.05
+        ScalingFactor = 0.2
     },
     LegendSkillfulStacking = {
         ScalingArray = [0, 0.05], // extra inventory space percentage
