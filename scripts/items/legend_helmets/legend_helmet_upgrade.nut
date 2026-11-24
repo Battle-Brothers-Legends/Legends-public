@@ -18,6 +18,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		HideHair = false,
 		HideBeard = false,
 		Vision = 0,
+		IsImmuneToAcid = false,
 		Visible = true
 	},
 	function create()
@@ -497,6 +498,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 	{
 		this.item.onEquip();
 		this.setCurrentSlotType(this.m.SlotType);
+		this.updateAcidImmunity();
 	}
 
 	function onUnequip()
@@ -504,6 +506,33 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		this.item.onUnequip();
         //if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
 		this.setCurrentSlotType(::Const.ItemSlot.None);
+		this.updateAcidImmunity();
+	}
+
+	function updateAcidImmunity()
+	{
+		if (!this.m.IsImmuneToAcid || this.m.Armor == null)
+		{
+			return;
+		}
+
+		local c = this.m.Armor.getContainer();
+
+		if (c == null || c.getActor() == null || c.getActor().isNull())
+		{
+			return;
+		}
+
+		foreach (u in this.m.Armor.m.Upgrades)
+		{
+			if (u != null && u.m.IsImmuneToAcid && u.getCurrentSlotType() != ::Const.ItemSlot.None)
+			{
+				c.getActor().getFlags().add("head_immune_to_acid");
+				return;
+			}
+		}
+
+		c.getActor().getFlags().remove("head_immune_to_acid");
 	}
 
 	function onUse( _actor, _item = null, _playSound = true )

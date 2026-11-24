@@ -5,6 +5,7 @@ this.legend_stollwurm_scales_cloak <- this.inherit("scripts/items/legend_armor/l
 		this.legend_armor_cloak.create();
 		this.m.ID = "legend_armor.body.legend_stollwurm_scales";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
+		this.m.IsImmuneToAcid = true;
 		this.m.Name = "Stollwurm Scale Cloak";
 		this.m.Description = "A cloak made out of the scales of a Stollwurm. Not only is it a rare and impressive trophy, it also offers excellent protection against any kind of crowd control effects on top of the immunity against acid.";
 		this.m.ArmorDescription = "Includes a cloak made out of Stollwurm scales.";
@@ -58,28 +59,6 @@ this.legend_stollwurm_scales_cloak <- this.inherit("scripts/items/legend_armor/l
 		this.legend_armor_cloak.onUpdateProperties(_properties);
 		_properties.IsImmuneToStun = true;
 		_properties.IsImmuneToKnockBackAndGrab = true;
-	}
-
-	function onEquip()
-	{
-		this.legend_armor_cloak.onEquip();
-		local c = this.m.Armor.getContainer();
-
-		if (c != null && c.getActor() != null && !c.getActor().isNull())
-		{
-			c.getActor().getFlags().add("body_immune_to_acid");
-		}
-	}
-
-	function onUnequip()
-	{
-		local c = this.m.Armor.getContainer();
-
-		if (c != null && c.getActor() != null && !c.getActor().isNull())
-		{
-			c.getActor().getFlags().remove("body_immune_to_acid");
-		}
-		this.legend_armor_upgrade.onUnequip();
 	}
 });
 

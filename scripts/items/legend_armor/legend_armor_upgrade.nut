@@ -23,12 +23,13 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		StaminaModifier = 0,	// Stamina Cost. A negative value is bad and the default for items.
 
 		// Common effects across all upgrades handled by this base class
-		DirectDamageModifier = 0.0,	// %-Value. Modifies the HP damage taken from attacks hitting body armor
-		InitiativeModifier = 0,		// Modifies Initiative of wearer
-		ThreatModifier = 0,		// Modifies Threat of wearer (The inverse of this is subtracted from Resolve of adjacent enemies)
-		ResolveModifier = 0,		// Modifies Resolve of wearer
+		DirectDamageModifier = 0.0,			// %-Value. Modifies the HP damage taken from attacks hitting body armor
+		InitiativeModifier = 0,				// Modifies Initiative of wearer
+		ThreatModifier = 0,					// Modifies Threat of wearer (The inverse of this is subtracted from Resolve of adjacent enemies)
+		ResolveModifier = 0,				// Modifies Resolve of wearer
 		BraveryMult = 1.0,					// Multiplicatively applied to properties.BraveryMult. Default value of 1.0 means no change
 		DamageReceivedArmorMult = 0.0,		// Multiplier to the damage received by the currently worn body armor
+		IsImmuneToAcid = false,
 		FatiguePenaltyMultiplier = 0.0,		// The Fatigue cost of the currently equipped body armor is increased or reduced by this value as a fraction
 		Visible = true,
 	},
@@ -519,6 +520,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	{
 		this.item.onEquip();
 		this.setCurrentSlotType(this.m.SlotType);
+		this.updateAcidImmunity();
 	}
 
 	function onUnequip()
@@ -526,6 +528,33 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		this.item.onUnequip();
 		//if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
 		this.setCurrentSlotType(::Const.ItemSlot.None);
+		this.updateAcidImmunity();
+	}
+
+	function updateAcidImmunity()
+	{
+		if (!this.m.IsImmuneToAcid || this.m.Armor == null)
+		{
+			return;
+		}
+
+		local c = this.m.Armor.getContainer();
+
+		if (c == null || c.getActor() == null || c.getActor().isNull())
+		{
+			return;
+		}
+
+		foreach (u in this.m.Armor.m.Upgrades)
+		{
+			if (u != null && u.m.IsImmuneToAcid && u.getCurrentSlotType() != ::Const.ItemSlot.None)
+			{
+				c.getActor().getFlags().add("body_immune_to_acid");
+				return;
+			}
+		}
+
+		c.getActor().getFlags().remove("body_immune_to_acid");
 	}
 
 	function onUse( _actor, _item = null, _playSound = true )

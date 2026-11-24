@@ -5,6 +5,7 @@ this.legend_lindwurm_scales_cloak <- this.inherit("scripts/items/legend_armor/le
 		this.legend_armor_cloak.create();
 		this.m.ID = "legend_armor.body.lindwurm_scales";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
+		this.m.IsImmuneToAcid = true;
 		this.m.Name = "Lindwurm Scale Cloak";
 		this.m.Description = "A cloak made out of the scales of a Lindwurm. Not only is it a rare and impressive trophy, it also offers additional protection and is untouchable by corroding Lindwurm blood.";
 		this.m.ArmorDescription = "Includes a cloak made out of Lindwurm scales.";
@@ -52,27 +53,5 @@ this.legend_lindwurm_scales_cloak <- this.inherit("scripts/items/legend_armor/le
 			icon = "ui/icons/special.png",
 			text = "Unaffected by acidic Lindwurm blood"
 		});
-	}
-
-	function onEquip()
-	{
-		this.legend_armor_upgrade.onEquip();
-		local c = this.m.Armor.getContainer();
-
-		if (c != null && c.getActor() != null && !c.getActor().isNull())
-		{
-			c.getActor().getFlags().add("body_immune_to_acid");
-		}
-	}
-
-	function onUnequip()
-	{
-		this.legend_armor_upgrade.onUnequip();
-		local c = this.m.Armor.getContainer();
-
-		if (c != null && c.getActor() != null && !c.getActor().isNull())
-		{
-			c.getActor().getFlags().remove("body_immune_to_acid");
-		}
 	}
 });

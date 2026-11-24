@@ -43,7 +43,7 @@
 
 				local hitInfo = clone ::Const.Tactical.HitInfo;
 				hitInfo.DamageRegular = 0.0;
-				hitInfo.DamageArmor = damage * 0.2;
+				hitInfo.DamageArmor = damage;
 				hitInfo.DamageDirect = 0.0;
 				hitInfo.BodyPart = ::Const.BodyPart.Head;
 				hitInfo.BodyDamageMult = 1.0;

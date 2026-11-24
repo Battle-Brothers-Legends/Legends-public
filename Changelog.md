@@ -866,6 +866,9 @@
 - fixed units that rise from the ground, like resurrected undead, sometimes staying half buried and impossible to attack until their next turn
 - recipes no longer count every `Cooking Spices` item as 8 uses when checking if they can be crafted, only the uses it has left
 - enemies no longer skip their attack when their weapon has attacks with different ranges and the one they picked couldn't reach anyone, like a pike with `Impale` and `Heartseeker`
+- Fixed the acid immunity of lindwurm and stollwurm armor being lost when one of two such layers was taken off, e.g. a `Lindwurm Scale Cloak` worn over a named lindwurm scale armor
+- Fixed an error when the named lindwurm helmet layer was removed from a helmet that is not worn
+- Acid flasks now eat 20% of the head armor each turn as their tooltip says, it was 4%
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
