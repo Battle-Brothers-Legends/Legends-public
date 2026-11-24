@@ -543,6 +543,7 @@
 - `Greenwood Schrat` shield gains 15 block but now has 30 Melee Defense and Ranged Defense down from 40, condition is down to 64 from 128
 - `Hexe Coven Leader` - can now be champions and can drop named gnarly staves
 - `Hexe` - now always have a `Gnarly Staff`
+- `Spider Cluster` - small spiders no longer exert zones of control, you can move freely around them
 
 ### Bandits
 - `Bandit Executioner` - new enemy that will appear in bandit comps, dressed to impress and armed with cleavers - including the new executioner sword
