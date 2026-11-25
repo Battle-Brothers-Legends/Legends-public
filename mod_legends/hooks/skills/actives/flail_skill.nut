@@ -1,6 +1,5 @@
 ::mods_hookExactClass("skills/actives/flail_skill", function(o) {
-	o.m.IsChain <- false;
-	o.m.IsRanged <- false;
+	o.m.FlailType <- ::Legends.FlailType.Standard;
 
 	local create = o.create;
 	o.create = function() {
@@ -9,7 +8,7 @@
 	}
 
 	o.setItem <- function (_item) {
-		if (this.m.IsRanged) {
+		if (this.m.FlailType == ::Legends.FlailType.Pole) {
 			this.m.Description = "Flailing at an opponent over some distance. Somewhat unpredictable in damage, but able to strike over or around shield cover.";
 			this.m.Icon = "skills/active_65.png";
 			this.m.IconDisabled = "skills/active_65_sw.png";
@@ -18,7 +17,7 @@
 			this.m.MinRange = 1;
 			this.m.MaxRange = 2;
 		}
-		if (this.m.IsChain)
+		else if (this.m.FlailType == ::Legends.FlailType.Chain)
 		{
 			this.m.Name = "Chain Flail";
 			this.m.MaxRange = 3;
@@ -32,7 +31,7 @@
 
 	o.getTooltip = function() {
 		local ret = this.getDefaultTooltip();
-		if (this.m.IsRanged) {
+		if (this.m.FlailType == ::Legends.FlailType.Pole) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -49,7 +48,7 @@
 				});
 			}
 		}
-		else if (this.m.IsChain) {
+		else if (this.m.FlailType == ::Legends.FlailType.Chain) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -63,7 +62,7 @@
 
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-			if (this.m.IsRanged) {
+			if (this.m.FlailType == ::Legends.FlailType.Pole) {
 				this.m.ActionPointCost -= 1;
 			}
 			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
@@ -76,7 +75,7 @@
 			return;
 		}
 		local bonus = 0;
-		if (this.m.IsRanged && _targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+		if (this.m.FlailType == ::Legends.FlailType.Pole && _targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 			bonus += -15;
 		}
 		_properties.MeleeSkill += this.addHitChanceBonus(bonus);

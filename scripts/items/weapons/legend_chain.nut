@@ -37,7 +37,7 @@ this.legend_chain <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Flail, function (_skill) {
-			_skill.m.IsChain = true;
+			_skill.m.FlailType = ::Legends.FlailType.Chain;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Thresh, function (_skill) {
 			_skill.m.IsChain = true;
