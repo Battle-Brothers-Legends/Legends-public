@@ -64,11 +64,7 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties) {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		if (item == null) {
-			this.removeSelf();
-		}
-
-		if (!item.isWeaponType(::Const.Items.WeaponType.Mace)) {
+		if (item == null || !item.isItemType(::Const.Items.ItemType.Weapon) || !item.isWeaponType(::Const.Items.WeaponType.Mace)) {
 			this.removeSelf();
 		}
 	}
