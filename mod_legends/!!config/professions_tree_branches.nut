@@ -63,8 +63,8 @@ local P = ::Legends.Profession;
 		[P.LegendTrophyCarving, [P.LegendBigGameHunter]],
 
 		// healing
-		[P.LegendHealing, [P.LegendBandageBales, P.LegendButcherBarber]],
-		[P.LegendBandageBales, [P.LegendEfficientPacking]],
+		[P.LegendHealing, [P.LegendBandageBales]],
+		[P.LegendBandageBales, [P.LegendEfficientPacking, P.LegendButcherBarber]],
 		[P.LegendButcherBarber, [P.LegendFieldSurgery]],
 		[P.LegendFieldSurgery, [P.LegendProsthetics]],
 

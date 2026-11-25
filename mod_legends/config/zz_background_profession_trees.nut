@@ -341,7 +341,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 	Profession = {
 		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBalladeInTheMaking],
-		Known = [::Legends.Profession.LegendTraining],
+		Known = [::Legends.Profession.LegendBreadAndGames],
 		Special = []	
 	}
 };
@@ -1093,7 +1093,7 @@ if (!("BackgroundProfessionTrees" in ::Legends)) {
 	Profession = {
 		FavouredEnemyChance = 2,
 		Roots = [::Legends.Profession.LegendBalladeInTheMaking],
-		Known = [::Legends.Profession.LegendTraining],
+		Known = [::Legends.Profession.LegendBreadAndGames],
 		Special = []	
 	}
 };

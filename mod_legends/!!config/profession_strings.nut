@@ -557,7 +557,7 @@ Broadening one's perspective by reading at times gives better results than pract
 
 • Gains [color=%positive%]20%[/color] more profession experience.
 
-• Adds an extra profession point (when?).
+• Gains an extra profession point upon reaching profession level [color=%positive%]6[/color].
 ";
 
 ::Const.Strings.ProfessionDescription.LegendScrapping <- @"

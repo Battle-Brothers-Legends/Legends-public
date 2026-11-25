@@ -67,6 +67,10 @@
 			this.m.ProfessionExp -= levels[this.m.ProfessionLevel];
 			++this.m.ProfessionLevel;
 			++this.m.ProfessionPoints;
+
+			if (this.m.ProfessionLevel == ::Legends.Professions.Exp.ScholarPointLevel && ::Legends.Professions.has(this, ::Legends.Profession.LegendScholar)) {
+				++this.m.ProfessionPoints;
+			}
 		}
 	}
 
