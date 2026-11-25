@@ -29,7 +29,7 @@ this.legend_anatomist_surgeon_exchange_notes_event <- this.inherit("scripts/even
 				this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.Anatomist, ::Math.rand(3, 5)));
 
 				this.List.push(::Legends.EventList.changeMood(_event.m.Surgeon, 1.0, "Learned some new cutting techniques from " + _event.m.Anatomist.getName()));
-				this.List.push(::Legends.EventList.changeBravery(_event.m.Surgeon, ::Math.rand(2, 4)));
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Surgeon, ::Math.rand(2, 4)));
 
 				_event.m.Anatomist.getSkills().update();
 				_event.m.Surgeon.getSkills().update();

@@ -23,10 +23,10 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 				this.Characters.push(_event.m.Alchemist.getImagePath());
 
 				this.List.push(::Legends.EventList.changeMood(_event.m.Anatomist, 1.0, "Had a perplexing conundrum solved with help from " + _event.m.Alchemist.getName()));
-				this.List.push(::Legends.EventList.changeBravery(_event.m.Anatomist, ::Math.rand(1, 4)));
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Anatomist, ::Math.rand(1, 4)));
 
 				this.List.push(::Legends.EventList.changeMood(_event.m.Alchemist, 1.0, "Managed to help " + _event.m.Anatomist.getName()));
-				this.List.push(::Legends.EventList.changeBravery(_event.m.Alchemist, ::Math.rand(1, 4)));
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Alchemist, ::Math.rand(1, 4)));
 
 				_event.m.Anatomist.getSkills().update();
 				_event.m.Alchemist.getSkills().update();
