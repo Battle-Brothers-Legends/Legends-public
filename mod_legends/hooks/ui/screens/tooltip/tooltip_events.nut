@@ -693,7 +693,7 @@
 	}
 
 	local strategic_queryTileTooltipData = o.strategic_queryTileTooltipData;
-	strategic_queryTileTooltipData = function () {
+	o.strategic_queryTileTooltipData = function () {
 		::World.Assets.m.IsShowingExtendedFootprints = ::World.Assets.m.ProfessionEffect.LegendLookout > 0; // no need to reset as its the only thing determining that
 		return strategic_queryTileTooltipData();
 	}
