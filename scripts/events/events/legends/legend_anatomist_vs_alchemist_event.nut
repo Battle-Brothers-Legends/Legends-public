@@ -19,8 +19,8 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 			}],
 			function start(_event)
 			{
-				this.Characters.push(_event.m.anatomist.getImagePath());
-				this.Characters.push(_event.m.alchemist.getImagePath());
+				this.Characters.push(_event.m.Anatomist.getImagePath());
+				this.Characters.push(_event.m.Alchemist.getImagePath());
 
 				this.List.push(::Legends.EventList.changeMood(_event.m.Anatomist, 1.0, "Had a perplexing conundrum solved with help from " + _event.m.Alchemist.getName()));
 				this.List.push(::Legends.EventList.changeBravery(_event.m.Anatomist, ::Math.rand(1, 4)));
@@ -91,6 +91,7 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 			"alchemist",
 			this.m.Alchemist.getNameOnly()
 		]);
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Anatomist);
 	}
 
 	function onClear()

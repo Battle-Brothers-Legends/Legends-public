@@ -55,9 +55,10 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 				_event.m.Dude.getBaseProperties().MeleeSkill += 6;
 				_event.m.Dude.getBaseProperties().RangedDefense += 1;
 				_event.m.Dude.getBaseProperties().MeleeDefense += 2;
-				_event.m.RawDescription = "This one, in normal circumstances, would be marked for greatness. That is — if they were not foolish enough to die in the first place.";
-				::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
-				::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
+				_event.m.Dude.getBackground().m.RawDescription = "This one, in normal circumstances, would be marked for greatness. That is — if they were not foolish enough to die in the first place.";
+				_event.m.Dude.getBackground().buildDescription(true);
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendRottingFlesh);
+				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendZombieBite);
 				this.Characters.push(_event.m.Dude.getImagePath());
 				this.List.push({
 					id = 16,
@@ -117,8 +118,8 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 					"legend_puppet_background"
 				]);
 				_event.m.Dude.addLightInjury();
-				::Legends.Traits.grant(this, ::Legends.Trait.LegendRottingFlesh);
-				::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendRottingFlesh);
+				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendZombieBite);
 				this.Characters.push(_event.m.Dude.getImagePath());
 				this.List.push({
 					id = 16,

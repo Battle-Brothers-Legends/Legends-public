@@ -10,7 +10,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 		this.m.Cooldown = 999999.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% thumbs their tools in an idle manner, they pick up the iron ingots in the company stash and weigh them with their eyes. You can already tell that there is much more at work here than it seems, at it is only when %Blacksmith% notices you standing there that they put their plan into motion. %SPEECH_ON%I\'ve been ponderin\' this for some time capt\'n, I see you lot running around in yer\' fancy cloaks killin\' all them strange folk comin\' from the ground and it got me thinkin\'. Me da\' used to serve the order way back when — he showed me \'is sword a few times and I think, with your \'elp I could make it work. All I need is your eyes and this \'ere iron.%SPEECH_OFF% You make sustained eye contact with %Blacksmith% %SPEECH_ON%Okay, maybe a few crowns as well.%SPEECH_OFF%",
+			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% thumbs their tools in an idle manner, they pick up the iron ingots in the company stash and weigh them with their eyes. You can already tell that there is much more at work here than it seems, at it is only when %blacksmith% notices you standing there that they put their plan into motion. %SPEECH_ON%I\'ve been ponderin\' this for some time capt\'n, I see you lot running around in yer\' fancy cloaks killin\' all them strange folk comin\' from the ground and it got me thinkin\'. Me da\' used to serve the order way back when — he showed me \'is sword a few times and I think, with your \'elp I could make it work. All I need is your eyes and this \'ere iron.%SPEECH_OFF% You make sustained eye contact with %blacksmith% %SPEECH_ON%Okay, maybe a few crowns as well.%SPEECH_OFF%",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -27,7 +27,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 		});
 		this.m.Screens.push({
 			ID = "B",
-			Text = "[img]gfx/ui/events/event_05.png[/img]{The blacksmith hammers the metal with the accuracy of a loom — twisting the metal this way and that while you point and mutter from behind. The hammering is ceaseless until the blade is committed back to the forge, at which point %Blacksmith% takes the lul to get up, stretch and talk with the others.\n\n A few more turns on the anvil and a successful quench later, %Blacksmith% fits and finishes the blade, proud of the masterpiece that has been lost for generations.}",
+			Text = "[img]gfx/ui/events/event_05.png[/img]{The blacksmith hammers the metal with the accuracy of a loom — twisting the metal this way and that while you point and mutter from behind. The hammering is ceaseless until the blade is committed back to the forge, at which point %blacksmith% takes the lul to get up, stretch and talk with the others.\n\n A few more turns on the anvil and a successful quench later, %blacksmith% fits and finishes the blade, proud of the masterpiece that has been lost for generations.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -49,7 +49,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 
 		// this.m.Screens.push({ //Fail
 		// 	ID = "C",
-		// 	Text = "[img]gfx/ui/events/event_05.png[/img]%Blacksmith% begins strong, but gradually loses control of the shape and form of the blade over time. %Blacksmith% squints and attempts to start again. But at this point the blade is already lost. You tell them to finish it as best as they can.\n\n With a tounge stuck out and a pensive look, %Blacksmith% eventually defaults back to their old ways and makes an impressively average looking blade, allbeit functional and sturdy.",
+		// 	Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% begins strong, but gradually loses control of the shape and form of the blade over time. %blacksmith% squints and attempts to start again. But at this point the blade is already lost. You tell them to finish it as best as they can.\n\n With a tounge stuck out and a pensive look, %blacksmith% eventually defaults back to their old ways and makes an impressively average looking blade, allbeit functional and sturdy.",
 		// 	Image = "",
 		// 	List = [],
 		// 	Characters = [],

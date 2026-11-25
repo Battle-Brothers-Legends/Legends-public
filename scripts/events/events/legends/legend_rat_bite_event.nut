@@ -30,7 +30,7 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 					this.List.push({
 						id = 10,
 						icon = ::Const.MoodStateIcon[_event.m.Bitten.getMoodState()],
-						text = _event.m.Bitten.getName() + ::Const.MoodStateEvent[_event.m.NightOwl.getMoodState()]
+						text = _event.m.Bitten.getName() + ::Const.MoodStateEvent[_event.m.Bitten.getMoodState()]
 					});
 				}
 

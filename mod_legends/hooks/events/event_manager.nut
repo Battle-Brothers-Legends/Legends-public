@@ -137,6 +137,11 @@
 		local newsDelay = ::World.getTime().SecondsPerHour * 0.25;
 
 		if (this.m.Thread != null) {
+			if (this.m.Thread.getstatus() == "dead") {
+				this.m.Thread = null;
+				return;
+			}
+
 			if (resume this.m.Thread != false) {
 				this.m.Thread = null;
 				if (this.m.ActiveEvent == null) {
