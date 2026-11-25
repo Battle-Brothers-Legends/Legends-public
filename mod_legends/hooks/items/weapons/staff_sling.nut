@@ -25,6 +25,7 @@
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingHeavyStone);
 		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
 			_skill.m.IsSlingBash = true;
+			_skill.m.IsStaffBash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchAcidFlask);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchDazeBomb);
