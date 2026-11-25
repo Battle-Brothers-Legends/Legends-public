@@ -446,7 +446,7 @@
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container > .is-components-container
 {
-	top: 5.0rem;
+	top: 2.0rem;
 	left: 2.0rem;
 	right: 2.0rem;
 	position: absolute;
@@ -484,7 +484,7 @@
 }
 
 
-.world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container
+/*.world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container
 {
 	top: 31.0rem;
 	height: 20.0rem;
@@ -528,7 +528,7 @@
 	height: 10.0rem; /*20*/
 
 	/*border: 1px solid green;*/
-}
+/*}
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container .is-requirements-components-container > .container
 {
@@ -556,7 +556,7 @@
 	position: absolute;
 	left: 3.0rem;
 	top: 0;
-}
+}*/
 
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container
