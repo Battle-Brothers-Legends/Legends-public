@@ -31,11 +31,34 @@
 
 ::mods_hookExactClass("events/events/special/arena_event", function (o) {
 	o.m.WasInReserves <- [];
+	o.m.IsArenaFlagsSet <- false;
 
 	local onPrepare = o.onPrepare;
 	o.onPrepare = function () {
 		onPrepare();
 		this.m.WasInReserves = [];
+		this.m.IsArenaFlagsSet = false;
+	}
+
+	// Just testing a catch cause I saw my fights go up by 2 wins instead of one
+	// If it works then great, if it doesn't then fuck me ig
+	local setArenaFlags = o.setArenaFlags;
+	o.setArenaFlags = function () {
+		local bros = [];
+		foreach (bro in this.m.Bros) {
+			if (bros.find(bro) == null) {
+				bros.push(bro);
+			}
+		}
+		this.m.Bros = bros;
+
+		if (this.m.IsArenaFlagsSet) {
+			::logWarning("Uh oh Stinky!");
+			return;
+		}
+
+		this.m.IsArenaFlagsSet = true;
+		setArenaFlags();
 	}
 
 	local buildArenaCombatProperties = o.buildArenaCombatProperties;
@@ -55,6 +78,7 @@
 			bro.setInReserves(true);
 		}
 		this.m.WasInReserves = [];
+		this.m.IsArenaFlagsSet = false;
 		onClear();
 	}
 
@@ -62,7 +86,7 @@
 	o.getPromotions = function () {
 		local promotions = getPromotions();
 		foreach (bro in this.m.Bros) {
-			if (bro.isAlive() && (bro.getSkills().hasTrait(::Legends.Trait.ArenaVeteran) || bro.getSkills().hasTrait(::Legends.Trait.LegendArenaChampion))) {
+			if (bro.isAlive()) {
 				::Legends.Arena.updateTraits(promotions, bro);
 			}
 		}
