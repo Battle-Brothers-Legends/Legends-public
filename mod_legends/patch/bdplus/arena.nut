@@ -84,13 +84,51 @@
 
 	local getPromotions = o.getPromotions;
 	o.getPromotions = function () {
-		local promotions = getPromotions();
+		// BD+ only knows the ranks up to Arena Veteran, so it would hand an Arena Champion or Invictus a new Pit Fighter trait
+		local before = {};
 		foreach (bro in this.m.Bros) {
-			if (bro.isAlive()) {
-				::Legends.Arena.updateTraits(promotions, bro);
+			before[bro.getID()] <- this.getArenaRank(bro);
+		}
+
+		local promotions = getPromotions();
+
+		foreach (bro in this.m.Bros) {
+			if (!bro.isAlive()) {
+				continue;
+			}
+
+			local rank = before[bro.getID()];
+			if (rank > 0 && this.getArenaRank(bro, rank) >= 0) {
+				local prefix = bro.getName() + " is now";
+				local kept = [];
+				foreach (p in promotions) {
+					if (p.text.find(prefix) != 0) {
+						kept.push(p);
+					}
+				}
+				promotions = kept;
+			}
+
+			::Legends.Arena.updateTraits(promotions, bro);
+
+			local highest = this.getArenaRank(bro);
+			foreach (i, tier in ::Legends.Arena.TraitTiers) {
+				if (i < highest) {
+					::Legends.Traits.remove(bro, tier[1]);
+				}
 			}
 		}
 		return promotions;
+	}
+
+	o.getArenaRank <- function (_bro, _below = 99) {
+		local rank = -1;
+		foreach (i, tier in ::Legends.Arena.TraitTiers) {
+			if (i < _below && _bro.getSkills().hasTrait(tier[1])) {
+				rank = i;
+			}
+		}
+		return rank;
 	}
 });
 
