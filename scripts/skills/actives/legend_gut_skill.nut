@@ -79,14 +79,8 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 			}
 
 			return true;
-		} else {
-			if (target.isAlive() && _user.isAlive() && !_user.getCurrentProperties().IsStunned) {
-				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
-				ret = this.attackEntity(_user, target) || ret;
-			}
-
-			return ret;
-		}
+		} 
+		return ret;
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
