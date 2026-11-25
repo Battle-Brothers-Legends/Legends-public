@@ -41,6 +41,11 @@ this.legend_immobilized_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onUpdate(_properties) {
+		if (!::Tactical.isActive()) {
+			this.removeSelf();
+			return;
+		}
+
 		_properties.IsRooted = true;
 		_properties.MeleeDefenseMult *= 0.65;
 		_properties.RangedDefenseMult *= 0.65;

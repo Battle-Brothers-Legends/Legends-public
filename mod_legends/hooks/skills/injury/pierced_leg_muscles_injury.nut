@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/injury/pierced_leg_muscles_injury", function (o) {
 	o.onAdded <- function () {
 		local properties = this.getContainer().getActor().getCurrentProperties();
-		if (this.m.IsNew && properties.IsAffectedByInjuries && (!this.m.IsFresh || properties.IsAffectedByFreshInjuries)) {
+		if (::Tactical.isActive() && this.m.IsNew && properties.IsAffectedByInjuries && (!this.m.IsFresh || properties.IsAffectedByFreshInjuries)) {
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendImmobilized);
 		}
 	}
