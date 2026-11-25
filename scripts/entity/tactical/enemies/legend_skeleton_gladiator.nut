@@ -28,6 +28,7 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecThrowing);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
+		::Legends.Perks.grant(this, ::Legends.Perk.BagsAndBelts);
 
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
@@ -40,10 +41,15 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 	function assignRandomEquipment() {
 
 		this.getItems().equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
-		this.getItems().equip(this.new("scripts/items/weapons/throwing_spear"));
-		this.getItems().equip(this.new("scripts/items/weapons/throwing_spear"));
-		this.getItems().equip(this.new("scripts/items/weapons/throwing_spear"));
-		this.getItems().equip(this.new("scripts/items/tools/throwing_net"));
+		local secondaryWeapons = [
+			"weapons/throwing_spear",
+			"weapons/throwing_spear",
+			"tools/throwing_net",
+			"tools/throwing_net"
+		];
+		foreach (weapon in secondaryWeapons) {
+			this.m.Items.addToBag(this.new("scripts/items/" + weapon));
+		}
 
 		this.getItems().equip(this.new("scripts/items/shields/ancient/tower_shield"));
 

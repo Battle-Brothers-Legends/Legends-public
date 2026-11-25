@@ -353,6 +353,7 @@
 **Throwing**
 - `Piercing Javelin` - if the attack is successful also attack the target behind them for 75% damage
 > 5 ap, 20 fat
+- `Throwing Spear` - is now a tool and sits in offhand
 
 **Daggers**
 - all daggers now have a bit of weight for dual wield balancing
