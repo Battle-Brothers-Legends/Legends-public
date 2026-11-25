@@ -50,7 +50,7 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate(_properties) {
-		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getItem().isWeaponType(::Const.Items.WeaponType.Dagger)) {
 			this.m.ActionPointCost -= 1;
 		}
 		this.m.FatigueCostMult = ::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
