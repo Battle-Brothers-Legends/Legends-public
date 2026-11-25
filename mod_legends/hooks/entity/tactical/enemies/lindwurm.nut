@@ -4,12 +4,13 @@
 		::Legends.Rune.LegendRsaSafety
 	];
 	o.m.EffectsSharedWithTail <- [
-		::Legends.Effect.Staggered,
 		::Legends.Effect.Dazed,
-		::Legends.Effect.LegendStupefied,
-		::Legends.Effect.LegendBaffled,
+		::Legends.Effect.InsectSwarm,
+		::Legends.Effect.Staggered,
+		::Legends.Effect.Taunted,
 		::Legends.Effect.Withered,
-		::Legends.Effect.InsectSwarm
+		::Legends.Effect.LegendBaffled,
+		::Legends.Effect.LegendStupefied		
 	];
 	o.m.EffectsSharedWithTailLookup <- {};
 

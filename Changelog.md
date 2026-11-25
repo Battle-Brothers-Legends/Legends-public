@@ -574,6 +574,9 @@
 - roaming barbarian warbands are slightly larger
 - `Barbarian Chosen` and `Barbarian Bloodletters` need a slightly larger group before they show up
 
+### Zombies
+- gain Immune to Taunt
+
 ## Ambitions
 - New ambition: make city states aware (triggers at 800 renown or more).
 - Updated the 'allied nobles' ambition to give the player a randomly chosen named weapon (11 possibilities) upon ambition completion.
@@ -874,6 +877,7 @@
 - layered armors and helms now properly follow the state of repair they should when obtained majorly undamaged by player
 - Fixed item descriptions at the taxidermist showing raw color tags like `[color=#8f1e1e]Tool[/color]` when MSU's `Expanded Item Tooltips` setting is on
 - Fixed used up flasks and bombs (holy water, acid flask, fire, smoke and daze bombs) still being throwable and showing `2 use left` when the company has no one to refill them
+- Stollwurms now share Taunted between their heads and tails too
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
