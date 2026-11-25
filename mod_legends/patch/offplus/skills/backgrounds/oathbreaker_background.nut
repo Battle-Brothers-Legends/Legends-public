@@ -32,7 +32,14 @@
 	}
 };
 
+// perk trees and profession trees of the Oathtaker
+::Legends.BackgroundPerkTrees.Oathbreaker <- clone ::Legends.BackgroundPerkTrees.Paladin;
+::Legends.BackgroundProfessionTrees.Oathbreaker <- clone ::Legends.BackgroundProfessionTrees.Paladin;
+
 ::mods_hookNewObject("skills/backgrounds/oathbreaker_background", function (ob) {
+	::Legends.Backgrounds.onCreate(ob, ::Legends.Background.Oathbreaker);
+	ob.m.BackgroundType = ::Const.BackgroundType.Combat;
+	ob.m.PerkTreeDynamicMins.Weapon = 9;
 	ob.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMin;
 	ob.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 
