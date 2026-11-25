@@ -34,7 +34,7 @@
 
 	o.getAmmo <- function () {
 		if (this.m.Item != null && !this.m.Item.isNull()) {
-			return this.m.Item.getAmmo();
+			return this.m.Item.m.Ammo;
 		}
 
 		return 0;
