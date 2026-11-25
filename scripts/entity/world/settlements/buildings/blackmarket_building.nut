@@ -59,7 +59,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 		this.m.Sounds = [];
 		for (local i = 1; i <= 30; i++) {
 			this.m.Sounds.push({
-				File = format("ambience/blackmarket/blackmarket_%02d.ogg", i),
+				File = format("ambience/buildings/blackmarket_%02d.wav", i),
 				Volume = 0.2,
 				Pitch = 1.0
 			});
