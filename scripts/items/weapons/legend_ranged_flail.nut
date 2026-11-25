@@ -37,10 +37,10 @@ this.legend_ranged_flail <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Flail, function (_skill) {
-			_skill.m.IsRanged = true;
+			_skill.m.FlailType = ::Legends.FlailType.Pole;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Lash, function (_skill) {
-			_skill.m.IsRanged = true;
+			_skill.m.FlailType = ::Legends.FlailType.Pole;
 		}.bindenv(this));
 	}
 
