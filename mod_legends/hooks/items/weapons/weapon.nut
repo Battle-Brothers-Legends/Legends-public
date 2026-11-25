@@ -54,7 +54,7 @@
 				icon = "ui/icons/block.png",
 				text = "Block [color=%positive%]+%_block%[/color]",
 				param = [
-					["_block", block[isSpecialized ? 1 : 0]]
+					["_block", block[isSpecialized && this.getCurrentSlotType() == ::Const.ItemSlot.Mainhand ? 1 : 0]]
 				]
 			});
 		}
@@ -238,7 +238,7 @@
 
 		if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
 			local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
-			_properties.Block += block[::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this) ? 1 : 0];
+			_properties.Block += block[::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this) && this.getCurrentSlotType() == ::Const.ItemSlot.Mainhand ? 1 : 0];
 		}
 	}
 
@@ -262,7 +262,8 @@
 				skillsGranted.push(_skill);
 			}
 		};
-		dummyItem.weapon.onEquip = @() {};
+		dummyItem.weapon.onEquip = @() {
+		};
 		dummyItem.setContainer(dummy.getItems());
 		dummyItem.onEquip();
 		::World.getTemporaryRoster().clear();
