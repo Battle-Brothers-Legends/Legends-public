@@ -87,8 +87,8 @@
 			]
 		},
 		{
-			Weight = 15,
-			MinR = 0.50 * 385,
+			Weight = 8,
+			MinR = 200,
 			Types =
 			[
 				{
@@ -231,9 +231,8 @@
 			]
 		},
 		{
-			Weight = 10,
-			MinR = 170,
-			//MinR = 340,
+			Weight = 8,
+			MinR = 200,
 			Types =
 			[
 				{
@@ -419,7 +418,7 @@
 			]
 		},
 		{
-			Weight = 14,
+			Weight = 8,
 			MinR = 200,
 			Types =
 			[
@@ -582,8 +581,8 @@
 			]
 		},
 		{
-			Weight = 12,
-			MinR = 150,
+			Weight = 8,
+			MinR = 200,
 			Types =
 			[
 				{
