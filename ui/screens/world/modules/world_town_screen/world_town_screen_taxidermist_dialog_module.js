@@ -582,7 +582,12 @@ WorldTownScreenTaxidermistDialogModule.prototype.updateDetailsPanel = function(_
 		this.mDetailsPanel.CharacterImage.bindTooltip({ contentType: 'ui-item', itemId: data.ID, itemOwner: 'craft' });
 
 		this.mDetailsPanel.CharacterName.html(data['Name']);
-		this.mDetailsPanel.DescriptionTextContainer.html(data['Description']);
+		var parsedDescription = XBBCODE.process({
+			text: data['Description'],
+			removeMisalignedTags: false,
+			addInLineBreaks: true
+		});
+		this.mDetailsPanel.DescriptionTextContainer.html(parsedDescription.html);
 
 		this.mDetailsPanel.Components.empty();
 		for(var i = 0; i < data.Ingredients.length; ++i)

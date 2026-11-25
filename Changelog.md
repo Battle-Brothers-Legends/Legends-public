@@ -867,6 +867,7 @@
 - Fixed an error when the named lindwurm helmet layer was removed from a helmet that is not worn
 - Acid flasks now eat 20% of the head armor each turn as their tooltip says, it was 4%
 - layered armors and helms now properly follow the state of repair they should when obtained majorly undamaged by player
+- Fixed item descriptions at the taxidermist showing raw color tags like `[color=#8f1e1e]Tool[/color]` when MSU's `Expanded Item Tooltips` setting is on
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
