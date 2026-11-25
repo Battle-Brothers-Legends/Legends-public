@@ -6,7 +6,6 @@
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.AmmoCost = 1;
 		this.m.WeaponType = ::Const.Items.WeaponType.Dagger;
-		this.m.StaminaModifier = -2;
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
@@ -22,6 +21,7 @@
 	o.randomizeValues <- function () {
 		this.m.Ammo = 8;
 		this.m.AmmoMax = 8;
+		this.m.StaminaModifier = -2;
 		this.named_weapon.randomizeValues();
 	}
 
