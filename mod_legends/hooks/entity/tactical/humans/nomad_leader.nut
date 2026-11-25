@@ -56,7 +56,7 @@
 		}
 
 		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 35) {
-			local secondary_weapons = [
+			local secondaryWeapons = [
 				"weapons/javelin",
 				"weapons/throwing_spear"
 			];
