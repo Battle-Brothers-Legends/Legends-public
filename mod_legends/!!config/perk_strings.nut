@@ -762,6 +762,8 @@ Let him who is skilled cast the first stone.
 
 • When using One Handed slings, waiting during your turn or using [color=%skill%]Wind Up[/color] will add the [color=%skill%]Prepare Bullet[/color] effect, which will increase damage by [color=%positive%]10%[/color] of your Initiative and the Range of attacks by [color=%positive%]+1[/color]
 
+• [color=%skill%]Sling Stone[/color] ignore an additional [color=%positive%]25%[/color] of Block value.
+
 • Additionally allows you to launch bombs and flasks with a Staff Sling.
 ";
 

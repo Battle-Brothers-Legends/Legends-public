@@ -4,6 +4,7 @@
 		create();
 		this.m.IsShieldRelevant = true;
 		this.m.HitChanceBonus = -5;
+		this.m.BlockBypass = 0.25;
 	}
 
 	o.getTooltip = function () {
@@ -61,6 +62,7 @@
 			_properties.RangedSkill += this.addHitChanceBonus(bonus);
 			_properties.HitChanceAdditionalWithEachTile -= 4;
 			_properties.FatigueDealtPerHitMult += 2.0;
+			this.m.BlockBypass += 0.25;
 		}
 
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage)) {

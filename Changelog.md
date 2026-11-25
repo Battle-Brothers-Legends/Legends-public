@@ -320,6 +320,9 @@
 - with the new Block mechanic flail skills have an innate 25% ignore of shield Block except for `Thresh` which has 0 and `Cascade` + `Hail` which have 50% base
 > increased to a total of 50% with the mastery, 25% `Thresh`, 75% `Hail` + `Cascade`
 
+**1h Slings**
+- `Sling Stone` ignores 25% of shield Block and 50% with mastery 
+
 **Crossbows**
 - `Improvised Strike` - now has a 25(50 with mastery) chance to daze OR stagger on body shot and will always stun on headshot, down from just slapping all 3 debuffs on a headshot
 
