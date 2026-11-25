@@ -181,19 +181,4 @@
 		]));
 	}
 
-	o.getGenericTooltip <- function() {
-		local ret = this.character_background.getGenericTooltip();
-		ret.push({
-			id = 3,
-			type = "hint",
-			icon = "ui/icons/special.png",
-			divider = "top",
-			text = "%_rate%% of base Resolve is added as a bonus to Hitpoints, Fatigue, and Initiative",
-			param = [
-				["_rate", this.m.ResolveConversion * 100]
-			]
-		});
-		return ret;
-	}
-
 });

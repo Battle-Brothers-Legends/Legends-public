@@ -533,8 +533,37 @@
 		}
 
 		tooltip.extend(this.getBackgroundDescriptionTooltip(true));
+		tooltip.extend(this.getEffectsTooltip());
 
 		return tooltip;
+	}
+
+	o.getEffectsTooltip <- function () {
+		local ret = [];
+		if (this.getContainer() == null) {
+			return ret;
+		}
+
+		foreach (line in this.getTooltip()) {
+			if (line.type != "text" || line.text.find("Gain a perk point every") != null) {
+				continue;
+			}
+
+			if (ret.len() == 0) {
+				ret.push({
+					id = 7,
+					type = "hint",
+					text = "[u]Background Effects[/u]"
+				});
+			}
+
+			local hint = clone line;
+			hint.id = 7;
+			hint.type = "hint";
+			ret.push(hint);
+		}
+
+		return ret;
 	}
 
 	o.getTooltip <- function () {

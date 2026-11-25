@@ -723,6 +723,7 @@
 - reworked on actor hover tooltips to allow dynamic combat descriptions
 - changed the way immunities are displayed on enemy tooltip, expanded the list of displayed immunities
 - enemy tooltips reworked to include turns left, non-stacking effect stacks
+- the background tooltip in the hiring screen now lists the background's special effects (e.g. Witchhunter, Swordmaster, Oathtaker) under `Background Effects`
 - added skill icons to weapons and shields
 - added simple values to stats in character screen on mouseover
 - the character screen shows Block in place of the effectiveness against armor

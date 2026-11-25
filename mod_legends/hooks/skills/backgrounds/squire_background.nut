@@ -33,7 +33,14 @@
 	}
 
 	o.getTooltip = function() {
-		return this.character_background.getTooltip();
+		local ret = this.character_background.getTooltip();
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = "[color=%positive%]+10%[/color] Experience Gain"
+		});
+		return ret;
 	}
 
 	o.setGender <- function(_gender = -1) {
