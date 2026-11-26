@@ -6,12 +6,16 @@ this.legend_skin_ghouls_arena_composition <- this.inherit("scripts/arena/composi
 		this.m.Type = "arena_composition.legend_skin_ghouls";
 		this.m.DisplayName = "Skin Ghouls";
 		this.m.SignatureEntities = [
-			::BDP.Arena.EntityTypes.LegendSkinGhoulMedium
+			::BDP.Arena.EntityTypes.LegendSkinGhoulMedium,
+			::BDP.Arena.EntityTypes.NachzehrerMedium
 		];
 		this.m.PotentialEntities = [
 			::BDP.Arena.EntityTypes.LegendSkinGhoulMedium,
 			::BDP.Arena.EntityTypes.LegendSkinGhoulLow,
-			::BDP.Arena.EntityTypes.LegendSkinGhoulLow
+			::BDP.Arena.EntityTypes.LegendSkinGhoulLow,
+			::BDP.Arena.EntityTypes.NachzehrerMedium,
+			::BDP.Arena.EntityTypes.NachzehrerLow,
+			::BDP.Arena.EntityTypes.NachzehrerLow
 		];
 		this.m.Pay = 350;
 		this.m.AllowedEntrants = 4;

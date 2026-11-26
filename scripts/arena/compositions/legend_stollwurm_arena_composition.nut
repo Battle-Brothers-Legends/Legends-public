@@ -25,7 +25,7 @@ this.legend_stollwurm_arena_composition <- this.inherit("scripts/arena/compositi
 	}
 
 	function setDifficulty(_difficulty) {
-		this.m.Difficulty = ::Math.max(_difficulty, 2);
+		this.m.Difficulty = 3;
 	}
 
 	function onAfterBuild() {

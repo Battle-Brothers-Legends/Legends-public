@@ -4,17 +4,19 @@ this.legend_redback_spider_arena_composition <- this.inherit("scripts/arena/comp
 	function create() {
 		this.arena_composition.create();
 		this.m.Type = "arena_composition.legend_redback_spider";
-		this.m.DisplayName = "Redback Spider";
-		this.m.DisplayText = "\"That is not a fig tree, and it is no ordinary spider either. See the red on its back? The alchemists say that is how you tell the mother of a brood from her children, and that her venom drops an ox before it has finished falling. Her children are in there with her. Bring a big boot.\"";
+		this.m.DisplayName = "Redback Spiders";
+		this.m.DisplayText = "\"Those are not fig trees, and they are no ordinary spiders either. See the red on their backs? The alchemists say that is how you tell the mothers of a brood from their children, and that their venom drops an ox before it has finished falling. A few of the children are in there with them. Bring a big boot.\"";
 		this.m.SignatureEntities = [
+			::BDP.Arena.EntityTypes.LegendRedbackSpider,
+			::BDP.Arena.EntityTypes.LegendRedbackSpider,
 			::BDP.Arena.EntityTypes.LegendRedbackSpider
 		];
 		this.m.PotentialEntities = [
-			::BDP.Arena.EntityTypes.Webknecht
+			::BDP.Arena.EntityTypes.LegendRedbackBrood
 		];
 		this.m.Pay = 450;
 		this.m.AllowedEntrants = 4;
-		this.m.BaseStrength = 70;
+		this.m.BaseStrength = 100;
 		this.m.MinDay = 30;
 	}
 
@@ -22,11 +24,11 @@ this.legend_redback_spider_arena_composition <- this.inherit("scripts/arena/comp
 		local titles = clone ::BDP.Arena.CompositionTitles.Webknechts;
 		titles.extend(::BDP.Arena.CompositionTitles.Forest);
 		titles.extend(::BDP.Arena.CompositionTitles.Swamp);
-		this.m.DisplayName = "The " + ::MSU.Array.rand(::BDP.Arena.CompositionNames.RedbackSpider) + " of " + ::MSU.Array.rand(titles);
+		this.m.DisplayName = ::MSU.Array.rand(::BDP.Arena.CompositionNames.RedbackSpider) + " of " + ::MSU.Array.rand(titles);
 	}
 
 	function setDifficulty(_difficulty) {
-		this.m.Difficulty = ::Math.max(_difficulty, 2);
+		this.m.Difficulty = 3;
 	}
 
 	function onAfterBuild() {

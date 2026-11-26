@@ -43,6 +43,7 @@ addEntityType("LegendBasiliskSentry", troops.LegendBasiliskSentry, "basilisk_sen
 
 addEntityType("LegendWhiteDirewolf", troops.LegendWhiteDirewolf, "white_direwolf", 2);
 addEntityType("LegendRedbackSpider", troops.LegendRedbackSpider, "redback_spider", 2);
+addEntityType("LegendRedbackBrood", troops.Spider, "webknecht", 4);
 addEntityType("LegendRockUnhold", troops.LegendRockUnhold, "rock_unhold", 2);
 addEntityType("LegendStollwurm", troops.LegendStollwurm, "stollwurm", 2);
 
@@ -82,25 +83,25 @@ addEntityType("LegendStollwurm", troops.LegendStollwurm, "stollwurm", 2);
 	"Big Cocks"
 ];
 ::BDP.Arena.CompositionNames.WhiteDirewolf <- [
-	"White Direwolf",
-	"White Direwolf",
-	"Wolf King",
-	"Pale Hunter",
-	"White Death"
+	"White Direwolves",
+	"White Direwolves",
+	"Wolf Kings",
+	"Pale Hunters",
+	"Winter Wolves"
 ];
 ::BDP.Arena.CompositionNames.RedbackSpider <- [
-	"Redback Spider",
-	"Redback Spider",
-	"Broodmother",
-	"Red Widow",
-	"Crimson Weaver"
+	"Redback Spiders",
+	"Redback Spiders",
+	"Broodmothers",
+	"Red Widows",
+	"Crimson Weavers"
 ];
 ::BDP.Arena.CompositionNames.RockUnhold <- [
-	"Rock Unhold",
-	"Rock Unhold",
-	"Stone Giant",
-	"Mountain Troll",
-	"Living Boulder"
+	"Rock Unholds",
+	"Rock Unholds",
+	"Stone Giants",
+	"Mountain Trolls",
+	"Living Boulders"
 ];
 ::BDP.Arena.CompositionNames.Stollwurm <- [
 	"Stollwurm",
