@@ -36,6 +36,10 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
+
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.AncientDead.LegendsSkeletonShieldSpecDay) {
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+		}
 	}
 
 	function assignRandomEquipment() {

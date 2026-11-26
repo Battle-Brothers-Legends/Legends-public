@@ -14,6 +14,9 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		}
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.AncientDead.LegendsSkeletonShieldSpecDay) {
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+		}
 	}
 
 	o.assignRandomEquipment = function () {
