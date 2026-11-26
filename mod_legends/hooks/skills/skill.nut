@@ -51,6 +51,10 @@
 	}
 
 	o.getDescription = function () {
+		return this.resolveDescription(this.m.Description);
+	}
+
+	o.resolveDescription <- function (_description) {
 		local vars = [];
 		local container = this.getContainer();
 		if (container != null && (typeof container == "instance" && !container.isNull()) && container.getActor() != null) {
@@ -71,7 +75,7 @@
 			]);
 			::Const.LegendMod.extendVarsWithPronouns(vars, actor);
 		}
-		return this.buildTextFromTemplate(this.m.Description, vars);
+		return this.buildTextFromTemplate(_description, vars);
 	}
 
 	local getActionPointCost = o.getActionPointCost;

@@ -2,7 +2,7 @@
 	o.m.Actor <- null;
 
 	o.getDescription = function () {
-		return "Has a vicious poison running through %their% veins.";
+		return this.resolveDescription("Has a vicious poison running through %their% veins.");
 	}
 
 	o.getDamage = function () {

@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/web_effect", function (o) {
 	o.getDescription <- function () {
-		return "A large and sticky web holds this character in place and hampers %their% ability to defend %themselves% and to put real force behind any blows. To break free, the web will have to be cut.";
+		return this.resolveDescription("A large and sticky web holds this character in place and hampers %their% ability to defend %themselves% and to put real force behind any blows. To break free, the web will have to be cut.");
 	}
 
 	local getTooltip = o.getTooltip;

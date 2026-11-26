@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/hex_master_effect", function (o) {
 	o.getDescription <- function () {
-		return "Has cursed another to feel the same pain and receive the same wounds as %themselves%.";
+		return this.resolveDescription("Has cursed another to feel the same pain and receive the same wounds as %themselves%.");
 	}
 
 	o.getTooltip <- function () {

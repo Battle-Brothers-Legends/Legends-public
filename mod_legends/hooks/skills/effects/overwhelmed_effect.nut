@@ -3,7 +3,7 @@
 	o.m.TurnsLeft <- 1;
 
 	o.getDescription <- function () {
-		return "Overwhelmed with a flurry of attacks to defend against, leaving few openings to effectively attack for %themselves%.";
+		return this.resolveDescription("Overwhelmed with a flurry of attacks to defend against, leaving few openings to effectively attack for %themselves%.");
 	}
 
 	o.getName = function () {

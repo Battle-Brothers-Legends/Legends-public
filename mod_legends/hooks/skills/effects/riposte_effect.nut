@@ -8,7 +8,7 @@
 	}
 
 	o.getDescription = function () {
-		return "Prepared to immediately counter-attack on any failed attempt to attack %them% in melee.";
+		return this.resolveDescription("Prepared to immediately counter-attack on any failed attempt to attack %them% in melee.");
 	}
 
 	o.getTooltip <- function () {

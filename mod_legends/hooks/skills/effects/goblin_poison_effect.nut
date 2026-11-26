@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/goblin_poison_effect", function (o) {
 	o.getDescription = function () {
-		return "Poison running through %their% veins makes %their% vision blurred, %their% speech slurred and it takes a great deal of effort for %them% to move in a coordinated fashion.";
+		return this.resolveDescription("Poison running through %their% veins makes %their% vision blurred, %their% speech slurred and it takes a great deal of effort for %them% to move in a coordinated fashion.");
 	}
 
 	o.getTooltip <- function () {

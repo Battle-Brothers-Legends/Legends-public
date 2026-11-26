@@ -2,7 +2,7 @@
 	o.m.TurnsLeft <- 1;
 
 	o.getDescription = function () {
-		return "Has %their% spear readied.";
+		return this.resolveDescription("Has %their% spear readied.");
 	}
 
 	o.getTooltip <- function () {

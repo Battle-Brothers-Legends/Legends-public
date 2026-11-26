@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/net_effect", function (o) {
 	o.getDescription <- function () {
-		return "A large net holds this character in place and hampers their ability to defend %themselves%. To break free, the net will have to be cut.";
+		return this.resolveDescription("A large net holds this character in place and hampers their ability to defend %themselves%. To break free, the net will have to be cut.");
 	}
 
 	local getTooltip = o.getTooltip;
