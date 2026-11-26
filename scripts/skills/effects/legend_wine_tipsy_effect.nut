@@ -73,7 +73,7 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 		_properties.RangedSkill += 6;
 		_properties.MeleeDefense -= 6;
 		_properties.RangedDefense -= 6;
-		_properties.InitiativeMult -= 12;
+		_properties.Initiative -= 12;
 
 	}
 
