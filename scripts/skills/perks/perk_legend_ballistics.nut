@@ -25,7 +25,7 @@ this.perk_legend_ballistics <- this.inherit("scripts/skills/skill", {
 			_properties.DamageAdditionalWithEachTile += 2;
 			foreach (skill in this.m.ApplicableSkills) {
 				if (_skill.getID() == ::Legends.Actives.getID(skill)) {
-					_properties.DamageDirectAdd += actor.getTile().getDistanceTo(_targetEntity.getTile()) <= 3 ? 0.15 : 5;
+					_properties.DamageDirectAdd += actor.getTile().getDistanceTo(_targetEntity.getTile()) <= 3 ? 0.15 : 0.05;
 				}
 			}
 		}
