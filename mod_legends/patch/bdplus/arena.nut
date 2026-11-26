@@ -29,6 +29,29 @@
 	}
 });
 
+::mods_hookExactClass("arena/compositions/arena_composition", function (o) {
+	o.getStrengthScale <- function () {
+		local player = ::World.State.getPlayer();
+		if (player == null) {
+			return 1.0;
+		}
+
+		local scale = ::Math.minf(5.0, 0.94 * ::Math.pow(0.01 * player.getStrength(), 0.89)) * ::Const.Difficulty.EnemyMult[::World.Assets.getCombatDifficulty()];
+		return ::Math.maxf(1.0, scale / 2.0);
+	}
+
+	local strengthenComposition = o.strengthenComposition;
+	o.strengthenComposition = function (_strength, _difficultyMult = null, _includeSignatureEntities = false) {
+		strengthenComposition(_strength * this.getStrengthScale(), _difficultyMult, _includeSignatureEntities);
+
+		local max = this.m.AllowedEntrants * 3;
+		if (this.m.Entities.len() > max) {
+			this.m.Entities.sort(@(_a, _b) _b.Strength <=> _a.Strength);
+			this.m.Entities.resize(max);
+		}
+	}
+});
+
 ::mods_hookExactClass("events/events/special/arena_event", function (o) {
 	o.m.WasInReserves <- [];
 	o.m.IsArenaFlagsSet <- false;
