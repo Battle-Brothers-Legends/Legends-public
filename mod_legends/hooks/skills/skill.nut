@@ -278,6 +278,15 @@
 			});
 		}
 
+		if (this.m.DirectDamageMult == 1.0 && this.m.BlockBypass < 1.0) {
+			ret.push({
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a chance to ignore all Block of the target, equal to [color=%positive%]100%[/color] minus that Block"
+			});
+		}
+
 		if (p.DamageMinimum > 0) {
 			ret.push({
 				id = 7,
@@ -1594,6 +1603,18 @@
 		_info.Container.onBeforeTargetHit(_info.Skill, _info.TargetEntity, hitInfo);
 
 		local blockValue = ::Math.floor(_info.TargetEntity.getBlock() * (1.0 - this.m.BlockBypass));
+
+		// an attack whose damage all ignores armor can pierce through Block as well, the more Block the target has the less likely
+		if (blockValue > 0 && hitInfo.DamageDirect >= 1.0) {
+			local chance = ::Math.max(0, 100 - _info.TargetEntity.getBlock());
+			local roll = ::Math.rand(1, 100);
+			if (roll <= chance) {
+				blockValue = 0;
+				if (!::Legends.S.isEntityNullOrDead(_info.User) && !_info.TargetEntity.isHiddenToPlayer()) {
+					::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_info.User) + "\'s " + this.getName() + " pierces through the Block of " + ::Const.UI.getColorizedEntityName(_info.TargetEntity) + " (Chance: " + chance + ", Rolled: " + roll + ")");
+				}
+			}
+		}
 		hitInfo.DamageRegular = ::Math.max(::Math.round(hitInfo.DamageRegular) - blockValue, 0);
 		hitInfo.DamageArmor = ::Math.max(::Math.round(hitInfo.DamageArmor) - blockValue, 0);
 

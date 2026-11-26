@@ -17,6 +17,12 @@
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-50%[/color] Initiative"
+			},
+			{
+				id = 14,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-50%[/color] Block"
 			}
 		]);
 		return tooltip;
@@ -50,6 +56,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("initiative");
+		return "[color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons(["initiative", "block"]);
 	}
 });
