@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "Throws dirt to distract the enemy. Reduces initiative and damage output of the target by 35% for one turn. Can only be used once per battle.";
+		this.m.Description = "Throws dirt to distract the enemy. Reduces initiative, damage output and Block of the target by 35% for one turn. Can only be used once per battle.";
 		this.m.IconDisabled = "skills/active_215_sw.png";
 	}
 
@@ -12,7 +12,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Leave your opponent [color=%effect%]Distracted[/color], which will reduce Damage and Initiative [color=%negative%]35%[/color]"
+			text = "Leave your opponent [color=%effect%]Distracted[/color], which will reduce Damage, Initiative and Block by [color=%negative%]35%[/color]"
 		});
 
 		return ret;

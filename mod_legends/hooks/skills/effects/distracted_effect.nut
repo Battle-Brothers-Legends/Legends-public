@@ -17,12 +17,24 @@
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-35%[/color] Initiative"
+			},
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-35%[/color] Block"
 			}
 		]);
 		return tooltip;
 	}
 
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function (_properties) {
+		onUpdate(_properties);
+		_properties.BlockMult *= 0.65;
+	}
+
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-35%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "initiative"]);
+		return "[color=%negative%]-35%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "initiative", "block"]);
 	}
 });

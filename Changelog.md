@@ -441,6 +441,7 @@
 - `Buckler Effect` - now grants 5% of Initiative as Defense and Block
 - `Staggered` will now also reduce block value by 50%
 - `Webbed`, `Netted` and `Rooted` now also reduce block value by 50%
+- `Distracted` now also reduces block value by 35%
 - Attacks whose damage all ignores armor, such as `Puncture` or an attack that `Flourish` lets through, have a chance to pierce Block (based on the Block value)
 
 ### Regular Shields

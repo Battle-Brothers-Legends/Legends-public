@@ -183,7 +183,7 @@ It is impossible to focus in all that wild clamor and noise.
 
 • Chance to hit is based on Ranged Skill and has a range of six tiles.
 
-• [color=%status%]Distracted[/color] enemies have their Initiative, Damage reduced by [color=%negative%]35%[/color].
+• [color=%status%]Distracted[/color] enemies have their Initiative, Damage and Block reduced by [color=%negative%]35%[/color].
 
 • If you have the [color=%perk%]Manipulative[/color] perk, the chance to hit is [color=%positive%]doubled[/color].
 
@@ -1653,7 +1653,7 @@ It's hard to fight with a storm of sand in your eyes.
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Throw Dirt[/color] skill which allows you to throw dirt in the eyes of an enemy to distract them.
 
-• [color=%status%]Distracted[/color] enemies have their Initiative and damage reduced by [color=%negative%]35%[/color].
+• [color=%status%]Distracted[/color] enemies have their Initiative, damage and Block reduced by [color=%negative%]35%[/color].
 
 • Can only be used once per fight.
 
