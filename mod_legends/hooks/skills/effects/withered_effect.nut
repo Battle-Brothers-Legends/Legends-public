@@ -58,12 +58,6 @@
 		return tooltip;
 	}
 
-	local onUpdate = o.onUpdate;
-	o.onUpdate = function(_properties) {
-		onUpdate(_properties);
-		_properties.BlockMult *= 1.0 - this.m.TurnsLeft * 0.25;
-	}
-
 	o.onAdded = function () {
 		local actor = this.getContainer().getActor();
 		local properties = actor.getCurrentProperties();
@@ -94,6 +88,7 @@
 		_properties.InitiativeMult *= 1.0 - this.m.TurnsLeft * 0.10;
 		_properties.StaminaMult *= 1.0 - this.m.TurnsLeft * 0.10;
 		_properties.FatigueRecoveryRate -= this.m.TurnsLeft * 5;
+		_properties.BlockMult *= 1.0 - this.m.TurnsLeft * 0.10;
 
 		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
 			actor.getSprite("status_stunned").setBrush("bust_withered");
@@ -110,6 +105,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (10 * this.m.Stacks) + "%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "fatigue", "initiative"]) + ", [color=%negative%]-" + (5 + this.m.Stacks) + "[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_down");
+		return "[color=%negative%]-" + (10 * this.m.Stacks) + "%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "fatigue", "initiative", "block"]) + ", [color=%negative%]-" + (5 + this.m.Stacks) + "[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_down");
 	}
 });

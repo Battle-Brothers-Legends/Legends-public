@@ -22,6 +22,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-45%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative"]) + ", [color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("block") + ", unable to move";
+		return "[color=%negative%]-45%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative", "block"]) + ", [color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("block") + ", unable to move";
 	}
 });

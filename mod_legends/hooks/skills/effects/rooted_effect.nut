@@ -46,7 +46,7 @@
 				id = 14,
 				type = "text",
 				icon = "ui/icons/block.png",
-				text = "[color=%negative%]-50%[/color] Block"
+				text = "[color=%negative%]-35%[/color] Block"
 			},
 		]);
 		if (this.m.DamageMin > 0) {
@@ -63,7 +63,7 @@
 	local onUpdate = o.onUpdate;
 	o.onUpdate = function (_properties) {
 		onUpdate(_properties);
-		_properties.BlockMult *= 0.5;
+		_properties.BlockMult *= 0.65;
 	}
 
 	o.applyDamage <- function () {
@@ -124,7 +124,7 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		local tooltip = "[color=%negative%]-35%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative"]) + ", [color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("block") + ", unable to move";
+		local tooltip = "[color=%negative%]-35%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative", "block"]) + ", [color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("block") + ", unable to move";
 		if (this.m.DamageMin > 0) {
 			tooltip += ", [color=%negative%]10-20[/color] " + ::Legends.Text.inlineIcons("damage_received") + " every turn";
 		}

@@ -90,11 +90,11 @@
 			_properties.MeleeDefenseMult *= 0.75;
 			_properties.RangedDefenseMult *= 0.75;
 			_properties.InitiativeMult *= 0.75;
-			_properties.BlockMult *= 0.5;
+			_properties.BlockMult *= 0.75;
 		}
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-25%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative"]) + ", unable to act";
+		return "[color=%negative%]-25%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative", "block"]) + ", unable to act";
 	}
 });
