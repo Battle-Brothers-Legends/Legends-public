@@ -1593,8 +1593,8 @@
 		}
 
 		local hitInfo = clone ::Const.Tactical.HitInfo;
-		hitInfo.DamageRegular = damageRegular * damageMult;
-		hitInfo.DamageArmor = damageArmor * damageMult;
+		damageRegular = damageRegular * damageMult;
+		damageArmor = damageArmor * damageMult;
 		hitInfo.DamageDirect = damageDirect;
 		hitInfo.DamageFatigue = ::Const.Combat.FatigueReceivedPerHit * _info.Properties.FatigueDealtPerHitMult + _info.Properties.FatigueDealtAsPercentOfMaxFatigue * _info.TargetEntity.getFatigueMax();
 		hitInfo.DamageMinimum = _info.Properties.DamageMinimum;
@@ -1619,8 +1619,18 @@
 				}
 			}
 		}
-		hitInfo.DamageRegular = ::Math.max(::Math.round(hitInfo.DamageRegular) - blockValue, 0);
-		hitInfo.DamageArmor = ::Math.max(::Math.round(hitInfo.DamageArmor) - blockValue, 0);
+		hitInfo.DamageRegular = ::Math.max(::Math.round(damageRegular) - blockValue, 0);
+		hitInfo.DamageArmor = ::Math.max(::Math.round(damageArmor) - blockValue, 0);
+		
+		if (blockValue > 0 && !_info.User.isHiddenToPlayer() && !_info.TargetEntity.isHiddenToPlayer()) {
+			local message = format("%s blocked %u", ::Const.UI.getColorizedEntityName(_info.TargetEntity), blockValue);
+			if (hitInfo.DamageRegular == 0.0 && hitInfo.DamageArmor == 0.0) {
+				::Tactical.EventLog.logEx(format("%s fully blocked the attack! (%s)", ::Const.UI.getColorizedEntityName(_info.TargetEntity), message));
+			}
+			else {
+				::Tactical.EventLog.logEx(message);	
+			}
+		}
 
 		// I'm kind of sure there will be errors so here's an explanation: block works after calculating damage on attacker side and before damage on defender, any further damage is substracted
 		// if the entire damage is substracted it'll count as a shield hit but i'm also envisioning that you can gain block without a shield so there's a check below
