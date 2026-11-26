@@ -38,6 +38,10 @@
 ::Const.World.Scaling.Nomads.LegendsSlinger2HSlingDay <- 30;
 ::Const.World.Scaling.Nomads.LegendsSlingerBetterArmorDay <- 40;
 
+::Const.World.Scaling.AncientDead.LegionaryPolearmSpecDay = 30;
+::Const.World.Scaling.AncientDead.HonorGuardPolearmSpecDay = 30;
+::Const.World.Scaling.AncientDead.LegendsSkeletonShieldSpecDay <- 60;
+
 ::Const.World.Scaling.Orcs.LegendsOrcHighStatIncreaseDay <- 200;
 
 ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay <- 140;

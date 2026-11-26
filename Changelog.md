@@ -532,6 +532,10 @@
 ### Dynamic Troops Day To Skip
 - `Dynamic Troops Day To Skip` in the start campaign settings has now been disabled, enemies of varying difficulty will naturally appear as your company becomes stronger
 
+### Ancient Undead
+- `Polearm Mastery` is now granted at day 30 instead of 100
+- `Shield Mastery` is now granted at day 60
+
 ### Orcs
 - `Orc Elite` - now have `Charge`
 
