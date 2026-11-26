@@ -28,13 +28,22 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/bravery.png",
-					text = "[color=%negative%]" + resolveMalus + "%[/color] Resolve"
+					text = "[color=%negative%]%_resolve%%[/color] Resolve",
+					param = [["_resolve", resolveMalus]]
 				},
 				{
 					id = 7,
 					type = "text",
 					icon = "ui/icons/initiative.png",
-					text = "[color=%negative%]" + iniMalus + "%[/color] Initiative"
+					text = "[color=%negative%]%_ini%%[/color] Initiative",
+					param = [["_ini", iniMalus]]
+				},
+				{
+					id = 8,
+					type = "text",
+					icon = "ui/icons/block.png",
+					text = "[color=%negative%]%_ini%%[/color] Block",
+					param = [["_ini", iniMalus]]
 				},
 				{
 					id = 16,
@@ -57,9 +66,11 @@
 		if (this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.Drunkard)) {
 			_properties.BraveryMult *= 0.8;
 			_properties.InitiativeMult *= 0.9;
+			_properties.BlockMult *= 0.9;
 			_properties.IsContentWithBeingInReserve = true;
 		} else {
 			onUpdate(_properties);
+			_properties.BlockMult *= 0.7;
 		}
 	}
 

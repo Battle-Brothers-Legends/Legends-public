@@ -35,6 +35,12 @@ this.legend_immobilized_effect <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-35%[/color] Initiative"
+			},
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-35%[/color] Block"
 			}
 		]);
 		return tooltip;
@@ -50,7 +56,7 @@ this.legend_immobilized_effect <- this.inherit("scripts/skills/skill", {
 		_properties.MeleeDefenseMult *= 0.65;
 		_properties.RangedDefenseMult *= 0.65;
 		_properties.InitiativeMult *= 0.65;
-
+		_properties.BlockMult *= 0.65;
 	}
 
 	function onTurnEnd() {

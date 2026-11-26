@@ -43,11 +43,17 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 12,
 				type = "text",
-				icon = "ui/icons/ranged_defense.png",
+				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-45%[/color] Initiative"
 			},
 			{
 				id = 13,
+				type = "text",
+				icon = "ui/icons/Block.png",
+				text = "[color=%negative%]-45%[/color] Block"
+			},
+			{
+				id = 14,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Can be removed by attacking the hyena or by disengaging"
@@ -60,6 +66,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 		_properties.MeleeDefenseMult *= 0.55;
 		_properties.RangedDefenseMult *= 0.55;
 		_properties.InitiativeMult *= 0.55;
+		_properties.BlockMult *= 0.55;
 	}
 
 	function onAdded() {

@@ -35,6 +35,12 @@
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-25%[/color] Initiative"
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-50%[/color] Block"
 			}
 		]);
 		return tooltip;
@@ -84,6 +90,7 @@
 			_properties.MeleeDefenseMult *= 0.75;
 			_properties.RangedDefenseMult *= 0.75;
 			_properties.InitiativeMult *= 0.75;
+			_properties.BlockMult *= 0.5;
 		}
 	}
 

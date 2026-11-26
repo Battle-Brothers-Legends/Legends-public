@@ -8,39 +8,60 @@
 
 	o.getTooltip = function () {
 		local tooltip = this.skill.getTooltip();
+		param = [
+			["_smallMalus", this.m.TurnsLeft * 5],
+			["_bigMalus", this.m.TurnsLeft * 10]
+		];
 		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Damage"
+				text = "[color=%negative%]-%_bigMalus%%[/color] Damage",
+				param = param
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Initiative"
+				text = "[color=%negative%]-%_bigMalus%%[/color] Initiative",
+				param = param
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Max Fatigue"
+				text = "[color=%negative%]-%_bigMalus%%[/color] Max Fatigue",
+				param = param
 			},
 			{
 				id = 14,
 				type = "text",
 				icon = "ui/icons/fatigue_recovery_down.png",
-				text = "[color=%negative%]-" + this.m.TurnsLeft * 5 + "[/color] Fatigue Recovery per turn"
+				text = "[color=%negative%]-%_smallMalus%[/color] Fatigue Recovery per turn",
+				param = param
 			},
 			{
 				id = 15,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-%_bigMalus%[/color] Block",
+				param = param
+			},
+			{
+				id = 16,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "The effect lessens every turn"
 			}
 		]);
 		return tooltip;
+	}
+
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function(_properties) {
+		onUpdate(_properties);
+		_properties.BlockMult *= 1.0 - this.m.TurnsLeft * 0.25;
 	}
 
 	o.onAdded = function () {

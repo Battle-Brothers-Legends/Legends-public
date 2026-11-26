@@ -30,6 +30,12 @@ this.legend_prosthetic_leg_trait <- this.inherit("scripts/skills/traits/characte
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-20%[/color] Initiative"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-20%[/color] Block"
 			}
 		];
 		if (!this.m.IsUpgraded) {
@@ -65,6 +71,7 @@ this.legend_prosthetic_leg_trait <- this.inherit("scripts/skills/traits/characte
 			_properties.RangedDefenseMult *= 0.85;
 		}
 		_properties.InitiativeMult *= 0.8;
+		_properties.BlockMult *= 0.8;
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
