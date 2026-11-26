@@ -161,8 +161,8 @@ if (!("Perks" in ::Const)) {
 	],
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.Gifted],
 		[::Legends.Perk.Student],
+		[::Legends.Perk.Gifted],
 		[],
 		[],
 		[::Legends.Perk.LegendPromisedPotential],
