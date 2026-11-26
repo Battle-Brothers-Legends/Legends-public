@@ -10,7 +10,7 @@
 			id = 14,
 			type = "text",
 			icon = "ui/icons/block.png",
-			text = "[color=%negative%]-50%[/color] Block"
+			text = "[color=%negative%]-45%[/color] Block"
 		});
 		return tooltip;
 	}
@@ -18,10 +18,10 @@
 	local onUpdate = o.onUpdate;
 	o.onUpdate = function (_properties) {
 		onUpdate(_properties);
-		_properties.BlockMult *= 0.5;
+		_properties.BlockMult *= 0.55;
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-45%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative", "block"]) + ", [color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("block") + ", unable to move";
+		return "[color=%negative%]-45%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative", "block"]) + ", unable to move";
 	}
 });

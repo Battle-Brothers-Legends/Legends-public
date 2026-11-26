@@ -124,7 +124,7 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		local tooltip = "[color=%negative%]-35%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative", "block"]) + ", [color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons("block") + ", unable to move";
+		local tooltip = "[color=%negative%]-35%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative", "block"]) + ", unable to move";
 		if (this.m.DamageMin > 0) {
 			tooltip += ", [color=%negative%]10-20[/color] " + ::Legends.Text.inlineIcons("damage_received") + " every turn";
 		}
