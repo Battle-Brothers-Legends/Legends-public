@@ -510,6 +510,7 @@
 
 ### Blueprints
 - new `Sipar Shield` blueprint from 1 iron ingot
+- new Metalworking blueprints to smelt 4 `Gold Ore`, `Silver Ore` or `Iron Ore` into 1 of their ingots
 - `Tower Shield` blueprint now costs 2 quality wood and 1 iron ingot
 - blueprints are now sorted via profession, then actual crafted item type
 - blueprint previews and items crafted now default to the 1st variant for clarity
