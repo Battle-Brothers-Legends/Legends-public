@@ -878,6 +878,7 @@
 - Fixed item descriptions at the taxidermist showing raw color tags like `[color=#8f1e1e]Tool[/color]` when MSU's `Expanded Item Tooltips` setting is on
 - Fixed used up flasks and bombs (holy water, acid flask, fire, smoke and daze bombs) still being throwable and showing `2 use left` when the company has no one to refill them
 - Stollwurms now share Taunted between their heads and tails too
+- Fixed the Military Warscythe showing the wrong variant on the bro, the second and third variants had their sprites swapped
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it

@@ -35,7 +35,7 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 					::Legends.Items.pickItem([
 						[1, "misc/anatomist/apotheosis_potion_item"], //leaving like this for now because I'm thinking about adding more into this list later. - Luft
 					], "scripts/items/")
-				]), ::World.Assets.getStash());
+				], ::World.Assets.getStash()));
 			}
 		});
 	}

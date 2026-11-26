@@ -10,7 +10,7 @@
 	o.updateVariant <- function () {
 		this.m.Icon = "weapons/ranged/war_bow_0" + this.getVariant() + "_70x70.png";
 		this.m.IconLarge = "weapons/ranged/war_bow_0" + this.getVariant() + ".png";
-		this.m.ArmamentIcon = "icon_legend_war_bow_0" + this.getVariant();
+		this.m.ArmamentIcon = this.getVariant() == 1 ? "icon_war_bow" : "icon_legend_war_bow_0" + this.getVariant();
 	}
 
 	local onEquip = o.onEquip;
