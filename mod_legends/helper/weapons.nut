@@ -40,10 +40,6 @@ if (!("Weapons" in ::Legends)) {
         }
     }
 
-    if (bestSkill == null) {
-        ::logWarning("findPrimaryAttackSkill: no valid skill for weapon " + _weapon.getID());
-    }
-
     return bestSkill;
 }
 

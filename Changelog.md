@@ -887,6 +887,7 @@
 - Fixed used up flasks and bombs (holy water, acid flask, fire, smoke and daze bombs) still being throwable and showing `2 use left` when the company has no one to refill them
 - Stollwurms now share Taunted between their heads and tails too
 - Fixed the Military Warscythe showing the wrong variant on the bro, the second and third variants had their sprites swapped
+- Fixed Double Swing being usable while disarmed, it used up Action Points and Fatigue without attacking
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it

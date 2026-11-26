@@ -132,7 +132,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.remove(this, ::Legends.Perk.ShieldExpert);
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.AncientDead.LegendsSkeletonShieldSpecDay) {
+		if (("State" in ::Tactical) && ::Tactical.State != null && !::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.AncientDead.LegendsSkeletonShieldSpecDay) {
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		}
 	}

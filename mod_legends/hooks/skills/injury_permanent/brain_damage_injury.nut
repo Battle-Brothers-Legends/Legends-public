@@ -6,7 +6,7 @@
 	}
 
 	o.addTooltipHint <- function (_tooltip) {
-		_tooltip.extend({
+		_tooltip.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
