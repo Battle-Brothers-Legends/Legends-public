@@ -131,6 +131,9 @@
 - sellswords stats aligned with vanilla
 - sellswords can have up to 9 weapon trees
 
+### Shepherds
+- gain `Bows` instead of `Cleaver` tree
+
 ### Adventurous Noble & Disowned Noble
 - both backgrounds now has a ranged and melee version which can be both male and female
 

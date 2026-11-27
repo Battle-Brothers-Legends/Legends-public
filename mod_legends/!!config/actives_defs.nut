@@ -1168,9 +1168,9 @@ if (!("Actives" in ::Legends)) {
 		Overlay = "active_21"
 	},
 	LegendBreach = {
-		Icon = "skills/active_01.png",
-		IconDisabled = "skills/active_01_sw.png",
-		Overlay = "active_01"
+		Icon = "skills/active_78.png",
+		IconDisabled = "skills/active_78_sw.png",
+		Overlay = "active_78"
 	},
 	LegendBucklerBash = {},
 	LegendCacophony = {
