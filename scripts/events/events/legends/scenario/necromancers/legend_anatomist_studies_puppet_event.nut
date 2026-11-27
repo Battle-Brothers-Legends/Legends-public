@@ -128,6 +128,7 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 
 				_event.m.Puppet.getItems().transferToStash(::World.Assets.getStash());
 				::World.getPlayerRoster().remove(_event.m.Puppet);
+				::Legends.Professions.recalculateAllProfessions();
 				this.List.extend([
 					::Legends.EventList.changeMood(_event.m.Anatomist, 3.0, "Vivisected and thoroughly studied the living dead")
 				]);

@@ -17,6 +17,7 @@
 					});
 					_event.m.Sacrifice.getItems().transferToStash(::World.Assets.getStash());
 					::World.getPlayerRoster().remove(_event.m.Sacrifice);
+					::Legends.Professions.recalculateAllProfessions();
 					local brothers = ::World.getPlayerRoster().getAll();
 					local hasProphet = false;
 
