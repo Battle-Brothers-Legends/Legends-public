@@ -12,7 +12,7 @@
 			icon = "ui/icons/special.png",
 			text = "Gets more irritated while reading"
 		});
-		return this.injury.addTooltipHint(_tooltip);
+		return this.permanent_injury.addTooltipHint(_tooltip);
 	}	
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {

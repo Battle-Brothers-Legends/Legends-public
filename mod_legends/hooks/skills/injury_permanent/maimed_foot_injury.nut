@@ -18,7 +18,7 @@
 			icon = "ui/icons/block.png",
 			text = "[color=%negative%]-20%[/color] Block"
 		});
-		return this.injury.addTooltipHint(_tooltip);
+		return this.permanent_injury.addTooltipHint(_tooltip);
 	}	
 
 	local onUpdate = o.onUpdate;
