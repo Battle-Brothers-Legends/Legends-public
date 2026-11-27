@@ -1112,8 +1112,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Hitpoints = [-2, 3],
 	Bravery = [-6, -1],
 	Stamina = [-10, -5],
-	MeleeSkill = [0, 10],
-	RangedSkill = [5, 15],
+	MeleeSkill = [-5, 5],
+	RangedSkill = [10, 25],
 	MeleeDefense = [-3, 2],
 	RangedDefense = [0, 5],
 	Initiative = [5, 10]
