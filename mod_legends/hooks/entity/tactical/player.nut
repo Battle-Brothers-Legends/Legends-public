@@ -181,10 +181,11 @@
 				if (!(s.getID() in this.m.Hiring.Traits)) { // trait was granted after setStartValuesEx, e.g. by a scenario in onGenerateBro
 					this.m.Hiring.Traits[s.getID()] <- ::Math.rand(1, 100);
 				}
+				local def = s.getID() in ::Legends.Traits.LookupMap ? ::Legends.Traits.LookupMap[s.getID()] : null; // null for a trait another mod never registered
 				ret.push({
 					id = s.getID(),
 					icon = s.getIconColored(),
-					exact = this.m.IsTryoutDone || ("VisibleOnRecruitment" in ::Legends.Traits.LookupMap[s.getID()] && ::Legends.Traits.LookupMap[s.getID()].VisibleOnRecruitment) || (::World.Assets.m.ProfessionEffect.LegendSpotTheTells * 100) >= this.m.Hiring.Traits[s.getID()]
+					exact = this.m.IsTryoutDone || (def != null && "VisibleOnRecruitment" in def && def.VisibleOnRecruitment) || (::World.Assets.m.ProfessionEffect.LegendSpotTheTells * 100) >= this.m.Hiring.Traits[s.getID()]
 				});
 			}
 		}
