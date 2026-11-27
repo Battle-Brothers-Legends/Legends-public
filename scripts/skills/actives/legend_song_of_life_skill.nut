@@ -78,7 +78,8 @@ this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
-		foreach (ally in ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendSongOfLife) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
+		local allies = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).extend(::Tactical.Entities.getInstancesOfFaction(::Const.Faction.PlayerAnimals))
+		foreach (ally in allies).filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendSongOfLife) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
 			ally.setHitpoints(::Math.min(ally.getHitpointsMax(), ally.getHitpoints() + this.getBonus()));
 			::Legends.Effects.grant(ally, ::Legends.Effect.LegendSongOfLife);
 		}
