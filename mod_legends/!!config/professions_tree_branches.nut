@@ -75,7 +75,7 @@ local P = ::Legends.Profession;
 		[P.LegendEfficientPacking, [P.LegendSkillfulStacking]],
 
 		// scrapping
-		[P.LegendScrapping, [P.LegendAmmoScrounger]],
+		[P.LegendScrapping, [P.LegendAmmoScrounger, P.LegendScrapEfficiency]],
 		[P.LegendAmmoScrounger, [P.LegendVulture, P.LegendFerretItOut]],
 		[P.LegendVulture, [P.LegendMaterialist]],
 

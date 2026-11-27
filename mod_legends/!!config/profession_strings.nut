@@ -560,6 +560,13 @@ Broadening one's perspective by reading at times gives better results than pract
 • Gains an extra profession point upon reaching profession level [color=%positive%]6[/color].
 ";
 
+::Const.Strings.ProfessionDescription.LegendScrapEfficiency <- @"
+Broken blades, split shields, and rusted mail. Since it's now ours we might as well make use of it.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Salvaging needs less durability for every tool it makes.
+";
+
 ::Const.Strings.ProfessionDescription.LegendScrapping <- @"
 The new quickly becomes the old, but even then it has its uses.
 

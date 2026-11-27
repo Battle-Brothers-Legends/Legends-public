@@ -337,6 +337,11 @@ if (!("Professions" in ::Legends)) {
         ScalingArray = [0, 1], // personal profession
         ScalingFactor = 0
     },
+    LegendScrapEfficiency = {
+        Name = "One Man's Trash",
+        ScalingArray = [0, 0.2], // less condition salvaged per tool
+        ScalingFactor = 0.25
+    },
     LegendScrapping = {
         ScalingArray = [0, 1], // personal profession
         ScalingFactor = 0

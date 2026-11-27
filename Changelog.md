@@ -270,6 +270,7 @@
 - certain perks will be locked unless of a certain background and certain perks will be unlocked on some of the backgrounds
 - `Hippology` is removed from the tree for now
 - `Dog Breeder` - animals unleashed in battle have 20% more hitpoints, and an unleashed animal that is downed without a fatality has a chance to survive the battle
+- `One Man's Trash` - new profession after `Scrapping`, salvaging needs 20% less durability for each tool, plus 5% for every extra brother with it, up to 40%
 
 ## Effects
 - `Redback Poison` - will now apply varying effects for each turn afflicted, first turn Baffled, second turn Dazed, third turn Stunned

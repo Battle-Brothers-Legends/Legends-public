@@ -157,6 +157,10 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			ret.Consumption = 1.0 / 16.0;
 		}
 
+		if (::World.Assets.m.ProfessionEffect.LegendScrapEfficiency > 0) {
+			ret.Consumption /= 1.0 - ::Math.minf(0.4, ::World.Assets.m.ProfessionEffect.LegendScrapEfficiency);
+		}
+
 		return ret;
 	}
 
