@@ -12,7 +12,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Present yourself as a [color=%positive%]+" + this.getBonus() + "%[/color] more attractive target"
+				text = "Present yourself as a [color=%positive%]+" + this.getBonus() * 100 + "%[/color] more attractive target"
 			}
 		]);
 		return tooltip;
@@ -27,6 +27,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "Present yourself as a [color=%positive%]+" + this.getBonus() + "%[/color] more attractive target";
+		return "Present yourself as a [color=%positive%]+" + this.getBonus() * 100 + "%[/color] more attractive target";
 	}
 });
