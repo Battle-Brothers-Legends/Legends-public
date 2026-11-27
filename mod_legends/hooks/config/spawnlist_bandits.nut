@@ -45,14 +45,17 @@
 			Types =
 			[
 				{
-					MinR = 350,
+					MinR = 120,
+					MaxR = 499,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutioner,
-					Cost = 25,
+					Cost = 30,
+					Roll = true
 				},
 				{
-					MinR = 600,
+					MinR = 500,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
-					Cost = 45,
+					Cost = 60,
+					Roll = true
 				}
 			]
 		},
@@ -184,14 +187,17 @@
 			Types =
 			[
 				{
-					MinR = 350,
+					MinR = 120,
+					MaxR = 499,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutioner,
-					Cost = 25,
+					Cost = 30,
+					Roll = true
 				},
 				{
-					MinR = 600,
+					MinR = 500,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
-					Cost = 45,
+					Cost = 60,
+					Roll = true
 				}
 			]
 		},
@@ -329,14 +335,17 @@
 			Types =
 			[
 				{
-					MinR = 350,
+					MinR = 120,
+					MaxR = 499,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutioner,
-					Cost = 25,
+					Cost = 30,
+					Roll = true
 				},
 				{
-					MinR = 600,
+					MinR = 500,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
-					Cost = 45,
+					Cost = 60,
+					Roll = true
 				}
 			]
 		},
@@ -515,14 +524,17 @@
 			Types =
 			[
 				{
-					MinR = 350,
+					MinR = 120,
+					MaxR = 499,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutioner,
-					Cost = 25,
+					Cost = 30,
+					Roll = true
 				},
 				{
-					MinR = 600,
+					MinR = 500,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
-					Cost = 45,
+					Cost = 60,
+					Roll = true
 				}
 			]
 		},
@@ -712,14 +724,16 @@
 			Types =
 			[
 				{
-					MinR = 350,
+					MaxR = 599,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutioner,
-					Cost = 25,
+					Cost = 30,
+					Roll = true
 				},
 				{
 					MinR = 600,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
-					Cost = 45,
+					Cost = 60,
+					Roll = true
 				}
 			]
 		},

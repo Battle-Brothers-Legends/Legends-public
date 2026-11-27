@@ -3346,19 +3346,19 @@
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.executioner_hood);
 
 ::Legends.Helmet.Standard.bandit_executioner_hood <- {
-	ID = "bandit_executioner_hood", // 40 -2 -1 140
+	ID = "bandit_executioner_hood", // 90-100 -4-5 270-420
 	Script = "",
 	Sets = [{
 		Hoods = [
-			[1, "hood/legend_helmet_chain_hood_full"],
-			[1, "hood/legend_helmet_open_chain_hood"],
-			[1, "hood/legend_helmet_aventail"]
+			[1, "hood/legend_helmet_open_chain_hood"], // 65 -3 225
+			[1, "hood/legend_helmet_chain_hood"], // 75 -4 300
+			[1, "hood/legend_helmet_rusty_chain_hood"] // 70 -4 150
 		],
 		Helms = [
 			[1, ""]
 		],
 		Tops = [
-			[1, "top/legend_helmet_executioner_hood_full"] // 25 -2 -1 120
+			[1, "top/legend_helmet_executioner_hood_full"] // 25 -1 120
 		],
 		Vanity = [
 			[1, ""]
@@ -3366,3 +3366,24 @@
 	}]
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.bandit_executioner_hood);
+
+::Legends.Helmet.Standard.bandit_executioner_hood_high <- {
+	ID = "bandit_executioner_hood_high", // 100-105 -5 420-520
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_chain_hood"], // 75 -4 300
+			[1, "hood/legend_helmet_chain_hood_full"] // 80 -4 400
+		],
+		Helms = [
+			[1, ""]
+		],
+		Tops = [
+			[1, "top/legend_helmet_executioner_hood_full"] // 25 -1 120
+		],
+		Vanity = [
+			[1, ""]
+		],
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.bandit_executioner_hood_high);

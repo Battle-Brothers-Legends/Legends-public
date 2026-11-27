@@ -18,30 +18,34 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_bandits");
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Traits.grant(this, ::Legends.Trait.Brute);
 		if(::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearless);
 		}
 	}
 
 	function assignRandomEquipment() {
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay) {
-			this.getItems().equip(this.new("scripts/items/weapons/exesword"));
-		}
-		else {
-			this.getItems().equip(::Legends.Items.pickItem([
-				[10, "weapons/exesword"],
-				[1, "weapons/military_cleaver"],
-				[1, "weapons/legend_military_warscythe"]
-			], "scripts/items/"));
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) == null) {
+			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay) {
+				this.getItems().equip(this.new("scripts/items/weapons/exesword"));
+			}
+			else {
+				this.getItems().equip(::Legends.Items.pickItem([
+					[10, "weapons/exesword"],
+					[1, "weapons/military_cleaver"],
+					[1, "weapons/legend_military_warscythe"]
+				], "scripts/items/"));
+			}
 		}
 
-		this.getItems().equip(::Legends.Items.pickArmor([
-			[1, ::Legends.Armor.Standard.bandit_executioner_tunic_high]
-		]));
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Body) == null) {
+			this.getItems().equip(::Legends.Items.pickArmor([
+				[1, ::Legends.Armor.Standard.bandit_executioner_tunic_high]
+			]));
+		}
 
 		this.getItems().equip(::Legends.Items.pickHelmet([
-			[2, ::Legends.Helmet.Standard.executioner_hood],
-			[8, ::Legends.Helmet.Standard.bandit_executioner_hood]
+			[1, ::Legends.Helmet.Standard.bandit_executioner_hood_high]
 		]));
 	}
 
@@ -51,33 +55,13 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		local weapons = [
-			"weapons/named/named_exesword",
-			"weapons/named/named_exesword",
-			"weapons/named/named_exesword",
-			"weapons/named/named_exesword",
-			"weapons/named/legend_named_military_warscythe"
-		];
-
-		local armor = [
-			"armor/named/black_leather_armor",
-			"armor/named/named_noble_mail_armor",
-			"armor/named/blue_studded_mail_armor"
-		];
-
-		if (::Math.rand(1, 100) <= 50)
-		{
-			this.getItems().equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-		}
-		else
-		{
-			// TODO equip a named item
-			// this.getItems().equip(::Legends.Items.pickArmor(
-			// 	::Legends.Items.convNameToList(
-			// 		armor
-			// 	)
-			// ));
-		}
+		this.getItems().equip(::Legends.Items.pickItem([
+			[4, "weapons/named/named_exesword"],
+			[1, "weapons/named/legend_named_military_warscythe"]
+		], "scripts/items/"));
+		this.getItems().equip(::Legends.Items.pickArmor([
+			[1, ::Legends.Armor.Named.bandit_executioner_tunic]
+		]));
 
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 		return true;

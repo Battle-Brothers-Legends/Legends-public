@@ -531,3 +531,26 @@
 	}]
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Named.ghost_armor_named_02);
+
+::Legends.Armor.Named.bandit_executioner_tunic <- {
+	ID = "named/bandit_executioner_tunic", // 127-137 -9 2770
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_tunic_noble_named"] // 42-52 -0 1500
+		],
+		Chain = [
+			[1, "chain/legend_armor_hauberk_sleeveless"] // 65 -7 1250
+		],
+		Plate = [
+			[1, "plate/legend_armor_leather_tunic_bloodstained"] // 20 -2 20
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments = [
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Named.bandit_executioner_tunic);
