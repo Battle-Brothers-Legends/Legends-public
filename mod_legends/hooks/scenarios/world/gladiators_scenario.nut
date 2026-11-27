@@ -22,9 +22,6 @@
 			::Legends.Traits.remove(bro, ::Legends.Trait.Greedy);
 			::Legends.Traits.remove(bro, ::Legends.Trait.Loyal);
 			::Legends.Traits.remove(bro, ::Legends.Trait.Disloyal);
-			::Legends.Traits.grant(bro, ::Legends.Trait.ArenaFighter);
-			bro.getFlags().set("ArenaFightsWon", 5);
-			bro.getFlags().set("ArenaFights", 5);
 			bro.setPlaceInFormation(3 + i);
 			bro.getFlags().set("IsPlayerCharacter", true);
 			bro.getSprite("miniboss").setBrush("bust_miniboss_gladiators");

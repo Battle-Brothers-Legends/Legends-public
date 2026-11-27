@@ -151,6 +151,10 @@
 	}
 
 	o.onAdded = function () {
+		if (this.m.IsNew) {
+			::Legends.Arena.grantWins(this.getContainer().getActor(), 5);
+		}
+
 		this.character_background.onAdded();
 
 		if (::Math.rand(1, 2) == 2) {

@@ -2,6 +2,6 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "This character has just dipped %their% toes into the brutal profession of arena fighting and did so without dying.";
+		this.m.Description = "Hearing a crowd chant your name can be addicting. This character is starting to enjoy the deadly fights of the arena and dispatching %their% opponents in a way that entertains the crowds.";
 	}
 });

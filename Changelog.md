@@ -153,6 +153,9 @@
 - berserker renamed to Chosen Berserker
 - peddler renamed to Merchant
 
+### Gladiators
+- every gladiator background (Gladiator, Gladiator Prizefighter, Old Gladiator, Legion Gladiator) now starts with 5 arena wins and the `Arena Fighter` trait, like the gladiators of the Gladiators origin
+
 ## Perks
 
 ### New Perks
@@ -888,6 +891,7 @@
 - Stollwurms now share Taunted between their heads and tails too
 - Fixed the Military Warscythe showing the wrong variant on the bro, the second and third variants had their sprites swapped
 - Fixed Double Swing being usable while disarmed, it used up Action Points and Fatigue without attacking
+- Fixed the `Arena Fighter` trait showing the description of `Pit Fighter`
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it

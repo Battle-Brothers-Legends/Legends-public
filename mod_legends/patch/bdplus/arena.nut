@@ -155,19 +155,20 @@
 	}
 });
 
-foreach (scenario in ["scenarios/world/gladiators_scenario", "scenarios/world/legends_escaped_slaves_scenario"]) {
-	::mods_hookExactClass(scenario, function (o) {
-		local onSpawnAssets = o.onSpawnAssets;
-		o.onSpawnAssets = function () {
-			onSpawnAssets();
-			foreach (bro in ::World.getPlayerRoster().getAll()) {
-				if (bro.getSkills().hasTrait(::Legends.Trait.ArenaFighter)) {
-					bro.getFlags().set(::BDP.Arena.Flags.MatchesFought, 5);
-					bro.getFlags().set(::BDP.Arena.Flags.HighestDifficulty, 2);
-				}
-			}
+local grantWins = ::Legends.Arena.grantWins;
+::Legends.Arena.grantWins = function (_bro, _wins) {
+	grantWins(_bro, _wins);
+	local flags = _bro.getFlags();
+	local difficulty = flags.getAsInt(::BDP.Arena.Flags.HighestDifficulty);
+
+	foreach (rank in ::BDP.Arena.RankRequirements) {
+		if (_wins >= rank.Matches) {
+			difficulty = ::Math.max(difficulty, rank.Difficulty);
 		}
-	});
+	}
+
+	flags.set(::BDP.Arena.Flags.MatchesFought, ::Math.max(_wins, flags.getAsInt(::BDP.Arena.Flags.MatchesFought)));
+	flags.set(::BDP.Arena.Flags.HighestDifficulty, difficulty);
 }
 
 ::mods_hookExactClass("states/world/arena_manager", function (o) {
