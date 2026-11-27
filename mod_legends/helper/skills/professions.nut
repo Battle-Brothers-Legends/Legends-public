@@ -167,6 +167,17 @@ if (!("Professions" in ::Legends))
 	::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_animal) + " is down, but will live");
 }
 
+// The camp station a character is at. On the march it is the one they would be at when making camp now, the Secondary when there is nothing to do at the Primary
+::Legends.Professions.getCampStation <- function (_bro) {
+	local camp = ::World.Camp;
+	if (camp.isCamping() || camp.m.IsEscorting) {
+		return _bro.getCampAssignment();
+	}
+
+	local secondary = _bro.getSecondaryCampAssignment();
+	return secondary != null && camp.getActiveAssignment(_bro, false) == secondary ? secondary : _bro.getPrimaryCampAssignment();
+}
+
 // Called every hour. Each worker of a camp station adds 100% plus their working speed, the sum is split evenly between them
 ::Legends.Professions.updateExp <- function () {
 	local exp = ::Legends.Professions.Exp;
@@ -178,7 +189,7 @@ if (!("Professions" in ::Legends))
 			continue;
 		}
 
-		local workers = roster.filter(@(_, _bro) _bro.getCampAssignment() == station.ID);
+		local workers = roster.filter(@(_, _bro) ::Legends.Professions.getCampStation(_bro) == station.ID);
 		local total = 0.0;
 		foreach (bro in workers) {
 			total += 1.0 + bro.getCurrentProperties().Modifiers[station.Modifier];

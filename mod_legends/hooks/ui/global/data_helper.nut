@@ -240,7 +240,8 @@
 
 			// Camp assignment and working speeds for the Professions tab, injuries slow the work at dangerous stations
 			if ("Camp" in ::World && ::World.Camp != null) {
-				local assignment = ::World.Camp.getBuildingByID(_entity.getCampAssignment());
+				local campStation = ::Legends.Professions.getCampStation(_entity);
+				local assignment = ::World.Camp.getBuildingByID(campStation);
 				result.CampAssignment <- assignment == null ? null : { Name = assignment.getName(), Banner = assignment.getBanner(_entity) };
 				result.CampWorkSpeeds <- [];
 				foreach (station in ::Legends.Professions.Exp.Stations) {
@@ -252,7 +253,7 @@
 						Name = station.Name,
 						Icon = station.Icon,
 						Speed = ::Math.round((1.0 + _entity.getCurrentProperties().Modifiers[station.Modifier]) * tent.getWorkEfficiency(_entity) * 100),
-						IsAssigned = station.ID == _entity.getCampAssignment()
+						IsAssigned = station.ID == campStation
 					});
 				}
 			}
