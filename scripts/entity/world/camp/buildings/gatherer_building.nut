@@ -96,12 +96,12 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.CurrentTarget = null;
 		this.m.PreviousTarget = null;
 		this.m.LootGenerator = ::Legends.GatheringLoot.getGenerator(::World.Camp.getCampingTerrain());
+		this.m.Results = [];
 		this.setModifiers();
 	}
 
 	function setModifiers() {
 		this.m.Craft = this.getModifiers().Craft;
-		this.m.Results = [];
 	}
 
 	function getResults() {
@@ -160,6 +160,8 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	// To get a sense of scale for values for hunting/foraging, see https://docs.google.com/spreadsheets/d/1PaYY4woUIxKwOCHK_O6whWq60KYmDoAZaQqJp7AIeao/edit?usp=sharing
 	function update() {
+		this.updateSideEffects();
+
 		if (this.getAssignedBros() == 0 || ::Stash.getNumberOfEmptySlots() == 0) {
 			return this.getUpdateText();
 		}
@@ -207,13 +209,10 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 	function completed() {
-		local campHours = this.m.Camp.getCampTimeHours();
 		local self = this;
 		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in assignedBros) {
-			if (!this.isRecovering(bro, true)) {
-				this.addNegativeSideEffects(bro, campHours);
-			}
+			this.isRecovering(bro, true);
 		}
 	}
 
@@ -327,6 +326,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 	function onDeserialize(_in) {
+		this.m.Results = [];
 		this.setModifiers();
 		this.camp_building.onDeserialize(_in);
 		this.m.Points = _in.readF32();

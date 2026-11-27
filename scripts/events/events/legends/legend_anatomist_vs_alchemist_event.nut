@@ -19,14 +19,14 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 			}],
 			function start(_event)
 			{
-				this.Characters.push(_event.m.anatomist.getImagePath());
-				this.Characters.push(_event.m.alchemist.getImagePath());
+				this.Characters.push(_event.m.Anatomist.getImagePath());
+				this.Characters.push(_event.m.Alchemist.getImagePath());
 
 				this.List.push(::Legends.EventList.changeMood(_event.m.Anatomist, 1.0, "Had a perplexing conundrum solved with help from " + _event.m.Alchemist.getName()));
-				this.List.push(::Legends.EventList.changeBravery(_event.m.Anatomist, ::Math.rand(1, 4)));
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Anatomist, ::Math.rand(1, 4)));
 
 				this.List.push(::Legends.EventList.changeMood(_event.m.Alchemist, 1.0, "Managed to help " + _event.m.Anatomist.getName()));
-				this.List.push(::Legends.EventList.changeBravery(_event.m.Alchemist, ::Math.rand(1, 4)));
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Alchemist, ::Math.rand(1, 4)));
 
 				_event.m.Anatomist.getSkills().update();
 				_event.m.Alchemist.getSkills().update();
@@ -35,7 +35,7 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 					::Legends.Items.pickItem([
 						[1, "misc/anatomist/apotheosis_potion_item"], //leaving like this for now because I'm thinking about adding more into this list later. - Luft
 					], "scripts/items/")
-				]), ::World.Assets.getStash());
+				], ::World.Assets.getStash()));
 			}
 		});
 	}
@@ -91,6 +91,7 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 			"alchemist",
 			this.m.Alchemist.getNameOnly()
 		]);
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Anatomist);
 	}
 
 	function onClear()

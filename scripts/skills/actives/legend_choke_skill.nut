@@ -116,7 +116,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		this.m.HitChanceBonus += this.getHitChance(_targetEntity); // Calculates the hitchance bonus from other status effects
+		local bonus = this.getHitChance(_targetEntity); // Calculates the hitchance bonus from other status effects
 		local actor = this.getContainer().getActor();
 
 		_properties.DamageRegularMin = 10;
@@ -124,7 +124,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		_properties.IsIgnoringArmorOnAttack = true;
 		_properties.DamageArmorMult *= 0.0;
 		_properties.DamageDirectAdd = 0;
-		_properties.MeleeSkill += this.m.HitChanceBonus;
+		_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 
 		// Based on decapitate
 		if (_targetEntity != null && actor.getFatiguePct() < _targetEntity.getFatiguePct()) {

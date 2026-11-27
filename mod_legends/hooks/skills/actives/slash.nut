@@ -3,12 +3,6 @@
 	o.m.IsGreatSlash <- false;
 	o.m.IsStaffSlash <- false;
 
-	local create = o.create;
-	o.create = function() {
-		create();
-		this.m.HitChanceBonus = 10;
-	}
-	
 	o.setItem <- function (_item) {
 		this.skill.setItem(_item);
 		if (this.m.IsGreatSlash) {
@@ -29,11 +23,11 @@
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
-		if (_skill == this) {
-			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-				this.m.HitChanceBonus += 5;
-				_properties.MeleeSkill += this.m.HitChanceBonus;
-			}
+		if (_skill == this && !this.getItem().isWeaponType(::Const.Items.WeaponType.Sword)) {
+			_properties.MeleeSkill += this.addHitChanceBonus(::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 15 : 10);
+		}
+		else {
+			_properties.MeleeSkill += this.addHitChanceBonus(10);
 		}
 	}
 

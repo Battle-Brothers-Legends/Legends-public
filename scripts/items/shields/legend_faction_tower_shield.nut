@@ -23,7 +23,7 @@ this.legend_faction_tower_shield <- this.inherit("scripts/items/shields/shield",
 		];
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.Value = 1000;
+		this.m.Value = 2200;
 		this.m.MeleeDefense = 25;
 		this.m.RangedDefense = 20;
 		this.m.StaminaModifier = -20;
@@ -31,7 +31,7 @@ this.legend_faction_tower_shield <- this.inherit("scripts/items/shields/shield",
 		this.m.ConditionMax = 96;
 		this.m.Block = 15;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamageMax = 25;
+		this.m.RegularDamageMax = 20;
 	}
 
 	function updateVariant() {
@@ -49,6 +49,7 @@ this.legend_faction_tower_shield <- this.inherit("scripts/items/shields/shield",
 			_skill.m.Icon = "skills/fortify_square.png";
 			_skill.m.IconDisabled = "skills/fortify_square_bw.png";
 		});
+		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 

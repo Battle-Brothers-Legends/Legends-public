@@ -74,17 +74,18 @@
 	}
 
 	o.convertToBackgroundType <- function () {
-		function addToBackgroundType(_type, _constType) {
+		local function addToBackgroundType(_type, _constType) {
 			if (!_type) {
-				return this.m.BackgroundType = this.m.BackgroundType == ::Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType;
+				return;
 			}
+			this.m.BackgroundType = this.m.BackgroundType == ::Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType;
 		}
-		this.addToBackgroundType(this.m.IsScenarioOnly, ::Const.BackgroundType.Scenario);
-		this.addToBackgroundType(this.m.IsUntalented, ::Const.BackgroundType.Untalented);
-		this.addToBackgroundType(this.m.IsOffendedByViolence, ::Const.BackgroundType.OffendedByViolence);
-		this.addToBackgroundType(this.m.IsCombatBackground, ::Const.BackgroundType.Combat);
-		this.addToBackgroundType(this.m.IsNoble, ::Const.BackgroundType.Noble);
-		this.addToBackgroundType(this.m.IsLowborn, ::Const.BackgroundType.Lowborn);
+		addToBackgroundType(this.m.IsScenarioOnly, ::Const.BackgroundType.Scenario);
+		addToBackgroundType(this.m.IsUntalented, ::Const.BackgroundType.Untalented);
+		addToBackgroundType(this.m.IsOffendedByViolence, ::Const.BackgroundType.OffendedByViolence);
+		addToBackgroundType(this.m.IsCombatBackground, ::Const.BackgroundType.Combat);
+		addToBackgroundType(this.m.IsNoble, ::Const.BackgroundType.Noble);
+		addToBackgroundType(this.m.IsLowborn, ::Const.BackgroundType.Lowborn);
 	}
 
 	o.isBackgroundType <- function (_type) {
@@ -532,8 +533,37 @@
 		}
 
 		tooltip.extend(this.getBackgroundDescriptionTooltip(true));
+		tooltip.extend(this.getEffectsTooltip());
 
 		return tooltip;
+	}
+
+	o.getEffectsTooltip <- function () {
+		local ret = [];
+		if (this.getContainer() == null) {
+			return ret;
+		}
+
+		foreach (line in this.getTooltip()) {
+			if (line.type != "text" || line.text.find("Gain a perk point every") != null) {
+				continue;
+			}
+
+			if (ret.len() == 0) {
+				ret.push({
+					id = 7,
+					type = "hint",
+					text = "[u]Background Effects[/u]"
+				});
+			}
+
+			local hint = clone line;
+			hint.id = 7;
+			hint.type = "hint";
+			ret.push(hint);
+		}
+
+		return ret;
 	}
 
 	o.getTooltip <- function () {

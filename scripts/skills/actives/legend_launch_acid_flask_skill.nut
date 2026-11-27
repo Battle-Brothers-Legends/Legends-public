@@ -36,8 +36,8 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 		local ammo = 0;
 		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)) {
 			if (item.getID() == "weapon.acid_flask") {
-				if (item.getAmmo() != 0) {
-					ammo += item.getAmmo();
+				if (item.m.Ammo != 0) {
+					ammo += item.m.Ammo;
 				}
 			}
 		}
@@ -76,7 +76,7 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 		if (!actor.getCurrentProperties().IsSpecializedInSlings) {
 			return true;
 		}
-		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0) {
+		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.m.Ammo != 0) {
 			return false;
 		}
 		return this.skill.isHidden();

@@ -1,12 +1,11 @@
-::mods_hookExactClass("skills/actives/throw_daze_bomb_skill", function(o)
-{
+::mods_hookExactClass("skills/actives/throw_daze_bomb_skill", function (o) {
 	o.m.Item <- null;
-	o.setItem <- function( _i ) {
+	o.setItem <- function (_i) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
 	local getTooltip = o.getTooltip;
-	o.getTooltip = function() {
+	o.getTooltip = function () {
 		local ret = getTooltip();
 		local ammo = this.getAmmo();
 		ret.push({
@@ -21,10 +20,11 @@
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]%_ammo%[/color] use left",
-				param = [["_ammo", ammo]]
+				param = [
+					["_ammo", ammo]
+				]
 			});
-		}
-		else {
+		} else {
 			ret.push({
 				id = 8,
 				type = "text",
@@ -36,23 +36,25 @@
 		return ret;
 	}
 
-	o.isUsable <- function() {
+	o.isUsable <- function () {
 		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
 	}
 
-	o.getAmmo <- function() {
-		if (this.m.Item != null && !this.m.Item.isNull())
-			return this.m.Item.getAmmo();
+	o.getAmmo <- function () {
+		if (this.m.Item != null && !this.m.Item.isNull()) {
+			return this.m.Item.m.Ammo;
+		}
 
 		return 0;
 	}
 
-	o.consumeAmmo <- function() {
-		if (this.m.Item != null && !this.m.Item.isNull())
+	o.consumeAmmo <- function () {
+		if (this.m.Item != null && !this.m.Item.isNull()) {
 			this.m.Item.consumeAmmo();
+		}
 	}
 
-	o.onUse = function( _user, _targetTile ) {
+	o.onUse = function (_user, _targetTile) {
 		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0) {
 			local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
 
@@ -73,7 +75,7 @@
 		return true;
 	}
 
-	o.onAfterUpdate = function( _properties ) {
+	o.onAfterUpdate = function (_properties) {
 		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPrepared) && ::Time.getRound() == 1) {
 			this.m.ActionPointCost = 0;
 		}
@@ -81,11 +83,11 @@
 		this.m.MaxRange = _properties.IsSpecializedInNetCasting ? 4 : 3;
 	}
 
-	o.onApply = function ( _data ) {
+	o.onApply = function (_data) {
 		local targets = [];
 		targets.push(_data.TargetTile);
 
-		for( local i = 0; i != 6; i = ++i ) {
+		for (local i = 0; i < 6; i++) {
 			if (_data.TargetTile.hasNextTile(i)) {
 				targets.push(_data.TargetTile.getNextTile(i));
 			}
@@ -95,22 +97,28 @@
 			::Sound.play(_data.Skill.m.SoundOnHit[::Math.rand(0, _data.Skill.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _data.TargetTile.Pos);
 		}
 
-		foreach( tile in targets ) {
-			for( local i = 0; i < ::Const.Tactical.DazeParticles.len(); i = ++i ) {
+		foreach (tile in targets) {
+			for (local i = 0; i < ::Const.Tactical.DazeParticles.len(); i++) {
 				::Tactical.spawnParticleEffect(false, ::Const.Tactical.DazeParticles[i].Brushes, tile, ::Const.Tactical.DazeParticles[i].Delay, ::Const.Tactical.DazeParticles[i].Quantity, ::Const.Tactical.DazeParticles[i].LifeTimeQuantity, ::Const.Tactical.DazeParticles[i].SpawnRate, ::Const.Tactical.DazeParticles[i].Stages);
 			}
 
-			local target = tile.getEntity();
-			if (tile.IsOccupiedByActor && !target.getCurrentProperties().IsImmuneToDaze) {
-				::Legends.Effects.grant(target, ::Legends.Effect.Dazed);
-				if (!target.getCurrentProperties().IsImmuneToStun && target.getSkills().hasEffect(::Legends.Effect.Dazed)) {
-					::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
+			if (tile.IsOccupiedByActor) {
+				local target = tile.getEntity();
+				if (!target.getCurrentProperties().IsImmuneToDaze) {
+					if (!target.getCurrentProperties().IsImmuneToStun && ::Legends.Effects.has(target, ::Legends.Effect.Dazed)) {
+						::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
-					if (!_data.User.isHiddenToPlayer() && tile.IsVisibleForPlayer) {
-						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " was already dazed, so the flash pot has stunned " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
+						if (!_data.User.isHiddenToPlayer() && tile.IsVisibleForPlayer) {
+							::Tactical.EventLog.log("Previously Dazed " + ::Const.UI.getColorizedEntityName(target) + " is Stunned by the bright flash pot for one turn!");
+						}
+					} else {
+						::Legends.Effects.grant(target, ::Legends.Effect.Dazed);
+
+						if (!_data.User.isHiddenToPlayer() && tile.IsVisibleForPlayer) {
+							::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " is Dazed by the bright flash for one turn!");
+						}
 					}
 				}
-
 			}
 		}
 	}

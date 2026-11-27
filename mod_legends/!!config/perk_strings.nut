@@ -11,8 +11,6 @@ There are always two sides to every story.
 [color=%passive%][u]Passive:[/u][/color]
 • When your offhand is free, follow up attacks with [color=%skill%]Hand to Hand[/color]. Gain [color=%positive%]+5[/color] Melee Skill and [color=%positive%]+10[/color] Melee Defense if both hands are free.
 
-• If using a shield that grants [color=%skill%]Buckler Bash[/color], follow up attacks with that skill instead.
-
 • When dual wielding other weapons, the weight penalty is reduced by [color=%positive%]33%[/color].
 ";
 
@@ -185,7 +183,7 @@ It is impossible to focus in all that wild clamor and noise.
 
 • Chance to hit is based on Ranged Skill and has a range of six tiles.
 
-• [color=%status%]Distracted[/color] enemies have their Initiative, Damage reduced by [color=%negative%]35%[/color].
+• [color=%status%]Distracted[/color] enemies have their Initiative, Damage and Block reduced by [color=%negative%]35%[/color].
 
 • If you have the [color=%perk%]Manipulative[/color] perk, the chance to hit is [color=%positive%]doubled[/color].
 
@@ -763,6 +761,8 @@ Let him who is skilled cast the first stone.
 • Accuracy with slings and slingshots is increased by [color=%positive%]+10%[/color], accuracy with Staff Slings is increased by [color=%positive%]+5%[/color] and maximum firing range with slings and slingshots is increased by [color=%positive%]+1[/color].
 
 • When using One Handed slings, waiting during your turn or using [color=%skill%]Wind Up[/color] will add the [color=%skill%]Prepare Bullet[/color] effect, which will increase damage by [color=%positive%]10%[/color] of your Initiative and the Range of attacks by [color=%positive%]+1[/color]
+
+• [color=%skill%]Sling Stone[/color] ignore an additional [color=%positive%]25%[/color] of Block value.
 
 • Additionally allows you to launch bombs and flasks with a Staff Sling.
 ";
@@ -1628,9 +1628,9 @@ Every fight is like a dance, provided you have the right moves.
 [color=%passive%][u]Passive:[/u][/color]
 • Unlocks the [color=%skill%]Rotation[/color] skill which allows two characters to switch places while ignoring Zone of Control, as long as neither character is [color=%status%]Stunned[/color], [color=%status%]Rooted[/color] or otherwise disabled.
 
-• Unlocks the [color=%skill%]Footwork[/color] skill which allows you to leave a Zone of Control without triggering free attacks.
+• Unlocks the [color=%skill%]Footwork[/color] skill which allows you to leave a Zone of Control without triggering free attacks or quickly moving to an adjacent tile when not in Zone of Control.
 
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]20[/color] Fatigue.
+• Costs [color=%negative%]3[/color] AP and [color=%negative%]20[/color] Fatigue when in Zone of Control and [color=%negative%]1[/color] AP and [color=%negative%]15[/color] when out of it.
 ";
 
 ::Const.Strings.PerkDescription.LegendTerrifyingVisage <- @"
@@ -1653,7 +1653,7 @@ It's hard to fight with a storm of sand in your eyes.
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Throw Dirt[/color] skill which allows you to throw dirt in the eyes of an enemy to distract them.
 
-• [color=%status%]Distracted[/color] enemies have their Initiative and damage reduced by [color=%negative%]35%[/color].
+• [color=%status%]Distracted[/color] enemies have their Initiative, damage and Block reduced by [color=%negative%]35%[/color].
 
 • Can only be used once per fight.
 

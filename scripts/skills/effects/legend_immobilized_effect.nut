@@ -35,21 +35,34 @@ this.legend_immobilized_effect <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-35%[/color] Initiative"
+			},
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-35%[/color] Block"
 			}
 		]);
 		return tooltip;
 	}
 
 	function onUpdate(_properties) {
+		if (!::Tactical.isActive()) {
+			this.removeSelf();
+			return;
+		}
+
 		_properties.IsRooted = true;
 		_properties.MeleeDefenseMult *= 0.65;
 		_properties.RangedDefenseMult *= 0.65;
 		_properties.InitiativeMult *= 0.65;
-
+		_properties.BlockMult *= 0.65;
 	}
 
-	function onTurnStart() {
-		this.removeSelf();
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
+			this.removeSelf();
+		}
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {

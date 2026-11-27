@@ -81,7 +81,7 @@ this.legend_nomad_origin_visit_tents_event <- this.inherit("scripts/events/event
 
 		this.m.Screens.push({
 			ID = "PostRecruitPurchase",
-			Text = "[img]gfx/ui/events/event_171.png[/img]{The merchant seems pleased, and after a brief exchange of words, you find %Recruit% in your employ. The merchant quickly departs.}",
+			Text = "[img]gfx/ui/events/event_171.png[/img]{The merchant seems pleased, and after a brief exchange of words, you find %recruit% in your employ. The merchant quickly departs.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -90,12 +90,12 @@ this.legend_nomad_origin_visit_tents_event <- this.inherit("scripts/events/event
 				getResult = @(_event) "HubNoRecruit"
 			}],
 			function start(_event) {
-				this.Characters.Recruit(_event.m.Dude.getImagePath());
+				this.Characters.push(_event.m.Recruit.getImagePath());
 				this.List.push(::Legends.EventList.changeMoney(-350));
 				this.List.push({
 					id = 11,
 					icon = "ui/icons/special.png",
-					text = "[color=" + ::Const.UI.Color.PositiveEventValue + "]%Recruit%[/color] joins you"
+					text = "[color=" + ::Const.UI.Color.PositiveEventValue + "]%recruit%[/color] joins you"
 				});
 			}
 		});
@@ -180,7 +180,11 @@ this.legend_nomad_origin_visit_tents_event <- this.inherit("scripts/events/event
 
 	function onPrepare() {}
 
-	function onPrepareVariables(_vars) {}
+	function onPrepareVariables(_vars) {
+		if (this.m.Recruit != null) {
+			_vars.push(["recruit", this.m.Recruit.getName()]);
+		}
+	}
 
 	function onClear() {
 		this.m.Recruit = null;

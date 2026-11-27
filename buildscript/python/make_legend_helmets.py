@@ -2,6 +2,7 @@ from string import Template
 from buildscript.python.helmet import Templates, Defs, cleanupDirs
 from PIL import Image
 from buildscript.python.crop import CropTool
+from buildscript.lib import load_cache, save_cache
 import re, os, argparse
 from pathlib import Path
 import itertools
@@ -41,6 +42,7 @@ def makeBrushes(path):
     cleanupDirs(helmetsPath)
     helmetDir = helmetsPath / "entity"
     F = makeSheet(helmetsPath)
+    crops = load_cache(path, "helmet_crops")
 
     templates = [Template(t) for t in Templates.BLayer]
     cardinals = Templates.Cardinals
@@ -60,8 +62,8 @@ def makeBrushes(path):
             c_name_path, c_damaged_path, c_dead_path, c_dir = Templates.get_cropped_sprites(name)
 
             def fixPathsAndGetCardinals(rel_path, crop_rel_path, cardinal_index):            
-                CropTool.crop(helmetDir / rel_path, helmetDir / crop_rel_path)
-                return crop_rel_path.replace("/", "\\"), Templates.calculate_cardinals(cardinals[cardinal_index], CropTool.getBounds(helmetDir / rel_path))
+                bounds = CropTool.cropCached(helmetDir / rel_path, helmetDir / crop_rel_path, crops, rel_path)
+                return crop_rel_path.replace("/", "\\"), Templates.calculate_cardinals(cardinals[cardinal_index], bounds)
 
             fin_name_path, name_cardinals = fixPathsAndGetCardinals(name_path, c_name_path, 0)
             fin_damaged_path, damaged_cardinals = fixPathsAndGetCardinals(damaged_path, c_damaged_path, 1)
@@ -85,6 +87,7 @@ def makeBrushes(path):
 
     F.write("</brush>\n")
     F.close()
+    save_cache(path, "helmet_crops", crops)
 
 
 def generate_legend_helmets(base_path):

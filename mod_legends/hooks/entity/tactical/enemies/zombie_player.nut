@@ -3,6 +3,7 @@
 	o.onInit = function () {
 		onInit();
 		local b = this.m.BaseProperties;
+		b.IsImmuneToTaunt = true;
 		b.SurroundedBonus = 5; // resetting from vanilla
 		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 	}

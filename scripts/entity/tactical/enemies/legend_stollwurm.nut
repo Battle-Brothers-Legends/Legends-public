@@ -8,12 +8,13 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		],
 		MovementAPSpent = 0,
 		EffectsSharedWithTail = [
-			::Legends.Effect.Staggered,
 			::Legends.Effect.Dazed,
-			::Legends.Effect.LegendStupefied,
-			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.InsectSwarm,
+			::Legends.Effect.Staggered,
+			::Legends.Effect.Taunted,
 			::Legends.Effect.Withered,
-			::Legends.Effect.InsectSwarm
+			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.LegendStupefied
 		],
 		EffectsSharedWithTailLookup = {}
 	},

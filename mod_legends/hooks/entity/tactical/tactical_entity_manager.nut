@@ -331,6 +331,10 @@
 			case ::Const.Tactical.DeploymentType.Circle:
 				this.spawnEntitiesInCircle(f.Entities);
 				break;
+
+			case ::Const.Tactical.DeploymentType.CircleDistant:
+				this.spawnEntitiesInCircleDistant(f.Entities);
+				break;
 			}
 		}
 
@@ -550,6 +554,58 @@
 			{
 				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 			}
+		}
+	}
+
+	o.spawnEntitiesInCircleDistant <- function(_entities) {
+		foreach (e in _entities) {
+			local x = 0;
+			local y = 0;
+			local tries = 0;
+
+			if (!::World.FactionManager.isAlliedWithPlayer(e.Faction)) {
+				while (1) {
+					x = ::Math.rand(1, 32);
+					y = ::Math.rand(1, 32);
+
+					if (x > 4 && x < 27 && y > 4 && y < 27) {
+						continue;
+					}
+
+					if (::Tactical.isValidTileSquare(x, y) && ::Tactical.getTileSquare(x, y).IsEmpty && !this.isTileIsolated(::Tactical.getTileSquare(x, y))) {
+						break;
+					}
+
+					tries = ++tries;
+
+					if (tries >= 500) {
+						break;
+					}
+				}
+			} else {
+				while (1) {
+					x = ::Math.rand(12, 20);
+					y = ::Math.rand(12, 20);
+
+					if (::Tactical.isValidTileSquare(x, y) && ::Tactical.getTileSquare(x, y).IsEmpty && !this.isTileIsolated(::Tactical.getTileSquare(x, y))) {
+						break;
+					}
+
+					tries = ++tries;
+
+					if (tries >= 500) {
+						break;
+					}
+				}
+			}
+
+			if (tries >= 500) {
+				continue;
+			}
+
+			local tile = ::Tactical.getTileSquare(x, y);
+			local entity = ::Tactical.spawnEntity(e.Script, tile.Coords.X, tile.Coords.Y);
+			this.setupEntity(entity, e);
 		}
 	}
 

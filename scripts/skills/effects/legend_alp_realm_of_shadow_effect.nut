@@ -98,6 +98,7 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 		_properties.Vision -= 1;
 		_properties.BraveryMult *= 0.67;
 		_properties.InitiativeMult *= 0.9;
+		_properties.BlockMult *= 0.9;
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {

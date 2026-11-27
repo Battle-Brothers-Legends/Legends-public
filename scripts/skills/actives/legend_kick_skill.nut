@@ -116,7 +116,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax = 0;
 			_properties.DamageArmorMult = 0.0;
 
-			this.m.HitChanceBonus += _properties.IsSpecializedInFists ? 15 : 0;
+			local bonus = _properties.IsSpecializedInFists ? 15 : 0;
 
 			if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
 				_properties.DamageRegularMin = 10;
@@ -124,7 +124,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				_properties.DamageArmorMult = 0.6;
 			}
 
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 		}
 	}
 

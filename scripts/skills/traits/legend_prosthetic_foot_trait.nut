@@ -31,13 +31,22 @@ this.legend_prosthetic_foot_trait <- this.inherit("scripts/skills/traits/charact
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Builds up [color=%negative%]" + malusFat + "[/color] more fatigue for each tile travelled"
+				text = "Builds up [color=%negative%]%_fat%[/color] more fatigue for each tile travelled",
+				param = [["_fat", malusFat]]
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=%negative%]-" + malusIni + "%[/color] Initiative"
+				text = "[color=%negative%]-%_ini%%[/color] Initiative",
+				param = [["_ini", malusIni]]
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-%_ini%%[/color] Block",
+				param = [["_ini", malusIni]]
 			}
 		];
 	}
@@ -46,9 +55,11 @@ this.legend_prosthetic_foot_trait <- this.inherit("scripts/skills/traits/charact
 		if (!this.m.IsUpgraded) {
 			_properties.MovementFatigueCostAdditional += 3;
 			_properties.InitiativeMult *= 0.9;
+			_properties.BlockMult *= 0.9;
 		} else {
 			_properties.MovementFatigueCostAdditional += 1;
 			_properties.InitiativeMult *= 0.95;
+			_properties.BlockMult *= 0.95;
 		}
 	}
 });

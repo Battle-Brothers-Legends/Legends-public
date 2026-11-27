@@ -177,6 +177,14 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return ::Math.ceil(this.getRepairPoints() / this.getModifiers().Craft);
 	}
 
+	function hasWork(_bro) {
+		if (this.m.Repairs == null) {
+			this.onInit();
+		}
+
+		return ::World.Assets.getArmorPartsF() > 0 && this.getRepairPoints() > 0;
+	}
+
 	function getAssignedBros() {
 		return this.getModifiers().Assigned;
 	}

@@ -9,6 +9,7 @@
 		_properties.MeleeDefenseMult *= 1.25;
 		_properties.RangedDefenseMult *= 1.25;
 		_properties.InitiativeMult *= 1.15;
+		_properties.BlockMult *= 1.25;
 		_properties.HitpointsMult *= 1.35;
 
 		if (this.getContainer().getActor().getBaseProperties().MeleeDefense >= 20 || this.getContainer().getActor().getBaseProperties().RangedDefense >= 20 || this.getContainer().getActor().getBaseProperties().MeleeDefense >= 15 && this.getContainer().getActor().getBaseProperties().RangedDefense >= 15)

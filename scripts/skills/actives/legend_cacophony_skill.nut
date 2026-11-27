@@ -27,7 +27,7 @@ this.legend_cacophony_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Leave your opponent [color=%effect]Distracted[/color], which reducing Damage and Initiative [color=%negative%]35%[/color]"
+			text = "Leave your opponent [color=%effect%]Distracted[/color], which will reduce Damage, Initiative and Block by [color=%negative%]35%[/color]"
 		});
 
 		return ret;

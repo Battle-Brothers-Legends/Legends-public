@@ -12,7 +12,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/throw_axe_hit", 3);
 		this.m.SoundOnHitDelay = -150;
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
+		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 750;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -107,6 +107,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 					success = _skill.attackEntity(_user, target) || success;
 					dagger.consumeAmmo();
 					_skill.m.IsDoingAttackMove = true;
+					_user.setDirty(true);
 					_skill.getContainer().setBusy(false);
 				}
 			}.bindenv(this), this);
@@ -143,8 +144,8 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.7;
-			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
-			_properties.RangedSkill += this.m.HitChanceBonus;
+			local bonus = this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.addHitChanceBonus(bonus);
 			_properties.HitChanceAdditionalWithEachTile -= 10;
 		}
 	}

@@ -23,6 +23,32 @@
 		::Legends.Actives.getID(::Legends.Active.LegendBreach),
 		::Legends.Actives.getID(::Legends.Active.LegendFlowingSlash),
 		::Legends.Actives.getID(::Legends.Active.LegendBackstab),
-		::Legends.Actives.getID(::Legends.Active.LegendCull)
+		::Legends.Actives.getID(::Legends.Active.LegendCull),
+		::Legends.Actives.getID(::Legends.Active.Deathblow) // added temporarily until we figure out what to do, as of now katar wielding assassins never attack
 	]);
+
+	// A weapon can have attacks with different ranges now, like a Pike with Impale and Heartseekers
+	// Basically it would pick one at random and then roll with it, so if it rolled a range 1 attack it would just afk like a goober
+	o.selectSkill <- function (_potentialSkills) {
+		local entity = this.getAgent().getActor();
+		local level = entity.getTile().Level;
+		local skills = [];
+
+		foreach (id in _potentialSkills) {
+			local skill = entity.getSkills().getSkillByID(id);
+
+			if (skill == null || !skill.isUsable() || !skill.isAffordable()) {
+				continue;
+			}
+
+			foreach (target in this.queryTargetsInMeleeRange(skill.getMinRange(), skill.getMaxRange() + (skill.isRanged() ? level : 0), skill.getMaxLevelDifference())) {
+				if (skill.isUsableOn(target.getTile())) {
+					skills.push(id);
+					break;
+				}
+			}
+		}
+
+		return this.behavior.selectSkill(skills);
+	}
 });

@@ -539,8 +539,8 @@
 				foreach (item in eligibleItems) {
 					item.onCombatFinished();
 					if (!item.isChangeableInBattle() && item.isDroppedAsLoot()) {
-						if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && ::Math.rand(1, 100) <= 66) {
-							item.setCondition(::Math.minf(item.getCondition(), ::Math.rand(::Math.maxf(10, item.getConditionMax() * 0.35 + ::World.Assets.m.ProfessionEffect.LegendMaterialist), item.getConditionMax())));
+						if (item.getRepair() > 1 && item.getRepairMax() > 1 && item.getRepairMax() > item.getRepairMax() * 0.66 && ::Math.rand(1, 100) <= 66) {
+							item.setCondition(::Math.minf(item.getRepair(), ::Math.rand(::Math.maxf(10, item.getRepairMax() * 0.35 + ::World.Assets.m.ProfessionEffect.LegendMaterialist), item.getRepairMax())));
 						}
 
 						item.removeFromContainer();
@@ -585,8 +585,8 @@
 					foreach (item in eligibleItems) {
 						item.onCombatFinished();
 						if (!item.isChangeableInBattle() && item.isDroppedAsLoot()) {
-							if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && ::Math.rand(1, 100) <= 66) {
-								item.setCondition(::Math.minf(item.getCondition(), ::Math.rand(::Math.maxf(10, item.getConditionMax() * (0.35 + ::World.Assets.m.ProfessionEffect.LegendMaterialist)), item.getConditionMax())));
+							if (item.getRepair() > 1 && item.getRepairMax() > 1 && item.getRepair() > item.getRepairMax() * 0.66 && ::Math.rand(1, 100) <= 66) {
+								item.setCondition(::Math.minf(item.getRepair(), ::Math.rand(::Math.maxf(10, item.getRepairMax() * (0.35 + ::World.Assets.m.ProfessionEffect.LegendMaterialist)), item.getRepairMax())));
 							}
 
 							item.removeFromContainer();

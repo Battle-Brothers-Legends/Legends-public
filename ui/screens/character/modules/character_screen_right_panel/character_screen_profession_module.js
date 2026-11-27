@@ -25,6 +25,8 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
         Planned: null,
         Tentative: null
     };
+	this.mCampPanelFrame = null;
+	this.mCampPanel = null;
 	this.mSelectedBrotherId = null;
 	this.mProfessionTreeSignature = null;
 
@@ -37,6 +39,8 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
 CharacterScreenProfessionModule.prototype.createDIV = function (_parentDiv) {
 	this.mContainer = $('<div class="professions-module opacity-none"/>');
 	_parentDiv.append(this.mContainer);
+	this.mCampPanelFrame = $('<img class="camp-background opacity-none"/>').attr('src', Path.GFX + "ui/skin/inventory_profession_camp_panel.png");
+	_parentDiv.append(this.mCampPanelFrame);
 
 	this.mListContainer = $('<div class="ui-control list has-frame"/>');
 	var scrollContainer = $('<div class="scroll-container"/>');
@@ -84,6 +88,11 @@ CharacterScreenProfessionModule.prototype.createDIV = function (_parentDiv) {
 	    this.mStatusBar.append(this.mPlanLabels.Experience.container);
 	    this.mStatusBar.append(this.mPlanLabels.Planned.container);
 	    this.mStatusBar.append(this.mPlanLabels.Tentative.container);
+
+		// camp assignment and working speeds of the selected brother, in the free space below the tree
+		this.mCampPanel = $('<div class="profession-camp-panel"/>');
+		this.mCampPanel.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenWorkSpeed });
+		this.mContainer.append(this.mCampPanel);
 	}
 };
 
@@ -101,6 +110,8 @@ CharacterScreenProfessionModule.prototype.destroyDIV = function () {
 	this.mContainer.empty();
 	this.mContainer.remove();
 	this.mContainer = null;
+	this.mCampPanelFrame = null;
+	this.mCampPanel = null;
 
 	this.mSelectedBrotherId = null;
 	this.mProfessionTreeSignature = null;
@@ -338,7 +349,38 @@ CharacterScreenProfessionModule.prototype.updateProfessionPlanVisuals = function
         this.mPlanLabels.Experience.container.bindTooltip({ contentType: 'ui-element', entityId: _brother[CharacterScreenIdentifier.Entity.Id], elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenExperience });
         this.mPlanLabels.Planned.label.text(_brother.PlannedProfessionLevelRequired || 0);
         this.mPlanLabels.Tentative.label.text(_brother.TentativeProfessionCount || 0);
+        this.updateCampPanel(_brother);
     }
+};
+
+CharacterScreenProfessionModule.prototype.updateCampPanel = function (_brother) {
+	this.mCampPanel.empty();
+
+	if (!('CampWorkSpeeds' in _brother)) {
+		return;
+	}
+
+	if (_brother.CampAssignment) {
+		this.mCampPanel.append($('<img class="banner"/>').attr('src', Path.GFX + _brother.CampAssignment.Banner));
+	}
+
+	var stations = $('<div class="stations"/>');
+	this.mCampPanel.append(stations);
+
+	for (var i = 0; i < _brother.CampWorkSpeeds.length; ++i) {
+		var station = _brother.CampWorkSpeeds[i];
+		var cell = $('<div class="station"/>');
+		var speedColor = station.Speed > 100 ? 'font-color-positive-value' : (station.Speed < 100 ? 'font-color-negative-value' : 'font-color-description');
+
+		if (station.IsAssigned) {
+			cell.addClass('is-assigned');
+		}
+
+		cell.append($('<img/>').attr('src', Path.GFX + station.Icon));
+		cell.append($('<div class="name text-font-small font-bold font-color-label"/>').text(station.Name));
+		cell.append($('<div class="speed text-font-small font-bold"/>').addClass(speedColor).text(station.Speed + '%'));
+		stations.append(cell);
+	}
 };
 
 CharacterScreenProfessionModule.prototype.attachEventHandler = function (_profession) {
@@ -517,10 +559,12 @@ CharacterScreenProfessionModule.prototype.isRegistered = function () {
 
 CharacterScreenProfessionModule.prototype.show = function () {
 	this.mContainer.removeClass('opacity-none').addClass('opacity-full');
+	this.mCampPanelFrame.removeClass('opacity-none').addClass('opacity-full');
 };
 
 CharacterScreenProfessionModule.prototype.hide = function () {
 	this.mContainer.removeClass('opacity-full is-top').addClass('opacity-none');
+	this.mCampPanelFrame.removeClass('opacity-full').addClass('opacity-none');
 };
 
 CharacterScreenProfessionModule.prototype.isVisible = function () {

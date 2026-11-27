@@ -4,6 +4,7 @@
 		create();
 		this.m.HitChanceBonus = 10;
 		this.m.DirectDamageMult = 0.3;
+		this.m.Description = "Poke and shove at a target in order to force it away from the user by one tile. Targets hit will be staggered and lose initiative, and may take damage if they are pushed down several levels of height. Shieldwall, Spearwall and Riposte will be canceled for a target that is successfully repelled.";
 	}
 
 	o.getTooltip = function () {
@@ -41,11 +42,18 @@
 		return tooltip;
 	}
 
-	local onVerifyTarget = o.onVerifyTarget;
-	o.onVerifyTarget = function (_originTile, _targetTile) {
-		this.m.IsAttack = false; // work around to allow targeting on allies
-		local result = onVerifyTarget(_originTile, _targetTile);
+	o.findTileToKnockBackTo = function( _userTile, _targetTile ) {
+		return this.skill.getForcedMovementDestinationTile(_userTile, _targetTile);
+	}
+
+	o.onVerifyTarget = function( _originTile, _targetTile ) {
+		this.m.IsAttack = false;
+		local result = this.skill.onVerifyTarget(_originTile, _targetTile);
 		this.m.IsAttack = true;
+		local pulledTo = this.skill.getForcedMovementDestinationTile(_originTile, _targetTile);
+		local target = _targetTile.getEntity();
+		if (result && pulledTo == null && (target != null && (!target.getCurrentProperties().IsRooted || target.isAlliedWith(this.getContainer().getActor()))))
+			result = false;
 		return result;
 	}
 
@@ -103,12 +111,26 @@
 		}
 	}
 
-	o.onTargetSelected <- function (_targetTile) {
+	o.onTargetSelected <- function ( _targetTile ) {
 		local knockToTile = this.findTileToKnockBackTo(this.getContainer().getActor().getTile(), _targetTile);
 
 		if (knockToTile == null) {
 			return;
 		}
+
+		local target = _targetTile.getEntity();
+		if (target == null) {
+			return;
+		}
+
+		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab || target.getCurrentProperties().IsRooted) {
+			return;
+		}
+
+		if (!_targetTile.IsEmpty) {
+			return
+		}
+
 		// to show where the target may be knocked back
 		::Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
 	}
@@ -127,10 +149,11 @@
 			if (!::Legends.S.isEntityNullOrDead(_targetEntity) && _targetEntity.getCurrentProperties().IsRooted) {
 				_properties.DamageTotalMult *= 1.5;
 			}
+			local bonus = 0;
 			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
-				this.m.HitChanceBonus -= 15;
+				bonus -= 15;
 			}
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 		}
 	}
 });

@@ -50,9 +50,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		}
 
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendUnitedInChains);
-		::Legends.Traits.grant(bros[0], ::Legends.Trait.ArenaFighter);
-		bros[0].getFlags().set("ArenaFightsWon", 5);
-		bros[0].getFlags().set("ArenaFights", 5);
+		::Legends.Arena.grantWins(bros[0], 5);
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);

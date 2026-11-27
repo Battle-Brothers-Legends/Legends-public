@@ -900,10 +900,11 @@ WorldTownScreenShopDialogModule.prototype.assignItemToInventorySlot = function (
         itemData.salvage = _item['salvage'];
         if (_owner != WorldTownScreenShop.ItemOwner.Shop || this.mShowItemStatesInShop) {
             _slot.setAutomationImageVisible(_item['automationState']);
+            _slot.setRepairImageVisible(_item['repair'], _item['salvage']);
         } else {
             _slot.setAutomationImageVisible(0);
+            _slot.setRepairImageVisible(false, false);
         }
-        _slot.setRepairImageVisible(_item['repair'], _item['salvage']);
 
 
         // show amount

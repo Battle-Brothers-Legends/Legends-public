@@ -2,11 +2,11 @@
 	o.m.Actor <- null;
 
 	o.getDescription = function () {
-		return "Has a vicious poison running through %their% veins.";
+		return this.resolveDescription("Has a vicious poison running through %their% veins.");
 	}
 
 	o.getDamage = function () {
-		return this.m.Damage * (::Legends.isLegendaryDifficulty() ? 2 : 1);
+		return this.m.Damage;
 	}
 
 	o.getTooltip <- function () {

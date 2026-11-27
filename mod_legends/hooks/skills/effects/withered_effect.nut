@@ -8,33 +8,48 @@
 
 	o.getTooltip = function () {
 		local tooltip = this.skill.getTooltip();
+		param = [
+			["_smallMalus", this.m.TurnsLeft * 5],
+			["_bigMalus", this.m.TurnsLeft * 10]
+		];
 		tooltip.extend([
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Damage"
+				text = "[color=%negative%]-%_bigMalus%%[/color] Damage",
+				param = param
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Initiative"
+				text = "[color=%negative%]-%_bigMalus%%[/color] Initiative",
+				param = param
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Max Fatigue"
+				text = "[color=%negative%]-%_bigMalus%%[/color] Max Fatigue",
+				param = param
 			},
 			{
 				id = 14,
 				type = "text",
 				icon = "ui/icons/fatigue_recovery_down.png",
-				text = "[color=%negative%]-" + this.m.TurnsLeft * 5 + "[/color] Fatigue Recovery per turn"
+				text = "[color=%negative%]-%_smallMalus%[/color] Fatigue Recovery per turn",
+				param = param
 			},
 			{
 				id = 15,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-%_bigMalus%[/color] Block",
+				param = param
+			},
+			{
+				id = 16,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "The effect lessens every turn"
@@ -73,6 +88,7 @@
 		_properties.InitiativeMult *= 1.0 - this.m.TurnsLeft * 0.10;
 		_properties.StaminaMult *= 1.0 - this.m.TurnsLeft * 0.10;
 		_properties.FatigueRecoveryRate -= this.m.TurnsLeft * 5;
+		_properties.BlockMult *= 1.0 - this.m.TurnsLeft * 0.10;
 
 		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned)) {
 			actor.getSprite("status_stunned").setBrush("bust_withered");
@@ -89,6 +105,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (10 * this.m.Stacks) + "%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "fatigue", "initiative"]) + ", [color=%negative%]-" + (5 + this.m.Stacks) + "[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_down");
+		return "[color=%negative%]-" + (10 * this.m.Stacks) + "%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "fatigue", "initiative", "block"]) + ", [color=%negative%]-" + (5 + this.m.Stacks) + "[/color] " + ::Legends.Text.inlineIcons("fatigue_recovery_down");
 	}
 });

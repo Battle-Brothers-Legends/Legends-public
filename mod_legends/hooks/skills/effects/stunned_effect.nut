@@ -35,6 +35,12 @@
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-25%[/color] Initiative"
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-50%[/color] Block"
 			}
 		]);
 		return tooltip;
@@ -84,10 +90,11 @@
 			_properties.MeleeDefenseMult *= 0.75;
 			_properties.RangedDefenseMult *= 0.75;
 			_properties.InitiativeMult *= 0.75;
+			_properties.BlockMult *= 0.75;
 		}
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-25%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative"]) + ", unable to act";
+		return "[color=%negative%]-25%[/color] " + ::Legends.Text.inlineIcons(["melee_defense", "ranged_defense", "initiative", "block"]) + ", unable to act";
 	}
 });

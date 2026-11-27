@@ -130,8 +130,8 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
-		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.remove(this, ::Legends.Perk.ShieldExpert);
 	}
 
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {

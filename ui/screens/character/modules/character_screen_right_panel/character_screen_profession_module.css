@@ -194,3 +194,75 @@
     height: 3.2rem;
     margin-right: 0.8rem;
 }
+
+/* Camp assignment and working speeds, in the free space between the tree and the status bar */
+.character-screen-container .professions-module .profession-camp-panel {
+    position: absolute;
+    bottom: 3.6rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 12.4rem;
+    z-index: 10;
+}
+
+.character-screen-container .professions-module .profession-camp-panel .banner {
+    position: absolute;
+    top: 3.7rem;
+    left: 0.5rem;
+    width: 2.6rem;
+    height: 7.9rem;
+}
+
+.character-screen-container .camp-background {
+    position: absolute;
+    bottom: 3.0rem;
+    left: 0;
+    right: 0;
+    height: 9.2rem;
+    width: 100%;
+}
+
+.character-screen-container .professions-module .profession-camp-panel .stations {
+    position: absolute;
+    top: 3.0rem;
+    left: 5.0rem;
+    right: 0;
+    bottom: 0;
+}
+
+.character-screen-container .professions-module .profession-camp-panel .station {
+    position: relative;
+    float: left;
+    width: 20%;
+    height: 4.6rem;
+}
+
+.character-screen-container .professions-module .profession-camp-panel .station.is-assigned {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+.character-screen-container .professions-module .profession-camp-panel .station img {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.4rem;
+    width: 3.0rem;
+    height: 3.0rem;
+}
+
+.character-screen-container .professions-module .profession-camp-panel .station .name,
+.character-screen-container .professions-module .profession-camp-panel .station .speed {
+    position: absolute;
+    left: 4.0rem;
+    right: 0;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    white-space: nowrap;
+}
+
+.character-screen-container .professions-module .profession-camp-panel .station .name {
+    top: 0.5rem;
+}
+
+.character-screen-container .professions-module .profession-camp-panel .station .speed {
+    top: 2.3rem;
+}

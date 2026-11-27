@@ -40,12 +40,7 @@
 					"weapons/oriental/polemace",
 					"weapons/two_handed_hammer",
 					"weapons/greataxe",
-					"weapons/legend_ranged_flail"
-				]);
-			}
-
-			if (::Const.DLC.Wildmen && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
-				weapons.extend([
+					"weapons/legend_ranged_flail",
 					"weapons/two_handed_flail",
 					"weapons/two_handed_flanged_mace",
 					"weapons/bardiche"
@@ -56,13 +51,13 @@
 		}
 
 		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50) {
-			local weapons = [
+			local secondaryWeapons = [
 				"weapons/throwing_axe",
 				"weapons/javelin",
 				"weapons/throwing_spear"
 			];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.addToBag(this.new("scripts/items/" + secondaryWeapons[::Math.rand(0, secondaryWeapons.len() - 1)]));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {

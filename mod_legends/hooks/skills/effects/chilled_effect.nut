@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/chilled_effect", function (o) {
 	o.getDescription = function () {
-		return "Chilled to the bone by cold, with %their% limbs frozen stiff, it takes a great deal of effort to move in a coordinated fashion.";
+		return this.resolveDescription("Chilled to the bone by cold, with %their% limbs frozen stiff, it takes a great deal of effort to move in a coordinated fashion.");
 	}
 
 	o.getTooltip = function () {

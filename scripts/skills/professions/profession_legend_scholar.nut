@@ -11,6 +11,11 @@ this.profession_legend_scholar <- this.inherit("scripts/skills/legend_profession
 				type = "text",
 				icon = "ui/icons/special.png"
 				text = "[color=%positive%]20%[/color] more profession experience gained."
+			}, {
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png"
+				text = "Gains an extra profession point upon reaching profession level [color=%positive%]" + ::Legends.Professions.Exp.ScholarPointLevel + "[/color]."
 			}];
 	}
 });

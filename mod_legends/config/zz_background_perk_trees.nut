@@ -700,6 +700,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ThrowingTree
 	],
 	Defense = [
+		::Const.Perks.LightArmorTree,
 		::Const.Perks.MediumArmorTree,
 		::Const.Perks.HeavyArmorTree
 	],
@@ -2301,7 +2302,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Defense = [
 		::Const.Perks.LightArmorTree,
-		::Const.Perks.MediumArmorTree
+		::Const.Perks.MediumArmorTree,
+		::Const.Perks.HeavyArmorTree
 	],
 	Traits = [
 		::Const.Perks.ViciousTree,

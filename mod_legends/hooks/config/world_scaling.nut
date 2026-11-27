@@ -38,6 +38,10 @@
 ::Const.World.Scaling.Nomads.LegendsSlinger2HSlingDay <- 30;
 ::Const.World.Scaling.Nomads.LegendsSlingerBetterArmorDay <- 40;
 
+::Const.World.Scaling.AncientDead.LegionaryPolearmSpecDay = 30;
+::Const.World.Scaling.AncientDead.HonorGuardPolearmSpecDay = 30;
+::Const.World.Scaling.AncientDead.LegendsSkeletonShieldSpecDay <- 60;
+
 ::Const.World.Scaling.Orcs.LegendsOrcHighStatIncreaseDay <- 200;
 
 ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay <- 140;
@@ -45,4 +49,4 @@
 ::Const.World.Scaling.UndeadMummies <- {};
 ::Const.World.Scaling.UndeadMummies.LegendsMummyPolearmSpecDay <- 100;
 
-::Const.World.Scaling.getDistanceScaling <- @(_action, _tile, _isAttacker = false) ::Math.maxf(1.0, _action.getDistanceToSettlements(_tile) / 14.0 * (_isAttacker ? ::Math.minf(1.0, ::World.getTime().Days / 100) : 1.0)); // attackers distance scaling is reduced until day 100
+::Const.World.Scaling.getDistanceScaling <- @(_action, _tile, _isAttacker = false) ::Math.maxf(1.0, _action.getDistanceToSettlements(_tile) / 14.0 * (_isAttacker ? ::Math.minf(1.0, ::World.getTime().Days / 100.0) : 1.0)); // attackers distance scaling is reduced until day 100

@@ -9,6 +9,7 @@ this.legend_stollwurm_hauberk_armor <- this.inherit("scripts/items/legend_armor/
 	{
 		this.legend_named_armor_upgrade.create();
 		this.m.Type = ::Const.Items.ArmorUpgrades.Chain;
+		this.m.IsImmuneToAcid = true;
 		this.m.ID = "legend_armor.body.legend_stollwurm_hauberk_armor";
 		this.m.Name = "";
         this.m.NameList = ["Heraldic Scale", "Splendor", "Grandiosity", "Pageantry", "Swank", "Full Scale", "Scale Hauberk", "Scalemail", "Duty", "Honor", "Noble Scale"];
@@ -63,27 +64,5 @@ this.legend_stollwurm_hauberk_armor <- this.inherit("scripts/items/legend_armor/
 		this.legend_named_armor_upgrade.onUpdateProperties(_properties);
 		_properties.IsImmuneToStun = true;
 		_properties.IsImmuneToKnockBackAndGrab = true;
-	}
-
-	function onEquip()
-	{
-		this.legend_named_armor_upgrade.onEquip();
-		local c = this.m.Armor.getContainer();
-
-		if (c != null && c.getActor() != null && !c.getActor().isNull())
-		{
-			c.getActor().getFlags().add("body_immune_to_acid");
-		}
-	}
-
-	function onUnequip()
-	{
-		local c = this.m.Armor.getContainer();
-
-		if (c != null && c.getActor() != null && !c.getActor().isNull())
-		{
-			c.getActor().getFlags().remove("body_immune_to_acid");
-		}
-		this.legend_named_armor_upgrade.onUnequip();
 	}
 });

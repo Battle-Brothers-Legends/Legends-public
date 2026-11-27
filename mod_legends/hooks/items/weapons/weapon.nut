@@ -44,6 +44,21 @@
 			});
 		}
 
+		if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
+			local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
+			local actor = ::Legends.S.isNull(this.getContainer()) ? null : this.getContainer().getActor();
+			local isSpecialized = !::Legends.S.isNull(actor) && ::Legends.Weapons.isCharacterWeaponSpecialized(actor.getCurrentProperties(), this);
+			result.push({
+				id = 22,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "Block [color=%positive%]+%_block%[/color]",
+				param = [
+					["_block", block[isSpecialized && this.getCurrentSlotType() == ::Const.ItemSlot.Mainhand ? 1 : 0]]
+				]
+			});
+		}
+
 		foreach (tooltip in result) {
 			if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
 				continue;
@@ -220,6 +235,11 @@
 			_properties.DamageDirectAdd += this.m.DirectDamageAdd;
 			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHead;
 		}
+
+		if (this.isWeaponType(::Const.Items.WeaponType.Sword)) {
+			local block = this.isItemType(::Const.Items.ItemType.TwoHanded) ? ::Legends.Weapons.SwordBlock.TwoHanded : ::Legends.Weapons.SwordBlock.OneHanded;
+			_properties.Block += block[::Legends.Weapons.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this) && this.getCurrentSlotType() == ::Const.ItemSlot.Mainhand ? 1 : 0];
+		}
 	}
 
 	o.updateRuneSigil <- function () {
@@ -242,7 +262,8 @@
 				skillsGranted.push(_skill);
 			}
 		};
-		dummyItem.weapon.onEquip = @() {};
+		dummyItem.weapon.onEquip = @() {
+		};
 		dummyItem.setContainer(dummy.getItems());
 		dummyItem.onEquip();
 		::World.getTemporaryRoster().clear();

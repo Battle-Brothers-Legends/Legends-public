@@ -9,8 +9,9 @@
 					Name = s.getName(),
 					Description = s.getDescription(),
 					Difficulty = s.getDifficultyForUI(),
-					Order = s.getOrder(),
-					LegendsScenarioOrder = ::Legends.Scenarios.Order
+					Order = (s.getID() in ::Legends.Scenarios.Order) ? ::Legends.Scenarios.Order[s.getID()] : s.getOrder(),
+					LegendsScenarioOrder = ::Legends.Scenarios.Order,
+					LegendsScenarioGroups = ::Legends.Scenarios.Groups
 				};
 				ret.push(scenario);
 			}

@@ -4,7 +4,7 @@
 	o.create = function() {
 		create();
 		this.m.Name = "Shield Bash";
-		this.m.Description = "Use the shield to bash the target dealing some damage.";
+		this.m.Description = "Use the shield to bash the target and deal damage. Targets hit on your own turn will be knocked back by one tile and may take damage if they are pushed down several levels of height. Shieldwall, Spearwall and Riposte will be canceled for a target that is successfully knocked back.";
 		this.m.HitChanceBonus = 10;
 		this.m.FatigueCost = 15;
 		this.m.DirectDamageMult = 0.2;
@@ -44,11 +44,18 @@
 		return tooltip;
 	}
 
-	local onVerifyTarget = o.onVerifyTarget;
-	o.onVerifyTarget = function ( _originTile, _targetTile ) {
-		this.m.IsAttack = false; // work around to allow targeting on allies
-		local result = onVerifyTarget(_originTile, _targetTile);
+	o.onVerifyTarget = function( _originTile, _targetTile ) {
+		this.m.IsAttack = false;
+		local result = this.skill.onVerifyTarget(_originTile, _targetTile);
 		this.m.IsAttack = true;
+		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor())) {
+			return result;
+		}
+
+		local pulledTo = this.skill.getForcedMovementDestinationTile(_originTile, _targetTile);
+		local target = _targetTile.getEntity();
+		if (result && pulledTo == null && (target != null && (!target.getCurrentProperties().IsRooted || target.isAlliedWith(this.getContainer().getActor()))))
+			result = false;
 		return result;
 	}
 
@@ -86,8 +93,8 @@
 			return;
 		}
 
-		this.m.HitChanceBonus += _properties.IsSpecializedInShields ? 15 : 0;
-		_properties.MeleeSkill += this.m.HitChanceBonus;
+		local bonus = _properties.IsSpecializedInShields ? 15 : 0;
+		_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 
 		_properties.DamageRegularMin = this.getItem().m.RegularDamage;
 		_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
@@ -96,6 +103,7 @@
 		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash)) {
 			_properties.DamageArmorMult = 1.0;
 			_properties.DamageDirectAdd += 0.1;
+			_properties.DamageTotalMult += 1.25;
 		}
 		if (!::Legends.S.isEntityNullOrDead(_targetEntity) && _targetEntity.getCurrentProperties().IsRooted) {
 			_properties.DamageTotalMult *= 1.5;
@@ -127,11 +135,30 @@
 		}
 	}
 
+	o.findTileToKnockBackTo = function( _userTile, _targetTile ) {
+		return this.skill.getForcedMovementDestinationTile(_userTile, _targetTile);
+	}
+
 	o.onTargetSelected <- function ( _targetTile ) {
 		local knockToTile = this.findTileToKnockBackTo(this.getContainer().getActor().getTile(), _targetTile);
 
-		if (knockToTile == null)
+		if (knockToTile == null) {
 			return;
+		}
+
+		local target = _targetTile.getEntity();
+		if (target == null) {
+			return;
+		}
+
+		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab || target.getCurrentProperties().IsRooted) {
+			return;
+		}
+
+		if (!_targetTile.IsEmpty) {
+			return
+		}
+
 		// to show where the target may be knocked back
 		::Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
 	}

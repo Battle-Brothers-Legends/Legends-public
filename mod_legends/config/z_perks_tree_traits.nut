@@ -41,8 +41,8 @@ if (!("Perks" in ::Const)) {
 	],
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.NineLives, ::Legends.Perk.LegendRecuperation],
-		[],
+		[::Legends.Perk.NineLives],
+		[::Legends.Perk.LegendRecuperation],
 		[::Legends.Perk.HoldOut],
 		[],
 		[],
@@ -161,7 +161,7 @@ if (!("Perks" in ::Const)) {
 	],
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.Student, ::Legends.Perk.Gifted],
+		[::Legends.Perk.Gifted, ::Legends.Perk.Student],
 		[],
 		[],
 		[],
@@ -209,8 +209,8 @@ if (!("Perks" in ::Const)) {
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[::Legends.Perk.FastAdaption, ::Legends.Perk.Adrenaline],
-		[::Legends.Perk.Footwork],
-		[],
+		[::Legends.Perk.LegendTacticalManeuvers],
+		[::Legends.Perk.Overwhelm],
 		[],
 		[],
 		[],
@@ -257,8 +257,8 @@ if (!("Perks" in ::Const)) {
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
-		[::Legends.Perk.FortifiedMind],
-		[::Legends.Perk.Steadfast],
+		[],
+		[::Legends.Perk.Steadfast, ::Legends.Perk.FortifiedMind],
 		[],
 		[],
 		[],
@@ -303,9 +303,9 @@ if (!("Perks" in ::Const)) {
 	],
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.Underdog], // this is called ironside if it's confusing
-		[::Legends.Perk.LegendUnderdog],
-		[::Legends.Perk.Footwork],
+		[], // this is called ironside if it's confusing
+		[::Legends.Perk.Underdog],
+		[::Legends.Perk.LegendTacticalManeuvers, ::Legends.Perk.LegendUnderdog],
 		[],
 		[::Legends.Perk.LegendPrepared],
 		[],

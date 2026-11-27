@@ -11,6 +11,7 @@ import sys
 import subprocess
 import shutil
 import re
+import json
 import importlib.util
 
 
@@ -44,6 +45,42 @@ def load_config(config_path: Path) -> Config:
 class BuildError(Exception):
 	"""Base exception for build errors"""
 	pass
+
+
+CACHE_DIR = ".build_cache"
+
+def load_cache(base_dir, name):
+	try:
+		return json.loads((Path(base_dir) / CACHE_DIR / f"{name}.json").read_text())
+	except Exception:
+		return {}
+
+def save_cache(base_dir, name, data):
+	"""Remember something for the next build"""
+	cache_dir = Path(base_dir) / CACHE_DIR
+	cache_dir.mkdir(exist_ok=True)
+	(cache_dir / f"{name}.json").write_text(json.dumps(data, indent=1, sort_keys=True))
+
+def scan_files(directory):
+	found = []
+
+	def scan(current, prefix):
+		with os.scandir(current) as entries:
+			for entry in entries:
+				if entry.is_dir():
+					scan(entry.path, f"{prefix}{entry.name}/")
+				else:
+					found.append((f"{prefix}{entry.name}", entry))
+
+	if os.path.isdir(directory):
+		scan(directory, "")
+	found.sort(key=lambda file: file[0])
+	return found
+
+def file_stamp(file):
+	"""Size and modification time of an os.DirEntry or Path, used to tell if a file changed without reading it"""
+	stat = file.stat()
+	return f"{stat.st_size}|{stat.st_mtime_ns}"
 
 
 class BuildUtils:

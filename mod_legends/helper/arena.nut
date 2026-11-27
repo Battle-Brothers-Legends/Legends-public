@@ -120,3 +120,10 @@ if (!("Arena" in ::Legends))
 		});
 	});
 }
+
+::Legends.Arena.grantWins <- function (_bro, _wins) {
+	local flags = _bro.getFlags();
+	flags.set("ArenaFightsWon", ::Math.max(_wins, flags.getAsInt("ArenaFightsWon")));
+	flags.set("ArenaFights", ::Math.max(_wins, flags.getAsInt("ArenaFights")));
+	::Legends.Arena.updateTraits([], _bro);
+}

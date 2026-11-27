@@ -11,6 +11,7 @@ this.legend_named_lindwurm_helmet <- this.inherit("scripts/items/legend_helmets/
 		this.legend_named_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_named_lindwurm_helmet";
 		this.m.Type = ::Const.Items.HelmetUpgrades.Helm;
+		this.m.IsImmuneToAcid = true;
 		this.m.Name = "Wild Helmet";
 		this.m.Description = "Covered in the scales of the dreaded Lindwurm, not only does this helmet deflect blows and hits, but they also remain unscathed by the acidic Lindwurm blood.";
 		this.m.ArmorDescription = this.m.Description;
@@ -57,28 +58,5 @@ this.legend_named_lindwurm_helmet <- this.inherit("scripts/items/legend_helmets/
 			text = "Unaffected by acidic Lindwurm blood"
 		});
 		return result;
-	}
-
-	function onEquip()
-	{
-		this.legend_named_helmet_upgrade.onEquip();
-		local c = this.m.Armor.getContainer();
-
-		if (!c.isNull() && !c.getActor().isNull())
-		{
-			c.getActor().getFlags().add("head_immune_to_acid");
-		}
-	}
-
-	function onUnequip()
-	{
-		local c = this.m.Armor.getContainer();
-
-		if (!c.isNull() && !c.getActor().isNull())
-		{
-			c.getActor().getFlags().remove("head_immune_to_acid");
-		}
-
-		this.legend_named_helmet_upgrade.onUnequip();
 	}
 });

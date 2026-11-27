@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/backgrounds/companion_ranged_background", function(o) {
 	o.create = function() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Companion);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.CompanionRanged);
 		this.m.DailyCostMult = 1.0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

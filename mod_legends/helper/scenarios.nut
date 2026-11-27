@@ -39,8 +39,18 @@
 	"scenario.legends_risen_legion": 403,
 	"scenario.legends_solo_necro": 404,
 	//random
-	"scenario.legends_random_3": 600,
-	"scenario.legends_random_party": 601,
-	"scenario.legends_random_solo": 602,
-	"scenario.random": 603,
+	"scenario.legends_random_3": 9900,
+	"scenario.legends_random_party": 9901,
+	"scenario.legends_random_solo": 9902,
+	"scenario.random": 9903,
+}
+
+::Legends.Scenarios.Groups <- [];
+
+::Legends.Scenarios.addGroup <- function (_name, _scenarioIDs) {
+	::Legends.Scenarios.Groups.push(_name);
+
+	foreach (i, id in _scenarioIDs) {
+		::Legends.Scenarios.Order[id] <- (4 + ::Legends.Scenarios.Groups.len()) * 100 + i;
+	}
 }

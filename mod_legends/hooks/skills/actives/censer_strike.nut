@@ -4,7 +4,7 @@
 		create();
 		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 13;
-		this.m.BlockBypass = 0.25;
+		this.m.BlockBypass = 0.50;
 	}
 
 	o.onAfterUpdate = function (_properties) {

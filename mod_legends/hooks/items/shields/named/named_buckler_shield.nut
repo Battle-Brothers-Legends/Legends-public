@@ -4,12 +4,12 @@
 	local create = o.create;
 	o.create <- function () {
 		create();
-		this.m.Description += " Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
 		this.m.Variants = [1];
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.Block = 5;
 		this.m.RegularDamage = 5;
 		this.m.RegularDamageMax = 10;
+		this.m.Value = 350;
 		this.updateVariant();
 	}
 
@@ -19,6 +19,17 @@
 		this.m.RegularDamage = 5;
 		this.m.RegularDamageMax = 10;
 		this.named_shield.randomizeValues();
+	}
+
+	o.getTooltip <- function () {
+		local tooltip = this.named_shield.getTooltip();
+		tooltip.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Gain [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block"
+		});
+		return tooltip;
 	}
 
 	o.addSkill <- function( _skill ) {
@@ -34,6 +45,11 @@
 	local onEquip = o.onEquip;
 	o.onEquip = function () {
 		onEquip();
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendBucklerDefense);
+		::Legends.Effects.grant(this.getContainer().getActor(), ::Legends.Effect.LegendBucklerDefense);
+	}
+
+	o.onUnequip <- function () {
+		this.shield.onUnequip();
+		::Legends.Effects.remove(this.getContainer().getActor(), ::Legends.Effect.LegendBucklerDefense);
 	}
 });

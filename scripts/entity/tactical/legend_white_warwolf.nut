@@ -10,6 +10,8 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		} else {
 			this.m.Item = this.WeakTableRef(_i);
 		}
+
+		::Legends.Professions.onAnimalDeployed(this, _i);
 	}
 
 	function setName(_n) {
@@ -63,6 +65,8 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		::Legends.Professions.onAnimalDowned(this, _fatalityType);
+
 		if (_tile != null) {
 			local flip = ::Math.rand(0, 100) < 50;
 			local appearance = this.getItems().getAppearance();

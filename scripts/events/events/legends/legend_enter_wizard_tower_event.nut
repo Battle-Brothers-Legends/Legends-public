@@ -1,6 +1,7 @@
 this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 	m = {
-		Observer = null
+		Observer = null,
+		Dude = null
 	},
 	function create() {
 		this.m.ID = "event.location.legend_enter_wizard_tower";

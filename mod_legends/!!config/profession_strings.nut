@@ -182,6 +182,10 @@ A loyal hound asks for nothing but a fair meal and will gladly give its life in 
 • Breed dogs while camping.
 
 • Increases the dog breeding speed.
+
+• Animals unleashed in battle have [color=%positive%]+20%[/color] Hitpoints.
+
+• An unleashed animal that is downed without being decapitated, disemboweled or smashed has a chance to survive the battle.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendDrillSergeant <- @"
@@ -553,7 +557,7 @@ Broadening one's perspective by reading at times gives better results than pract
 
 • Gains [color=%positive%]20%[/color] more profession experience.
 
-• Adds an extra profession point (when?).
+• Gains an extra profession point upon reaching profession level [color=%positive%]6[/color].
 ";
 
 ::Const.Strings.ProfessionDescription.LegendScrapping <- @"

@@ -76,8 +76,8 @@
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += this.m.Item.getAdditionalAccuracy();
-			_properties.RangedSkill += this.m.HitChanceBonus;
+			local bonus = this.m.Item.getAdditionalAccuracy();
+			_properties.RangedSkill += this.addHitChanceBonus(bonus);
 			_properties.HitChanceAdditionalWithEachTile -= 10;
 			if (this.getContainer().hasPerk(::Legends.Perk.LegendThrustMaster)) {
 				_properties.HitChanceAdditionalWithEachTile += 10;

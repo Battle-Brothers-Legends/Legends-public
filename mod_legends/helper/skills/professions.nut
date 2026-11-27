@@ -122,21 +122,77 @@ if (!("Professions" in ::Legends))
     }
 }
 
+::Legends.Professions.DogBreederHitpoints <- 0.2;
+
+::Legends.Professions.getAnimalSurvivalChance <- function (_additionalBros = 0) {
+	local breeder = ::Legends.Professions.ProfessionDefObjects[::Legends.Profession.LegendDogBreeder];
+	local barber = ::Legends.Professions.ProfessionDefObjects[::Legends.Profession.LegendButcherBarber];
+	return ::Legends.Professions.getProfessionEffect({
+		ID = breeder.ID,
+		ScalingArray = barber.ScalingArray,
+		ScalingFactor = barber.ScalingFactor
+	}, _additionalBros);
+}
+
+// Called when an animal is unleashed from the item of its handler
+::Legends.Professions.onAnimalDeployed <- function (_animal, _item) {
+	if (::Legends.S.isNull(_item) || ::Legends.S.isNull(_item.getContainer()) || !("Assets" in ::World) || ::World.Assets == null) {
+		return;
+	}
+
+	local handler = _item.getContainer().getActor();
+	if (::Legends.S.isNull(handler) || handler.getFaction() != ::Const.Faction.Player || ::World.Assets.m.ProfessionEffect.LegendDogBreeder <= 0) {
+		return;
+	}
+
+	local properties = _animal.getBaseProperties();
+	local mult = 1.0 + ::Legends.Professions.DogBreederHitpoints;
+	properties.Hitpoints = ::Math.round(properties.Hitpoints * mult);
+	_animal.getSkills().update();
+	_animal.setHitpoints(::Math.round(_animal.getHitpoints() * mult));
+}
+
+// Called before an unleashed animal dies. Without a fatality it has a chance to live
+::Legends.Professions.onAnimalDowned <- function (_animal, _fatalityType) {
+	if (_fatalityType != ::Const.FatalityType.None || ::Legends.S.isNull(_animal.m.Item) || _animal.getFaction() != ::Const.Faction.PlayerAnimals) {
+		return;
+	}
+
+	if (!("Assets" in ::World) || ::World.Assets == null || ::Math.rand(1, 1000) > ::Legends.Professions.getAnimalSurvivalChance() * 1000) {
+		return;
+	}
+
+	// the item still counts the animal as unleashed until the battle is over, so it can not be sent out again
+	_animal.m.Item = null;
+	::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_animal) + " is down, but will live");
+}
+
+// The camp station a character is at. On the march it is the one they would be at when making camp now, the Secondary when there is nothing to do at the Primary
+::Legends.Professions.getCampStation <- function (_bro) {
+	local camp = ::World.Camp;
+	if (camp.isCamping() || camp.m.IsEscorting) {
+		return _bro.getCampAssignment();
+	}
+
+	local secondary = _bro.getSecondaryCampAssignment();
+	return secondary != null && camp.getActiveAssignment(_bro, false) == secondary ? secondary : _bro.getPrimaryCampAssignment();
+}
+
 // Called every hour. Each worker of a camp station adds 100% plus their working speed, the sum is split evenly between them
 ::Legends.Professions.updateExp <- function () {
 	local exp = ::Legends.Professions.Exp;
 	local roster = ::World.getPlayerRoster().getAll();
 
-	foreach (id, modifier in exp.Stations) {
-		local tent = ::World.Camp.getBuildingByID(id);
+	foreach (station in exp.Stations) {
+		local tent = ::World.Camp.getBuildingByID(station.ID);
 		if (tent == null) {
 			continue;
 		}
 
-		local workers = roster.filter(@(_, _bro) _bro.getCampAssignment() == id);
+		local workers = roster.filter(@(_, _bro) ::Legends.Professions.getCampStation(_bro) == station.ID);
 		local total = 0.0;
 		foreach (bro in workers) {
-			total += 1.0 + bro.getCurrentProperties().Modifiers[modifier];
+			total += 1.0 + bro.getCurrentProperties().Modifiers[station.Modifier];
 		}
 
 		// A station that is not at work, like on the march or a dangerous one while escorting, only grants the passive share

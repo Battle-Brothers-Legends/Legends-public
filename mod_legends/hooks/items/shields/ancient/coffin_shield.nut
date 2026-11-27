@@ -16,7 +16,8 @@
 		this.m.ConditionMax = 36;
 		this.m.Block = 13;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamageMax = 25;
+		this.m.RegularDamageMax = 20;
+		this.m.Value = 250;
 	}
 
 	o.getTooltip <- function () {
@@ -41,6 +42,7 @@
 			_skill.m.Icon = "skills/fortify_square.png";
 			_skill.m.IconDisabled = "skills/fortify_square_bw.png";
 		});
+		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 });

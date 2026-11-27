@@ -52,6 +52,7 @@
 ::mods_queue(::Legends.ID + "_load_order_fix", [
 	">mod_legends", // mods listed here will be forced to load after legends
 	"<mod_prepare_carefully",
+	"<mod_stronghold",
 ].reduce(@(p, n) ::format("%s, %s", p, n)), function () {});
 
 // compat mod

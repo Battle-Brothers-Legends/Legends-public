@@ -2,7 +2,7 @@
 	o.m.TurnsLeft = 3;
 
 	o.getDescription = function () {
-		return "This character just received a hurtful reminder of what they need to do for %their% masters.";
+		return this.resolveDescription("This character just received a hurtful reminder of what they need to do for %their% masters.");
 	}
 
 	o.getTooltip <- function () {

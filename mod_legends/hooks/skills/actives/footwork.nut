@@ -24,7 +24,7 @@
 		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip) && this.m.IsFootwork) {
 			this.m.MaxRange = 2;
 		}
-		if (this.m.IsFootwork) {
+		if (!this.m.IsFootwork) {
 			this.m.FatigueCost -= 5;
 			this.m.ActionPointCost -= 2;
 		}
@@ -32,8 +32,8 @@
 		_properties.SkillCostAdjustments.push({
 			// fix vanilla with hard setting fat cost in onAfterUpdate
 			ID = this.m.ID,
-			APAdjust = ::Legends.Effects.has(this.getContainer(), ::Legends.Effect.GoblinGruntPotion) ? -1: 0,
-			FatigueMultAdjust = _properties.IsFleetfooted ? 0.5: 1.0
+			APAdjust = ::Legends.Effects.has(this.getContainer(), ::Legends.Effect.GoblinGruntPotion) ? -1 : 0,
+			FatigueMultAdjust = _properties.IsFleetfooted ? 0.5 : 1.0
 		});
 	}
 

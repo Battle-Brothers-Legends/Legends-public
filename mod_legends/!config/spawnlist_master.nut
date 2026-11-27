@@ -202,8 +202,8 @@
 ::Const.World.Spawn.Troops.LegendBanditExecutioner <- {
 	ID = ::Const.EntityType.LegendBanditExecutioner,
 	Variant = 1,
-	Strength = 25,
-	Cost = 25,
+	Strength = 30,
+	Cost = 30,
 	Row = -1,
 	NameList = ::Const.Strings.PeasantButcherNames,
 	TitleList = ::Const.Strings.PeasantButcherTitles,
@@ -213,8 +213,8 @@
 ::Const.World.Spawn.Troops.LegendBanditExecutionerHigh <- {
 	ID = ::Const.EntityType.LegendBanditExecutionerHigh,
 	Variant = 1,
-	Strength = 45,
-	Cost = 45,
+	Strength = 60,
+	Cost = 60,
 	Row = -1,
 	NameList = ::Const.Strings.PeasantButcherNames,
 	TitleList = ::Const.Strings.PeasantButcherTitles,

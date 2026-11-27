@@ -1,7 +1,7 @@
 this.legend_stollwurm_move_tail_skill <- this.inherit("scripts/skills/actives/move_tail_skill", {
 	m = {},
 	function create() {
-		this.move_tail_skill.onCreate();
+		this.move_tail_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStollwurmMoveTail);
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/digging", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/digging", 3);

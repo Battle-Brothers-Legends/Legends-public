@@ -71,6 +71,20 @@ this.profession_legend_favoured_enemy <- this.inherit("scripts/skills/skill", {
 				text = "[color=%positive%]+" + ::Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve"
 			});
 		}
+		// progress to the next point of the bonus, until it is maxed. Shown below the hint with the kills
+		if (stats.HitChance < 25) {
+			local xpPerBonus = ::Legends.FavoriteEnemy.XPPerBonus;
+			tooltip.push({
+				id = 13,
+				type = "progressbar",
+				isHint = true,
+				icon = "ui/icons/xp_received.png",
+				value = stats.XP % xpPerBonus,
+				valueMax = xpPerBonus,
+				text = "" + (stats.XP % xpPerBonus) + " / " + xpPerBonus + " XP",
+				style = "action-points-slim"
+			});
+		}
 		return tooltip;
 	}
 

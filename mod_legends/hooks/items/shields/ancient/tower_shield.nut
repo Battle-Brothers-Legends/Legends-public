@@ -17,7 +17,8 @@
 		this.m.ConditionMax = 48;
 		this.m.Block = 15;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamageMax = 25;
+		this.m.RegularDamageMax = 20;
+		this.m.Value = 600;
 	}
 
 	o.onEquip = function () {
@@ -26,6 +27,7 @@
 			_skill.m.Icon = "skills/fortify_square.png";
 			_skill.m.IconDisabled = "skills/fortify_square_bw.png";
 		});
+		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 });

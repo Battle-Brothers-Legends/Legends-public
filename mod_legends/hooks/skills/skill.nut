@@ -9,6 +9,14 @@
 
 	o.onShieldHitSkills <- function (_skill, _attacker, _shield) {}
 
+	// For onAnySkillUsed of an attack skill: adds _bonus to the HitChanceBonus of this skill and returns its own hit chance bonus,
+	// which is the one it was created with plus _bonus, to add to MeleeSkill or RangedSkill of the properties.
+	// Never add HitChanceBonus as a whole to them, as perks and effects add their bonuses to it too after applying them on their own
+	o.addHitChanceBonus <- function (_bonus = 0) {
+		this.m.HitChanceBonus += _bonus;
+		return (this.m.IsBaseValuesSaved ? this.getBaseValue("HitChanceBonus") : 0) + _bonus;
+	}
+
 	local onShieldHit = o.onShieldHit;
 	o.onShieldHit = function (_info) {
 		onShieldHit(_info);
@@ -43,6 +51,10 @@
 	}
 
 	o.getDescription = function () {
+		return this.resolveDescription(this.m.Description);
+	}
+
+	o.resolveDescription <- function (_description) {
 		local vars = [];
 		local container = this.getContainer();
 		if (container != null && (typeof container == "instance" && !container.isNull()) && container.getActor() != null) {
@@ -63,7 +75,7 @@
 			]);
 			::Const.LegendMod.extendVarsWithPronouns(vars, actor);
 		}
-		return this.buildTextFromTemplate(this.m.Description, vars);
+		return this.buildTextFromTemplate(_description, vars);
 	}
 
 	local getActionPointCost = o.getActionPointCost;
@@ -212,7 +224,7 @@
 			["_additionalHitchance", p.HitChanceAdditionalWithEachTile]
 		];
 		if (adjustedHitChanceBonus != 0 && this.m.IsRanged) {
-			local hitChanceText = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" : "Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit";
+			local hitChanceText = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit" : "Has [color=%negative%]%_hitChanceBonus%%[/color] chance to hit";
 			if (p.HitChanceAdditionalWithEachTile != 0) {
 				hitChanceText += ", and " + (p.HitChanceAdditionalWithEachTile > 0 ? "[color=%positive%]+" : "[color=%negative%]") + "%_additionalHitchance%[/color] per tile of distance";
 			}
@@ -228,7 +240,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit": "Has [color=%negative%]-%_hitChanceBonus%%[/color] chance to hit",
+				text = adjustedHitChanceBonus > 0 ? "Has [color=%positive%]+%_hitChanceBonus%%[/color] chance to hit": "Has [color=%negative%]%_hitChanceBonus%%[/color] chance to hit",
 				param = hitChanceBonus
 			});
 		}
@@ -263,10 +275,19 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Reduce the damage mitigated from block by [color=%negative%]%block_bypass%[/color]",
+				text = "Reduce the damage mitigated from block by [color=%negative%]%block_bypass%%[/color]",
 				param = [
-					["block_bypass", this.m.BlockBypass]
+					["block_bypass", this.m.BlockBypass * 100]
 				]
+			});
+		}
+
+		if (this.m.DirectDamageMult == 1.0 && this.m.BlockBypass < 1.0) {
+			ret.push({
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a chance to ignore all Block of the target, equal to [color=%positive%]100%[/color] minus that Block"
 			});
 		}
 
@@ -1572,8 +1593,8 @@
 		}
 
 		local hitInfo = clone ::Const.Tactical.HitInfo;
-		hitInfo.DamageRegular = damageRegular * damageMult;
-		hitInfo.DamageArmor = damageArmor * damageMult;
+		damageRegular = damageRegular * damageMult;
+		damageArmor = damageArmor * damageMult;
 		hitInfo.DamageDirect = damageDirect;
 		hitInfo.DamageFatigue = ::Const.Combat.FatigueReceivedPerHit * _info.Properties.FatigueDealtPerHitMult + _info.Properties.FatigueDealtAsPercentOfMaxFatigue * _info.TargetEntity.getFatigueMax();
 		hitInfo.DamageMinimum = _info.Properties.DamageMinimum;
@@ -1586,8 +1607,30 @@
 		_info.Container.onBeforeTargetHit(_info.Skill, _info.TargetEntity, hitInfo);
 
 		local blockValue = ::Math.floor(_info.TargetEntity.getBlock() * (1.0 - this.m.BlockBypass));
-		hitInfo.DamageRegular = ::Math.max(::Math.round(hitInfo.DamageRegular) - blockValue, 0);
-		hitInfo.DamageArmor = ::Math.max(::Math.round(hitInfo.DamageArmor) - blockValue, 0);
+
+		// an attack whose damage all ignores armor can pierce through Block as well, the more Block the target has the less likely
+		if (blockValue > 0 && hitInfo.DamageDirect >= 1.0) {
+			local chance = ::Math.max(0, 100 - _info.TargetEntity.getBlock());
+			local roll = ::Math.rand(1, 100);
+			if (roll <= chance) {
+				blockValue = 0;
+				if (!::Legends.S.isEntityNullOrDead(_info.User) && !_info.TargetEntity.isHiddenToPlayer()) {
+					::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_info.User) + "\'s " + this.getName() + " pierces through the Block of " + ::Const.UI.getColorizedEntityName(_info.TargetEntity) + " (Chance: " + chance + ", Rolled: " + roll + ")");
+				}
+			}
+		}
+		hitInfo.DamageRegular = ::Math.max(::Math.round(damageRegular) - blockValue, 0);
+		hitInfo.DamageArmor = ::Math.max(::Math.round(damageArmor) - blockValue, 0);
+		
+		if (blockValue > 0 && !_info.User.isHiddenToPlayer() && !_info.TargetEntity.isHiddenToPlayer()) {
+			local message = format("%s blocked %u", ::Const.UI.getColorizedEntityName(_info.TargetEntity), blockValue);
+			if (hitInfo.DamageRegular == 0.0 && hitInfo.DamageArmor == 0.0) {
+				::Tactical.EventLog.logEx(format("%s fully blocked the attack! (%s)", ::Const.UI.getColorizedEntityName(_info.TargetEntity), message));
+			}
+			else {
+				::Tactical.EventLog.logEx(message);	
+			}
+		}
 
 		// I'm kind of sure there will be errors so here's an explanation: block works after calculating damage on attacker side and before damage on defender, any further damage is substracted
 		// if the entire damage is substracted it'll count as a shield hit but i'm also envisioning that you can gain block without a shield so there's a check below

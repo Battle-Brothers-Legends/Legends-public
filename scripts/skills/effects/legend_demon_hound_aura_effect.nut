@@ -17,7 +17,15 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=%negative%]-" + this.m.Penalty * 100 + "%[/color] Initiative"
+				text = "[color=%negative%]-%_penalty%%[/color] Initiative",
+				param = [["_penalty", this.m.Penalty * 100]]
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-%_penalty%%[/color] Block",
+				param = [["_penalty", this.m.Penalty * 100]]
 			}
 		]);
 		return tooltip;
@@ -46,6 +54,7 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		this.m.Penalty = this.calculatePenalty(_properties);
 		_properties.InitiativeMult *= 1.0 - this.m.Penalty;
+		_properties.BlockMult *= 1.0 - this.m.Penalty;
 	}
 
 	function getActorHoverTooltip(_activeEntity, _stacks = 1) {

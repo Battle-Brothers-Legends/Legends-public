@@ -19,16 +19,16 @@
 };
 
 ::Const.Tactical.Actor.LegendBanditExecutioner <- {
-	XP = 275,
+	XP = 375,
 	ActionPoints = 9,
-	Hitpoints = 90,
-	Bravery = 60,
-	Stamina = 125,
+	Hitpoints = 100,
+	Bravery = 75,
+	Stamina = 130,
 	MeleeSkill = 75,
 	RangedSkill = 55,
-	MeleeDefense = 0,
-	RangedDefense = 0,
-	Initiative = 115,
+	MeleeDefense = 15,
+	RangedDefense = 10,
+	Initiative = 125,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [
@@ -39,23 +39,23 @@
 };
 
 ::Const.Tactical.Actor.LegendBanditExecutionerHigh <- {
-	XP = 450,
-	ActionPoints = 9,
+	XP = 700,
+	ActionPoints = 11,
 	Hitpoints = 225,
-	Bravery = 90,
-	Stamina = 160,
-	MeleeSkill = 85,
+	Bravery = 180,
+	Stamina = 180,
+	MeleeSkill = 125,
 	RangedSkill = 50,
-	MeleeDefense = 10,
-	RangedDefense = 10,
-	Initiative = 125,
+	MeleeDefense = 40,
+	RangedDefense = 25,
+	Initiative = 185,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [
 		0,
 		0
 	],
-	FatigueRecoveryRate = 25
+	FatigueRecoveryRate = 30
 };
 
 ::Const.Tactical.Actor.LegendRobberBaron <- { // You contracted in the wrong neighbourhood

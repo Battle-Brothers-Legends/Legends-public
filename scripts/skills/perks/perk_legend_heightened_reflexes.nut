@@ -13,7 +13,7 @@ this.perk_legend_heightened_reflexes <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		_properties.DamageTotalMult += this.getBonus();
+		_properties.DamageTotalMult *= 1.0 + this.getBonus();
 	}
 
 	function getTooltip() {
@@ -28,7 +28,7 @@ this.perk_legend_heightened_reflexes <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=%positive%]+" + (this.getBonus(_actor) *100) + "%[/color] Damage dealt"
+				text = "[color=%positive%]+" + (this.getBonus(_actor) * 100) + "%[/color] Damage dealt"
 			}
 		];
 	}

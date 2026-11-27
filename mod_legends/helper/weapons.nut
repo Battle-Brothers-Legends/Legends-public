@@ -2,6 +2,12 @@ if (!("Weapons" in ::Legends)) {
     ::Legends.Weapons <- {};
 }
 
+// Block that a sword gives in the main hand instead of a bonus to hit, without and with its mastery
+::Legends.Weapons.SwordBlock <- {
+	OneHanded = [5, 10],
+	TwoHanded = [5, 15]
+};
+
 ::Legends.Weapons.findPrimaryAttackSkill <- function (_actor, _weapon) {
     if (_actor == null || _weapon == null) {
         return null;
@@ -32,10 +38,6 @@ if (!("Weapons" in ::Legends)) {
             bestSkill = skill;
             bestAPCost = apCost;
         }
-    }
-
-    if (bestSkill == null) {
-        ::logWarning("findPrimaryAttackSkill: no valid skill for weapon " + _weapon.getID());
     }
 
     return bestSkill;

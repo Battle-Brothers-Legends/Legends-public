@@ -200,7 +200,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 	}
 
 	function onHiredByScenario(_bro) {
-		if (::Legends.Backgrounds.getID(_bro, ::Legends.Background.Graverobber, ::Legends.Background.Gravedigger, ::Legends.Background.Cultist, ::Legends.Background.Anatomist, ::Legends.Background.ConvertedCultist)) {
+		if (::Legends.Backgrounds.hasAny(_bro, ::Legends.Background.Graverobber, ::Legends.Background.Gravedigger, ::Legends.Background.Cultist, ::Legends.Background.Anatomist, ::Legends.Background.ConvertedCultist)) {
 			_bro.improveMood(1.5, "I feel strange...but better!");
 			_bro.getSprite("socket").setBrush("bust_base_undead");
 			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendDeathlySpectre);

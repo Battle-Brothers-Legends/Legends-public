@@ -32,6 +32,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.getFlags().add("skeleton");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/wardog_agent");
 		this.m.AIAgent.setActor(this);
+		this.m.AIAgent.removeBehavior("ai_flee");
 
 		local rolls = ::Legends.Items.extraLootChance(1);
 		for (local i = 0; i < rolls; i++) {

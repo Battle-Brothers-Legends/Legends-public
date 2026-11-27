@@ -203,4 +203,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted_back", this.createVec(7, 10 - 10.0 * (1.0 - _s)));
 	}
 
+	function hasZoneOfControl()	{
+		return false;
+	}
 });

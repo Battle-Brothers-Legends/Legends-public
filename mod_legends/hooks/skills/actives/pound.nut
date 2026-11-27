@@ -29,7 +29,8 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to stun on a hit"
+			text = "Has a [color=%positive%]%_stun%%[/color] chance to stun on a hit",
+			param = [["_stun", this.m.StunChance]]
 		});
 		return ret;
 	}

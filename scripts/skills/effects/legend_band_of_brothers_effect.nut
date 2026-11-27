@@ -78,12 +78,12 @@ this.legend_band_of_brothers_effect <- this.inherit("scripts/skills/skill", {
 			this.m.IsHidden = true;
 			return;
 		}
-		if (this.m.Bonus > 0) {
+		if (this.m.Stacks > 0) {
 			this.m.IsHidden = false;
-			_properties.MeleeSkill += this.m.Bonus;
-			_properties.RangedSkill += (this.m.Bonus * 1.5);
-			_properties.MeleeDefense += this.m.Bonus;
-			_properties.RangedDefense += this.m.Bonus;
+			_properties.MeleeSkill += this.m.Stacks * 2;
+			_properties.RangedSkill += this.m.Stacks * 3;
+			_properties.MeleeDefense += this.m.Stacks * 2;
+			_properties.RangedDefense += this.m.Stacks * 2;
 		} else {
 			this.m.IsHidden = true;
 		}

@@ -8,8 +8,8 @@
 		this.m.ConditionMax = 96;
 		this.m.Block = 15;
 		this.m.RegularDamage = 10;
-		this.m.RegularDamageMax = 25;
-		this.m.Value = 1400;
+		this.m.RegularDamageMax = 20;
+		this.m.Value = 2900;
 		this.named_shield.randomizeValues();
 	}
 
@@ -19,6 +19,7 @@
 			_skill.m.Icon = "skills/fortify_square.png";
 			_skill.m.IconDisabled = "skills/fortify_square_bw.png";
 		});
+		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 });

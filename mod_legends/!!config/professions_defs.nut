@@ -105,8 +105,8 @@ if (!("Professions" in ::Legends)) {
         ScalingFactor = 1
     },
     LegendBreadAndGames = {
-        ScalingArray = [0, 1.5], // number of extra arena fights per day, fractions are a chance (1.15 = +1 and 15% chance of +2)
-        ScalingFactor = 0.1
+        ScalingArray = [0, 1.5, 2.0], // number of extra arena fights per day, fractions are a chance (1.15 = +1 and 15% chance of +2)
+        ScalingFactor = 0.125
     },
     LegendButcherBarber = {
         ScalingArray = [0, 0.1], // chance to lower the magnitude of gained permanent injury
@@ -162,8 +162,8 @@ if (!("Professions" in ::Legends)) {
         ScalingFactor = 0.5
     },
     LegendEyeForTalent = {
-        ScalingArray = [0, 4], // stars visible
-        ScalingFactor = 0.25
+        ScalingArray = [0, 2], // stars visible
+        ScalingFactor = 0.5
     },
     LegendFavouredEnemyBeast = {
 		Name = "Favoured Enemy - Beasts",
@@ -270,7 +270,7 @@ if (!("Professions" in ::Legends)) {
     },
     LegendLookout = {
         ScalingArray = [0, 0.2], // vision radius
-        ScalingFactor = 0.05
+        ScalingFactor = 0.25
     },
     LegendMaterialist = {
         ScalingArray = [0, 0.1], // better state of repair of undamaged by player items looted
@@ -355,7 +355,7 @@ if (!("Professions" in ::Legends)) {
     },
     LegendSkinning = {
         ScalingArray = [0, 0.2], // chance of extra loot from beasts
-        ScalingFactor = 0.05
+        ScalingFactor = 0.2
     },
     LegendSkillfulStacking = {
         ScalingArray = [0, 0.05], // extra inventory space percentage

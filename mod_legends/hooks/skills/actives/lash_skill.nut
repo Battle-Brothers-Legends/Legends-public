@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/actives/lash_skill", function (o) {
-	o.m.IsRanged <- false;
+	o.m.FlailType <- ::Legends.FlailType.Standard;
 
 	local create = o.create;
 	o.create = function() {
@@ -8,7 +8,7 @@
 	}
 	
 	o.setItem <- function (_item) {
-		if (this.m.IsRanged) {
+		if (this.m.FlailType == ::Legends.FlailType.Pole) {
 			this.m.Description = "Flailing at an opponent over some distance. Somewhat unpredictable in damage, but able to strike over or around shield cover.";
 			this.m.Icon = "skills/active_92.png";
 			this.m.IconDisabled = "skills/active_92_sw.png";
@@ -22,7 +22,7 @@
 
 	o.getTooltip = function() {
 		local ret = this.getDefaultTooltip();
-		if (this.m.IsRanged) {
+		if (this.m.FlailType == ::Legends.FlailType.Pole) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -45,7 +45,7 @@
 
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-			if (this.m.IsRanged) {
+			if (this.m.FlailType == ::Legends.FlailType.Pole) {
 				this.m.ActionPointCost -= 1;
 			}
 			this.m.IsShieldRelevant = false;
@@ -59,9 +59,10 @@
 			return;
 		}
 		_properties.HitChance[::Const.BodyPart.Head] += 100.0;
-		if (this.m.IsRanged && _targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
-			this.m.HitChanceBonus += -15;
+		local bonus = 0;
+		if (this.m.FlailType == ::Legends.FlailType.Pole && _targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+			bonus += -15;
 		}
-		_properties.MeleeSkill += this.m.HitChanceBonus;
+		_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 	}
 });

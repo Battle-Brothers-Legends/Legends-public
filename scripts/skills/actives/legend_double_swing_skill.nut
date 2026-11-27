@@ -54,9 +54,7 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 
 		local mhSkill = ::Legends.Weapons.findPrimaryAttackSkill(actor, mh);
-		if (mhSkill == null) {
-			::logWarning("legend_double_swing: no valid attack skill found for mainhand");
-		} else {
+		if (mhSkill != null) {
 			ret.push({
 				id = 10,
 				type = "text",
@@ -66,9 +64,7 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(actor, oh);
-		if (ohSkill == null) {
-			::logWarning("legend_double_swing: no valid attack skill found for offhand");
-		} else {
+		if (ohSkill != null) {
 			ret.push({
 				id = 11,
 				type = "text",
@@ -96,7 +92,9 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		if (!this.skill.isUsable()) {
 			return false;
 		}
-		return ::Legends.Weapons.isDualWielding(this.getContainer().getActor());
+		// disarm check
+		local actor = this.getContainer().getActor();
+		return actor.getCurrentProperties().IsAbleToUseWeaponSkills && ::Legends.Weapons.isDualWielding(actor);
 	}
 
 	function getFatigueCost() {

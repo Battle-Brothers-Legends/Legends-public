@@ -164,10 +164,10 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	// details: requirements
 	detailsRow = $('<div class="row is-requirements-container"/>');
 	this.mDetailsPanel.Container.append(detailsRow);
-	var requirementsHeader = $('<div class="row is-header"/>');
+	/*var requirementsHeader = $('<div class="row is-header"/>');
 	detailsRow.append(requirementsHeader);
 	var requirementsHeaderLabel = $('<div class="label title-font-normal font-bold font-bottom-shadow font-color-title">Requirements</div>');
-	requirementsHeader.append(requirementsHeaderLabel);
+	requirementsHeader.append(requirementsHeaderLabel);*/
 
 	var row = $('<div class="row is-requirements-components-container"/>');
 	detailsRow.append(row);

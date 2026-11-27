@@ -124,14 +124,16 @@
 			Types =
 			[
 				{
-					MinR = 350,
+					MaxR = 599,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutioner,
-					Cost = 25,
+					Cost = 30,
+					Roll = true
 				},
 				{
 					MinR = 600,
 					Type = ::Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
-					Cost = 45,
+					Cost = 60,
+					Roll = true
 				}
 			]
 		},

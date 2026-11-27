@@ -22,6 +22,7 @@
 					});
 					_event.m.Sacrifice.getItems().transferToStash(::World.Assets.getStash());
 					::World.getPlayerRoster().remove(_event.m.Sacrifice);
+					::Legends.Professions.recalculateAllProfessions();
 					::World.Assets.getStash().makeEmptySlots(1);
 
 					local item = this.new("scripts/items/legend_armor/legendary/legend_davkul_armor");

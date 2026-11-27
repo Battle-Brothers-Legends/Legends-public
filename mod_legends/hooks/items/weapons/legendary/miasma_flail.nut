@@ -5,7 +5,7 @@
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.CenserStrike);
 		::Legends.Actives.grant(this, ::Legends.Active.Lash, function (_skill) {
-			_skill.m.IsRanged = true;
+			_skill.m.FlailType = ::Legends.FlailType.Pole;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.CenserCastigate);
 	}

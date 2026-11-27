@@ -108,6 +108,7 @@ var Asset =
 	ICON_SIGHT_DISTANCE:					'ui/icons/vision.png',
 	ICON_REGULAR_DAMAGE:					'ui/icons/regular_damage.png',
 	ICON_CRUSHING_DAMAGE:					'ui/icons/armor_damage.png',
+	ICON_BLOCK:								'ui/icons/block.png',
 	ICON_CHANCE_TO_HIT_HEAD:				'ui/icons/chance_to_hit_head.png',
 	ICON_INITIATIVE:						'ui/icons/initiative.png',
     ICON_BRAVERY:   						'ui/icons/bravery.png',

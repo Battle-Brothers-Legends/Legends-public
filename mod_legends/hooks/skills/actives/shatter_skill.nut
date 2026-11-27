@@ -31,10 +31,11 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this){
+			local bonus = 0;
 			if (_properties.IsSpecializedInHammers){
-				this.m.HitChanceBonus += 5;
+				bonus += 5;
 			}
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 		}
 	}
 });

@@ -1,5 +1,7 @@
 this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		Uses = 1
+	},
 
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMarkTarget);
@@ -26,39 +28,45 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip().filter(@(_, _row) _row.id != 7); // without the range line, it would say 99 tiles
-		ret.extend([
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/vision.png",
-				text = "Can be used on any enemy this character can see"
-			},
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				text = "[color=%negative%]-10[/color] Melee Defense"
-			},
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/ranged_defense.png",
-				text = "[color=%negative%]-10[/color] Ranged Defense"
-			},
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = "Up to [color=%positive%]20%[/color] Damage Received from all sources, scaling on Hitpoints"
-			}
-		]);
+		ret.extend([{
+			id = 7,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Can be used on any enemy this character can see"
+		},
+		{
+			id = 10,
+			type = "text",
+			icon = "ui/icons/melee_defense.png",
+			text = "[color=%negative%]-10[/color] Melee Defense"
+		},
+		{
+			id = 10,
+			type = "text",
+			icon = "ui/icons/ranged_defense.png",
+			text = "[color=%negative%]-10[/color] Ranged Defense"
+		},
+		{
+			id = 10,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = "Up to [color=%positive%]20%[/color] Damage Received from all sources, scaling on Hitpoints"
+		}]);
 		return ret;
+	}
+
+	function isUsable() {
+		return this.skill.isUsable() && this.m.Uses > 0;
+	}
+
+	function onAfterUpdate(_properties) {
+		this.m.FatigueCostMult = _properties.IsSpecializedInBows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
-
+		this.m.Uses = ::Math.max(0, this.m.Uses - 1)
 		if (target.isAlive() && !target.isDying()) {
 			::Legends.Effects.grant(target, ::Legends.Effect.LegendMarked);
 
@@ -68,8 +76,11 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onVerifyTarget(_originTile, _targetTile) //This stops you from targeting allies with this skill
-	{
+	function onTurnStart() {
+		this.m.Uses = this.getContainer().getActor().getCurrentProperties().IsSpecializedInBows ? 2 : 1;
+	}
+
+	function onVerifyTarget(_originTile, _targetTile) {
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}

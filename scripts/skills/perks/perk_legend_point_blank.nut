@@ -27,9 +27,19 @@ this.perk_legend_point_blank <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getBonus(_properties) {
-		local actor = this.getContainer().getActor();
-		local isWeaponThrowingType = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null && actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isWeaponType(::Const.Items.WeaponType.Throwing);
+	function getBonus(_properties, _item = null) {
+		local isWeaponThrowingType = false;
+		if (_item != null) {
+			isWeaponThrowingType = _item.isItemType(::Const.Items.ItemType.Weapon) && _item.isWeaponType(::Const.Items.WeaponType.Throwing);
+		} else {
+			local items = this.getContainer().getActor().getItems();
+			foreach (slot in [::Const.ItemSlot.Mainhand, ::Const.ItemSlot.Offhand]) {
+				local item = items.getItemAtSlot(slot);
+				if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing)) {
+					isWeaponThrowingType = true;
+				}
+			}
+		}
 		return (isWeaponThrowingType ? (::Math.floor(0.3 * _properties.getMeleeSkill()) + ::Math.floor(0.5 * _properties.getRangedDefense())) : ::Math.floor(0.3 * _properties.getRangedDefense()));
 	}
 
@@ -38,6 +48,6 @@ this.perk_legend_point_blank <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		_properties.DamageTotalMult *= 1.0 + this.getBonus(_properties) * 0.01;
+		_properties.DamageTotalMult *= 1.0 + this.getBonus(_properties, _skill.getItem()) * 0.01;
 	}
 });

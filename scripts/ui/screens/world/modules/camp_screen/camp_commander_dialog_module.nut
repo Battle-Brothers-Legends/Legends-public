@@ -1,7 +1,7 @@
 this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Commanders Tent",
-		Description = "Select a tent to assign workers from the list. Workers sorted from best to worse.",
+		Description = "Left click or drag assigns a Primary task, right click or drag a Secondary task.",
 		PopupDialogVisible = false,
 		CurrentTent = null,
 		RightClickedTent = null
@@ -58,7 +58,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 
 		foreach (b in brothers) {
 			local background = b.getBackground();
-			local tent = ::World.Camp.getBuildingByID(b.getCampAssignment());
+			local tent = ::World.Camp.getBuildingByID(b.getPrimaryCampAssignment());
 
 			local injuries = [];
 			local allInjuries = b.getSkills().query(::Const.SkillType.TemporaryInjury);
@@ -94,7 +94,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 				ImageOffsetY = b.getImageOffsetY(),
 				BackgroundImagePath = background.getIconColored(),
 				BackgroundText = background.getDescription(),
-				CampAssignment = b.getCampAssignment(),
+				CampAssignment = b.getPrimaryCampAssignment(),
 				CampBanner = tent.getBanner(),
 				Injuries = injuries,
 				Skills = skills
@@ -123,7 +123,8 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 			result.push({
 				id = b.getID(),
 				name = b.getName(),
-				count = b.getNumberAssigned(),
+				count = b.getNumberAssignedAs(false),
+				secondaryCount = b.getNumberAssignedAs(true),
 				bannerImage = b.getBanner(),
 				resourceImage = b.getResourceImage(),
 				resourceCount = b.getResourceCount()
@@ -135,6 +136,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 
 	function onTentSelected(_id) {
 		this.m.CurrentTent = ::World.Camp.getBuildingByID(_id);
+		::World.Camp.updateAssignments();
 		return {
 			Roster = this.m.CurrentTent.getSortedRoster(),
 			Label = this.m.CurrentTent.getName(),
@@ -146,35 +148,62 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 	}
 
 	function onBroAssigned(_data) {
-		local broID = _data[0];
-		local campID = _data[1];
-		local bro = ::Tactical.getEntityByID(broID);
-		if (bro.getCampAssignment() == campID) {
-			campID = bro.getLastCampAssignment();
-		}
-		local tent = ::World.Camp.getBuildingByID(campID);
-		if (!tent.onBroEnter(bro)) {
+		local bro = ::Tactical.getEntityByID(_data[0]);
+		if (!(_data[3] ? this.assignSecondary(bro, _data[1], !_data[2]) : this.assignPrimary(bro, _data[1], !_data[2]))) {
 			return;
 		}
-		tent = ::World.Camp.getBuildingByID(bro.getCampAssignment());
-		tent.onBroLeave(bro);
-		bro.setLastCampAssignment(bro.getCampAssignment());
-		bro.setCampAssignment(campID);
+		::World.Camp.updateAssignments();
 		::Sound.play("sounds/movement/movement_snow_00.wav", 1.0);
 		return this.queryLoad();
 	}
 
-	function onAssignedAll(_campID) {
-		local tent = this.m.CurrentTent == null ? ::World.Camp.getBuildingByID(_campID) : this.m.CurrentTent;
-
-		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() != _campID && tent.onBroEnter(_bro)))) {
-			::World.Camp.getBuildingByID(bro.getCampAssignment()).onBroLeave(bro);
-			bro.setLastCampAssignment(bro.getCampAssignment());
-			bro.setCampAssignment(_campID);
+	function onAssignedAll(_data) {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			if (_data[1]) {
+				this.assignSecondary(bro, _data[0], false);
+			} else {
+				this.assignPrimary(bro, _data[0], false);
+			}
 		}
 
+		::World.Camp.updateAssignments();
 		::Sound.play("sounds/movement/movement_snow_00.wav", 1.0);
 		return this.queryLoad();
+	}
+
+	function assignPrimary(_bro, _campID, _canToggle) {
+		local current = _bro.getPrimaryCampAssignment();
+		if (current == _campID) {
+			if (!_canToggle) {
+				return false;
+			}
+			_campID = _bro.getLastCampAssignment();
+		}
+		if (!::World.Camp.getBuildingByID(_campID).onBroEnter(_bro)) {
+			return false;
+		}
+		::World.Camp.getBuildingByID(current).onBroLeave(_bro);
+		// the two tasks swap when the Secondary one is made the Primary
+		if (_bro.getSecondaryCampAssignment() == _campID) {
+			_bro.setSecondaryCampAssignment(current);
+		}
+		_bro.setLastCampAssignment(current);
+		_bro.setCampAssignment(_campID);
+		return true;
+	}
+
+	function assignSecondary(_bro, _campID, _canToggle) {
+		if (_bro.getSecondaryCampAssignment() == _campID) {
+			if (_canToggle) {
+				_bro.setSecondaryCampAssignment(null);
+			}
+			return _canToggle;
+		}
+		if (_bro.getPrimaryCampAssignment() == _campID || !::World.Camp.getBuildingByID(_campID).onBroEnter(_bro)) {
+			return false;
+		}
+		_bro.setSecondaryCampAssignment(_campID);
+		return true;
 	}
 
 	function onSavePresetName(_data) {

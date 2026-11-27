@@ -12,7 +12,8 @@ this.camp_manager <- {
 		LastCampingUpdateText = [],
 		CampEncountersCooldownUntil = 0.0,
 		CampEncounters = [],
-		PendingCombat = null
+		PendingCombat = null,
+		PendingUpdateText = []
 	},
 
 	function create()
@@ -51,12 +52,69 @@ this.camp_manager <- {
 	}
 
 	function init() {
+		this.m.PendingUpdateText = [];
+
 		foreach( b in this.m.Tents ) {
 			if (this.canBuildingWorkCurrently(b, true, true)) {
 				b.init();
 			}
 		}
 		this.m.StartedWhileEscorting = ::World.State.m.EscortedEntity != null;
+		this.updateAssignments(true);
+	}
+
+	function addUpdateText( _text ) {
+		this.m.PendingUpdateText.push(_text);
+	}
+
+	function updateAssignments( _isReported = false ) {
+		local isWorking = this.m.IsCamping || this.m.IsEscorting;
+		local moves = {};
+
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			local previous = bro.getCampAssignment();
+			bro.setActiveCampAssignment(isWorking ? this.getActiveAssignment(bro) : bro.getPrimaryCampAssignment());
+
+			if (_isReported && isWorking && previous != bro.getCampAssignment()) {
+				local text = " from " + this.getBuildingByID(previous).getName() + " to " + this.getBuildingByID(bro.getCampAssignment()).getName();
+				if (!(text in moves)) {
+					moves[text] <- [];
+				}
+				moves[text].push(bro.getNameOnly());
+			}
+		}
+
+		foreach (text, names in moves) {
+			this.addUpdateText((names.len() == 1 ? names[0] + " moves" : names.len() + " brothers move") + text);
+		}
+
+		if (!isWorking) {
+			return;
+		}
+
+		foreach (b in this.m.Tents) {
+			b.setModifiers();
+		}
+	}
+
+	// The first of the Primary and Secondary tasks that has work the character can do at full efficiency, then the first that has work at all, as an injured character still helps a little at a dangerous tent. With nothing to do at either they rest
+	function getActiveAssignment( _bro, _requireCamping = true ) {
+		local tents = [];
+
+		foreach (id in [_bro.getPrimaryCampAssignment(), _bro.getSecondaryCampAssignment()]) {
+			local tent = id == null ? null : this.getBuildingByID(id);
+			if (tent != null && this.canBuildingWorkCurrently(tent, _requireCamping) && tent.hasWork(_bro)) {
+				tents.push(tent);
+			}
+		}
+
+		foreach (tent in tents) {
+			if (!tent.isRecovering(_bro)) {
+				return tent.getID();
+			}
+		}
+
+		return tents.len() != 0 ? tents[0].getID() : ::Legends.Camp.CampBuildings.Rest;
 	}
 
 	function getBuildingByID( _id )
@@ -164,6 +222,7 @@ this.camp_manager <- {
 				}
 			}
 
+			this.updateAssignments();
 			this.m.LastCampTime = this.m.StopTime;
 			::World.State.getPlayer().updateStrength();
 			::World.TopbarDayTimeModule.hideMessage();
@@ -191,6 +250,7 @@ this.camp_manager <- {
 				}
 			}
 
+			this.updateAssignments();
 			this.m.LastCampTime = this.m.StopTime;
 			::World.Assets.consumeItems();
 			::World.Assets.refillAmmo();
@@ -253,6 +313,7 @@ this.camp_manager <- {
 		local updates = [];
 		local text;
 
+		this.updateAssignments(true);
 		updates.push("----------------------------------");
 		updates.push("Hours Encamped: " + ::Math.floor(this.getElapsedHours()));
 		updates.push("----------------------------------");
@@ -269,6 +330,11 @@ this.camp_manager <- {
 			}
 		}
 
+		foreach (i, line in this.m.PendingUpdateText) {
+			updates.insert(3 + i, line);
+		}
+
+		this.m.PendingUpdateText = [];
 		this.m.LastCampingUpdateText = updates;
 		return updates;
 	}
@@ -313,7 +379,16 @@ this.camp_manager <- {
 	{
 		foreach(p in ::World.getPlayerRoster().getAll())
 		{
-			p.getFlags().set("camping_preset_" + _presetNumber, p.getCampAssignment());
+			p.getFlags().set("camping_preset_" + _presetNumber, p.getPrimaryCampAssignment());
+
+			if (p.getSecondaryCampAssignment() == null)
+			{
+				p.getFlags().remove("camping_preset_secondary_" + _presetNumber);
+			}
+			else
+			{
+				p.getFlags().set("camping_preset_secondary_" + _presetNumber, p.getSecondaryCampAssignment());
+			}
 		}
 	}
 
@@ -323,10 +398,13 @@ this.camp_manager <- {
 		{
 			if(p.getFlags().has("camping_preset_" + _presetNumber))
 			{
-				p.setLastCampAssignment(p.getCampAssignment());
+				p.setLastCampAssignment(p.getPrimaryCampAssignment());
 				p.setCampAssignment(p.getFlags().get("camping_preset_" + _presetNumber));
+				p.setSecondaryCampAssignment(p.getFlags().has("camping_preset_secondary_" + _presetNumber) ? p.getFlags().get("camping_preset_secondary_" + _presetNumber) : null);
 			}
 		}
+
+		this.updateAssignments();
 	}
 
 	function setPresetName( _index, _presetName)
@@ -607,7 +685,28 @@ this.camp_manager <- {
 		::World.Assets.updateAchievements();
 		::World.Assets.checkAmbitionItems();
 		::World.State.getPlayer().updateStrength();
-		::World.Events.fire("event.legends_camp_attacked");
+		this.showCampAttackedReport();
+	}
+
+	// a fight that is started from a contract or event screen has to wait for that screen to close
+	function showCampAttackedReport () {
+		local screen = ::World.State.getEventScreen();
+
+		if (screen.isVisible() || screen.isAnimating()) {
+			::World.State.setAutoPause(true);
+			::Time.scheduleEvent(::TimeUnit.Real, 50, function (_t) {
+				::World.Camp.showCampAttackedReport();
+			}, null);
+			return;
+		}
+
+		::World.State.setAutoPause(false);
+
+		if (!::World.Events.fire("event.legends_camp_attacked") && this.m.PendingCombat != null) {
+			local combat = this.m.PendingCombat;
+			this.m.PendingCombat = null;
+			::World.State.showCombatDialog(combat.IsPlayerInitiated, combat.IsCombatantsVisible, combat.AllowFormationPicking, combat.Properties, combat.Pos);
+		}
 	}
 };
 

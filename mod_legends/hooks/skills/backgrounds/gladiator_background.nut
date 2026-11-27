@@ -37,16 +37,14 @@
 		this.m.BackgroundType = ::Const.BackgroundType.Combat;
 	}
 
-	o.getTooltip = function () {
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
-		if (!this.m.LoneWolfHidden) {
-			ret.push({
-				id = 13,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "[color=%positive%]10%[/color] damage increase"
-			});
-		}
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = "[color=%positive%]10%[/color] damage increase when no ally is within 2 tiles"
+		});
 		return ret;
 	}
 
@@ -153,6 +151,10 @@
 	}
 
 	o.onAdded = function () {
+		if (this.m.IsNew) {
+			::Legends.Arena.grantWins(this.getContainer().getActor(), 5);
+		}
+
 		this.character_background.onAdded();
 
 		if (::Math.rand(1, 2) == 2) {

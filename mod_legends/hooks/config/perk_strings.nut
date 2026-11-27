@@ -89,7 +89,7 @@ RAAARGH!
 Nailed it!
 
 [color=%passive%][u]Passive:[/u][/color]
-• The penalty to hitchance when shooting at a target you have no clear line of fire to is reduced from [color=%negative%]75%[/color] to [color=%negative%]25%[/color] for any ranged weapons and [color=%skill%]Aimed Shot[/color] will not have a penalty at all.
+• The penalty to hitchance when shooting at a target you have no clear line of fire to is reduced from [color=%negative%]75%[/color] to [color=%negative%]25%[/color] for any ranged weapons and [color=%skill%]Aimed Shot[/color] and [color=%skill%]Full Draw[/color] will not have a penalty at all.
 
 • This Character's Vision is increased by [color=%positive%]+1[/color].
 ";
@@ -225,7 +225,7 @@ Go for the head!
 [color=%passive%][u]Passive:[/u][/color]
 • Hitting the head of a target will give you a guaranteed hit to the head with your next attack.
 
-• Connecting your hit resets the effect, but every % head hit chance above 50 gives a chance for the effect to not be consumed.
+• Killing an enemy with a hit to the head will increase chance to hit the head and Damage on a hit to the head by +10% for each kill until the end of combat.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.HeadHunter].Tooltip = ::Const.Strings.PerkDescription.HeadHunter;
 
@@ -369,7 +369,7 @@ Learn to use the superior reach of large weapons to keep the enemy from getting 
 
 • If you put away your weapon, you lose all stacks.
 
-• Additionally, while wielding a staff, the defense malus due to being surrounded by opponents is reduced by [color=%negative%]3[/color]. If you have [color=%perk%]Underdog[/color] or [color=%perk%]Battleheart[/color], this perk will instead increase defenses by [color=%positive%]5[/color].
+• Additionally, while wielding a staff, the defense malus due to being surrounded by opponents is reduced by [color=%negative%]3[/color]. If you have [color=%perk%]Ironside[/color] or [color=%perk%]Battleheart[/color], this perk will instead increase defenses by [color=%positive%]5[/color].
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.ReachAdvantage].Tooltip = ::Const.Strings.PerkDescription.ReachAdvantage;
 
@@ -409,7 +409,7 @@ Just like dancing with your nan when you were young.
 'Tell me how the grass tastes, little man!'
 
 [color=%passive%][u]Passive:[/u][/color]
-• The [color=%skill%]Knock Back[/color] and [color=%skill%]Buckler Bash[/color] now deals an additional [color=%positive%]25%[/color] Damage, [color=%positive%]+50%[/color] Armor Damage and [color=%positive%]+10%[/color] Armor Penetration.
+• The [color=%skill%]Shield Bash[/color] and [color=%skill%]Buckler Bash[/color] now deals an additional [color=%positive%]25%[/color] Damage, [color=%positive%]+50%[/color] Armor Damage and [color=%positive%]+10%[/color] Armor Penetration.
 
 • [color=%skill%]Knock Back[/color], [color=%skill%]Hook[/color] and [color=%skill%]Repel[/color] now have a [color=%positive%]100%[/color] chance to apply [color=%status%]Knocked Over[/color] against targets that are [color=%status%]Netted[/color], [color=%status%]Rooted[/color] or [color=%status%]Webbed[/color].
 ";
@@ -441,7 +441,9 @@ Master the art of archery and pelting your opponents with arrows from afar.
 
 • [color=%skill%]Cascade[/color] now deals an additional [color=%positive%]10%[/color] damage from the Initiative difference between you and your target.
 
-• [color=%skill%]Full Draw[/color] now requires [color=%negative%]8[/color] Action Points and will execute after on resuming your turn after using the [color=%skill%]Wait[/color] command.
+• [color=%skill%]Mark Target[/color] now has 2 uses per turn.
+
+• [color=%skill%]Full Draw[/color] now will execute after on resuming your turn after using the [color=%skill%]Wait[/color] command, an additional [color=%positive%]10%[/color] of damage inflicted ignores armor and ignores an additional [color=%positive%]25%[/color] of Block value.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecBow].Tooltip = ::Const.Strings.PerkDescription.SpecBow;
 
@@ -515,11 +517,11 @@ Master flails and circumvent your opponent's shield.
 
 • [color=%skill%]Lash[/color], [color=%skill%]Hail[/color] and [color=%skill%]Castigate[/color] ignore the defense bonus of shields.
 
-• [color=%skill%]Flail[/color], [color=%skill%]Lash[/color], [color=%skill%]Cascade[/color], [color=%skill%]Hail[/color], [color=%skill%]Pound[/color], [color=%skill%]Censer Strike[/color] and [color=%skill%]Castigate[/color] ignore an additional [color=%positive%]25%[/color] of Block value.
+• All flail skills ignore an additional [color=%positive%]25%[/color] of Block value.
 
-• [color=%skill%]Thresh[/color] gains [color=%positive%]+5%[/color] chance to hit and ignores an additional [color=%positive%]25%[/color] of Block value.
+• [color=%skill%]Thresh[/color] gains [color=%positive%]+5%[/color] chance to hit.
 
-• [color=%skill%]Pound[/color] ignores additional [color=%positive%]+10%[/color] armor penetration on hits to the head and ignores an additional [color=%positive%]33%[/color] of Block value.
+• [color=%skill%]Pound[/color] ignores additional [color=%positive%]+10%[/color] armor penetration on hits to the head.
 
 • Other hybrid polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
 
@@ -552,6 +554,8 @@ Master maces to beat your opponents into submission, armored or not.
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
 • [color=%skill%]Knock Out[/color], [color=%skill%]Knock Over[/color], and [color=%skill%]Strike Down[/color] have a [color=%positive%]100%[/color] chance to [color=%status%]Stun[/color] the target if not immune.
+
+• [color=%skill%]Return Favor[/color] now has [color=%positive%]75%[/color] to apply [color=%effect%]Stunned[/color].
 
 • The Polemace no longer has a penalty for attacking targets directly adjacent.
 
@@ -593,11 +597,13 @@ Master fighting with spears and keeping the enemy at bay.
 Master the art of swordfighting and using your opponent's mistakes to your advantage.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Skills build up [color=%negative%]25%[/color] less Fatigue and [color=%positive%]+5%[/color] chance to hit.
+• Skills build up [color=%negative%]25%[/color] less Fatigue.
+
+• A Sword in the main hand gives [color=%positive%]+5[/color] more Block, or [color=%positive%]+10[/color] more if it is two-handed.
 
 • [color=%status%]Riposting[/color] no longer has a penalty to hitchance.
 
-• [color=%skill%]Swing[/color] and [color=%skill%]Swing[/color] no longer have a penalty to hitchance and gain and gain [color=%positive%]+10%[/color] chance to hit if using a Sword. [color=%skill%]Halfsword[/color] has a [color=%positive%]+15%[/color] chance to hit if using a Sword
+• [color=%skill%]Halfsword[/color] has a [color=%positive%]+15%[/color] chance to hit if using a Sword
 
 • [color=%skill%]Gash[/color] has a [color=%negative%]50%[/color] lower threshold to inflict [color=%status%]Injuries[/color].
 
@@ -677,7 +683,7 @@ Knights would do well to fear your heavy blows.
 'Being aware of your surroundings can make or break a fight.'
 
 [color=%passive%][u]Passive:[/u][/color]
-• Has a [color=%positive%]50%[/color] lower chance to inflict friendly fire. Stacks with the 'Team Player'.
+• Has a [color=%positive%]50%[/color] lower chance to inflict friendly fire. Stacks with 'Team Player'.
 
 • [color=%skill%]Knock Back[/color] will now apply [color=%status%]Taunt effect[/color].
 
@@ -698,7 +704,7 @@ Steel your heart and dodge blades from the front, behind and above in the thick 
 [color=%passive%][u]Passive:[/u][/color]
 • The defense malus due to being surrounded by opponents is reduced by [color=%negative%]5[/color].
 
-• If an attacker has the [color=%perk%]Strength In Numbers[/color] perk, the effect of that perk is negated, and the normal defense malus due to being surrounded is applied instead.
+• If an attacker has the [color=%perk%]Backstabber[/color] perk, the effect of that perk is negated, and the normal defense malus due to being surrounded is applied instead.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Underdog].Tooltip = ::Const.Strings.PerkDescription.Underdog;
 

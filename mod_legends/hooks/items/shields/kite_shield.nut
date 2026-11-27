@@ -65,6 +65,7 @@
 		this.m.Block = 10;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamageMax = 25;
+		this.m.Value = 400;
 		this.addVariants();
 		this.m.Variant = ::Math.rand(0, 9); //random one is only 0-9 though
 		this.updateVariant();

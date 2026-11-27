@@ -10,7 +10,7 @@ this.workshop_upgrade <- this.inherit("scripts/retinue/follower", {
 		this.m.Cost = 2000;
 		this.m.Effects = [
 			"Increases salvage speed by 15%",
-			"Increases tool efficiency while salvaging by 100%"
+			"Increases tool efficiency while salvaging by 40%"
 		];
 	}
 });

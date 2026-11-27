@@ -153,6 +153,9 @@
 - berserker renamed to Chosen Berserker
 - peddler renamed to Merchant
 
+### Gladiators
+- every gladiator background (Gladiator, Gladiator Prizefighter, Old Gladiator, Legion Gladiator) now starts with 5 arena wins and the `Arena Fighter` trait, like the gladiators of the Gladiators origin
+
 ## Perks
 
 ### New Perks
@@ -171,7 +174,7 @@
 > also increases the maximum range of every spell it covers by 1, not only `Magic Missile`
 - `Summon Storm` - can now also be cast while holding a magic staff, not only with an empty main hand
 - `Prisoner's rush` - no longer grants deathblow to regular daggers and a deathblow bonus, now grants a passive 20% armor penetration
-- `Shield Bash` - `Knock Back` and `Buckler Bash` now deals an additional 25% Damage, +50% Armor Damage and +10% Armor Penetration.
+- `Shield Bash` - `Shield Bash` and `Buckler Bash` now deals an additional 25% Damage, +50% Armor Damage and +10% Armor Penetration.
 > `Knock Back`, `Hook` and `Repel` now have a 100% chance to apply `Knocked Over` against targets that are `Netted`, `Rooted` or `Webbed`.
 - `Crossbow Mastery` - now increases armor penetration by 10% down from 20%
 - `Ballistics` - now increases armor penetration for crossbows by 5% and an additional 15% if the target is 3 or less tiles away
@@ -183,10 +186,7 @@
 - `Pugilist` - additionally each successful attack reduces the ap cost of `Kick` by 1 until the end of your turn. 
 - `Reach Advantage` - stacks will now decay by 2 at the start of your turn instead of losing all of them
 - `Promised Potential` - the bonus per star in attribute is now 3
-- `Bloody Harvest` - the bonus is now additive multiplier
 - `Carnage` - no longer grants `Prepare Graze` and `Prepare Bleed`
-- `Heightened Reflexes` - the damage bonus is an additive multiplier
-- `Muscularity` - bonus from fatigue dropped to 10% and the bonus is now an additive multiplier
 - `Backswing` - new gfx to differentiate from feint
 - `Anticipation` - removed for now
 - `Ballistics` - no longer reduces hitchance penalty with tile traveled, instead deals an additional 2 damage per tile traveled
@@ -264,8 +264,12 @@
 - each brother at a station adds 100% plus their working speed for it, the total is then split evenly between them
 - `Scholar` (Profession version) - grants 20% more profession experience
 - injured brothers at a dangerous station only gain 20% of their profession experience
+- the profession tab shows the camp assignment of the brother and his working speed at each camp station
+- favoured enemy professions show a bar with the experience towards the next point of their bonus
 - you start with a very basic tree and gradually unlock more perks down the tree
 - certain perks will be locked unless of a certain background and certain perks will be unlocked on some of the backgrounds
+- `Hippology` is removed from the tree for now
+- `Dog Breeder` - animals unleashed in battle have 20% more hitpoints, and an unleashed animal that is downed without a fatality has a chance to survive the battle
 
 ## Effects
 - `Redback Poison` - will now apply varying effects for each turn afflicted, first turn Baffled, second turn Dazed, third turn Stunned
@@ -276,9 +280,12 @@
 - `Mad` - now has a chance to shift his morale up or down at the start of each turn in combat, cannot become fleeing from this effect but can rally from fleeing
 - `Deathwish` - now additionally increases damage done with up to 25% based on missing hitpoints with the maximum bonus achieved at 40% remaining hitpoints
 - `Bloodthirsty` - now heals 2 hp if you kill an enemy with a fatality
+- `Sure Footed` - now additionally gives 3 Block
+- `Huge` - now additionally gives 2 Block
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
+- swords now give 5 Block in the main hand instead of the chance to hit modifiers of `Slash`, `Gash`, `Overhead Strike`, `Split`, `Swing` and `Lunge`. With their mastery it is 10 Block, or 15 for two-handed swords
 - bandages now replenish up to 10 HP (only fresh wounds)
 
 ## Quivers
@@ -313,16 +320,20 @@
 - `Riposte` is now available to all staves
 
 **Flails**
-- with the new Block mechanic flail skills have an innate 25% ignore of shield Block except for `Thresh`
-> increased to a total of 50% with the mastery
+- with the new Block mechanic flail skills have an innate 25% ignore of shield Block except for `Thresh` which has 0 and `Cascade` + `Hail` which have 50% base
+> increased to a total of 50% with the mastery, 25% `Thresh`, 75% `Hail` + `Cascade`
+
+**1h Slings**
+- `Sling Stone` ignores 25% of shield Block and 50% with mastery 
 
 **Crossbows**
 - `Improvised Strike` - now has a 25(50 with mastery) chance to daze OR stagger on body shot and will always stun on headshot, down from just slapping all 3 debuffs on a headshot
 
 **War Bow, Named War Bow, Hunting Bow**
 - gain `Full Draw` and `Mark Target`
-> `Mark Target` can now be used on any enemy the character can see, up from a range of 4
-> Full draw has a base 50% armor penetration, 9 max range and 3 min range, an extra 30% damage but costs 9 ap without mastery and 8 with mastery
+> `Mark Target` can now be used on any enemy the character can see, up from a range of 4, but has just 1(2 with mastery) uses per turn
+> Full draw has a base 50% armor penetration, 9 max range and 3 min range, 50% block bypass, an extra 30% damage but costs 9 ap without mastery
+> mastery boosts armor penetration by 10%, block bypass by 50% and range by 1
 > additionally it's a delayed fire skill that will only do damage on the start of your next turn or after wait with mastery
 - art adjustments for war bow because the vanilla one was too small
 
@@ -349,6 +360,7 @@
 **Throwing**
 - `Piercing Javelin` - if the attack is successful also attack the target behind them for 75% damage
 > 5 ap, 20 fat
+- `Throwing Spear` - is now a tool and sits in offhand
 
 **Daggers**
 - all daggers now have a bit of weight for dual wield balancing
@@ -422,27 +434,30 @@
 **1h maces**
 - `Bash`
 - `Knock Out`
-- `Return Favor`
+- `Return Favor` - now has 25% (75% with mastery) to stun or else apply daze if you get missed by a melee attack
 
 ### Shields
 - Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
 - Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
-- `Knock Back` - now always does damage and can knock back on your turn, will deal additional damage against targets that are rooted
+- `Knock Back` - renamed to `Shield Bash`, now always does damage and can knock back on your turn, will deal additional damage against targets that are rooted
 - `Fortify` - removed
 - `Safeguard` - now transfers your block value to an ally until the start of your next turn
 - `Buckler Effect` - now grants 5% of Initiative as Defense and Block
 - `Staggered` will now also reduce block value by 50%
+- `Webbed`, `Netted` and `Rooted` now also reduce block value by 50%
+- `Distracted` now also reduces block value by 35%
+- Attacks whose damage all ignores armor, such as `Puncture` or an attack that `Flourish` lets through, have a chance to pierce Block (based on the Block value)
 
 ### Regular Shields
 - Shields in general no longer reduce ranged Damage Taken
-- Coffin Shield - now has 15 Mdef, 20 Rdef, 36 condition, 13 Block, 10-25 Damage
+- Coffin Shield - now has 15 Mdef, 20 Rdef, 36 condition, 13 Block, 10-20 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
 > additionally reduces ranged Damage taken by 15%
-- Ancient Tower Shield - now has 25 Mdef, 20 Rdef, 48 condition, 15 Block, 10-25 Damage
+- Ancient Tower Shield - now has 25 Mdef, 20 Rdef, 48 condition, 15 Block, 10-20 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
-- Tower Shield - now has 20 Weight, 15 Block, 10-25 Damage
+- Tower Shield - now has 20 Weight, 15 Block, 10-20 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
-- Ancient Southern Tower (Mummy) Shield - now has 20 Weight, 13 Block, 10-25 Damage
+- Ancient Southern Tower (Mummy) Shield - now has 20 Weight, 13 Block, 10-20 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
 > additionally reduces ranged Damage taken by 30%
 - Auxiliary Shield - now has 8 Block, 10-25 Damage
@@ -502,6 +517,7 @@
 
 ### Blueprints
 - new `Sipar Shield` blueprint from 1 iron ingot
+- new Metalworking blueprints to smelt 4 `Gold Ore`, `Silver Ore` or `Iron Ore` into 1 of their ingots
 - `Tower Shield` blueprint now costs 2 quality wood and 1 iron ingot
 - blueprints are now sorted via profession, then actual crafted item type
 - blueprint previews and items crafted now default to the 1st variant for clarity
@@ -520,6 +536,10 @@
 ### Dynamic Troops Day To Skip
 - `Dynamic Troops Day To Skip` in the start campaign settings has now been disabled, enemies of varying difficulty will naturally appear as your company becomes stronger
 
+### Ancient Undead
+- `Polearm Mastery` is now granted at day 30 instead of 100
+- `Shield Mastery` is now granted at day 60
+
 ### Orcs
 - `Orc Elite` - now have `Charge`
 
@@ -536,6 +556,7 @@
 - `Greenwood Schrat` shield gains 15 block but now has 30 Melee Defense and Ranged Defense down from 40, condition is down to 64 from 128
 - `Hexe Coven Leader` - can now be champions and can drop named gnarly staves
 - `Hexe` - now always have a `Gnarly Staff`
+- `Spider Cluster` - small spiders no longer exert zones of control, you can move freely around them
 
 ### Bandits
 - `Bandit Executioner` - new enemy that will appear in bandit comps, dressed to impress and armed with cleavers - including the new executioner sword
@@ -559,6 +580,14 @@
 
 ### City States
 - `Gladiators` - gain `Net Casting`, `Net Mastery`, additionally gain `Alert` and `Lone Wolf` on Legendary
+
+### Barbarians
+- `Barbarian Reavers` and `Barbarian Pillagers` now show up in smaller groups, roaming warbands are no longer only `Thralls` and `Warhounds` for most of the early game
+- roaming barbarian warbands are slightly larger
+- `Barbarian Chosen` and `Barbarian Bloodletters` need a slightly larger group before they show up
+
+### Zombies
+- gain Immune to Taunt
 
 ## Ambitions
 - New ambition: make city states aware (triggers at 800 renown or more).
@@ -596,6 +625,14 @@
 
 ## Camping
 - made most dialogs shorter
+- the commanders tent lists its tents four in a row and is taller on screens that are high enough, so all of them are visible without scrolling
+- brothers can be dragged onto a tent in the commanders tent to assign them to it. A left click or drag assigns the Primary task and a right click or drag the Secondary task, and camping presets store both
+- brothers can be given a Secondary task in the commanders tent which they move on to if their Primary task has nothing left to do, or while they are injured and the Primary task is dangerous, and rest when neither has work for them
+- a brother shows his Primary task as the large flag and his Secondary task as a small one, tents list how many brothers have them as a Secondary task, and the flag of a task that is not being worked at right now is dimmed while camping
+- ammunition is fletched hour by hour, so fletchers that join or leave during a camp only count for the hours they worked
+- the mood bonus for resting goes by the hours a brother has rested during the camp (8, 12 and 16) instead of by the length of the camp and who is resting when it ends
+- brothers training, scouting or gathering can get hurt during any hour of the camp instead of only when it ends, with the same chances over a whole camp
+- the hourly camping text lists the brothers that moved between their tasks and those that got hurt in that hour
 - hunters tent removed
 - crafting system has been overhauled
 - cooking tent (station) added
@@ -670,6 +707,7 @@
 > the setting is completely optional
 > marked items can be sold with a single click in shops and new items acquired will respect these flags
 > newly acquired items with flags will automatically start be added to repair/salvage queue
+> broken items set to autosalvage are scrapped for 1 tool each while the Salvage Tent is working
 > flags are now visible in shop and loot screens
 > quickly loot items based on current value (new button; ignores legendary, named, quest, food)
 > quickly loot items based on potential value, also sorts and layers/unlayers items to maximize value
@@ -704,8 +742,10 @@
 - reworked on actor hover tooltips to allow dynamic combat descriptions
 - changed the way immunities are displayed on enemy tooltip, expanded the list of displayed immunities
 - enemy tooltips reworked to include turns left, non-stacking effect stacks
+- the background tooltip in the hiring screen now lists the background's special effects (e.g. Witchhunter, Swordmaster, Oathtaker) under `Background Effects`
 - added skill icons to weapons and shields
 - added simple values to stats in character screen on mouseover
+- the character screen shows Block in place of the effectiveness against armor
 - item tooltips now list what the item can be crafted into, which replaces the `Items and Recipes` mod
 > can be turned off with `Show Crafting Uses` in the Legends Tooltips mod settings tab
 - replaced 5 different filter buttons in the character screen with a single one that cycles through the 5
@@ -835,6 +875,24 @@
 - the first medium coast fort, small swamp fort and small tundra fort of a world get a kennel if there is none yet, as the other forts already did
 - world generation no longer errors when no settlement is left to place a guaranteed building in
 - world generation with `All Trade Locations` no longer hangs forever when a trade location can not be placed at any settlement
+- `Decapitate` of a scythe no longer lowers the hit chance of its other skills against adjacent targets
+- `Puncture`, `Choke` and `Obliterate` no longer count hit chance bonuses from perks twice
+- the penalty against adjacent targets of two-tile weapons with two weapon types is removed by the mastery of either type, like their tooltips say (`Cleave` of a scythe, `Heartseeker`, `Rupture`, `Smite`)
+- `Smite` of a halberd now has the penalty against adjacent targets its tooltip mentions
+- backing out of the combat dialog right as it opens no longer leaves the world map without its UI
+- fixed units that rise from the ground, like resurrected undead, sometimes staying half buried and impossible to attack until their next turn
+- recipes no longer count every `Cooking Spices` item as 8 uses when checking if they can be crafted, only the uses it has left
+- enemies no longer skip their attack when their weapon has attacks with different ranges and the one they picked couldn't reach anyone, like a pike with `Impale` and `Heartseeker`
+- Fixed the acid immunity of lindwurm and stollwurm armor being lost when one of two such layers was taken off, e.g. a `Lindwurm Scale Cloak` worn over a named lindwurm scale armor
+- Fixed an error when the named lindwurm helmet layer was removed from a helmet that is not worn
+- Acid flasks now eat 20% of the head armor each turn as their tooltip says, it was 4%
+- layered armors and helms now properly follow the state of repair they should when obtained majorly undamaged by player
+- Fixed item descriptions at the taxidermist showing raw color tags like `[color=#8f1e1e]Tool[/color]` when MSU's `Expanded Item Tooltips` setting is on
+- Fixed used up flasks and bombs (holy water, acid flask, fire, smoke and daze bombs) still being throwable and showing `2 use left` when the company has no one to refill them
+- Stollwurms now share Taunted between their heads and tails too
+- Fixed the Military Warscythe showing the wrong variant on the bro, the second and third variants had their sprites swapped
+- Fixed Double Swing being usable while disarmed, it used up Action Points and Fatigue without attacking
+- Fixed the `Arena Fighter` trait showing the description of `Pit Fighter`
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
@@ -893,6 +951,7 @@
 - `GenderEquality` setting renamed to `GenderStatDifference` to avoid issues with values saved in MSU
 - `::Legends.Tactical.Tiles.spawnWall(_tile)` spawns an impassable wall on the tile
 - added `::Legends.Inventory` functions that allow calculating item's potential value (current / repaired / salvage), found in `inventory.nut`
+- added `addHitChanceBonus(_bonus = 0)` to skills, for `onAnySkillUsed` of attacks: adds `_bonus` to `HitChanceBonus` and returns the bonus of the skill itself to add to `MeleeSkill` or `RangedSkill`, as adding `HitChanceBonus` as a whole counts the bonuses of perks twice
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

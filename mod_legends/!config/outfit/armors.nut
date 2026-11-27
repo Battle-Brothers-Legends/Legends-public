@@ -2992,21 +2992,21 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.executioner_tunic);
 
 ::Legends.Armor.Standard.bandit_executioner_tunic <- {
-	ID = "bandit_executioner_tunic",
+	ID = "bandit_executioner_tunic", // 90-105 -9-10 420-1295
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_armor_gambeson"],
-			[1, "cloth/legend_armor_thick_tunic"],
-			[1, "cloth/legend_armor_apron"], // 35 -4 60
-			[1, "cloth/legend_armor_tunic_dark"], // 35 -4 50
-			[1, "cloth/legend_armor_quilted_aketon"], // 55 -6 150
+			[1, "cloth/legend_armor_tunic"], // 20 -1 25
+			[1, "cloth/legend_armor_tunic_wrap"], // 20 -1 25
+			[1, "cloth/legend_armor_tunic_collar_thin"], // 20 -1 25
+			[1, "cloth/legend_armor_tunic_collar_deep"] // 20 -1 25
 		],
 		Chain = [
-			[1, "chain/legend_armor_hauberk_sleeveless", 1], // 65 -7 1250
-			[1, "chain/legend_armor_short_mail", 1]], // 60 -8 500
+			[1, "chain/legend_armor_mail_shirt"], // 50 -6 375
+			[1, "chain/legend_armor_hauberk_sleeveless"] // 65 -7 1250
+		],
 		Plate = [
-			[1, "plate/legend_armor_leather_tunic_bloodstained"]
+			[1, "plate/legend_armor_leather_tunic_bloodstained"] // 20 -2 20
 		],
 		Cloak = [
 		],
@@ -3019,21 +3019,20 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.bandit_executioner_tunic);
 
 ::Legends.Armor.Standard.bandit_executioner_tunic_high <- {
-	ID = "bandit_executioner_tunic_high",
+	ID = "bandit_executioner_tunic_high", // 105 -10 1295
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_armor_gambeson"],
-			[1, "cloth/legend_armor_gambeson_wolf"],
-			[1, "cloth/legend_armor_studded_aketon"],
-			[1, "cloth/legend_armor_quilted_aketon"],
+			[1, "cloth/legend_armor_tunic"], // 20 -1 25
+			[1, "cloth/legend_armor_tunic_wrap"], // 20 -1 25
+			[1, "cloth/legend_armor_tunic_collar_thin"], // 20 -1 25
+			[1, "cloth/legend_armor_tunic_collar_deep"] // 20 -1 25
 		],
 		Chain = [
-			[1, "chain/legend_armor_hauberk_full"],
-			[1, "chain/legend_armor_reinforced_worn_mail"],
-			[1, "chain/legend_armor_hauberk"]]
+			[1, "chain/legend_armor_hauberk_sleeveless"] // 65 -7 1250
+		],
 		Plate = [
-			[1, "plate/legend_armor_leather_tunic_bloodstained"]
+			[1, "plate/legend_armor_leather_tunic_bloodstained"] // 20 -2 20
 		],
 		Cloak = [
 		],

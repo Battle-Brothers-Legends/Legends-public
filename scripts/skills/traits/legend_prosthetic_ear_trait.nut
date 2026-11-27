@@ -33,6 +33,12 @@ this.legend_prosthetic_ear_trait <- this.inherit("scripts/skills/traits/characte
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-5%[/color] Initiative"
 			});
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-5%[/color] Block"
+			});
 		} else {
 			ret.push({
 				id = 14,
@@ -48,6 +54,7 @@ this.legend_prosthetic_ear_trait <- this.inherit("scripts/skills/traits/characte
 	function onUpdate(_properties) {
 		if (!this.m.IsUpgraded) {
 			_properties.InitiativeMult *= 0.95;
+			_properties.BlockMult *= 0.95;
 		} else {
 			_properties.MoraleCheckBravery[1] += 10;
 		}

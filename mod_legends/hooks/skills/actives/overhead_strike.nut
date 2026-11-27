@@ -1,7 +1,6 @@
-::mods_hookExactClass("skills/actives/overhead_strike", function(o)
-{
+::mods_hookExactClass("skills/actives/overhead_strike", function(o) {	
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
 		this.m.HitChanceBonus = 5;
 	}
@@ -43,16 +42,5 @@
 		}
 
 		return success;
-	}
-
-	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
-		onAnySkillUsed( _skill, _targetEntity, _properties );
-		if (_skill == this) {
-			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords) {
-				this.m.HitChanceBonus += 5;
-			}
-			_properties.MeleeSkill += this.m.HitChanceBonus;
-		}
 	}
 });

@@ -52,9 +52,9 @@
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this && this.m.IsScytheCleave) {
-			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+			if (_targetEntity != null && !::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				this.m.HitChanceBonus += -15;
-				_properties.MeleeSkill += this.m.HitChanceBonus;
+				_properties.MeleeSkill += -15;
 			}
 		}
 	}

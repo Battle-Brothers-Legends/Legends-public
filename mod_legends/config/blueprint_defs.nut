@@ -1207,6 +1207,126 @@ if (!("Blueprints" in ::Legends)) {
         Category = ::Legends.Profession.LegendMetalworking,
         ProfessionRequired = true
     },
+    LegendGoldIngot04 = {
+        ItemScript = "scripts/items/trade/legend_gold_ingots_item",
+        Cost = 3600,
+        Ingredients = [
+            {
+                Script = "scripts/items/trade/legend_gold_ore_item",
+                Num = 4
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
+    LegendSilverIngot01 = {
+        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
+        Cost = 900,
+        Ingredients = [
+            {
+                Script = "scripts/items/loot/silverware_item",
+                Num = 2
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
+    LegendSilverIngot02 = {
+        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
+        Cost = 900,
+        Ingredients = [
+            {
+                Script = "scripts/items/loot/silverware_item",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/loot/silver_bowl_item",
+                Num = 1
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
+    LegendSilverIngot03 = {
+        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
+        Cost = 900,
+        Ingredients = [
+            {
+                Script = "scripts/items/loot/silver_bowl_item",
+                Num = 2
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
+    LegendSilverIngot04 = {
+        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
+        Cost = 900,
+        Ingredients = [
+            {
+                Script = "scripts/items/loot/goblin_minted_coins_item",
+                Num = 2
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
+    LegendSilverIngot05 = {
+        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
+        Cost = 900,
+        Ingredients = [
+            {
+                Script = "scripts/items/loot/goblin_minted_coins_item",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/loot/silver_bowl_item",
+                Num = 1
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
+    LegendSilverIngot06 = {
+        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
+        Cost = 900,
+        Ingredients = [
+            {
+                Script = "scripts/items/loot/goblin_minted_coins_item",
+                Num = 1
+            },
+            {
+                Script = "scripts/items/loot/silverware_item",
+                Num = 1
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
+    LegendSilverIngot07 = {
+        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
+        Cost = 900,
+        Ingredients = [
+            {
+                Script = "scripts/items/trade/legend_silver_ore_item",
+                Num = 4
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
+    LegendIronIngot01 = {
+        ItemScript = "scripts/items/trade/legend_iron_ingots_item",
+        Cost = 150,
+        Ingredients = [
+            {
+                Script = "scripts/items/trade/legend_iron_ore_item",
+                Num = 4
+            }
+        ],
+        Category = ::Legends.Profession.LegendMetalworking,
+        ProfessionRequired = true
+    },
     LegendGreenwoodSchratShield = {
         ItemScript = "scripts/items/shields/special/legend_craftable_greenwood_schrat_shield",
         Cost = 2500,
@@ -2099,90 +2219,6 @@ if (!("Blueprints" in ::Legends)) {
             },
         ],
         Category = ::Legends.Profession.LegendTailoring,
-        ProfessionRequired = true
-    },
-    LegendSilverIngot01 = {
-        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
-        Cost = 900,
-        Ingredients = [
-            {
-                Script = "scripts/items/loot/silverware_item",
-                Num = 2
-            }
-        ],
-        Category = ::Legends.Profession.LegendMetalworking,
-        ProfessionRequired = true
-    },
-    LegendSilverIngot02 = {
-        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
-        Cost = 900,
-        Ingredients = [
-            {
-                Script = "scripts/items/loot/silverware_item",
-                Num = 1
-            },
-            {
-                Script = "scripts/items/loot/silver_bowl_item",
-                Num = 1
-            }
-        ],
-        Category = ::Legends.Profession.LegendMetalworking,
-        ProfessionRequired = true
-    },
-    LegendSilverIngot03 = {
-        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
-        Cost = 900,
-        Ingredients = [
-            {
-                Script = "scripts/items/loot/silver_bowl_item",
-                Num = 2
-            }
-        ],
-        Category = ::Legends.Profession.LegendMetalworking,
-        ProfessionRequired = true
-    },
-    LegendSilverIngot04 = {
-        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
-        Cost = 900,
-        Ingredients = [
-            {
-                Script = "scripts/items/loot/goblin_minted_coins_item",
-                Num = 2
-            }
-        ],
-        Category = ::Legends.Profession.LegendMetalworking,
-        ProfessionRequired = true
-    },
-    LegendSilverIngot05 = {
-        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
-        Cost = 900,
-        Ingredients = [
-            {
-                Script = "scripts/items/loot/goblin_minted_coins_item",
-                Num = 1
-            },
-            {
-                Script = "scripts/items/loot/silver_bowl_item",
-                Num = 1
-            }
-        ],
-        Category = ::Legends.Profession.LegendMetalworking,
-        ProfessionRequired = true
-    },
-    LegendSilverIngot06 = {
-        ItemScript = "scripts/items/trade/legend_silver_ingots_item",
-        Cost = 900,
-        Ingredients = [
-            {
-                Script = "scripts/items/loot/goblin_minted_coins_item",
-                Num = 1
-            },
-            {
-                Script = "scripts/items/loot/silverware_item",
-                Num = 1
-            }
-        ],
-        Category = ::Legends.Profession.LegendMetalworking,
         ProfessionRequired = true
     },
     LegendSiparShield = {

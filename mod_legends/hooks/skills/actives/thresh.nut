@@ -14,6 +14,7 @@
 			this.m.KilledString = "Threshed";
 			this.m.ChanceDisembowel = 10;
 			this.m.ChanceSmash = 33;
+			this.m.BlockBypass = 0;
 		}
 		this.skill.setItem(_item);
 	}
@@ -89,11 +90,20 @@
 
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
+			local bonus = 0;
 			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-				this.m.HitChanceBonus += 5;
+				bonus += 5;
 			}
 
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
+		}
+	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function ( _properties ) {
+		onAfterUpdate(_properties);
+		if (_properties.IsSpecializedInFlails) {
+			this.m.BlockBypass += 0.25;
 		}
 	}
 });

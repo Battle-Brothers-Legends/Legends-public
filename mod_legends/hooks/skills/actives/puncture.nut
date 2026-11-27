@@ -1,5 +1,11 @@
 ::mods_hookExactClass("skills/actives/puncture", function(o)
 {
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.HitChanceBonus = -65;
+	}
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
@@ -23,10 +29,10 @@
 	}
 
 	o.getHitChance <- function (_targetEntity) {
-		if (_targetEntity == null)
-			return 0;
-
 		local mod = 0;
+		if (_targetEntity == null)
+			return mod;
+
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendStupefied))
 			mod += 10;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
@@ -59,11 +65,11 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += this.getHitChance(_targetEntity);
+			local bonus = this.getHitChance(_targetEntity);
 			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-				this.m.HitChanceBonus +=15;
+				bonus += 15;
 			}
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 			_properties.DamageArmorMult *= 0.0;
 			_properties.DamageDirectAdd = 0;
 			_properties.IsIgnoringArmorOnAttack = true;

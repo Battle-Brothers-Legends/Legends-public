@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/lindwurm_acid_effect", function (o) {
 	o.getDescription = function () {
-		return "%Their% armor is slowly being eaten away by Lindwurm's acidic blood.";
+		return this.resolveDescription("%Their% armor is slowly being eaten away by Lindwurm's acidic blood.");
 	}
 
 	o.getTooltip = function () {

@@ -9,7 +9,6 @@
 		this.m.Description = "A sturdy wooden frame lays the base for a shimmering heap of rare Lindwurm scales to form a shield impenetrable.";
 		this.m.AddGenericSkill = true;
 		this.m.ShowOnCharacter = true;
-		this.m.Value = 1300;
 		this.m.MeleeDefense = 25;
 		this.m.RangedDefense = 25;
 		this.m.StaminaModifier = -14;
@@ -30,7 +29,7 @@
 		this.m.Block = 13;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamageMax = 25;
-		this.m.Value = 1800;
+		this.m.Value = 2100;
 	}
 
 	o.getTooltip <- function () {

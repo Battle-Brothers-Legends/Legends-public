@@ -34,7 +34,8 @@ this.legend_military_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 	function updateVariant() {
 		this.m.IconLarge = "weapons/melee/warscythe_0" + this.m.Variant + ".png";
 		this.m.Icon = "weapons/melee/warscythe_0" + this.m.Variant + "_70x70.png";
-		this.m.ArmamentIcon = "icon_warscythe_0" + this.m.Variant;
+		local armament = [0, 1, 3, 2];
+		this.m.ArmamentIcon = "icon_warscythe_0" + armament[this.m.Variant];
 	}
 
 	function onEquip() {

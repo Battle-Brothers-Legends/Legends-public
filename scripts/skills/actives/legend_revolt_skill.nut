@@ -152,10 +152,11 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
+			local bonus = 0;
 			if (_targetEntity != null && !_properties.IsSpecializedInMusic && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
-				this.m.HitChanceBonus += -15;
+				bonus += -15;
 			}
-			_properties.RangedSkill += this.m.HitChanceBonus;
+			_properties.RangedSkill += this.addHitChanceBonus(bonus);
 		}
 	}
 });

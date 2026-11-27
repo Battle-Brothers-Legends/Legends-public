@@ -6,13 +6,32 @@ Replaces build_legends_mod.sh with cross-platform Python implementation
 
 import os
 import sys
+import time
 import shutil
+import hashlib
 import argparse
 from pathlib import Path
 import platform
-from buildscript.lib import VersionExtractor, BuildError, load_config
+from buildscript.lib import VersionExtractor, BuildError, load_config, CACHE_DIR, load_cache, save_cache, scan_files, file_stamp
 
 class LegendsModBuilder:
+    # What goes into each archive
+    # A later directory wins when two have the same file, so the generated scripts replace leftovers in scripts
+    MOD_SOURCES = [
+        ("mod_legends", "mod_legends"),
+        ("scripts", "scripts"),
+        ("helmet_scripts", "scripts/items/legend_helmets"),
+        ("legend_armor_scripts", "scripts/items/legend_armor"),
+        ("ui", "ui"),
+    ]
+
+    ASSETS_SOURCES = [
+        ("brushes", "brushes"),
+        ("gfx", "gfx"),
+        ("sounds", "sounds"),
+        ("preload", "preload"),
+    ]
+
     def __init__(self, bb_dir=None, repo_dir=None, build_dir=None):
         # Load config first
         config = load_config(Path(__file__).parent / ".build_config.py")
@@ -49,8 +68,8 @@ class LegendsModBuilder:
         """Clean up generated folders and PNGs before building"""
         try:
             # Remove generated directories
+            # The brushes and their PNGs in gfx are kept so the brush builder only replaces the ones that changed
             for rel in [
-                "brushes",
                 "build",
                 "helmet_scripts",
                 "legend_armor_scripts",
@@ -60,18 +79,8 @@ class LegendsModBuilder:
                     print(f"Deleting {p} ...")
                     shutil.rmtree(p, ignore_errors=True)
 
-            # Remove top-level gfx PNGs
-            gfx_dir = self.current_dir / "gfx"
-            if gfx_dir.exists():
-                for png in gfx_dir.glob("*.png"):
-                    try:
-                        print(f"Deleting {png}")
-                        png.unlink()
-                    except Exception:
-                        pass
-
             # Remove gfx/ui PNGs
-            gfx_ui_dir = gfx_dir / "ui"
+            gfx_ui_dir = self.current_dir / "gfx" / "ui"
             if gfx_ui_dir.exists():
                 for png in gfx_ui_dir.glob("*.png"):
                     try:
@@ -119,139 +128,87 @@ class LegendsModBuilder:
             shutil.copy2(dead_javelin_src, dest_dir)
 
     def build_brushes(self):
-        """Build brushes using the brush builder"""
         from build_brushes import BrushBuilder
-        BrushBuilder(str(self.build_dir), self.repo_dir).build()
+        BrushBuilder(str(self.build_dir), self.repo_dir, copy_to_build=False).build()
 
-    def copy_directories(self):
-        """Copy required directories to build directory"""
-        directories = [
-            ("sounds", "sounds"),
-            ("gfx", "gfx"),
-            ("mod_legends", "mod_legends"),
-            ("scripts", "scripts"),
-            ("ui", "ui"),
-            ("preload", "preload"),
-        ]
+    def collect_files(self, sources):
+        """Every file of the given source directories by its name inside the archive"""
+        files = {}
+        for src_name, arc_dir in sources:
+            for rel_path, entry in scan_files(self.current_dir / src_name):
+                files[f"{arc_dir}/{rel_path}"] = entry
+        return files
 
-        for src_name, dest_name in directories:
-            src_dir = self.current_dir / src_name
-            dest_dir = self.build_dir / dest_name
-
-            if src_dir.exists():
-                print(f"Copying {src_name} to {dest_dir} ...")
-                if dest_dir.exists():
-                    # For scripts directory, merge instead of replace to preserve legend_armor/legend_helmets
-                    if dest_name == "scripts":
-                        # Copy with merge - preserve existing content
-                        self._merge_directories(src_dir, dest_dir)
-                    else:
-                        shutil.rmtree(dest_dir)
-                        shutil.copytree(src_dir, dest_dir)
-                else:
-                    shutil.copytree(src_dir, dest_dir)
-
-    def _merge_directories(self, src_dir, dest_dir):
-        """Merge source directory into destination, preserving existing content"""
-        for item in src_dir.rglob("*"):
-            if item.is_file():
-                # Calculate relative path and destination
-                rel_path = item.relative_to(src_dir)
-                dest_item = dest_dir / rel_path
-
-                # Create parent directories if they don't exist
-                dest_item.parent.mkdir(parents=True, exist_ok=True)
-
-                # Copy the file
-                shutil.copy2(item, dest_item)
-
-    def create_zip_archives(self):
-        """Create zip archives for mod and assets"""
+    def write_zip(self, zip_name, files, extra_files={}):
         import zipfile
 
-        # Change to build directory
-        original_cwd = os.getcwd()
-        os.chdir(self.build_dir)
+        zip_path = self.build_dir / zip_name
+        with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+            for arc_name in sorted(files):
+                zf.write(files[arc_name].path, arc_name)
+            for arc_name, content in extra_files.items():
+                zf.writestr(arc_name, content)
 
-        try:
-            zip_name_assets = self.artifact_name_assets()
-            zip_name_mod = self.artifact_name_mod()
+        shutil.move(zip_path, self.bb_dir / zip_name)
+        print(f"Created {zip_name} in {self.bb_dir}")
 
-            # Create assets zip
-            with zipfile.ZipFile(zip_name_assets, "w", zipfile.ZIP_DEFLATED) as zf:
-                # Only walk through the specific directories we want to include
-                for dir_name in ["brushes", "gfx", "sounds", "preload"]:
-                    if Path(dir_name).exists():
-                        for root, dirs, files in os.walk(dir_name):
-                            for file in files:
-                                file_path = Path(root) / file
-                                zf.write(file_path, file_path)
+    def create_mod_zip(self):
+        """Create the mod archive with the scripts and the ui"""
+        self.write_zip(self.artifact_name_mod(), self.collect_files(self.MOD_SOURCES))
 
-            # Create mod zip
-            with zipfile.ZipFile(zip_name_mod, "w", zipfile.ZIP_DEFLATED) as zf:
-                # Only walk through the specific directories we want to include
-                for dir_name in ["mod_legends", "scripts", "ui"]:
-                    if Path(dir_name).exists():
-                        for root, dirs, files in os.walk(dir_name):
-                            for file in files:
-                                file_path = Path(root) / file
-                                zf.write(file_path, file_path)
+    def create_assets_zip(self):
+        zip_name = self.artifact_name_assets()
+        zip_path = self.bb_dir / zip_name
+        files = self.collect_files(self.ASSETS_SOURCES)
+        script = self.build_assets_script()
 
-            # Create assets script and add to assets zip
-            assets_script_content = self.build_assets_script()
+        digest = hashlib.sha1(script.encode())
+        for arc_name in sorted(files):
+            digest.update(f"{arc_name}|{file_stamp(files[arc_name])}\n".encode())
 
-            # Remove scripts directory and recreate with just the assets script
-            if Path("scripts").exists():
-                shutil.rmtree("scripts")
+        def state():
+            return {"fingerprint": digest.hexdigest(), "zip": zip_name, "stamp": file_stamp(zip_path)}
 
-            scripts_dir = Path("scripts") / "!mods_preload"
-            scripts_dir.mkdir(parents=True)
+        if zip_path.exists() and load_cache(self.current_dir, "assets") == state():
+            print(f"Skipping {zip_name}, none of its {len(files)} files changed")
+            return
 
-            with open(scripts_dir / "mod_legends_assets.nut", "w") as f:
-                f.write(assets_script_content)
+        self.write_zip(zip_name, files, {"scripts/!mods_preload/mod_legends_assets.nut": script})
+        save_cache(self.current_dir, "assets", state())
 
-            # Add scripts to assets zip
-            with zipfile.ZipFile(zip_name_assets, "a", zipfile.ZIP_DEFLATED) as zf:
-                for root, dirs, files in os.walk("scripts"):
-                    for file in files:
-                        file_path = Path(root) / file
-                        zf.write(file_path, file_path)
+    def timed(self, label, step):
+        """Just my testing to see how much faster it was (p.s. it's much faster)"""
+        start = time.time()
+        step()
+        print(f"{label} took {time.time() - start:.1f}s")
 
-            # Move zip files to BB directory
-            shutil.move(zip_name_assets, self.bb_dir / zip_name_assets)
-            shutil.move(zip_name_mod, self.bb_dir / zip_name_mod)
-
-            print(f"Created {zip_name_assets} and {zip_name_mod} in {self.bb_dir}")
-
-        finally:
-            os.chdir(original_cwd)
-
-    def build(self):
+    def build(self, full=False):
         """Main build process"""
         try:
             print("Starting Legends mod build process...")
+            start = time.time()
+
+            if full:
+                # Forget what earlier builds did, so everything is built again
+                shutil.rmtree(self.current_dir / CACHE_DIR, ignore_errors=True)
 
             # Build cleanup to ensure a fresh state
-            self.prebuild_cleanup()
+            self.timed("Cleanup", self.prebuild_cleanup)
 
-            # Remove and recreate build directory
-            if self.build_dir.exists():
-                shutil.rmtree(self.build_dir)
-            self.build_dir.mkdir(parents=True)
+            # The build directory only holds the archives while they are written
+            self.build_dir.mkdir(parents=True, exist_ok=True)
 
             # Copy dead assets
             self.copy_dead_assets()
 
-            # Copy directories first (to establish base structure)
-            self.copy_directories()
-
-            # Build brushes (which will add legend_armor/legend_helmets to existing scripts)
-            self.build_brushes()
+            # Generate the helmet and armor scripts and build the brushes that changed
+            self.timed("Brushes and generated scripts", self.build_brushes)
 
             # Create zip archives
-            self.create_zip_archives()
+            self.timed("Mod archive", self.create_mod_zip)
+            self.timed("Assets archive", self.create_assets_zip)
 
-            print("Legends mod build completed successfully!")
+            print(f"Legends mod build completed successfully in {time.time() - start:.1f}s!")
 
         except BuildError as e:
             print(f"Legends mod build failed: {e}")
@@ -279,11 +236,16 @@ def main():
         nargs="?",
         help="Build directory (default: from .build_config.py or './build')",
     )
+    parser.add_argument(
+        "--full",
+        action="store_true",
+        help="Forget what earlier builds did and build everything again",
+    )
 
     args = parser.parse_args()
 
     builder = LegendsModBuilder(args.bb_dir, args.repo_dir, args.build_dir)
-    builder.build()
+    builder.build(args.full)
 
 
 if __name__ == "__main__":

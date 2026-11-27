@@ -55,16 +55,14 @@
 			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
-		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 35)
-		{
-			local weapons = [
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 35) {
+			local secondaryWeapons = [
 				"weapons/javelin",
 				"weapons/throwing_spear"
 			];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.addToBag(this.new("scripts/items/" + secondaryWeapons[::Math.rand(0, secondaryWeapons.len() - 1)]));
 		}
-
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{

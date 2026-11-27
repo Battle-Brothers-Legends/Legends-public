@@ -261,7 +261,7 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 
 			function start(_event) {
 				this.Characters.push(_event.m.Scholar.getImagePath());
-				this.Characters.push(_event.m.AffectedBro.getImagePath());
+				this.Characters.push(_event.m.Cultist.getImagePath());
 
 				local brothers = ::World.getPlayerRoster().getAll();
 				foreach (bro in brothers) {

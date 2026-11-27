@@ -1041,7 +1041,7 @@ NewCampaignMenuModule.prototype.setBanners = function(_data)
 NewCampaignMenuModule.prototype.setStartingScenarios = function (_data) {
 	if (_data !== null && jQuery.isArray(_data)) {
 		for (var i = 0; i < _data.length; ++i) {
-			_data[i].RenderGroup = _data[i].LegendsScenarioOrder[_data[i].ID] !== undefined ? Math.floor(_data[i].Order / 100) : 5; // places scenarios that weren't defined in ::Legends.Scenarios.Order in the custom group
+			_data[i].RenderGroup = _data[i].LegendsScenarioOrder[_data[i].ID] !== undefined ? Math.floor(_data[i].Order / 100) : 98; // places scenarios that weren't defined in ::Legends.Scenarios.Order in the custom group
 		}
 
 		_data.sort(function (a, b) {
@@ -1059,7 +1059,7 @@ NewCampaignMenuModule.prototype.setStartingScenarios = function (_data) {
 
 			if (group !== currentGroup) {
 				currentGroup = group;
-				this.addScenarioHeader(group, this.mScenariosRow);
+				this.addScenarioHeader(group, this.mScenariosRow, _data[i].LegendsScenarioGroups);
 			}
 
 			this.addStartingScenario(i, _data[i], this.mScenariosRow);
@@ -1067,7 +1067,7 @@ NewCampaignMenuModule.prototype.setStartingScenarios = function (_data) {
 	}
 };
 
-NewCampaignMenuModule.prototype.addScenarioHeader = function (_group, _row) {
+NewCampaignMenuModule.prototype.addScenarioHeader = function (_group, _row, _submodGroups) {
 	var headerText = "";
 
 	switch (_group) {
@@ -1076,9 +1076,13 @@ NewCampaignMenuModule.prototype.addScenarioHeader = function (_group, _row) {
 		case 2: headerText = 'Difficulty: <img src="' + Path.GFX + 'ui/images/difficulty_hard.png"/>'; break;
 		case 3: headerText = 'Solo Avatar'; break;
 		case 4: headerText = 'Special'; break;
-		case 5: headerText = 'Custom'; break;
-		case 6: headerText = 'Random'; break;
-		default: return;
+		case 98: headerText = 'Custom'; break;
+		case 99: headerText = 'Random'; break;
+		default: headerText = _submodGroups ? _submodGroups[_group - 5] : undefined; break; // the headers of submods follow after Special
+	}
+
+	if (headerText === undefined) {
+		return;
 	}
 
 	var header = $('<div class="title title-font-big font-color-title">' + headerText + '</div>');

@@ -13,6 +13,7 @@
 		this.m.Block = 15;
 		this.m.RegularDamage = 15;
 		this.m.RegularDamageMax = 30;
+		this.m.Value = 1200;
 		this.named_shield.randomizeValues();
 	}
 });

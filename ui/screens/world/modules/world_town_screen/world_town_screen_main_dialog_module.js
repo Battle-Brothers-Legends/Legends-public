@@ -205,7 +205,8 @@ WorldTownScreenMainDialogModule.prototype.show = function (_withSlideAnimation)
 	else
 	{
 		this.mContainer.css({ opacity: 0 });
-		this.mContainer.velocity("finish", true).velocity({ opacity: 1 },
+		// translateX is reset as well, otherwise the dialog stays off-screen if it was slid out and never slid back in
+		this.mContainer.velocity("finish", true).velocity({ opacity: 1, translateX: 0 },
 		{
 			duration: Constants.SCREEN_FADE_IN_OUT_DELAY,
 			easing: 'swing',

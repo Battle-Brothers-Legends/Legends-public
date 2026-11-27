@@ -6,6 +6,7 @@
 	o.m.VeteranPerks <- 4;
 	o.m.CampAssignment <- "camp.rest";
 	o.m.LastCampAssignment <- "camp.rest";
+	o.m.ActiveCampAssignment <- null;
 	o.m.CampHealing <- 0;
 	o.m.LastCampTime <- 0;
 	o.m.InReserves <- false;
@@ -66,6 +67,10 @@
 			this.m.ProfessionExp -= levels[this.m.ProfessionLevel];
 			++this.m.ProfessionLevel;
 			++this.m.ProfessionPoints;
+
+			if (this.m.ProfessionLevel == ::Legends.Professions.Exp.ScholarPointLevel && ::Legends.Professions.has(this, ::Legends.Profession.LegendScholar)) {
+				++this.m.ProfessionPoints;
+			}
 		}
 	}
 
@@ -126,11 +131,33 @@
 	}
 
 	o.getCampAssignment <- function () {
-		return this.m.CampAssignment;
+		return this.m.ActiveCampAssignment == null ? this.m.CampAssignment : this.m.ActiveCampAssignment;
 	}
 
 	o.setCampAssignment <- function (_id) {
 		this.m.CampAssignment = _id;
+		this.m.ActiveCampAssignment = null;
+	}
+
+	o.getPrimaryCampAssignment <- function () {
+		return this.m.CampAssignment;
+	}
+
+	o.getSecondaryCampAssignment <- function () {
+		return this.getFlags().has("CampSecondaryAssignment") ? this.getFlags().get("CampSecondaryAssignment") : null;
+	}
+
+	o.setSecondaryCampAssignment <- function (_id) {
+		if (_id == null) {
+			this.getFlags().remove("CampSecondaryAssignment");
+		} else {
+			this.getFlags().set("CampSecondaryAssignment", _id);
+		}
+	}
+
+	// Set by the camp when it moves characters between their Primary and Secondary tasks
+	o.setActiveCampAssignment <- function (_id) {
+		this.m.ActiveCampAssignment = _id == this.m.CampAssignment ? null : _id;
 	}
 
 	o.getLastCampAssignment <- function () {
@@ -154,10 +181,11 @@
 				if (!(s.getID() in this.m.Hiring.Traits)) { // trait was granted after setStartValuesEx, e.g. by a scenario in onGenerateBro
 					this.m.Hiring.Traits[s.getID()] <- ::Math.rand(1, 100);
 				}
+				local def = s.getID() in ::Legends.Traits.LookupMap ? ::Legends.Traits.LookupMap[s.getID()] : null; // null for a trait another mod never registered
 				ret.push({
 					id = s.getID(),
 					icon = s.getIconColored(),
-					exact = this.m.IsTryoutDone || ("VisibleOnRecruitment" in ::Legends.Traits.LookupMap[s.getID()] && ::Legends.Traits.LookupMap[s.getID()].VisibleOnRecruitment) || (::World.Assets.m.ProfessionEffect.LegendSpotTheTells * 100) >= this.m.Hiring.Traits[s.getID()]
+					exact = this.m.IsTryoutDone || (def != null && "VisibleOnRecruitment" in def && def.VisibleOnRecruitment) || (::World.Assets.m.ProfessionEffect.LegendSpotTheTells * 100) >= this.m.Hiring.Traits[s.getID()]
 				});
 			}
 		}

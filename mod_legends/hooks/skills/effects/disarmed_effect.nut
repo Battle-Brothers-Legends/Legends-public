@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/disarmed_effect", function (o) {
 	o.getDescription = function () {
-		return "Temporarily disarmed, having fumbled %their% weapon.";
+		return this.resolveDescription("Temporarily disarmed, having fumbled %their% weapon.");
 	}
 
 	o.getTooltip <- function () {

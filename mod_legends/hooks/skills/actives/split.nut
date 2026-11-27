@@ -4,7 +4,6 @@
 	o.create = function () {
 		create();
 		this.m.IsTargetingActor = false;
-		this.m.HitChanceBonus = -5;
 	}
 
 	o.getTooltip = function () {
@@ -15,23 +14,6 @@
 			icon = "ui/icons/special.png",
 			text = "Can hit up to 2 targets"
 		});
-
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords) {
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=%negative%]-5%[/color] chance to hit"
-			});
-		}
-		else {
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=%positive%]+5%[/color] chance to hit"
-			});
-		}
 
 		return tooltip;
 	}
@@ -66,14 +48,6 @@
 		this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
-		if (_skill == this) {
-			if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
-				this.m.HitChanceBonus += 15;
-			}
-
-			_properties.MeleeSkill += this.m.HitChanceBonus;
-		}
-	}
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {}
 
 });

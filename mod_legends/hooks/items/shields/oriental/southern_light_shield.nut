@@ -11,6 +11,7 @@
 		this.m.RegularDamage = 10;
 		this.m.RegularDamageMax = 25;
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Value = 300;
 		this.updateVariant();
 	}
 

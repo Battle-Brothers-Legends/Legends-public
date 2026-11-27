@@ -8,6 +8,7 @@
 		create();
 		this.m.HitChanceBonus = 10;
 		this.m.DirectDamageMult = 0.2;
+		this.m.Description = "A target 2 tiles away is hooked and pulled close if there is space. Anyone hit will be staggered and lose initiative. A target can not be pulled up a level of height, but may take damage if it is pulled down several levels of height at once. Shieldwall, Spearwall and Riposte will be canceled for a successfully hooked-in target.";
 	}
 
 	o.getTooltip = function() {
@@ -57,6 +58,10 @@
 		if (result && pulledTo == null && (target != null && (!target.getCurrentProperties().IsRooted || target.isAlliedWith(this.getContainer().getActor()))))
 			result = false;
 		return result;
+	}
+
+	o.findTileToKnockBackTo = function( _userTile, _targetTile ) {
+		return this.skill.getForcedMovementDestinationTile(_userTile, _targetTile, false);
 	}
 
 	o.onUse = function( _user, _targetTile ) {
@@ -113,12 +118,26 @@
 		}
 	}
 
-	o.onTargetSelected <- function ( _targetTile )
-	{
-		local knockToTile = this.getPulledToTile(this.getContainer().getActor().getTile(), _targetTile);
+	o.onTargetSelected <- function ( _targetTile ) {
+		local knockToTile = this.findTileToKnockBackTo(this.getContainer().getActor().getTile(), _targetTile);
 
-		if (knockToTile == null)
+		if (knockToTile == null) {
 			return;
+		}
+
+		local target = _targetTile.getEntity();
+		if (target == null) {
+			return;
+		}
+
+		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab || target.getCurrentProperties().IsRooted) {
+			return;
+		}
+
+		if (!_targetTile.IsEmpty) {
+			return
+		}
+
 		// to show where the target may be knocked back
 		::Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
 	}
@@ -134,7 +153,7 @@
 	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.6;
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.addHitChanceBonus();
 			if (!::Legends.S.isEntityNullOrDead(_targetEntity) &&  _targetEntity.getCurrentProperties().IsRooted) {
 				_properties.DamageTotalMult *= 1.5;
 			}

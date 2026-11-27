@@ -20,7 +20,7 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.0;
 		this.m.HitChanceBonus = -20;
-		this.m.ActionPointCost = 5;
+		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 30;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 2;
@@ -47,7 +47,10 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate(_properties) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (::Legends.Weapons.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	function onUse(_user, _targetTile) {
@@ -75,8 +78,8 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += _properties.IsSpecializedInPolearms ? 10 : 0;
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			local bonus = _properties.IsSpecializedInPolearms ? 10 : 0;
+			_properties.MeleeSkill += this.addHitChanceBonus(bonus);
 			_properties.DamageTotalMult = 0.0;
 			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		}

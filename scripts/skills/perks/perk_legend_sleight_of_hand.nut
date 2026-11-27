@@ -7,14 +7,17 @@ this.perk_legend_sleight_of_hand <- this.inherit("scripts/skills/skill", {
 
 	function onNewRound()
 	{
-		local weapon = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
-		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing) || weapon.getAmmoMax() == 0)
-			return;
-		if (weapon.getAmmoMax() != weapon.getAmmo())
+		foreach (slot in [::Const.ItemSlot.Mainhand, ::Const.ItemSlot.Offhand])
 		{
-			weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " gains one extra ammo for " + weapon.getName() + ".");
-			return;
+			local weapon = this.getContainer().getActor().getItems().getItemAtSlot(slot);
+			if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing) || weapon.getAmmoMax() == 0)
+				continue;
+			if (weapon.getAmmoMax() != weapon.getAmmo())
+			{
+				weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " gains one extra ammo for " + weapon.getName() + ".");
+				return;
+			}
 		}
 	}
 });

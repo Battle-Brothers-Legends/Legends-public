@@ -18,7 +18,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "[color=%skill%]Knock Back[/color], [color=%skill%]Repel[/color] and [color=%skill%]Hook[/color] skills have [color=%positive%]100%[/color] chance to hit when targeting an allied character and will not apply negative effects or damage when used on an ally"
+			text = "[color=%skill%]Shield Bash[/color], [color=%skill%]Repel[/color] and [color=%skill%]Hook[/color] skills have [color=%positive%]100%[/color] chance to hit when targeting an allied character and will not apply negative effects or damage when used on an ally"
 		});
 
 		if (this.m.IsBonusActive) {

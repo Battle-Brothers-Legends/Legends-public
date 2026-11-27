@@ -62,6 +62,12 @@ this.legend_headache_effect <- this.inherit("scripts/skills/injury/injury", {
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-15%[/color] Initiative"
+			},
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-15%[/color] Block"
 			}
 		];
 		this.addTooltipHint(ret);
@@ -76,6 +82,7 @@ this.legend_headache_effect <- this.inherit("scripts/skills/injury/injury", {
 		_properties.MeleeDefenseMult *= 0.85;
 		_properties.RangedDefenseMult *= 0.85;
 		_properties.InitiativeMult *= 0.85;
+		_properties.BlockMult *= 0.85;
 	}
 
 	function onRemoved() {

@@ -125,9 +125,9 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			items.equip(this.new("scripts/items/shields/heater_shield"));
 			items.addToBag(this.new("scripts/items/weapons/militia_spear"));
 		} else if (r == 4) {
-			items.equip(this.new("scripts/items/weapons/throwing_spear"));
+			items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
 			items.equip(this.new("scripts/items/tools/daze_bomb_item"));
-			items.addToBag(this.new("scripts/items/weapons/oriental/saif"));
+			items.equip(this.new("scripts/items/weapons/oriental/saif"));
 		} else if (r == 5) {
 			items.equip(this.new("scripts/items/weapons/short_bow"));
 			items.addToBag(this.new("scripts/items/weapons/rondel_dagger"));

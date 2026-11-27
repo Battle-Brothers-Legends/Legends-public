@@ -96,20 +96,24 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.getModifiers().Assigned;
 	}
 
+	function hasWork(_bro) {
+		return ::World.Assets.getAmmo() + this.m.AmmoAdded < ::World.Assets.getMaxAmmo();
+	}
+
 	function update() {
-		if (this.m.NumBros == 0) {
+		if (this.m.NumBros == 0 && this.m.AmmoAdded == 0) {
 			return null;
 		}
 
-		if (::World.Assets.getAmmo() + this.m.AmmoAdded < ::World.Assets.getMaxAmmo()) {
-			this.m.AmmoAdded = ::Math.min(::World.Assets.getMaxAmmo(), (::Math.floor(this.m.Craft * this.m.Camp.getElapsedHours()) / 2.0));
+		if (this.hasWork(null)) {
+			this.m.AmmoAdded = ::Math.minf(::World.Assets.getMaxAmmo() - ::World.Assets.getAmmo(), this.m.AmmoAdded + this.m.Craft / 2.0);
 		}
 
 		return "Fletched ... " + ::Math.floor(this.m.AmmoAdded) + " " + ::Legends.Text.pluralize(::Math.floor(this.m.AmmoAdded), "unit") + " of ammunition";
 	}
 
 	function completed() {
-		if (this.m.NumBros == 0) {
+		if (this.m.NumBros == 0 && this.m.AmmoAdded == 0) {
 			return;
 		}
 

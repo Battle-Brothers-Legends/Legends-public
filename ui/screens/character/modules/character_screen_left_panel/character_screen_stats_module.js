@@ -131,10 +131,10 @@ var CharacterScreenStatsModule = function (_parent, _dataSource) {
 			Progressbar: null,
 			Talent: null
 		},
-		CrushingDamage: {
-			IconPath: Path.GFX + Asset.ICON_CRUSHING_DAMAGE,
+		Block: { // replaces the effectiveness against armor and keeps the look of its bar
+			IconPath: Path.GFX + Asset.ICON_BLOCK,
 			StyleName: ProgressbarStyleIdentifier.CrushingDamage,
-			TooltipId: TooltipIdentifier.CharacterStats.CrushingDamage,
+			TooltipId: TooltipIdentifier.CharacterStats.Block,
 			Row: null,
 			Progressbar: null,
 			Talent: null
@@ -355,7 +355,7 @@ CharacterScreenStatsModule.prototype.setProgressbarValues = function (_data) {
 	this.setProgressbarValue(this.mMiddleStatsRows.MeleeDefense.Progressbar, _data, ProgressbarValueIdentifier.MeleeDefense, ProgressbarValueIdentifier.MeleeDefenseMax, ProgressbarValueIdentifier.MeleeDefenseLabel);
 	this.setProgressbarValue(this.mMiddleStatsRows.RangeDefense.Progressbar, _data, ProgressbarValueIdentifier.RangeDefense, ProgressbarValueIdentifier.RangeDefenseMax, ProgressbarValueIdentifier.RangeDefenseLabel);
 	this.setProgressbarValue(this.mMiddleStatsRows.RegularDamage.Progressbar, _data, ProgressbarValueIdentifier.RegularDamage, ProgressbarValueIdentifier.RegularDamageMax, ProgressbarValueIdentifier.RegularDamageLabel);
-	this.setProgressbarValue(this.mMiddleStatsRows.CrushingDamage.Progressbar, _data, ProgressbarValueIdentifier.CrushingDamage, ProgressbarValueIdentifier.CrushingDamageMax, ProgressbarValueIdentifier.CrushingDamageLabel);
+	this.setProgressbarValue(this.mMiddleStatsRows.Block.Progressbar, _data, 'block', 'blockMax', 'blockLabel');
 	this.setProgressbarValue(this.mMiddleStatsRows.ChanceToHitHead.Progressbar, _data, ProgressbarValueIdentifier.ChanceToHitHead, ProgressbarValueIdentifier.ChanceToHitHeadMax, ProgressbarValueIdentifier.ChanceToHitHeadLabel);
 	this.setProgressbarValue(this.mMiddleStatsRows.SightDistance.Progressbar, _data, ProgressbarValueIdentifier.SightDistance, ProgressbarValueIdentifier.SightDistanceMax, ProgressbarValueIdentifier.SightDistanceLabel);
 

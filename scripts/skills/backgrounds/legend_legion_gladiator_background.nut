@@ -33,6 +33,14 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLegionGladiator);
 	}
 
+	function onAdded() {
+		if (this.m.IsNew) {
+			::Legends.Arena.grantWins(this.getContainer().getActor(), 5);
+		}
+
+		this.legend_legion_background.onAdded();
+	}
+
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 

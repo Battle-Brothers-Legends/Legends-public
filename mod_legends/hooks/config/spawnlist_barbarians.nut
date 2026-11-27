@@ -27,12 +27,12 @@
 					Cost = 15
 				},
 				{
-					MinR = 250,
+					MinR = 150,
 					Type = ::Const.World.Spawn.Troops.BarbarianMarauder,
 					Cost = 22
 				},
 				{
-					MinR = 500,
+					MinR = 525,
 					Type = ::Const.World.Spawn.Troops.BarbarianChampion,
 					Cost = 35
 				},
@@ -47,12 +47,12 @@
 			Weight = 20,
 			Types = [
 				{
-					MinR = 250,
+					MinR = 150,
 					Type = ::Const.World.Spawn.Troops.LegendBarbarianPillager,
 					Cost = 22
 				},
 				{
-					MinR = 500,
+					MinR = 525,
 					Type = ::Const.World.Spawn.Troops.LegendBarbarianBloodletter,
 					Cost = 35
 				}

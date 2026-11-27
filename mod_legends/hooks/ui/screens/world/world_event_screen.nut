@@ -7,6 +7,12 @@
 		this.m.IsEncounter = _c;
 	}
 
+	local setIsContract = o.setIsContract;
+	o.setIsContract = function ( _c ) {
+		this.m.IsEncounter = false;
+		setIsContract(_c);
+	}
+
 	/**
 	 * Reroutes input handler for encounter to proper manager
 	 */

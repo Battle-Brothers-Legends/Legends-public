@@ -35,12 +35,24 @@
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = "[color=%negative%]-50%[/color] Initiative"
+			},
+			{
+				id = 15,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-50%[/color] Block"
 			}
 		]);
 		return tooltip;
 	}
 
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function(_properties) {
+		onUpdate(_properties);
+		_properties.BlockMult *= 0.5;
+	}
+
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "initiative"]);
+		return "[color=%negative%]-50%[/color] " + ::Legends.Text.inlineIcons(["melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "initiative", "block"]);
 	}
 });

@@ -66,4 +66,11 @@
 			this.m.KnownOpponents.remove(i);
 		}
 	}
+
+	local getKnownOpponents = o.getKnownOpponents;
+	o.getKnownOpponents = function ()
+	{
+		this.cleanUpKnownOpponents();
+		return getKnownOpponents();
+	}
 });

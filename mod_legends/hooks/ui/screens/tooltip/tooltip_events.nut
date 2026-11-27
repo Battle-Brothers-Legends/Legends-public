@@ -693,7 +693,7 @@
 	}
 
 	local strategic_queryTileTooltipData = o.strategic_queryTileTooltipData;
-	strategic_queryTileTooltipData = function () {
+	o.strategic_queryTileTooltipData = function () {
 		::World.Assets.m.IsShowingExtendedFootprints = ::World.Assets.m.ProfessionEffect.LegendLookout > 0; // no need to reset as its the only thing determining that
 		return strategic_queryTileTooltipData();
 	}
@@ -1905,6 +1905,20 @@
 						id = 2,
 						type = "description",
 						text = "The base percentage of damage that will be applied when hitting a target protected by armor. Once the armor is destroyed, the weapon damage applies at 100% to hitpoints. The actual damage done is modified by the skill used and the target hit."
+					}
+				];
+
+			case "character-stats.Block":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Block"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "The damage that is taken off every hit this character receives, before armor and hitpoints are damaged. A hit that loses all of its damage this way is blocked. Mostly granted by shields, and doubled for them by Shield Mastery. Some attacks ignore part of it."
 					}
 				];
 
@@ -3737,6 +3751,20 @@
 				}
 
 				return ret;
+
+			case "character-screen.right-panel-header-module.ProfessionPlanScreenWorkSpeed":
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = "Camp Work"
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "The camp station this character is assigned to and how fast they would work at each station. Injured characters only work at " + ::Math.round(::Legends.Camp.InjuredWorkMult * 100) + "% of their speed at dangerous stations."
+					}
+				];
 
 			case "character-screen.right-panel-header-module.ProfessionPlanScreenPlanned":
 				return [

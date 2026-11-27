@@ -10,52 +10,72 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Damage"
+				text = "[color=%negative%]-%_malus%%[/color] Damage",
+				param = [["_malus", 5 * this.m.TurnsLeft]]
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Initiative"
+				text = "[color=%negative%]-%_malus%%[/color] Initiative",
+				param = [["_malus", 5 * this.m.TurnsLeft]]
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Resolve"
+				text = "[color=%negative%]-%_malus%%[/color] Resolve",
+				param = [["_malus", 5 * this.m.TurnsLeft]]
 			},
 			{
 				id = 14,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Melee Skill"
+				text = "[color=%negative%]-%_malus%%[/color] Melee Skill",
+				param = [["_malus", 5 * this.m.TurnsLeft]]
 			},
 			{
 				id = 15,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Ranged Skill"
+				text = "[color=%negative%]-%_malus%%[/color] Ranged Skill",
+				param = [["_malus", 5 * this.m.TurnsLeft]]
 			},
 			{
 				id = 16,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Melee Defense"
+				text = "[color=%negative%]-%_malus%%[/color] Melee Defense",
+				param = [["_malus", 5 * this.m.TurnsLeft]]
 			},
 			{
 				id = 17,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=%negative%]-" + 5 * this.m.TurnsLeft + "%[/color] Ranged Defense"
+				text = "[color=%negative%]-%_malus%%[/color] Ranged Defense",
+				param = [["_malus", 5 * this.m.TurnsLeft]]
 			},
 			{
-				id = 18,
+				id = 17,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%negative%]-%_malus%%[/color] Block",
+				param = [["_malus", 5 * this.m.TurnsLeft]]
+			},
+			{
+				id = 19,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "The effect lessens every turn"
 			}
 		]);
 		return tooltip;
+	}
+
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function(_properties) {
+		onUpdate(_properties);
+		_properties.BlockMult *= 1.0 - 0.05 * this.m.TurnsLeft;
 	}
 
 	o.onAdded = function () {
@@ -82,6 +102,6 @@
 	}
 
 	o.getActorHoverTooltip <- function (_activeEntity, _stacks = 1) {
-		return "[color=%negative%]-" + (this.m.Stacks * 5) + "%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "bravery", "initiative"]);
+		return "[color=%negative%]-" + (this.m.Stacks * 5) + "%[/color] " + ::Legends.Text.inlineIcons(["damage_dealt", "melee_skill", "ranged_skill", "melee_defense", "ranged_defense", "bravery", "initiative", "block"]);
 	}
 });

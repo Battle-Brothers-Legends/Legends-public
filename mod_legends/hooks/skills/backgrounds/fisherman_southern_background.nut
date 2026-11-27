@@ -55,12 +55,13 @@
 		local items = this.getContainer().getActor().getItems();
 		items.equip(::Legends.Items.pickItem([
 			[1, "weapons/knife"],
-			[1, "weapons/throwing_spear"],
-			[1, null]
+			[1, "weapons/javelin"],
+			[2, null]
 		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickItem([
-			[1, "tools/throwing_net"]
+			[4, "tools/throwing_net"],
+			[1, "weapons/throwing_spear"]
 		], "scripts/items/"));
 
 		items.equip(::Legends.Items.pickArmor([
