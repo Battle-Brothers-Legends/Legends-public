@@ -443,7 +443,7 @@ Master the art of archery and pelting your opponents with arrows from afar.
 
 • [color=%skill%]Mark Target[/color] now has 2 uses per turn.
 
-• [color=%skill%]Full Draw[/color] now requires [color=%negative%]8[/color] Action Points and will execute after on resuming your turn after using the [color=%skill%]Wait[/color] command.
+• [color=%skill%]Full Draw[/color] now will execute after on resuming your turn after using the [color=%skill%]Wait[/color] command, an additional [color=%positive%]10%[/color] of damage inflicted ignores armor and ignores an additional [color=%positive%]25%[/color] of Block value.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecBow].Tooltip = ::Const.Strings.PerkDescription.SpecBow;
 
