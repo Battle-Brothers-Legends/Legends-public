@@ -157,7 +157,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			locations.push(location);
 		}
 
-		if (this.getUpgraded() && !::World.Camp.m.IsEscorting) {
+		if (this.getUpgraded() && !::World.Camp.m.WasCampingWhileEscorting) {
 			for (local i = 0; i < ::Legends.S.randomizeFractionToInt(campHours * 0.1 + (0.1 * this.getModifiers().Craft)); i++) {
 				if (locations.len() == 0) {
 					break;

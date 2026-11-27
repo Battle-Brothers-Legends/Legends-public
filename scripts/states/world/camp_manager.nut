@@ -13,7 +13,8 @@ this.camp_manager <- {
 		CampEncountersCooldownUntil = 0.0,
 		CampEncounters = [],
 		PendingCombat = null,
-		PendingUpdateText = []
+		PendingUpdateText = [],
+		WasCampingWhileEscorting = false
 	},
 
 	function create()
@@ -195,70 +196,61 @@ this.camp_manager <- {
 		return this.m.Tents;
 	}
 
-	function onEscort( _val )
-	{
-		if (this.m.IsEscorting == _val)
-		{
+	function completeCamping(_predicate) {
+		this.m.IsCamping = false;
+		::World.State.getPlayer().setCamping(this.m.IsCamping);
+		this.m.StopTime = ::Time.getVirtualTimeF();
+
+		foreach (b in this.m.Tents.filter(_predicate)) {
+			b.completed();
+		}
+
+		this.updateAssignments();
+		this.m.LastCampTime = this.m.StopTime;
+		::World.Assets.consumeItems();
+		::World.Assets.refillAmmo();
+		::World.Assets.updateAchievements();
+		::World.Assets.checkAmbitionItems();
+		::World.State.getPlayer().updateStrength();
+	}
+
+	function onEscort(_val) {
+		if (this.m.IsEscorting == _val) {
 			return;
 		}
 
 		this.m.IsEscorting = _val;
 
-		if (this.m.IsEscorting)
-		{
+		if (this.m.IsEscorting) {
 			this.m.StartTime = ::Time.getVirtualTimeF();
 			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.init();
-		}
-		else
-		{
-			this.m.StopTime = ::Time.getVirtualTimeF();
-
-			foreach( b in this.m.Tents )
-			{
-				if (!b.isWorkDangerous())
-				{
-					b.completed();
-				}
+		} else {
+			if (this.m.IsCamping) {
+				this.m.WasCampingWhileEscorting = true;
+				this.completeCamping(@(_,_b) !_b.isWorkDangerous());
+				this.showCampEscortFinishedReport();
 			}
-
-			this.updateAssignments();
-			this.m.LastCampTime = this.m.StopTime;
-			::World.State.getPlayer().updateStrength();
 			::World.TopbarDayTimeModule.hideMessage();
 		}
 	}
 
-	function onCamp()
-	{
-		this.m.IsCamping = !this.m.IsCamping;
-		::World.State.getPlayer().setCamping(this.m.IsCamping);
-
-		if (this.m.IsCamping)
-		{
+	function onCamp() {
+		if (!this.m.IsCamping) {
+			this.m.IsCamping = true;
+			::World.State.getPlayer().setCamping(this.m.IsCamping);
 			this.m.StartTime = ::Time.getVirtualTimeF();
 			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.init();
-		}
-		else
-		{
-			this.m.StopTime = ::Time.getVirtualTimeF();
-
-			foreach( b in this.m.Tents ) {
-				if (this.canBuildingWorkCurrently(b)) {
-					b.completed();
-				}
-			}
-
-			this.updateAssignments();
-			this.m.LastCampTime = this.m.StopTime;
-			::World.Assets.consumeItems();
-			::World.Assets.refillAmmo();
-			::World.Assets.updateAchievements();
-			::World.Assets.checkAmbitionItems();
-			::World.State.getPlayer().updateStrength();
+		} else {
+			this.completeCamping((@(_, _b) this.canBuildingWorkCurrently(_b)).bindenv(this));
 			::World.Events.fire("event.camp_completed");
 		}
+	}
+
+	function onCampAttacked () {
+		this.completeCamping((@(_, _b) this.canBuildingWorkCurrently(_b)).bindenv(this));
+		this.showCampAttackedReport();
 	}
 
 	function onEnter () {
@@ -667,27 +659,6 @@ this.camp_manager <- {
 		}
 	}
 
-	function onCampAttacked () {
-		this.m.IsCamping = false;
-		::World.State.getPlayer().setCamping(false);
-
-		this.m.StopTime = ::Time.getVirtualTimeF();
-
-		foreach (b in this.m.Tents)	{
-			if (this.canBuildingWorkCurrently(b)) {
-				b.completed();
-			}
-		}
-
-		this.m.LastCampTime = this.m.StopTime;
-		::World.Assets.consumeItems();
-		::World.Assets.refillAmmo();
-		::World.Assets.updateAchievements();
-		::World.Assets.checkAmbitionItems();
-		::World.State.getPlayer().updateStrength();
-		this.showCampAttackedReport();
-	}
-
 	// a fight that is started from a contract or event screen has to wait for that screen to close
 	function showCampAttackedReport () {
 		local screen = ::World.State.getEventScreen();
@@ -707,6 +678,23 @@ this.camp_manager <- {
 			this.m.PendingCombat = null;
 			::World.State.showCombatDialog(combat.IsPlayerInitiated, combat.IsCombatantsVisible, combat.AllowFormationPicking, combat.Properties, combat.Pos);
 		}
+	}
+
+	function showCampEscortFinishedReport () {
+		local screen = ::World.State.getEventScreen();
+
+		if (screen.isVisible() || screen.isAnimating()) {
+			::World.State.setAutoPause(true);
+			::Time.scheduleEvent(::TimeUnit.Real, 50, function (_t) {
+				::World.Camp.showCampEscortFinishedReport();
+			}, null);
+			return;
+		} else {
+			::World.Events.fire("event.camp_completed");
+			this.m.WasCampingWhileEscorting = false;
+		}
+
+		::World.State.setAutoPause(false);
 	}
 };
 
