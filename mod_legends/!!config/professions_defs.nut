@@ -105,8 +105,8 @@ if (!("Professions" in ::Legends)) {
         ScalingFactor = 1
     },
     LegendBreadAndGames = {
-        ScalingArray = [0, 1.5], // number of extra arena fights per day, fractions are a chance (1.15 = +1 and 15% chance of +2)
-        ScalingFactor = 0.1
+        ScalingArray = [0, 1.5, 2.0], // number of extra arena fights per day, fractions are a chance (1.15 = +1 and 15% chance of +2)
+        ScalingFactor = 0.125
     },
     LegendButcherBarber = {
         ScalingArray = [0, 0.1], // chance to lower the magnitude of gained permanent injury
