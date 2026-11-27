@@ -12,3 +12,5 @@
 ::Const.Tactical.HitInfo.BodyDamageMultBeforeSteelBrow <- 1.0;
 
 ::Const.Tactical.Settings.AnimationSpeed <- 1.0;
+
+::Const.Tactical.DeploymentType.CircleDistant <- 13;

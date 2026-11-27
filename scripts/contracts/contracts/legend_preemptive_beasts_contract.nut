@@ -1228,7 +1228,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		p.Tile = tile;
 		p.TerrainTemplate = isInForest ? "tactical.legend_beast_den_forest" : "tactical.legend_beast_den";
 		p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
-		p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;
+		p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.CircleDistant;
 		p.Music = ::Const.Music.BeastsTracks;
 		p.IsWithoutAmbience = !isInForest;
 
