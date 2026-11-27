@@ -23,8 +23,7 @@
 		::Legends.Actives.getID(::Legends.Active.LegendBreach),
 		::Legends.Actives.getID(::Legends.Active.LegendFlowingSlash),
 		::Legends.Actives.getID(::Legends.Active.LegendBackstab),
-		::Legends.Actives.getID(::Legends.Active.LegendCull),
-		::Legends.Actives.getID(::Legends.Active.Deathblow) // added temporarily until we figure out what to do, as of now katar wielding assassins never attack
+		::Legends.Actives.getID(::Legends.Active.LegendCull)
 	]);
 
 	// A weapon can have attacks with different ranges now, like a Pike with Impale and Heartseekers
