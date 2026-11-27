@@ -31,6 +31,7 @@ this.legend_kopis <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash);
 		::Legends.Actives.grant(this, ::Legends.Active.Gash);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDebilitate);
 	}
 
 	function onUpdateProperties( _properties )
