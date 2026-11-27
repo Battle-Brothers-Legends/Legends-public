@@ -100,4 +100,17 @@
 
 		return getDangerFromActor(_actor, _target, _entity);
 	}
+
+	o.evaluate <- function (_entity) {
+		if (this.m.Thread != null) {
+			foreach (target in this.m.ValidTargets) {
+				if (::Legends.S.isEntityNullOrDead(target.Actor) || !target.Actor.isPlacedOnMap()) {
+					this.m.Thread = null;
+					break;
+				}
+			}
+		}
+
+		return this.behavior.evaluate(_entity);
+	}
 });
