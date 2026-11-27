@@ -1,13 +1,13 @@
 this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 	m = {
 		PrimaryOffhandAttack = null
-		},
-	function create()
-	{
+	},
+
+	function create() {
 		this.shield.create();
 		this.m.ID = "shield.legend_mummy_shield";
 		this.m.Name = "Ancient Southern Shield";
-		this.m.Description = "A small shield made of wood and reinforced with bronze. Time has taken its toll and the wood has become brittle, but it is still an agile parrying tool. Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
+		this.m.Description = "A small shield made of wood and reinforced with bronze. Time has taken its toll and the wood has become brittle, but it is still an agile parrying tool.";
 		this.m.AddGenericSkill = true;
 		this.m.ShowOnCharacter = true;
 		this.m.Variants = [
@@ -29,8 +29,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.ConditionMax = 18;
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		this.m.Sprite = "mummy_shield_0" + this.m.Variant;
 		this.m.SpriteDamaged = "mummy_shield_0" + this.m.Variant + "_damaged";
 		this.m.ShieldDecal = "mummy_shield_0" + this.m.Variant + "_destroyed";
@@ -38,10 +37,25 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Icon = "shields/icon_mummy_shield_0" + this.m.Variant + ".png";
 	}
 
+	function getTooltip() {
+		local tooltip = this.shield.getTooltip();
+		tooltip.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Gain [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block"
+		});
+		return tooltip;
+	}
+
 	function onEquip() {
 		this.shield.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash);
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendBucklerDefense);
+		::Legends.Effects.grant(this.getContainer().getActor(), ::Legends.Effect.LegendBucklerDefense);
+	}
+
+	function onUnequip() {
+		this.shield.onUnequip();
+		::Legends.Effects.remove(this.getContainer().getActor(), ::Legends.Effect.LegendBucklerDefense);
 	}
 });
-
