@@ -12,7 +12,7 @@
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {
 		if (_skill != null) {
 			foreach (skill in this.m.Skills) {
-				if (_skill.getID() == ::Legends.Actives) {
+				if (_skill.getID() == skill) {
 					_properties.RangedAttackBlockedChanceMult *= 0.0;
 				}
 			}
