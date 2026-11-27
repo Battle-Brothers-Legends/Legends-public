@@ -539,8 +539,8 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.Peddler <- {
 	ArmorParts = 8,
 	Meds = 13,
-	Stash = 8,
-	Haggle = 0.02,
+	Stash = 11,
+	Haggle = 0.015,
 };
 
 ::Legends.BackgroundModifiers.PeddlerSouthern <- clone ::Legends.BackgroundModifiers.Peddler;
