@@ -89,7 +89,7 @@ RAAARGH!
 Nailed it!
 
 [color=%passive%][u]Passive:[/u][/color]
-• The penalty to hitchance when shooting at a target you have no clear line of fire to is reduced from [color=%negative%]75%[/color] to [color=%negative%]25%[/color] for any ranged weapons and [color=%skill%]Aimed Shot[/color] will not have a penalty at all.
+• The penalty to hitchance when shooting at a target you have no clear line of fire to is reduced from [color=%negative%]75%[/color] to [color=%negative%]25%[/color] for any ranged weapons and [color=%skill%]Aimed Shot[/color] and [color=%skill%]Full Draw[/color] will not have a penalty at all.
 
 • This Character's Vision is increased by [color=%positive%]+1[/color].
 ";
