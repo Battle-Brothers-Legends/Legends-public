@@ -1485,7 +1485,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.SlingTree,
 		::Const.Perks.PolearmTree,
 		::Const.Perks.ThrowingTree,
-		::Const.Perks.CleaverTree
+		::Const.Perks.BowTree
 	],
 	Defense = [
 		::Const.Perks.ClothArmorTree,
