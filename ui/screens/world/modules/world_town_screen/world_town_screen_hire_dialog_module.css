@@ -289,13 +289,12 @@
 .world-town-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-center-container
 {
 	top: 0;
-	left: 13.0rem;
 	right: 0;
 	bottom: 0;
-	width: 21.0rem;
+	width: 16.8rem;
 	height: 3.0rem;
 	position: absolute;
-	margin: auto;
+	margin: auto 0;
 }
 
 .world-town-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-container
@@ -307,8 +306,15 @@
 	margin-right: 1.0rem;
 }
 
+.world-town-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-container:first-child
+{
+	width: 8.8rem;
+	margin-right: 0.6rem;
+}
+
 .world-town-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-container:last-child
 {
+	width: 7.4rem;
 	margin-right: 0;
 }
 
