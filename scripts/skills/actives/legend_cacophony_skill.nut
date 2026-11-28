@@ -47,6 +47,13 @@ this.legend_cacophony_skill <- this.inherit("scripts/skills/skill", {
 		return ::Math.max(0, ::Math.min(100, chance));
 	}
 
+	function onVerifyTarget (_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
+			return false;
+		}
+		return !this.getContainer().Container.getActor().isAlliedWith(_targetTile.getEntity());
+	}
+
 	function onUse(_user, _targetTile) {
 		local targetEntity = _targetTile.getEntity();
 		local roll = ::Math.rand(1, 100);
