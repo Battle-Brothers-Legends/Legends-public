@@ -78,8 +78,8 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
-		local allies = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).extend(::Tactical.Entities.getInstancesOfFaction(::Const.Faction.PlayerAnimals))
-		foreach (ally in allies).filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendWarChant) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
+		local allies = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).extend(::Tactical.Entities.getInstancesOfFaction(::Const.Faction.PlayerAnimals));
+		foreach (ally in allies.filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendWarChant) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
 			ally.setFatigue(::Math.max(0, ally.getFatigue() - this.getBonus()));
 			::Legends.Effects.grant(ally, ::Legends.Effect.LegendWarChant);
 		}

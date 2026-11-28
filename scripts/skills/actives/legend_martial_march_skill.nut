@@ -78,7 +78,8 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
-		foreach (ally in allies).filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendMartialMarch) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
+		local allies = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).extend(::Tactical.Entities.getInstancesOfFaction(::Const.Faction.PlayerAnimals));
+		foreach (ally in allies.filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendMartialMarch) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
 			::Legends.Effects.grant(ally, ::Legends.Effect.LegendMartialMarch);
 		}
 		return true;
