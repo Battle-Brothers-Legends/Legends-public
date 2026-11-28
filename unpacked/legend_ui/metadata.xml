@@ -79,6 +79,11 @@
 	<sprite id="legend_volley" ic="FF1B293C" img="skills\legend_volley.png" />
 	<sprite id="legend_war_chant" ic="FF23165B" img="skills\legend_war_chant.png" />
 	<sprite id="legend_warfork_disarm" ic="FF1B293C" img="skills\legend_warfork_disarm.png" />
+	<sprite id="legend_spear_breach" ic="FF1B293C" img="skills\legend_spear_breach.png" />
+	<sprite id="legend_warbrand_breach" ic="FF1B293C" img="skills\legend_warbrand_breach.png" />
+	<sprite id="legend_rhompaia_breach" ic="FF1B293C" img="skills\legend_rhompaia_breach.png" />
+	<sprite id="legend_falchion_breach" ic="FF1B293C" img="skills\legend_falchion_breach.png" />
+	<sprite id="legend_cull" ic="FF1B293C" img="skills\legend_cull.png" />
 	<!-- horses -->
 	<sprite id="legend_horse_charge" ic="FF23165B" img="skills\legend_horse_charge.png" />
 	<sprite id="legend_horse_pirouette" ic="FF23165B" img="skills\legend_horse_pirouette.png" />

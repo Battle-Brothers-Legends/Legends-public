@@ -1193,11 +1193,7 @@ if (!("Actives" in ::Legends)) {
 	},
 	LegendCommandLegionary = {},
 	LegendCoordinatedVolleys = {},
-	LegendCull = {
-		Icon = "skills/active_25.png",
-		IconDisabled = "skills/active_25_sw.png",
-		Overlay = "active_25"
-	},
+	LegendCull = {},
 	LegendDeathTouch = {},
 	LegendDebilitate = {
 		Icon = "ui/perks/perk_34_active.png",

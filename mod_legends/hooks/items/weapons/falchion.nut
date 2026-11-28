@@ -18,7 +18,11 @@
 	o.addSkill <- function( _skill )
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash)) {
-			::Legends.Actives.grant(this, ::Legends.Active.LegendBreach);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendBreach, function (_skill) {
+				_skill.m.Icon = "skills/legend_falchion_breach.png";
+				_skill.m.IconDisabled = "skills/legend_falchion_breach_bw.png";
+				_skill.m.Overlay = "legend_falchion_breach";
+			}.bindenv(this));
 			return;
 		}
 

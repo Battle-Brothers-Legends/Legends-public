@@ -44,6 +44,9 @@
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBreach, function (_skill) {
 			_skill.m.IsGreatBreachSlash = true;
+			_skill.m.Icon = "skills/legend_spear_breach.png";
+			_skill.m.IconDisabled = "skills/legend_spear_breach_bw.png";
+			_skill.m.Overlay = "legend_spear_breach";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Rupture, function (_skill) {
 			_skill.m.IsMeleeRupture = true;
