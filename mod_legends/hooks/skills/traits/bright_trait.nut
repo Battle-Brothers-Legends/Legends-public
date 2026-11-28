@@ -10,12 +10,20 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function () {
 		local ret = getTooltip();
-		ret.push({
-			id = 11,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Doesn't get as irritated while reading"
-		});
+		ret.extend([
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Doesn't get as irritated while reading"
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Can understand an additional Ancient Scroll"
+			}
+		]);
 		return ret;
 	}
 });

@@ -897,6 +897,9 @@
 - Fixed the Military Warscythe showing the wrong variant on the bro, the second and third variants had their sprites swapped
 - Fixed Double Swing being usable while disarmed, it used up Action Points and Fatigue without attacking
 - Fixed the `Arena Fighter` trait showing the description of `Pit Fighter`
+- No food event won't fire anymore while escorting
+- fixed Inspired by Nearby Leader disappearing and reappearing constantly
+- fixed many Orcs not finding their leaders particularly inspiring
 
 ### For modders:
 - new character property `IsImmuneToTaunt`, `Taunt` can not target or affect a character that has it
