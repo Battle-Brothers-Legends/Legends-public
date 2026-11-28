@@ -5,7 +5,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMartialMarch);
-		this.m.Description = "A good marching melody uplifts the company, granting them temporary AP. Targets can only be inspired once per turn.";
+		this.m.Description = "A good marching melody uplifts the company, granting them temporary AP. Targets can only be inspired once per turn, but the second application will attempt to rally them.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = ::Const.SkillType.Active;
@@ -45,6 +45,13 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Grants all allied units within 8 tiles [color=%positive%]1[/color] additional Action Point for their next turn"
+			},
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "The second time this skill is applied it triggers a morale check to rally allies, with a bonus to Resolve of [color=%positive%]+%_bravery%[/color] based on this character\'s Resolve",
+				param = [["_bravery", this.getContainer().getActor().getCurrentProperties().getBravery()]]
 			}
 		];
 
@@ -78,9 +85,11 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
-		local allies = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).extend(::Tactical.Entities.getInstancesOfFaction(::Const.Faction.PlayerAnimals));
-		foreach (ally in allies.filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendMartialMarch) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
-			::Legends.Effects.grant(ally, ::Legends.Effect.LegendMartialMarch);
+		local actors = ::Tactical.Entities.getAllInstancesAsArray();
+		foreach (ally in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _actor)(_actor.isAlliedWith(_user) && _actor.getTile().getDistanceTo(myTile) <= 8))) {
+			::Legends.Effects.grant(ally, ::Legends.Effect.LegendMartialMarch, function (_skill) {
+				_skill.m.Bonus = _user.getCurrentProperties().getBravery();
+			}.bindenv(this));
 		}
 		return true;
 	}

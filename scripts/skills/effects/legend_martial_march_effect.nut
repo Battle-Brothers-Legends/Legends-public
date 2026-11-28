@@ -1,7 +1,8 @@
 this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		IsApplied = false,
-		TurnsLeft = 1
+		TurnsLeft = 1,
+		Bonus = null
 	},
 
 	function create() {
@@ -13,14 +14,12 @@ this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local tooltip = this.skill.getTooltip();
-		tooltip.extend([
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/action_points.png",
-				text = "Action Point increased by [color=%positive%]1[/color]"
-			}
-		]);
+		tooltip.extend([{
+			id = 11,
+			type = "text",
+			icon = "ui/icons/action_points.png",
+			text = "Action Point increased by [color=%positive%]1[/color]"
+		}]);
 		return tooltip;
 	}
 
@@ -34,6 +33,14 @@ this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 1));
 			this.m.IsApplied = true;
 		}
+	}
+
+	function onRefresh() {
+		this.checkMorale(1, this.m.Bonus);
+	}
+
+	function onRemoved() {
+		this.m.Bonus = null;
 	}
 
 	function onTurnStart() {

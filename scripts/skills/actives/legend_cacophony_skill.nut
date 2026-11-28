@@ -38,9 +38,9 @@ this.legend_cacophony_skill <- this.inherit("scripts/skills/skill", {
 			return 0;
 		}
 
-		local chance = getContainer().getActor().getCurrentProperties().getRangedSkill() - _targetEntity.getCurrentProperties().getRangedDefense();
+		local chance = this.getContainer().getActor().getCurrentProperties().getRangedSkill() - _targetEntity.getCurrentProperties().getRangedDefense();
 
-		if (getContainer().hasPerk(::Legends.Perk.LegendManipulative)) {
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendManipulative)) {
 			chance *= 2;
 		}
 
@@ -51,7 +51,7 @@ this.legend_cacophony_skill <- this.inherit("scripts/skills/skill", {
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
-		return !this.getContainer().Container.getActor().isAlliedWith(_targetTile.getEntity());
+		return !this.getContainer().getActor().isAlliedWith(_targetTile.getEntity());
 	}
 
 	function onUse(_user, _targetTile) {

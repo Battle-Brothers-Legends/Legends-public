@@ -292,7 +292,11 @@
 - swords now give 5 Block in the main hand instead of the chance to hit modifiers of `Slash`, `Gash`, `Overhead Strike`, `Split`, `Swing` and `Lunge`. With their mastery it is 10 Block, or 15 for two-handed swords
 - bandages now replenish up to 10 HP (only fresh wounds)
 
-## Quivers
+### Instruments
+- `War chant` and `Song of Life` will now work on subsequent applications but will only apply 50% of the bonus down to a minimum of 1
+- `Martial March` will now attempt to rally on subsequent applications with a bonus of the user's resolve
+
+### Quivers
 - quiver recipes have been revamped and the prices adjusted
 
 ### Armors
@@ -590,6 +594,7 @@
 - `Barbarian Reavers` and `Barbarian Pillagers` now show up in smaller groups, roaming warbands are no longer only `Thralls` and `Warhounds` for most of the early game
 - roaming barbarian warbands are slightly larger
 - `Barbarian Chosen` and `Barbarian Bloodletters` need a slightly larger group before they show up
+- `Barbarian Drummers` gain `Entrancing Song` after day 30
 
 ### Zombies
 - gain Immune to Taunt

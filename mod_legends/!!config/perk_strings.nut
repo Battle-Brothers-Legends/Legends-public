@@ -795,7 +795,7 @@ Some train with a weapon, others become one themselves.
 You have stepped up above playing shameful songs, ridiculing nobles and are a musician of some renown, whose fine melodies can whip any company into a battle frenzy.
 
 [color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Martial March[/color] skill which increases AP by [color=%negative%]1[/color] for one turn to all allies within an 8 tile range.
+• Unlocks the [color=%skill%]Martial March[/color] skill which increases AP by [color=%negative%]1[/color] for one turn to all allies within an 8 tile range. The second time it's applied it'll instead attempt to increase their morale them based on your Resolve.
 
 • Costs [color=%negative%]9[/color] AP and [color=%negative%]45[/color] Fatigue.
 

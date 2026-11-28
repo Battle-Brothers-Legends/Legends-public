@@ -3,7 +3,7 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWarChant);
-		this.m.Description = "Push allies on with your music, lowering the fatigue of all allies within 8 tiles. Must be holding a musical instrument to use. Songs apply once per turn.";
+		this.m.Description = "Push allies on with your music, lowering the fatigue of all allies within 8 tiles. Must be holding a musical instrument to use.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = ::Const.SkillType.Active;
@@ -40,8 +40,16 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 			{
 				id = 7,
 				type = "text",
+				icon = "ui/icons/health.png",
+				text = "Restores [color=%positive%]%_bonus%[/color] Fatigue to allies within 8 tiles",
+				param = [["_bonus", this.getBonus()]]
+			},
+			{
+				id = 8,
+				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Restores [color=%positive%]" + this.getBonus() + "[/color] Fatigue to allies within 8 tiles"
+				text = "Restores [color=%positive%]%_bonus%[/color] Fatigue to allies within 8 tiles that have already been affected by [color=%skill%]Warchant[/color]",
+				param = [["_bonus", ::Math.max(1, ::Math.floor(this.getBonus() * 0.5))]]
 			}
 		];
 		local actor = this.getContainer().getActor();
@@ -67,7 +75,7 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 
 	function getBonus() {
 		local actor = this.getContainer().getActor();
-		return 1 + 2 * ([actor.getCurrentProperties().IsSpecializedInMusic, ::Legends.Perks.has(actor, ::Legends.Perk.LegendSpecialistMusician), ::Legends.Perks.has(actor, ::Legends.Perk.LegendMinnesanger)].filter(@(_, _source)(_source == true)).len());
+		return 2 + 2 * ([actor.getCurrentProperties().IsSpecializedInMusic, ::Legends.Perks.has(actor, ::Legends.Perk.LegendSpecialistMusician), ::Legends.Perks.has(actor, ::Legends.Perk.LegendMinnesanger)].filter(@(_, _source)(_source == true)).len());
 	}
 
 	function isUsable() {
@@ -78,10 +86,10 @@ this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
-		local allies = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).extend(::Tactical.Entities.getInstancesOfFaction(::Const.Faction.PlayerAnimals));
-		foreach (ally in allies.filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendWarChant) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
-			ally.setFatigue(::Math.max(0, ally.getFatigue() - this.getBonus()));
-			::Legends.Effects.grant(ally, ::Legends.Effect.LegendWarChant);
+		foreach (ally in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _actor)(_actor.isAlliedWith(_user) && _actor.getTile().getDistanceTo(myTile) <= 8))) {
+			::Legends.Effects.grant(ally, ::Legends.Effect.LegendWarChant, function (_skill) {
+				_skill.m.Bonus = this.getBonus();
+			}.bindenv(this));
 		}
 		return true;
 	}

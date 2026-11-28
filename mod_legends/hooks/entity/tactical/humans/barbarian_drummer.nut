@@ -8,8 +8,7 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMinnesanger);
 
@@ -25,25 +24,19 @@
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.DrummerDodgeDay)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.DrummerDodgeDay) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMusician);
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local r = ::Math.rand(1, 2);
-
-		if (r == 1)
-		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/barbarians/antler_cleaver"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/barbarians/claw_club"));
-		}
-
+		local weapons = [
+				"weapons/barbarians/antler_cleaver",
+				"weapons/barbarians/claw_club"
+			];
+		this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		this.m.Items.equip(this.new("scripts/items/weapons/barbarians/drum_item"));
 
 		this.m.Items.equip(::Legends.Items.pickArmor([

@@ -3,7 +3,7 @@ this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSongOfLife);
-		this.m.Description = "Sing a Song of Life, restoring the health of all allies within 8 tiles.";
+		this.m.Description = "Sing a Song of Life, restoring the health of all allies within 8 tiles. Must be holding a musical instrument to use.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = ::Const.SkillType.Active;
@@ -40,8 +40,9 @@ this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 			{
 				id = 7,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Restores [color=%positive%]" + this.getBonus() + "[/color] Hitpoints to allies within 8 tiles"
+				icon = "ui/icons/health.png",
+				text = "Restores [color=%positive%]%_bonus%[/color] Hitpoints to allies within 8 tiles and [color=%positive%]%_bonusHalf%[/color] to allies who have already been affected by [color=%skill%]Song of War[/color]",
+				param = [["_bonus", this.getBonus()], ["_bonusHalf", ::Math.max(1, ::Math.floor(this.getBonus() * 0.5))]]
 			}
 		];
 		local actor = this.getContainer().getActor();
@@ -67,7 +68,7 @@ this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 	function getBonus() {
 		local actor = this.getContainer().getActor();
-		return 1 + 3 * ([actor.getCurrentProperties().IsSpecializedInMusic, ::Legends.Perks.has(actor, ::Legends.Perk.LegendSpecialistMusician), ::Legends.Perks.has(actor, ::Legends.Perk.LegendMinnesanger)].filter(@(_, _source) (_source == true)).len());
+		return 1 + 2 * ([actor.getCurrentProperties().IsSpecializedInMusic, ::Legends.Perks.has(actor, ::Legends.Perk.LegendSpecialistMusician), ::Legends.Perks.has(actor, ::Legends.Perk.LegendMinnesanger)].filter(@(_, _source) (_source == true)).len());
 	}
 
 	function isUsable() {
@@ -78,10 +79,10 @@ this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile) {
 		local myTile = _user.getTile();
-		local allies = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()).extend(::Tactical.Entities.getInstancesOfFaction(::Const.Faction.PlayerAnimals));
-		foreach (ally in allies.filter(@(_, _ally)(!_ally.getSkills().hasEffect(::Legends.Effect.LegendSongOfLife) && _ally.getTile().getDistanceTo(myTile) <= 8))) {
-			ally.setHitpoints(::Math.min(ally.getHitpointsMax(), ally.getHitpoints() + this.getBonus()));
-			::Legends.Effects.grant(ally, ::Legends.Effect.LegendSongOfLife);
+		foreach (ally in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _actor)(_actor.isAlliedWith(_user) && _actor.getTile().getDistanceTo(myTile) <= 8))) {
+			::Legends.Effects.grant(ally, ::Legends.Effect.LegendSongOfLife, function (_skill) {
+				_skill.m.Bonus = this.getBonus();
+			}.bindenv(this));
 		}
 		return true;
 	}
