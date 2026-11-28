@@ -83,6 +83,7 @@
 	<sprite id="legend_warbrand_breach" ic="FF1B293C" img="skills\legend_warbrand_breach.png" />
 	<sprite id="legend_rhompaia_breach" ic="FF1B293C" img="skills\legend_rhompaia_breach.png" />
 	<sprite id="legend_falchion_breach" ic="FF1B293C" img="skills\legend_falchion_breach.png" />
+	<sprite id="legend_cacophony" ic="FF1B293C" img="skills\legend_cacophony.png" />
 	<sprite id="legend_cull" ic="FF1B293C" img="skills\legend_cull.png" />
 	<!-- horses -->
 	<sprite id="legend_horse_charge" ic="FF23165B" img="skills\legend_horse_charge.png" />

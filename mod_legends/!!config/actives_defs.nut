@@ -1173,11 +1173,7 @@ if (!("Actives" in ::Legends)) {
 		Overlay = "active_78"
 	},
 	LegendBucklerBash = {},
-	LegendCacophony = {
-		Icon = "skills/legend_stupefy.png",
-		IconDisabled = "skills/legend_stupefy_bw.png",
-		Overlay = "legend_stupefy"
-	},
+	LegendCacophony = {},
 	LegendCatBite = {},
 	LegendCatapultBoulder = {
 		Icon = "skills/active_12.png",
