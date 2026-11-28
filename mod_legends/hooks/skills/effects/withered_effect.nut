@@ -8,7 +8,7 @@
 
 	o.getTooltip = function () {
 		local tooltip = this.skill.getTooltip();
-		param = [
+		local param = [
 			["_smallMalus", this.m.TurnsLeft * 5],
 			["_bigMalus", this.m.TurnsLeft * 10]
 		];
