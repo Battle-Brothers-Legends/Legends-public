@@ -25,7 +25,7 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 		// stats
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendSighthound);
-		b.TargetAttractionMult = 0.1;
+		b.TargetAttractionMult = 0.5;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;
 

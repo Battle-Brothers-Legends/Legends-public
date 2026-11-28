@@ -194,7 +194,7 @@
 				}
 			}
 
-			score = score * target.getCurrentProperties().TargetAttractionMult;
+			score *= target.getCurrentProperties().TargetAttractionMult * target.getCurrentProperties().AggroMult;
 
 			if (target.getCurrentProperties().NegativeStatusEffectDuration < 0) {
 				score = score * ::Const.AI.Behavior.CharmLowerDurationMult;

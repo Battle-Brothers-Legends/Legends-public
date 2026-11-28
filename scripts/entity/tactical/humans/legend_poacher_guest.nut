@@ -30,7 +30,7 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 		this.player.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendPeasantPoacher);
-		b.TargetAttractionMult = 1.0;
+		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
