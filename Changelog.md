@@ -560,6 +560,7 @@
 - `Greenwood Schrat` shield gains 15 block but now has 30 Melee Defense and Ranged Defense down from 40, condition is down to 64 from 128
 - `Hexe Coven Leader` - can now be champions and can drop named gnarly staves
 - `Hexe` - now always have a `Gnarly Staff`
+- both `Hexe` and `Hexe Coven Leader` had their Wither ai tweaked, making the spell more likely to cast when approached as well as being a smarter with targeting and reapplying
 - `Spider Cluster` - small spiders no longer exert zones of control, you can move freely around them
 
 ### Bandits
