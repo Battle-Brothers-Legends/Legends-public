@@ -814,9 +814,7 @@ if (!("Effects" in ::Legends)) {
 	LegendBandOfBrothers = {
 		Overlay = ""
 	},
-	LegendMarked = {
-		Overlay = ""
-	},
+	LegendMarked = {},
 	LegendMartialMarch = {},
 	LegendMeadWarmth = {
 		// to be remade/removed

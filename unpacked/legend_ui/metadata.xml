@@ -113,6 +113,7 @@
 	<sprite id="legend_knocked_over_effect" ic="3E2929FF" img="skills\legend_knocked_over_effect.png" />
 	<sprite id="legend_immobilized_effect" ic="3E2929FF" img="skills\legend_immobilized_effect.png" />
 	<sprite id="legend_levitating_effect" ic="3E2929FF" img="skills\legend_levitating_effect.png" />
+	<sprite id="legend_marked_effect" ic="3E2929FF" img="skills\legend_marked_effect.png" />
 	<sprite id="legend_martial_march_effect" ic="FF23165B" img="skills\legend_martial_march_effect.png" />
 	<sprite id="legend_parried_effect" offsetY="35" ic="FF344955" img="skills\legend_parried_effect.png" />
 	<sprite id="legend_patient_hunter_effect" ic="FF23165B" img="skills\legend_patient_hunter_effect.png" />
