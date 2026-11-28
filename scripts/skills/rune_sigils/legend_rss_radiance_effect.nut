@@ -1,30 +1,22 @@
 this.legend_rss_radiance_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
-
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssRadiance);
 		this.m.Description = "Rune Sigil: Radiance";
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsHidden = true;
 	}
 
-	function onMovementFinished() {
+	function refreshEffect() {
 		local actor = this.getContainer().getActor();
-		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
-			return;
+		foreach (entity in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _entity)(!::Legends.S.isEntityNullOrDead(_entity) && !_entity.isAlliedWith(actor) && ::Legends.Effects.has(_entity, ::Legends.Effect.LegendRssRadianceBlind)))) {
+			entity.getSkills().update();
+			entity.setDirty(true);
 		}
+	}
 
-		foreach (tar in ::Tactical.Entities.getAllInstances()) {
-			foreach (t in tar) {
-				if (!::Legends.S.isEntityNullOrDead(t) && !t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadianceBlind)) {
-					t.getSkills().update();
-					t.setDirty(true);
-				}
-			}
-		}
+	function onMovementFinished() {
+		this.refreshEffect();
 	}
 
 	function applyRadianceFoundation() {
@@ -36,12 +28,8 @@ this.legend_rss_radiance_effect <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		foreach (tar in ::Tactical.Entities.getAllInstances()) {
-			foreach (t in tar) {
-				if (!::Legends.S.isEntityNullOrDead(actor) && !t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendRssRadianceBlind))	{
-					::Legends.Effects.grant(t, ::Legends.Effect.LegendRssRadianceBlind);
-				}
-			}
+		foreach (entity in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _entity)(!::Legends.S.isEntityNullOrDead(_entity) && !_entity.isAlliedWith(actor) && !::Legends.Effects.has(_entity, ::Legends.Effect.LegendRssRadianceBlind)))) {
+			::Legends.Effects.grant(entity, ::Legends.Effect.LegendRssRadianceBlind);
 		}
 	}
 
@@ -49,7 +37,11 @@ this.legend_rss_radiance_effect <- this.inherit("scripts/skills/skill", {
 		this.applyRadianceFoundation();
 	}
 
-	function onCombatStarted() {
+	function applyAura() {
 		this.applyRadianceFoundation();
+	}
+
+	function onDeath(_fatalityType) {
+		this.refreshEffect();
 	}
 });

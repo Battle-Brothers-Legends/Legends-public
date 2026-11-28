@@ -90,7 +90,6 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);

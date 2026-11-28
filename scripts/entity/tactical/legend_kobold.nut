@@ -236,7 +236,6 @@
 // 		local body_blood = this.addSprite("body_blood");
 // 		body_blood.Visible = false;
 // 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendKobold);
-// 		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 // 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 // 		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 // 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

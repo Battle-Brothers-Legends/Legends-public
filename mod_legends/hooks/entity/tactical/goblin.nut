@@ -3,6 +3,7 @@
 	o.onInit = function () {
 		onInit();
 		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Effects.remove(this, ::Legends.Effect.Captain);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 	}
 

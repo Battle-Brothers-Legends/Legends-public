@@ -467,6 +467,7 @@
 		}
 
 		onInit();
+		::Legends.Effects.remove(this, ::Legends.Effect.Captain);
 		// return to normal
 		self.addSprite = original_addSprite;
 	}

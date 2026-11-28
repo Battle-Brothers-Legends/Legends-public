@@ -122,3 +122,24 @@ if (!("Effects" in ::Legends)) {
 	IsImmuneToSurrounding = "Surrounding",
 	IsImmuneToTaunt = "Taunt",
 }
+
+::Legends.Effects.applyAuras <- function (_actor) {
+	// currently just placed into a simple config here, perhaps could be normalized later so they aren't half perks half effects
+	local auras = [
+		{
+			Source = ::Legends.Effect.LegendRssRadiance,
+			Container = ::Legends.Effects
+		},
+		{
+			Source = ::Legends.Perk.Captain
+			Container = ::Legends.Perks
+		},
+		{
+			Source = ::Legends.Effect.LegendDemonHoundAuraSource,
+			Container = ::Legends.Effects
+		}
+	];
+	foreach (aura in auras.filter(@(_, _aura)(_aura.Container.has(_actor, _aura.Source)))) {
+		aura.Container.get(_actor, aura.Source).applyAura();
+	}
+}

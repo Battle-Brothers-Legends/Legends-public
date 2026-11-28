@@ -450,6 +450,10 @@
 			player.onCombatStart();
 		}
 
+		foreach (actor in this.getAllInstancesAsArray()) {
+			::Legends.Effects.applyAuras(actor);
+		}
+
 		::Math.seedRandom(::Time.getRealTime());
 	}
 

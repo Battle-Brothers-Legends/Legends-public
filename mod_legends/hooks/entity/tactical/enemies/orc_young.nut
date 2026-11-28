@@ -85,7 +85,6 @@
 		}
 
 		::Legends.Actives.grant(this, ::Legends.Active.WakeAlly);
-		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 	}
 

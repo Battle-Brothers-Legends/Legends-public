@@ -8,11 +8,8 @@ this.legend_rss_radiance_blind_effect <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssRadianceBlind);
 		this.m.Description = "This character is blinded by a radiant light.";
-		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = true;
+		this.m.IsRemovedAfterBattle = true;
 	}
 
 	function getTooltip() {
@@ -31,64 +28,38 @@ this.legend_rss_radiance_blind_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onMovementFinished() {
-		local actor = this.getContainer().getActor();
-		if (!::Legends.S.isEntityNullOrDead(actor) && actor.isPlacedOnMap()) {
-			actor.getSkills().update();
-			actor.setDirty(true);
-		}
+	function isHidden() {
+		return this.m.MeleeSkillMalus == 0 && this.m.MeleeDefMalus == 0;
 	}
 
-	function onUpdate(_properties) {
+	function getBonus() {
 		local actor = this.getContainer().getActor();
-		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
-			return;
+
+		if (!actor.isPlacedOnMap() || !::Tactical.isActive()) {
+			return 0;
 		}
 
 		local myTile = actor.getTile();
-		local isBlindedNow = false;
-		local bestMalus1 = 0;
-		local bestMalus2 = 0;
-
-		for (local i = 0; i < 6; i = ++i) {
-			if (myTile.hasNextTile(i)) {
-				local nextTile = myTile.getNextTile(i);
-				if (nextTile.IsOccupiedByActor) {
-					local entity = nextTile.getEntity();
-					if (!entity.isAlliedWith(actor)	&& ::Legends.Effects.has(entity, ::Legends.Effect.LegendRssRadiance)) {
-						local skill = ::Legends.Effects.get(entity, ::Legends.Effect.LegendRssRadiance);
-						if (skill != null && skill.getItem() != null) {
-							isBlindedNow = true;
-							bestMalus1 = ::Math.max(bestMalus1, skill.getItem().getRuneBonus1());
-							bestMalus2 = ::Math.max(bestMalus2, skill.getItem().getRuneBonus2());
-						}
-					}
-				}
-
+		local bestAttackMalus = 0;
+		local bestDefMalus = 0;
+		foreach (runeUser in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _entity)(!::Legends.S.isEntityNullOrDead(_entity) && _entity.isPlacedOnMap() && !_entity.isAlliedWith(actor) && _entity.getTile().getDistanceTo(myTile) == 1 && ::Legends.Effects.has(_entity, ::Legends.Effect.LegendRssRadiance)))) {
+			local effect = ::Legends.Effects.get(runeUser, ::Legends.Effect.LegendRssRadiance);
+			if (effect != null && effect.getItem() != null) {
+				bestAttackMalus = ::Math.max(bestAttackMalus, effect.getItem().getRuneBonus1());
+				bestDefMalus = ::Math.max(bestDefMalus, effect.getItem().getRuneBonus2());
 			}
 		}
-
-		if (isBlindedNow != this.m.WasBlinded || bestMalus1 != this.m.MeleeSkillMalus || bestMalus2 != this.m.MeleeDefMalus) {
-			this.m.WasBlinded = isBlindedNow;
-			this.m.MeleeSkillMalus = bestMalus1;
-			this.m.MeleeDefMalus = bestMalus2;
-			this.m.IsHidden = !isBlindedNow;
-
-			actor.getSkills().update();
-			actor.setDirty(true);
-		}
-
-		if (this.m.WasBlinded) {
-            _properties.MeleeSkillMult *= (1.0 - (this.m.MeleeSkillMalus / 100.0));
-            _properties.MeleeDefenseMult *= (1.0 - (this.m.MeleeDefMalus / 100.0));
-        }
+		this.m.MeleeSkillMalus = bestAttackMalus;
+		this.m.MeleeDefMalus = bestDefMalus;
 	}
 
-	function onDeath(_fatalityType) {
-		this.removeSelf();
+	function onUpdate(_properties) {
+		this.getBonus();
+		_properties.MeleeSkillMult *= (1.0 - (this.m.MeleeSkillMalus / 100.0));
+		_properties.MeleeDefenseMult *= (1.0 - (this.m.MeleeDefMalus / 100.0));
 	}
 
-	function onCombatFinished() {
-		this.removeSelf();
+	function getActorHoverTooltip (_activeEntity, _stacks = 1) {
+		return "[color=%negative%]-" + this.m.MeleeSkillMalus + "%[/color] " + ::Legends.Text.inlineIcons("melee_skill") + " [color=%negative%]-" + this.m.MeleeDefMalus + "%[/color] " + ::Legends.Text.inlineIcons("melee_defense");
 	}
 });
